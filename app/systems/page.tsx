@@ -4,6 +4,49 @@ import Link from "next/link";
 export default function SystemsPage() {
   const systems = [
     {
+      id: "forge",
+      name: "Forge",
+      subtitle: "Custom-Built Operational Systems",
+      color: "#A78BFA",
+      colorBg: "rgba(167,139,250,0.08)",
+      colorBorder: "rgba(167,139,250,0.2)",
+      tagline: "No template. No limits. Built entirely from scratch.",
+      desc: "Forge is Novum's highest-tier engagement — a completely custom operational system designed from the ground up around your unique business. No templates, no premade modules to configure, no compromises. If your operation is complex, specialized, or simply unlike anything else, Forge starts with a blank slate and builds the exact system your business needs to run at full capacity.",
+      forWho: ["Organizations with complex or unique operational structures", "Businesses that have outgrown off-the-shelf and pre-built platforms", "Companies requiring deep integrations across multiple systems", "High-growth operators who need a system that scales with them"],
+      modules: [
+        {
+          name: "Full Operational Architecture",
+          desc: "We design your system from the ground up — custom data model, user roles, permission structures, workflows, and integrations all architected around your exact business before a single line is written.",
+          icon: "🏗",
+        },
+        {
+          name: "Custom Integrations & Data Layer",
+          desc: "Connect anything — accounting platforms, CRMs, ERPs, project management tools, communication systems, proprietary databases, or legacy software. We build the data pipelines, sync logic, and APIs your operation actually needs.",
+          icon: "🔌",
+        },
+        {
+          name: "Proprietary Workflow Engine",
+          desc: "Your processes encoded into the system — custom approval chains, conditional logic, automated routing, and escalation paths built to match exactly how your team operates, not a generic template.",
+          icon: "⚙",
+        },
+        {
+          name: "AI & Automation Layer",
+          desc: "Where applicable, we layer in AI capabilities — intelligent task generation, document parsing, predictive alerts, and automated decision routing — built for your specific data and workflows.",
+          icon: "🤖",
+        },
+        {
+          name: "White-Glove Build & Deployment",
+          desc: "Dedicated build team, full system documentation, and a structured rollout with role-based training and change management. You don't go live until every part of your team is confident.",
+          icon: "🚀",
+        },
+        {
+          name: "Ongoing Evolution",
+          desc: "A Forge system isn't a one-time delivery — it's a living platform. As your business grows and changes, we evolve the system with you. Quarterly reviews, feature expansions, and dedicated support.",
+          icon: "🔄",
+        },
+      ],
+    },
+    {
       id: "opscore",
       name: "OpsCore",
       subtitle: "Operational Command Center",
@@ -30,8 +73,8 @@ export default function SystemsPage() {
           icon: "📊",
         },
         {
-          name: "Procore & Platform Integrations",
-          desc: "Pull live budgets, drawings, RFIs, and submittals directly from Procore into your OpsCore workspace. Plus native integrations for email, calendar, QuickBooks, and the other tools your team already uses.",
+          name: "Platform Integrations",
+          desc: "OpsCore connects to the tools your business already runs on — accounting software like QuickBooks or Xero, CRMs like Salesforce or HubSpot, project platforms like Monday or Asana, email and calendar via Google or Outlook, industry-specific tools, ERPs, and more. One platform. Every tool. No switching.",
           icon: "🔗",
         },
         {
@@ -132,49 +175,6 @@ export default function SystemsPage() {
         },
       ],
     },
-    {
-      id: "forge",
-      name: "Forge",
-      subtitle: "Custom-Built Operational Systems",
-      color: "#A78BFA",
-      colorBg: "rgba(167,139,250,0.08)",
-      colorBorder: "rgba(167,139,250,0.2)",
-      tagline: "No template. No limits. Built entirely from scratch.",
-      desc: "Forge is Novum's highest-tier engagement — a completely custom operational system designed from the ground up around your unique business. No templates, no premade modules to configure, no compromises. If your operation is complex, specialized, or simply unlike anything else, Forge starts with a blank slate and builds the exact system your business needs to run at full capacity.",
-      forWho: ["Organizations with complex or unique operational structures", "Businesses that have outgrown off-the-shelf and pre-built platforms", "Companies requiring deep integrations across multiple systems", "High-growth operators who need a system that scales with them"],
-      modules: [
-        {
-          name: "Full Operational Architecture",
-          desc: "We design your system from the ground up — custom data model, user roles, permission structures, workflows, and integrations all architected around your exact business before a single line is written.",
-          icon: "🏗",
-        },
-        {
-          name: "Custom Integrations & Data Layer",
-          desc: "Connect anything — Procore, QuickBooks, Salesforce, your ERP, your CRM, proprietary databases, or legacy tools. We build the data pipelines, sync logic, and APIs your operation actually needs.",
-          icon: "🔌",
-        },
-        {
-          name: "Proprietary Workflow Engine",
-          desc: "Your processes encoded into the system — custom approval chains, conditional logic, automated routing, and escalation paths built to match exactly how your team operates, not a generic template.",
-          icon: "⚙",
-        },
-        {
-          name: "AI & Automation Layer",
-          desc: "Where applicable, we layer in AI capabilities — intelligent task generation, document parsing, predictive alerts, and automated decision routing — built for your specific data and workflows.",
-          icon: "🤖",
-        },
-        {
-          name: "White-Glove Build & Deployment",
-          desc: "Dedicated build team, full system documentation, and a structured rollout with role-based training and change management. You don't go live until every part of your team is confident.",
-          icon: "🚀",
-        },
-        {
-          name: "Ongoing Evolution",
-          desc: "A Forge system isn't a one-time delivery — it's a living platform. As your business grows and changes, we evolve the system with you. Quarterly reviews, feature expansions, and dedicated support.",
-          icon: "🔄",
-        },
-      ],
-    },
   ];
 
   return (
@@ -210,10 +210,10 @@ export default function SystemsPage() {
           {/* System nav pills */}
           <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap", marginTop: "48px" }}>
             {[
+              { name: "Forge", color: "#A78BFA", id: "forge" },
               { name: "OpsCore", color: "var(--gold)", id: "opscore" },
               { name: "FieldOps", color: "var(--green-accent)", id: "fieldops" },
               { name: "ProjectOps", color: "#7B9FF5", id: "projectops" },
-              { name: "Forge", color: "#A78BFA", id: "forge" },
             ].map((s) => (
               <a
                 key={s.id}
