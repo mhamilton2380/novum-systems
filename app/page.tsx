@@ -434,7 +434,7 @@ export default function HomePage() {
           </div>
 
           <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
-            [
+            {[
               {
                 name: "Forge",
                 badge: "Fully Custom",
