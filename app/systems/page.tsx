@@ -55,7 +55,7 @@ export default function SystemsPage() {
       colorBorder: "rgba(201,169,110,0.2)",
       tagline: "Your entire operation, unified in one intelligent system.",
       desc: "OpsCore is more than a dashboard — it's a live operational brain for your business. Powered by AI, it automatically generates tasks from incoming emails, text messages, and documents so nothing slips through the cracks. Your team communicates via built-in project chat, shares notes, tracks deadlines on a unified calendar, and monitors budgets — all filtered by project, all in one place. Think Slack, Notion, and your PM tool merged into a single system built exactly around how you operate.",
-      forWho: ["Construction & development firms", "Multi-location operators", "Teams managing multiple concurrent projects", "Organizations with complex approval workflows"],
+      forWho: ["Any team managing multiple active projects", "Operators who need full visibility across their business", "Organizations replacing a stack of disconnected tools", "Businesses where tasks, communication, and data live in separate places"],
       modules: [
         {
           name: "AI Task Engine",
