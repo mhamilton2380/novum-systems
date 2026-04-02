@@ -434,15 +434,24 @@ export default function HomePage() {
           </div>
 
           <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
-            {[
+            [
+              {
+                name: "Forge",
+                badge: "Fully Custom",
+                badgeColor: "rgba(167,139,250,0.1)",
+                badgeBorder: "rgba(167,139,250,0.25)",
+                badgeText: "#A78BFA",
+                desc: "For operations that don't fit any mold. Forge is a completely custom-built system designed from the ground up around your unique structure, terminology, and workflows. No templates, no constraints — just your system, architected exactly the way your business runs.",
+                features: ["Full operational architecture from scratch", "Custom data model & integrations", "Proprietary workflow engine", "White-glove build & deployment"],
+              },
               {
                 name: "OpsCore",
                 badge: "Operations Hub",
                 badgeColor: "rgba(201,169,110,0.1)",
                 badgeBorder: "rgba(201,169,110,0.25)",
                 badgeText: "var(--gold)",
-                desc: "Your entire operation unified in one intelligent command center. OpsCore uses AI to generate tasks from emails, texts, and documents automatically. Your team communicates via built-in chat, shares notes, tracks projects, monitors budgets, and sees their calendar — all filtered by project. Think Slack, Notion, and your PM tool merged into one system built exactly for how you work.",
-                features: ["AI task generation from email/text/PDF", "Built-in team chat & shared notes", "Project-filtered calendar", "Procore & platform integrations", "Custom role dashboards", "Workflow automation"],
+                desc: "Your entire operation unified in one intelligent command center. OpsCore uses AI to generate tasks from emails, texts, and documents automatically. Your team communicates via built-in chat, shares notes, tracks projects, and monitors budgets — all in one place. And it connects to the tools you already use: accounting platforms like QuickBooks, CRMs like Salesforce or HubSpot, project tools like Monday or Asana, communication tools like Gmail or Outlook, ERP systems, and more. One platform. Every tool. Zero switching.",
+                features: ["AI task generation from email/text/PDF", "Built-in team chat & shared notes", "Project-filtered calendar & tasks", "QuickBooks, Salesforce, HubSpot & more", "Custom role dashboards", "Workflow automation"],
               },
               {
                 name: "FieldOps",
@@ -462,15 +471,6 @@ export default function HomePage() {
                 desc: "Full project lifecycle management from bid to close. Track live budget vs. actuals, manage vendors and subs, monitor milestone completion, and report on profitability across every active project — all in one system built around your workflow.",
                 features: ["Live budget-vs-actual tracking", "Vendor & sub management", "Milestone & Gantt-style timelines", "Document & RFI management", "Profitability reporting"],
               },
-              {
-                name: "Forge",
-                badge: "Fully Custom",
-                badgeColor: "rgba(167,139,250,0.1)",
-                badgeBorder: "rgba(167,139,250,0.25)",
-                badgeText: "#A78BFA",
-                desc: "For operations that don't fit any mold. Forge is a completely custom-built system designed from the ground up around your unique structure, terminology, and workflows. No templates, no constraints — just your system, architected exactly the way your business runs.",
-                features: ["Full operational architecture from scratch", "Custom data model & integrations", "Proprietary workflow engine", "White-glove build & deployment"],
-              },
             ].map((sys, i) => (
               <div
                 key={i}
@@ -485,7 +485,7 @@ export default function HomePage() {
                   borderRadius: "14px",
                   transition: "border-color 0.3s, background 0.3s",
                   cursor: "pointer",
-                  borderLeft: i === 0 ? "2px solid rgba(201,169,110,0.3)" : undefined,
+                  borderLeft: i === 0 ? "2px solid rgba(167,139,250,0.3)" : undefined,
                 }}
                 className="sys-row"
                 onMouseEnter={(e) => {
@@ -493,7 +493,7 @@ export default function HomePage() {
                   (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.03)";
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor = i === 0 ? "rgba(201,169,110,0.3)" : "rgba(245,242,236,0.07)";
+                  (e.currentTarget as HTMLElement).style.borderColor = i === 0 ? "rgba(167,139,250,0.3)" : "rgba(245,242,236,0.07)";
                   (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.02)";
                 }}
               >
