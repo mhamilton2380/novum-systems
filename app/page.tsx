@@ -11,19 +11,19 @@ export default function HomePage() {
           minHeight: "100vh",
           display: "flex",
           alignItems: "center",
-          padding: "120px 32px 80px",
+          padding: "120px 48px 80px",
           position: "relative",
           overflow: "hidden",
         }}
       >
-        {/* Decorative orb */}
+        {/* Decorative orbs */}
         <div
           style={{
             position: "absolute",
             top: "10%",
-            right: "-10%",
-            width: "600px",
-            height: "600px",
+            right: "-5%",
+            width: "700px",
+            height: "700px",
             borderRadius: "50%",
             background: "radial-gradient(circle, rgba(201,169,110,0.08) 0%, transparent 70%)",
             pointerEvents: "none",
@@ -33,141 +33,201 @@ export default function HomePage() {
           style={{
             position: "absolute",
             bottom: "5%",
-            left: "-5%",
-            width: "400px",
-            height: "400px",
+            left: "-3%",
+            width: "500px",
+            height: "500px",
             borderRadius: "50%",
             background: "radial-gradient(circle, rgba(59,107,240,0.06) 0%, transparent 70%)",
             pointerEvents: "none",
           }}
         />
 
-        <div style={{ maxWidth: "1280px", margin: "0 auto", width: "100%" }}>
-          <div style={{ maxWidth: "760px" }}>
-            <div className="tag animate-fade-up" style={{ marginBottom: "32px" }}>
-              Operational Software for Growing Businesses
-            </div>
+        <div style={{ maxWidth: "1440px", margin: "0 auto", width: "100%" }}>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: "80px",
+              alignItems: "center",
+            }}
+            className="hero-grid"
+          >
+            <div>
+              <div className="tag animate-fade-up" style={{ marginBottom: "32px" }}>
+                Operational Software for Growing Businesses
+              </div>
 
-            <h1
-              className="font-serif animate-fade-up"
-              style={{
-                fontSize: "clamp(3rem, 7vw, 5.5rem)",
-                lineHeight: "1.05",
-                letterSpacing: "-0.02em",
-                marginBottom: "28px",
-                animationDelay: "0.1s",
-                opacity: 0,
-              }}
-            >
-              Software that{" "}
-              <em className="gold-shimmer" style={{ fontStyle: "italic" }}>
-                adapts
-              </em>{" "}
-              <br />
-              to your business.
-            </h1>
-
-            <p
-              className="animate-fade-up"
-              style={{
-                fontSize: "clamp(1rem, 2vw, 1.2rem)",
-                color: "var(--ivory-muted)",
-                lineHeight: "1.75",
-                maxWidth: "540px",
-                marginBottom: "44px",
-                animationDelay: "0.2s",
-                opacity: 0,
-              }}
-            >
-              We replace rigid, expensive software with systems built around how your business actually operates — not the other way around.
-            </p>
-
-            <div
-              className="animate-fade-up"
-              style={{
-                display: "flex",
-                gap: "16px",
-                flexWrap: "wrap",
-                animationDelay: "0.3s",
-                opacity: 0,
-              }}
-            >
-              <Link
-                href="/contact"
-                className="btn-primary"
+              <h1
+                className="font-serif animate-fade-up"
                 style={{
-                  padding: "15px 32px",
-                  borderRadius: "10px",
-                  fontSize: "0.95rem",
-                  textDecoration: "none",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "8px",
+                  fontSize: "clamp(3rem, 5.5vw, 5.5rem)",
+                  lineHeight: "1.05",
+                  letterSpacing: "-0.02em",
+                  marginBottom: "28px",
+                  animationDelay: "0.1s",
+                  opacity: 0,
                 }}
               >
-                Book a Discovery Call
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </Link>
-              <Link
-                href="/systems"
-                className="btn-outline"
+                Software that{" "}
+                <em className="gold-shimmer" style={{ fontStyle: "italic" }}>
+                  adapts
+                </em>{" "}
+                <br />
+                to your business.
+              </h1>
+
+              <p
+                className="animate-fade-up"
                 style={{
-                  padding: "15px 32px",
-                  borderRadius: "10px",
-                  fontSize: "0.95rem",
-                  textDecoration: "none",
+                  fontSize: "clamp(1rem, 1.5vw, 1.2rem)",
+                  color: "var(--ivory-muted)",
+                  lineHeight: "1.75",
+                  maxWidth: "540px",
+                  marginBottom: "44px",
+                  animationDelay: "0.2s",
+                  opacity: 0,
                 }}
               >
-                See Our Systems
-              </Link>
+                We replace rigid, expensive software with systems built around how your business actually operates — not the other way around.
+              </p>
+
+              <div
+                className="animate-fade-up"
+                style={{
+                  display: "flex",
+                  gap: "16px",
+                  flexWrap: "wrap",
+                  animationDelay: "0.3s",
+                  opacity: 0,
+                }}
+              >
+                <Link
+                  href="/contact"
+                  className="btn-primary"
+                  style={{
+                    padding: "15px 32px",
+                    borderRadius: "10px",
+                    fontSize: "0.95rem",
+                    textDecoration: "none",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "8px",
+                  }}
+                >
+                  Book a Discovery Call
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </Link>
+                <Link
+                  href="/systems"
+                  className="btn-outline"
+                  style={{
+                    padding: "15px 32px",
+                    borderRadius: "10px",
+                    fontSize: "0.95rem",
+                    textDecoration: "none",
+                  }}
+                >
+                  See Our Systems
+                </Link>
+              </div>
             </div>
 
-            {/* Stats row */}
+            {/* Hero visual — system preview */}
             <div
-              className="animate-fade-up"
+              className="animate-fade-up hero-visual"
               style={{
-                display: "flex",
-                gap: "48px",
-                marginTop: "72px",
-                paddingTop: "48px",
-                borderTop: "1px solid rgba(245,242,236,0.07)",
-                flexWrap: "wrap",
-                animationDelay: "0.45s",
+                animationDelay: "0.4s",
                 opacity: 0,
+                display: "flex",
+                flexDirection: "column",
+                gap: "12px",
               }}
             >
-              {[
-                { num: "3", label: "Tailored systems" },
-                { num: "SMB", label: "Built for operators" },
-                { num: "100%", label: "Custom per client" },
-              ].map((stat) => (
-                <div key={stat.label}>
-                  <div
-                    className="font-serif"
-                    style={{
-                      fontSize: "2rem",
-                      color: "var(--gold)",
-                      letterSpacing: "-0.02em",
-                      marginBottom: "4px",
-                    }}
-                  >
-                    {stat.num}
-                  </div>
-                  <div style={{ fontSize: "0.82rem", color: "var(--ivory-muted)", letterSpacing: "0.02em" }}>
-                    {stat.label}
+              {/* Mock system card */}
+              <div
+                style={{
+                  background: "rgba(255,255,255,0.03)",
+                  border: "1px solid rgba(201,169,110,0.2)",
+                  borderRadius: "16px",
+                  padding: "24px 28px",
+                  backdropFilter: "blur(10px)",
+                }}
+              >
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
+                  <span className="font-serif" style={{ fontSize: "1rem", color: "var(--ivory)" }}>OpsCore — Command Center</span>
+                  <div style={{ display: "flex", gap: "6px" }}>
+                    <div style={{ width: "8px", height: "8px", borderRadius: "50%", background: "var(--green-accent)", opacity: 0.7 }} />
+                    <div style={{ width: "8px", height: "8px", borderRadius: "50%", background: "var(--gold)", opacity: 0.5 }} />
                   </div>
                 </div>
-              ))}
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "12px", marginBottom: "16px" }}>
+                  {[
+                    { label: "Open Tasks", value: "24", color: "var(--gold)" },
+                    { label: "Active Projects", value: "8", color: "var(--blue-accent)" },
+                    { label: "Team Online", value: "12", color: "var(--green-accent)" },
+                  ].map((kpi) => (
+                    <div
+                      key={kpi.label}
+                      style={{
+                        padding: "14px 16px",
+                        background: "rgba(255,255,255,0.03)",
+                        borderRadius: "10px",
+                        border: "1px solid rgba(245,242,236,0.06)",
+                      }}
+                    >
+                      <div className="font-serif" style={{ fontSize: "1.5rem", color: kpi.color, marginBottom: "4px" }}>{kpi.value}</div>
+                      <div style={{ fontSize: "0.68rem", color: "var(--ivory-muted)", letterSpacing: "0.04em" }}>{kpi.label}</div>
+                    </div>
+                  ))}
+                </div>
+                <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                  {[
+                    { text: "AI generated task from email: 'Review structural drawings — 3rd floor'", done: false },
+                    { text: "Budget alert: Site 4 at 91% — flag for PM review", done: false },
+                    { text: "Invoice #2041 approved & sent to Greenfield Partners", done: true },
+                  ].map((item, i) => (
+                    <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "10px", padding: "10px 12px", background: "rgba(255,255,255,0.02)", borderRadius: "8px", border: `1px solid ${item.done ? "rgba(46,204,143,0.15)" : "rgba(245,242,236,0.05)"}` }}>
+                      <div style={{ width: "14px", height: "14px", borderRadius: "3px", border: `1.5px solid ${item.done ? "var(--green-accent)" : "rgba(245,242,236,0.2)"}`, background: item.done ? "rgba(46,204,143,0.15)" : "transparent", flexShrink: 0, marginTop: "2px" }} />
+                      <span style={{ fontSize: "0.76rem", color: item.done ? "var(--ivory-muted)" : "var(--ivory)", lineHeight: "1.5", textDecoration: item.done ? "line-through" : "none", opacity: item.done ? 0.6 : 1 }}>{item.text}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
+                <div
+                  style={{
+                    background: "rgba(255,255,255,0.02)",
+                    border: "1px solid rgba(46,204,143,0.15)",
+                    borderRadius: "12px",
+                    padding: "18px 20px",
+                  }}
+                >
+                  <div style={{ fontSize: "0.68rem", color: "var(--green-accent)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "8px" }}>FieldOps</div>
+                  <div style={{ fontSize: "0.82rem", color: "var(--ivory-muted)" }}>7 jobs dispatched today · 2 pending invoices</div>
+                </div>
+                <div
+                  style={{
+                    background: "rgba(255,255,255,0.02)",
+                    border: "1px solid rgba(59,107,240,0.15)",
+                    borderRadius: "12px",
+                    padding: "18px 20px",
+                  }}
+                >
+                  <div style={{ fontSize: "0.68rem", color: "#7B9FF5", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "8px" }}>ProjectOps</div>
+                  <div style={{ fontSize: "0.82rem", color: "var(--ivory-muted)" }}>3 milestones due this week · $42k variance flagged</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Problem */}
-      <section style={{ padding: "120px 32px", position: "relative" }}>
-        <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+      <section style={{ padding: "120px 48px", position: "relative" }}>
+        <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
           <div
             style={{
               display: "grid",
@@ -235,13 +295,13 @@ export default function HomePage() {
       {/* Solution */}
       <section
         style={{
-          padding: "120px 32px",
+          padding: "120px 48px",
           background: "rgba(201,169,110,0.03)",
           borderTop: "1px solid rgba(245,242,236,0.06)",
           borderBottom: "1px solid rgba(245,242,236,0.06)",
         }}
       >
-        <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+        <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
           <div style={{ textAlign: "center", maxWidth: "600px", margin: "0 auto 72px" }}>
             <div className="tag" style={{ marginBottom: "24px", display: "inline-flex" }}>
               The Novum Approach
@@ -343,8 +403,8 @@ export default function HomePage() {
       </section>
 
       {/* Systems Overview */}
-      <section style={{ padding: "120px 32px" }}>
-        <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+      <section style={{ padding: "120px 48px" }}>
+        <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
           <div
             style={{
               display: "flex",
@@ -361,7 +421,7 @@ export default function HomePage() {
                 className="font-serif"
                 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", lineHeight: "1.1", letterSpacing: "-0.02em" }}
               >
-                Three systems.<br />Every operation covered.
+                Every operation covered.<br />One platform.
               </h2>
             </div>
             <Link
@@ -376,13 +436,22 @@ export default function HomePage() {
           <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
             {[
               {
+                name: "OpsCore",
+                badge: "Operations Hub",
+                badgeColor: "rgba(201,169,110,0.1)",
+                badgeBorder: "rgba(201,169,110,0.25)",
+                badgeText: "var(--gold)",
+                desc: "Your entire operation unified in one intelligent command center. OpsCore uses AI to generate tasks from emails, texts, and documents automatically. Your team communicates via built-in chat, shares notes, tracks projects, monitors budgets, and sees their calendar — all filtered by project. Think Slack, Notion, and your PM tool merged into one system built exactly for how you work.",
+                features: ["AI task generation from email/text/PDF", "Built-in team chat & shared notes", "Project-filtered calendar", "Procore & platform integrations", "Custom role dashboards", "Workflow automation"],
+              },
+              {
                 name: "FieldOps",
                 badge: "Field Service",
                 badgeColor: "rgba(46,204,143,0.12)",
                 badgeBorder: "rgba(46,204,143,0.25)",
                 badgeText: "var(--green-accent)",
-                desc: "End-to-end field service management. Scheduling, dispatch, job tracking, and automated invoicing — all connected to your operations.",
-                features: ["Smart scheduling & dispatch", "Job tracking & status updates", "Automated invoicing", "Customer portal"],
+                desc: "End-to-end field service management built around your crews, territories, and job types. From the moment a job is booked to the final invoice — scheduling, dispatch, field access, photo documentation, and automated billing all run through one connected system.",
+                features: ["Visual scheduling & dispatch", "Mobile field access & job tracking", "Automated invoicing on completion", "Customer records & property history"],
               },
               {
                 name: "ProjectOps",
@@ -390,24 +459,24 @@ export default function HomePage() {
                 badgeColor: "rgba(59,107,240,0.1)",
                 badgeBorder: "rgba(59,107,240,0.25)",
                 badgeText: "#7B9FF5",
-                desc: "Full project lifecycle management from bid to close. Track budgets, vendors, milestones, and profitability in one place.",
-                features: ["Project & milestone tracking", "Budget management", "Vendor & subcontractor tools", "Profitability reporting"],
+                desc: "Full project lifecycle management from bid to close. Track live budget vs. actuals, manage vendors and subs, monitor milestone completion, and report on profitability across every active project — all in one system built around your workflow.",
+                features: ["Live budget-vs-actual tracking", "Vendor & sub management", "Milestone & Gantt-style timelines", "Document & RFI management", "Profitability reporting"],
               },
               {
-                name: "OpsCore",
-                badge: "Multi-Location",
-                badgeColor: "rgba(201,169,110,0.1)",
-                badgeBorder: "rgba(201,169,110,0.25)",
-                badgeText: "var(--gold)",
-                desc: "Your operational command center. Custom dashboards, workflow automation, and cross-team visibility built around your KPIs.",
-                features: ["Custom dashboards", "Workflow automation", "Role-based access", "Cross-location reporting"],
+                name: "Forge",
+                badge: "Fully Custom",
+                badgeColor: "rgba(167,139,250,0.1)",
+                badgeBorder: "rgba(167,139,250,0.25)",
+                badgeText: "#A78BFA",
+                desc: "For operations that don't fit any mold. Forge is a completely custom-built system designed from the ground up around your unique structure, terminology, and workflows. No templates, no constraints — just your system, architected exactly the way your business runs.",
+                features: ["Full operational architecture from scratch", "Custom data model & integrations", "Proprietary workflow engine", "White-glove build & deployment"],
               },
             ].map((sys, i) => (
               <div
                 key={i}
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "260px 1fr auto",
+                  gridTemplateColumns: "280px 1fr auto",
                   gap: "48px",
                   alignItems: "center",
                   padding: "40px 48px",
@@ -416,6 +485,7 @@ export default function HomePage() {
                   borderRadius: "14px",
                   transition: "border-color 0.3s, background 0.3s",
                   cursor: "pointer",
+                  borderLeft: i === 0 ? "2px solid rgba(201,169,110,0.3)" : undefined,
                 }}
                 className="sys-row"
                 onMouseEnter={(e) => {
@@ -423,7 +493,7 @@ export default function HomePage() {
                   (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.03)";
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(245,242,236,0.07)";
+                  (e.currentTarget as HTMLElement).style.borderColor = i === 0 ? "rgba(201,169,110,0.3)" : "rgba(245,242,236,0.07)";
                   (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.02)";
                 }}
               >
@@ -449,7 +519,7 @@ export default function HomePage() {
                   </span>
                 </div>
                 <div>
-                  <p style={{ color: "var(--ivory-muted)", fontSize: "0.95rem", lineHeight: "1.7", marginBottom: "16px" }}>
+                  <p style={{ color: "var(--ivory-muted)", fontSize: "0.92rem", lineHeight: "1.75", marginBottom: "16px" }}>
                     {sys.desc}
                   </p>
                   <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
@@ -497,13 +567,13 @@ export default function HomePage() {
       {/* Process */}
       <section
         style={{
-          padding: "120px 32px",
+          padding: "120px 48px",
           background: "var(--ink-soft)",
           borderTop: "1px solid rgba(245,242,236,0.06)",
           borderBottom: "1px solid rgba(245,242,236,0.06)",
         }}
       >
-        <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+        <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "80px" }}>
             <div className="tag" style={{ marginBottom: "24px", display: "inline-flex" }}>How It Works</div>
             <h2
@@ -518,7 +588,6 @@ export default function HomePage() {
             style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "32px", position: "relative" }}
             className="process-grid"
           >
-            {/* Connector line */}
             <div
               style={{
                 position: "absolute",
@@ -585,7 +654,7 @@ export default function HomePage() {
       <section
         className="mesh-bg"
         style={{
-          padding: "120px 32px",
+          padding: "120px 48px",
           textAlign: "center",
           position: "relative",
           overflow: "hidden",
@@ -645,6 +714,10 @@ export default function HomePage() {
       </section>
 
       <style jsx>{`
+        @media (max-width: 1100px) {
+          .hero-grid { grid-template-columns: 1fr !important; }
+          .hero-visual { display: none !important; }
+        }
         @media (max-width: 900px) {
           .problem-grid { grid-template-columns: 1fr !important; }
           .solution-grid { grid-template-columns: 1fr !important; }

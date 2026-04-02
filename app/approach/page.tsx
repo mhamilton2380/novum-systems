@@ -25,16 +25,51 @@ export default function ApproachPage() {
     },
   ];
 
+  const systems = [
+    {
+      name: "OpsCore",
+      color: "var(--gold)",
+      colorBg: "rgba(201,169,110,0.08)",
+      colorBorder: "rgba(201,169,110,0.2)",
+      desc: "AI-powered operational command center. Task generation, team chat, project boards, calendar, and platform integrations — all in one system.",
+      href: "/systems#opscore",
+    },
+    {
+      name: "FieldOps",
+      color: "var(--green-accent)",
+      colorBg: "rgba(46,204,143,0.08)",
+      colorBorder: "rgba(46,204,143,0.2)",
+      desc: "End-to-end field service management. Scheduling, dispatch, job tracking, mobile field access, and automated invoicing.",
+      href: "/systems#fieldops",
+    },
+    {
+      name: "ProjectOps",
+      color: "#7B9FF5",
+      colorBg: "rgba(59,107,240,0.08)",
+      colorBorder: "rgba(59,107,240,0.2)",
+      desc: "Full project lifecycle management. Budget tracking, vendor management, milestone timelines, RFIs, and profitability reporting.",
+      href: "/systems#projectops",
+    },
+    {
+      name: "Forge",
+      color: "#A78BFA",
+      colorBg: "rgba(167,139,250,0.08)",
+      colorBorder: "rgba(167,139,250,0.2)",
+      desc: "Completely custom-built systems from the ground up. For operations that don't fit any mold — no templates, no constraints, just your system.",
+      href: "/systems#forge",
+    },
+  ];
+
   return (
     <>
       {/* Hero */}
       <section
         style={{
-          padding: "160px 32px 100px",
+          padding: "160px 48px 100px",
           background: "radial-gradient(ellipse 900px 500px at 50% 0%, rgba(59,107,240,0.05) 0%, transparent 60%), var(--ink)",
         }}
       >
-        <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+        <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
           <div style={{ maxWidth: "700px" }}>
             <div className="tag" style={{ marginBottom: "28px" }}>Our Approach</div>
             <h1
@@ -58,8 +93,8 @@ export default function ApproachPage() {
       </section>
 
       {/* What sets us apart */}
-      <section style={{ padding: "100px 32px", borderTop: "1px solid rgba(245,242,236,0.06)" }}>
-        <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+      <section style={{ padding: "100px 48px", borderTop: "1px solid rgba(245,242,236,0.06)" }}>
+        <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
           <div
             style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: "80px", alignItems: "start" }}
             className="two-col"
@@ -124,6 +159,7 @@ export default function ApproachPage() {
                     "One-size pricing",
                     "Self-serve with poor support",
                     "Features you don't need",
+                    "No understanding of your ops",
                   ].map((item) => (
                     <div key={item} style={{ display: "flex", gap: "10px", marginBottom: "12px", alignItems: "flex-start" }}>
                       <span style={{ color: "rgba(255,120,120,0.5)", fontSize: "0.9rem", marginTop: "1px" }}>✕</span>
@@ -157,6 +193,7 @@ export default function ApproachPage() {
                     "Scoped to your exact needs",
                     "Dedicated delivery & support",
                     "Only what your business needs",
+                    "Deep operational understanding first",
                   ].map((item) => (
                     <div key={item} style={{ display: "flex", gap: "10px", marginBottom: "12px", alignItems: "flex-start" }}>
                       <span style={{ color: "var(--gold)", fontSize: "0.9rem", marginTop: "1px" }}>✓</span>
@@ -173,13 +210,13 @@ export default function ApproachPage() {
       {/* Principles */}
       <section
         style={{
-          padding: "100px 32px",
+          padding: "100px 48px",
           background: "var(--ink-soft)",
           borderTop: "1px solid rgba(245,242,236,0.06)",
           borderBottom: "1px solid rgba(245,242,236,0.06)",
         }}
       >
-        <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+        <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "72px" }}>
             <div className="tag" style={{ marginBottom: "20px", display: "inline-flex" }}>Our Principles</div>
             <h2 className="font-serif" style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", letterSpacing: "-0.02em" }}>
@@ -230,9 +267,61 @@ export default function ApproachPage() {
         </div>
       </section>
 
+      {/* Our Systems */}
+      <section style={{ padding: "100px 48px", borderBottom: "1px solid rgba(245,242,236,0.06)" }}>
+        <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "56px", flexWrap: "wrap", gap: "24px" }}>
+            <div>
+              <div className="tag" style={{ marginBottom: "20px" }}>Our Systems</div>
+              <h2 className="font-serif" style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", letterSpacing: "-0.02em", lineHeight: "1.15" }}>
+                Four systems. Every operation covered.
+              </h2>
+            </div>
+            <Link
+              href="/systems"
+              className="btn-outline"
+              style={{ padding: "12px 28px", borderRadius: "9px", textDecoration: "none", fontSize: "0.9rem", whiteSpace: "nowrap" }}
+            >
+              View Full Details →
+            </Link>
+          </div>
+
+          <div
+            style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "16px" }}
+            className="systems-grid"
+          >
+            {systems.map((sys) => (
+              <Link
+                key={sys.name}
+                href={sys.href}
+                className="card-hover"
+                style={{
+                  padding: "32px",
+                  border: `1px solid ${sys.colorBorder}`,
+                  borderRadius: "16px",
+                  background: sys.colorBg,
+                  textDecoration: "none",
+                  display: "block",
+                }}
+              >
+                <h3
+                  className="font-serif"
+                  style={{ fontSize: "1.4rem", letterSpacing: "-0.01em", marginBottom: "12px", color: sys.color }}
+                >
+                  {sys.name}
+                </h3>
+                <p style={{ color: "var(--ivory-muted)", fontSize: "0.88rem", lineHeight: "1.75", margin: 0 }}>
+                  {sys.desc}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Who we work with */}
-      <section style={{ padding: "100px 32px" }}>
-        <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+      <section style={{ padding: "100px 48px" }}>
+        <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
           <div style={{ textAlign: "center", maxWidth: "560px", margin: "0 auto 64px" }}>
             <div className="tag" style={{ marginBottom: "20px", display: "inline-flex" }}>Who We Work With</div>
             <h2 className="font-serif" style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", letterSpacing: "-0.02em", lineHeight: "1.15" }}>
@@ -241,24 +330,29 @@ export default function ApproachPage() {
           </div>
 
           <div
-            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px" }}
+            style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "20px" }}
             className="who-grid"
           >
             {[
               {
                 icon: "🔧",
                 title: "Field Service",
-                desc: "HVAC, plumbing, electrical, landscaping, equipment service — any business with teams dispatched to job sites.",
+                desc: "HVAC, plumbing, electrical, landscaping, equipment service — any business with teams dispatched to job sites that need scheduling, job management, and automated billing.",
               },
               {
                 icon: "📐",
                 title: "Project-Based",
-                desc: "General contractors, specialty trades, creative agencies, IT firms — businesses that run on projects with budgets and timelines.",
+                desc: "General contractors, specialty trades, creative agencies, IT firms — businesses that run on projects with budgets, timelines, and multiple stakeholders.",
               },
               {
                 icon: "🏢",
                 title: "Multi-Location",
-                desc: "Operators managing multiple teams, locations, or franchises who need visibility and coordination across their full operation.",
+                desc: "Operators managing multiple teams, locations, or franchises who need visibility, coordination, and consistent process across their full operation.",
+              },
+              {
+                icon: "⚡",
+                title: "Complex Operations",
+                desc: "Organizations with unique, multi-layered operational structures that don't fit existing software — who need a system built from scratch around how they actually run.",
               },
             ].map((item) => (
               <div
@@ -272,13 +366,7 @@ export default function ApproachPage() {
                   textAlign: "center",
                 }}
               >
-                <div
-                  style={{
-                    fontSize: "2rem",
-                    marginBottom: "20px",
-                    display: "block",
-                  }}
-                >
+                <div style={{ fontSize: "2rem", marginBottom: "20px", display: "block" }}>
                   {item.icon}
                 </div>
                 <h3 className="font-serif" style={{ fontSize: "1.25rem", marginBottom: "12px", letterSpacing: "-0.01em" }}>
@@ -292,7 +380,7 @@ export default function ApproachPage() {
       </section>
 
       {/* CTA */}
-      <section style={{ padding: "100px 32px", textAlign: "center", borderTop: "1px solid rgba(245,242,236,0.06)" }}>
+      <section style={{ padding: "100px 48px", textAlign: "center", borderTop: "1px solid rgba(245,242,236,0.06)" }}>
         <div style={{ maxWidth: "560px", margin: "0 auto" }}>
           <h2 className="font-serif" style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", letterSpacing: "-0.02em", marginBottom: "20px" }}>
             Sound like the right fit?
@@ -311,11 +399,18 @@ export default function ApproachPage() {
       </section>
 
       <style jsx>{`
+        @media (max-width: 1100px) {
+          .systems-grid { grid-template-columns: repeat(2, 1fr) !important; }
+          .who-grid { grid-template-columns: repeat(2, 1fr) !important; }
+        }
         @media (max-width: 900px) {
           .two-col { grid-template-columns: 1fr !important; }
           .compare-grid { grid-template-columns: 1fr !important; }
-          .who-grid { grid-template-columns: 1fr !important; }
           .principle-row { grid-template-columns: 1fr !important; padding: 28px !important; }
+        }
+        @media (max-width: 640px) {
+          .systems-grid { grid-template-columns: 1fr !important; }
+          .who-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </>

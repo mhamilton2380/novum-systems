@@ -34,8 +34,13 @@ export default function Footer() {
 
           <div>
             <p style={{ fontSize: "0.72rem", fontWeight: "600", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--gold)", marginBottom: "20px" }}>Systems</p>
-            {["FieldOps", "ProjectOps", "OpsCore"].map((s) => (
-              <Link key={s} href="/systems" style={{ display: "block", color: "var(--ivory-muted)", fontSize: "0.88rem", textDecoration: "none", marginBottom: "12px" }}>{s}</Link>
+            {[
+              { name: "OpsCore", href: "/systems#opscore" },
+              { name: "FieldOps", href: "/systems#fieldops" },
+              { name: "ProjectOps", href: "/systems#projectops" },
+              { name: "Forge", href: "/systems#forge" },
+            ].map((s) => (
+              <Link key={s.name} href={s.href} style={{ display: "block", color: "var(--ivory-muted)", fontSize: "0.88rem", textDecoration: "none", marginBottom: "12px" }}>{s.name}</Link>
             ))}
           </div>
 
