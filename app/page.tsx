@@ -446,9 +446,9 @@ function HeroWorkflowGraphic() {
         <div
           style={{
             position: "absolute",
-            left: 184,
-            top: 316,
-            width: 156,
+            left: 140,
+            top: 310,
+            width: 148,
             padding: "14px 16px",
             borderRadius: 16,
             background:
@@ -492,7 +492,7 @@ function HeroWorkflowGraphic() {
             position: "absolute",
             left: "50%",
             top: 332,
-            transform: "translateX(-50%)",
+            transform: "translateX(-40%)",
             width: 170,
             padding: "14px 16px",
             borderRadius: 16,
@@ -698,6 +698,7 @@ export default function HomePage() {
                   color: "rgba(188,208,255,0.96)",
                   textShadow:
                     "0 0 18px rgba(125,171,255,0.42), 0 0 42px rgba(125,171,255,0.18)",
+                  animation: "adaptsGlow 2.8s ease-in-out infinite",
                 }}
               >
                 adapts
@@ -1552,6 +1553,10 @@ export default function HomePage() {
           animation: platformBeat 2.4s ease-in-out infinite;
         }
 
+        @keyframes adaptsGlow {
+          0%, 100% { text-shadow: 0 0 18px rgba(125,171,255,0.42), 0 0 42px rgba(125,171,255,0.18); }
+          50% { text-shadow: 0 0 32px rgba(125,171,255,0.85), 0 0 70px rgba(125,171,255,0.45), 0 0 100px rgba(125,171,255,0.2); }
+        }
         @keyframes pulseTravel {
           0% {
             transform: translateX(0);
