@@ -363,7 +363,6 @@ export default function HomePage() {
       <div style={{ position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none" }}>
         <PlexusBg />
       </div>
-      <div style={{ position: "relative", zIndex: 1 }}>
 
       {/* ── Hero ── */}
       <section style={{ padding: "76px 24px 0" }}>
