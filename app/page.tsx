@@ -121,6 +121,7 @@ function PlexusBg() {
     initialize();
     window.addEventListener("resize", initialize);
     rafRef.current = requestAnimationFrame(tick);
+    rafRef.current = requestAnimationFrame(tick);
 
     return () => {
       cancelAnimationFrame(rafRef.current);
