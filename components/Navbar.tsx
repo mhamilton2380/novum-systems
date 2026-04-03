@@ -109,14 +109,14 @@ export default function Navbar() {
           <span
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontWeight: 600,
+              fontWeight: 700,
               fontSize: "0.975rem",
               color: textColor,
-              letterSpacing: "-0.015em",
+              letterSpacing: "-0.045em",
               transition: "color 0.3s ease",
             }}
           >
-            Novum Systems
+            NOVUM SYSTEMS
           </span>
         </Link>
 
