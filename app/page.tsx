@@ -1,83 +1,302 @@
 "use client";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
-export default function SystemsPage() {
-  const systems = [
-    {
-      id: "fieldops",
-      name: "FieldOps",
-      subtitle: "Field Service Management",
-      accent: "#236B4E",
-      accentBg: "#EEF7F3",
-      accentBorder: "#C4E0D5",
-      tagline: "Schedule, dispatch, and close jobs — without the chaos.",
-      desc: "FieldOps is a complete operational system for field service businesses. Built around your specific job types, team structure, and billing needs — not a one-size-fits-all platform.",
-      forWho: ["HVAC & mechanical contractors", "Plumbing & electrical", "Landscaping & property maintenance", "Equipment services & repair"],
-      modules: [
-        { name: "Scheduling & Dispatch", desc: "Visual scheduling board built around your team, territories, and job types. Drag-and-drop dispatch with real-time updates." },
-        { name: "Job Management", desc: "Full job lifecycle from work order to completion. Field team access, photo uploads, notes, and status tracking." },
-        { name: "Invoicing & Payments", desc: "Automated invoicing tied to job completion. Configurable pricing rules, line items, and payment collection." },
-        { name: "Customer Records", desc: "Complete customer and property history. Service records, equipment tracking, and communication logs." },
-      ],
-    },
-    {
-      id: "projectops",
-      name: "ProjectOps",
-      subtitle: "Project-Based Business Management",
-      accent: "#2C4E8A",
-      accentBg: "#EEF2FA",
-      accentBorder: "#C0CEEB",
-      tagline: "Run every project on budget and on time.",
-      desc: "ProjectOps gives project-based businesses a command center for managing complex jobs from bid to close. Track milestones, budgets, vendors, and profitability across every project.",
-      forWho: ["General contractors", "Specialty trades & subcontractors", "IT & tech project firms", "Marketing & creative agencies"],
-      modules: [
-        { name: "Project Dashboard", desc: "Real-time view of all active projects — status, budget burn, milestone completion, and team assignments." },
-        { name: "Budget Tracking", desc: "Live budget-vs-actual across all cost categories. Flag overruns early and protect your margins." },
-        { name: "Vendor & Sub Management", desc: "Track vendor bids, contracts, payments, and performance. All connected to the project it belongs to." },
-        { name: "Milestone & Timeline", desc: "Gantt-style milestone tracking with dependency management and automated progress reports." },
-      ],
-    },
-    {
-      id: "opscore",
-      name: "OpsCore",
-      subtitle: "Operational Command Center",
-      accent: "#3A5585",
-      accentBg: "#EEF1F7",
-      accentBorder: "#C4CDE0",
-      tagline: "Visibility across every part of your business.",
-      desc: "OpsCore is the operational layer that ties everything together. Custom dashboards, automated workflows, and reporting designed around the KPIs that actually matter to your business.",
-      forWho: ["Multi-location operators", "Franchise systems", "Teams with complex approval workflows", "Businesses needing cross-department reporting"],
-      modules: [
-        { name: "Custom Dashboards", desc: "Role-based dashboards showing each team member exactly what they need to see — nothing more, nothing less." },
-        { name: "Workflow Automation", desc: "Automate repetitive processes, approvals, and notifications. Define the rules once; the system handles it from there." },
-        { name: "Reporting Engine", desc: "Custom reports and KPI tracking across locations, teams, and time periods. Exportable and schedulable." },
-        { name: "Access & Permissions", desc: "Granular role-based access control. Every team member sees and can edit exactly what they should." },
-      ],
-    },
-    {
-      id: "forge",
-      name: "Forge",
-      subtitle: "Fully Custom Build",
-      accent: "#6D4FBB",
-      accentBg: "#F3F0FC",
-      accentBorder: "#D9D0F5",
-      tagline: "For operations that don't fit any mold.",
-      desc: "Forge is a completely custom-built system designed from the ground up around your unique structure, terminology, and workflows. No templates, no constraints — just your system, architected exactly the way your business runs.",
-      forWho: ["Operations with proprietary workflows", "Businesses with unique data models", "Companies needing white-label systems", "Operators who've outgrown every tool they've tried"],
-      modules: [
-        { name: "Operational Architecture", desc: "Full discovery and design of your operational model — data structure, workflow logic, and system hierarchy built from scratch." },
-        { name: "Custom Data Model", desc: "Your terminology, your entities, your relationships. No force-fitting your business into someone else's schema." },
-        { name: "Proprietary Workflow Engine", desc: "Workflows built around exactly how your business moves — approvals, triggers, automations, and exceptions." },
-        { name: "White-Glove Deployment", desc: "End-to-end build, testing, training, and handoff. We don't ship until you're fully operational." },
-      ],
-    },
+// ── Hero viz — phone mockup + radiating integration nodes ───────────────────
+function HeroViz() {
+  const [activePulse, setActivePulse] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => setActivePulse(a => (a + 1) % 8), 1400);
+    return () => clearInterval(id);
+  }, []);
+
+  type NodeDef = [string, number, number, string];
+  const nodes: NodeDef[] = [
+    ["Accounting",   4,  24, "left"],
+    ["Reporting",    4,  40, "left"],
+    ["Scheduling",   4,  57, "left"],
+    ["Workflows",    4,  73, "left"],
+    ["Tasks",        76, 24, "right"],
+    ["Documents",    76, 40, "right"],
+    ["Field Ops",    76, 57, "right"],
+    ["Integrations", 76, 73, "right"],
+  ];
+
+  const screenRows = [
+    { label: "OpsCore",    sub: "Command Center",  accent: true  },
+    { label: "FieldOps",   sub: "Crew Dispatch",   accent: false },
+    { label: "ProjectOps", sub: "Budget Tracking", accent: false },
+    { label: "Forge",      sub: "Custom Build",    accent: false },
   ];
 
   return (
+    <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
+
+      {/* dot grid */}
+      <div style={{
+        position: "absolute", inset: 0,
+        backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)",
+        backgroundSize: "24px 24px",
+      }} />
+
+      {/* faint grid lines for texture */}
+      <div style={{
+        position: "absolute", inset: 0,
+        backgroundImage: "linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px)",
+        backgroundSize: "80px 80px",
+      }} />
+
+      {/* center glow */}
+      <div style={{
+        position: "absolute", inset: 0,
+        background: "radial-gradient(ellipse 35% 45% at 50% 62%, rgba(58,85,133,0.2) 0%, transparent 70%)",
+      }} />
+
+      {/* SVG connector lines */}
+      <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%", overflow: "visible" }}>
+        {nodes.map(([, lp, tp], i) => {
+          const isActive = activePulse === i;
+          const x1 = lp < 50 ? `${(lp as number) + 13}%` : `${lp}%`;
+          return (
+            <line key={i}
+              x1={x1} y1={`${tp}%`}
+              x2="50%" y2="62%"
+              stroke={isActive ? "rgba(120,160,255,0.5)" : "rgba(100,120,180,0.16)"}
+              strokeWidth={isActive ? "1.5" : "1"}
+              strokeDasharray="5 4"
+              style={{ transition: "stroke 0.4s ease, stroke-width 0.4s ease" }}
+            />
+          );
+        })}
+      </svg>
+
+      {/* Node pills */}
+      {nodes.map(([label, lp, tp], i) => {
+        const isActive = activePulse === i;
+        return (
+          <div key={i} style={{
+            position: "absolute",
+            left: `${lp}%`,
+            top: `${tp}%`,
+            transform: "translateY(-50%)",
+            display: "flex", alignItems: "center", gap: "7px",
+            padding: "7px 12px",
+            background: isActive ? "rgba(58,85,133,0.3)" : "rgba(255,255,255,0.055)",
+            border: `1px solid ${isActive ? "rgba(110,150,240,0.5)" : "rgba(255,255,255,0.1)"}`,
+            borderRadius: "8px",
+            fontSize: "0.74rem", fontWeight: isActive ? 600 : 400,
+            color: isActive ? "rgba(180,205,255,0.95)" : "rgba(255,255,255,0.5)",
+            whiteSpace: "nowrap",
+            transition: "all 0.4s ease",
+            boxShadow: isActive ? "0 0 14px rgba(58,85,133,0.35)" : "none",
+            zIndex: 2,
+          }}>
+            <span style={{
+              width: "5px", height: "5px", borderRadius: "50%", flexShrink: 0,
+              background: isActive ? "rgba(140,175,255,0.9)" : "rgba(255,255,255,0.22)",
+              transition: "background 0.4s",
+            }} />
+            {label}
+          </div>
+        );
+      })}
+
+      {/* Phone mockup */}
+      <div style={{
+        position: "absolute",
+        left: "50%", top: "50%",
+        transform: "translate(-50%, -30%)",
+        width: "154px",
+        zIndex: 3,
+      }}>
+        <div style={{
+          background: "#0D0F14",
+          border: "2px solid rgba(255,255,255,0.14)",
+          borderRadius: "28px",
+          padding: "12px 9px 16px",
+          boxShadow: "0 28px 64px rgba(0,0,0,0.55), inset 0 0 0 1px rgba(255,255,255,0.04)",
+        }}>
+          {/* Notch */}
+          <div style={{ width: "38px", height: "5px", background: "rgba(255,255,255,0.1)", borderRadius: "3px", margin: "0 auto 10px" }} />
+          {/* App label */}
+          <div style={{ fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)", textAlign: "center", marginBottom: "9px" }}>Novum Systems</div>
+          {/* Rows */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+            {screenRows.map((row, i) => (
+              <div key={i} style={{
+                padding: "7px 8px",
+                background: row.accent ? "rgba(58,85,133,0.38)" : "rgba(255,255,255,0.045)",
+                border: `1px solid ${row.accent ? "rgba(100,140,240,0.4)" : "rgba(255,255,255,0.07)"}`,
+                borderRadius: "7px",
+              }}>
+                <div style={{ fontSize: "0.6rem", fontWeight: 600, color: row.accent ? "rgba(170,200,255,0.95)" : "rgba(255,255,255,0.7)", marginBottom: "2px" }}>{row.label}</div>
+                <div style={{ fontSize: "0.52rem", color: "rgba(255,255,255,0.28)" }}>{row.sub}</div>
+              </div>
+            ))}
+          </div>
+          {/* Home bar */}
+          <div style={{ width: "34px", height: "3px", background: "rgba(255,255,255,0.12)", borderRadius: "2px", margin: "10px auto 0" }} />
+        </div>
+      </div>
+
+    </div>
+  );
+}
+
+// ── Page ─────────────────────────────────────────────────────────────────────
+export default function HomePage() {
+  return (
     <div style={{ background: "#fff", color: "#1A1A1A", fontFamily: "'DM Sans', sans-serif" }}>
 
-      {/* ── Hero ── */}
-      <section style={{ padding: "100px 24px 0" }}>
+      {/* ══ HERO ═════════════════════════════════════════════════════ */}
+      <section style={{ padding: "20px 24px 0" }}>
+        <div style={{
+          background: "#1C1E26",
+          borderRadius: "20px",
+          minHeight: "600px",
+          position: "relative",
+          overflow: "hidden",
+        }}>
+          {/* copy — top left */}
+          <div style={{ position: "relative", zIndex: 2, padding: "64px 60px 0", maxWidth: "600px" }}>
+            <div className="pill pill-ghost pill-dot" style={{ marginBottom: "28px" }}>
+              Operational Software for Growing Businesses
+            </div>
+
+            <h1 style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontWeight: 700,
+              fontSize: "clamp(3rem, 5vw, 5rem)",
+              lineHeight: 1.02,
+              letterSpacing: "-0.035em",
+              color: "#FFFFFF",
+              marginBottom: "24px",
+            }}>
+              Software that <em style={{ fontStyle: "italic", fontWeight: 300, color: "rgba(200,215,255,0.85)" }}>adapts</em><br />
+              to your business.
+            </h1>
+
+            <p style={{
+              fontSize: "1.05rem",
+              color: "rgba(255,255,255,0.48)",
+              lineHeight: 1.75,
+              maxWidth: "440px",
+              marginBottom: "36px",
+            }}>
+              We replace rigid, expensive software with systems built around how your business actually operates — not the other way around.
+            </p>
+
+            <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", paddingBottom: "220px" }}>
+              <Link href="/contact" className="btn-cream">
+                Book a Discovery Call
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </Link>
+              <Link href="/systems" className="btn-ghost-light">
+                See Our Systems
+              </Link>
+            </div>
+          </div>
+
+          {/* animated viz */}
+          <div style={{ position: "absolute", inset: 0, zIndex: 1 }}>
+            <HeroViz />
+          </div>
+        </div>
+      </section>
+
+      {/* ══ PROBLEM ══════════════════════════════════════════════════ */}
+      <section style={{ padding: "112px 40px" }}>
+        <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+
+          {/* Header */}
+          <div style={{ maxWidth: "680px", marginBottom: "72px" }}>
+            <div className="pill pill-muted pill-dot" style={{ marginBottom: "24px" }}>The Problem</div>
+            <h2 style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontWeight: 700,
+              fontSize: "clamp(2.2rem, 4vw, 3.6rem)",
+              lineHeight: 1.08,
+              letterSpacing: "-0.03em",
+              marginBottom: "20px",
+            }}>
+              Every growing business<br />knows the pain.
+            </h2>
+            <p style={{ color: "#7A7774", fontSize: "1.05rem", lineHeight: 1.75, maxWidth: "520px" }}>
+              Off-the-shelf platforms were designed for the average business — which means they fit nobody perfectly. You end up bending your workflows to match your software, not the other way around.
+            </p>
+          </div>
+
+          {/* Pain cards — 2 col grid */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }} className="pain-grid">
+            {[
+              {
+                title: "Generic platforms that fight you",
+                body: "You spend more time working around your software than working in it. Features you don't need, missing the ones you do.",
+              },
+              {
+                title: "Enterprise tools for companies 10× your size",
+                body: "Priced for Fortune 500s, built for IT departments. You end up paying for complexity your business will never use.",
+              },
+              {
+                title: "Disconnected tools, constant copy-paste",
+                body: "Data lives in 6 places. Your team manually bridges the gaps. Every handoff is a chance for something to fall through.",
+              },
+              {
+                title: "Zero visibility across your operations",
+                body: "No single view of what's happening. Leadership makes decisions on stale data while the real picture sits in a spreadsheet.",
+              },
+            ].map((card, i) => (
+              <div key={i} style={{
+                padding: "36px 40px",
+                background: i < 2 ? "#1C1E26" : "#F7F6F3",
+                borderRadius: "16px",
+                border: i >= 2 ? "1px solid #E8E6E1" : "none",
+              }}>
+                {i < 2 && (
+                  <div style={{
+                    width: "32px", height: "2px", background: "rgba(255,255,255,0.2)",
+                    borderRadius: "2px", marginBottom: "24px",
+                  }} />
+                )}
+                {i >= 2 && (
+                  <div style={{
+                    width: "32px", height: "2px", background: "#CDCBC4",
+                    borderRadius: "2px", marginBottom: "24px",
+                  }} />
+                )}
+                <h3 style={{
+                  fontWeight: 600,
+                  fontSize: "1.05rem",
+                  lineHeight: 1.35,
+                  letterSpacing: "-0.01em",
+                  color: i < 2 ? "#fff" : "#1A1A1A",
+                  marginBottom: "12px",
+                }}>{card.title}</h3>
+                <p style={{
+                  fontSize: "0.9rem",
+                  lineHeight: 1.7,
+                  color: i < 2 ? "rgba(255,255,255,0.48)" : "#7A7774",
+                  margin: 0,
+                }}>{card.body}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Secondary copy */}
+          <p style={{
+            color: "#7A7774", fontSize: "1rem", lineHeight: 1.8,
+            maxWidth: "560px", marginTop: "48px",
+          }}>
+            The result? Disconnected tools, manual workarounds, and a team spending more time fighting software than doing actual work.
+          </p>
+        </div>
+      </section>
+
+      {/* ══ SOLUTION ═════════════════════════════════════════════════ */}
+      <section style={{ padding: "0 24px 24px" }}>
         <div style={{
           background: "#1C1E26",
           borderRadius: "20px",
@@ -85,175 +304,281 @@ export default function SystemsPage() {
           position: "relative",
           overflow: "hidden",
         }}>
-          {/* texture */}
-          <div style={{
-            position: "absolute", inset: 0,
-            backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
-            backgroundSize: "24px 24px, 80px 80px, 80px 80px",
-          }} />
-          <div style={{ position: "relative", zIndex: 1, maxWidth: "640px" }}>
-            <div style={{
-              display: "inline-flex", alignItems: "center", gap: "7px",
-              padding: "5px 14px", borderRadius: "100px",
-              border: "1px solid rgba(255,255,255,0.12)", background: "rgba(255,255,255,0.06)",
-              fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.09em", textTransform: "uppercase",
-              color: "rgba(255,255,255,0.45)", marginBottom: "28px",
-            }}>
-              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(255,255,255,0.4)", display: "inline-block" }} />
-              Our Systems
+          <div className="dot-grid" style={{ position: "absolute", inset: 0 }} />
+          <div style={{ position: "relative", zIndex: 1 }}>
+
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "80px", alignItems: "start" }} className="solution-header-grid">
+              <div>
+                <div className="pill pill-ghost pill-dot" style={{ marginBottom: "24px" }}>The Novum Approach</div>
+                <h2 style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontWeight: 700,
+                  fontSize: "clamp(2.2rem, 4vw, 3.4rem)",
+                  lineHeight: 1.08,
+                  letterSpacing: "-0.03em",
+                  color: "#fff",
+                  marginBottom: "20px",
+                }}>
+                  Systems built around<br />how you actually run.
+                </h2>
+              </div>
+              <div style={{ paddingTop: "12px" }}>
+                <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "1.02rem", lineHeight: 1.75 }}>
+                  We start with your operations — not a template. Every system we deliver is structured around your workflows, your team, and your business model.
+                </p>
+              </div>
             </div>
-            <h1 style={{
-              fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
-              fontSize: "clamp(2.8rem, 5vw, 4.5rem)",
-              lineHeight: 1.04, letterSpacing: "-0.035em",
-              color: "#fff", marginBottom: "20px",
-            }}>
-              Four systems.<br />
-              <span style={{ color: "rgba(200,215,255,0.8)", fontStyle: "italic", fontWeight: 300 }}>One coherent operation.</span>
-            </h1>
-            <p style={{ color: "rgba(255,255,255,0.48)", fontSize: "1.05rem", lineHeight: 1.75, maxWidth: "520px" }}>
-              Each Novum system is customized to your business. Most clients start with one and expand — or combine them into a fully integrated operational platform.
-            </p>
+
+            {/* 3 feature cards */}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "12px", marginTop: "56px" }} className="features-grid">
+              {[
+                {
+                  title: "Mapped to your operations",
+                  desc: "We document how your business works before writing a single line of configuration. The system reflects your reality, not a template.",
+                  icon: (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                      <path d="M9 3H5C3.9 3 3 3.9 3 5v4c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" stroke="rgba(160,185,255,0.7)" strokeWidth="1.5" />
+                      <path d="M19 3h-4c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" stroke="rgba(160,185,255,0.7)" strokeWidth="1.5" opacity="0.5" />
+                      <path d="M9 13H5c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2z" stroke="rgba(160,185,255,0.7)" strokeWidth="1.5" opacity="0.5" />
+                      <path d="M19 13h-4c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2z" stroke="rgba(160,185,255,0.7)" strokeWidth="1.5" />
+                    </svg>
+                  ),
+                },
+                {
+                  title: "Fast to deploy, built to last",
+                  desc: "Our structured approach means you get a working system quickly — built on foundations that scale as your business grows.",
+                  icon: (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                      <circle cx="12" cy="12" r="9" stroke="rgba(160,185,255,0.7)" strokeWidth="1.5" />
+                      <path d="M12 7v5l3 3" stroke="rgba(160,185,255,0.7)" strokeWidth="1.5" strokeLinecap="round" />
+                    </svg>
+                  ),
+                },
+                {
+                  title: "One system, not many tools",
+                  desc: "We consolidate your operations into a coherent system — eliminating the duct-tape stack of disconnected software.",
+                  icon: (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="rgba(160,185,255,0.7)" strokeWidth="1.5" strokeLinejoin="round" />
+                      <path d="M2 17l10 5 10-5" stroke="rgba(160,185,255,0.7)" strokeWidth="1.5" strokeLinejoin="round" opacity="0.5" />
+                      <path d="M2 12l10 5 10-5" stroke="rgba(160,185,255,0.7)" strokeWidth="1.5" strokeLinejoin="round" opacity="0.7" />
+                    </svg>
+                  ),
+                },
+              ].map((f, i) => (
+                <div key={i} style={{
+                  padding: "32px",
+                  background: "rgba(255,255,255,0.04)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  borderRadius: "14px",
+                }}>
+                  <div style={{
+                    width: "40px", height: "40px",
+                    background: "rgba(255,255,255,0.07)",
+                    borderRadius: "10px",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    marginBottom: "20px",
+                  }}>
+                    {f.icon}
+                  </div>
+                  <h3 style={{ fontWeight: 600, fontSize: "1rem", color: "#fff", marginBottom: "10px", lineHeight: 1.35 }}>{f.title}</h3>
+                  <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.875rem", lineHeight: 1.75, margin: 0 }}>{f.desc}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── Systems Detail ── */}
-      {systems.map((sys, i) => (
-        <section key={sys.id} id={sys.id} style={{
-          padding: "96px 40px",
-          borderTop: "1px solid #EDECEA",
-          background: i % 2 === 1 ? "#FAFAF8" : "#fff",
-        }}>
-          <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "80px", alignItems: "start" }} className="sys-detail-grid">
+      {/* ══ SYSTEMS ══════════════════════════════════════════════════ */}
+      <section style={{ padding: "112px 40px" }}>
+        <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
 
-              {/* Left — sticky info */}
-              <div style={{ position: "sticky", top: "88px" }}>
-                <span style={{
-                  display: "inline-flex", alignItems: "center",
-                  padding: "5px 14px",
-                  background: sys.accentBg, border: `1px solid ${sys.accentBorder}`,
-                  borderRadius: "100px",
-                  fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.09em", textTransform: "uppercase",
-                  color: sys.accent, marginBottom: "20px",
-                }}>{sys.subtitle}</span>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "56px", flexWrap: "wrap", gap: "20px" }}>
+            <div>
+              <div className="pill pill-muted pill-dot" style={{ marginBottom: "20px" }}>Our Systems</div>
+              <h2 style={{
+                fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
+                fontSize: "clamp(2.2rem, 4vw, 3.2rem)",
+                lineHeight: 1.08, letterSpacing: "-0.03em",
+              }}>
+                Every operation covered.<br />One platform.
+              </h2>
+            </div>
+            <Link href="/systems" className="btn-outline">View All Systems →</Link>
+          </div>
 
-                <h2 style={{
-                  fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
-                  fontSize: "clamp(2.4rem, 4.5vw, 3.8rem)",
-                  letterSpacing: "-0.03em", lineHeight: 1.04,
-                  marginBottom: "14px", color: "#1A1A1A",
-                }}>{sys.name}</h2>
-
-                <p style={{ color: sys.accent, fontSize: "1rem", marginBottom: "18px", fontWeight: 500 }}>
-                  {sys.tagline}
-                </p>
-                <p style={{ color: "#7A7774", lineHeight: 1.8, fontSize: "0.95rem", marginBottom: "32px" }}>
-                  {sys.desc}
-                </p>
-
-                <div style={{ marginBottom: "32px" }}>
-                  <p style={{
-                    fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase",
-                    color: "#B0ADA8", marginBottom: "14px",
-                  }}>Built for</p>
-                  <div style={{ display: "flex", flexDirection: "column", gap: "9px" }}>
-                    {sys.forWho.map((w) => (
-                      <div key={w} style={{ display: "flex", alignItems: "center", gap: "11px" }}>
-                        <div style={{ width: 6, height: 6, borderRadius: "50%", background: sys.accent, flexShrink: 0 }} />
-                        <span style={{ color: "#4A4947", fontSize: "0.9rem" }}>{w}</span>
-                      </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+            {[
+              {
+                name: "Forge", badge: "Fully Custom", bc: "#6D4FBB", bb: "#F3F0FC", bbd: "#D9D0F5",
+                desc: "For operations that don't fit any mold. Forge is a completely custom-built system designed from the ground up around your unique structure, terminology, and workflows. No templates, no constraints — just your system, architected exactly the way your business runs.",
+                features: ["Full operational architecture", "Custom data model & integrations", "Proprietary workflow engine", "White-glove build & deployment"],
+              },
+              {
+                name: "OpsCore", badge: "Operations Hub", bc: "#3A5585", bb: "#EEF1F7", bbd: "#C4CDE0",
+                desc: "Your entire operation unified in one intelligent command center. OpsCore uses AI to generate tasks from emails, texts, and documents automatically. One platform. Every tool. Zero switching.",
+                features: ["AI task generation from email/text/PDF", "Built-in team chat & shared notes", "Project-filtered calendar & tasks", "QuickBooks, Salesforce, HubSpot & more", "Custom role dashboards"],
+              },
+              {
+                name: "FieldOps", badge: "Field Service", bc: "#236B4E", bb: "#EEF7F3", bbd: "#C4E0D5",
+                desc: "End-to-end field service management built around your crews, territories, and job types. From the moment a job is booked to the final invoice — scheduling, dispatch, field access, photo documentation, and automated billing all run through one connected system.",
+                features: ["Visual scheduling & dispatch", "Mobile field access & job tracking", "Automated invoicing on completion", "Customer records & property history"],
+              },
+              {
+                name: "ProjectOps", badge: "Project-Based", bc: "#2C4E8A", bb: "#EEF2FA", bbd: "#C0CEEB",
+                desc: "Full project lifecycle management from bid to close. Track live budget vs. actuals, manage vendors and subs, monitor milestone completion, and report on profitability across every active project.",
+                features: ["Live budget-vs-actual tracking", "Vendor & sub management", "Milestone & Gantt-style timelines", "Document & RFI management", "Profitability reporting"],
+              },
+            ].map((sys, i) => (
+              <div key={i} style={{
+                display: "grid", gridTemplateColumns: "200px 1fr auto",
+                gap: "40px", alignItems: "center",
+                padding: "28px 32px",
+                background: "#fff",
+                border: "1px solid #E8E6E1",
+                borderRadius: "14px",
+                transition: "border-color 0.2s, box-shadow 0.2s",
+                cursor: "pointer",
+              }}
+                className="sys-row"
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "#CDCBC4"; (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 24px rgba(0,0,0,0.07)"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "#E8E6E1"; (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
+              >
+                <div>
+                  <h3 style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "1.6rem", letterSpacing: "-0.025em", marginBottom: "9px", color: "#1A1A1A" }}>
+                    {sys.name}
+                  </h3>
+                  <span style={{
+                    display: "inline-flex", padding: "3px 11px",
+                    background: sys.bb, border: `1px solid ${sys.bbd}`,
+                    borderRadius: "100px", fontSize: "0.68rem", fontWeight: 600,
+                    letterSpacing: "0.06em", color: sys.bc,
+                  }}>{sys.badge}</span>
+                </div>
+                <div>
+                  <p style={{ color: "#7A7774", fontSize: "0.875rem", lineHeight: 1.75, marginBottom: "12px" }}>{sys.desc}</p>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
+                    {sys.features.map(f => (
+                      <span key={f} style={{
+                        padding: "3px 11px", background: "#F7F6F3",
+                        border: "1px solid #E8E6E1", borderRadius: "6px",
+                        fontSize: "0.75rem", color: "#7A7774",
+                      }}>{f}</span>
                     ))}
                   </div>
                 </div>
-
-                <Link href="/contact" style={{
-                  display: "inline-flex", alignItems: "center", gap: "8px",
-                  padding: "12px 26px", borderRadius: "100px",
-                  background: "#1C1E26", color: "#fff",
-                  fontSize: "0.875rem", fontWeight: 600, textDecoration: "none",
-                  transition: "background 0.2s",
+                <Link href="/systems" style={{
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  width: "36px", height: "36px", border: "1px solid #E8E6E1",
+                  borderRadius: "9px", color: "#7A7774", textDecoration: "none",
+                  flexShrink: 0, transition: "border-color 0.2s, color 0.2s",
                 }}
-                  onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = sys.accent}
-                  onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = "#1C1E26"}
-                >
-                  Ask about {sys.name} →
-                </Link>
+                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "#3A5585"; (e.currentTarget as HTMLElement).style.color = "#3A5585"; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "#E8E6E1"; (e.currentTarget as HTMLElement).style.color = "#7A7774"; }}
+                >→</Link>
               </div>
-
-              {/* Right — modules */}
-              <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-                {sys.modules.map((mod) => (
-                  <div key={mod.name} style={{
-                    padding: "28px 32px",
-                    background: "#fff",
-                    border: "1px solid #EDECEA",
-                    borderRadius: "14px",
-                    transition: "border-color 0.2s, box-shadow 0.2s",
-                  }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = sys.accentBorder; (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 20px rgba(0,0,0,0.06)"; }}
-                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "#EDECEA"; (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
-                  >
-                    <div style={{ display: "flex", alignItems: "flex-start", gap: "18px" }}>
-                      <div style={{
-                        width: 40, height: 40, background: sys.accentBg,
-                        border: `1px solid ${sys.accentBorder}`,
-                        borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center",
-                        flexShrink: 0,
-                      }}>
-                        <div style={{ width: 16, height: 16, borderRadius: "3px", background: sys.accent, opacity: 0.6 }} />
-                      </div>
-                      <div>
-                        <h4 style={{ fontSize: "0.975rem", fontWeight: 600, marginBottom: "7px", color: "#1A1A1A" }}>{mod.name}</h4>
-                        <p style={{ color: "#7A7774", fontSize: "0.875rem", lineHeight: 1.75, margin: 0 }}>{mod.desc}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            ))}
           </div>
-        </section>
-      ))}
+        </div>
+      </section>
 
-      {/* ── Combine CTA ── */}
-      <section style={{ padding: "24px 24px 80px" }}>
+      {/* ══ PROCESS ══════════════════════════════════════════════════ */}
+      <section style={{ padding: "0 24px 24px" }}>
         <div style={{
-          background: "#1C1E26", borderRadius: "20px",
-          padding: "80px 60px", textAlign: "center",
-          position: "relative", overflow: "hidden",
+          background: "#F7F6F3",
+          borderRadius: "20px",
+          padding: "80px 60px",
+          border: "1px solid #E8E6E1",
         }}>
-          <div style={{
-            position: "absolute", inset: 0,
-            backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.055) 1px, transparent 1px), linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
-            backgroundSize: "24px 24px, 80px 80px, 80px 80px",
-          }} />
-          <div style={{ position: "relative", zIndex: 1, maxWidth: "560px", margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: "72px" }}>
+            <div className="pill pill-muted pill-dot" style={{ display: "inline-flex", marginBottom: "20px" }}>How It Works</div>
             <h2 style={{
               fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
-              fontSize: "clamp(2rem, 4vw, 3rem)",
-              letterSpacing: "-0.03em", lineHeight: 1.08,
-              color: "#fff", marginBottom: "18px",
-            }}>Need more than one system?</h2>
-            <p style={{ color: "rgba(255,255,255,0.48)", lineHeight: 1.8, marginBottom: "36px", fontSize: "1rem" }}>
-              Our systems are designed to work together. Many clients run FieldOps and OpsCore in tandem, or combine all four into a fully integrated operational platform.
-            </p>
-            <Link href="/contact" style={{
-              display: "inline-flex", alignItems: "center", gap: "8px",
-              padding: "14px 32px", borderRadius: "100px",
-              background: "#F2EDD8", color: "#1A1A1A",
-              fontSize: "0.92rem", fontWeight: 600, textDecoration: "none",
+              fontSize: "clamp(2rem, 3.5vw, 3rem)",
+              lineHeight: 1.08, letterSpacing: "-0.03em",
             }}>
-              Talk to us about your stack →
-            </Link>
+              From discovery to deployed — in three steps.
+            </h2>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "2px", position: "relative" }} className="process-grid">
+            {[
+              { step: "01", title: "Discovery", desc: "We spend time with your team to understand every part of how your business operates — the workflows, the friction points, the manual workarounds." },
+              { step: "02", title: "System Design", desc: "We design a system architecture around your operations. You see exactly what will be built before we build it — no surprises." },
+              { step: "03", title: "Build & Deploy", desc: "We configure, build, and launch your system with training and handoff included. You operate. We support." },
+            ].map((s, i) => (
+              <div key={i} style={{
+                padding: "40px 40px",
+                background: "#fff",
+                borderRadius: "14px",
+                border: "1px solid #E8E6E1",
+                position: "relative",
+              }}>
+                <div style={{
+                  fontFamily: "'DM Serif Display', serif",
+                  fontSize: "3rem", fontWeight: 400,
+                  color: "#E8E6E1", lineHeight: 1,
+                  marginBottom: "20px",
+                  letterSpacing: "-0.03em",
+                }}>{s.step}</div>
+                <h3 style={{ fontWeight: 700, fontSize: "1.15rem", letterSpacing: "-0.015em", color: "#1A1A1A", marginBottom: "12px" }}>{s.title}</h3>
+                <p style={{ color: "#7A7774", fontSize: "0.9rem", lineHeight: 1.75, margin: 0 }}>{s.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══ CTA ══════════════════════════════════════════════════════ */}
+      <section style={{ padding: "24px 24px 80px" }}>
+        <div style={{
+          background: "#1C1E26",
+          borderRadius: "20px",
+          padding: "96px 60px",
+          textAlign: "center",
+          position: "relative",
+          overflow: "hidden",
+        }}>
+          <div className="dot-grid" style={{ position: "absolute", inset: 0 }} />
+          <div style={{ position: "relative", zIndex: 1 }}>
+            <div className="pill pill-ghost pill-dot" style={{ display: "inline-flex", marginBottom: "28px" }}>Ready to Build</div>
+            <h2 style={{
+              fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
+              fontSize: "clamp(2.4rem, 5vw, 4.2rem)",
+              lineHeight: 1.04, letterSpacing: "-0.035em",
+              color: "#fff", marginBottom: "20px",
+            }}>
+              Stop adapting to your software.
+            </h2>
+            <p style={{
+              color: "rgba(255,255,255,0.45)", fontSize: "1.05rem",
+              lineHeight: 1.75, maxWidth: "460px", margin: "0 auto 44px",
+            }}>
+              Book a discovery call and let's map out what an operational system built for your business would look like.
+            </p>
+            <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
+              <Link href="/contact" className="btn-cream">
+                Book a Discovery Call →
+              </Link>
+              <Link href="/systems" className="btn-ghost-light">
+                Explore Systems
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
       <style jsx>{`
-        @media (max-width: 900px) {
-          .sys-detail-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
+        @media (max-width: 960px) {
+          .pain-grid { grid-template-columns: 1fr !important; }
+          .solution-header-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+          .features-grid { grid-template-columns: 1fr !important; }
+          .process-grid { grid-template-columns: 1fr !important; }
+          .sys-row { grid-template-columns: 1fr !important; gap: 20px !important; padding: 24px !important; }
+        }
+        @media (max-width: 640px) {
+          .pain-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </div>
