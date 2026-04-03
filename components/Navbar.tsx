@@ -60,8 +60,6 @@ export default function Navbar() {
     >
       <div
         style={{
-          maxWidth: "1400px",
-          margin: "0 auto",
           padding: "0 18px",
           height: "58px",
           display: "flex",
@@ -204,8 +202,7 @@ export default function Navbar() {
       {isMobile && menuOpen && (
         <div
           style={{
-            maxWidth: "1400px",
-            margin: "10px auto 0",
+            margin: "10px 0 0",
             padding: "14px 20px 20px",
             borderRadius: "18px",
             background: "rgba(255,255,255,0.88)",
