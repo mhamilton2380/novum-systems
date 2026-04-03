@@ -18,7 +18,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 9, marginBottom: 24 }}>
-              <div style={{ width: 28, height: 28, background: "#17181B", borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <div style={{ width: 28, height: 28, background: "#c8581a", borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center" }}>
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                   <rect x="1" y="1" width="5" height="5" rx="1.2" fill="white"/>
                   <rect x="8" y="1" width="5" height="5" rx="1.2" fill="white" opacity="0.42"/>

@@ -26,12 +26,12 @@ export default function ApproachPage() {
   ];
 
   return (
-    <div style={{ background: "#fff", color: "#1A1A1A", fontFamily: "'DM Sans', sans-serif" }}>
+    <div style={{ background: "#f5f4f1", color: "#1A1A1A", fontFamily: "'DM Sans', sans-serif" }}>
 
       {/* ── Hero ── */}
       <section style={{ padding: "100px 24px 0" }}>
         <div style={{
-          background: "#1C1E26", borderRadius: "20px",
+          background: "#141414", borderRadius: "20px",
           padding: "80px 60px", position: "relative", overflow: "hidden",
         }}>
           <div style={{
@@ -57,7 +57,7 @@ export default function ApproachPage() {
               color: "#fff", marginBottom: "20px",
             }}>
               We don&apos;t sell software.<br />
-              <span style={{ fontStyle: "italic", fontWeight: 300, color: "rgba(200,215,255,0.8)" }}>We design systems.</span>
+              <span style={{ fontStyle: "italic", fontWeight: 300, color: "rgba(240,196,160,0.85)" }}>We design systems.</span>
             </h1>
             <p style={{ color: "rgba(255,255,255,0.48)", fontSize: "1.05rem", lineHeight: 1.75, maxWidth: "540px" }}>
               There&apos;s a meaningful difference between deploying software and designing an operational system. One puts a tool in your hands. The other changes how your business operates.
@@ -121,12 +121,12 @@ export default function ApproachPage() {
                 </div>
                 {/* Novum col */}
                 <div style={{
-                  padding: "28px", background: "#EEF1F7",
-                  border: "1px solid #C4CDE0", borderRadius: "14px",
+                  padding: "28px", background: "#fdf0e8",
+                  border: "1px solid #f0c4a0", borderRadius: "14px",
                 }}>
                   <p style={{
                     fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase",
-                    color: "#3A5585", marginBottom: "18px",
+                    color: "#c8581a", marginBottom: "18px",
                   }}>Novum Systems</p>
                   {[
                     "Built around your operations",
@@ -136,7 +136,7 @@ export default function ApproachPage() {
                     "Only what your business needs",
                   ].map((item) => (
                     <div key={item} style={{ display: "flex", gap: "10px", marginBottom: "11px", alignItems: "flex-start" }}>
-                      <span style={{ color: "#3A5585", fontSize: "0.85rem", marginTop: "1px", flexShrink: 0 }}>✓</span>
+                      <span style={{ color: "#c8581a", fontSize: "0.85rem", marginTop: "1px", flexShrink: 0 }}>✓</span>
                       <span style={{ color: "#4A4947", fontSize: "0.875rem", lineHeight: 1.5 }}>{item}</span>
                     </div>
                   ))}
@@ -150,7 +150,7 @@ export default function ApproachPage() {
       {/* ── Principles ── */}
       <section style={{ padding: "0 24px" }}>
         <div style={{
-          background: "#1C1E26", borderRadius: "20px",
+          background: "#141414", borderRadius: "20px",
           padding: "80px 60px", position: "relative", overflow: "hidden",
         }}>
           <div style={{
@@ -188,7 +188,7 @@ export default function ApproachPage() {
                   transition: "border-color 0.2s",
                 }}
                   className="principle-row"
-                  onMouseEnter={e => (e.currentTarget as HTMLElement).style.borderColor = "rgba(100,140,240,0.35)"}
+                  onMouseEnter={e => (e.currentTarget as HTMLElement).style.borderColor = "rgba(200,88,26,0.35)"}
                   onMouseLeave={e => (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.08)"}
                 >
                   <div>
@@ -237,7 +237,7 @@ export default function ApproachPage() {
                 desc: "HVAC, plumbing, electrical, landscaping, equipment service — any business with teams dispatched to job sites.",
                 icon: (
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" stroke="#3A5585" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" stroke="#c8581a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 ),
               },
@@ -246,10 +246,10 @@ export default function ApproachPage() {
                 desc: "General contractors, specialty trades, creative agencies, IT firms — businesses that run on projects with budgets and timelines.",
                 icon: (
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="3" width="7" height="7" rx="1" stroke="#3A5585" strokeWidth="1.5" />
-                    <rect x="14" y="3" width="7" height="7" rx="1" stroke="#3A5585" strokeWidth="1.5" opacity="0.5" />
-                    <rect x="3" y="14" width="7" height="7" rx="1" stroke="#3A5585" strokeWidth="1.5" opacity="0.5" />
-                    <rect x="14" y="14" width="7" height="7" rx="1" stroke="#3A5585" strokeWidth="1.5" />
+                    <rect x="3" y="3" width="7" height="7" rx="1" stroke="#c8581a" strokeWidth="1.5" />
+                    <rect x="14" y="3" width="7" height="7" rx="1" stroke="#c8581a" strokeWidth="1.5" opacity="0.5" />
+                    <rect x="3" y="14" width="7" height="7" rx="1" stroke="#c8581a" strokeWidth="1.5" opacity="0.5" />
+                    <rect x="14" y="14" width="7" height="7" rx="1" stroke="#c8581a" strokeWidth="1.5" />
                   </svg>
                 ),
               },
@@ -258,8 +258,8 @@ export default function ApproachPage() {
                 desc: "Operators managing multiple teams, locations, or franchises who need visibility and coordination across their full operation.",
                 icon: (
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="#3A5585" strokeWidth="1.5" strokeLinejoin="round" />
-                    <path d="M9 22V12h6v10" stroke="#3A5585" strokeWidth="1.5" strokeLinejoin="round" />
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="#c8581a" strokeWidth="1.5" strokeLinejoin="round" />
+                    <path d="M9 22V12h6v10" stroke="#c8581a" strokeWidth="1.5" strokeLinejoin="round" />
                   </svg>
                 ),
               },
@@ -271,12 +271,12 @@ export default function ApproachPage() {
                 background: "#fff",
                 transition: "border-color 0.2s, box-shadow 0.2s",
               }}
-                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "#C4CDE0"; (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 20px rgba(0,0,0,0.06)"; }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "#f0c4a0"; (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 20px rgba(0,0,0,0.06)"; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "#EDECEA"; (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
               >
                 <div style={{
-                  width: 48, height: 48, background: "#EEF1F7",
-                  border: "1px solid #C4CDE0", borderRadius: "12px",
+                  width: 48, height: 48, background: "#fdf0e8",
+                  border: "1px solid #f0c4a0", borderRadius: "12px",
                   display: "flex", alignItems: "center", justifyContent: "center",
                   marginBottom: "20px",
                 }}>{item.icon}</div>
@@ -291,7 +291,7 @@ export default function ApproachPage() {
       {/* ── CTA ── */}
       <section style={{ padding: "24px 24px 80px" }}>
         <div style={{
-          background: "#1C1E26", borderRadius: "20px",
+          background: "#141414", borderRadius: "20px",
           padding: "80px 60px", textAlign: "center",
           position: "relative", overflow: "hidden",
         }}>

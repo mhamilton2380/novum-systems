@@ -40,9 +40,9 @@ export default function SystemsPage() {
       id: "opscore",
       name: "OpsCore",
       subtitle: "Operational Command Center",
-      accent: "#3A5585",
-      accentBg: "#EEF1F7",
-      accentBorder: "#C4CDE0",
+      accent: "#c8581a",
+      accentBg: "#fdf0e8",
+      accentBorder: "#f0c4a0",
       tagline: "Visibility across every part of your business.",
       desc: "OpsCore is the operational layer that ties everything together. Custom dashboards, automated workflows, and reporting designed around the KPIs that actually matter to your business.",
       forWho: ["Multi-location operators", "Franchise systems", "Teams with complex approval workflows", "Businesses needing cross-department reporting"],
@@ -73,9 +73,9 @@ export default function SystemsPage() {
       id: "projectops",
       name: "ProjectOps",
       subtitle: "Project-Based Business Management",
-      accent: "#2C4E8A",
-      accentBg: "#EEF2FA",
-      accentBorder: "#C0CEEB",
+      accent: "#3d6e8a",
+      accentBg: "#eef3f7",
+      accentBorder: "#b0c8d8",
       tagline: "Run every project on budget and on time.",
       desc: "ProjectOps gives project-based businesses a command center for managing complex jobs from bid to close. Track milestones, budgets, vendors, and profitability across every project.",
       forWho: ["General contractors", "Specialty trades & subcontractors", "IT & tech project firms", "Marketing & creative agencies"],
@@ -138,12 +138,12 @@ export default function SystemsPage() {
   ];
 
   return (
-    <div style={{ background: "#fff", color: "#1A1A1A", fontFamily: "'DM Sans', sans-serif" }}>
+    <div style={{ background: "#f5f4f1", color: "#1A1A1A", fontFamily: "'DM Sans', sans-serif" }}>
 
       {/* ── Hero ── */}
       <section style={{ padding: "100px 24px 0" }}>
         <div style={{
-          background: "#1C1E26",
+          background: "#141414",
           borderRadius: "20px",
           padding: "80px 60px",
           position: "relative",
@@ -173,7 +173,7 @@ export default function SystemsPage() {
               color: "#fff", marginBottom: "20px",
             }}>
               Custom systems.<br />
-              <span style={{ color: "rgba(200,215,255,0.8)", fontStyle: "italic", fontWeight: 300 }}>One coherent operation.</span>
+              <span style={{ color: "rgba(240,196,160,0.85)", fontStyle: "italic", fontWeight: 300 }}>One coherent operation.</span>
             </h1>
             <p style={{ color: "rgba(255,255,255,0.48)", fontSize: "1.05rem", lineHeight: 1.75, maxWidth: "520px" }}>
               Each Novum system is customized to your business. Most clients start with one and expand — or combine them into a fully integrated operational platform.
@@ -235,12 +235,12 @@ export default function SystemsPage() {
                 <Link href="/contact" style={{
                   display: "inline-flex", alignItems: "center", gap: "8px",
                   padding: "12px 26px", borderRadius: "100px",
-                  background: "#1C1E26", color: "#fff",
+                  background: "#141414", color: "#fff",
                   fontSize: "0.875rem", fontWeight: 600, textDecoration: "none",
                   transition: "background 0.2s",
                 }}
                   onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = sys.accent}
-                  onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = "#1C1E26"}
+                  onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = "#141414"}
                 >
                   Ask about {sys.name} →
                 </Link>
@@ -284,7 +284,7 @@ export default function SystemsPage() {
       {/* ── Combine CTA ── */}
       <section style={{ padding: "24px 24px 80px" }}>
         <div style={{
-          background: "#1C1E26", borderRadius: "20px",
+          background: "#141414", borderRadius: "20px",
           padding: "80px 60px", textAlign: "center",
           position: "relative", overflow: "hidden",
         }}>

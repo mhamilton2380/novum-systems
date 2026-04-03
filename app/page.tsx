@@ -302,11 +302,16 @@ function OperationalEngineGraphic() {
       raf = requestAnimationFrame(tick);
     }
 
-    function onResize() { buildConnectors(); }
+    let resizeTimer: ReturnType<typeof setTimeout>;
+    function onResize() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => requestAnimationFrame(buildConnectors), 80);
+    }
+    window.addEventListener("resize", onResize);
 
     document.fonts.ready.then(() => setTimeout(() => { buildConnectors(); raf = requestAnimationFrame(tick); }, 120));
 
-    return () => { cancelAnimationFrame(raf); window.removeEventListener("resize", onResize); };
+    return () => { cancelAnimationFrame(raf); clearTimeout(resizeTimer); window.removeEventListener("resize", onResize); };
   }, []);
 
   const pillBase: CSSProperties = {
@@ -317,7 +322,7 @@ function OperationalEngineGraphic() {
 
   const inputs = [
     { id: "i0", label: "Email", icon: <svg width={12} height={12} viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="1.5" stroke="currentColor" strokeWidth="1.3"/><path d="M1 4l7 5 7-5" stroke="currentColor" strokeWidth="1.3"/></svg> },
-    { id: "i1", label: "Text Messages", icon: <svg width={12} height={12} viewBox="0 0 16 16" fill="none"><rect x="2" y="1" width="12" height="14" rx="2" stroke="currentColor" strokeWidth="1.3"/><path d="M5 6h6M5 9h4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/></svg> },
+    { id: "i1", label: "Calendar", icon: <svg width={12} height={12} viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="11" rx="1.5" stroke="currentColor" strokeWidth="1.3"/><path d="M2 7h12M5 1v3M11 1v3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/></svg> },
     { id: "i2", label: "Team Chat", icon: <svg width={12} height={12} viewBox="0 0 16 16" fill="none"><path d="M2 2h12v9H9l-3 3v-3H2V2z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round"/></svg> },
     { id: "i3", label: "Documents", icon: <svg width={12} height={12} viewBox="0 0 16 16" fill="none"><path d="M3 1h7l3 3v11H3V1z" stroke="currentColor" strokeWidth="1.3"/><path d="M10 1v3h3" stroke="currentColor" strokeWidth="1.3"/><path d="M5 8h6M5 11h4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/></svg> },
     { id: "i4", label: "CRM Data", icon: <svg width={12} height={12} viewBox="0 0 16 16" fill="none"><ellipse cx="8" cy="5" rx="6" ry="2.5" stroke="currentColor" strokeWidth="1.3"/><path d="M2 5v6c0 1.38 2.69 2.5 6 2.5s6-1.12 6-2.5V5" stroke="currentColor" strokeWidth="1.3"/></svg> },

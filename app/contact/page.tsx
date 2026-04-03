@@ -19,12 +19,12 @@ export default function ContactPage() {
   };
 
   return (
-    <div style={{ background: "#fff", color: "#1A1A1A", fontFamily: "'DM Sans', sans-serif" }}>
+    <div style={{ background: "#f5f4f1", color: "#1A1A1A", fontFamily: "'DM Sans', sans-serif" }}>
 
       {/* ── Hero ── */}
       <section style={{ padding: "100px 24px 0" }}>
         <div style={{
-          background: "#1C1E26", borderRadius: "20px",
+          background: "#141414", borderRadius: "20px",
           padding: "80px 60px", position: "relative", overflow: "hidden",
         }}>
           <div style={{
@@ -50,7 +50,7 @@ export default function ContactPage() {
               color: "#fff", marginBottom: "20px",
             }}>
               Let&apos;s talk about<br />
-              <span style={{ fontStyle: "italic", fontWeight: 300, color: "rgba(200,215,255,0.8)" }}>your operation.</span>
+              <span style={{ fontStyle: "italic", fontWeight: 300, color: "rgba(240,196,160,0.85)" }}>your operation.</span>
             </h1>
             <p style={{ color: "rgba(255,255,255,0.48)", fontSize: "1.02rem", lineHeight: 1.75, maxWidth: "460px" }}>
               A discovery call is how every Novum engagement starts. Tell us about your business and we&apos;ll reach out to schedule time.
@@ -80,9 +80,9 @@ export default function ContactPage() {
                     <div key={item.step} style={{ display: "flex", gap: "16px" }}>
                       <div style={{
                         width: 32, height: 32, borderRadius: "50%",
-                        border: "1.5px solid #C4CDE0", background: "#EEF1F7",
+                        border: "1.5px solid #f0c4a0", background: "#fdf0e8",
                         display: "flex", alignItems: "center", justifyContent: "center",
-                        flexShrink: 0, fontSize: "0.8rem", color: "#3A5585", fontWeight: 600,
+                        flexShrink: 0, fontSize: "0.8rem", color: "#c8581a", fontWeight: 600,
                       }}>{item.step}</div>
                       <div>
                         <p style={{ fontWeight: 600, fontSize: "0.92rem", marginBottom: "4px", color: "#1A1A1A" }}>{item.title}</p>
@@ -104,8 +104,8 @@ export default function ContactPage() {
                 <a href="https://calendly.com" target="_blank" rel="noopener noreferrer" style={{
                   display: "inline-flex", alignItems: "center", gap: "8px",
                   padding: "10px 20px", background: "#fff",
-                  border: "1.5px solid #C4CDE0", borderRadius: "100px",
-                  color: "#3A5585", textDecoration: "none",
+                  border: "1.5px solid #f0c4a0", borderRadius: "100px",
+                  color: "#c8581a", textDecoration: "none",
                   fontSize: "0.875rem", fontWeight: 600, transition: "all 0.2s",
                 }}>
                   <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
@@ -146,9 +146,9 @@ export default function ContactPage() {
                 <div style={{ textAlign: "center", padding: "48px 0" }}>
                   <div style={{
                     width: 64, height: 64,
-                    background: "#EEF1F7", border: "1.5px solid #C4CDE0",
+                    background: "#fdf0e8", border: "1.5px solid #f0c4a0",
                     borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center",
-                    margin: "0 auto 24px", fontSize: "1.5rem", color: "#3A5585",
+                    margin: "0 auto 24px", fontSize: "1.5rem", color: "#c8581a",
                   }}>✓</div>
                   <h3 style={{ fontWeight: 700, fontSize: "1.5rem", letterSpacing: "-0.02em", marginBottom: "12px" }}>
                     We&apos;ll be in touch.
@@ -179,7 +179,7 @@ export default function ContactPage() {
                         }}
                           type="text" name="name" required placeholder="Jane Smith"
                           value={form.name} onChange={handleChange}
-                          onFocus={e => (e.target as HTMLElement).style.borderColor = "#3A5585"}
+                          onFocus={e => (e.target as HTMLElement).style.borderColor = "#c8581a"}
                           onBlur={e => (e.target as HTMLElement).style.borderColor = "#E8E6E1"}
                         />
                       </div>
@@ -194,7 +194,7 @@ export default function ContactPage() {
                         }}
                           type="email" name="email" required placeholder="jane@company.com"
                           value={form.email} onChange={handleChange}
-                          onFocus={e => (e.target as HTMLElement).style.borderColor = "#3A5585"}
+                          onFocus={e => (e.target as HTMLElement).style.borderColor = "#c8581a"}
                           onBlur={e => (e.target as HTMLElement).style.borderColor = "#E8E6E1"}
                         />
                       </div>
@@ -211,7 +211,7 @@ export default function ContactPage() {
                       }}
                         type="text" name="company" required placeholder="Acme Services LLC"
                         value={form.company} onChange={handleChange}
-                        onFocus={e => (e.target as HTMLElement).style.borderColor = "#3A5585"}
+                        onFocus={e => (e.target as HTMLElement).style.borderColor = "#c8581a"}
                         onBlur={e => (e.target as HTMLElement).style.borderColor = "#E8E6E1"}
                       />
                     </div>
@@ -248,7 +248,7 @@ export default function ContactPage() {
                         name="message" required rows={5}
                         placeholder="Describe your business, what software you currently use, and what problems you're trying to solve..."
                         value={form.message} onChange={handleChange}
-                        onFocus={e => (e.target as HTMLElement).style.borderColor = "#3A5585"}
+                        onFocus={e => (e.target as HTMLElement).style.borderColor = "#c8581a"}
                         onBlur={e => (e.target as HTMLElement).style.borderColor = "#E8E6E1"}
                       />
                     </div>
@@ -257,12 +257,12 @@ export default function ContactPage() {
                       width: "100%", padding: "14px",
                       borderRadius: "100px", fontSize: "0.925rem", fontWeight: 600,
                       border: "none", cursor: loading ? "not-allowed" : "pointer",
-                      background: loading ? "#4A4947" : "#1C1E26",
+                      background: loading ? "#4A4947" : "#141414",
                       color: "#fff", fontFamily: "'DM Sans', sans-serif",
                       display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
                       transition: "background 0.2s",
                     }}
-                      onMouseEnter={e => { if (!loading) (e.currentTarget as HTMLElement).style.background = "#3A5585"; }}
+                      onMouseEnter={e => { if (!loading) (e.currentTarget as HTMLElement).style.background = "#c8581a"; }}
                       onMouseLeave={e => { if (!loading) (e.currentTarget as HTMLElement).style.background = "#1C1E26"; }}
                     >
                       {loading ? (
