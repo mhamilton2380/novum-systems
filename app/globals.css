@@ -154,8 +154,11 @@ body {
 
 /* ── Dark card dot grid ── */
 .dot-grid {
-  background-image: radial-gradient(circle, rgba(255,255,255,0.055) 1px, transparent 1px);
-  background-size: 24px 24px;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,0.026) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.026) 1px, transparent 1px);
+  background-size: 24px 24px, 80px 80px, 80px 80px;
 }
 
 @keyframes fadeUp {
