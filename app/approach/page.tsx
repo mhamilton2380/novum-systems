@@ -25,179 +25,119 @@ export default function ApproachPage() {
     },
   ];
 
-  const systems = [
-    {
-      name: "OpsCore",
-      color: "var(--gold)",
-      colorBg: "rgba(181,200,255,0.08)",
-      colorBorder: "rgba(181,200,255,0.2)",
-      desc: "AI-powered operational command center. Task generation, team chat, project boards, calendar, and platform integrations — all in one system.",
-      href: "/systems#opscore",
-    },
-    {
-      name: "FieldOps",
-      color: "var(--green-accent)",
-      colorBg: "rgba(46,204,143,0.08)",
-      colorBorder: "rgba(46,204,143,0.2)",
-      desc: "End-to-end field service management. Scheduling, dispatch, job tracking, mobile field access, and automated invoicing.",
-      href: "/systems#fieldops",
-    },
-    {
-      name: "ProjectOps",
-      color: "#7B9FF5",
-      colorBg: "rgba(59,107,240,0.08)",
-      colorBorder: "rgba(59,107,240,0.2)",
-      desc: "Full project lifecycle management. Budget tracking, vendor management, milestone timelines, RFIs, and profitability reporting.",
-      href: "/systems#projectops",
-    },
-    {
-      name: "Forge",
-      color: "#A78BFA",
-      colorBg: "rgba(167,139,250,0.08)",
-      colorBorder: "rgba(167,139,250,0.2)",
-      desc: "Completely custom-built systems from the ground up. For operations that don't fit any mold — no templates, no constraints, just your system.",
-      href: "/systems#forge",
-    },
-  ];
-
   return (
-    <>
-      {/* Hero */}
-      <section
-        style={{
-          padding: "160px 48px 100px",
-          background: "radial-gradient(ellipse 900px 500px at 50% 0%, rgba(59,107,240,0.05) 0%, transparent 60%), var(--ink)",
-        }}
-      >
-        <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
-          <div style={{ maxWidth: "700px" }}>
-            <div className="tag" style={{ marginBottom: "28px" }}>Our Approach</div>
-            <h1
-              className="font-serif"
-              style={{
-                fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
-                lineHeight: "1.08",
-                letterSpacing: "-0.02em",
-                marginBottom: "28px",
-              }}
-            >
-              We don&apos;t sell software.
-              <br />
-              <span className="gold-shimmer">We design systems.</span>
+    <div style={{ background: "#fff", color: "#1A1A1A", fontFamily: "'DM Sans', sans-serif" }}>
+
+      {/* ── Hero ── */}
+      <section style={{ padding: "100px 24px 0" }}>
+        <div style={{
+          background: "#1C1E26", borderRadius: "20px",
+          padding: "80px 60px", position: "relative", overflow: "hidden",
+        }}>
+          <div style={{
+            position: "absolute", inset: 0,
+            backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
+            backgroundSize: "24px 24px, 80px 80px, 80px 80px",
+          }} />
+          <div style={{ position: "relative", zIndex: 1, maxWidth: "680px" }}>
+            <div style={{
+              display: "inline-flex", alignItems: "center", gap: "7px",
+              padding: "5px 14px", borderRadius: "100px",
+              border: "1px solid rgba(255,255,255,0.12)", background: "rgba(255,255,255,0.06)",
+              fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.09em", textTransform: "uppercase",
+              color: "rgba(255,255,255,0.45)", marginBottom: "28px",
+            }}>
+              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(255,255,255,0.4)", display: "inline-block" }} />
+              Our Approach
+            </div>
+            <h1 style={{
+              fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
+              fontSize: "clamp(2.8rem, 5vw, 4.5rem)",
+              lineHeight: 1.04, letterSpacing: "-0.035em",
+              color: "#fff", marginBottom: "20px",
+            }}>
+              We don&apos;t sell software.<br />
+              <span style={{ fontStyle: "italic", fontWeight: 300, color: "rgba(200,215,255,0.8)" }}>We design systems.</span>
             </h1>
-            <p style={{ color: "var(--ivory-muted)", fontSize: "1.1rem", lineHeight: "1.8", maxWidth: "560px" }}>
+            <p style={{ color: "rgba(255,255,255,0.48)", fontSize: "1.05rem", lineHeight: 1.75, maxWidth: "540px" }}>
               There&apos;s a meaningful difference between deploying software and designing an operational system. One puts a tool in your hands. The other changes how your business operates.
             </p>
           </div>
         </div>
       </section>
 
-      {/* What sets us apart */}
-      <section style={{ padding: "100px 48px", borderTop: "1px solid rgba(234,234,234,0.06)" }}>
-        <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
-          <div
-            style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: "80px", alignItems: "start" }}
-            className="two-col"
-          >
-            <div style={{ position: "sticky", top: "100px" }}>
-              <h2
-                className="font-serif"
-                style={{ fontSize: "clamp(1.8rem, 3vw, 2.5rem)", letterSpacing: "-0.02em", lineHeight: "1.15", marginBottom: "20px" }}
-              >
+      {/* ── What sets us apart ── */}
+      <section style={{ padding: "96px 40px", borderTop: "1px solid #EDECEA" }}>
+        <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: "80px", alignItems: "start" }} className="two-col">
+
+            <div style={{ position: "sticky", top: "88px" }}>
+              <h2 style={{
+                fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
+                fontSize: "clamp(1.8rem, 3vw, 2.6rem)",
+                letterSpacing: "-0.03em", lineHeight: 1.1,
+                marginBottom: "18px",
+              }}>
                 What makes Novum different.
               </h2>
-              <p style={{ color: "var(--ivory-muted)", lineHeight: "1.8", fontSize: "0.95rem", marginBottom: "32px" }}>
+              <p style={{ color: "#7A7774", lineHeight: 1.8, fontSize: "0.95rem", marginBottom: "28px" }}>
                 We&apos;re not a dev shop. We&apos;re not a SaaS company. We&apos;re a systems practice — and that distinction changes everything about how we work and what we deliver.
               </p>
-              <div
-                style={{
-                  padding: "20px 24px",
-                  background: "rgba(181,200,255,0.06)",
-                  border: "1px solid rgba(181,200,255,0.2)",
-                  borderRadius: "10px",
-                }}
-              >
-                <p style={{ color: "var(--gold)", fontSize: "0.85rem", lineHeight: "1.7", margin: 0 }}>
+              <div style={{
+                padding: "20px 24px",
+                background: "#F7F6F3",
+                border: "1px solid #E8E6E1",
+                borderRadius: "12px",
+              }}>
+                <p style={{ color: "#4A4947", fontSize: "0.9rem", lineHeight: 1.7, margin: 0, fontStyle: "italic" }}>
                   &ldquo;The system should match the business. Not the other way around.&rdquo;
                 </p>
               </div>
             </div>
 
             <div>
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
-                  gap: "20px",
-                  marginBottom: "32px",
-                }}
-                className="compare-grid"
-              >
-                <div
-                  style={{
-                    padding: "28px",
-                    background: "rgba(255,80,80,0.04)",
-                    border: "1px solid rgba(255,80,80,0.12)",
-                    borderRadius: "12px",
-                  }}
-                >
-                  <p
-                    style={{
-                      fontSize: "0.72rem",
-                      fontWeight: "600",
-                      letterSpacing: "0.1em",
-                      textTransform: "uppercase",
-                      color: "rgba(255,120,120,0.7)",
-                      marginBottom: "16px",
-                    }}
-                  >
-                    Generic Software
-                  </p>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }} className="compare-grid">
+                {/* Generic col */}
+                <div style={{
+                  padding: "28px", background: "#FDF2F2",
+                  border: "1px solid #EDD5D5", borderRadius: "14px",
+                }}>
+                  <p style={{
+                    fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase",
+                    color: "#C0392B", marginBottom: "18px",
+                  }}>Generic Software</p>
                   {[
                     "Built for the average business",
                     "You adapt to the platform",
                     "One-size pricing",
                     "Self-serve with poor support",
                     "Features you don't need",
-                    "No understanding of your ops",
                   ].map((item) => (
-                    <div key={item} style={{ display: "flex", gap: "10px", marginBottom: "12px", alignItems: "flex-start" }}>
-                      <span style={{ color: "rgba(255,120,120,0.5)", fontSize: "0.9rem", marginTop: "1px" }}>✕</span>
-                      <span style={{ color: "var(--ivory-muted)", fontSize: "0.88rem", lineHeight: "1.5" }}>{item}</span>
+                    <div key={item} style={{ display: "flex", gap: "10px", marginBottom: "11px", alignItems: "flex-start" }}>
+                      <span style={{ color: "#C0392B", fontSize: "0.85rem", marginTop: "1px", flexShrink: 0 }}>✕</span>
+                      <span style={{ color: "#7A7774", fontSize: "0.875rem", lineHeight: 1.5 }}>{item}</span>
                     </div>
                   ))}
                 </div>
-                <div
-                  style={{
-                    padding: "28px",
-                    background: "rgba(181,200,255,0.05)",
-                    border: "1px solid rgba(181,200,255,0.2)",
-                    borderRadius: "12px",
-                  }}
-                >
-                  <p
-                    style={{
-                      fontSize: "0.72rem",
-                      fontWeight: "600",
-                      letterSpacing: "0.1em",
-                      textTransform: "uppercase",
-                      color: "var(--gold)",
-                      marginBottom: "16px",
-                    }}
-                  >
-                    Novum Systems
-                  </p>
+                {/* Novum col */}
+                <div style={{
+                  padding: "28px", background: "#EEF1F7",
+                  border: "1px solid #C4CDE0", borderRadius: "14px",
+                }}>
+                  <p style={{
+                    fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase",
+                    color: "#3A5585", marginBottom: "18px",
+                  }}>Novum Systems</p>
                   {[
                     "Built around your operations",
                     "The system adapts to you",
                     "Scoped to your exact needs",
                     "Dedicated delivery & support",
                     "Only what your business needs",
-                    "Deep operational understanding first",
                   ].map((item) => (
-                    <div key={item} style={{ display: "flex", gap: "10px", marginBottom: "12px", alignItems: "flex-start" }}>
-                      <span style={{ color: "var(--gold)", fontSize: "0.9rem", marginTop: "1px" }}>✓</span>
-                      <span style={{ color: "var(--ivory-muted)", fontSize: "0.88rem", lineHeight: "1.5" }}>{item}</span>
+                    <div key={item} style={{ display: "flex", gap: "10px", marginBottom: "11px", alignItems: "flex-start" }}>
+                      <span style={{ color: "#3A5585", fontSize: "0.85rem", marginTop: "1px", flexShrink: 0 }}>✓</span>
+                      <span style={{ color: "#4A4947", fontSize: "0.875rem", lineHeight: 1.5 }}>{item}</span>
                     </div>
                   ))}
                 </div>
@@ -207,212 +147,188 @@ export default function ApproachPage() {
         </div>
       </section>
 
-      {/* Principles */}
-      <section
-        style={{
-          padding: "100px 48px",
-          background: "var(--ink-soft)",
-          borderTop: "1px solid rgba(234,234,234,0.06)",
-          borderBottom: "1px solid rgba(234,234,234,0.06)",
-        }}
-      >
-        <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: "72px" }}>
-            <div className="tag" style={{ marginBottom: "20px", display: "inline-flex" }}>Our Principles</div>
-            <h2 className="font-serif" style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", letterSpacing: "-0.02em" }}>
-              How we think. How we work.
-            </h2>
-          </div>
-
-          <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
-            {principles.map((p, i) => (
-              <div
-                key={i}
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "100px 1fr",
-                  gap: "40px",
-                  padding: "40px 48px",
-                  border: "1px solid rgba(234,234,234,0.07)",
-                  borderRadius: "12px",
-                  background: "rgba(255,255,255,0.02)",
-                  transition: "border-color 0.3s",
-                }}
-                className="principle-row"
-                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(181,200,255,0.2)"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(234,234,234,0.07)"; }}
-              >
-                <div>
-                  <span
-                    className="font-serif"
-                    style={{ fontSize: "2.5rem", color: "rgba(181,200,255,0.3)", letterSpacing: "-0.03em" }}
-                  >
-                    {p.num}
-                  </span>
-                </div>
-                <div>
-                  <h3
-                    className="font-serif"
-                    style={{ fontSize: "1.3rem", letterSpacing: "-0.01em", marginBottom: "12px" }}
-                  >
-                    {p.title}
-                  </h3>
-                  <p style={{ color: "var(--ivory-muted)", fontSize: "0.95rem", lineHeight: "1.8", margin: 0 }}>
-                    {p.desc}
-                  </p>
-                </div>
+      {/* ── Principles ── */}
+      <section style={{ padding: "0 24px" }}>
+        <div style={{
+          background: "#1C1E26", borderRadius: "20px",
+          padding: "80px 60px", position: "relative", overflow: "hidden",
+        }}>
+          <div style={{
+            position: "absolute", inset: 0,
+            backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.055) 1px, transparent 1px), linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
+            backgroundSize: "24px 24px, 80px 80px, 80px 80px",
+          }} />
+          <div style={{ position: "relative", zIndex: 1 }}>
+            <div style={{ textAlign: "center", marginBottom: "64px" }}>
+              <div style={{
+                display: "inline-flex", alignItems: "center", gap: "7px",
+                padding: "5px 14px", borderRadius: "100px",
+                border: "1px solid rgba(255,255,255,0.12)", background: "rgba(255,255,255,0.06)",
+                fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.09em", textTransform: "uppercase",
+                color: "rgba(255,255,255,0.45)", marginBottom: "20px",
+              }}>
+                <span style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(255,255,255,0.4)", display: "inline-block" }} />
+                Our Principles
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Our Systems */}
-      <section style={{ padding: "100px 48px", borderBottom: "1px solid rgba(234,234,234,0.06)" }}>
-        <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "56px", flexWrap: "wrap", gap: "24px" }}>
-            <div>
-              <div className="tag" style={{ marginBottom: "20px" }}>Our Systems</div>
-              <h2 className="font-serif" style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", letterSpacing: "-0.02em", lineHeight: "1.15" }}>
-                Four systems. Every operation covered.
-              </h2>
+              <h2 style={{
+                fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
+                fontSize: "clamp(2rem, 3.5vw, 3rem)",
+                letterSpacing: "-0.03em", color: "#fff",
+              }}>How we think. How we work.</h2>
             </div>
-            <Link
-              href="/systems"
-              className="btn-outline"
-              style={{ padding: "12px 28px", borderRadius: "9px", textDecoration: "none", fontSize: "0.9rem", whiteSpace: "nowrap" }}
-            >
-              View Full Details →
-            </Link>
-          </div>
 
-          <div
-            style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "16px" }}
-            className="systems-grid"
-          >
-            {systems.map((sys) => (
-              <Link
-                key={sys.name}
-                href={sys.href}
-                className="card-hover"
-                style={{
-                  padding: "32px",
-                  border: `1px solid ${sys.colorBorder}`,
-                  borderRadius: "16px",
-                  background: sys.colorBg,
-                  textDecoration: "none",
-                  display: "block",
+            <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+              {principles.map((p, i) => (
+                <div key={i} style={{
+                  display: "grid", gridTemplateColumns: "80px 1fr",
+                  gap: "40px", padding: "36px 40px",
+                  background: "rgba(255,255,255,0.04)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  borderRadius: "14px",
+                  transition: "border-color 0.2s",
                 }}
-              >
-                <h3
-                  className="font-serif"
-                  style={{ fontSize: "1.4rem", letterSpacing: "-0.01em", marginBottom: "12px", color: sys.color }}
+                  className="principle-row"
+                  onMouseEnter={e => (e.currentTarget as HTMLElement).style.borderColor = "rgba(100,140,240,0.35)"}
+                  onMouseLeave={e => (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.08)"}
                 >
-                  {sys.name}
-                </h3>
-                <p style={{ color: "var(--ivory-muted)", fontSize: "0.88rem", lineHeight: "1.75", margin: 0 }}>
-                  {sys.desc}
-                </p>
-              </Link>
-            ))}
+                  <div>
+                    <span style={{
+                      fontFamily: "'DM Serif Display', serif",
+                      fontSize: "2.4rem", color: "rgba(255,255,255,0.15)",
+                      letterSpacing: "-0.03em", lineHeight: 1,
+                    }}>{p.num}</span>
+                  </div>
+                  <div>
+                    <h3 style={{ fontWeight: 700, fontSize: "1.1rem", letterSpacing: "-0.015em", marginBottom: "10px", color: "#fff" }}>{p.title}</h3>
+                    <p style={{ color: "rgba(255,255,255,0.48)", fontSize: "0.925rem", lineHeight: 1.8, margin: 0 }}>{p.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Who we work with */}
-      <section style={{ padding: "100px 48px" }}>
-        <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
-          <div style={{ textAlign: "center", maxWidth: "560px", margin: "0 auto 64px" }}>
-            <div className="tag" style={{ marginBottom: "20px", display: "inline-flex" }}>Who We Work With</div>
-            <h2 className="font-serif" style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", letterSpacing: "-0.02em", lineHeight: "1.15" }}>
-              Built for operational businesses.
-            </h2>
+      {/* ── Who we work with ── */}
+      <section style={{ padding: "96px 40px" }}>
+        <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+          <div style={{ textAlign: "center", maxWidth: "540px", margin: "0 auto 56px" }}>
+            <div style={{
+              display: "inline-flex", alignItems: "center", gap: "7px",
+              padding: "5px 14px", borderRadius: "100px",
+              border: "1px solid #E8E6E1", background: "#F7F6F3",
+              fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.09em", textTransform: "uppercase",
+              color: "#7A7774", marginBottom: "20px",
+            }}>
+              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#7A7774", display: "inline-block" }} />
+              Who We Work With
+            </div>
+            <h2 style={{
+              fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
+              fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
+              letterSpacing: "-0.03em", lineHeight: 1.1,
+            }}>Built for operational businesses.</h2>
           </div>
 
-          <div
-            style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "20px" }}
-            className="who-grid"
-          >
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px" }} className="who-grid">
             {[
               {
-                icon: "⚙️",
-                title: "On-the-Ground Operations",
-                desc: "Your team works in the field, on-site, or across multiple locations. Work needs to be coordinated, tracked, and billed — without the chaos of manual back-and-forth.",
+                title: "Field Service",
+                desc: "HVAC, plumbing, electrical, landscaping, equipment service — any business with teams dispatched to job sites.",
+                icon: (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" stroke="#3A5585" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                ),
               },
               {
-                icon: "📋",
-                title: "Project & Engagement Work",
-                desc: "Your business runs on projects, retainers, or scoped engagements. Every budget, milestone, and deliverable needs to be tracked — from the first proposal to the final invoice.",
+                title: "Project-Based",
+                desc: "General contractors, specialty trades, creative agencies, IT firms — businesses that run on projects with budgets and timelines.",
+                icon: (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <rect x="3" y="3" width="7" height="7" rx="1" stroke="#3A5585" strokeWidth="1.5" />
+                    <rect x="14" y="3" width="7" height="7" rx="1" stroke="#3A5585" strokeWidth="1.5" opacity="0.5" />
+                    <rect x="3" y="14" width="7" height="7" rx="1" stroke="#3A5585" strokeWidth="1.5" opacity="0.5" />
+                    <rect x="14" y="14" width="7" height="7" rx="1" stroke="#3A5585" strokeWidth="1.5" />
+                  </svg>
+                ),
               },
               {
-                icon: "🏢",
-                title: "Multi-Team Businesses",
-                desc: "You're managing multiple teams, locations, or departments and need a single view of everything. Not five dashboards — one system that shows you exactly where things stand.",
-              },
-              {
-                icon: "⚡",
-                title: "Built Different",
-                desc: "Your operation doesn't fit any standard category. You need a system designed specifically around how you work — not adapted from someone else's template.",
+                title: "Multi-Location",
+                desc: "Operators managing multiple teams, locations, or franchises who need visibility and coordination across their full operation.",
+                icon: (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="#3A5585" strokeWidth="1.5" strokeLinejoin="round" />
+                    <path d="M9 22V12h6v10" stroke="#3A5585" strokeWidth="1.5" strokeLinejoin="round" />
+                  </svg>
+                ),
               },
             ].map((item) => (
-              <div
-                key={item.title}
-                className="card-hover"
-                style={{
-                  padding: "36px",
-                  border: "1px solid rgba(234,234,234,0.08)",
-                  borderRadius: "16px",
-                  background: "rgba(255,255,255,0.025)",
-                  textAlign: "center",
-                }}
+              <div key={item.title} style={{
+                padding: "36px",
+                border: "1px solid #EDECEA",
+                borderRadius: "16px",
+                background: "#fff",
+                transition: "border-color 0.2s, box-shadow 0.2s",
+              }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "#C4CDE0"; (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 20px rgba(0,0,0,0.06)"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "#EDECEA"; (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
               >
-                <div style={{ fontSize: "2rem", marginBottom: "20px", display: "block" }}>
-                  {item.icon}
-                </div>
-                <h3 className="font-serif" style={{ fontSize: "1.25rem", marginBottom: "12px", letterSpacing: "-0.01em" }}>
-                  {item.title}
-                </h3>
-                <p style={{ color: "var(--ivory-muted)", fontSize: "0.9rem", lineHeight: "1.75" }}>{item.desc}</p>
+                <div style={{
+                  width: 48, height: 48, background: "#EEF1F7",
+                  border: "1px solid #C4CDE0", borderRadius: "12px",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  marginBottom: "20px",
+                }}>{item.icon}</div>
+                <h3 style={{ fontWeight: 700, fontSize: "1.1rem", letterSpacing: "-0.015em", marginBottom: "10px", color: "#1A1A1A" }}>{item.title}</h3>
+                <p style={{ color: "#7A7774", fontSize: "0.875rem", lineHeight: 1.75, margin: 0 }}>{item.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section style={{ padding: "100px 48px", textAlign: "center", borderTop: "1px solid rgba(234,234,234,0.06)" }}>
-        <div style={{ maxWidth: "560px", margin: "0 auto" }}>
-          <h2 className="font-serif" style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", letterSpacing: "-0.02em", marginBottom: "20px" }}>
-            Sound like the right fit?
-          </h2>
-          <p style={{ color: "var(--ivory-muted)", lineHeight: "1.8", marginBottom: "36px" }}>
-            A discovery call is how every Novum engagement starts. It&apos;s 30 minutes, no obligation, and we&apos;ll give you honest feedback on whether we&apos;re the right fit for your operation.
-          </p>
-          <Link
-            href="/contact"
-            className="btn-primary"
-            style={{ padding: "15px 36px", borderRadius: "10px", textDecoration: "none", fontSize: "0.95rem", display: "inline-flex", alignItems: "center", gap: "8px" }}
-          >
-            Book a Discovery Call →
-          </Link>
+      {/* ── CTA ── */}
+      <section style={{ padding: "24px 24px 80px" }}>
+        <div style={{
+          background: "#1C1E26", borderRadius: "20px",
+          padding: "80px 60px", textAlign: "center",
+          position: "relative", overflow: "hidden",
+        }}>
+          <div style={{
+            position: "absolute", inset: 0,
+            backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.055) 1px, transparent 1px), linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
+            backgroundSize: "24px 24px, 80px 80px, 80px 80px",
+          }} />
+          <div style={{ position: "relative", zIndex: 1, maxWidth: "520px", margin: "0 auto" }}>
+            <h2 style={{
+              fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
+              fontSize: "clamp(2rem, 4vw, 3rem)",
+              letterSpacing: "-0.03em", color: "#fff", marginBottom: "18px",
+            }}>Sound like the right fit?</h2>
+            <p style={{ color: "rgba(255,255,255,0.48)", lineHeight: 1.8, marginBottom: "36px" }}>
+              A discovery call is how every Novum engagement starts. It&apos;s 30 minutes, no obligation, and we&apos;ll give you honest feedback on whether we&apos;re the right fit for your operation.
+            </p>
+            <Link href="/contact" style={{
+              display: "inline-flex", alignItems: "center", gap: "8px",
+              padding: "14px 32px", borderRadius: "100px",
+              background: "#F2EDD8", color: "#1A1A1A",
+              fontSize: "0.92rem", fontWeight: 600, textDecoration: "none",
+            }}>
+              Book a Discovery Call →
+            </Link>
+          </div>
         </div>
       </section>
 
       <style jsx>{`
-        @media (max-width: 1100px) {
-          .systems-grid { grid-template-columns: repeat(2, 1fr) !important; }
-          .who-grid { grid-template-columns: repeat(2, 1fr) !important; }
-        }
         @media (max-width: 900px) {
           .two-col { grid-template-columns: 1fr !important; }
           .compare-grid { grid-template-columns: 1fr !important; }
-          .principle-row { grid-template-columns: 1fr !important; padding: 28px !important; }
-        }
-        @media (max-width: 640px) {
-          .systems-grid { grid-template-columns: 1fr !important; }
           .who-grid { grid-template-columns: 1fr !important; }
+          .principle-row { grid-template-columns: 1fr !important; padding: 24px !important; }
         }
       `}</style>
-    </>
+    </div>
   );
 }
