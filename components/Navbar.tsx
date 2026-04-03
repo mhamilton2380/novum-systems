@@ -42,7 +42,7 @@ export default function Navbar() {
   const navBorder = "1px solid rgba(255,255,255,0.64)";
   const textColor = "#17181B";
   const mutedColor = "#68635e";
-  const logoBg = "rgba(23,26,34,0.14)";
+  const logoBg = "#c8581a";
   const ctaBg = "#F2EBD9";
   const ctaColor = "#17181B";
 

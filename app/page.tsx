@@ -70,7 +70,7 @@ function PlexusBg() {
 
       // Grid lines
       ctx.lineWidth = 1;
-      ctx.strokeStyle = "rgba(80,120,200,0.07)";
+      ctx.strokeStyle = "rgba(175,100,40,0.07)";
       for (let c = 1; c < cols; c++) {
         ctx.beginPath(); ctx.moveTo(c * SPACING, 0); ctx.lineTo(c * SPACING, H); ctx.stroke();
       }
@@ -91,26 +91,26 @@ function PlexusBg() {
           const px = p.t * W;
           const tx = t0 * W;
           const tg = ctx.createLinearGradient(tx, y, px, y);
-          tg.addColorStop(0, "rgba(100,150,240,0)");
-          tg.addColorStop(1, `rgba(110,165,245,${brightness * p.alpha * 0.65})`);
+          tg.addColorStop(0, "rgba(200,88,26,0)");
+          tg.addColorStop(1, `rgba(200,100,40,${brightness * p.alpha * 0.55})`);
           ctx.beginPath(); ctx.moveTo(tx, y); ctx.lineTo(px, y);
           ctx.strokeStyle = tg; ctx.lineWidth = 1.5; ctx.stroke();
           const gr = ctx.createRadialGradient(px, y, 0, px, y, 14);
-          gr.addColorStop(0, `rgba(130,185,255,${brightness * p.alpha * 0.7})`);
-          gr.addColorStop(1, "rgba(100,160,255,0)");
+          gr.addColorStop(0, `rgba(220,120,60,${brightness * p.alpha * 0.6})`);
+          gr.addColorStop(1, "rgba(200,88,26,0)");
           ctx.beginPath(); ctx.arc(px, y, 14, 0, Math.PI * 2); ctx.fillStyle = gr; ctx.fill();
         } else {
           const x = p.line * SPACING;
           const py2 = p.t * H;
           const ty = t0 * H;
           const tg = ctx.createLinearGradient(x, ty, x, py2);
-          tg.addColorStop(0, "rgba(100,150,240,0)");
-          tg.addColorStop(1, `rgba(110,165,245,${brightness * p.alpha * 0.65})`);
+          tg.addColorStop(0, "rgba(200,88,26,0)");
+          tg.addColorStop(1, `rgba(200,100,40,${brightness * p.alpha * 0.55})`);
           ctx.beginPath(); ctx.moveTo(x, ty); ctx.lineTo(x, py2);
           ctx.strokeStyle = tg; ctx.lineWidth = 1.5; ctx.stroke();
           const gr = ctx.createRadialGradient(x, py2, 0, x, py2, 14);
-          gr.addColorStop(0, `rgba(130,185,255,${brightness * p.alpha * 0.7})`);
-          gr.addColorStop(1, "rgba(100,160,255,0)");
+          gr.addColorStop(0, `rgba(220,120,60,${brightness * p.alpha * 0.6})`);
+          gr.addColorStop(1, "rgba(200,88,26,0)");
           ctx.beginPath(); ctx.arc(x, py2, 14, 0, Math.PI * 2); ctx.fillStyle = gr; ctx.fill();
         }
       }
@@ -439,7 +439,7 @@ export default function HomePage() {
     <div
       style={{
         background:
-          "radial-gradient(circle at 12% 8%, rgba(91,125,186,0.06), transparent 22%), radial-gradient(circle at 88% 14%, rgba(121,161,229,0.04), transparent 20%), #f5f4f1",
+          "#f5f4f1",
         color: "var(--text)",
         fontFamily: "'DM Sans', sans-serif",
         position: "relative",
@@ -737,7 +737,7 @@ export default function HomePage() {
           className="fade-section"
           style={{
             background:
-              "radial-gradient(circle at 20% 18%, rgba(101,142,214,0.16), transparent 26%), linear-gradient(180deg, #181b24 0%, #14171f 100%)",
+              "linear-gradient(180deg, #1c1814 0%, #141414 100%)",
             borderRadius: 24,
             padding: "84px 60px",
             position: "relative",
@@ -846,7 +846,7 @@ export default function HomePage() {
                     transition: "border-color 0.25s, background 0.25s, transform 0.25s",
                   }}
                   onMouseEnter={(event) => {
-                    event.currentTarget.style.borderColor = "rgba(122,166,255,0.28)";
+                    event.currentTarget.style.borderColor = "rgba(200,88,26,0.32)";
                     event.currentTarget.style.background = "rgba(255,255,255,0.08)";
                     event.currentTarget.style.transform = "translateY(-3px)";
                   }}
@@ -970,8 +970,8 @@ export default function HomePage() {
                 name: "OpsCore",
                 badge: "Operations Hub",
                 badgeColor: "var(--accent)",
-                badgeBg: "rgba(69,99,145,0.08)",
-                badgeBorder: "rgba(69,99,145,0.2)",
+                badgeBg: "rgba(200,88,26,0.08)",
+                badgeBorder: "rgba(200,88,26,0.2)",
                 desc: "A unified command center for tasks, communication, projects, budgets, reporting, and integrations. OpsCore creates structure across the entire business.",
                 features: [
                   "AI task generation",
@@ -985,9 +985,9 @@ export default function HomePage() {
               {
                 name: "ProjectOps",
                 badge: "Project-Based",
-                badgeColor: "#2D5599",
-                badgeBg: "rgba(45,85,153,0.08)",
-                badgeBorder: "rgba(45,85,153,0.18)",
+                badgeColor: "#3d6e8a",
+                badgeBg: "rgba(61,110,138,0.08)",
+                badgeBorder: "rgba(61,110,138,0.2)",
                 desc: "Project lifecycle management from estimate to closeout, with live budget visibility, timeline tracking, document workflows, and profitability reporting.",
                 features: [
                   "Budget vs actuals",
@@ -1027,7 +1027,7 @@ export default function HomePage() {
                   cursor: "pointer",
                 }}
                 onMouseEnter={(event) => {
-                  event.currentTarget.style.borderColor = "rgba(69,99,145,0.22)";
+                  event.currentTarget.style.borderColor = "rgba(200,88,26,0.28)";
                   event.currentTarget.style.boxShadow = "0 16px 38px rgba(22,28,38,0.08)";
                   event.currentTarget.style.transform = "translateY(-2px)";
                 }}
@@ -1271,7 +1271,7 @@ export default function HomePage() {
             margin: "0 auto",
             padding: "76px 64px",
             background:
-              "radial-gradient(circle at 20% 15%, rgba(96,138,214,0.16), transparent 28%), linear-gradient(180deg, #171b24 0%, #141821 100%)",
+              "linear-gradient(180deg, #1c1814 0%, #141414 100%)",
             borderRadius: 28,
             position: "relative",
             overflow: "hidden",

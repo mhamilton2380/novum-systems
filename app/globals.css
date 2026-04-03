@@ -5,10 +5,10 @@
 @tailwind utilities;
 
 :root {
-  --white: #ffffff; --bg: #f3f1ec; --surface: #ffffff; --hero: #171a22;
+  --white: #ffffff; --bg: #f3f1ec; --surface: #ffffff; --hero: #141414;
   --text: #17181b; --text-mid: #4e4b48; --text-soft: #77736f;
-  --border: #e5e1d8; --border-strong: #c9c5bc; --accent: #456391;
-  --accent-bg: #eef3fb; --accent-border: #c7d3e5; --red: #c0392b;
+  --border: #e5e1d8; --border-strong: #c9c5bc; --accent: #c8581a;
+  --accent-bg: #fdf0e8; --accent-border: #f0c4a0; --red: #c0392b;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
