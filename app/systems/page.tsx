@@ -4,417 +4,211 @@ import Link from "next/link";
 export default function SystemsPage() {
   const systems = [
     {
-      id: "forge",
-      name: "Forge",
-      subtitle: "Custom-Built Operational Systems",
-      color: "#A78BFA",
-      colorBg: "rgba(167,139,250,0.08)",
-      colorBorder: "rgba(167,139,250,0.2)",
-      tagline: "No template. No limits. Built entirely from scratch.",
-      desc: "Forge is Novum's highest-tier engagement — a completely custom operational system designed from the ground up around your unique business. No templates, no premade modules to configure, no compromises. If your operation is complex, specialized, or simply unlike anything else, Forge starts with a blank slate and builds the exact system your business needs to run at full capacity.",
-      forWho: ["Organizations with complex or unique operational structures", "Businesses that have outgrown off-the-shelf and pre-built platforms", "Companies requiring deep integrations across multiple systems", "High-growth operators who need a system that scales with them"],
-      modules: [
-        {
-          name: "Full Operational Architecture",
-          desc: "We design your system from the ground up — custom data model, user roles, permission structures, workflows, and integrations all architected around your exact business before a single line is written.",
-          icon: "🏗",
-        },
-        {
-          name: "Custom Integrations & Data Layer",
-          desc: "Connect anything — accounting platforms, CRMs, ERPs, project management tools, communication systems, proprietary databases, or legacy software. We build the data pipelines, sync logic, and APIs your operation actually needs.",
-          icon: "🔌",
-        },
-        {
-          name: "Proprietary Workflow Engine",
-          desc: "Your processes encoded into the system — custom approval chains, conditional logic, automated routing, and escalation paths built to match exactly how your team operates, not a generic template.",
-          icon: "⚙",
-        },
-        {
-          name: "AI & Automation Layer",
-          desc: "Where applicable, we layer in AI capabilities — intelligent task generation, document parsing, predictive alerts, and automated decision routing — built for your specific data and workflows.",
-          icon: "🤖",
-        },
-        {
-          name: "White-Glove Build & Deployment",
-          desc: "Dedicated build team, full system documentation, and a structured rollout with role-based training and change management. You don't go live until every part of your team is confident.",
-          icon: "🚀",
-        },
-        {
-          name: "Ongoing Evolution",
-          desc: "A Forge system isn't a one-time delivery — it's a living platform. As your business grows and changes, we evolve the system with you. Quarterly reviews, feature expansions, and dedicated support.",
-          icon: "🔄",
-        },
-      ],
-    },
-    {
-      id: "opscore",
-      name: "OpsCore",
-      subtitle: "Operational Command Center",
-      color: "var(--gold)",
-      colorBg: "rgba(181,200,255,0.08)",
-      colorBorder: "rgba(181,200,255,0.2)",
-      tagline: "Your entire operation, unified in one intelligent system.",
-      desc: "OpsCore is more than a dashboard — it's a live operational brain for your business. Powered by AI, it automatically generates tasks from incoming emails, text messages, and documents so nothing slips through the cracks. Your team communicates via built-in project chat, shares notes, tracks deadlines on a unified calendar, and monitors budgets — all filtered by project, all in one place. Think Slack, Notion, and your PM tool merged into a single system built exactly around how you operate.",
-      forWho: ["Any team managing multiple active projects", "Operators who need full visibility across their business", "Organizations replacing a stack of disconnected tools", "Businesses where tasks, communication, and data live in separate places"],
-      modules: [
-        {
-          name: "AI Task Engine",
-          desc: "Drop in a text message, email, or PDF — OpsCore reads it and automatically creates tasks, assigns steps, sets priorities, and routes them to the right team member. No manual intake, no dropped balls.",
-          icon: "🤖",
-        },
-        {
-          name: "Team Command Center",
-          desc: "Built-in Slack-style chat organized by project and team. Shared notes, versioned documents, and a live calendar — all in context with the project you're working in. Full team visibility without switching apps.",
-          icon: "💬",
-        },
-        {
-          name: "Project Intelligence Board",
-          desc: "Every task, message, note, and document attached to its project. See your full project board at a glance — status, blockers, upcoming milestones, budget health, and team activity all in one view.",
-          icon: "📊",
-        },
-        {
-          name: "Platform Integrations",
-          desc: "OpsCore connects to the tools your business already runs on — accounting software like QuickBooks or Xero, CRMs like Salesforce or HubSpot, project platforms like Monday or Asana, email and calendar via Google or Outlook, industry-specific tools, ERPs, and more. One platform. Every tool. No switching.",
-          icon: "🔗",
-        },
-        {
-          name: "Custom Role Dashboards",
-          desc: "Every team member sees a view built for their role. Executives get KPIs and cross-project visibility. Project managers get milestones and budget burn. Field leads get today's jobs and open tasks. Nothing more, nothing less.",
-          icon: "🖥",
-        },
-        {
-          name: "Workflow Automation",
-          desc: "Define your processes once — OpsCore runs them every time. Automated approvals, triggered notifications, escalation paths, and status updates. If an email comes in that requires action, the system already knows what to do.",
-          icon: "⚡",
-        },
-      ],
-    },
-    {
       id: "fieldops",
       name: "FieldOps",
       subtitle: "Field Service Management",
-      color: "var(--green-accent)",
-      colorBg: "rgba(46,204,143,0.08)",
-      colorBorder: "rgba(46,204,143,0.2)",
-      tagline: "Dispatch smarter. Close faster. Get paid automatically.",
-      desc: "FieldOps is a complete end-to-end system for businesses with teams in the field. From the moment a job is booked to the final invoice — scheduling, dispatch, field access, photo documentation, and payment collection all run through one connected system. Built around your specific job types, crew structure, territories, and billing rules — not a one-size-fits-all platform you have to work around.",
+      accent: "#236B4E",
+      accentBg: "#EEF7F3",
+      accentBorder: "#C4E0D5",
+      tagline: "Schedule, dispatch, and close jobs — without the chaos.",
+      desc: "FieldOps is a complete operational system for field service businesses. Built around your specific job types, team structure, and billing needs — not a one-size-fits-all platform.",
       forWho: ["HVAC & mechanical contractors", "Plumbing & electrical", "Landscaping & property maintenance", "Equipment services & repair"],
       modules: [
-        {
-          name: "Scheduling & Dispatch Board",
-          desc: "Visual drag-and-drop scheduling built around your crews, territories, and job types. Real-time job assignments push directly to field techs — no phone tag, no confusion, no double-booking.",
-          icon: "📅",
-        },
-        {
-          name: "Job Management & Field Access",
-          desc: "Full job lifecycle from work order to sign-off. Field techs access jobs on mobile — upload photos, add notes, update job status, capture signatures on-site, and flag issues in real time.",
-          icon: "🔧",
-        },
-        {
-          name: "Automated Invoicing & Payments",
-          desc: "Invoices generate automatically on job completion based on your pricing rules, line items, and labor rates. Collect payment in the field or trigger automated billing — no manual entry, no billing delays.",
-          icon: "💳",
-        },
-        {
-          name: "Customer Records & Property History",
-          desc: "Complete history per customer and property — every service visit, piece of equipment installed, past invoice, and communication log. Your team always walks in informed.",
-          icon: "📋",
-        },
-        {
-          name: "Asset & Equipment Tracking",
-          desc: "Track the equipment and assets you service or maintain at each property. Service intervals, warranty records, and replacement histories tied to the customer and job record.",
-          icon: "🔩",
-        },
-        {
-          name: "Reporting & Ops Visibility",
-          desc: "Track technician performance, job completion rates, revenue by service type, and invoice aging. See what's actually happening across your field operation — not just what's scheduled.",
-          icon: "📈",
-        },
+        { name: "Scheduling & Dispatch", desc: "Visual scheduling board built around your team, territories, and job types. Drag-and-drop dispatch with real-time updates." },
+        { name: "Job Management", desc: "Full job lifecycle from work order to completion. Field team access, photo uploads, notes, and status tracking." },
+        { name: "Invoicing & Payments", desc: "Automated invoicing tied to job completion. Configurable pricing rules, line items, and payment collection." },
+        { name: "Customer Records", desc: "Complete customer and property history. Service records, equipment tracking, and communication logs." },
       ],
     },
     {
       id: "projectops",
       name: "ProjectOps",
       subtitle: "Project-Based Business Management",
-      color: "#7B9FF5",
-      colorBg: "rgba(59,107,240,0.08)",
-      colorBorder: "rgba(59,107,240,0.2)",
-      tagline: "From bid to close — every project on budget and on time.",
-      desc: "ProjectOps gives project-based businesses a full command center for running complex jobs from the first estimate to final billing. Track live budget vs. actuals, manage vendors and subcontractors, monitor milestone completion, handle RFIs and change orders, and report on profitability across every active project — all in one system configured around how your business actually runs jobs.",
+      accent: "#2C4E8A",
+      accentBg: "#EEF2FA",
+      accentBorder: "#C0CEEB",
+      tagline: "Run every project on budget and on time.",
+      desc: "ProjectOps gives project-based businesses a command center for managing complex jobs from bid to close. Track milestones, budgets, vendors, and profitability across every project.",
       forWho: ["General contractors", "Specialty trades & subcontractors", "IT & tech project firms", "Marketing & creative agencies"],
       modules: [
-        {
-          name: "Project Dashboard & Status",
-          desc: "Real-time view across all active projects — budget burn, milestone completion, team assignments, and open issues. Spot problems before they become overruns. Know where every project stands without asking.",
-          icon: "📊",
-        },
-        {
-          name: "Budget Tracking & Cost Control",
-          desc: "Live budget-vs-actual across all cost categories — labor, materials, subs, equipment, overhead. Track committed costs and change orders as they happen, not after the project closes.",
-          icon: "💰",
-        },
-        {
-          name: "Vendor & Subcontractor Management",
-          desc: "Track bids, contracts, scopes of work, lien waivers, payments, and performance for every vendor and sub — all tied to the project, phase, and cost code they belong to.",
-          icon: "🤝",
-        },
-        {
-          name: "Milestone & Timeline Tracking",
-          desc: "Gantt-style milestone tracking with dependency management. Flag at-risk milestones, automate progress reports, and keep stakeholders informed without extra manual effort.",
-          icon: "📍",
-        },
-        {
-          name: "Document & RFI Management",
-          desc: "Centralize drawings, submittals, RFIs, and change orders in one version-controlled repository. No more digging through email chains — every document attached to its project and phase.",
-          icon: "📁",
-        },
-        {
-          name: "Profitability Reporting",
-          desc: "See margin, labor cost, and overhead broken down by project, client, or job type. Know which work makes money and which doesn't — with data that updates in real time as costs come in.",
-          icon: "📈",
-        },
+        { name: "Project Dashboard", desc: "Real-time view of all active projects — status, budget burn, milestone completion, and team assignments." },
+        { name: "Budget Tracking", desc: "Live budget-vs-actual across all cost categories. Flag overruns early and protect your margins." },
+        { name: "Vendor & Sub Management", desc: "Track vendor bids, contracts, payments, and performance. All connected to the project it belongs to." },
+        { name: "Milestone & Timeline", desc: "Gantt-style milestone tracking with dependency management and automated progress reports." },
+      ],
+    },
+    {
+      id: "opscore",
+      name: "OpsCore",
+      subtitle: "Operational Command Center",
+      accent: "#3A5585",
+      accentBg: "#EEF1F7",
+      accentBorder: "#C4CDE0",
+      tagline: "Visibility across every part of your business.",
+      desc: "OpsCore is the operational layer that ties everything together. Custom dashboards, automated workflows, and reporting designed around the KPIs that actually matter to your business.",
+      forWho: ["Multi-location operators", "Franchise systems", "Teams with complex approval workflows", "Businesses needing cross-department reporting"],
+      modules: [
+        { name: "Custom Dashboards", desc: "Role-based dashboards showing each team member exactly what they need to see — nothing more, nothing less." },
+        { name: "Workflow Automation", desc: "Automate repetitive processes, approvals, and notifications. Define the rules once; the system handles it from there." },
+        { name: "Reporting Engine", desc: "Custom reports and KPI tracking across locations, teams, and time periods. Exportable and schedulable." },
+        { name: "Access & Permissions", desc: "Granular role-based access control. Every team member sees and can edit exactly what they should." },
+      ],
+    },
+    {
+      id: "forge",
+      name: "Forge",
+      subtitle: "Fully Custom Build",
+      accent: "#6D4FBB",
+      accentBg: "#F3F0FC",
+      accentBorder: "#D9D0F5",
+      tagline: "For operations that don't fit any mold.",
+      desc: "Forge is a completely custom-built system designed from the ground up around your unique structure, terminology, and workflows. No templates, no constraints — just your system, architected exactly the way your business runs.",
+      forWho: ["Operations with proprietary workflows", "Businesses with unique data models", "Companies needing white-label systems", "Operators who've outgrown every tool they've tried"],
+      modules: [
+        { name: "Operational Architecture", desc: "Full discovery and design of your operational model — data structure, workflow logic, and system hierarchy built from scratch." },
+        { name: "Custom Data Model", desc: "Your terminology, your entities, your relationships. No force-fitting your business into someone else's schema." },
+        { name: "Proprietary Workflow Engine", desc: "Workflows built around exactly how your business moves — approvals, triggers, automations, and exceptions." },
+        { name: "White-Glove Deployment", desc: "End-to-end build, testing, training, and handoff. We don't ship until you're fully operational." },
       ],
     },
   ];
 
   return (
-    <>
-      {/* Hero */}
-      <section
-        className="grid-bg"
-        style={{
-          padding: "160px 48px 100px",
-          textAlign: "center",
-          background: "radial-gradient(ellipse 900px 500px at 50% 0%, rgba(181,200,255,0.06) 0%, transparent 60%), var(--ink)",
-        }}
-      >
-        <div style={{ maxWidth: "720px", margin: "0 auto" }}>
-          <div className="tag" style={{ marginBottom: "28px", display: "inline-flex" }}>Our Systems</div>
-          <h1
-            className="font-serif"
-            style={{
-              fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
-              lineHeight: "1.08",
-              letterSpacing: "-0.02em",
-              marginBottom: "24px",
-            }}
-          >
-            Custom systems.
-            <br />
-            <span className="gold-shimmer">One coherent operation.</span>
-          </h1>
-          <p style={{ color: "var(--ivory-muted)", fontSize: "1.05rem", lineHeight: "1.8", maxWidth: "580px", margin: "0 auto" }}>
-            Every Novum system is built and configured around your specific business — not a template you adapt to. Start with one system or combine them into a fully integrated operational platform.
-          </p>
+    <div style={{ background: "#fff", color: "#1A1A1A", fontFamily: "'DM Sans', sans-serif" }}>
 
-          {/* System nav pills */}
-          <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap", marginTop: "48px" }}>
-            {[
-              { name: "Forge", color: "#A78BFA", id: "forge" },
-              { name: "OpsCore", color: "var(--gold)", id: "opscore" },
-              { name: "FieldOps", color: "var(--green-accent)", id: "fieldops" },
-              { name: "ProjectOps", color: "#7B9FF5", id: "projectops" },
-            ].map((s) => (
-              <a
-                key={s.id}
-                href={`#${s.id}`}
-                style={{
-                  padding: "8px 20px",
-                  borderRadius: "100px",
-                  border: `1px solid ${s.color}40`,
-                  background: `${s.color}10`,
-                  color: s.color,
-                  fontSize: "0.82rem",
-                  fontWeight: "500",
-                  letterSpacing: "0.04em",
-                  textDecoration: "none",
-                  transition: "all 0.2s",
-                }}
-              >
-                {s.name}
-              </a>
-            ))}
+      {/* ── Hero ── */}
+      <section style={{ padding: "100px 24px 0" }}>
+        <div style={{
+          background: "#1C1E26",
+          borderRadius: "20px",
+          padding: "80px 60px",
+          position: "relative",
+          overflow: "hidden",
+        }}>
+          {/* texture */}
+          <div style={{
+            position: "absolute", inset: 0,
+            backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
+            backgroundSize: "24px 24px, 80px 80px, 80px 80px",
+          }} />
+          <div style={{ position: "relative", zIndex: 1, maxWidth: "640px" }}>
+            <div style={{
+              display: "inline-flex", alignItems: "center", gap: "7px",
+              padding: "5px 14px", borderRadius: "100px",
+              border: "1px solid rgba(255,255,255,0.12)", background: "rgba(255,255,255,0.06)",
+              fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.09em", textTransform: "uppercase",
+              color: "rgba(255,255,255,0.45)", marginBottom: "28px",
+            }}>
+              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(255,255,255,0.4)", display: "inline-block" }} />
+              Our Systems
+            </div>
+            <h1 style={{
+              fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
+              fontSize: "clamp(2.8rem, 5vw, 4.5rem)",
+              lineHeight: 1.04, letterSpacing: "-0.035em",
+              color: "#fff", marginBottom: "20px",
+            }}>
+              Four systems.<br />
+              <span style={{ color: "rgba(200,215,255,0.8)", fontStyle: "italic", fontWeight: 300 }}>One coherent operation.</span>
+            </h1>
+            <p style={{ color: "rgba(255,255,255,0.48)", fontSize: "1.05rem", lineHeight: 1.75, maxWidth: "520px" }}>
+              Each Novum system is customized to your business. Most clients start with one and expand — or combine them into a fully integrated operational platform.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Systems Detail */}
+      {/* ── Systems Detail ── */}
       {systems.map((sys, i) => (
-        <section
-          key={sys.id}
-          id={sys.id}
-          style={{
-            padding: "100px 48px",
-            background: i % 2 === 1 ? "rgba(255,255,255,0.015)" : "transparent",
-            borderTop: "1px solid rgba(234,234,234,0.06)",
-          }}
-        >
-          <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
-            {/* System header */}
-            <div style={{ marginBottom: "56px" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "20px", flexWrap: "wrap" }}>
-                <div
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    padding: "5px 14px",
-                    background: sys.colorBg,
-                    border: `1px solid ${sys.colorBorder}`,
-                    borderRadius: "100px",
-                    fontSize: "0.72rem",
-                    fontWeight: "500",
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase",
-                    color: sys.color,
-                  }}
-                >
-                  {sys.subtitle}
-                </div>
-                {i === 0 && (
-                  <div
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      padding: "5px 14px",
-                      background: "rgba(181,200,255,0.06)",
-                      border: "1px solid rgba(181,200,255,0.2)",
-                      borderRadius: "100px",
-                      fontSize: "0.72rem",
-                      fontWeight: "500",
-                      letterSpacing: "0.1em",
-                      textTransform: "uppercase",
-                      color: "var(--gold)",
-                    }}
-                  >
-                    Most Popular
-                  </div>
-                )}
-              </div>
-              <h2
-                className="font-serif"
-                style={{
-                  fontSize: "clamp(2.5rem, 5vw, 4rem)",
-                  letterSpacing: "-0.02em",
-                  marginBottom: "12px",
-                  lineHeight: "1.05",
-                }}
-              >
-                {sys.name}
-              </h2>
-              <p style={{ color: sys.color, fontSize: "1.1rem", marginBottom: "0", fontWeight: "400" }}>
-                {sys.tagline}
-              </p>
-            </div>
+        <section key={sys.id} id={sys.id} style={{
+          padding: "96px 40px",
+          borderTop: "1px solid #EDECEA",
+          background: i % 2 === 1 ? "#FAFAF8" : "#fff",
+        }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "80px", alignItems: "start" }} className="sys-detail-grid">
 
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1.6fr",
-                gap: "80px",
-                alignItems: "start",
-              }}
-              className="sys-detail-grid"
-            >
-              {/* Left col — description & for who */}
-              <div style={{ position: "sticky", top: "100px" }}>
-                <p style={{ color: "var(--ivory-muted)", lineHeight: "1.85", fontSize: "0.97rem", marginBottom: "40px" }}>
+              {/* Left — sticky info */}
+              <div style={{ position: "sticky", top: "88px" }}>
+                <span style={{
+                  display: "inline-flex", alignItems: "center",
+                  padding: "5px 14px",
+                  background: sys.accentBg, border: `1px solid ${sys.accentBorder}`,
+                  borderRadius: "100px",
+                  fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.09em", textTransform: "uppercase",
+                  color: sys.accent, marginBottom: "20px",
+                }}>{sys.subtitle}</span>
+
+                <h2 style={{
+                  fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
+                  fontSize: "clamp(2.4rem, 4.5vw, 3.8rem)",
+                  letterSpacing: "-0.03em", lineHeight: 1.04,
+                  marginBottom: "14px", color: "#1A1A1A",
+                }}>{sys.name}</h2>
+
+                <p style={{ color: sys.accent, fontSize: "1rem", marginBottom: "18px", fontWeight: 500 }}>
+                  {sys.tagline}
+                </p>
+                <p style={{ color: "#7A7774", lineHeight: 1.8, fontSize: "0.95rem", marginBottom: "32px" }}>
                   {sys.desc}
                 </p>
-                <div style={{ marginBottom: "40px" }}>
-                  <p
-                    style={{
-                      fontSize: "0.72rem",
-                      fontWeight: "600",
-                      letterSpacing: "0.1em",
-                      textTransform: "uppercase",
-                      color: "var(--ivory-muted)",
-                      marginBottom: "16px",
-                    }}
-                  >
-                    Built for
-                  </p>
-                  <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+
+                <div style={{ marginBottom: "32px" }}>
+                  <p style={{
+                    fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase",
+                    color: "#B0ADA8", marginBottom: "14px",
+                  }}>Built for</p>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "9px" }}>
                     {sys.forWho.map((w) => (
-                      <div key={w} style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-                        <div
-                          style={{
-                            width: "6px",
-                            height: "6px",
-                            borderRadius: "50%",
-                            background: sys.color,
-                            flexShrink: 0,
-                          }}
-                        />
-                        <span style={{ color: "var(--ivory-muted)", fontSize: "0.9rem" }}>{w}</span>
+                      <div key={w} style={{ display: "flex", alignItems: "center", gap: "11px" }}>
+                        <div style={{ width: 6, height: 6, borderRadius: "50%", background: sys.accent, flexShrink: 0 }} />
+                        <span style={{ color: "#4A4947", fontSize: "0.9rem" }}>{w}</span>
                       </div>
                     ))}
                   </div>
                 </div>
-                <Link
-                  href="/contact"
-                  className="btn-primary"
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "8px",
-                    padding: "13px 28px",
-                    borderRadius: "9px",
-                    textDecoration: "none",
-                    fontSize: "0.9rem",
-                  }}
+
+                <Link href="/contact" style={{
+                  display: "inline-flex", alignItems: "center", gap: "8px",
+                  padding: "12px 26px", borderRadius: "100px",
+                  background: "#1C1E26", color: "#fff",
+                  fontSize: "0.875rem", fontWeight: 600, textDecoration: "none",
+                  transition: "background 0.2s",
+                }}
+                  onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = sys.accent}
+                  onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = "#1C1E26"}
                 >
                   Ask about {sys.name} →
                 </Link>
               </div>
 
-              {/* Modules grid */}
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
-                  gap: "14px",
-                }}
-                className="modules-grid"
-              >
+              {/* Right — modules */}
+              <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
                 {sys.modules.map((mod) => (
-                  <div
-                    key={mod.name}
-                    className="card-hover"
-                    style={{
-                      padding: "26px 28px",
-                      background: "rgba(255,255,255,0.025)",
-                      border: "1px solid rgba(234,234,234,0.08)",
-                      borderRadius: "14px",
-                    }}
+                  <div key={mod.name} style={{
+                    padding: "28px 32px",
+                    background: "#fff",
+                    border: "1px solid #EDECEA",
+                    borderRadius: "14px",
+                    transition: "border-color 0.2s, box-shadow 0.2s",
+                  }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = sys.accentBorder; (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 20px rgba(0,0,0,0.06)"; }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "#EDECEA"; (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
                   >
-                    <div
-                      style={{
-                        width: "40px",
-                        height: "40px",
-                        background: sys.colorBg,
-                        borderRadius: "10px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        fontSize: "1.1rem",
-                        marginBottom: "16px",
-                      }}
-                    >
-                      {mod.icon}
+                    <div style={{ display: "flex", alignItems: "flex-start", gap: "18px" }}>
+                      <div style={{
+                        width: 40, height: 40, background: sys.accentBg,
+                        border: `1px solid ${sys.accentBorder}`,
+                        borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center",
+                        flexShrink: 0,
+                      }}>
+                        <div style={{ width: 16, height: 16, borderRadius: "3px", background: sys.accent, opacity: 0.6 }} />
+                      </div>
+                      <div>
+                        <h4 style={{ fontSize: "0.975rem", fontWeight: 600, marginBottom: "7px", color: "#1A1A1A" }}>{mod.name}</h4>
+                        <p style={{ color: "#7A7774", fontSize: "0.875rem", lineHeight: 1.75, margin: 0 }}>{mod.desc}</p>
+                      </div>
                     </div>
-                    <h4
-                      style={{
-                        fontSize: "0.95rem",
-                        fontWeight: "600",
-                        marginBottom: "8px",
-                        color: "var(--ivory)",
-                      }}
-                    >
-                      {mod.name}
-                    </h4>
-                    <p style={{ color: "var(--ivory-muted)", fontSize: "0.87rem", lineHeight: "1.7", margin: 0 }}>
-                      {mod.desc}
-                    </p>
                   </div>
                 ))}
               </div>
@@ -423,42 +217,45 @@ export default function SystemsPage() {
         </section>
       ))}
 
-      {/* Bottom CTA */}
-      <section
-        style={{
-          padding: "100px 48px",
-          textAlign: "center",
-          borderTop: "1px solid rgba(234,234,234,0.06)",
-          background: "radial-gradient(ellipse 800px 400px at 50% 50%, rgba(167,139,250,0.04) 0%, rgba(181,200,255,0.03) 60%, transparent 80%)",
-        }}
-      >
-        <div style={{ maxWidth: "600px", margin: "0 auto" }}>
-          <div className="tag" style={{ marginBottom: "28px", display: "inline-flex" }}>Not Sure Where to Start?</div>
-          <h2 className="font-serif" style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", letterSpacing: "-0.02em", marginBottom: "20px" }}>
-            We&apos;ll figure it out together.
-          </h2>
-          <p style={{ color: "var(--ivory-muted)", lineHeight: "1.8", marginBottom: "36px" }}>
-            Most clients start with a single system and expand. Some need Forge from day one. A 30-minute discovery call is how we figure out what your operation actually needs — no pitch, no pressure.
-          </p>
-          <Link
-            href="/contact"
-            className="btn-primary"
-            style={{ padding: "15px 36px", borderRadius: "10px", textDecoration: "none", fontSize: "0.95rem", display: "inline-flex", alignItems: "center", gap: "8px" }}
-          >
-            Book a Discovery Call →
-          </Link>
+      {/* ── Combine CTA ── */}
+      <section style={{ padding: "24px 24px 80px" }}>
+        <div style={{
+          background: "#1C1E26", borderRadius: "20px",
+          padding: "80px 60px", textAlign: "center",
+          position: "relative", overflow: "hidden",
+        }}>
+          <div style={{
+            position: "absolute", inset: 0,
+            backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.055) 1px, transparent 1px), linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
+            backgroundSize: "24px 24px, 80px 80px, 80px 80px",
+          }} />
+          <div style={{ position: "relative", zIndex: 1, maxWidth: "560px", margin: "0 auto" }}>
+            <h2 style={{
+              fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
+              fontSize: "clamp(2rem, 4vw, 3rem)",
+              letterSpacing: "-0.03em", lineHeight: 1.08,
+              color: "#fff", marginBottom: "18px",
+            }}>Need more than one system?</h2>
+            <p style={{ color: "rgba(255,255,255,0.48)", lineHeight: 1.8, marginBottom: "36px", fontSize: "1rem" }}>
+              Our systems are designed to work together. Many clients run FieldOps and OpsCore in tandem, or combine all four into a fully integrated operational platform.
+            </p>
+            <Link href="/contact" style={{
+              display: "inline-flex", alignItems: "center", gap: "8px",
+              padding: "14px 32px", borderRadius: "100px",
+              background: "#F2EDD8", color: "#1A1A1A",
+              fontSize: "0.92rem", fontWeight: 600, textDecoration: "none",
+            }}>
+              Talk to us about your stack →
+            </Link>
+          </div>
         </div>
       </section>
 
       <style jsx>{`
-        @media (max-width: 1100px) {
+        @media (max-width: 900px) {
           .sys-detail-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
-          .modules-grid { grid-template-columns: 1fr !important; }
-        }
-        @media (max-width: 640px) {
-          .modules-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
-    </>
+    </div>
   );
 }
