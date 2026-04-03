@@ -387,8 +387,8 @@ function HeroWorkflowGraphic() {
 
     function tick() {
       time++;
-      const W = canvas.offsetWidth;
-      const H = canvas.offsetHeight;
+      const W = canvas!.offsetWidth;
+      const H = canvas!.offsetHeight;
       if (!W || !H) { raf = requestAnimationFrame(tick); return; }
 
       ctx.clearRect(0, 0, W, H);
