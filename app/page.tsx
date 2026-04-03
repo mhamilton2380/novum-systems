@@ -431,12 +431,33 @@ const glassCard: CSSProperties = {
   boxShadow: "0 8px 32px rgba(22,28,38,0.06), inset 0 1px 0 rgba(255,255,255,0.8)",
 };
 
+const ADAPT_FONTS = [
+  { font: "'DM Sans', sans-serif",        style: "italic",  weight: 700, tracking: "-0.04em" },
+  { font: "Georgia, serif",               style: "italic",  weight: 400, tracking: "-0.01em" },
+  { font: "'Courier New', monospace",     style: "normal",  weight: 700, tracking: "0.04em"  },
+  { font: "Impact, 'Arial Narrow', sans-serif", style: "normal", weight: 900, tracking: "0.01em" },
+  { font: "'Brush Script MT', cursive",   style: "italic",  weight: 400, tracking: "0.01em"  },
+];
+
 export default function HomePage() {
   useScrollReveal();
   const [graphicReady, setGraphicReady] = useState(false);
+  const [fontIdx, setFontIdx] = useState(0);
+  const [fading, setFading] = useState(false);
 
   useEffect(() => {
     setGraphicReady(true);
+  }, []);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setFading(true);
+      setTimeout(() => {
+        setFontIdx((i) => (i + 1) % ADAPT_FONTS.length);
+        setFading(false);
+      }, 300);
+    }, 4000);
+    return () => clearInterval(id);
   }, []);
 
   return (
@@ -513,17 +534,20 @@ export default function HomePage() {
               }}
             >
               Software that{" "}
-              <em
+              <span
                 style={{
-                  fontStyle: "italic",
-                  color: "rgba(188,208,255,0.96)",
-                  textShadow:
-                    "0 0 18px rgba(125,171,255,0.42), 0 0 42px rgba(125,171,255,0.18)",
-                  animation: "adaptsGlow 2.8s ease-in-out infinite",
+                  fontFamily: ADAPT_FONTS[fontIdx].font,
+                  fontStyle: ADAPT_FONTS[fontIdx].style as "italic" | "normal",
+                  fontWeight: ADAPT_FONTS[fontIdx].weight,
+                  letterSpacing: ADAPT_FONTS[fontIdx].tracking,
+                  color: "#fff",
+                  opacity: fading ? 0 : 1,
+                  transition: "opacity 0.3s ease",
+                  display: "inline-block",
                 }}
               >
                 adapts
-              </em>
+              </span>
               <br />
               to your business.
             </h1>
@@ -1373,11 +1397,6 @@ export default function HomePage() {
       </section>
 
       <style jsx>{`
-        @keyframes adaptsGlow {
-          0%, 100% { text-shadow: 0 0 18px rgba(125,171,255,0.42), 0 0 42px rgba(125,171,255,0.18); }
-          50% { text-shadow: 0 0 32px rgba(125,171,255,0.85), 0 0 70px rgba(125,171,255,0.45), 0 0 100px rgba(125,171,255,0.2); }
-        }
-
         .hero-card {
           grid-template-columns: 1fr 1.08fr;
         }
