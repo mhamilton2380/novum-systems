@@ -97,7 +97,7 @@ function PlexusBg() {
           const d = Math.sqrt(dx * dx + dy * dy);
 
           if (d < distance) {
-            const alpha = (1 - d / distance) * 0.09;
+            const alpha = (1 - d / distance) * 0.18;
             context.beginPath();
             context.moveTo(nodes[i].x, nodes[i].y);
             context.lineTo(nodes[j].x, nodes[j].y);
@@ -623,7 +623,7 @@ export default function HomePage() {
     <div
       style={{
         background:
-          "radial-gradient(circle at 12% 8%, rgba(91,125,186,0.14), transparent 22%), radial-gradient(circle at 88% 14%, rgba(121,161,229,0.1), transparent 20%), linear-gradient(180deg, rgba(250,248,244,0.72) 0%, rgba(243,240,234,0.78) 100%)",
+          "radial-gradient(circle at 12% 8%, rgba(91,125,186,0.06), transparent 22%), radial-gradient(circle at 88% 14%, rgba(121,161,229,0.04), transparent 20%), linear-gradient(180deg, #f5f4f1 0%, #f2efea 100%)",
         color: "var(--text)",
         fontFamily: "'DM Sans', sans-serif",
         position: "relative",
