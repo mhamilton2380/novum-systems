@@ -34,100 +34,57 @@ function PlexusBg() {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) {
-      return;
-    }
+    if (!canvas || !canvas.getContext) return;
+    const ctx = canvas.getContext("2d")!;
+    const nodes: {x:number;y:number;vx:number;vy:number}[] = [];
+    let raf = 0;
+    const DIST = 160;
 
-    const context = canvas.getContext("2d");
-    if (!context) {
-      return;
-    }
-
-    const distance = 160;
-
-    const initialize = () => {
-      const dpr = window.devicePixelRatio || 1;
-      canvas.width = window.innerWidth * dpr;
-      canvas.height = Math.max(window.innerHeight, document.body.scrollHeight) * dpr;
-      canvas.style.width = "100vw";
-      canvas.style.height = "100%";
-      context.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-      const width = canvas.width / dpr;
-      const height = canvas.height / dpr;
-
-      nodesRef.current = [];
-      const count = Math.min(54, Math.floor((width * height) / 42000));
-
-      for (let index = 0; index < count; index += 1) {
-        nodesRef.current.push({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          vx: (Math.random() - 0.5) * 0.18,
-          vy: (Math.random() - 0.5) * 0.18,
-        });
+    const init = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      nodes.length = 0;
+      const count = Math.min(50, Math.floor(window.innerWidth * window.innerHeight / 28000));
+      for (let i = 0; i < count; i++) {
+        nodes.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, vx: (Math.random()-0.5)*0.3, vy: (Math.random()-0.5)*0.3 });
       }
     };
 
     const tick = () => {
-      const dpr = window.devicePixelRatio || 1;
-      const width = canvas.width / dpr;
-      const height = canvas.height / dpr;
-      const nodes = nodesRef.current;
-
-      context.clearRect(0, 0, width, height);
-
-      nodes.forEach((node) => {
-        node.x += node.vx;
-        node.y += node.vy;
-
-        if (node.x < -20 || node.x > width + 20) {
-          node.vx *= -1;
-        }
-
-        if (node.y < -20 || node.y > height + 20) {
-          node.vy *= -1;
-        }
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      nodes.forEach(n => {
+        n.x += n.vx; n.y += n.vy;
+        if (n.x < 0 || n.x > canvas.width) n.vx *= -1;
+        if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
       });
-
-      for (let i = 0; i < nodes.length; i += 1) {
-        for (let j = i + 1; j < nodes.length; j += 1) {
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i+1; j < nodes.length; j++) {
           const dx = nodes[i].x - nodes[j].x;
           const dy = nodes[i].y - nodes[j].y;
-          const d = Math.sqrt(dx * dx + dy * dy);
-
-          if (d < distance) {
-            const alpha = (1 - d / distance) * 0.55;
-            context.beginPath();
-            context.moveTo(nodes[i].x, nodes[i].y);
-            context.lineTo(nodes[j].x, nodes[j].y);
-            context.strokeStyle = `rgba(69,99,145,${alpha})`;
-            context.lineWidth = 1;
-            context.stroke();
+          const d = Math.sqrt(dx*dx + dy*dy);
+          if (d < DIST) {
+            ctx.beginPath();
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.strokeStyle = \`rgba(58,85,133,\${(1-d/DIST)*0.45})\`;
+            ctx.lineWidth = 0.8;
+            ctx.stroke();
           }
         }
       }
-
-      nodes.forEach((node) => {
-        context.beginPath();
-        context.arc(node.x, node.y, 1.8, 0, Math.PI * 2);
-        context.fillStyle = "rgba(69,99,145,0.18)";
-        context.fill();
+      nodes.forEach(n => {
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, 2, 0, Math.PI*2);
+        ctx.fillStyle = "rgba(58,85,133,0.45)";
+        ctx.fill();
       });
-
-      rafRef.current = requestAnimationFrame(tick);
+      raf = requestAnimationFrame(tick);
     };
 
-    initialize();
-    window.addEventListener("resize", initialize);
-    rafRef.current = requestAnimationFrame(tick);
-    rafRef.current = requestAnimationFrame(tick);
-
-    return () => {
-      cancelAnimationFrame(rafRef.current);
-      window.removeEventListener("resize", initialize);
-    };
-  }, []);
+    init();
+    window.addEventListener("resize", init);
+    raf = requestAnimationFrame(tick);
+    return () => { cancelAnimationFrame(raf); window.removeEventListener("resize", init); };  }, []);
 
   return (
     <canvas
