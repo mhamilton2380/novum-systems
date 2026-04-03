@@ -66,7 +66,7 @@ function PlexusBg() {
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
-            ctx.strokeStyle = \`rgba(58,85,133,\${(1-d/DIST)*0.45})\`;
+            ctx.strokeStyle = "rgba(58,85,133," + String((1-d/DIST)*0.45) + ")";
             ctx.lineWidth = 0.8;
             ctx.stroke();
           }
