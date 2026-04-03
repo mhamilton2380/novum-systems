@@ -25,7 +25,7 @@ export default function HomePage() {
             width: "700px",
             height: "700px",
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(79,124,255,0.08) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(181,200,255,0.08) 0%, transparent 70%)",
             pointerEvents: "none",
           }}
         />
@@ -149,7 +149,7 @@ export default function HomePage() {
               <div
                 style={{
                   background: "rgba(255,255,255,0.03)",
-                  border: "1px solid rgba(79,124,255,0.2)",
+                  border: "1px solid rgba(181,200,255,0.2)",
                   borderRadius: "16px",
                   padding: "24px 28px",
                   backdropFilter: "blur(10px)",
@@ -296,7 +296,7 @@ export default function HomePage() {
       <section
         style={{
           padding: "120px 48px",
-          background: "rgba(79,124,255,0.03)",
+          background: "rgba(181,200,255,0.03)",
           borderTop: "1px solid rgba(234,234,234,0.06)",
           borderBottom: "1px solid rgba(234,234,234,0.06)",
         }}
@@ -379,7 +379,7 @@ export default function HomePage() {
                   style={{
                     width: "52px",
                     height: "52px",
-                    background: "rgba(79,124,255,0.1)",
+                    background: "rgba(181,200,255,0.1)",
                     borderRadius: "12px",
                     display: "flex",
                     alignItems: "center",
@@ -447,8 +447,8 @@ export default function HomePage() {
               {
                 name: "OpsCore",
                 badge: "Operations Hub",
-                badgeColor: "rgba(79,124,255,0.1)",
-                badgeBorder: "rgba(79,124,255,0.25)",
+                badgeColor: "rgba(181,200,255,0.1)",
+                badgeBorder: "rgba(181,200,255,0.25)",
                 badgeText: "var(--gold)",
                 desc: "Your entire operation unified in one intelligent command center. OpsCore uses AI to generate tasks from emails, texts, and documents automatically. Your team communicates via built-in chat, shares notes, tracks projects, and monitors budgets — all in one place. And it connects to the tools you already use: accounting platforms like QuickBooks, CRMs like Salesforce or HubSpot, project tools like Monday or Asana, communication tools like Gmail or Outlook, ERP systems, and more. One platform. Every tool. Zero switching.",
                 features: ["AI task generation from email/text/PDF", "Built-in team chat & shared notes", "Project-filtered calendar & tasks", "QuickBooks, Salesforce, HubSpot & more", "Custom role dashboards", "Workflow automation"],
@@ -489,7 +489,7 @@ export default function HomePage() {
                 }}
                 className="sys-row"
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(79,124,255,0.2)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(181,200,255,0.2)";
                   (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.03)";
                 }}
                 onMouseLeave={(e) => {
@@ -595,7 +595,7 @@ export default function HomePage() {
                 left: "calc(16.67% + 40px)",
                 right: "calc(16.67% + 40px)",
                 height: "1px",
-                background: "linear-gradient(90deg, var(--gold-muted), rgba(79,124,255,0.2), var(--gold-muted))",
+                background: "linear-gradient(90deg, var(--gold-muted), rgba(181,200,255,0.2), var(--gold-muted))",
               }}
               className="process-connector"
             />
@@ -624,7 +624,7 @@ export default function HomePage() {
                     height: "80px",
                     borderRadius: "50%",
                     background: "var(--ink)",
-                    border: "1px solid rgba(79,124,255,0.3)",
+                    border: "1px solid rgba(181,200,255,0.3)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -665,7 +665,7 @@ export default function HomePage() {
             position: "absolute",
             inset: 0,
             background:
-              "radial-gradient(ellipse 900px 500px at 50% 50%, rgba(79,124,255,0.05) 0%, transparent 70%)",
+              "radial-gradient(ellipse 900px 500px at 50% 50%, rgba(181,200,255,0.05) 0%, transparent 70%)",
           }}
         />
         <div style={{ maxWidth: "640px", margin: "0 auto", position: "relative" }}>

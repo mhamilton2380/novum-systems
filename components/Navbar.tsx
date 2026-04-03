@@ -102,7 +102,7 @@ export default function Navbar() {
                 transition: "color 0.2s",
                 background:
                   pathname === link.href
-                    ? "rgba(79, 124, 255, 0.08)"
+                    ? "rgba(181, 200, 255, 0.08)"
                     : "transparent",
               }}
             >

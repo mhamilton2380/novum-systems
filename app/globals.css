@@ -11,9 +11,9 @@
   --ivory: #EAEAEA;
   --ivory-dim: #D0D0D0;
   --ivory-muted: #9AA0A8;
-  --gold: #4F7CFF;
-  --gold-light: #7B9FFF;
-  --gold-muted: #2A4499;
+  --gold: #b5c8ff;
+  --gold-light: #cdd8ff;
+  --gold-muted: #6b8acc;
   --blue-accent: #3BAFA9;
   --green-accent: #2ECC8F;
   --divider: rgba(234, 234, 234, 0.08);
@@ -84,7 +84,7 @@ body::before {
 
 .mesh-bg {
   background: 
-    radial-gradient(ellipse 800px 600px at 20% 20%, rgba(79, 124, 255, 0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 800px 600px at 20% 20%, rgba(181, 200, 255, 0.07) 0%, transparent 60%),
     radial-gradient(ellipse 600px 800px at 80% 80%, rgba(59, 107, 240, 0.05) 0%, transparent 60%),
     var(--ink);
 }
@@ -95,7 +95,7 @@ body::before {
 .card-hover:hover {
   transform: translateY(-4px);
   box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
-  border-color: rgba(79, 124, 255, 0.3) !important;
+  border-color: rgba(181, 200, 255, 0.3) !important;
 }
 
 .btn-primary {
@@ -108,7 +108,7 @@ body::before {
 .btn-primary:hover {
   background: var(--gold-light);
   transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(79, 124, 255, 0.35);
+  box-shadow: 0 8px 24px rgba(181, 200, 255, 0.35);
 }
 
 .btn-outline {
@@ -121,7 +121,7 @@ body::before {
 .btn-outline:hover {
   border-color: var(--gold);
   color: var(--gold);
-  background: rgba(79, 124, 255, 0.05);
+  background: rgba(181, 200, 255, 0.05);
 }
 
 .tag {
@@ -129,14 +129,14 @@ body::before {
   align-items: center;
   gap: 6px;
   padding: 6px 14px;
-  border: 1px solid rgba(79, 124, 255, 0.25);
+  border: 1px solid rgba(181, 200, 255, 0.25);
   border-radius: 100px;
   font-size: 0.72rem;
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--gold);
-  background: rgba(79, 124, 255, 0.06);
+  background: rgba(181, 200, 255, 0.06);
 }
 .tag::before {
   content: '';
@@ -161,7 +161,7 @@ body::before {
 .form-input:focus {
   outline: none;
   border-color: var(--gold);
-  background: rgba(79, 124, 255, 0.04);
+  background: rgba(181, 200, 255, 0.04);
 }
 .form-input::placeholder { color: rgba(234, 234, 234, 0.25); }
 

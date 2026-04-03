@@ -29,8 +29,8 @@ export default function ApproachPage() {
     {
       name: "OpsCore",
       color: "var(--gold)",
-      colorBg: "rgba(79,124,255,0.08)",
-      colorBorder: "rgba(79,124,255,0.2)",
+      colorBg: "rgba(181,200,255,0.08)",
+      colorBorder: "rgba(181,200,255,0.2)",
       desc: "AI-powered operational command center. Task generation, team chat, project boards, calendar, and platform integrations — all in one system.",
       href: "/systems#opscore",
     },
@@ -112,8 +112,8 @@ export default function ApproachPage() {
               <div
                 style={{
                   padding: "20px 24px",
-                  background: "rgba(79,124,255,0.06)",
-                  border: "1px solid rgba(79,124,255,0.2)",
+                  background: "rgba(181,200,255,0.06)",
+                  border: "1px solid rgba(181,200,255,0.2)",
                   borderRadius: "10px",
                 }}
               >
@@ -170,8 +170,8 @@ export default function ApproachPage() {
                 <div
                   style={{
                     padding: "28px",
-                    background: "rgba(79,124,255,0.05)",
-                    border: "1px solid rgba(79,124,255,0.2)",
+                    background: "rgba(181,200,255,0.05)",
+                    border: "1px solid rgba(181,200,255,0.2)",
                     borderRadius: "12px",
                   }}
                 >
@@ -239,13 +239,13 @@ export default function ApproachPage() {
                   transition: "border-color 0.3s",
                 }}
                 className="principle-row"
-                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(79,124,255,0.2)"; }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(181,200,255,0.2)"; }}
                 onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(234,234,234,0.07)"; }}
               >
                 <div>
                   <span
                     className="font-serif"
-                    style={{ fontSize: "2.5rem", color: "rgba(79,124,255,0.3)", letterSpacing: "-0.03em" }}
+                    style={{ fontSize: "2.5rem", color: "rgba(181,200,255,0.3)", letterSpacing: "-0.03em" }}
                   >
                     {p.num}
                   </span>

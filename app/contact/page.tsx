@@ -30,7 +30,7 @@ export default function ContactPage() {
       <section
         style={{
           padding: "160px 32px 80px",
-          background: "radial-gradient(ellipse 800px 400px at 50% 0%, rgba(79,124,255,0.05) 0%, transparent 60%), var(--ink)",
+          background: "radial-gradient(ellipse 800px 400px at 50% 0%, rgba(181,200,255,0.05) 0%, transparent 60%), var(--ink)",
         }}
       >
         <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
@@ -106,7 +106,7 @@ export default function ContactPage() {
                           width: "32px",
                           height: "32px",
                           borderRadius: "50%",
-                          border: "1px solid rgba(79,124,255,0.3)",
+                          border: "1px solid rgba(181,200,255,0.3)",
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "center",
@@ -133,8 +133,8 @@ export default function ContactPage() {
               <div
                 style={{
                   padding: "24px",
-                  background: "rgba(79,124,255,0.05)",
-                  border: "1px solid rgba(79,124,255,0.15)",
+                  background: "rgba(181,200,255,0.05)",
+                  border: "1px solid rgba(181,200,255,0.15)",
                   borderRadius: "12px",
                   marginBottom: "40px",
                 }}
@@ -151,8 +151,8 @@ export default function ContactPage() {
                     alignItems: "center",
                     gap: "8px",
                     padding: "10px 20px",
-                    background: "rgba(79,124,255,0.12)",
-                    border: "1px solid rgba(79,124,255,0.25)",
+                    background: "rgba(181,200,255,0.12)",
+                    border: "1px solid rgba(181,200,255,0.25)",
                     borderRadius: "8px",
                     color: "var(--gold)",
                     textDecoration: "none",
@@ -219,8 +219,8 @@ export default function ContactPage() {
                     style={{
                       width: "64px",
                       height: "64px",
-                      background: "rgba(79,124,255,0.12)",
-                      border: "1px solid rgba(79,124,255,0.3)",
+                      background: "rgba(181,200,255,0.12)",
+                      border: "1px solid rgba(181,200,255,0.3)",
                       borderRadius: "50%",
                       display: "flex",
                       alignItems: "center",
