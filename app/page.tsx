@@ -36,48 +36,145 @@ function PlexusBg() {
     const canvas = canvasRef.current;
     if (!canvas || !canvas.getContext) return;
     const ctx = canvas.getContext("2d")!;
-    const nodes: {x:number;y:number;vx:number;vy:number}[] = [];
     let raf = 0;
-    const DIST = 160;
+    let time = 0;
+
+    type Node = {x:number;y:number;vx:number;vy:number};
+    type Pulse = {i:number;j:number;layer:number;t:number;speed:number};
+
+    const layers: Node[][] = [[], [], []];
+    const pulses: Pulse[] = [];
+
+    const LAYER_CONFIG = [
+      { count: 40, speed: 0.12, dist: 200, lineAlpha: 0.2,  nodeAlpha: 0.35, nodeR: 2.5, color: "58,85,133"   },
+      { count: 50, speed: 0.2,  dist: 160, lineAlpha: 0.13, nodeAlpha: 0.22, nodeR: 1.6, color: "75,105,160"  },
+      { count: 35, speed: 0.3,  dist: 120, lineAlpha: 0.07, nodeAlpha: 0.12, nodeR: 1.0, color: "95,130,185"  },
+    ];
 
     const init = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      nodes.length = 0;
-      const count = Math.min(50, Math.floor(window.innerWidth * window.innerHeight / 28000));
-      for (let i = 0; i < count; i++) {
-        nodes.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, vx: (Math.random()-0.5)*0.3, vy: (Math.random()-0.5)*0.3 });
+      layers.forEach((layer, li) => {
+        layer.length = 0;
+        const cfg = LAYER_CONFIG[li];
+        for (let i = 0; i < cfg.count; i++) {
+          layer.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            vx: (Math.random()-0.5) * cfg.speed,
+            vy: (Math.random()-0.5) * cfg.speed,
+          });
+        }
+      });
+      pulses.length = 0;
+    };
+
+    const spawnPulse = () => {
+      const li = Math.floor(Math.random() * 3);
+      const layer = layers[li];
+      if (layer.length < 2) return;
+      const i = Math.floor(Math.random() * layer.length);
+      let j = Math.floor(Math.random() * layer.length);
+      if (j === i) j = (j + 1) % layer.length;
+      const dx = layer[i].x - layer[j].x;
+      const dy = layer[i].y - layer[j].y;
+      const d = Math.sqrt(dx*dx + dy*dy);
+      if (d < LAYER_CONFIG[li].dist) {
+        pulses.push({ i, j, layer: li, t: 0, speed: 0.004 + Math.random() * 0.006 });
       }
     };
 
     const tick = () => {
+      time++;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      nodes.forEach(n => {
-        n.x += n.vx; n.y += n.vy;
-        if (n.x < 0 || n.x > canvas.width) n.vx *= -1;
-        if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
-      });
-      for (let i = 0; i < nodes.length; i++) {
-        for (let j = i+1; j < nodes.length; j++) {
-          const dx = nodes[i].x - nodes[j].x;
-          const dy = nodes[i].y - nodes[j].y;
-          const d = Math.sqrt(dx*dx + dy*dy);
-          if (d < DIST) {
-            ctx.beginPath();
-            ctx.moveTo(nodes[i].x, nodes[i].y);
-            ctx.lineTo(nodes[j].x, nodes[j].y);
-            ctx.strokeStyle = "rgba(58,85,133," + String((1-d/DIST)*0.45) + ")";
-            ctx.lineWidth = 0.8;
-            ctx.stroke();
+
+      // Spawn new pulses occasionally
+      if (time % 18 === 0 && pulses.length < 25) spawnPulse();
+
+      // Update pulses
+      for (let p = pulses.length - 1; p >= 0; p--) {
+        pulses[p].t += pulses[p].speed;
+        if (pulses[p].t >= 1) pulses.splice(p, 1);
+      }
+
+      for (let li = layers.length - 1; li >= 0; li--) {
+        const layer = layers[li];
+        const cfg = LAYER_CONFIG[li];
+
+        layer.forEach(n => {
+          n.x += n.vx; n.y += n.vy;
+          if (n.x < -20 || n.x > canvas.width + 20) n.vx *= -1;
+          if (n.y < -20 || n.y > canvas.height + 20) n.vy *= -1;
+        });
+
+        // Draw edges
+        for (let i = 0; i < layer.length; i++) {
+          for (let j = i+1; j < layer.length; j++) {
+            const dx = layer[i].x - layer[j].x;
+            const dy = layer[i].y - layer[j].y;
+            const d = Math.sqrt(dx*dx + dy*dy);
+            if (d < cfg.dist) {
+              const a = (1 - d/cfg.dist) * cfg.lineAlpha;
+              ctx.beginPath();
+              ctx.moveTo(layer[i].x, layer[i].y);
+              ctx.lineTo(layer[j].x, layer[j].y);
+              ctx.strokeStyle = "rgba(" + cfg.color + "," + a + ")";
+              ctx.lineWidth = li === 0 ? 0.8 : li === 1 ? 0.5 : 0.3;
+              ctx.stroke();
+            }
           }
         }
+
+        // Draw pulses on this layer
+        pulses.filter(p => p.layer === li).forEach(p => {
+          const n1 = layer[p.i];
+          const n2 = layer[p.j];
+          if (!n1 || !n2) return;
+          const px = n1.x + (n2.x - n1.x) * p.t;
+          const py = n1.y + (n2.y - n1.y) * p.t;
+          const brightness = Math.sin(p.t * Math.PI);
+
+          // Pulse trail
+          const trailLen = 0.12;
+          const t0 = Math.max(0, p.t - trailLen);
+          const tx = n1.x + (n2.x - n1.x) * t0;
+          const ty = n1.y + (n2.y - n1.y) * t0;
+          const grad = ctx.createLinearGradient(tx, ty, px, py);
+          grad.addColorStop(0, "rgba(" + cfg.color + ",0)");
+          grad.addColorStop(1, "rgba(" + cfg.color + "," + (brightness * 0.7) + ")");
+          ctx.beginPath();
+          ctx.moveTo(tx, ty);
+          ctx.lineTo(px, py);
+          ctx.strokeStyle = grad;
+          ctx.lineWidth = li === 0 ? 1.5 : 1.0;
+          ctx.stroke();
+
+          // Pulse head glow
+          const grd = ctx.createRadialGradient(px, py, 0, px, py, 6);
+          grd.addColorStop(0, "rgba(" + cfg.color + "," + (brightness * 0.9) + ")");
+          grd.addColorStop(1, "rgba(" + cfg.color + ",0)");
+          ctx.beginPath();
+          ctx.arc(px, py, 6, 0, Math.PI*2);
+          ctx.fillStyle = grd;
+          ctx.fill();
+        });
+
+        // Nodes
+        layer.forEach(n => {
+          const grd = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, cfg.nodeR * 3.5);
+          grd.addColorStop(0, "rgba(" + cfg.color + "," + (cfg.nodeAlpha * 0.5) + ")");
+          grd.addColorStop(1, "rgba(" + cfg.color + ",0)");
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, cfg.nodeR * 3.5, 0, Math.PI*2);
+          ctx.fillStyle = grd;
+          ctx.fill();
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, cfg.nodeR, 0, Math.PI*2);
+          ctx.fillStyle = "rgba(" + cfg.color + "," + cfg.nodeAlpha + ")";
+          ctx.fill();
+        });
       }
-      nodes.forEach(n => {
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, 2, 0, Math.PI*2);
-        ctx.fillStyle = "rgba(58,85,133,0.45)";
-        ctx.fill();
-      });
+
       raf = requestAnimationFrame(tick);
     };
 
