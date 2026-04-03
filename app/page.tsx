@@ -46,9 +46,9 @@ function PlexusBg() {
     const pulses: Pulse[] = [];
 
     const LAYER_CONFIG = [
-      { count: 160, speed: 0.1, dist: 200, lineAlpha: 0.55, nodeAlpha: 0.9, nodeR: 4.0, color: "50,78,128" },
-      { count: 130, speed: 0.18, dist: 170, lineAlpha: 0.3, nodeAlpha: 0.5, nodeR: 2.5, color: "70,100,155" },
-      { count: 110, speed: 0.26, dist: 140, lineAlpha: 0.15, nodeAlpha: 0.25, nodeR: 1.5, color: "100,135,190" },
+      { count: 160, speed: 0.1, dist: 200, lineAlpha: 0.72, nodeAlpha: 1.0, nodeR: 4.0, color: "50,78,128" },
+      { count: 130, speed: 0.18, dist: 170, lineAlpha: 0.42, nodeAlpha: 0.6, nodeR: 2.5, color: "70,100,155" },
+      { count: 110, speed: 0.26, dist: 140, lineAlpha: 0.18, nodeAlpha: 0.28, nodeR: 1.5, color: "100,135,190" },
     ];
 
     const init = () => {
@@ -88,10 +88,8 @@ function PlexusBg() {
       time++;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Spawn new pulses occasionally
       if (time % 6 === 0 && pulses.length < 50) { spawnPulse(); spawnPulse(); }
 
-      // Update pulses
       for (let p = pulses.length - 1; p >= 0; p--) {
         pulses[p].t += pulses[p].speed;
         if (pulses[p].t >= 1) pulses.splice(p, 1);
@@ -107,7 +105,6 @@ function PlexusBg() {
           if (n.y < -20 || n.y > canvas.height + 20) n.vy *= -1;
         });
 
-        // Draw edges
         for (let i = 0; i < layer.length; i++) {
           for (let j = i+1; j < layer.length; j++) {
             const dx = layer[i].x - layer[j].x;
@@ -125,7 +122,6 @@ function PlexusBg() {
           }
         }
 
-        // Draw pulses on this layer
         pulses.filter(p => p.layer === li).forEach(p => {
           const n1 = layer[p.i];
           const n2 = layer[p.j];
@@ -134,7 +130,6 @@ function PlexusBg() {
           const py = n1.y + (n2.y - n1.y) * p.t;
           const brightness = Math.sin(p.t * Math.PI);
 
-          // Pulse trail
           const trailLen = 0.12;
           const t0 = Math.max(0, p.t - trailLen);
           const tx = n1.x + (n2.x - n1.x) * t0;
@@ -149,7 +144,6 @@ function PlexusBg() {
           ctx.lineWidth = li === 0 ? 2.0 : 1.0;
           ctx.stroke();
 
-          // Pulse head glow
           const glowR = li === 0 ? 12 : 7;
           const grd = ctx.createRadialGradient(px, py, 0, px, py, glowR);
           grd.addColorStop(0, "rgba(" + cfg.color + "," + (brightness * 0.9) + ")");
@@ -160,7 +154,6 @@ function PlexusBg() {
           ctx.fill();
         });
 
-        // Nodes
         layer.forEach(n => {
           const grd = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, cfg.nodeR * 3.5);
           grd.addColorStop(0, "rgba(" + cfg.color + "," + (cfg.nodeAlpha * 0.5) + ")");
@@ -195,468 +188,327 @@ function PlexusBg() {
         pointerEvents: "none",
         zIndex: 0,
         opacity: 1,
-        filter: "blur(2.5px)",
+        filter: "blur(3.5px)",
       }}
     />
   );
 }
 
 function HeroWorkflowGraphic() {
-  const inputs = [
-    { label: "Email", top: 126 },
-    { label: "Calendar", top: 168 },
-    { label: "Accounting", top: 210 },
-    { label: "Documents", top: 252 },
-  ];
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const rafRef = useRef<number>(0);
 
-  const outputs = [
-    { label: "Tasks", top: 126 },
-    { label: "Schedules", top: 168 },
-    { label: "Team Updates", top: 210 },
-    { label: "Client Visibility", top: 252 },
-  ];
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d")!;
+    let raf = 0;
+    let time = 0;
+
+    const dpr = window.devicePixelRatio || 1;
+
+    const resize = () => {
+      const W = canvas.offsetWidth;
+      const H = canvas.offsetHeight;
+      canvas.width = W * dpr;
+      canvas.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+    resize();
+    window.addEventListener("resize", resize);
+
+    const inputLabels = ["Email", "Calendar", "Accounting", "Documents"];
+    const outputLabels = ["Tasks", "Schedules", "Team Updates", "Client Visibility"];
+
+    type Pt = { x: number; y: number };
+    type Pulse = { t: number; from: Pt; to: Pt; speed: number };
+
+    const pulses: Pulse[] = inputLabels.map((_, i) => ({
+      t: i * 0.26,
+      from: { x: 0, y: 0 },
+      to: { x: 0, y: 0 },
+      speed: 0.0045 + Math.random() * 0.002,
+    })).concat(outputLabels.map((_, i) => ({
+      t: 0.42 + i * 0.26,
+      from: { x: 0, y: 0 },
+      to: { x: 0, y: 0 },
+      speed: 0.0045 + Math.random() * 0.002,
+    })));
+
+    function bezierPt(from: Pt, to: Pt, t: number): Pt {
+      const cpX = (from.x + to.x) / 2;
+      const mt = 1 - t;
+      return {
+        x: mt*mt*mt*from.x + 3*mt*mt*t*cpX + 3*mt*t*t*cpX + t*t*t*to.x,
+        y: mt*mt*mt*from.y + 3*mt*mt*t*from.y + 3*mt*t*t*to.y + t*t*t*to.y,
+      };
+    }
+
+    function rr(x: number, y: number, w: number, h: number, r: number) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.lineTo(x + w - r, y);
+      ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+      ctx.lineTo(x + w, y + h - r);
+      ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+      ctx.lineTo(x + r, y + h);
+      ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+      ctx.lineTo(x, y + r);
+      ctx.quadraticCurveTo(x, y, x + r, y);
+      ctx.closePath();
+    }
+
+    function drawCard(x: number, y: number, w: number, h: number, label: string, side: "left" | "right") {
+      const g = ctx.createLinearGradient(x, y, x, y + h);
+      g.addColorStop(0, "rgba(255,255,255,0.11)");
+      g.addColorStop(1, "rgba(255,255,255,0.055)");
+      rr(x, y, w, h, 10);
+      ctx.fillStyle = g;
+      ctx.fill();
+      ctx.strokeStyle = "rgba(255,255,255,0.17)";
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      ctx.fillStyle = "rgba(255,255,255,0.84)";
+      ctx.font = `500 13px "DM Sans", sans-serif`;
+      ctx.textBaseline = "middle";
+      if (side === "left") {
+        ctx.textAlign = "left";
+        ctx.fillText(label, x + 12, y + h / 2);
+      } else {
+        ctx.textAlign = "right";
+        ctx.fillText(label, x + w - 12, y + h / 2);
+      }
+    }
+
+    function drawCurve(from: Pt, to: Pt) {
+      const cpX = (from.x + to.x) / 2;
+      ctx.beginPath();
+      ctx.moveTo(from.x, from.y);
+      ctx.bezierCurveTo(cpX, from.y, cpX, to.y, to.x, to.y);
+      ctx.strokeStyle = "rgba(100,148,255,0.14)";
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    function drawDevice(DEV_X: number, DEV_Y: number, DEV_W: number, DEV_H: number, W: number, H: number) {
+      const pulse = 0.5 + 0.5 * Math.sin(time * 0.035);
+
+      // Outer ambient glow
+      const gg = ctx.createRadialGradient(W / 2, H / 2, 0, W / 2, H / 2, 130);
+      gg.addColorStop(0, `rgba(90,140,255,${pulse * 0.14})`);
+      gg.addColorStop(1, "rgba(90,140,255,0)");
+      ctx.fillStyle = gg;
+      ctx.fillRect(W / 2 - 130, H / 2 - 130, 260, 260);
+
+      // Device background
+      const bg = ctx.createLinearGradient(DEV_X, DEV_Y, DEV_X, DEV_Y + DEV_H);
+      bg.addColorStop(0, "rgba(80,115,205,0.22)");
+      bg.addColorStop(1, "rgba(50,80,175,0.11)");
+      rr(DEV_X, DEV_Y, DEV_W, DEV_H, 14);
+      ctx.fillStyle = bg;
+      ctx.fill();
+      ctx.strokeStyle = `rgba(120,168,255,${0.26 + 0.18 * pulse})`;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      // Top edge highlight
+      ctx.beginPath();
+      ctx.moveTo(DEV_X + 14, DEV_Y + 0.5);
+      ctx.lineTo(DEV_X + DEV_W - 14, DEV_Y + 0.5);
+      ctx.strokeStyle = `rgba(200,220,255,${0.24 + 0.12 * pulse})`;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      // Inner wire grid
+      const iX = DEV_X + 14;
+      const iY = DEV_Y + 14;
+      const iW = DEV_W - 28;
+      const iH = DEV_H - 28;
+      const cols = 5;
+      const rows = 4;
+
+      ctx.lineWidth = 0.5;
+      for (let c = 0; c <= cols; c++) {
+        const x = iX + (c / cols) * iW;
+        const a = 0.07 + 0.06 * Math.sin(time * 0.04 + c * 0.9);
+        ctx.strokeStyle = `rgba(140,182,255,${a})`;
+        ctx.beginPath();
+        ctx.moveTo(x, iY);
+        ctx.lineTo(x, iY + iH);
+        ctx.stroke();
+      }
+      for (let r = 0; r <= rows; r++) {
+        const y = iY + (r / rows) * iH;
+        const a = 0.07 + 0.06 * Math.sin(time * 0.04 + r * 1.3);
+        ctx.strokeStyle = `rgba(140,182,255,${a})`;
+        ctx.beginPath();
+        ctx.moveTo(iX, y);
+        ctx.lineTo(iX + iW, y);
+        ctx.stroke();
+      }
+
+      // Grid intersection dots
+      for (let c = 0; c <= cols; c++) {
+        for (let r = 0; r <= rows; r++) {
+          const x = iX + (c / cols) * iW;
+          const y = iY + (r / rows) * iH;
+          const a = 0.18 + 0.15 * Math.sin(time * 0.035 + c * 0.8 + r * 1.1);
+          ctx.beginPath();
+          ctx.arc(x, y, 1.5, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(160,205,255,${a})`;
+          ctx.fill();
+        }
+      }
+
+      // Animated scan line
+      const scanY = iY + ((time * 0.4) % (iH + 1));
+      const sg = ctx.createLinearGradient(iX, scanY - 6, iX, scanY + 6);
+      sg.addColorStop(0, "rgba(120,180,255,0)");
+      sg.addColorStop(0.5, `rgba(140,192,255,${0.11 + 0.09 * pulse})`);
+      sg.addColorStop(1, "rgba(120,180,255,0)");
+      ctx.fillStyle = sg;
+      ctx.fillRect(iX, scanY - 6, iW, 12);
+
+      // Corner accent dots
+      const ca = 0.5 + 0.3 * pulse;
+      const corners: [number, number][] = [
+        [DEV_X + 6, DEV_Y + 6],
+        [DEV_X + DEV_W - 6, DEV_Y + 6],
+        [DEV_X + 6, DEV_Y + DEV_H - 6],
+        [DEV_X + DEV_W - 6, DEV_Y + DEV_H - 6],
+      ];
+      corners.forEach(([cx, cy]) => {
+        ctx.beginPath();
+        ctx.arc(cx, cy, 2, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(160,212,255,${ca})`;
+        ctx.fill();
+      });
+    }
+
+    function tick() {
+      time++;
+      const W = canvas.offsetWidth;
+      const H = canvas.offsetHeight;
+      if (!W || !H) { raf = requestAnimationFrame(tick); return; }
+
+      ctx.clearRect(0, 0, W, H);
+
+      const CARD_H = 34;
+      const GAP = 20;
+      const N = 4;
+      const CARD_W_L = Math.min(126, W * 0.19);
+      const CARD_W_R = Math.min(150, W * 0.22);
+      const totalCardH = N * CARD_H + (N - 1) * GAP;
+      const startY = (H - totalCardH) / 2;
+
+      const DEV_W = Math.min(138, W * 0.2);
+      const DEV_H = 106;
+      const DEV_X = (W - DEV_W) / 2;
+      const DEV_Y = (H - DEV_H) / 2;
+
+      const inputPts: Pt[] = inputLabels.map((_, i) => ({
+        x: CARD_W_L,
+        y: startY + i * (CARD_H + GAP) + CARD_H / 2,
+      }));
+      const outputPts: Pt[] = outputLabels.map((_, i) => ({
+        x: W - CARD_W_R,
+        y: startY + i * (CARD_H + GAP) + CARD_H / 2,
+      }));
+      const devLeft: Pt = { x: DEV_X, y: H / 2 };
+      const devRight: Pt = { x: DEV_X + DEV_W, y: H / 2 };
+
+      // Update pulse endpoints and advance
+      for (let pi = 0; pi < pulses.length; pi++) {
+        const p = pulses[pi];
+        if (pi < 4) { p.from = inputPts[pi]; p.to = devLeft; }
+        else { p.from = devRight; p.to = outputPts[pi - 4]; }
+        p.t = (p.t + p.speed) % 1;
+      }
+
+      // Connection curves
+      for (const pt of inputPts) drawCurve(pt, devLeft);
+      for (const pt of outputPts) drawCurve(devRight, pt);
+
+      // Pulse trails and heads
+      for (const p of pulses) {
+        const pos = bezierPt(p.from, p.to, p.t);
+        const brightness = Math.sin(p.t * Math.PI);
+        const t0 = Math.max(0, p.t - 0.1);
+        const trail = bezierPt(p.from, p.to, t0);
+
+        const tg = ctx.createLinearGradient(trail.x, trail.y, pos.x, pos.y);
+        tg.addColorStop(0, "rgba(120,180,255,0)");
+        tg.addColorStop(1, `rgba(168,222,255,${brightness * 0.8})`);
+        ctx.beginPath();
+        ctx.moveTo(trail.x, trail.y);
+        ctx.lineTo(pos.x, pos.y);
+        ctx.strokeStyle = tg;
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+
+        const gr = ctx.createRadialGradient(pos.x, pos.y, 0, pos.x, pos.y, 7);
+        gr.addColorStop(0, `rgba(190,228,255,${brightness * 0.92})`);
+        gr.addColorStop(1, "rgba(120,172,255,0)");
+        ctx.beginPath();
+        ctx.arc(pos.x, pos.y, 7, 0, Math.PI * 2);
+        ctx.fillStyle = gr;
+        ctx.fill();
+      }
+
+      // Central wire device
+      drawDevice(DEV_X, DEV_Y, DEV_W, DEV_H, W, H);
+
+      // Input cards + connector dots
+      inputLabels.forEach((label, i) => {
+        const y = startY + i * (CARD_H + GAP);
+        drawCard(0, y, CARD_W_L, CARD_H, label, "left");
+        const cy = y + CARD_H / 2;
+        const dg = ctx.createRadialGradient(CARD_W_L, cy, 0, CARD_W_L, cy, 4);
+        dg.addColorStop(0, "rgba(160,200,255,0.85)");
+        dg.addColorStop(1, "rgba(120,170,255,0)");
+        ctx.beginPath();
+        ctx.arc(CARD_W_L, cy, 3, 0, Math.PI * 2);
+        ctx.fillStyle = dg;
+        ctx.fill();
+      });
+
+      // Output cards + connector dots
+      outputLabels.forEach((label, i) => {
+        const y = startY + i * (CARD_H + GAP);
+        drawCard(W - CARD_W_R, y, CARD_W_R, CARD_H, label, "right");
+        const cx2 = W - CARD_W_R;
+        const cy = y + CARD_H / 2;
+        const dg = ctx.createRadialGradient(cx2, cy, 0, cx2, cy, 4);
+        dg.addColorStop(0, "rgba(160,200,255,0.85)");
+        dg.addColorStop(1, "rgba(120,170,255,0)");
+        ctx.beginPath();
+        ctx.arc(cx2, cy, 3, 0, Math.PI * 2);
+        ctx.fillStyle = dg;
+        ctx.fill();
+      });
+
+      raf = requestAnimationFrame(tick);
+    }
+
+    raf = requestAnimationFrame(tick);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
 
   return (
-    <div
+    <canvas
+      ref={canvasRef}
       style={{
         position: "absolute",
         inset: 0,
+        width: "100%",
+        height: "100%",
         zIndex: 4,
-        padding: "92px 42px 48px 18px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
+        pointerEvents: "none",
       }}
-    >
-      <div
-        style={{
-          position: "relative",
-          width: "100%",
-          maxWidth: 760,
-          minHeight: 430,
-        }}
-      >
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage:
-              "radial-gradient(rgba(255,255,255,0.065) 0.7px, transparent 0.7px)",
-            backgroundSize: "12px 12px",
-            opacity: 0.16,
-            maskImage:
-              "linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.8) 18%, rgba(0,0,0,0.92) 82%, transparent 100%)",
-          }}
-        />
-
-        <div
-          style={{
-            position: "absolute",
-            left: "50%",
-            top: 188,
-            transform: "translateX(-50%)",
-            width: 252,
-            padding: "16px 18px",
-                borderRadius: 16,
-                background:
-                  "linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.045) 100%)",
-                backdropFilter: "blur(14px)",
-                WebkitBackdropFilter: "blur(14px)",
-                border: "1px solid rgba(255,255,255,0.1)",
-                color: "rgba(255,255,255,0.92)",
-                fontSize: "0.92rem",
-                fontWeight: 700,
-                textAlign: "center",
-                boxShadow:
-                  "inset 0 1px 0 rgba(255,255,255,0.06), 0 16px 34px rgba(10,12,18,0.16), 0 0 44px rgba(237,242,153,0.14)",
-              }}
-            >
-              Novum Operating Platform
-        </div>
-
-        <div
-          style={{
-            position: "absolute",
-            left: "50%",
-            top: 120,
-            transform: "translateX(-50%)",
-            width: 1,
-            height: 62,
-            background:
-              "linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.28), rgba(255,255,255,0.06))",
-          }}
-        />
-
-        <div
-          style={{
-            position: "absolute",
-            left: "50%",
-            top: 228,
-            transform: "translateX(-50%)",
-            width: 1,
-            height: 76,
-            background:
-              "linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.28), rgba(255,255,255,0.06))",
-          }}
-        />
-
-        {inputs.map((item, index) => (
-          <div key={item.label}>
-            <div
-              style={{
-                position: "absolute",
-                left: 0,
-                top: item.top,
-                width: 132,
-                padding: "10px 14px",
-                borderRadius: 14,
-                background:
-                  "linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.045) 100%)",
-                backdropFilter: "blur(14px)",
-                WebkitBackdropFilter: "blur(14px)",
-                border: "1px solid rgba(255,255,255,0.1)",
-                boxShadow:
-                  "inset 0 1px 0 rgba(255,255,255,0.06), 0 10px 24px rgba(10,12,18,0.12)",
-                color: "rgba(255,255,255,0.82)",
-                fontSize: "0.84rem",
-                fontWeight: 500,
-                zIndex: 2,
-              }}
-            >
-              {item.label}
-            </div>
-            <div
-              style={{
-                position: "absolute",
-                left: 132,
-                top: item.top + 21,
-                width: 226,
-                height: 1,
-                background:
-                  "linear-gradient(90deg, rgba(255,255,255,0.02), rgba(112,151,222,0.32), rgba(255,255,255,0.03))",
-              }}
-            />
-            <div
-              className="signal-pulse"
-              style={
-                {
-                  "--delay": `${index * 0.5}s`,
-                  "--travel": "186px",
-                  position: "absolute",
-                  left: 150,
-                  top: item.top + 14,
-                } as CSSProperties
-              }
-            />
-            <div
-              style={{
-                position: "absolute",
-                left: 356,
-                top: item.top + 7,
-                width: 7,
-                height: 7,
-                borderRadius: "50%",
-                background: "rgba(147,193,255,0.7)",
-                boxShadow: "0 0 14px rgba(147,193,255,0.5)",
-              }}
-            />
-          </div>
-        ))}
-
-        {outputs.map((item, index) => (
-          <div key={item.label}>
-            <div
-              style={{
-                position: "absolute",
-                right: 0,
-                top: item.top,
-                width: 140,
-                padding: "10px 14px",
-                borderRadius: 14,
-                background:
-                  "linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.045) 100%)",
-                backdropFilter: "blur(14px)",
-                WebkitBackdropFilter: "blur(14px)",
-                border: "1px solid rgba(255,255,255,0.1)",
-                color: "rgba(255,255,255,0.84)",
-                fontSize: "0.84rem",
-                fontWeight: 500,
-                boxShadow:
-                  "inset 0 1px 0 rgba(255,255,255,0.06), 0 10px 24px rgba(10,12,18,0.12)",
-                zIndex: 2,
-              }}
-            >
-              {item.label}
-            </div>
-            <div
-              style={{
-                position: "absolute",
-                right: 140,
-                top: item.top + 21,
-                width: 208,
-                height: 1,
-                background:
-                  "linear-gradient(90deg, rgba(255,255,255,0.03), rgba(112,151,222,0.28), rgba(255,255,255,0.02))",
-              }}
-            />
-            <div
-              className="signal-pulse"
-              style={
-                {
-                  "--delay": `${0.2 + index * 0.45}s`,
-                  "--travel": "-186px",
-                  position: "absolute",
-                  right: 158,
-                  top: item.top + 14,
-                } as CSSProperties
-              }
-            />
-            <div
-              style={{
-                position: "absolute",
-                right: 344,
-                top: item.top + 7,
-                width: 7,
-                height: 7,
-                borderRadius: "50%",
-                background: "rgba(147,193,255,0.7)",
-                boxShadow: "0 0 14px rgba(147,193,255,0.5)",
-              }}
-            />
-          </div>
-        ))}
-
-        <div
-          style={{
-            position: "absolute",
-            left: 372,
-            top: 198,
-            width: 118,
-            height: 1,
-            background:
-              "linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.18), rgba(255,255,255,0.04))",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            right: 372,
-            top: 198,
-            width: 112,
-            height: 1,
-            background:
-              "linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.18), rgba(255,255,255,0.04))",
-          }}
-        />
-
-        <div
-          className="platform-glow"
-          style={{
-            position: "absolute",
-            left: "50%",
-            top: 160,
-            transform: "translateX(-50%)",
-          }}
-        />
-
-        <div
-          style={{
-            position: "absolute",
-            left: "50%",
-            top: 147,
-            transform: "translateX(-50%)",
-            width: 356,
-            height: 96,
-            borderRadius: 999,
-            border: "1px solid rgba(120,168,255,0.08)",
-            opacity: 0.6,
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            left: "50%",
-            top: 134,
-            transform: "translateX(-50%)",
-            width: 420,
-            height: 122,
-            borderRadius: 999,
-            border: "1px solid rgba(120,168,255,0.05)",
-            opacity: 0.4,
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            left: "50%",
-            top: 172,
-            transform: "translateX(-50%)",
-            width: 520,
-            height: 18,
-            background:
-              "linear-gradient(90deg, rgba(120,168,255,0), rgba(120,168,255,0.16), rgba(236,244,168,0.2), rgba(120,168,255,0.16), rgba(120,168,255,0))",
-            filter: "blur(12px)",
-            opacity: 0.7,
-          }}
-        />
-
-        <div
-          style={{
-            position: "absolute",
-            left: 140,
-            top: 310,
-            width: 148,
-            padding: "14px 16px",
-            borderRadius: 16,
-            background:
-              "linear-gradient(180deg, rgba(34,38,49,0.74) 0%, rgba(21,24,32,0.56) 100%)",
-            backdropFilter: "blur(16px)",
-            WebkitBackdropFilter: "blur(16px)",
-            border: "1px solid rgba(110,141,206,0.16)",
-            boxShadow:
-              "inset 0 1px 0 rgba(255,255,255,0.04), 0 18px 38px rgba(0,0,0,0.16)",
-            }}
-          >
-            <div
-              style={{
-                color: "rgba(255,255,255,0.76)",
-                fontSize: "0.76rem",
-                fontWeight: 600,
-                marginBottom: 8,
-              }}
-            >
-              Unified Data
-            </div>
-          {["Projects  live", "Financials  synced", "Teams  aligned", "Docs  connected"].map(
-            (line) => (
-              <div
-                key={line}
-                style={{
-                  color: "rgba(122,167,255,0.78)",
-                  fontSize: "0.58rem",
-                  marginBottom: 4,
-                  letterSpacing: "0.03em",
-                }}
-              >
-                {line}
-              </div>
-            )
-          )}
-        </div>
-
-        <div
-          style={{
-            position: "absolute",
-            left: "50%",
-            top: 332,
-            transform: "translateX(-40%)",
-            width: 170,
-            padding: "14px 16px",
-            borderRadius: 16,
-            background:
-              "linear-gradient(180deg, rgba(34,38,49,0.74) 0%, rgba(21,24,32,0.56) 100%)",
-            backdropFilter: "blur(16px)",
-            WebkitBackdropFilter: "blur(16px)",
-            border: "1px solid rgba(110,141,206,0.16)",
-            boxShadow:
-              "inset 0 1px 0 rgba(255,255,255,0.04), 0 18px 38px rgba(0,0,0,0.16)",
-          }}
-        >
-          <div
-            style={{
-              color: "rgba(255,255,255,0.76)",
-              fontSize: "0.76rem",
-              fontWeight: 600,
-              marginBottom: 8,
-            }}
-          >
-            Workflow Engine
-            </div>
-          <div
-            style={{
-              color: "rgba(255,255,255,0.42)",
-              fontSize: "0.62rem",
-              lineHeight: 1.5,
-            }}
-          >
-            Routes work, updates schedules, syncs teams, and keeps operations
-            moving from one shared source of truth.
-          </div>
-        </div>
-
-        <div
-          style={{
-            position: "absolute",
-            right: 168,
-            top: 316,
-            width: 166,
-            height: 164,
-            borderRadius: 16,
-            background:
-              "linear-gradient(180deg, rgba(34,38,49,0.74) 0%, rgba(21,24,32,0.56) 100%)",
-            backdropFilter: "blur(16px)",
-            WebkitBackdropFilter: "blur(16px)",
-            border: "1px solid rgba(110,141,206,0.16)",
-            overflow: "hidden",
-            boxShadow:
-              "inset 0 1px 0 rgba(255,255,255,0.04), 0 18px 38px rgba(0,0,0,0.16)",
-          }}
-        >
-          <div
-            style={{
-              padding: "14px 16px 0",
-              fontSize: "0.76rem",
-              color: "rgba(255,255,255,0.76)",
-              fontWeight: 600,
-            }}
-          >
-            One Platform
-          </div>
-          <div
-            style={{
-              padding: "8px 16px 16px",
-              color: "rgba(255,255,255,0.42)",
-              fontSize: "0.62rem",
-              lineHeight: 1.5,
-            }}
-          >
-            Email, accounting, scheduling, reporting, and team execution all
-            connect inside one operational system.
-          </div>
-        </div>
-
-        <div
-          style={{
-            position: "absolute",
-            left: "50%",
-            top: 300,
-            transform: "translateX(-50%)",
-            display: "flex",
-            gap: 16,
-            alignItems: "center",
-          }}
-        >
-          {[0, 1, 2].map((index) => (
-            <div
-              key={index}
-              style={{
-                width: 8,
-                height: 8,
-                borderRadius: "50%",
-                background:
-                  index === 1
-                    ? "rgba(236,244,168,0.9)"
-                    : "rgba(120,168,255,0.64)",
-                boxShadow:
-                  index === 1
-                    ? "0 0 18px rgba(236,244,168,0.46)"
-                    : "0 0 14px rgba(120,168,255,0.32)",
-              }}
-            />
-          ))}
-        </div>
-      </div>
-    </div>
+    />
   );
 }
 
@@ -940,7 +792,7 @@ export default function HomePage() {
                   onMouseLeave={(event) => {
                     event.currentTarget.style.transform = "translateY(0)";
                     event.currentTarget.style.boxShadow =
-                      "0 14px 36px rgba(22,28,38,0.05)";
+                      "0 8px 32px rgba(22,28,38,0.06)";
                   }}
                 >
                   <span
@@ -1243,8 +1095,8 @@ export default function HomePage() {
                   event.currentTarget.style.transform = "translateY(-2px)";
                 }}
                 onMouseLeave={(event) => {
-                  event.currentTarget.style.borderColor = "rgba(255,255,255,0.58)";
-                  event.currentTarget.style.boxShadow = "0 14px 36px rgba(22,28,38,0.05)";
+                  event.currentTarget.style.borderColor = "rgba(255,255,255,0.55)";
+                  event.currentTarget.style.boxShadow = "0 8px 32px rgba(22,28,38,0.06)";
                   event.currentTarget.style.transform = "translateY(0)";
                 }}
               >
@@ -1433,7 +1285,7 @@ export default function HomePage() {
                     event.currentTarget.style.transform = "translateY(-2px)";
                   }}
                   onMouseLeave={(event) => {
-                    event.currentTarget.style.borderColor = "rgba(255,255,255,0.58)";
+                    event.currentTarget.style.borderColor = "rgba(255,255,255,0.55)";
                     event.currentTarget.style.transform = "translateY(0)";
                   }}
                 >
@@ -1581,70 +1433,9 @@ export default function HomePage() {
       </section>
 
       <style jsx>{`
-        .signal-pulse {
-          width: 14px;
-          height: 14px;
-          border-radius: 999px;
-          background: radial-gradient(
-            circle,
-            rgba(198, 225, 255, 1) 0%,
-            rgba(145, 192, 255, 0.92) 35%,
-            rgba(95, 145, 255, 0) 100%
-          );
-          box-shadow: 0 0 18px rgba(150, 196, 255, 0.72);
-          animation: pulseTravel 3.8s linear infinite;
-          animation-delay: var(--delay);
-        }
-
-        .platform-glow {
-          width: 300px;
-          height: 120px;
-          border-radius: 999px;
-          background: radial-gradient(
-            circle,
-            rgba(240, 244, 174, 0.22) 0%,
-            rgba(160, 198, 255, 0.12) 42%,
-            rgba(160, 198, 255, 0) 72%
-          );
-          filter: blur(18px);
-          animation: platformBeat 2.4s ease-in-out infinite;
-        }
-
         @keyframes adaptsGlow {
           0%, 100% { text-shadow: 0 0 18px rgba(125,171,255,0.42), 0 0 42px rgba(125,171,255,0.18); }
           50% { text-shadow: 0 0 32px rgba(125,171,255,0.85), 0 0 70px rgba(125,171,255,0.45), 0 0 100px rgba(125,171,255,0.2); }
-        }
-        @keyframes pulseTravel {
-          0% {
-            transform: translateX(0);
-            opacity: 0;
-          }
-
-          10% {
-            opacity: 1;
-          }
-
-          76% {
-            opacity: 1;
-          }
-
-          100% {
-            transform: translateX(var(--travel));
-            opacity: 0;
-          }
-        }
-
-        @keyframes platformBeat {
-          0%,
-          100% {
-            transform: translateX(-50%) scale(0.96);
-            opacity: 0.55;
-          }
-
-          50% {
-            transform: translateX(-50%) scale(1.03);
-            opacity: 0.92;
-          }
         }
 
         .hero-card {
