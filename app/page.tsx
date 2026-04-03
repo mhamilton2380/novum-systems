@@ -805,14 +805,37 @@ export default function HomePage() {
                 {
                   title: "Mapped to your operations",
                   desc: "We document how your business works before building anything. The result reflects your reality, not a generic software pattern.",
+                  icon: (
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <circle cx="10" cy="3.5" r="2" stroke="rgba(255,255,255,0.68)" strokeWidth="1.4"/>
+                      <circle cx="3.5" cy="16" r="2" stroke="rgba(255,255,255,0.68)" strokeWidth="1.4"/>
+                      <circle cx="16.5" cy="16" r="2" stroke="rgba(255,255,255,0.68)" strokeWidth="1.4"/>
+                      <line x1="10" y1="5.5" x2="3.5" y2="14" stroke="rgba(255,255,255,0.35)" strokeWidth="1.2"/>
+                      <line x1="10" y1="5.5" x2="16.5" y2="14" stroke="rgba(255,255,255,0.35)" strokeWidth="1.2"/>
+                      <line x1="5.5" y1="16" x2="14.5" y2="16" stroke="rgba(255,255,255,0.35)" strokeWidth="1.2"/>
+                    </svg>
+                  ),
                 },
                 {
                   title: "Fast to deploy, built to last",
                   desc: "You get a working operational layer quickly, built on a structure that can evolve with your business as complexity increases.",
+                  icon: (
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <path d="M11 2L3.5 11.5H9L7 18 16.5 8.5H11L13 2z" stroke="rgba(255,255,255,0.68)" strokeWidth="1.4" strokeLinejoin="round" strokeLinecap="round"/>
+                    </svg>
+                  ),
                 },
                 {
                   title: "One system, not many tools",
                   desc: "We consolidate projects, communication, reporting, scheduling, and workflows into one coherent operating system.",
+                  icon: (
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <rect x="2" y="2" width="7" height="7" rx="1.5" stroke="rgba(255,255,255,0.68)" strokeWidth="1.4"/>
+                      <rect x="11" y="2" width="7" height="7" rx="1.5" stroke="rgba(255,255,255,0.68)" strokeWidth="1.4"/>
+                      <rect x="2" y="11" width="7" height="7" rx="1.5" stroke="rgba(255,255,255,0.68)" strokeWidth="1.4"/>
+                      <rect x="11" y="11" width="7" height="7" rx="1.5" stroke="rgba(255,255,255,0.68)" strokeWidth="1.4"/>
+                    </svg>
+                  ),
                 },
               ].map((item) => (
                 <div
@@ -843,9 +866,14 @@ export default function HomePage() {
                       background: "rgba(255,255,255,0.06)",
                       borderRadius: 12,
                       marginBottom: 20,
-                      border: "1px solid rgba(255,255,255,0.06)",
+                      border: "1px solid rgba(255,255,255,0.09)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
                     }}
-                  />
+                  >
+                    {item.icon}
+                  </div>
                   <h3
                     className="font-serif"
                     style={{
@@ -1343,6 +1371,93 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ── Footer ── */}
+      <footer style={{ background: "#f0ede8", borderTop: "1px solid rgba(0,0,0,0.07)", position: "relative", zIndex: 1 }}>
+        <div style={{ padding: "72px 48px 0", maxWidth: "1400px", margin: "0 auto" }}>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1.6fr 1fr 1fr 1fr",
+              gap: 48,
+              paddingBottom: 56,
+              borderBottom: "1px solid rgba(0,0,0,0.07)",
+            }}
+          >
+            {/* Brand */}
+            <div>
+              <div style={{ display: "flex", alignItems: "center", gap: 9, marginBottom: 24 }}>
+                <div style={{ width: 28, height: 28, background: "#17181B", borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <rect x="1" y="1" width="5" height="5" rx="1.2" fill="white"/>
+                    <rect x="8" y="1" width="5" height="5" rx="1.2" fill="white" opacity="0.42"/>
+                    <rect x="1" y="8" width="5" height="5" rx="1.2" fill="white" opacity="0.42"/>
+                    <rect x="8" y="8" width="5" height="5" rx="1.2" fill="white"/>
+                  </svg>
+                </div>
+                <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.975rem", color: "#17181B", letterSpacing: "-0.015em" }}>Novum Systems</span>
+              </div>
+              <p style={{ fontSize: "0.875rem", color: "#6b6560", lineHeight: 1.75, margin: "0 0 6px", fontFamily: "'DM Sans', sans-serif" }}>hello@novumsystems.co</p>
+              <p style={{ fontSize: "0.875rem", color: "#6b6560", lineHeight: 1.75, margin: 0, fontFamily: "'DM Sans', sans-serif" }}>Operational software for growing businesses.</p>
+            </div>
+
+            {/* Systems */}
+            <div>
+              <p style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.82rem", color: "#17181B", marginBottom: 20, letterSpacing: "0.04em", textTransform: "uppercase" }}>Systems</p>
+              {["Forge", "OpsCore", "FieldOps", "ProjectOps"].map((s) => (
+                <Link key={s} href="/systems"
+                  style={{ display: "block", fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", color: "#6b6560", textDecoration: "none", marginBottom: 11, transition: "color 0.18s" }}
+                  onMouseEnter={(e) => { e.currentTarget.style.color = "#17181B"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.color = "#6b6560"; }}
+                >{s}</Link>
+              ))}
+            </div>
+
+            {/* Company */}
+            <div>
+              <p style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.82rem", color: "#17181B", marginBottom: 20, letterSpacing: "0.04em", textTransform: "uppercase" }}>Company</p>
+              {[{ label: "Approach", href: "/approach" }, { label: "Systems", href: "/systems" }, { label: "Contact", href: "/contact" }].map((l) => (
+                <Link key={l.label} href={l.href}
+                  style={{ display: "block", fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", color: "#6b6560", textDecoration: "none", marginBottom: 11, transition: "color 0.18s" }}
+                  onMouseEnter={(e) => { e.currentTarget.style.color = "#17181B"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.color = "#6b6560"; }}
+                >{l.label}</Link>
+              ))}
+            </div>
+
+            {/* Get started */}
+            <div>
+              <p style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.82rem", color: "#17181B", marginBottom: 20, letterSpacing: "0.04em", textTransform: "uppercase" }}>Get Started</p>
+              {[{ label: "Book a Discovery Call", href: "/contact" }, { label: "Explore Systems", href: "/systems" }].map((l) => (
+                <Link key={l.label} href={l.href}
+                  style={{ display: "block", fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", color: "#6b6560", textDecoration: "none", marginBottom: 11, transition: "color 0.18s" }}
+                  onMouseEnter={(e) => { e.currentTarget.style.color = "#17181B"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.color = "#6b6560"; }}
+                >{l.label}</Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Copyright row */}
+          <div style={{ padding: "18px 0 0", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem", color: "#a09890", margin: 0 }}>Novum Systems © 2025</p>
+          </div>
+        </div>
+
+        {/* Big NOVUM wordmark */}
+        <div style={{ overflow: "hidden", lineHeight: 0.82, marginTop: 8 }}>
+          <p style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontWeight: 700,
+            fontSize: "clamp(90px, 22.5vw, 280px)",
+            color: "#17181B",
+            letterSpacing: "-0.045em",
+            margin: 0,
+            padding: "0 36px",
+            userSelect: "none",
+          }}>NOVUM</p>
+        </div>
+      </footer>
 
       <style jsx>{`
         @keyframes adaptsGlow {
