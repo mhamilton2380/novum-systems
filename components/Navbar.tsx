@@ -37,16 +37,14 @@ export default function Navbar() {
   ];
 
   const isHome = pathname === "/";
-  const isTransparent = isHome && !scrolled;
-  const navBg = isTransparent ? "rgba(255,255,255,0.06)" : "rgba(255,255,255,0.82)";
-  const navBorder = isTransparent
-    ? "1px solid rgba(255,255,255,0.08)"
-    : "1px solid rgba(229,225,216,0.92)";
-  const textColor = isTransparent ? "rgba(255,255,255,0.92)" : "#17181B";
-  const mutedColor = isTransparent ? "rgba(255,255,255,0.66)" : "#66625d";
-  const logoBg = isTransparent ? "rgba(255,255,255,0.14)" : "#171a22";
-  const ctaBg = isTransparent ? "#F2EBD9" : "#171a22";
-  const ctaColor = isTransparent ? "#17181B" : "#FFFFFF";
+  const navBg =
+    scrolled || !isHome ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.76)";
+  const navBorder = "1px solid rgba(255,255,255,0.64)";
+  const textColor = "#17181B";
+  const mutedColor = "#68635e";
+  const logoBg = "rgba(23,26,34,0.14)";
+  const ctaBg = "#F2EBD9";
+  const ctaColor = "#17181B";
 
   return (
     <header
@@ -56,7 +54,7 @@ export default function Navbar() {
         left: 0,
         right: 0,
         zIndex: 200,
-        padding: "12px 18px 0",
+        padding: "10px 18px 0",
         transition: "padding 0.25s ease",
       }}
     >
@@ -71,12 +69,13 @@ export default function Navbar() {
           justifyContent: "space-between",
           borderRadius: "18px",
           background: navBg,
-          backdropFilter: "blur(22px) saturate(150%)",
-          WebkitBackdropFilter: "blur(22px) saturate(150%)",
+          backdropFilter: "blur(22px) saturate(165%)",
+          WebkitBackdropFilter: "blur(22px) saturate(165%)",
           border: navBorder,
-          boxShadow: isTransparent
-            ? "none"
-            : "0 8px 26px rgba(33, 37, 45, 0.08)",
+          boxShadow:
+            scrolled || !isHome
+              ? "0 10px 26px rgba(33, 37, 45, 0.08)"
+              : "0 8px 20px rgba(33, 37, 45, 0.06)",
           transition:
             "background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease",
         }}
@@ -137,9 +136,7 @@ export default function Navbar() {
                   color: pathname === link.href ? textColor : mutedColor,
                   background:
                     pathname === link.href
-                      ? isTransparent
-                        ? "rgba(255,255,255,0.09)"
-                        : "rgba(23,26,34,0.05)"
+                      ? "rgba(23,26,34,0.05)"
                       : "transparent",
                   textDecoration: "none",
                   transition: "color 0.2s, background 0.2s",
@@ -179,7 +176,7 @@ export default function Navbar() {
             style={{
               background: "none",
               border: `1px solid ${
-                isTransparent ? "rgba(255,255,255,0.2)" : "rgba(201,197,188,0.8)"
+                "rgba(201,197,188,0.8)"
               }`,
               borderRadius: "10px",
               padding: "7px 10px",
