@@ -46,9 +46,9 @@ function PlexusBg() {
     const pulses: Pulse[] = [];
 
     const LAYER_CONFIG = [
-      { count: 40, speed: 0.12, dist: 200, lineAlpha: 0.2,  nodeAlpha: 0.35, nodeR: 2.5, color: "58,85,133"   },
-      { count: 50, speed: 0.2,  dist: 160, lineAlpha: 0.13, nodeAlpha: 0.22, nodeR: 1.6, color: "75,105,160"  },
-      { count: 35, speed: 0.3,  dist: 120, lineAlpha: 0.07, nodeAlpha: 0.12, nodeR: 1.0, color: "95,130,185"  },
+      { count: 80, speed: 0.14, dist: 220, lineAlpha: 0.32, nodeAlpha: 0.55, nodeR: 2.8, color: "58,85,133"   },
+      { count: 65, speed: 0.22, dist: 180, lineAlpha: 0.2,  nodeAlpha: 0.32, nodeR: 1.8, color: "70,100,155"  },
+      { count: 50, speed: 0.28, dist: 150, lineAlpha: 0.12, nodeAlpha: 0.2,  nodeR: 1.2, color: "90,125,180"  },
     ];
 
     const init = () => {
