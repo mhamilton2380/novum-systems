@@ -986,20 +986,6 @@ export default function HomePage() {
                 ],
               },
               {
-                name: "FieldOps",
-                badge: "Field Service",
-                badgeColor: "#237259",
-                badgeBg: "rgba(35,114,89,0.08)",
-                badgeBorder: "rgba(35,114,89,0.18)",
-                desc: "Field service management built around your crews, territories, scheduling model, and invoicing process from dispatch through completion.",
-                features: [
-                  "Scheduling and dispatch",
-                  "Mobile field access",
-                  "Automated invoicing",
-                  "Customer history",
-                ],
-              },
-              {
                 name: "ProjectOps",
                 badge: "Project-Based",
                 badgeColor: "#2D5599",
@@ -1012,6 +998,20 @@ export default function HomePage() {
                   "Milestone tracking",
                   "Document workflows",
                   "Profitability reporting",
+                ],
+              },
+              {
+                name: "FieldOps",
+                badge: "Field Service",
+                badgeColor: "#237259",
+                badgeBg: "rgba(35,114,89,0.08)",
+                badgeBorder: "rgba(35,114,89,0.18)",
+                desc: "Field service management built around your crews, territories, scheduling model, and invoicing process from dispatch through completion.",
+                features: [
+                  "Scheduling and dispatch",
+                  "Mobile field access",
+                  "Automated invoicing",
+                  "Customer history",
                 ],
               },
             ].map((system) => (

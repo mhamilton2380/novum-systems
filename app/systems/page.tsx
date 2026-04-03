@@ -4,37 +4,36 @@ import Link from "next/link";
 export default function SystemsPage() {
   const systems = [
     {
-      id: "fieldops",
-      name: "FieldOps",
-      subtitle: "Field Service Management",
-      accent: "#236B4E",
-      accentBg: "#EEF7F3",
-      accentBorder: "#C4E0D5",
-      tagline: "Schedule, dispatch, and close jobs — without the chaos.",
-      desc: "FieldOps is a complete operational system for field service businesses. Built around your specific job types, team structure, and billing needs — not a one-size-fits-all platform.",
-      forWho: ["HVAC & mechanical contractors", "Plumbing & electrical", "Landscaping & property maintenance", "Equipment services & repair"],
+      id: "forge",
+      name: "Forge",
+      subtitle: "Fully Custom Build",
+      accent: "#6D4FBB",
+      accentBg: "#F3F0FC",
+      accentBorder: "#D9D0F5",
+      tagline: "For operations that don't fit any mold.",
+      desc: "Forge is a completely custom-built system designed from the ground up around your unique structure, terminology, and workflows. No templates, no constraints — just your system, architected exactly the way your business runs.",
+      forWho: ["Operations with proprietary workflows", "Businesses with unique data models", "Companies needing white-label systems", "Operators who've outgrown every tool they've tried"],
       modules: [
-        { name: "Scheduling & Dispatch", desc: "Visual scheduling board built around your team, territories, and job types. Drag-and-drop dispatch with real-time updates." },
-        { name: "Job Management", desc: "Full job lifecycle from work order to completion. Field team access, photo uploads, notes, and status tracking." },
-        { name: "Invoicing & Payments", desc: "Automated invoicing tied to job completion. Configurable pricing rules, line items, and payment collection." },
-        { name: "Customer Records", desc: "Complete customer and property history. Service records, equipment tracking, and communication logs." },
-      ],
-    },
-    {
-      id: "projectops",
-      name: "ProjectOps",
-      subtitle: "Project-Based Business Management",
-      accent: "#2C4E8A",
-      accentBg: "#EEF2FA",
-      accentBorder: "#C0CEEB",
-      tagline: "Run every project on budget and on time.",
-      desc: "ProjectOps gives project-based businesses a command center for managing complex jobs from bid to close. Track milestones, budgets, vendors, and profitability across every project.",
-      forWho: ["General contractors", "Specialty trades & subcontractors", "IT & tech project firms", "Marketing & creative agencies"],
-      modules: [
-        { name: "Project Dashboard", desc: "Real-time view of all active projects — status, budget burn, milestone completion, and team assignments." },
-        { name: "Budget Tracking", desc: "Live budget-vs-actual across all cost categories. Flag overruns early and protect your margins." },
-        { name: "Vendor & Sub Management", desc: "Track vendor bids, contracts, payments, and performance. All connected to the project it belongs to." },
-        { name: "Milestone & Timeline", desc: "Gantt-style milestone tracking with dependency management and automated progress reports." },
+        {
+          name: "Operational Architecture",
+          desc: "Full discovery and design of your operational model — data structure, workflow logic, and system hierarchy built from scratch.",
+          icon: (a: string) => <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="4" height="4" rx="1" stroke={a} strokeWidth="1.4"/><rect x="11" y="1" width="4" height="4" rx="1" stroke={a} strokeWidth="1.4"/><rect x="1" y="11" width="4" height="4" rx="1" stroke={a} strokeWidth="1.4"/><rect x="11" y="11" width="4" height="4" rx="1" stroke={a} strokeWidth="1.4"/><line x1="5" y1="3" x2="11" y2="3" stroke={a} strokeWidth="1.2"/><line x1="3" y1="5" x2="3" y2="11" stroke={a} strokeWidth="1.2"/><line x1="13" y1="5" x2="13" y2="11" stroke={a} strokeWidth="1.2"/><line x1="5" y1="13" x2="11" y2="13" stroke={a} strokeWidth="1.2"/></svg>,
+        },
+        {
+          name: "Custom Data Model",
+          desc: "Your terminology, your entities, your relationships. No force-fitting your business into someone else's schema.",
+          icon: (a: string) => <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2.5" width="12" height="11" rx="1.5" stroke={a} strokeWidth="1.4"/><line x1="2" y1="6" x2="14" y2="6" stroke={a} strokeWidth="1.2"/><line x1="2" y1="9.5" x2="14" y2="9.5" stroke={a} strokeWidth="1.2"/><line x1="6.5" y1="6" x2="6.5" y2="13.5" stroke={a} strokeWidth="1.2"/></svg>,
+        },
+        {
+          name: "Proprietary Workflow Engine",
+          desc: "Workflows built around exactly how your business moves — approvals, triggers, automations, and exceptions.",
+          icon: (a: string) => <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="3" cy="8" r="2" stroke={a} strokeWidth="1.4"/><circle cx="13" cy="4" r="2" stroke={a} strokeWidth="1.4"/><circle cx="13" cy="12" r="2" stroke={a} strokeWidth="1.4"/><line x1="5" y1="7.2" x2="11" y2="4.6" stroke={a} strokeWidth="1.2"/><line x1="5" y1="8.8" x2="11" y2="11.4" stroke={a} strokeWidth="1.2"/></svg>,
+        },
+        {
+          name: "White-Glove Deployment",
+          desc: "End-to-end build, testing, training, and handoff. We don't ship until you're fully operational.",
+          icon: (a: string) => <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1.5C9.5 3.5 12 6 12 9.5H4C4 6 6.5 3.5 8 1.5z" stroke={a} strokeWidth="1.4" strokeLinejoin="round"/><path d="M4 9.5L3.5 13.5H12.5L12 9.5" stroke={a} strokeWidth="1.4" strokeLinejoin="round"/><circle cx="8" cy="6.5" r="1.4" stroke={a} strokeWidth="1.2"/></svg>,
+        },
       ],
     },
     {
@@ -48,27 +47,92 @@ export default function SystemsPage() {
       desc: "OpsCore is the operational layer that ties everything together. Custom dashboards, automated workflows, and reporting designed around the KPIs that actually matter to your business.",
       forWho: ["Multi-location operators", "Franchise systems", "Teams with complex approval workflows", "Businesses needing cross-department reporting"],
       modules: [
-        { name: "Custom Dashboards", desc: "Role-based dashboards showing each team member exactly what they need to see — nothing more, nothing less." },
-        { name: "Workflow Automation", desc: "Automate repetitive processes, approvals, and notifications. Define the rules once; the system handles it from there." },
-        { name: "Reporting Engine", desc: "Custom reports and KPI tracking across locations, teams, and time periods. Exportable and schedulable." },
-        { name: "Access & Permissions", desc: "Granular role-based access control. Every team member sees and can edit exactly what they should." },
+        {
+          name: "Custom Dashboards",
+          desc: "Role-based dashboards showing each team member exactly what they need to see — nothing more, nothing less.",
+          icon: (a: string) => <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="6" height="4" rx="1" stroke={a} strokeWidth="1.4"/><rect x="9" y="1" width="6" height="4" rx="1" stroke={a} strokeWidth="1.4"/><rect x="1" y="7" width="6" height="8" rx="1" stroke={a} strokeWidth="1.4"/><rect x="9" y="7" width="6" height="4" rx="1" stroke={a} strokeWidth="1.4"/></svg>,
+        },
+        {
+          name: "Workflow Automation",
+          desc: "Automate repetitive processes, approvals, and notifications. Define the rules once; the system handles it from there.",
+          icon: (a: string) => <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 6A5 5 0 103 8" stroke={a} strokeWidth="1.4" strokeLinecap="round"/><polyline points="1,6 3,8 5,6" stroke={a} strokeWidth="1.4" strokeLinejoin="round" strokeLinecap="round"/></svg>,
+        },
+        {
+          name: "Reporting Engine",
+          desc: "Custom reports and KPI tracking across locations, teams, and time periods. Exportable and schedulable.",
+          icon: (a: string) => <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="10" width="3" height="5" rx="0.8" stroke={a} strokeWidth="1.3"/><rect x="6" y="6" width="3" height="9" rx="0.8" stroke={a} strokeWidth="1.3"/><rect x="11" y="2" width="3" height="13" rx="0.8" stroke={a} strokeWidth="1.3"/></svg>,
+        },
+        {
+          name: "Access & Permissions",
+          desc: "Granular role-based access control. Every team member sees and can edit exactly what they should.",
+          icon: (a: string) => <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1.5L2 4v5c0 3.5 2.7 5.8 6 6.5 3.3-.7 6-3 6-6.5V4L8 1.5z" stroke={a} strokeWidth="1.4" strokeLinejoin="round"/><circle cx="8" cy="8" r="1.8" stroke={a} strokeWidth="1.2"/></svg>,
+        },
       ],
     },
     {
-      id: "forge",
-      name: "Forge",
-      subtitle: "Fully Custom Build",
-      accent: "#6D4FBB",
-      accentBg: "#F3F0FC",
-      accentBorder: "#D9D0F5",
-      tagline: "For operations that don't fit any mold.",
-      desc: "Forge is a completely custom-built system designed from the ground up around your unique structure, terminology, and workflows. No templates, no constraints — just your system, architected exactly the way your business runs.",
-      forWho: ["Operations with proprietary workflows", "Businesses with unique data models", "Companies needing white-label systems", "Operators who've outgrown every tool they've tried"],
+      id: "projectops",
+      name: "ProjectOps",
+      subtitle: "Project-Based Business Management",
+      accent: "#2C4E8A",
+      accentBg: "#EEF2FA",
+      accentBorder: "#C0CEEB",
+      tagline: "Run every project on budget and on time.",
+      desc: "ProjectOps gives project-based businesses a command center for managing complex jobs from bid to close. Track milestones, budgets, vendors, and profitability across every project.",
+      forWho: ["General contractors", "Specialty trades & subcontractors", "IT & tech project firms", "Marketing & creative agencies"],
       modules: [
-        { name: "Operational Architecture", desc: "Full discovery and design of your operational model — data structure, workflow logic, and system hierarchy built from scratch." },
-        { name: "Custom Data Model", desc: "Your terminology, your entities, your relationships. No force-fitting your business into someone else's schema." },
-        { name: "Proprietary Workflow Engine", desc: "Workflows built around exactly how your business moves — approvals, triggers, automations, and exceptions." },
-        { name: "White-Glove Deployment", desc: "End-to-end build, testing, training, and handoff. We don't ship until you're fully operational." },
+        {
+          name: "Project Dashboard",
+          desc: "Real-time view of all active projects — status, budget burn, milestone completion, and team assignments.",
+          icon: (a: string) => <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="10" rx="1.5" stroke={a} strokeWidth="1.4"/><line x1="1" y1="5" x2="15" y2="5" stroke={a} strokeWidth="1.2"/><line x1="5" y1="5" x2="5" y2="11" stroke={a} strokeWidth="1.2"/><line x1="4" y1="13" x2="12" y2="13" stroke={a} strokeWidth="1.4" strokeLinecap="round"/></svg>,
+        },
+        {
+          name: "Budget Tracking",
+          desc: "Live budget-vs-actual across all cost categories. Flag overruns early and protect your margins.",
+          icon: (a: string) => <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><polyline points="1,12 5,8 8,10 12,5 15,7" stroke={a} strokeWidth="1.4" strokeLinejoin="round" strokeLinecap="round"/><polyline points="12,5 15,5 15,8" stroke={a} strokeWidth="1.4" strokeLinejoin="round" strokeLinecap="round"/></svg>,
+        },
+        {
+          name: "Vendor & Sub Management",
+          desc: "Track vendor bids, contracts, payments, and performance. All connected to the project it belongs to.",
+          icon: (a: string) => <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="5" cy="5" r="2.5" stroke={a} strokeWidth="1.4"/><circle cx="11" cy="5" r="2.5" stroke={a} strokeWidth="1.4"/><path d="M1 14c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke={a} strokeWidth="1.4" strokeLinecap="round"/><path d="M11 10c1.8.4 3 2 3 4" stroke={a} strokeWidth="1.4" strokeLinecap="round"/></svg>,
+        },
+        {
+          name: "Milestone & Timeline",
+          desc: "Gantt-style milestone tracking with dependency management and automated progress reports.",
+          icon: (a: string) => <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><line x1="1" y1="8" x2="15" y2="8" stroke={a} strokeWidth="1.3"/><circle cx="3" cy="8" r="2" stroke={a} strokeWidth="1.3" fill="none"/><circle cx="8" cy="8" r="2" stroke={a} strokeWidth="1.3" fill="none"/><circle cx="13" cy="8" r="2" stroke={a} strokeWidth="1.3" fill="none"/><line x1="3" y1="4" x2="3" y2="6" stroke={a} strokeWidth="1.3"/><line x1="8" y1="4" x2="8" y2="6" stroke={a} strokeWidth="1.3"/><line x1="13" y1="4" x2="13" y2="6" stroke={a} strokeWidth="1.3"/></svg>,
+        },
+      ],
+    },
+    {
+      id: "fieldops",
+      name: "FieldOps",
+      subtitle: "Field Service Management",
+      accent: "#236B4E",
+      accentBg: "#EEF7F3",
+      accentBorder: "#C4E0D5",
+      tagline: "Schedule, dispatch, and close jobs — without the chaos.",
+      desc: "FieldOps is a complete operational system for field service businesses. Built around your specific job types, team structure, and billing needs — not a one-size-fits-all platform.",
+      forWho: ["HVAC & mechanical contractors", "Plumbing & electrical", "Landscaping & property maintenance", "Equipment services & repair"],
+      modules: [
+        {
+          name: "Scheduling & Dispatch",
+          desc: "Visual scheduling board built around your team, territories, and job types. Drag-and-drop dispatch with real-time updates.",
+          icon: (a: string) => <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="12" rx="1.5" stroke={a} strokeWidth="1.4"/><line x1="1" y1="7" x2="15" y2="7" stroke={a} strokeWidth="1.2"/><line x1="5" y1="1" x2="5" y2="5" stroke={a} strokeWidth="1.4" strokeLinecap="round"/><line x1="11" y1="1" x2="11" y2="5" stroke={a} strokeWidth="1.4" strokeLinecap="round"/><line x1="5" y1="10" x2="11" y2="10" stroke={a} strokeWidth="1.2" strokeLinecap="round"/></svg>,
+        },
+        {
+          name: "Job Management",
+          desc: "Full job lifecycle from work order to completion. Field team access, photo uploads, notes, and status tracking.",
+          icon: (a: string) => <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="3" y="1.5" width="10" height="13" rx="1.5" stroke={a} strokeWidth="1.4"/><line x1="6" y1="1.5" x2="6" y2="4.5" stroke={a} strokeWidth="1.2"/><line x1="10" y1="1.5" x2="10" y2="4.5" stroke={a} strokeWidth="1.2"/><line x1="6" y1="3" x2="10" y2="3" stroke={a} strokeWidth="1.2"/><polyline points="5.5,8 7.5,10 11,7" stroke={a} strokeWidth="1.3" strokeLinejoin="round" strokeLinecap="round"/></svg>,
+        },
+        {
+          name: "Invoicing & Payments",
+          desc: "Automated invoicing tied to job completion. Configurable pricing rules, line items, and payment collection.",
+          icon: (a: string) => <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="3" y="1" width="10" height="14" rx="1.5" stroke={a} strokeWidth="1.4"/><line x1="5.5" y1="5" x2="10.5" y2="5" stroke={a} strokeWidth="1.2" strokeLinecap="round"/><line x1="5.5" y1="7.5" x2="10.5" y2="7.5" stroke={a} strokeWidth="1.2" strokeLinecap="round"/><line x1="5.5" y1="10" x2="8" y2="10" stroke={a} strokeWidth="1.2" strokeLinecap="round"/></svg>,
+        },
+        {
+          name: "Customer Records",
+          desc: "Complete customer and property history. Service records, equipment tracking, and communication logs.",
+          icon: (a: string) => <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5.5" r="3" stroke={a} strokeWidth="1.4"/><path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke={a} strokeWidth="1.4" strokeLinecap="round"/></svg>,
+        },
       ],
     },
   ];
@@ -202,7 +266,7 @@ export default function SystemsPage() {
                         borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center",
                         flexShrink: 0,
                       }}>
-                        <div style={{ width: 16, height: 16, borderRadius: "3px", background: sys.accent, opacity: 0.6 }} />
+                        {mod.icon(sys.accent)}
                       </div>
                       <div>
                         <h4 style={{ fontSize: "0.975rem", fontWeight: 600, marginBottom: "7px", color: "#1A1A1A" }}>{mod.name}</h4>

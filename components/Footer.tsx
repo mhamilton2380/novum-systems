@@ -35,7 +35,7 @@ export default function Footer() {
           {/* Systems */}
           <div>
             <p style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.72rem", color: "#17181B", marginBottom: 20, letterSpacing: "0.08em", textTransform: "uppercase" }}>Systems</p>
-            {(["Forge", "OpsCore", "FieldOps", "ProjectOps"] as const).map((s) => (
+            {(["Forge", "OpsCore", "ProjectOps", "FieldOps"] as const).map((s) => (
               <Link key={s} href="/systems"
                 style={{ display: "block", fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: "#6b6560", textDecoration: "none", marginBottom: 11, transition: "color 0.18s" }}
                 onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#17181B"; }}
