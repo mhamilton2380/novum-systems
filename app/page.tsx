@@ -59,7 +59,7 @@ function PlexusBg() {
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
-            ctx.strokeStyle = `rgba(58,85,133,${a})`;
+            ctx.strokeStyle = `rgba(58,85,133,${a * 0.55})`;
             ctx.lineWidth = 0.7;
             ctx.stroke();
           }
@@ -68,7 +68,7 @@ function PlexusBg() {
       nodes.forEach(n => {
         ctx.beginPath();
         ctx.arc(n.x, n.y, 1.6, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(58,85,133,0.15)";
+        ctx.fillStyle = "rgba(58,85,133,0.1)";
         ctx.fill();
       });
       rafRef.current = requestAnimationFrame(tick);
