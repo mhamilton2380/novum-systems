@@ -2,117 +2,144 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-// ── Hero animated modules ────────────────────────────────────────────────────
+// ── Hero viz — phone mockup + radiating integration nodes ───────────────────
 function HeroViz() {
-  const [active, setActive] = useState(0);
+  const [activePulse, setActivePulse] = useState(0);
+
   useEffect(() => {
-    const id = setInterval(() => setActive(a => (a + 1) % 3), 1800);
+    const id = setInterval(() => setActivePulse(a => (a + 1) % 8), 1400);
     return () => clearInterval(id);
   }, []);
 
-  const inputs = ["Email", "PDF / Docs", "Voice", "Messages"];
-  const stages = ["AI Extraction", "Workflow Routing", "Team Assignment"];
-  const outputs = ["OpsCore", "FieldOps", "ProjectOps"];
+  type NodeDef = [string, number, number, string];
+  const nodes: NodeDef[] = [
+    ["Accounting",   4,  24, "left"],
+    ["Reporting",    4,  40, "left"],
+    ["Scheduling",   4,  57, "left"],
+    ["Workflows",    4,  73, "left"],
+    ["Tasks",        76, 24, "right"],
+    ["Documents",    76, 40, "right"],
+    ["Field Ops",    76, 57, "right"],
+    ["Integrations", 76, 73, "right"],
+  ];
+
+  const screenRows = [
+    { label: "OpsCore",    sub: "Command Center",  accent: true  },
+    { label: "FieldOps",   sub: "Crew Dispatch",   accent: false },
+    { label: "ProjectOps", sub: "Budget Tracking", accent: false },
+    { label: "Forge",      sub: "Custom Build",    accent: false },
+  ];
 
   return (
     <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
+
       {/* dot grid */}
-      <div className="dot-grid" style={{ position: "absolute", inset: 0 }} />
-      {/* radial glow */}
       <div style={{
         position: "absolute", inset: 0,
-        background: "radial-gradient(ellipse 55% 45% at 60% 55%, rgba(58,85,133,0.14) 0%, transparent 70%)",
+        backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)",
+        backgroundSize: "24px 24px",
       }} />
 
-      {/* Flow diagram — sits bottom half of card */}
+      {/* faint grid lines for texture */}
       <div style={{
-        position: "absolute", bottom: 0, left: 0, right: 0,
-        padding: "0 56px 36px",
-        display: "flex", alignItems: "center", gap: "0",
+        position: "absolute", inset: 0,
+        backgroundImage: "linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px)",
+        backgroundSize: "80px 80px",
+      }} />
+
+      {/* center glow */}
+      <div style={{
+        position: "absolute", inset: 0,
+        background: "radial-gradient(ellipse 35% 45% at 50% 62%, rgba(58,85,133,0.2) 0%, transparent 70%)",
+      }} />
+
+      {/* SVG connector lines */}
+      <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%", overflow: "visible" }}>
+        {nodes.map(([, lp, tp], i) => {
+          const isActive = activePulse === i;
+          const x1 = lp < 50 ? `${(lp as number) + 13}%` : `${lp}%`;
+          return (
+            <line key={i}
+              x1={x1} y1={`${tp}%`}
+              x2="50%" y2="62%"
+              stroke={isActive ? "rgba(120,160,255,0.5)" : "rgba(100,120,180,0.16)"}
+              strokeWidth={isActive ? "1.5" : "1"}
+              strokeDasharray="5 4"
+              style={{ transition: "stroke 0.4s ease, stroke-width 0.4s ease" }}
+            />
+          );
+        })}
+      </svg>
+
+      {/* Node pills */}
+      {nodes.map(([label, lp, tp], i) => {
+        const isActive = activePulse === i;
+        return (
+          <div key={i} style={{
+            position: "absolute",
+            left: `${lp}%`,
+            top: `${tp}%`,
+            transform: "translateY(-50%)",
+            display: "flex", alignItems: "center", gap: "7px",
+            padding: "7px 12px",
+            background: isActive ? "rgba(58,85,133,0.3)" : "rgba(255,255,255,0.055)",
+            border: `1px solid ${isActive ? "rgba(110,150,240,0.5)" : "rgba(255,255,255,0.1)"}`,
+            borderRadius: "8px",
+            fontSize: "0.74rem", fontWeight: isActive ? 600 : 400,
+            color: isActive ? "rgba(180,205,255,0.95)" : "rgba(255,255,255,0.5)",
+            whiteSpace: "nowrap",
+            transition: "all 0.4s ease",
+            boxShadow: isActive ? "0 0 14px rgba(58,85,133,0.35)" : "none",
+            zIndex: 2,
+          }}>
+            <span style={{
+              width: "5px", height: "5px", borderRadius: "50%", flexShrink: 0,
+              background: isActive ? "rgba(140,175,255,0.9)" : "rgba(255,255,255,0.22)",
+              transition: "background 0.4s",
+            }} />
+            {label}
+          </div>
+        );
+      })}
+
+      {/* Phone mockup */}
+      <div style={{
+        position: "absolute",
+        left: "50%", top: "50%",
+        transform: "translate(-50%, -30%)",
+        width: "154px",
+        zIndex: 3,
       }}>
-        {/* Inputs */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "7px", flexShrink: 0 }}>
-          {inputs.map((label, i) => (
-            <div key={i} style={{
-              padding: "8px 14px",
-              background: "rgba(255,255,255,0.055)",
-              border: "1px solid rgba(255,255,255,0.09)",
-              borderRadius: "8px",
-              fontSize: "0.78rem", fontWeight: 500,
-              color: "rgba(255,255,255,0.65)",
-              whiteSpace: "nowrap",
-            }}>{label}</div>
-          ))}
-        </div>
-
-        {/* SVG lines left */}
-        <div style={{ flex: "0 0 72px", position: "relative", height: "110px" }}>
-          <svg width="100%" height="100%" viewBox="0 0 72 110" preserveAspectRatio="none">
-            {[14, 37, 60, 84].map((y, i) => (
-              <line key={i} x1="0" y1={y} x2="72" y2="55"
-                stroke="rgba(100,130,200,0.2)" strokeWidth="1" strokeDasharray="4 3" />
+        <div style={{
+          background: "#0D0F14",
+          border: "2px solid rgba(255,255,255,0.14)",
+          borderRadius: "28px",
+          padding: "12px 9px 16px",
+          boxShadow: "0 28px 64px rgba(0,0,0,0.55), inset 0 0 0 1px rgba(255,255,255,0.04)",
+        }}>
+          {/* Notch */}
+          <div style={{ width: "38px", height: "5px", background: "rgba(255,255,255,0.1)", borderRadius: "3px", margin: "0 auto 10px" }} />
+          {/* App label */}
+          <div style={{ fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)", textAlign: "center", marginBottom: "9px" }}>Novum Systems</div>
+          {/* Rows */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+            {screenRows.map((row, i) => (
+              <div key={i} style={{
+                padding: "7px 8px",
+                background: row.accent ? "rgba(58,85,133,0.38)" : "rgba(255,255,255,0.045)",
+                border: `1px solid ${row.accent ? "rgba(100,140,240,0.4)" : "rgba(255,255,255,0.07)"}`,
+                borderRadius: "7px",
+              }}>
+                <div style={{ fontSize: "0.6rem", fontWeight: 600, color: row.accent ? "rgba(170,200,255,0.95)" : "rgba(255,255,255,0.7)", marginBottom: "2px" }}>{row.label}</div>
+                <div style={{ fontSize: "0.52rem", color: "rgba(255,255,255,0.28)" }}>{row.sub}</div>
+              </div>
             ))}
-          </svg>
-        </div>
-
-        {/* Stage modules */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "7px", flexShrink: 0 }}>
-          {stages.map((label, i) => (
-            <div key={i} style={{
-              padding: "10px 18px",
-              background: i === active ? "rgba(58,85,133,0.28)" : "rgba(255,255,255,0.04)",
-              border: `1px solid ${i === active ? "rgba(100,140,240,0.5)" : "rgba(255,255,255,0.07)"}`,
-              borderRadius: "8px",
-              fontSize: "0.78rem",
-              fontWeight: i === active ? 600 : 400,
-              color: i === active ? "rgba(170,200,255,0.95)" : "rgba(255,255,255,0.38)",
-              transition: "all 0.5s ease",
-              whiteSpace: "nowrap",
-              boxShadow: i === active ? "0 0 16px rgba(58,85,133,0.3)" : "none",
-            }}>{label}</div>
-          ))}
-        </div>
-
-        {/* SVG lines right */}
-        <div style={{ flex: "0 0 72px", position: "relative", height: "80px" }}>
-          <svg width="100%" height="100%" viewBox="0 0 72 80" preserveAspectRatio="none">
-            {[14, 40, 66].map((y, i) => (
-              <line key={i} x1="0" y1="40" x2="72" y2={y}
-                stroke="rgba(100,130,200,0.2)" strokeWidth="1" strokeDasharray="4 3" />
-            ))}
-          </svg>
-        </div>
-
-        {/* Outputs */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "7px", flexShrink: 0 }}>
-          {outputs.map((label, i) => (
-            <div key={i} style={{
-              padding: "9px 16px",
-              background: i === 0 ? "rgba(242,237,216,0.1)" : "rgba(255,255,255,0.05)",
-              border: `1px solid ${i === 0 ? "rgba(242,237,200,0.22)" : "rgba(255,255,255,0.09)"}`,
-              borderRadius: "8px",
-              fontSize: "0.78rem", fontWeight: 500,
-              color: i === 0 ? "rgba(242,237,200,0.85)" : "rgba(255,255,255,0.6)",
-              whiteSpace: "nowrap",
-            }}>{label}</div>
-          ))}
-        </div>
-
-        {/* Stat cards */}
-        <div style={{ marginLeft: "auto", display: "flex", gap: "10px", flexShrink: 0 }}>
-          {[["24", "Open Tasks"], ["8", "Active Projects"], ["12", "Team Online"]].map(([n, l], i) => (
-            <div key={i} style={{
-              padding: "12px 16px",
-              background: "rgba(255,255,255,0.05)",
-              border: "1px solid rgba(255,255,255,0.08)",
-              borderRadius: "10px", textAlign: "center",
-            }}>
-              <div style={{ fontSize: "1.3rem", fontWeight: 700, color: "#fff", lineHeight: 1 }}>{n}</div>
-              <div style={{ fontSize: "0.68rem", color: "rgba(255,255,255,0.38)", marginTop: "4px", whiteSpace: "nowrap" }}>{l}</div>
-            </div>
-          ))}
+          </div>
+          {/* Home bar */}
+          <div style={{ width: "34px", height: "3px", background: "rgba(255,255,255,0.12)", borderRadius: "2px", margin: "10px auto 0" }} />
         </div>
       </div>
+
     </div>
   );
 }
