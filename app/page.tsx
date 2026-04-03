@@ -46,9 +46,9 @@ function PlexusBg() {
     const pulses: Pulse[] = [];
 
     const LAYER_CONFIG = [
-      { count: 70, speed: 0.1,  dist: 240, lineAlpha: 0.38, nodeAlpha: 0.65, nodeR: 3.5, color: "50,78,128"   },
-      { count: 60, speed: 0.18, dist: 190, lineAlpha: 0.18, nodeAlpha: 0.28, nodeR: 2.0, color: "70,100,155"  },
-      { count: 55, speed: 0.26, dist: 160, lineAlpha: 0.09, nodeAlpha: 0.13, nodeR: 1.0, color: "100,135,190" },
+      { count: 90, speed: 0.1,  dist: 200, lineAlpha: 0.55, nodeAlpha: 0.9,  nodeR: 4.0, color: "50,78,128"   },
+      { count: 70, speed: 0.18, dist: 170, lineAlpha: 0.28, nodeAlpha: 0.45, nodeR: 2.4, color: "70,100,155"  },
+      { count: 60, speed: 0.26, dist: 140, lineAlpha: 0.14, nodeAlpha: 0.22, nodeR: 1.4, color: "100,135,190" },
     ];
 
     const init = () => {
@@ -80,7 +80,7 @@ function PlexusBg() {
       const dy = layer[i].y - layer[j].y;
       const d = Math.sqrt(dx*dx + dy*dy);
       if (d < LAYER_CONFIG[li].dist) {
-        pulses.push({ i, j, layer: li, t: 0, speed: 0.004 + Math.random() * 0.006 });
+        pulses.push({ i, j, layer: li, t: 0, speed: 0.008 + Math.random() * 0.01 });
       }
     };
 
@@ -89,7 +89,7 @@ function PlexusBg() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // Spawn new pulses occasionally
-      if (time % 18 === 0 && pulses.length < 25) spawnPulse();
+      if (time % 8 === 0 && pulses.length < 40) spawnPulse(); if (time % 8 === 0 && pulses.length < 40) spawnPulse();
 
       // Update pulses
       for (let p = pulses.length - 1; p >= 0; p--) {
@@ -119,7 +119,7 @@ function PlexusBg() {
               ctx.moveTo(layer[i].x, layer[i].y);
               ctx.lineTo(layer[j].x, layer[j].y);
               ctx.strokeStyle = "rgba(" + cfg.color + "," + a + ")";
-              ctx.lineWidth = li === 0 ? 0.8 : li === 1 ? 0.5 : 0.3;
+              ctx.lineWidth = li === 0 ? 1.2 : li === 1 ? 0.7 : 0.4;
               ctx.stroke();
             }
           }
@@ -141,7 +141,7 @@ function PlexusBg() {
           const ty = n1.y + (n2.y - n1.y) * t0;
           const grad = ctx.createLinearGradient(tx, ty, px, py);
           grad.addColorStop(0, "rgba(" + cfg.color + ",0)");
-          grad.addColorStop(1, "rgba(" + cfg.color + "," + (brightness * 0.7) + ")");
+          grad.addColorStop(1, "rgba(" + cfg.color + "," + (brightness * 1.0) + ")");
           ctx.beginPath();
           ctx.moveTo(tx, ty);
           ctx.lineTo(px, py);
@@ -150,7 +150,7 @@ function PlexusBg() {
           ctx.stroke();
 
           // Pulse head glow
-          const glowR = li === 0 ? 9 : 5;
+          const glowR = li === 0 ? 12 : 7;
           const grd = ctx.createRadialGradient(px, py, 0, px, py, glowR);
           grd.addColorStop(0, "rgba(" + cfg.color + "," + (brightness * 0.9) + ")");
           grd.addColorStop(1, "rgba(" + cfg.color + ",0)");
