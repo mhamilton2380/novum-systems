@@ -335,24 +335,24 @@ export default function ApproachPage() {
           >
             {[
               {
-                icon: "🔧",
-                title: "Field Service",
-                desc: "HVAC, plumbing, electrical, landscaping, equipment service — any business with teams dispatched to job sites that need scheduling, job management, and automated billing.",
+                icon: "⚙️",
+                title: "On-the-Ground Operations",
+                desc: "Your team works in the field, on-site, or across multiple locations. Work needs to be coordinated, tracked, and billed — without the chaos of manual back-and-forth.",
               },
               {
-                icon: "📐",
-                title: "Project-Based",
-                desc: "General contractors, specialty trades, creative agencies, IT firms — businesses that run on projects with budgets, timelines, and multiple stakeholders.",
+                icon: "📋",
+                title: "Project & Engagement Work",
+                desc: "Your business runs on projects, retainers, or scoped engagements. Every budget, milestone, and deliverable needs to be tracked — from the first proposal to the final invoice.",
               },
               {
                 icon: "🏢",
-                title: "Multi-Location",
-                desc: "Operators managing multiple teams, locations, or franchises who need visibility, coordination, and consistent process across their full operation.",
+                title: "Multi-Team Businesses",
+                desc: "You're managing multiple teams, locations, or departments and need a single view of everything. Not five dashboards — one system that shows you exactly where things stand.",
               },
               {
                 icon: "⚡",
-                title: "Complex Operations",
-                desc: "Organizations with unique, multi-layered operational structures that don't fit existing software — who need a system built from scratch around how they actually run.",
+                title: "Built Different",
+                desc: "Your operation doesn't fit any standard category. You need a system designed specifically around how you work — not adapted from someone else's template.",
               },
             ].map((item) => (
               <div
