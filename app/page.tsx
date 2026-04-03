@@ -14,25 +14,25 @@ function useScrollReveal() {
   }, []);
 }
 
-// ── Plexus background — injected directly onto body ─────────────────────────
-function usePlexusBg() {
-  useEffect(() => {
-    const canvas = document.createElement("canvas");
-    canvas.id = "plexus-bg";
-    canvas.style.cssText = "position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;";
-    document.body.prepend(canvas);
+// ── Plexus background component ─────────────────────────────────────────────
+function PlexusBg() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const rafRef = useRef<number>(0);
+  const nodesRef = useRef<{x:number;y:number;vx:number;vy:number}[]>([]);
 
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
     const ctx = canvas.getContext("2d")!;
-    const nodes: { x: number; y: number; vx: number; vy: number }[] = [];
-    let raf = 0;
+    const DIST = 155;
 
     const init = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      nodes.length = 0;
-      const count = Math.min(50, Math.floor((canvas.width * canvas.height) / 26000));
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+      nodesRef.current = [];
+      const count = Math.min(50, Math.floor((canvas.width * canvas.height) / 28000));
       for (let i = 0; i < count; i++) {
-        nodes.push({
+        nodesRef.current.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
           vx: (Math.random() - 0.5) * 0.22,
@@ -41,9 +41,8 @@ function usePlexusBg() {
       }
     };
 
-    const DIST = 155;
-
     const tick = () => {
+      const nodes = nodesRef.current;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       nodes.forEach(n => {
         n.x += n.vx; n.y += n.vy;
@@ -69,22 +68,24 @@ function usePlexusBg() {
       nodes.forEach(n => {
         ctx.beginPath();
         ctx.arc(n.x, n.y, 1.6, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(58,85,133,0.16)";
+        ctx.fillStyle = "rgba(58,85,133,0.15)";
         ctx.fill();
       });
-      raf = requestAnimationFrame(tick);
+      rafRef.current = requestAnimationFrame(tick);
     };
 
     init();
     window.addEventListener("resize", init);
-    raf = requestAnimationFrame(tick);
-
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("resize", init);
-      canvas.remove();
-    };
+    rafRef.current = requestAnimationFrame(tick);
+    return () => { cancelAnimationFrame(rafRef.current); window.removeEventListener("resize", init); };
   }, []);
+
+  return (
+    <canvas ref={canvasRef} style={{
+      position: "absolute", inset: 0, width: "100%", height: "100%",
+      pointerEvents: "none", zIndex: 0,
+    }} />
+  );
 }
 
 // ── Hero canvas viz ──────────────────────────────────────────────────────────
@@ -356,10 +357,13 @@ function DashboardMockup() {
 // ── Page ─────────────────────────────────────────────────────────────────────
 export default function HomePage() {
   useScrollReveal();
-  usePlexusBg();
-
   return (
-    <div style={{ background: "transparent", color: "var(--text)", fontFamily: "'DM Sans', sans-serif", position: "relative", zIndex: 1 }}>
+    <div style={{ background: "#ffffff", color: "var(--text)", fontFamily: "'DM Sans', sans-serif", position: "relative" }}>
+      {/* Plexus canvas sits inside the white page, underneath all content */}
+      <div style={{ position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none" }}>
+        <PlexusBg />
+      </div>
+      <div style={{ position: "relative", zIndex: 1 }}>
 
       {/* ── Hero ── */}
       <section style={{ padding: "76px 24px 0" }}>
