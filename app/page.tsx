@@ -38,14 +38,15 @@ function PlexusBg() {
     type Node = { x: number; y: number; vx: number; vy: number; b: number };
     type Pulse = { i: number; j: number; layer: number; t: number; speed: number };
 
-    const layers: Node[][] = [[], [], []];
+    const layers: Node[][] = [[], [], [], []];
     const pulses: Pulse[] = [];
 
-    // 3 layers: close (few, huge, dark), mid, far (many, tiny, faint)
+    // 4 layers: extreme depth — huge bright close nodes → microscopic distant dust
     const LAYER_CONFIG = [
-      { count: 28,  speed: 0.055, dist: 260, lineAlpha: 0.72, nodeR: 5.8, color: "18,36,90",  bMin: 1.2, bMax: 5.0 },
-      { count: 65,  speed: 0.13,  dist: 200, lineAlpha: 0.35, nodeR: 2.8, color: "38,65,128", bMin: 0.3, bMax: 1.6 },
-      { count: 140, speed: 0.24,  dist: 160, lineAlpha: 0.10, nodeR: 1.1, color: "65,95,152", bMin: 0.05,bMax: 0.4 },
+      { count: 14,  speed: 0.018, dist: 420, lineAlpha: 0.88, nodeR: 9.0, color: "8,18,58",   bMin: 5.0, bMax: 10.0 },
+      { count: 42,  speed: 0.058, dist: 270, lineAlpha: 0.50, nodeR: 3.6, color: "16,44,100", bMin: 1.2, bMax: 4.0  },
+      { count: 130, speed: 0.13,  dist: 185, lineAlpha: 0.17, nodeR: 1.4, color: "36,72,140", bMin: 0.14, bMax: 0.9 },
+      { count: 200, speed: 0.24,  dist: 130, lineAlpha: 0.05, nodeR: 0.55,color: "55,92,165", bMin: 0.02, bMax: 0.14},
     ];
 
     const init = () => {
@@ -69,7 +70,7 @@ function PlexusBg() {
     };
 
     const spawnPulse = () => {
-      const li = Math.floor(Math.random() * 3);
+      const li = Math.floor(Math.random() * 4);
       const layer = layers[li];
       if (layer.length < 2) return;
       const i = Math.floor(Math.random() * layer.length);
@@ -158,10 +159,10 @@ function PlexusBg() {
 
         // Nodes — extreme brightness variation for depth
         layer.forEach(n => {
-          const glowR = cfg.nodeR * (1.5 + n.b * 4.5);
-          const coreR = cfg.nodeR * Math.min(n.b * 0.6, 1.8);
-          const glowAlpha = Math.min(n.b * 0.28, 0.75);
-          const coreAlpha = Math.min(n.b * 0.7, 1.0);
+          const glowR = cfg.nodeR * 2.0 + n.b * 8.5;
+          const coreR = Math.max(0.4, Math.min(cfg.nodeR * n.b * 0.20, 9.0));
+          const glowAlpha = Math.min(n.b * 0.10, 0.44);
+          const coreAlpha = Math.min(0.22 + n.b * 0.09, 1.0);
 
           const grd = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, glowR);
           grd.addColorStop(0, "rgba(" + cfg.color + "," + glowAlpha + ")");
@@ -197,7 +198,7 @@ function PlexusBg() {
         height: "100%",
         pointerEvents: "none",
         zIndex: 0,
-        filter: "blur(2px)",
+        filter: "blur(0.6px)",
       }}
     />
   );
