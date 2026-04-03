@@ -27,10 +27,6 @@ function useScrollReveal() {
 
 function PlexusBg() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const rafRef = useRef<number>(0);
-  const nodesRef = useRef<{ x: number; y: number; vx: number; vy: number }[]>(
-    []
-  );
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -39,16 +35,18 @@ function PlexusBg() {
     let raf = 0;
     let time = 0;
 
-    type Node = {x:number;y:number;vx:number;vy:number};
-    type Pulse = {i:number;j:number;layer:number;t:number;speed:number};
+    // Per-node brightness for depth variation
+    type Node = { x: number; y: number; vx: number; vy: number; b: number };
+    type Pulse = { i: number; j: number; layer: number; t: number; speed: number };
 
     const layers: Node[][] = [[], [], []];
     const pulses: Pulse[] = [];
 
+    // Darker saturated colors so they read on the light page bg
     const LAYER_CONFIG = [
-      { count: 160, speed: 0.1, dist: 200, lineAlpha: 0.72, nodeAlpha: 1.0, nodeR: 4.0, color: "50,78,128" },
-      { count: 130, speed: 0.18, dist: 170, lineAlpha: 0.42, nodeAlpha: 0.6, nodeR: 2.5, color: "70,100,155" },
-      { count: 110, speed: 0.26, dist: 140, lineAlpha: 0.18, nodeAlpha: 0.28, nodeR: 1.5, color: "100,135,190" },
+      { count: 80,  speed: 0.08, dist: 210, lineAlpha: 0.55, nodeR: 4.2, color: "28,52,110" },
+      { count: 60,  speed: 0.14, dist: 180, lineAlpha: 0.28, nodeR: 2.8, color: "42,72,138" },
+      { count: 50,  speed: 0.22, dist: 150, lineAlpha: 0.12, nodeR: 1.6, color: "68,100,168" },
     ];
 
     const init = () => {
@@ -58,11 +56,16 @@ function PlexusBg() {
         layer.length = 0;
         const cfg = LAYER_CONFIG[li];
         for (let i = 0; i < cfg.count; i++) {
+          // brightness: front layer has some very bright nodes (up to 3x), back layer stays dim
+          const maxB = li === 0 ? 3.0 : li === 1 ? 1.4 : 0.7;
+          const minB = li === 0 ? 0.25 : 0.15;
+          const b = minB + Math.random() * (maxB - minB);
           layer.push({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
-            vx: (Math.random()-0.5) * cfg.speed,
-            vy: (Math.random()-0.5) * cfg.speed,
+            vx: (Math.random() - 0.5) * cfg.speed,
+            vy: (Math.random() - 0.5) * cfg.speed,
+            b,
           });
         }
       });
@@ -78,9 +81,9 @@ function PlexusBg() {
       if (j === i) j = (j + 1) % layer.length;
       const dx = layer[i].x - layer[j].x;
       const dy = layer[i].y - layer[j].y;
-      const d = Math.sqrt(dx*dx + dy*dy);
+      const d = Math.sqrt(dx * dx + dy * dy);
       if (d < LAYER_CONFIG[li].dist) {
-        pulses.push({ i, j, layer: li, t: 0, speed: 0.012 + Math.random() * 0.014 });
+        pulses.push({ i, j, layer: li, t: 0, speed: 0.008 + Math.random() * 0.01 });
       }
     };
 
@@ -88,7 +91,7 @@ function PlexusBg() {
       time++;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      if (time % 6 === 0 && pulses.length < 50) { spawnPulse(); spawnPulse(); }
+      if (time % 8 === 0 && pulses.length < 40) { spawnPulse(); spawnPulse(); }
 
       for (let p = pulses.length - 1; p >= 0; p--) {
         pulses[p].t += pulses[p].speed;
@@ -105,23 +108,26 @@ function PlexusBg() {
           if (n.y < -20 || n.y > canvas.height + 20) n.vy *= -1;
         });
 
+        // Draw edges — line alpha boosted by avg brightness of endpoints
         for (let i = 0; i < layer.length; i++) {
-          for (let j = i+1; j < layer.length; j++) {
+          for (let j = i + 1; j < layer.length; j++) {
             const dx = layer[i].x - layer[j].x;
             const dy = layer[i].y - layer[j].y;
-            const d = Math.sqrt(dx*dx + dy*dy);
+            const d = Math.sqrt(dx * dx + dy * dy);
             if (d < cfg.dist) {
-              const a = (1 - d/cfg.dist) * cfg.lineAlpha;
+              const bAvg = (layer[i].b + layer[j].b) * 0.5;
+              const a = (1 - d / cfg.dist) * cfg.lineAlpha * Math.min(bAvg, 1.8);
               ctx.beginPath();
               ctx.moveTo(layer[i].x, layer[i].y);
               ctx.lineTo(layer[j].x, layer[j].y);
-              ctx.strokeStyle = "rgba(" + cfg.color + "," + a + ")";
-              ctx.lineWidth = li === 0 ? 1.4 : li === 1 ? 0.9 : 0.5;
+              ctx.strokeStyle = "rgba(" + cfg.color + "," + Math.min(a, 0.9) + ")";
+              ctx.lineWidth = li === 0 ? Math.min(layer[i].b * 1.2, 2.0) : li === 1 ? 0.8 : 0.4;
               ctx.stroke();
             }
           }
         }
 
+        // Pulses
         pulses.filter(p => p.layer === li).forEach(p => {
           const n1 = layer[p.i];
           const n2 = layer[p.j];
@@ -129,42 +135,49 @@ function PlexusBg() {
           const px = n1.x + (n2.x - n1.x) * p.t;
           const py = n1.y + (n2.y - n1.y) * p.t;
           const brightness = Math.sin(p.t * Math.PI);
+          const bBoost = (n1.b + n2.b) * 0.5;
 
-          const trailLen = 0.12;
-          const t0 = Math.max(0, p.t - trailLen);
+          const t0 = Math.max(0, p.t - 0.12);
           const tx = n1.x + (n2.x - n1.x) * t0;
           const ty = n1.y + (n2.y - n1.y) * t0;
           const grad = ctx.createLinearGradient(tx, ty, px, py);
           grad.addColorStop(0, "rgba(" + cfg.color + ",0)");
-          grad.addColorStop(1, "rgba(" + cfg.color + "," + (brightness * 1.0) + ")");
+          grad.addColorStop(1, "rgba(" + cfg.color + "," + Math.min(brightness * bBoost, 1) + ")");
           ctx.beginPath();
           ctx.moveTo(tx, ty);
           ctx.lineTo(px, py);
           ctx.strokeStyle = grad;
-          ctx.lineWidth = li === 0 ? 2.0 : 1.0;
+          ctx.lineWidth = li === 0 ? 2.2 : 1.0;
           ctx.stroke();
 
-          const glowR = li === 0 ? 12 : 7;
+          const glowR = li === 0 ? 10 + bBoost * 6 : 5;
           const grd = ctx.createRadialGradient(px, py, 0, px, py, glowR);
-          grd.addColorStop(0, "rgba(" + cfg.color + "," + (brightness * 0.9) + ")");
+          grd.addColorStop(0, "rgba(" + cfg.color + "," + Math.min(brightness * bBoost * 0.8, 1) + ")");
           grd.addColorStop(1, "rgba(" + cfg.color + ",0)");
           ctx.beginPath();
-          ctx.arc(px, py, glowR, 0, Math.PI*2);
+          ctx.arc(px, py, glowR, 0, Math.PI * 2);
           ctx.fillStyle = grd;
           ctx.fill();
         });
 
+        // Nodes — glow radius and alpha scale with per-node brightness
         layer.forEach(n => {
-          const grd = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, cfg.nodeR * 3.5);
-          grd.addColorStop(0, "rgba(" + cfg.color + "," + (cfg.nodeAlpha * 0.5) + ")");
+          const glowR = cfg.nodeR * (2.5 + n.b * 3.5);
+          const coreR = cfg.nodeR * Math.min(n.b * 0.8, 1.6);
+          const glowAlpha = Math.min(n.b * 0.38, 0.85);
+          const coreAlpha = Math.min(n.b * 0.7, 1.0);
+
+          const grd = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, glowR);
+          grd.addColorStop(0, "rgba(" + cfg.color + "," + glowAlpha + ")");
           grd.addColorStop(1, "rgba(" + cfg.color + ",0)");
           ctx.beginPath();
-          ctx.arc(n.x, n.y, cfg.nodeR * 3.5, 0, Math.PI*2);
+          ctx.arc(n.x, n.y, glowR, 0, Math.PI * 2);
           ctx.fillStyle = grd;
           ctx.fill();
+
           ctx.beginPath();
-          ctx.arc(n.x, n.y, cfg.nodeR, 0, Math.PI*2);
-          ctx.fillStyle = "rgba(" + cfg.color + "," + cfg.nodeAlpha + ")";
+          ctx.arc(n.x, n.y, coreR, 0, Math.PI * 2);
+          ctx.fillStyle = "rgba(" + cfg.color + "," + coreAlpha + ")";
           ctx.fill();
         });
       }
@@ -175,7 +188,8 @@ function PlexusBg() {
     init();
     window.addEventListener("resize", init);
     raf = requestAnimationFrame(tick);
-    return () => { cancelAnimationFrame(raf); window.removeEventListener("resize", init); };  }, []);
+    return () => { cancelAnimationFrame(raf); window.removeEventListener("resize", init); };
+  }, []);
 
   return (
     <canvas
@@ -187,8 +201,7 @@ function PlexusBg() {
         height: "100%",
         pointerEvents: "none",
         zIndex: 0,
-        opacity: 1,
-        filter: "blur(3.5px)",
+        filter: "blur(1px)",
       }}
     />
   );
@@ -393,25 +406,27 @@ function HeroWorkflowGraphic() {
 
       ctx.clearRect(0, 0, W, H);
 
+      const PAD_X = 28;
+      const PAD_Y = 48;
       const CARD_H = 34;
       const GAP = 20;
       const N = 4;
-      const CARD_W_L = Math.min(126, W * 0.19);
-      const CARD_W_R = Math.min(150, W * 0.22);
+      const CARD_W_L = Math.min(118, (W - PAD_X * 2) * 0.19);
+      const CARD_W_R = Math.min(142, (W - PAD_X * 2) * 0.22);
       const totalCardH = N * CARD_H + (N - 1) * GAP;
-      const startY = (H - totalCardH) / 2;
+      const startY = PAD_Y + (H - PAD_Y * 2 - totalCardH) / 2;
 
-      const DEV_W = Math.min(138, W * 0.2);
-      const DEV_H = 106;
+      const DEV_W = Math.min(132, W * 0.19);
+      const DEV_H = 104;
       const DEV_X = (W - DEV_W) / 2;
       const DEV_Y = (H - DEV_H) / 2;
 
       const inputPts: Pt[] = inputLabels.map((_, i) => ({
-        x: CARD_W_L,
+        x: PAD_X + CARD_W_L,
         y: startY + i * (CARD_H + GAP) + CARD_H / 2,
       }));
       const outputPts: Pt[] = outputLabels.map((_, i) => ({
-        x: W - CARD_W_R,
+        x: W - PAD_X - CARD_W_R,
         y: startY + i * (CARD_H + GAP) + CARD_H / 2,
       }));
       const devLeft: Pt = { x: DEV_X, y: H / 2 };
@@ -461,13 +476,14 @@ function HeroWorkflowGraphic() {
       // Input cards + connector dots
       inputLabels.forEach((label, i) => {
         const y = startY + i * (CARD_H + GAP);
-        drawCard(0, y, CARD_W_L, CARD_H, label, "left");
+        drawCard(PAD_X, y, CARD_W_L, CARD_H, label, "left");
+        const cx = PAD_X + CARD_W_L;
         const cy = y + CARD_H / 2;
-        const dg = ctx.createRadialGradient(CARD_W_L, cy, 0, CARD_W_L, cy, 4);
+        const dg = ctx.createRadialGradient(cx, cy, 0, cx, cy, 4);
         dg.addColorStop(0, "rgba(160,200,255,0.85)");
         dg.addColorStop(1, "rgba(120,170,255,0)");
         ctx.beginPath();
-        ctx.arc(CARD_W_L, cy, 3, 0, Math.PI * 2);
+        ctx.arc(cx, cy, 3, 0, Math.PI * 2);
         ctx.fillStyle = dg;
         ctx.fill();
       });
@@ -475,8 +491,8 @@ function HeroWorkflowGraphic() {
       // Output cards + connector dots
       outputLabels.forEach((label, i) => {
         const y = startY + i * (CARD_H + GAP);
-        drawCard(W - CARD_W_R, y, CARD_W_R, CARD_H, label, "right");
-        const cx2 = W - CARD_W_R;
+        drawCard(W - PAD_X - CARD_W_R, y, CARD_W_R, CARD_H, label, "right");
+        const cx2 = W - PAD_X - CARD_W_R;
         const cy = y + CARD_H / 2;
         const dg = ctx.createRadialGradient(cx2, cy, 0, cx2, cy, 4);
         dg.addColorStop(0, "rgba(160,200,255,0.85)");
@@ -485,6 +501,54 @@ function HeroWorkflowGraphic() {
         ctx.arc(cx2, cy, 3, 0, Math.PI * 2);
         ctx.fillStyle = dg;
         ctx.fill();
+      });
+
+      // Satellite nodes around device
+      const satellites = [
+        { label: "AI Agents", angle: -0.55 * Math.PI, dist: 130 },
+        { label: "Team Chat", angle: -0.82 * Math.PI, dist: 118 },
+        { label: "Reports", angle: 0.55 * Math.PI, dist: 130 },
+        { label: "Bookkeeping", angle: 0.82 * Math.PI, dist: 118 },
+        { label: "Forecasting", angle: Math.PI * 0.18, dist: 110 },
+        { label: "Integrations", angle: -Math.PI * 0.18, dist: 110 },
+      ];
+      const devCX = DEV_X + DEV_W / 2;
+      const devCY = DEV_Y + DEV_H / 2;
+      satellites.forEach((s) => {
+        const sx = devCX + Math.cos(s.angle) * s.dist;
+        const sy = devCY + Math.sin(s.angle) * s.dist;
+        const sw = 88;
+        const sh = 26;
+        // Line from device edge to satellite
+        ctx.beginPath();
+        ctx.moveTo(devCX + Math.cos(s.angle) * (DEV_W / 2), devCY + Math.sin(s.angle) * (DEV_H / 2));
+        ctx.lineTo(sx, sy + sh / 2);
+        ctx.strokeStyle = "rgba(120,168,255,0.18)";
+        ctx.lineWidth = 1;
+        ctx.stroke();
+        // Dot at device end
+        const dotX = devCX + Math.cos(s.angle) * (DEV_W / 2 + 4);
+        const dotY = devCY + Math.sin(s.angle) * (DEV_H / 2 + 4);
+        ctx.beginPath();
+        ctx.arc(dotX, dotY, 2.5, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(160,200,255,0.6)";
+        ctx.fill();
+        // Satellite card
+        const g = ctx.createLinearGradient(sx - sw / 2, sy, sx - sw / 2, sy + sh);
+        g.addColorStop(0, "rgba(255,255,255,0.09)");
+        g.addColorStop(1, "rgba(255,255,255,0.05)");
+        ctx.beginPath();
+        ctx.roundRect(sx - sw / 2, sy, sw, sh, 7);
+        ctx.fillStyle = g;
+        ctx.fill();
+        ctx.strokeStyle = "rgba(255,255,255,0.14)";
+        ctx.lineWidth = 1;
+        ctx.stroke();
+        ctx.fillStyle = "rgba(255,255,255,0.7)";
+        ctx.font = "500 11px 'DM Sans', sans-serif";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(s.label, sx, sy + sh / 2);
       });
 
       raf = requestAnimationFrame(tick);
@@ -557,6 +621,7 @@ export default function HomePage() {
             boxShadow: "0 36px 90px rgba(15,18,25,0.22)",
           }}
         >
+          <div className="dot-grid" style={{ position: "absolute", inset: 0, opacity: 0.5, zIndex: 0 }} />
           <div
             style={{
               position: "relative",
