@@ -24,15 +24,18 @@ export default function Navbar() {
     { href: "/contact", label: "Contact" },
   ];
 
-  const textColor = scrolled ? "#1A1A1A" : "#ffffff";
-  const mutedColor = scrolled ? "#6B6865" : "rgba(255,255,255,0.72)";
+  // On non-home pages the nav sits over white — always dark text
+  const isHome = pathname === "/";
+  const isDark = isHome && !scrolled;
+  const textColor = isDark ? "#ffffff" : "#1A1A1A";
+  const mutedColor = isDark ? "rgba(255,255,255,0.72)" : "#6B6865";
 
   return (
     <header style={{
       position: "fixed", top: 0, left: 0, right: 0, zIndex: 200,
-      background: scrolled ? "rgba(255,255,255,0.96)" : "transparent",
-      backdropFilter: scrolled ? "blur(20px)" : "none",
-      borderBottom: scrolled ? "1px solid rgba(232,230,225,0.8)" : "1px solid transparent",
+      background: (scrolled || !isHome) ? "rgba(255,255,255,0.96)" : "rgba(255,255,255,0)",
+      backdropFilter: "blur(20px)",
+      borderBottom: (scrolled || !isHome) ? "1px solid rgba(232,230,225,0.8)" : "1px solid transparent",
       transition: "background 0.35s ease, border-color 0.35s ease",
     }}>
       <div style={{
@@ -42,8 +45,8 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "9px" }}>
           <div style={{
-            width: 28, height: 28, background: scrolled ? "#1C1E26" : "rgba(255,255,255,0.15)",
-            border: scrolled ? "none" : "1px solid rgba(255,255,255,0.25)",
+            width: 28, height: 28, background: isDark ? "rgba(255,255,255,0.15)" : "#1C1E26",
+            border: isDark ? "1px solid rgba(255,255,255,0.25)" : "none",
             borderRadius: "7px", display: "flex", alignItems: "center", justifyContent: "center",
             transition: "background 0.35s",
           }}>
@@ -75,8 +78,8 @@ export default function Navbar() {
             ))}
             <Link href="/contact" style={{
               marginLeft: "12px", padding: "8px 20px", borderRadius: "100px",
-              background: scrolled ? "#1C1E26" : "#F2EDD8",
-              color: scrolled ? "#fff" : "#1A1A1A",
+              background: isDark ? "#F2EDD8" : "#1C1E26",
+              color: isDark ? "#1A1A1A" : "#fff",
               fontSize: "0.875rem", fontWeight: 600, textDecoration: "none",
               transition: "background 0.35s, color 0.35s, transform 0.15s",
             }}
