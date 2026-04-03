@@ -24,32 +24,34 @@ export default function Navbar() {
     { href: "/contact", label: "Contact" },
   ];
 
-  // On non-home pages the nav sits over white — always dark text
+  // Homepage: transparent over dark hero, solidify on scroll
+  // All other pages: always white frosted glass
   const isHome = pathname === "/";
-  const isDark = isHome && !scrolled;
-  const textColor = isDark ? "#ffffff" : "#1A1A1A";
-  const mutedColor = isDark ? "rgba(255,255,255,0.72)" : "#6B6865";
+  const alwaysLight = !isHome || scrolled;
+
+  const navBg = alwaysLight ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0)";
+  const navBorder = alwaysLight ? "1px solid rgba(232,230,225,0.9)" : "1px solid transparent";
+  const textColor = alwaysLight ? "#1A1A1A" : "#ffffff";
+  const mutedColor = alwaysLight ? "#6B6865" : "rgba(255,255,255,0.75)";
+  const ctaBg = alwaysLight ? "#1C1E26" : "#F2EDD8";
+  const ctaColor = alwaysLight ? "#ffffff" : "#1A1A1A";
+  const logoBg = alwaysLight ? "#1C1E26" : "rgba(255,255,255,0.15)";
 
   return (
     <header style={{
       position: "fixed", top: 0, left: 0, right: 0, zIndex: 200,
-      background: (scrolled || !isHome) ? "rgba(255,255,255,0.96)" : "rgba(255,255,255,0)",
+      background: navBg,
       backdropFilter: "blur(20px)",
-      borderBottom: (scrolled || !isHome) ? "1px solid rgba(232,230,225,0.8)" : "1px solid transparent",
-      transition: "background 0.35s ease, border-color 0.35s ease",
+      WebkitBackdropFilter: "blur(20px)",
+      borderBottom: navBorder,
+      transition: "background 0.3s ease, border-color 0.3s ease",
     }}>
       <div style={{
         maxWidth: "1280px", margin: "0 auto", padding: "0 32px", height: "60px",
         display: "flex", alignItems: "center", justifyContent: "space-between",
       }}>
-        {/* Logo */}
         <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "9px" }}>
-          <div style={{
-            width: 28, height: 28, background: isDark ? "rgba(255,255,255,0.15)" : "#1C1E26",
-            border: isDark ? "1px solid rgba(255,255,255,0.25)" : "none",
-            borderRadius: "7px", display: "flex", alignItems: "center", justifyContent: "center",
-            transition: "background 0.35s",
-          }}>
+          <div style={{ width: 28, height: 28, background: logoBg, borderRadius: "7px", display: "flex", alignItems: "center", justifyContent: "center", transition: "background 0.3s" }}>
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <rect x="1" y="1" width="5" height="5" rx="1.2" fill="white" />
               <rect x="8" y="1" width="5" height="5" rx="1.2" fill="white" opacity="0.4" />
@@ -57,12 +59,11 @@ export default function Navbar() {
               <rect x="8" y="8" width="5" height="5" rx="1.2" fill="white" />
             </svg>
           </div>
-          <span style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 600, fontSize: "0.975rem", color: textColor, letterSpacing: "-0.015em", transition: "color 0.35s" }}>
+          <span style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 600, fontSize: "0.975rem", color: textColor, letterSpacing: "-0.015em", transition: "color 0.3s" }}>
             Novum Systems
           </span>
         </Link>
 
-        {/* Desktop */}
         {!isMobile && (
           <nav style={{ display: "flex", alignItems: "center", gap: "0" }}>
             {links.map(l => (
@@ -78,10 +79,9 @@ export default function Navbar() {
             ))}
             <Link href="/contact" style={{
               marginLeft: "12px", padding: "8px 20px", borderRadius: "100px",
-              background: isDark ? "#F2EDD8" : "#1C1E26",
-              color: isDark ? "#1A1A1A" : "#fff",
+              background: ctaBg, color: ctaColor,
               fontSize: "0.875rem", fontWeight: 600, textDecoration: "none",
-              transition: "background 0.35s, color 0.35s, transform 0.15s",
+              transition: "background 0.3s, color 0.3s, transform 0.15s",
             }}
               onMouseEnter={e => (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)"}
               onMouseLeave={e => (e.currentTarget as HTMLElement).style.transform = "translateY(0)"}
@@ -91,18 +91,16 @@ export default function Navbar() {
           </nav>
         )}
 
-        {/* Mobile */}
         {isMobile && (
           <button onClick={() => setMenuOpen(!menuOpen)} style={{
             background: "none",
-            border: `1px solid ${scrolled ? "#E8E6E1" : "rgba(255,255,255,0.3)"}`,
+            border: `1px solid ${alwaysLight ? "#E8E6E1" : "rgba(255,255,255,0.3)"}`,
             borderRadius: "8px", padding: "7px 10px", cursor: "pointer",
             display: "flex", flexDirection: "column", gap: "4px",
-            transition: "border-color 0.35s",
           }}>
-            <span style={{ width: 16, height: 1.5, background: textColor, display: "block", transition: "background 0.35s" }} />
-            <span style={{ width: 10, height: 1.5, background: textColor, display: "block", opacity: menuOpen ? 0 : 1, transition: "background 0.35s, opacity 0.2s" }} />
-            <span style={{ width: 16, height: 1.5, background: textColor, display: "block", transition: "background 0.35s" }} />
+            <span style={{ width: 16, height: 1.5, background: textColor, display: "block" }} />
+            <span style={{ width: 10, height: 1.5, background: textColor, display: "block", opacity: menuOpen ? 0 : 1 }} />
+            <span style={{ width: 16, height: 1.5, background: textColor, display: "block" }} />
           </button>
         )}
       </div>
