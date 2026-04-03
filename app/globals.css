@@ -26,9 +26,9 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; background: #ffffff; }
+html { scroll-behavior: smooth; }
 body {
-  background: transparent;
+  background: #ffffff;
   color: var(--text);
   font-family: 'DM Sans', sans-serif;
   font-optical-sizing: auto;
