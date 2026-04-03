@@ -82,7 +82,7 @@ function PlexusBg() {
 
   return (
     <canvas ref={canvasRef} style={{
-      position: "absolute", inset: 0, width: "100%", height: "100%",
+      position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh",
       pointerEvents: "none", zIndex: 0,
     }} />
   );
@@ -359,10 +359,7 @@ export default function HomePage() {
   useScrollReveal();
   return (
     <div style={{ background: "#ffffff", color: "var(--text)", fontFamily: "'DM Sans', sans-serif", position: "relative" }}>
-      {/* Plexus canvas sits inside the white page, underneath all content */}
-      <div style={{ position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none" }}>
-        <PlexusBg />
-      </div>
+      <PlexusBg />
 
       {/* ── Hero ── */}
       <section style={{ padding: "76px 24px 0" }}>
