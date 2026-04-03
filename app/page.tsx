@@ -46,9 +46,9 @@ function PlexusBg() {
     const pulses: Pulse[] = [];
 
     const LAYER_CONFIG = [
-      { count: 80, speed: 0.14, dist: 220, lineAlpha: 0.32, nodeAlpha: 0.55, nodeR: 2.8, color: "58,85,133"   },
-      { count: 65, speed: 0.22, dist: 180, lineAlpha: 0.2,  nodeAlpha: 0.32, nodeR: 1.8, color: "70,100,155"  },
-      { count: 50, speed: 0.28, dist: 150, lineAlpha: 0.12, nodeAlpha: 0.2,  nodeR: 1.2, color: "90,125,180"  },
+      { count: 70, speed: 0.1,  dist: 240, lineAlpha: 0.38, nodeAlpha: 0.65, nodeR: 3.5, color: "50,78,128"   },
+      { count: 60, speed: 0.18, dist: 190, lineAlpha: 0.18, nodeAlpha: 0.28, nodeR: 2.0, color: "70,100,155"  },
+      { count: 55, speed: 0.26, dist: 160, lineAlpha: 0.09, nodeAlpha: 0.13, nodeR: 1.0, color: "100,135,190" },
     ];
 
     const init = () => {
@@ -146,15 +146,16 @@ function PlexusBg() {
           ctx.moveTo(tx, ty);
           ctx.lineTo(px, py);
           ctx.strokeStyle = grad;
-          ctx.lineWidth = li === 0 ? 1.5 : 1.0;
+          ctx.lineWidth = li === 0 ? 2.0 : 1.0;
           ctx.stroke();
 
           // Pulse head glow
-          const grd = ctx.createRadialGradient(px, py, 0, px, py, 6);
+          const glowR = li === 0 ? 9 : 5;
+          const grd = ctx.createRadialGradient(px, py, 0, px, py, glowR);
           grd.addColorStop(0, "rgba(" + cfg.color + "," + (brightness * 0.9) + ")");
           grd.addColorStop(1, "rgba(" + cfg.color + ",0)");
           ctx.beginPath();
-          ctx.arc(px, py, 6, 0, Math.PI*2);
+          ctx.arc(px, py, glowR, 0, Math.PI*2);
           ctx.fillStyle = grd;
           ctx.fill();
         });
