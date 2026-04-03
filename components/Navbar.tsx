@@ -1,5 +1,6 @@
 "use client";
-import { useState, useEffect } from "react";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -10,13 +11,24 @@ export default function Navbar() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => setScrolled(window.scrollY > 32);
     const onResize = () => setIsMobile(window.innerWidth < 768);
-    onScroll(); onResize();
+
+    onScroll();
+    onResize();
+
     window.addEventListener("scroll", onScroll);
     window.addEventListener("resize", onResize);
-    return () => { window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onResize); };
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onResize);
+    };
   }, []);
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
 
   const links = [
     { href: "/systems", label: "Systems" },
@@ -24,67 +36,137 @@ export default function Navbar() {
     { href: "/contact", label: "Contact" },
   ];
 
-  // Homepage: transparent over dark hero, solidify on scroll
-  // All other pages: always white frosted glass
   const isHome = pathname === "/";
-  const alwaysLight = !isHome || scrolled;
-
-  const navBg = "rgba(255,255,255,0.95)";
-  const navBorder = scrolled ? "1px solid rgba(232,230,225,0.9)" : "1px solid transparent";
-  const textColor = "#1A1A1A";
-  const mutedColor = "#6B6865";
-  const ctaBg = "#1C1E26";
-  const ctaColor = "#ffffff";
-  const logoBg = "#1C1E26";
+  const isTransparent = isHome && !scrolled;
+  const navBg = isTransparent ? "rgba(255,255,255,0.06)" : "rgba(255,255,255,0.82)";
+  const navBorder = isTransparent
+    ? "1px solid rgba(255,255,255,0.08)"
+    : "1px solid rgba(229,225,216,0.92)";
+  const textColor = isTransparent ? "rgba(255,255,255,0.92)" : "#17181B";
+  const mutedColor = isTransparent ? "rgba(255,255,255,0.66)" : "#66625d";
+  const logoBg = isTransparent ? "rgba(255,255,255,0.14)" : "#171a22";
+  const ctaBg = isTransparent ? "#F2EBD9" : "#171a22";
+  const ctaColor = isTransparent ? "#17181B" : "#FFFFFF";
 
   return (
-    <header style={{
-      position: "fixed", top: 0, left: 0, right: 0, zIndex: 200,
-      background: navBg,
-      backdropFilter: "blur(20px)",
-      WebkitBackdropFilter: "blur(20px)",
-      borderBottom: navBorder,
-      transition: "background 0.3s ease, border-color 0.3s ease",
-    }}>
-      <div style={{
-        maxWidth: "1280px", margin: "0 auto", padding: "0 32px", height: "60px",
-        display: "flex", alignItems: "center", justifyContent: "space-between",
-      }}>
-        <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "9px" }}>
-          <div style={{ width: 28, height: 28, background: logoBg, borderRadius: "7px", display: "flex", alignItems: "center", justifyContent: "center", transition: "background 0.3s" }}>
+    <header
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 200,
+        padding: "12px 18px 0",
+        transition: "padding 0.25s ease",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: "1280px",
+          margin: "0 auto",
+          padding: "0 18px",
+          height: "58px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          borderRadius: "18px",
+          background: navBg,
+          backdropFilter: "blur(22px) saturate(150%)",
+          WebkitBackdropFilter: "blur(22px) saturate(150%)",
+          border: navBorder,
+          boxShadow: isTransparent
+            ? "none"
+            : "0 8px 26px rgba(33, 37, 45, 0.08)",
+          transition:
+            "background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease",
+        }}
+      >
+        <Link
+          href="/"
+          style={{
+            textDecoration: "none",
+            display: "flex",
+            alignItems: "center",
+            gap: "9px",
+          }}
+        >
+          <div
+            style={{
+              width: 28,
+              height: 28,
+              background: logoBg,
+              borderRadius: "8px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              transition: "background 0.3s ease",
+            }}
+          >
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <rect x="1" y="1" width="5" height="5" rx="1.2" fill="white" />
-              <rect x="8" y="1" width="5" height="5" rx="1.2" fill="white" opacity="0.4" />
-              <rect x="1" y="8" width="5" height="5" rx="1.2" fill="white" opacity="0.4" />
+              <rect x="8" y="1" width="5" height="5" rx="1.2" fill="white" opacity="0.42" />
+              <rect x="1" y="8" width="5" height="5" rx="1.2" fill="white" opacity="0.42" />
               <rect x="8" y="8" width="5" height="5" rx="1.2" fill="white" />
             </svg>
           </div>
-          <span style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 600, fontSize: "0.975rem", color: textColor, letterSpacing: "-0.015em", transition: "color 0.3s" }}>
+          <span
+            style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontWeight: 600,
+              fontSize: "0.975rem",
+              color: textColor,
+              letterSpacing: "-0.015em",
+              transition: "color 0.3s ease",
+            }}
+          >
             Novum Systems
           </span>
         </Link>
 
         {!isMobile && (
-          <nav style={{ display: "flex", alignItems: "center", gap: "0" }}>
-            {links.map(l => (
-              <Link key={l.href} href={l.href} style={{
-                padding: "7px 16px", borderRadius: "100px",
-                fontSize: "0.875rem", fontWeight: 500,
-                color: pathname === l.href ? textColor : mutedColor,
-                background: "transparent", textDecoration: "none",
-                transition: "color 0.2s",
-              }}>
-                {l.label}
+          <nav style={{ display: "flex", alignItems: "center", gap: 2 }}>
+            {links.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                style={{
+                  padding: "7px 15px",
+                  borderRadius: "999px",
+                  fontSize: "0.875rem",
+                  fontWeight: 500,
+                  color: pathname === link.href ? textColor : mutedColor,
+                  background:
+                    pathname === link.href
+                      ? isTransparent
+                        ? "rgba(255,255,255,0.09)"
+                        : "rgba(23,26,34,0.05)"
+                      : "transparent",
+                  textDecoration: "none",
+                  transition: "color 0.2s, background 0.2s",
+                }}
+              >
+                {link.label}
               </Link>
             ))}
-            <Link href="/contact" style={{
-              marginLeft: "12px", padding: "8px 20px", borderRadius: "100px",
-              background: ctaBg, color: ctaColor,
-              fontSize: "0.875rem", fontWeight: 600, textDecoration: "none",
-              transition: "background 0.3s, color 0.3s, transform 0.15s",
-            }}
-              onMouseEnter={e => (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)"}
-              onMouseLeave={e => (e.currentTarget as HTMLElement).style.transform = "translateY(0)"}
+            <Link
+              href="/contact"
+              style={{
+                marginLeft: 10,
+                padding: "9px 18px",
+                borderRadius: "999px",
+                background: ctaBg,
+                color: ctaColor,
+                fontSize: "0.875rem",
+                fontWeight: 600,
+                textDecoration: "none",
+                transition: "transform 0.15s ease, background 0.25s ease",
+              }}
+              onMouseEnter={(event) => {
+                event.currentTarget.style.transform = "translateY(-1px)";
+              }}
+              onMouseLeave={(event) => {
+                event.currentTarget.style.transform = "translateY(0)";
+              }}
             >
               Book a Call
             </Link>
@@ -92,27 +174,82 @@ export default function Navbar() {
         )}
 
         {isMobile && (
-          <button onClick={() => setMenuOpen(!menuOpen)} style={{
-            background: "none",
-            border: `1px solid ${alwaysLight ? "#E8E6E1" : "rgba(255,255,255,0.3)"}`,
-            borderRadius: "8px", padding: "7px 10px", cursor: "pointer",
-            display: "flex", flexDirection: "column", gap: "4px",
-          }}>
+          <button
+            onClick={() => setMenuOpen((open) => !open)}
+            style={{
+              background: "none",
+              border: `1px solid ${
+                isTransparent ? "rgba(255,255,255,0.2)" : "rgba(201,197,188,0.8)"
+              }`,
+              borderRadius: "10px",
+              padding: "7px 10px",
+              cursor: "pointer",
+              display: "flex",
+              flexDirection: "column",
+              gap: "4px",
+            }}
+          >
             <span style={{ width: 16, height: 1.5, background: textColor, display: "block" }} />
-            <span style={{ width: 10, height: 1.5, background: textColor, display: "block", opacity: menuOpen ? 0 : 1 }} />
+            <span
+              style={{
+                width: 10,
+                height: 1.5,
+                background: textColor,
+                display: "block",
+                opacity: menuOpen ? 0 : 1,
+              }}
+            />
             <span style={{ width: 16, height: 1.5, background: textColor, display: "block" }} />
           </button>
         )}
       </div>
 
       {isMobile && menuOpen && (
-        <div style={{ background: "rgba(255,255,255,0.98)", backdropFilter: "blur(20px)", borderTop: "1px solid #E8E6E1", padding: "12px 24px 24px" }}>
-          {[{ href: "/", label: "Home" }, ...links].map(l => (
-            <Link key={l.href} href={l.href} onClick={() => setMenuOpen(false)} style={{ display: "block", padding: "12px 0", borderBottom: "1px solid #F0EEE9", fontSize: "1rem", color: "#1A1A1A", textDecoration: "none", fontWeight: 500 }}>
-              {l.label}
+        <div
+          style={{
+            maxWidth: "1280px",
+            margin: "10px auto 0",
+            padding: "14px 20px 20px",
+            borderRadius: "18px",
+            background: "rgba(255,255,255,0.88)",
+            backdropFilter: "blur(22px) saturate(160%)",
+            WebkitBackdropFilter: "blur(22px) saturate(160%)",
+            border: "1px solid rgba(229,225,216,0.95)",
+            boxShadow: "0 14px 36px rgba(33, 37, 45, 0.1)",
+          }}
+        >
+          {[{ href: "/", label: "Home" }, ...links].map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              style={{
+                display: "block",
+                padding: "12px 0",
+                borderBottom: "1px solid rgba(229,225,216,0.8)",
+                fontSize: "1rem",
+                color: "#17181B",
+                textDecoration: "none",
+                fontWeight: 500,
+              }}
+            >
+              {link.label}
             </Link>
           ))}
-          <Link href="/contact" onClick={() => setMenuOpen(false)} style={{ display: "block", textAlign: "center", padding: "13px", borderRadius: "100px", marginTop: "16px", background: "#1C1E26", color: "#fff", fontSize: "0.95rem", fontWeight: 600, textDecoration: "none" }}>
+          <Link
+            href="/contact"
+            style={{
+              display: "block",
+              textAlign: "center",
+              padding: "13px",
+              borderRadius: "999px",
+              marginTop: "16px",
+              background: "#171a22",
+              color: "#fff",
+              fontSize: "0.95rem",
+              fontWeight: 600,
+              textDecoration: "none",
+            }}
+          >
             Book a Call
           </Link>
         </div>
