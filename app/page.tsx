@@ -140,31 +140,21 @@ function PlexusBg() {
   );
 }
 
-function OperationalEngineGraphic() {
+function HeroDotCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const svgRef = useRef<SVGSVGElement>(null);
-  const wrapRef = useRef<HTMLDivElement>(null);
-  const engineRef = useRef<HTMLDivElement>(null);
-  const pillRefs = useRef<Record<string, HTMLDivElement | null>>({});
-
   useEffect(() => {
     const canvas = canvasRef.current;
-    const svgEl = svgRef.current;
-    const wrap = wrapRef.current;
-    const engine = engineRef.current;
-    if (!canvas || !svgEl || !wrap || !engine) return;
+    if (!canvas) return;
     const ctx = canvas.getContext("2d")!;
     let raf = 0;
     const SPACING = 22, DOT_R = 1.1;
-
-    function resizeCanvas() {
+    function resize() {
       canvas!.width = canvas!.offsetWidth;
       canvas!.height = canvas!.offsetHeight;
     }
-    resizeCanvas();
-    window.addEventListener("resize", onResize);
-
-    function drawDots(ts: number) {
+    resize();
+    window.addEventListener("resize", resize);
+    function tick(ts: number) {
       ctx.clearRect(0, 0, canvas!.width, canvas!.height);
       const cx = canvas!.width * 0.5, cy = canvas!.height * 0.5;
       const wt = ts * 0.00045;
@@ -182,7 +172,31 @@ function OperationalEngineGraphic() {
           ctx.fill();
         }
       }
+      raf = requestAnimationFrame(tick);
     }
+    raf = requestAnimationFrame(tick);
+    return () => { cancelAnimationFrame(raf); window.removeEventListener("resize", resize); };
+  }, []);
+  return (
+    <canvas
+      ref={canvasRef}
+      style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none", display: "block", zIndex: 1 }}
+    />
+  );
+}
+
+function OperationalEngineGraphic() {
+  const svgRef = useRef<SVGSVGElement>(null);
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const engineRef = useRef<HTMLDivElement>(null);
+  const pillRefs = useRef<Record<string, HTMLDivElement | null>>({});
+
+  useEffect(() => {
+    const svgEl = svgRef.current;
+    const wrap = wrapRef.current;
+    const engine = engineRef.current;
+    if (!svgEl || !wrap || !engine) return;
+    let raf = 0;
 
     type PLine = { el: SVGPathElement; len: number; trail: number; pillId?: string; lit?: boolean };
     let inLines: PLine[] = [];
@@ -258,7 +272,6 @@ function OperationalEngineGraphic() {
     function setEngineGlow(on: boolean) { engine!.classList.toggle("oeg-engine-glow", on); }
 
     function tick(ts: number) {
-      drawDots(ts);
       if (!phaseStart) phaseStart = ts;
       const elapsed = ts - phaseStart;
       if (phase === "in") {
@@ -289,7 +302,7 @@ function OperationalEngineGraphic() {
       raf = requestAnimationFrame(tick);
     }
 
-    function onResize() { resizeCanvas(); buildConnectors(); }
+    function onResize() { buildConnectors(); }
 
     document.fonts.ready.then(() => setTimeout(() => { buildConnectors(); raf = requestAnimationFrame(tick); }, 120));
 
@@ -297,9 +310,9 @@ function OperationalEngineGraphic() {
   }, []);
 
   const pillBase: CSSProperties = {
-    display: "flex", alignItems: "center", gap: 7, padding: "7px 10px",
+    display: "flex", alignItems: "center", gap: 7, padding: "8px 11px",
     border: "1px solid #232323", borderRadius: 5, background: "#171717",
-    fontSize: 11, color: "#b0b0b0", fontWeight: 500, whiteSpace: "nowrap",
+    fontSize: 13, color: "#b0b0b0", fontWeight: 500, whiteSpace: "nowrap",
   };
 
   const inputs = [
@@ -330,16 +343,12 @@ function OperationalEngineGraphic() {
   return (
     <div
       ref={wrapRef}
-      style={{ position: "relative", background: "#111", padding: "44px 40px 48px", overflow: "hidden", borderBottomLeftRadius: 28, borderBottomRightRadius: 28 }}
+      style={{ position: "relative", background: "transparent", padding: "44px 40px 48px", overflow: "hidden" }}
     >
-      <canvas
-        ref={canvasRef}
-        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none", display: "block" }}
-      />
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 2 }}>
         {/* Inputs */}
         <div style={{ width: 148, flexShrink: 0 }}>
-          <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase", color: "#383838", marginBottom: 11 }}>Operational Inputs</div>
+          <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase", color: "#383838", marginBottom: 11 }}>Operational Inputs</div>
           <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
             {inputs.map(({ id, label, icon }) => (
               <div key={id} ref={(el) => { pillRefs.current[id] = el; }} className="oeg-pill" style={pillBase}>
@@ -353,15 +362,15 @@ function OperationalEngineGraphic() {
         <div style={{ width: 280, flexShrink: 0 }}>
           <div ref={engineRef} className="oeg-engine" style={{ width: "100%", border: "1px solid #3d2819", borderRadius: 7, background: "#161210" }}>
             <div style={{ padding: "11px 13px 9px", borderBottom: "1px solid #201a16" }}>
-              <div style={{ fontSize: 8.5, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#c8581a", marginBottom: 3 }}>Novum System</div>
-              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "#d8d8d8" }}>Operational Engine</div>
+              <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#c8581a", marginBottom: 3 }}>Novum System</div>
+              <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "#d8d8d8" }}>Operational Engine</div>
             </div>
             <div style={{ display: "flex", flexDirection: "column" }}>
               {engineRows.map(({ title, desc }, i) => (
-                <div key={title} style={{ display: "flex", alignItems: "flex-start", gap: 8, padding: "8px 11px", borderBottom: i < engineRows.length - 1 ? "1px solid #1c1c1c" : "none", fontSize: 10, color: "#4e4e4e", lineHeight: 1.5 }}>
-                  <div style={{ width: 4, height: 4, borderRadius: "50%", background: "#c8581a", flexShrink: 0, marginTop: 4, opacity: 0.55 }} />
+                <div key={title} style={{ display: "flex", alignItems: "flex-start", gap: 8, padding: "9px 12px", borderBottom: i < engineRows.length - 1 ? "1px solid #1c1c1c" : "none", fontSize: 11.5, color: "#4e4e4e", lineHeight: 1.5 }}>
+                  <div style={{ width: 4, height: 4, borderRadius: "50%", background: "#c8581a", flexShrink: 0, marginTop: 5, opacity: 0.55 }} />
                   <div>
-                    <strong style={{ display: "block", fontWeight: 600, color: "#999", fontSize: 10.5, marginBottom: 1 }}>{title}</strong>
+                    <strong style={{ display: "block", fontWeight: 600, color: "#999", fontSize: 12, marginBottom: 1 }}>{title}</strong>
                     {desc}
                   </div>
                 </div>
@@ -371,7 +380,7 @@ function OperationalEngineGraphic() {
         </div>
         {/* Outputs */}
         <div style={{ width: 148, flexShrink: 0 }}>
-          <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase", color: "#383838", marginBottom: 11, textAlign: "right" }}>Operational Outputs</div>
+          <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase", color: "#383838", marginBottom: 11, textAlign: "right" }}>Operational Outputs</div>
           <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
             {outputs.map(({ id, label, icon }) => (
               <div key={id} ref={(el) => { pillRefs.current[id] = el; }} className="oeg-pill" style={{ ...pillBase, flexDirection: "row-reverse", textAlign: "right", justifyContent: "flex-start" }}>
@@ -443,8 +452,7 @@ export default function HomePage() {
         <div
           className="hero-card"
           style={{
-            background:
-              "radial-gradient(circle at 18% 18%, rgba(102,142,214,0.16), transparent 28%), radial-gradient(circle at 88% 24%, rgba(88,130,214,0.12), transparent 26%), linear-gradient(180deg, #191c24 0%, #151821 100%)",
+            background: "#141414",
             borderRadius: 28,
             position: "relative",
             overflow: "hidden",
@@ -454,7 +462,7 @@ export default function HomePage() {
             boxShadow: "0 36px 90px rgba(15,18,25,0.22)",
           }}
         >
-          <div className="dot-grid" style={{ position: "absolute", inset: 0, opacity: 0.5, zIndex: 0 }} />
+          {graphicReady && <HeroDotCanvas />}
           <div
             style={{
               position: "relative",
@@ -494,7 +502,7 @@ export default function HomePage() {
                 letterSpacing: "-0.04em",
                 color: "#fff",
                 marginBottom: 24,
-                maxWidth: 520,
+                maxWidth: 820,
               }}
             >
               Software that{" "}
@@ -522,7 +530,7 @@ export default function HomePage() {
                 fontSize: "clamp(1rem, 1.3vw, 1.12rem)",
                 color: "rgba(255,255,255,0.56)",
                 lineHeight: 1.85,
-                maxWidth: 470,
+                maxWidth: 680,
                 marginBottom: 38,
               }}
             >
