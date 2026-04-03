@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import DotCanvas from "@/components/DotCanvas";
 
 export default function SystemsPage() {
   const systems = [
@@ -149,13 +150,8 @@ export default function SystemsPage() {
           position: "relative",
           overflow: "hidden",
         }}>
-          {/* texture */}
-          <div style={{
-            position: "absolute", inset: 0,
-            backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
-            backgroundSize: "24px 24px, 80px 80px, 80px 80px",
-          }} />
-          <div style={{ position: "relative", zIndex: 1, maxWidth: "640px" }}>
+          <DotCanvas />
+          <div style={{ position: "relative", zIndex: 2, maxWidth: "640px" }}>
             <div style={{
               display: "inline-flex", alignItems: "center", gap: "7px",
               padding: "5px 14px", borderRadius: "100px",
@@ -173,7 +169,7 @@ export default function SystemsPage() {
               color: "#fff", marginBottom: "20px",
             }}>
               Custom systems.<br />
-              <span style={{ color: "rgba(240,196,160,0.85)", fontStyle: "italic", fontWeight: 300 }}>One coherent operation.</span>
+              <span style={{ color: "rgba(240,196,160,0.85)", fontStyle: "italic", fontWeight: 300, textShadow: "0 0 24px rgba(240,196,160,0.55), 0 0 70px rgba(200,88,26,0.22)" }}>One coherent operation.</span>
             </h1>
             <p style={{ color: "rgba(255,255,255,0.48)", fontSize: "1.05rem", lineHeight: 1.75, maxWidth: "520px" }}>
               Each Novum system is customized to your business. Most clients start with one and expand — or combine them into a fully integrated operational platform.
@@ -288,12 +284,8 @@ export default function SystemsPage() {
           padding: "80px 60px", textAlign: "center",
           position: "relative", overflow: "hidden",
         }}>
-          <div style={{
-            position: "absolute", inset: 0,
-            backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.055) 1px, transparent 1px), linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
-            backgroundSize: "24px 24px, 80px 80px, 80px 80px",
-          }} />
-          <div style={{ position: "relative", zIndex: 1, maxWidth: "560px", margin: "0 auto" }}>
+          <DotCanvas />
+          <div style={{ position: "relative", zIndex: 2, maxWidth: "560px", margin: "0 auto" }}>
             <h2 style={{
               fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
               fontSize: "clamp(2rem, 4vw, 3rem)",
@@ -318,6 +310,7 @@ export default function SystemsPage() {
       <style jsx>{`
         @media (max-width: 900px) {
           .sys-detail-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
+          .sys-detail-grid > div:first-child { position: static !important; }
         }
       `}</style>
     </div>

@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import DotCanvas from "@/components/DotCanvas";
 
 export default function ApproachPage() {
   const principles = [
@@ -34,12 +35,8 @@ export default function ApproachPage() {
           background: "#141414", borderRadius: "20px",
           padding: "80px 60px", position: "relative", overflow: "hidden",
         }}>
-          <div style={{
-            position: "absolute", inset: 0,
-            backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
-            backgroundSize: "24px 24px, 80px 80px, 80px 80px",
-          }} />
-          <div style={{ position: "relative", zIndex: 1, maxWidth: "680px" }}>
+          <DotCanvas />
+          <div style={{ position: "relative", zIndex: 2, maxWidth: "680px" }}>
             <div style={{
               display: "inline-flex", alignItems: "center", gap: "7px",
               padding: "5px 14px", borderRadius: "100px",
@@ -57,7 +54,7 @@ export default function ApproachPage() {
               color: "#fff", marginBottom: "20px",
             }}>
               We don&apos;t sell software.<br />
-              <span style={{ fontStyle: "italic", fontWeight: 300, color: "rgba(240,196,160,0.85)" }}>We design systems.</span>
+              <span style={{ fontStyle: "italic", fontWeight: 300, color: "rgba(240,196,160,0.85)", textShadow: "0 0 24px rgba(240,196,160,0.55), 0 0 70px rgba(200,88,26,0.22)" }}>We design systems.</span>
             </h1>
             <p style={{ color: "rgba(255,255,255,0.48)", fontSize: "1.05rem", lineHeight: 1.75, maxWidth: "540px" }}>
               There&apos;s a meaningful difference between deploying software and designing an operational system. One puts a tool in your hands. The other changes how your business operates.
@@ -153,12 +150,8 @@ export default function ApproachPage() {
           background: "#141414", borderRadius: "20px",
           padding: "80px 60px", position: "relative", overflow: "hidden",
         }}>
-          <div style={{
-            position: "absolute", inset: 0,
-            backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.055) 1px, transparent 1px), linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
-            backgroundSize: "24px 24px, 80px 80px, 80px 80px",
-          }} />
-          <div style={{ position: "relative", zIndex: 1 }}>
+          <DotCanvas />
+          <div style={{ position: "relative", zIndex: 2 }}>
             <div style={{ textAlign: "center", marginBottom: "64px" }}>
               <div style={{
                 display: "inline-flex", alignItems: "center", gap: "7px",
@@ -295,12 +288,8 @@ export default function ApproachPage() {
           padding: "80px 60px", textAlign: "center",
           position: "relative", overflow: "hidden",
         }}>
-          <div style={{
-            position: "absolute", inset: 0,
-            backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.055) 1px, transparent 1px), linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
-            backgroundSize: "24px 24px, 80px 80px, 80px 80px",
-          }} />
-          <div style={{ position: "relative", zIndex: 1, maxWidth: "520px", margin: "0 auto" }}>
+          <DotCanvas />
+          <div style={{ position: "relative", zIndex: 2, maxWidth: "520px", margin: "0 auto" }}>
             <h2 style={{
               fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
               fontSize: "clamp(2rem, 4vw, 3rem)",
@@ -324,6 +313,7 @@ export default function ApproachPage() {
       <style jsx>{`
         @media (max-width: 900px) {
           .two-col { grid-template-columns: 1fr !important; }
+          .two-col > div:first-child { position: static !important; }
           .compare-grid { grid-template-columns: 1fr !important; }
           .who-grid { grid-template-columns: 1fr !important; }
           .principle-row { grid-template-columns: 1fr !important; padding: 24px !important; }

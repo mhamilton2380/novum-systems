@@ -597,7 +597,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div style={{ position: "relative" }}>
+          <div style={{ position: "relative" }} className="oeg-graphic-outer">
             {graphicReady ? <OperationalEngineGraphic /> : null}
           </div>
         </div>
