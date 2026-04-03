@@ -46,9 +46,9 @@ function PlexusBg() {
     const pulses: Pulse[] = [];
 
     const LAYER_CONFIG = [
-      { count: 90, speed: 0.1,  dist: 200, lineAlpha: 0.55, nodeAlpha: 0.9,  nodeR: 4.0, color: "50,78,128"   },
-      { count: 70, speed: 0.18, dist: 170, lineAlpha: 0.28, nodeAlpha: 0.45, nodeR: 2.4, color: "70,100,155"  },
-      { count: 60, speed: 0.26, dist: 140, lineAlpha: 0.14, nodeAlpha: 0.22, nodeR: 1.4, color: "100,135,190" },
+      { count: 90, speed: 0.1, dist: 200, lineAlpha: 0.55, nodeAlpha: 0.9, nodeR: 4.0, color: "50,78,128" },
+      { count: 70, speed: 0.18, dist: 170, lineAlpha: 0.3, nodeAlpha: 0.5, nodeR: 2.5, color: "70,100,155" },
+      { count: 60, speed: 0.26, dist: 140, lineAlpha: 0.15, nodeAlpha: 0.25, nodeR: 1.5, color: "100,135,190" },
     ];
 
     const init = () => {
@@ -80,7 +80,7 @@ function PlexusBg() {
       const dy = layer[i].y - layer[j].y;
       const d = Math.sqrt(dx*dx + dy*dy);
       if (d < LAYER_CONFIG[li].dist) {
-        pulses.push({ i, j, layer: li, t: 0, speed: 0.008 + Math.random() * 0.01 });
+        pulses.push({ i, j, layer: li, t: 0, speed: 0.012 + Math.random() * 0.014 });
       }
     };
 
@@ -89,7 +89,7 @@ function PlexusBg() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // Spawn new pulses occasionally
-      if (time % 8 === 0 && pulses.length < 40) spawnPulse(); if (time % 8 === 0 && pulses.length < 40) spawnPulse();
+      if (time % 6 === 0 && pulses.length < 50) { spawnPulse(); spawnPulse(); }
 
       // Update pulses
       for (let p = pulses.length - 1; p >= 0; p--) {
@@ -119,7 +119,7 @@ function PlexusBg() {
               ctx.moveTo(layer[i].x, layer[i].y);
               ctx.lineTo(layer[j].x, layer[j].y);
               ctx.strokeStyle = "rgba(" + cfg.color + "," + a + ")";
-              ctx.lineWidth = li === 0 ? 1.2 : li === 1 ? 0.7 : 0.4;
+              ctx.lineWidth = li === 0 ? 1.4 : li === 1 ? 0.9 : 0.5;
               ctx.stroke();
             }
           }
