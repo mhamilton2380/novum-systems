@@ -35,148 +35,84 @@ function PlexusBg() {
     let raf = 0;
     let time = 0;
 
-    type Node = { x: number; y: number; vx: number; vy: number; b: number };
-    type Pulse = { i: number; j: number; layer: number; t: number; speed: number };
-
-    const layers: Node[][] = [[], [], [], []];
-    const pulses: Pulse[] = [];
-
-    // 4 layers: extreme depth — huge bright close nodes → microscopic distant dust
-    const LAYER_CONFIG = [
-      { count: 14,  speed: 0.018, dist: 420, lineAlpha: 0.88, nodeR: 9.0, color: "40,80,180",  bMin: 5.0, bMax: 10.0 },
-      { count: 42,  speed: 0.058, dist: 270, lineAlpha: 0.50, nodeR: 3.6, color: "60,110,200", bMin: 1.2, bMax: 4.0  },
-      { count: 130, speed: 0.13,  dist: 185, lineAlpha: 0.17, nodeR: 1.4, color: "80,130,210", bMin: 0.14, bMax: 0.9 },
-      { count: 200, speed: 0.24,  dist: 130, lineAlpha: 0.05, nodeR: 0.55,color: "100,150,220",bMin: 0.02, bMax: 0.14},
-    ];
+    const SPACING = 72;
+    type GridPulse = { axis: "h" | "v"; line: number; t: number; speed: number; alpha: number };
+    const pulses: GridPulse[] = [];
 
     const init = () => {
       canvas.width = window.innerWidth;
       canvas.height = Math.max(document.documentElement.scrollHeight, window.innerHeight);
-      layers.forEach((layer, li) => {
-        layer.length = 0;
-        const cfg = LAYER_CONFIG[li];
-        for (let i = 0; i < cfg.count; i++) {
-          const b = cfg.bMin + Math.random() * (cfg.bMax - cfg.bMin);
-          layer.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            vx: (Math.random() - 0.5) * cfg.speed,
-            vy: (Math.random() - 0.5) * cfg.speed,
-            b,
-          });
-        }
-      });
       pulses.length = 0;
     };
 
     const spawnPulse = () => {
-      const li = Math.floor(Math.random() * 4);
-      const layer = layers[li];
-      if (layer.length < 2) return;
-      const i = Math.floor(Math.random() * layer.length);
-      let j = Math.floor(Math.random() * layer.length);
-      if (j === i) j = (j + 1) % layer.length;
-      const dx = layer[i].x - layer[j].x;
-      const dy = layer[i].y - layer[j].y;
-      const d = Math.sqrt(dx * dx + dy * dy);
-      if (d < LAYER_CONFIG[li].dist) {
-        pulses.push({ i, j, layer: li, t: 0, speed: 0.008 + Math.random() * 0.01 });
-      }
+      const W = canvas.width;
+      const H = canvas.height;
+      const cols = Math.floor(W / SPACING);
+      const rows = Math.floor(H / SPACING);
+      const axis: "h" | "v" = Math.random() < 0.5 ? "h" : "v";
+      const line = axis === "h"
+        ? 1 + Math.floor(Math.random() * (rows - 1))
+        : 1 + Math.floor(Math.random() * (cols - 1));
+      pulses.push({ axis, line, t: 0, speed: 0.0012 + Math.random() * 0.0018, alpha: 0.45 + Math.random() * 0.35 });
     };
 
     const tick = () => {
       time++;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const W = canvas.width;
+      const H = canvas.height;
+      ctx.clearRect(0, 0, W, H);
 
-      if (time % 8 === 0 && pulses.length < 40) { spawnPulse(); spawnPulse(); }
+      if (time % 90 === 0 && pulses.length < 10) spawnPulse();
 
-      for (let p = pulses.length - 1; p >= 0; p--) {
-        pulses[p].t += pulses[p].speed;
-        if (pulses[p].t >= 1) pulses.splice(p, 1);
+      const cols = Math.floor(W / SPACING);
+      const rows = Math.floor(H / SPACING);
+
+      // Grid lines
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = "rgba(80,120,200,0.07)";
+      for (let c = 1; c < cols; c++) {
+        ctx.beginPath(); ctx.moveTo(c * SPACING, 0); ctx.lineTo(c * SPACING, H); ctx.stroke();
+      }
+      for (let r = 1; r < rows; r++) {
+        ctx.beginPath(); ctx.moveTo(0, r * SPACING); ctx.lineTo(W, r * SPACING); ctx.stroke();
       }
 
-      for (let li = layers.length - 1; li >= 0; li--) {
-        const layer = layers[li];
-        const cfg = LAYER_CONFIG[li];
+      // Pulses
+      for (let i = pulses.length - 1; i >= 0; i--) {
+        const p = pulses[i];
+        p.t += p.speed;
+        if (p.t > 1) { pulses.splice(i, 1); continue; }
+        const brightness = Math.sin(p.t * Math.PI);
+        const t0 = Math.max(0, p.t - 0.09);
 
-        layer.forEach(n => {
-          n.x += n.vx; n.y += n.vy;
-          if (n.x < -20 || n.x > canvas.width + 20) n.vx *= -1;
-          if (n.y < -20 || n.y > canvas.height + 20) n.vy *= -1;
-        });
-
-        // Draw edges — line alpha boosted by avg brightness of endpoints
-        for (let i = 0; i < layer.length; i++) {
-          for (let j = i + 1; j < layer.length; j++) {
-            const dx = layer[i].x - layer[j].x;
-            const dy = layer[i].y - layer[j].y;
-            const d = Math.sqrt(dx * dx + dy * dy);
-            if (d < cfg.dist) {
-              const bAvg = (layer[i].b + layer[j].b) * 0.5;
-              const a = (1 - d / cfg.dist) * cfg.lineAlpha * Math.min(bAvg, 1.8);
-              ctx.beginPath();
-              ctx.moveTo(layer[i].x, layer[i].y);
-              ctx.lineTo(layer[j].x, layer[j].y);
-              ctx.strokeStyle = "rgba(" + cfg.color + "," + Math.min(a, 0.9) + ")";
-              ctx.lineWidth = li === 0 ? Math.min(layer[i].b * 1.2, 2.0) : li === 1 ? 0.8 : 0.4;
-              ctx.stroke();
-            }
-          }
+        if (p.axis === "h") {
+          const y = p.line * SPACING;
+          const px = p.t * W;
+          const tx = t0 * W;
+          const tg = ctx.createLinearGradient(tx, y, px, y);
+          tg.addColorStop(0, "rgba(100,150,240,0)");
+          tg.addColorStop(1, `rgba(110,165,245,${brightness * p.alpha * 0.65})`);
+          ctx.beginPath(); ctx.moveTo(tx, y); ctx.lineTo(px, y);
+          ctx.strokeStyle = tg; ctx.lineWidth = 1.5; ctx.stroke();
+          const gr = ctx.createRadialGradient(px, y, 0, px, y, 14);
+          gr.addColorStop(0, `rgba(130,185,255,${brightness * p.alpha * 0.7})`);
+          gr.addColorStop(1, "rgba(100,160,255,0)");
+          ctx.beginPath(); ctx.arc(px, y, 14, 0, Math.PI * 2); ctx.fillStyle = gr; ctx.fill();
+        } else {
+          const x = p.line * SPACING;
+          const py2 = p.t * H;
+          const ty = t0 * H;
+          const tg = ctx.createLinearGradient(x, ty, x, py2);
+          tg.addColorStop(0, "rgba(100,150,240,0)");
+          tg.addColorStop(1, `rgba(110,165,245,${brightness * p.alpha * 0.65})`);
+          ctx.beginPath(); ctx.moveTo(x, ty); ctx.lineTo(x, py2);
+          ctx.strokeStyle = tg; ctx.lineWidth = 1.5; ctx.stroke();
+          const gr = ctx.createRadialGradient(x, py2, 0, x, py2, 14);
+          gr.addColorStop(0, `rgba(130,185,255,${brightness * p.alpha * 0.7})`);
+          gr.addColorStop(1, "rgba(100,160,255,0)");
+          ctx.beginPath(); ctx.arc(x, py2, 14, 0, Math.PI * 2); ctx.fillStyle = gr; ctx.fill();
         }
-
-        // Pulses
-        pulses.filter(p => p.layer === li).forEach(p => {
-          const n1 = layer[p.i];
-          const n2 = layer[p.j];
-          if (!n1 || !n2) return;
-          const px = n1.x + (n2.x - n1.x) * p.t;
-          const py = n1.y + (n2.y - n1.y) * p.t;
-          const brightness = Math.sin(p.t * Math.PI);
-          const bBoost = (n1.b + n2.b) * 0.5;
-
-          const t0 = Math.max(0, p.t - 0.12);
-          const tx = n1.x + (n2.x - n1.x) * t0;
-          const ty = n1.y + (n2.y - n1.y) * t0;
-          const grad = ctx.createLinearGradient(tx, ty, px, py);
-          grad.addColorStop(0, "rgba(" + cfg.color + ",0)");
-          grad.addColorStop(1, "rgba(" + cfg.color + "," + Math.min(brightness * bBoost, 1) + ")");
-          ctx.beginPath();
-          ctx.moveTo(tx, ty);
-          ctx.lineTo(px, py);
-          ctx.strokeStyle = grad;
-          ctx.lineWidth = li === 0 ? 2.2 : 1.0;
-          ctx.stroke();
-
-          const glowR = li === 0 ? 10 + bBoost * 6 : 5;
-          const grd = ctx.createRadialGradient(px, py, 0, px, py, glowR);
-          grd.addColorStop(0, "rgba(" + cfg.color + "," + Math.min(brightness * bBoost * 0.8, 1) + ")");
-          grd.addColorStop(1, "rgba(" + cfg.color + ",0)");
-          ctx.beginPath();
-          ctx.arc(px, py, glowR, 0, Math.PI * 2);
-          ctx.fillStyle = grd;
-          ctx.fill();
-        });
-
-        // Nodes — extreme brightness variation for depth
-        layer.forEach(n => {
-          const glowR = cfg.nodeR * 1.4 + n.b * 2.8;
-          const coreR = Math.max(0.4, Math.min(cfg.nodeR * n.b * 0.18, 7.0));
-          const glowAlpha = Math.min(n.b * 0.055, 0.22);
-          const coreAlpha = Math.min(0.22 + n.b * 0.09, 1.0);
-
-          const grd = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, glowR);
-          grd.addColorStop(0, "rgba(" + cfg.color + "," + glowAlpha + ")");
-          grd.addColorStop(1, "rgba(" + cfg.color + ",0)");
-          ctx.beginPath();
-          ctx.arc(n.x, n.y, glowR, 0, Math.PI * 2);
-          ctx.fillStyle = grd;
-          ctx.fill();
-
-          ctx.beginPath();
-          ctx.arc(n.x, n.y, coreR, 0, Math.PI * 2);
-          ctx.fillStyle = "rgba(" + cfg.color + "," + coreAlpha + ")";
-          ctx.fill();
-        });
       }
 
       raf = requestAnimationFrame(tick);
