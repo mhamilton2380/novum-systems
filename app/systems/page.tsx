@@ -108,7 +108,7 @@ export default function SystemsPage() {
               lineHeight: 1.04, letterSpacing: "-0.035em",
               color: "#fff", marginBottom: "20px",
             }}>
-              Four systems.<br />
+              Custom systems.<br />
               <span style={{ color: "rgba(200,215,255,0.8)", fontStyle: "italic", fontWeight: 300 }}>One coherent operation.</span>
             </h1>
             <p style={{ color: "rgba(255,255,255,0.48)", fontSize: "1.05rem", lineHeight: 1.75, maxWidth: "520px" }}>
