@@ -28,7 +28,7 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
-  background: var(--white);
+  background: #FFFFFF;
   color: var(--text);
   font-family: 'DM Sans', sans-serif;
   font-optical-sizing: auto;
