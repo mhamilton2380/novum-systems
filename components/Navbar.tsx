@@ -29,8 +29,8 @@ export default function Navbar() {
   const isHome = pathname === "/";
   const alwaysLight = !isHome || scrolled;
 
-  const navBg = alwaysLight ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0)";
-  const navBorder = alwaysLight ? "1px solid rgba(232,230,225,0.9)" : "1px solid transparent";
+  const navBg = alwaysLight ? "rgba(255,255,255,0.95)" : "rgba(15,16,22,0.5)";
+  const navBorder = alwaysLight ? "1px solid rgba(232,230,225,0.9)" : "1px solid rgba(255,255,255,0.08)";
   const textColor = alwaysLight ? "#1A1A1A" : "#ffffff";
   const mutedColor = alwaysLight ? "#6B6865" : "rgba(255,255,255,0.75)";
   const ctaBg = alwaysLight ? "#1C1E26" : "#F2EDD8";
