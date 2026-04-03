@@ -46,9 +46,9 @@ function PlexusBg() {
     const pulses: Pulse[] = [];
 
     const LAYER_CONFIG = [
-      { count: 90, speed: 0.1, dist: 200, lineAlpha: 0.55, nodeAlpha: 0.9, nodeR: 4.0, color: "50,78,128" },
-      { count: 70, speed: 0.18, dist: 170, lineAlpha: 0.3, nodeAlpha: 0.5, nodeR: 2.5, color: "70,100,155" },
-      { count: 60, speed: 0.26, dist: 140, lineAlpha: 0.15, nodeAlpha: 0.25, nodeR: 1.5, color: "100,135,190" },
+      { count: 160, speed: 0.1, dist: 200, lineAlpha: 0.55, nodeAlpha: 0.9, nodeR: 4.0, color: "50,78,128" },
+      { count: 130, speed: 0.18, dist: 170, lineAlpha: 0.3, nodeAlpha: 0.5, nodeR: 2.5, color: "70,100,155" },
+      { count: 110, speed: 0.26, dist: 140, lineAlpha: 0.15, nodeAlpha: 0.25, nodeR: 1.5, color: "100,135,190" },
     ];
 
     const init = () => {
@@ -195,6 +195,7 @@ function PlexusBg() {
         pointerEvents: "none",
         zIndex: 0,
         opacity: 1,
+        filter: "blur(2.5px)",
       }}
     />
   );
@@ -660,11 +661,11 @@ function HeroWorkflowGraphic() {
 }
 
 const glassCard: CSSProperties = {
-  background: "rgba(255,255,255,0.72)",
-  backdropFilter: "blur(16px)",
-  WebkitBackdropFilter: "blur(16px)",
-  border: "1px solid rgba(255,255,255,0.58)",
-  boxShadow: "0 14px 36px rgba(22,28,38,0.05)",
+  background: "rgba(255,255,255,0.38)",
+  backdropFilter: "blur(28px) saturate(1.6)",
+  WebkitBackdropFilter: "blur(28px) saturate(1.6)",
+  border: "1px solid rgba(255,255,255,0.72)",
+  boxShadow: "0 8px 32px rgba(22,28,38,0.07), inset 0 1px 0 rgba(255,255,255,0.9)",
 };
 
 export default function HomePage() {
