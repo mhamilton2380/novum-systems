@@ -43,15 +43,15 @@ function PlexusBg() {
 
     // 4 layers: extreme depth — huge bright close nodes → microscopic distant dust
     const LAYER_CONFIG = [
-      { count: 14,  speed: 0.018, dist: 420, lineAlpha: 0.88, nodeR: 9.0, color: "8,18,58",   bMin: 5.0, bMax: 10.0 },
-      { count: 42,  speed: 0.058, dist: 270, lineAlpha: 0.50, nodeR: 3.6, color: "16,44,100", bMin: 1.2, bMax: 4.0  },
-      { count: 130, speed: 0.13,  dist: 185, lineAlpha: 0.17, nodeR: 1.4, color: "36,72,140", bMin: 0.14, bMax: 0.9 },
-      { count: 200, speed: 0.24,  dist: 130, lineAlpha: 0.05, nodeR: 0.55,color: "55,92,165", bMin: 0.02, bMax: 0.14},
+      { count: 14,  speed: 0.018, dist: 420, lineAlpha: 0.88, nodeR: 9.0, color: "40,80,180",  bMin: 5.0, bMax: 10.0 },
+      { count: 42,  speed: 0.058, dist: 270, lineAlpha: 0.50, nodeR: 3.6, color: "60,110,200", bMin: 1.2, bMax: 4.0  },
+      { count: 130, speed: 0.13,  dist: 185, lineAlpha: 0.17, nodeR: 1.4, color: "80,130,210", bMin: 0.14, bMax: 0.9 },
+      { count: 200, speed: 0.24,  dist: 130, lineAlpha: 0.05, nodeR: 0.55,color: "100,150,220",bMin: 0.02, bMax: 0.14},
     ];
 
     const init = () => {
       canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      canvas.height = Math.max(document.documentElement.scrollHeight, window.innerHeight);
       layers.forEach((layer, li) => {
         layer.length = 0;
         const cfg = LAYER_CONFIG[li];
@@ -159,9 +159,9 @@ function PlexusBg() {
 
         // Nodes — extreme brightness variation for depth
         layer.forEach(n => {
-          const glowR = cfg.nodeR * 2.0 + n.b * 8.5;
-          const coreR = Math.max(0.4, Math.min(cfg.nodeR * n.b * 0.20, 9.0));
-          const glowAlpha = Math.min(n.b * 0.10, 0.44);
+          const glowR = cfg.nodeR * 1.4 + n.b * 2.8;
+          const coreR = Math.max(0.4, Math.min(cfg.nodeR * n.b * 0.18, 7.0));
+          const glowAlpha = Math.min(n.b * 0.055, 0.22);
           const coreAlpha = Math.min(0.22 + n.b * 0.09, 1.0);
 
           const grd = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, glowR);
@@ -192,13 +192,13 @@ function PlexusBg() {
     <canvas
       ref={canvasRef}
       style={{
-        position: "fixed",
-        inset: 0,
-        width: "100vw",
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
         height: "100%",
         pointerEvents: "none",
         zIndex: 0,
-        filter: "blur(0.6px)",
       }}
     />
   );
