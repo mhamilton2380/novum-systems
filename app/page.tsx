@@ -162,9 +162,9 @@ function PlexusBg() {
 
         // Nodes — glow radius and alpha scale with per-node brightness
         layer.forEach(n => {
-          const glowR = cfg.nodeR * (2.5 + n.b * 3.5);
-          const coreR = cfg.nodeR * Math.min(n.b * 0.8, 1.6);
-          const glowAlpha = Math.min(n.b * 0.38, 0.85);
+          const glowR = cfg.nodeR * (1.2 + n.b * 1.2);
+          const coreR = cfg.nodeR * Math.min(n.b * 0.7, 1.4);
+          const glowAlpha = Math.min(n.b * 0.22, 0.55);
           const coreAlpha = Math.min(n.b * 0.7, 1.0);
 
           const grd = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, glowR);
@@ -201,7 +201,7 @@ function PlexusBg() {
         height: "100%",
         pointerEvents: "none",
         zIndex: 0,
-        filter: "blur(1px)",
+        filter: "blur(4px)",
       }}
     />
   );
@@ -503,52 +503,66 @@ function HeroWorkflowGraphic() {
         ctx.fill();
       });
 
-      // Satellite nodes around device
-      const satellites = [
-        { label: "AI Agents", angle: -0.55 * Math.PI, dist: 130 },
-        { label: "Team Chat", angle: -0.82 * Math.PI, dist: 118 },
-        { label: "Reports", angle: 0.55 * Math.PI, dist: 130 },
-        { label: "Bookkeeping", angle: 0.82 * Math.PI, dist: 118 },
-        { label: "Forecasting", angle: Math.PI * 0.18, dist: 110 },
-        { label: "Integrations", angle: -Math.PI * 0.18, dist: 110 },
-      ];
+      // Satellite nodes — evenly spaced circle around device, pulses flow inward
+      const satLabels = ["AI Agents", "Team Chat", "Reports", "Bookkeeping", "Forecasting", "Integrations"];
+      const SAT_R = 138;
+      const SAT_W = 92;
+      const SAT_H = 26;
       const devCX = DEV_X + DEV_W / 2;
       const devCY = DEV_Y + DEV_H / 2;
-      satellites.forEach((s) => {
-        const sx = devCX + Math.cos(s.angle) * s.dist;
-        const sy = devCY + Math.sin(s.angle) * s.dist;
-        const sw = 88;
-        const sh = 26;
-        // Line from device edge to satellite
+      satLabels.forEach((label, i) => {
+        const angle = -Math.PI / 2 + (i / satLabels.length) * Math.PI * 2;
+        const sx = devCX + Math.cos(angle) * SAT_R;
+        const sy = devCY + Math.sin(angle) * SAT_R;
+        // Static line from satellite center to device edge
+        const edgeX = devCX + Math.cos(angle) * (DEV_W / 2 + 2);
+        const edgeY = devCY + Math.sin(angle) * (DEV_H / 2 + 2);
         ctx.beginPath();
-        ctx.moveTo(devCX + Math.cos(s.angle) * (DEV_W / 2), devCY + Math.sin(s.angle) * (DEV_H / 2));
-        ctx.lineTo(sx, sy + sh / 2);
-        ctx.strokeStyle = "rgba(120,168,255,0.18)";
+        ctx.moveTo(sx, sy);
+        ctx.lineTo(edgeX, edgeY);
+        ctx.strokeStyle = "rgba(120,168,255,0.16)";
         ctx.lineWidth = 1;
         ctx.stroke();
-        // Dot at device end
-        const dotX = devCX + Math.cos(s.angle) * (DEV_W / 2 + 4);
-        const dotY = devCY + Math.sin(s.angle) * (DEV_H / 2 + 4);
+        // Inward pulse — t goes 0→1 from satellite to device
+        const pulseT = ((time * 0.012 + i * (1 / satLabels.length)) % 1);
+        const brightness = Math.sin(pulseT * Math.PI);
+        const px = sx + (edgeX - sx) * pulseT;
+        const py = sy + (edgeY - sy) * pulseT;
+        const t0 = Math.max(0, pulseT - 0.12);
+        const tx = sx + (edgeX - sx) * t0;
+        const ty = sy + (edgeY - sy) * t0;
+        const tg = ctx.createLinearGradient(tx, ty, px, py);
+        tg.addColorStop(0, "rgba(160,210,255,0)");
+        tg.addColorStop(1, `rgba(160,210,255,${brightness * 0.75})`);
         ctx.beginPath();
-        ctx.arc(dotX, dotY, 2.5, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(160,200,255,0.6)";
+        ctx.moveTo(tx, ty);
+        ctx.lineTo(px, py);
+        ctx.strokeStyle = tg;
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+        const gr = ctx.createRadialGradient(px, py, 0, px, py, 6);
+        gr.addColorStop(0, `rgba(190,228,255,${brightness * 0.9})`);
+        gr.addColorStop(1, "rgba(120,172,255,0)");
+        ctx.beginPath();
+        ctx.arc(px, py, 6, 0, Math.PI * 2);
+        ctx.fillStyle = gr;
         ctx.fill();
         // Satellite card
-        const g = ctx.createLinearGradient(sx - sw / 2, sy, sx - sw / 2, sy + sh);
-        g.addColorStop(0, "rgba(255,255,255,0.09)");
-        g.addColorStop(1, "rgba(255,255,255,0.05)");
+        const g = ctx.createLinearGradient(sx - SAT_W / 2, sy - SAT_H / 2, sx - SAT_W / 2, sy + SAT_H / 2);
+        g.addColorStop(0, "rgba(255,255,255,0.1)");
+        g.addColorStop(1, "rgba(255,255,255,0.055)");
         ctx.beginPath();
-        ctx.roundRect(sx - sw / 2, sy, sw, sh, 7);
+        ctx.roundRect(sx - SAT_W / 2, sy - SAT_H / 2, SAT_W, SAT_H, 7);
         ctx.fillStyle = g;
         ctx.fill();
-        ctx.strokeStyle = "rgba(255,255,255,0.14)";
+        ctx.strokeStyle = "rgba(255,255,255,0.15)";
         ctx.lineWidth = 1;
         ctx.stroke();
-        ctx.fillStyle = "rgba(255,255,255,0.7)";
+        ctx.fillStyle = "rgba(255,255,255,0.75)";
         ctx.font = "500 11px 'DM Sans', sans-serif";
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
-        ctx.fillText(s.label, sx, sy + sh / 2);
+        ctx.fillText(label, sx, sy);
       });
 
       raf = requestAnimationFrame(tick);
@@ -606,6 +620,7 @@ export default function HomePage() {
       <PlexusBg />
 
       <section style={{ padding: "86px 20px 0", position: "relative", zIndex: 1 }}>
+        <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
         <div
           className="hero-card"
           style={{
@@ -626,7 +641,7 @@ export default function HomePage() {
             style={{
               position: "relative",
               zIndex: 3,
-              padding: "92px 0 72px 56px",
+              padding: "72px 32px 72px 52px",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
@@ -751,6 +766,7 @@ export default function HomePage() {
           <div style={{ position: "relative", minHeight: 660 }}>
             {graphicReady ? <HeroWorkflowGraphic /> : null}
           </div>
+        </div>
         </div>
       </section>
 
