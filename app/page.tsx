@@ -411,7 +411,7 @@ function HeroWorkflowGraphic() {
       cards.forEach(({ cx, cy, angle }, i) => {
         const edgeX = CX + Math.cos(angle) * (DEV_W / 2 + 2);
         const edgeY = CY + Math.sin(angle) * (DEV_H / 2 + 2);
-        const pulseT = (time * 0.011 + i / N) % 1;
+        const pulseT = (time * 0.005 + i / N) % 1;
         const brightness = Math.sin(pulseT * Math.PI);
         const px = cx + (edgeX - cx) * pulseT;
         const py = cy + (edgeY - cy) * pulseT;
