@@ -29,13 +29,13 @@ export default function Navbar() {
   const isHome = pathname === "/";
   const alwaysLight = !isHome || scrolled;
 
-  const navBg = alwaysLight ? "rgba(255,255,255,0.95)" : "rgba(15,16,22,0.5)";
-  const navBorder = alwaysLight ? "1px solid rgba(232,230,225,0.9)" : "1px solid rgba(255,255,255,0.08)";
-  const textColor = alwaysLight ? "#1A1A1A" : "#ffffff";
-  const mutedColor = alwaysLight ? "#6B6865" : "rgba(255,255,255,0.75)";
-  const ctaBg = alwaysLight ? "#1C1E26" : "#F2EDD8";
-  const ctaColor = alwaysLight ? "#ffffff" : "#1A1A1A";
-  const logoBg = alwaysLight ? "#1C1E26" : "rgba(255,255,255,0.15)";
+  const navBg = "rgba(255,255,255,0.95)";
+  const navBorder = scrolled ? "1px solid rgba(232,230,225,0.9)" : "1px solid transparent";
+  const textColor = "#1A1A1A";
+  const mutedColor = "#6B6865";
+  const ctaBg = "#1C1E26";
+  const ctaColor = "#ffffff";
+  const logoBg = "#1C1E26";
 
   return (
     <header style={{
