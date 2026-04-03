@@ -97,7 +97,7 @@ function PlexusBg() {
           const d = Math.sqrt(dx * dx + dy * dy);
 
           if (d < distance) {
-            const alpha = (1 - d / distance) * 0.35;
+            const alpha = (1 - d / distance) * 0.55;
             context.beginPath();
             context.moveTo(nodes[i].x, nodes[i].y);
             context.lineTo(nodes[j].x, nodes[j].y);
