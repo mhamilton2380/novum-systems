@@ -581,7 +581,7 @@ export default function HomePage() {
     <div
       style={{
         background:
-          "radial-gradient(circle at 12% 8%, rgba(91,125,186,0.06), transparent 22%), radial-gradient(circle at 88% 14%, rgba(121,161,229,0.04), transparent 20%), linear-gradient(180deg, #f5f4f1 0%, #f2efea 100%)",
+          "radial-gradient(circle at 12% 8%, rgba(91,125,186,0.06), transparent 22%), radial-gradient(circle at 88% 14%, rgba(121,161,229,0.04), transparent 20%), #f5f4f1",
         color: "var(--text)",
         fontFamily: "'DM Sans', sans-serif",
         position: "relative",
