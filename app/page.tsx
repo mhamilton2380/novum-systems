@@ -661,11 +661,11 @@ function HeroWorkflowGraphic() {
 }
 
 const glassCard: CSSProperties = {
-  background: "rgba(255,255,255,0.22)",
-  backdropFilter: "blur(28px) saturate(1.6)",
-  WebkitBackdropFilter: "blur(28px) saturate(1.6)",
-  border: "1px solid rgba(255,255,255,0.62)",
-  boxShadow: "0 8px 32px rgba(22,28,38,0.07), inset 0 1px 0 rgba(255,255,255,0.85)",
+  background: "rgba(255,255,255,0.1)",
+  backdropFilter: "blur(12px) saturate(1.4)",
+  WebkitBackdropFilter: "blur(12px) saturate(1.4)",
+  border: "1px solid rgba(255,255,255,0.55)",
+  boxShadow: "0 8px 32px rgba(22,28,38,0.06), inset 0 1px 0 rgba(255,255,255,0.8)",
 };
 
 export default function HomePage() {
