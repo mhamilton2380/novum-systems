@@ -140,288 +140,254 @@ function PlexusBg() {
   );
 }
 
-function HeroWorkflowGraphic() {
+function OperationalEngineGraphic() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const svgRef = useRef<SVGSVGElement>(null);
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const engineRef = useRef<HTMLDivElement>(null);
+  const pillRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    const svgEl = svgRef.current;
+    const wrap = wrapRef.current;
+    const engine = engineRef.current;
+    if (!canvas || !svgEl || !wrap || !engine) return;
     const ctx = canvas.getContext("2d")!;
     let raf = 0;
-    let time = 0;
+    const SPACING = 22, DOT_R = 1.1;
 
-    const dpr = window.devicePixelRatio || 1;
-
-    const resize = () => {
-      const W = canvas.offsetWidth;
-      const H = canvas.offsetHeight;
-      canvas.width = W * dpr;
-      canvas.height = H * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    };
-    resize();
-    window.addEventListener("resize", resize);
-
-    const allLabels = [
-      "Email", "Calendar", "Accounting", "Documents",
-      "Tasks", "Schedules", "Team Updates", "AI Agents",
-      "Team Chat", "Reports", "Bookkeeping", "Forecasting",
-      "Integrations", "Workflows",
-    ];
-
-    type Pt = { x: number; y: number };
-
-    function rr(x: number, y: number, w: number, h: number, r: number) {
-      ctx.beginPath();
-      ctx.moveTo(x + r, y);
-      ctx.lineTo(x + w - r, y);
-      ctx.quadraticCurveTo(x + w, y, x + w, y + r);
-      ctx.lineTo(x + w, y + h - r);
-      ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-      ctx.lineTo(x + r, y + h);
-      ctx.quadraticCurveTo(x, y + h, x, y + h - r);
-      ctx.lineTo(x, y + r);
-      ctx.quadraticCurveTo(x, y, x + r, y);
-      ctx.closePath();
+    function resizeCanvas() {
+      canvas!.width = canvas!.offsetWidth;
+      canvas!.height = canvas!.offsetHeight;
     }
+    resizeCanvas();
+    window.addEventListener("resize", onResize);
 
-    function drawCard(x: number, y: number, w: number, h: number, label: string, side: "left" | "right") {
-      const g = ctx.createLinearGradient(x, y, x, y + h);
-      g.addColorStop(0, "rgba(255,255,255,0.11)");
-      g.addColorStop(1, "rgba(255,255,255,0.055)");
-      rr(x, y, w, h, 10);
-      ctx.fillStyle = g;
-      ctx.fill();
-      ctx.strokeStyle = "rgba(255,255,255,0.17)";
-      ctx.lineWidth = 1;
-      ctx.stroke();
-      ctx.fillStyle = "rgba(255,255,255,0.84)";
-      ctx.font = `500 13px "DM Sans", sans-serif`;
-      ctx.textBaseline = "middle";
-      if (side === "left") {
-        ctx.textAlign = "left";
-        ctx.fillText(label, x + 12, y + h / 2);
-      } else {
-        ctx.textAlign = "right";
-        ctx.fillText(label, x + w - 12, y + h / 2);
-      }
-    }
-
-    function drawLine(from: Pt, to: Pt) {
-      ctx.beginPath();
-      ctx.moveTo(from.x, from.y);
-      ctx.lineTo(to.x, to.y);
-      ctx.strokeStyle = "rgba(100,148,255,0.14)";
-      ctx.lineWidth = 1;
-      ctx.stroke();
-    }
-
-    function drawDevice(DEV_X: number, DEV_Y: number, DEV_W: number, DEV_H: number, W: number, H: number) {
-      const pulse = 0.5 + 0.5 * Math.sin(time * 0.035);
-
-      // Outer ambient glow
-      const gg = ctx.createRadialGradient(W / 2, H / 2, 0, W / 2, H / 2, 130);
-      gg.addColorStop(0, `rgba(90,140,255,${pulse * 0.14})`);
-      gg.addColorStop(1, "rgba(90,140,255,0)");
-      ctx.fillStyle = gg;
-      ctx.fillRect(W / 2 - 130, H / 2 - 130, 260, 260);
-
-      // Device background
-      const bg = ctx.createLinearGradient(DEV_X, DEV_Y, DEV_X, DEV_Y + DEV_H);
-      bg.addColorStop(0, "rgba(80,115,205,0.22)");
-      bg.addColorStop(1, "rgba(50,80,175,0.11)");
-      rr(DEV_X, DEV_Y, DEV_W, DEV_H, 14);
-      ctx.fillStyle = bg;
-      ctx.fill();
-      ctx.strokeStyle = `rgba(120,168,255,${0.26 + 0.18 * pulse})`;
-      ctx.lineWidth = 1.5;
-      ctx.stroke();
-
-      // Top edge highlight
-      ctx.beginPath();
-      ctx.moveTo(DEV_X + 14, DEV_Y + 0.5);
-      ctx.lineTo(DEV_X + DEV_W - 14, DEV_Y + 0.5);
-      ctx.strokeStyle = `rgba(200,220,255,${0.24 + 0.12 * pulse})`;
-      ctx.lineWidth = 1;
-      ctx.stroke();
-
-      // Inner wire grid
-      const iX = DEV_X + 14;
-      const iY = DEV_Y + 14;
-      const iW = DEV_W - 28;
-      const iH = DEV_H - 28;
-      const cols = 5;
-      const rows = 4;
-
-      ctx.lineWidth = 0.5;
-      for (let c = 0; c <= cols; c++) {
-        const x = iX + (c / cols) * iW;
-        const a = 0.07 + 0.06 * Math.sin(time * 0.04 + c * 0.9);
-        ctx.strokeStyle = `rgba(140,182,255,${a})`;
-        ctx.beginPath();
-        ctx.moveTo(x, iY);
-        ctx.lineTo(x, iY + iH);
-        ctx.stroke();
-      }
-      for (let r = 0; r <= rows; r++) {
-        const y = iY + (r / rows) * iH;
-        const a = 0.07 + 0.06 * Math.sin(time * 0.04 + r * 1.3);
-        ctx.strokeStyle = `rgba(140,182,255,${a})`;
-        ctx.beginPath();
-        ctx.moveTo(iX, y);
-        ctx.lineTo(iX + iW, y);
-        ctx.stroke();
-      }
-
-      // Grid intersection dots
-      for (let c = 0; c <= cols; c++) {
-        for (let r = 0; r <= rows; r++) {
-          const x = iX + (c / cols) * iW;
-          const y = iY + (r / rows) * iH;
-          const a = 0.18 + 0.15 * Math.sin(time * 0.035 + c * 0.8 + r * 1.1);
+    function drawDots(ts: number) {
+      ctx.clearRect(0, 0, canvas!.width, canvas!.height);
+      const cx = canvas!.width * 0.5, cy = canvas!.height * 0.5;
+      const wt = ts * 0.00045;
+      const cols = Math.ceil(canvas!.width / SPACING) + 1;
+      const rows = Math.ceil(canvas!.height / SPACING) + 1;
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const x = c * SPACING, y = r * SPACING;
+          const dist = Math.sqrt((x - cx) ** 2 + (y - cy) ** 2);
+          const wave = Math.sin(wt * 1.6 - dist * 0.026) * 0.5 + 0.5;
+          const a = 0.08 + 0.52 * wave * wave;
           ctx.beginPath();
-          ctx.arc(x, y, 1.5, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(160,205,255,${a})`;
+          ctx.arc(x, y, DOT_R, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(175,105,55,${a})`;
           ctx.fill();
         }
       }
+    }
 
-      // Animated scan line
-      const scanY = iY + ((time * 0.4) % (iH + 1));
-      const sg = ctx.createLinearGradient(iX, scanY - 6, iX, scanY + 6);
-      sg.addColorStop(0, "rgba(120,180,255,0)");
-      sg.addColorStop(0.5, `rgba(140,192,255,${0.11 + 0.09 * pulse})`);
-      sg.addColorStop(1, "rgba(120,180,255,0)");
-      ctx.fillStyle = sg;
-      ctx.fillRect(iX, scanY - 6, iW, 12);
+    type PLine = { el: SVGPathElement; len: number; trail: number; pillId?: string; lit?: boolean };
+    let inLines: PLine[] = [];
+    let outLines: PLine[] = [];
 
-      // Corner accent dots
-      const ca = 0.5 + 0.3 * pulse;
-      const corners: [number, number][] = [
-        [DEV_X + 6, DEV_Y + 6],
-        [DEV_X + DEV_W - 6, DEV_Y + 6],
-        [DEV_X + 6, DEV_Y + DEV_H - 6],
-        [DEV_X + DEV_W - 6, DEV_Y + DEV_H - 6],
-      ];
-      corners.forEach(([cx, cy]) => {
-        ctx.beginPath();
-        ctx.arc(cx, cy, 2, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(160,212,255,${ca})`;
-        ctx.fill();
+    function getR(el: HTMLElement) {
+      const wr = wrap!.getBoundingClientRect();
+      const r = el.getBoundingClientRect();
+      return { left: r.left - wr.left, right: r.right - wr.left, midY: r.top - wr.top + r.height / 2 };
+    }
+
+    function addPath(d: string, isBase: boolean) {
+      const p = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      p.setAttribute("d", d);
+      p.setAttribute("fill", "none");
+      if (isBase) {
+        p.setAttribute("stroke", "#1e1e1e");
+        p.setAttribute("stroke-width", "1");
+      } else {
+        p.setAttribute("stroke", "#c8581a");
+        p.setAttribute("stroke-width", "1.6");
+        p.setAttribute("stroke-linecap", "round");
+        p.setAttribute("opacity", "0");
+      }
+      svgEl!.appendChild(p);
+      return p;
+    }
+
+    function buildConnectors() {
+      svgEl!.innerHTML = "";
+      inLines = [];
+      outLines = [];
+      const er = getR(engine!);
+      const eMidY = er.midY;
+      ["i0","i1","i2","i3","i4","i5","i6","i7"].forEach((id) => {
+        const el = pillRefs.current[id];
+        if (!el) return;
+        const r = getR(el);
+        const x1 = r.right, y1 = r.midY, x2 = er.left, y2 = eMidY;
+        const mx = (x1 + x2) / 2;
+        const d = `M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2}`;
+        addPath(d, true);
+        const p = addPath(d, false);
+        const len = p.getTotalLength(), trail = len * 0.13;
+        p.setAttribute("stroke-dasharray", `${trail} ${len}`);
+        p.setAttribute("stroke-dashoffset", String(len + trail));
+        inLines.push({ el: p, len, trail });
+      });
+      ["o0","o1","o2","o3","o4","o5"].forEach((id) => {
+        const el = pillRefs.current[id];
+        if (!el) return;
+        const r = getR(el);
+        const x1 = er.right, y1 = eMidY, x2 = r.left, y2 = r.midY;
+        const mx = (x1 + x2) / 2;
+        const d = `M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2}`;
+        addPath(d, true);
+        const p = addPath(d, false);
+        const len = p.getTotalLength(), trail = len * 0.13;
+        p.setAttribute("stroke-dasharray", `${trail} ${len}`);
+        p.setAttribute("stroke-dashoffset", String(len + trail));
+        outLines.push({ el: p, len, trail, pillId: id, lit: false });
       });
     }
 
-    function tick() {
-      time++;
-      const W = canvas!.offsetWidth;
-      const H = canvas!.offsetHeight;
-      // Re-apply DPR transform every frame so retina displays stay crisp
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.imageSmoothingEnabled = false;
-      if (!W || !H) { raf = requestAnimationFrame(tick); return; }
+    const IN_DUR = 2400, ENG_DUR = 650, OUT_DUR = 2200, PAUSE_DUR = 1400;
+    let phase = "in", phaseStart: number | null = null;
 
-      ctx.clearRect(0, 0, W, H);
+    function ease(t: number) { return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; }
+    function resetPulse(p: PLine) {
+      p.el.setAttribute("stroke-dashoffset", String(p.len + p.trail));
+      p.el.setAttribute("opacity", "0");
+    }
+    function setEngineGlow(on: boolean) { engine!.classList.toggle("oeg-engine-glow", on); }
 
-      const N = allLabels.length;
-      const DEV_W = Math.min(136, W * 0.19);
-      const DEV_H = 108;
-      const CX = W / 2;
-      const CY = H / 2;
-      const DEV_X = CX - DEV_W / 2;
-      const DEV_Y = CY - DEV_H / 2;
-
-      const CARD_W = 100;
-      const CARD_H = 28;
-      const RING_R = Math.min(W, H) * 0.38;
-
-      // Precompute card positions
-      const cards: { cx: number; cy: number; angle: number }[] = allLabels.map((_, i) => {
-        const angle = -Math.PI / 2 + (i / N) * Math.PI * 2;
-        return { cx: CX + Math.cos(angle) * RING_R, cy: CY + Math.sin(angle) * RING_R, angle };
-      });
-
-      // Draw static lines from card center to device edge
-      cards.forEach(({ cx, cy, angle }) => {
-        const edgeX = CX + Math.cos(angle) * (DEV_W / 2 + 2);
-        const edgeY = CY + Math.sin(angle) * (DEV_H / 2 + 2);
-        drawLine({ x: cx, y: cy }, { x: edgeX, y: edgeY });
-      });
-
-      // Draw inward pulses
-      cards.forEach(({ cx, cy, angle }, i) => {
-        const edgeX = CX + Math.cos(angle) * (DEV_W / 2 + 2);
-        const edgeY = CY + Math.sin(angle) * (DEV_H / 2 + 2);
-        const pulseT = (time * 0.005 + i / N) % 1;
-        const brightness = Math.sin(pulseT * Math.PI);
-        const px = cx + (edgeX - cx) * pulseT;
-        const py = cy + (edgeY - cy) * pulseT;
-        const t0 = Math.max(0, pulseT - 0.12);
-        const tx = cx + (edgeX - cx) * t0;
-        const ty = cy + (edgeY - cy) * t0;
-        const tg = ctx.createLinearGradient(tx, ty, px, py);
-        tg.addColorStop(0, "rgba(160,210,255,0)");
-        tg.addColorStop(1, `rgba(160,210,255,${brightness * 0.8})`);
-        ctx.beginPath();
-        ctx.moveTo(tx, ty);
-        ctx.lineTo(px, py);
-        ctx.strokeStyle = tg;
-        ctx.lineWidth = 1.5;
-        ctx.stroke();
-        const gr = ctx.createRadialGradient(px, py, 0, px, py, 6);
-        gr.addColorStop(0, `rgba(190,228,255,${brightness * 0.9})`);
-        gr.addColorStop(1, "rgba(120,172,255,0)");
-        ctx.beginPath();
-        ctx.arc(px, py, 6, 0, Math.PI * 2);
-        ctx.fillStyle = gr;
-        ctx.fill();
-      });
-
-      // Draw device
-      drawDevice(DEV_X, DEV_Y, DEV_W, DEV_H, W, H);
-
-      // Draw label cards
-      cards.forEach(({ cx, cy }, i) => {
-        const g = ctx.createLinearGradient(cx - CARD_W / 2, cy - CARD_H / 2, cx - CARD_W / 2, cy + CARD_H / 2);
-        g.addColorStop(0, "rgba(255,255,255,0.11)");
-        g.addColorStop(1, "rgba(255,255,255,0.055)");
-        ctx.beginPath();
-        ctx.roundRect(cx - CARD_W / 2, cy - CARD_H / 2, CARD_W, CARD_H, 7);
-        ctx.fillStyle = g;
-        ctx.fill();
-        ctx.strokeStyle = "rgba(255,255,255,0.17)";
-        ctx.lineWidth = 1;
-        ctx.stroke();
-        ctx.fillStyle = "rgba(255,255,255,0.82)";
-        ctx.font = "500 11px 'DM Sans', sans-serif";
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-        ctx.fillText(allLabels[i], cx, cy);
-      });
-
+    function tick(ts: number) {
+      drawDots(ts);
+      if (!phaseStart) phaseStart = ts;
+      const elapsed = ts - phaseStart;
+      if (phase === "in") {
+        const t = Math.min(1, elapsed / IN_DUR), te = ease(t);
+        inLines.forEach((p) => {
+          p.el.setAttribute("stroke-dashoffset", String((p.len + p.trail) * (1 - te)));
+          p.el.setAttribute("opacity", t > 0 ? "1" : "0");
+        });
+        if (t >= 1) { inLines.forEach(resetPulse); setEngineGlow(true); phase = "engine"; phaseStart = ts; }
+      } else if (phase === "engine") {
+        if (elapsed >= ENG_DUR) { setEngineGlow(false); outLines.forEach((p) => { p.lit = false; }); phase = "out"; phaseStart = ts; }
+      } else if (phase === "out") {
+        const t = Math.min(1, elapsed / OUT_DUR), te = ease(t);
+        outLines.forEach((p) => {
+          p.el.setAttribute("stroke-dashoffset", String((p.len + p.trail) * (1 - te)));
+          p.el.setAttribute("opacity", t > 0 ? "1" : "0");
+          const front = (p.len + p.trail) * te - p.trail;
+          if (!p.lit && front >= p.len) {
+            p.lit = true;
+            const pill = p.pillId ? pillRefs.current[p.pillId] : null;
+            if (pill) { pill.classList.add("oeg-lit"); setTimeout(() => pill.classList.remove("oeg-lit"), 1400); }
+          }
+        });
+        if (t >= 1) { outLines.forEach(resetPulse); phase = "pause"; phaseStart = ts; }
+      } else if (phase === "pause") {
+        if (elapsed >= PAUSE_DUR) { phase = "in"; phaseStart = ts; }
+      }
       raf = requestAnimationFrame(tick);
     }
 
-    raf = requestAnimationFrame(tick);
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("resize", resize);
-    };
+    function onResize() { resizeCanvas(); buildConnectors(); }
+
+    document.fonts.ready.then(() => setTimeout(() => { buildConnectors(); raf = requestAnimationFrame(tick); }, 120));
+
+    return () => { cancelAnimationFrame(raf); window.removeEventListener("resize", onResize); };
   }, []);
 
+  const pillBase: CSSProperties = {
+    display: "flex", alignItems: "center", gap: 7, padding: "7px 10px",
+    border: "1px solid #232323", borderRadius: 5, background: "#171717",
+    fontSize: 11, color: "#b0b0b0", fontWeight: 500, whiteSpace: "nowrap",
+  };
+
+  const inputs = [
+    { id: "i0", label: "Email", icon: <svg width={12} height={12} viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="1.5" stroke="currentColor" strokeWidth="1.3"/><path d="M1 4l7 5 7-5" stroke="currentColor" strokeWidth="1.3"/></svg> },
+    { id: "i1", label: "Text Messages", icon: <svg width={12} height={12} viewBox="0 0 16 16" fill="none"><rect x="2" y="1" width="12" height="14" rx="2" stroke="currentColor" strokeWidth="1.3"/><path d="M5 6h6M5 9h4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/></svg> },
+    { id: "i2", label: "Team Chat", icon: <svg width={12} height={12} viewBox="0 0 16 16" fill="none"><path d="M2 2h12v9H9l-3 3v-3H2V2z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round"/></svg> },
+    { id: "i3", label: "Documents", icon: <svg width={12} height={12} viewBox="0 0 16 16" fill="none"><path d="M3 1h7l3 3v11H3V1z" stroke="currentColor" strokeWidth="1.3"/><path d="M10 1v3h3" stroke="currentColor" strokeWidth="1.3"/><path d="M5 8h6M5 11h4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/></svg> },
+    { id: "i4", label: "CRM Data", icon: <svg width={12} height={12} viewBox="0 0 16 16" fill="none"><ellipse cx="8" cy="5" rx="6" ry="2.5" stroke="currentColor" strokeWidth="1.3"/><path d="M2 5v6c0 1.38 2.69 2.5 6 2.5s6-1.12 6-2.5V5" stroke="currentColor" strokeWidth="1.3"/></svg> },
+    { id: "i5", label: "Accounting", icon: <svg width={12} height={12} viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.3"/><rect x="9" y="2" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.3"/><rect x="2" y="9" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.3"/><rect x="9" y="9" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.3"/></svg> },
+    { id: "i6", label: "Project Data", icon: <svg width={12} height={12} viewBox="0 0 16 16" fill="none"><rect x="1" y="10" width="3" height="5" rx="0.5" stroke="currentColor" strokeWidth="1.3"/><rect x="6" y="7" width="3" height="8" rx="0.5" stroke="currentColor" strokeWidth="1.3"/><rect x="11" y="4" width="3" height="11" rx="0.5" stroke="currentColor" strokeWidth="1.3"/></svg> },
+    { id: "i7", label: "Manual Inputs", icon: <svg width={12} height={12} viewBox="0 0 16 16" fill="none"><path d="M2 12l4-4 3 3 5-7" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/></svg> },
+  ];
+  const outputs = [
+    { id: "o0", label: "Task Management", icon: <svg width={12} height={12} viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="2" stroke="currentColor" strokeWidth="1.3"/><path d="M4 8l3 3 5-5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/></svg> },
+    { id: "o1", label: "Dashboards", icon: <svg width={12} height={12} viewBox="0 0 16 16" fill="none"><path d="M2 10h3v4H2zM6.5 6h3v8h-3zM11 2h3v12h-3z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round"/></svg> },
+    { id: "o2", label: "Communication", icon: <svg width={12} height={12} viewBox="0 0 16 16" fill="none"><path d="M2 2h12v9H9l-3 3v-3H2V2z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round"/></svg> },
+    { id: "o3", label: "Reporting", icon: <svg width={12} height={12} viewBox="0 0 16 16" fill="none"><path d="M3 1h10v14H3V1z" stroke="currentColor" strokeWidth="1.3"/><path d="M5 6h6M5 9h6M5 12h3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/></svg> },
+    { id: "o4", label: "Alerts", icon: <svg width={12} height={12} viewBox="0 0 16 16" fill="none"><path d="M8 2l1.5 4h4.5l-3.5 2.5 1.3 4.5L8 11l-3.8 2 1.3-4.5L2 6h4.5z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round"/></svg> },
+    { id: "o5", label: "Automated Workflows", icon: <svg width={12} height={12} viewBox="0 0 16 16" fill="none"><path d="M2 8a6 6 0 1112 0" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/><path d="M13 11l1-3-3 1" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/></svg> },
+  ];
+  const engineRows = [
+    { title: "Data ingestion & structuring", desc: "Normalizes inputs into a unified operational schema" },
+    { title: "Workflow engine", desc: "Task creation, routing, and automation" },
+    { title: "AI & agents layer", desc: "Email→task, document processing, summaries" },
+    { title: "Voice command interface", desc: "Pull reports, send emails, or trigger workflows — just by telling the system what to do" },
+  ];
+
   return (
-    <canvas
-      ref={canvasRef}
-      style={{
-        position: "absolute",
-        inset: 0,
-        width: "100%",
-        height: "100%",
-        zIndex: 4,
-        pointerEvents: "none",
-      }}
-    />
+    <div
+      ref={wrapRef}
+      style={{ position: "relative", background: "#111", padding: "44px 40px 48px", overflow: "hidden", borderBottomLeftRadius: 28, borderBottomRightRadius: 28 }}
+    >
+      <canvas
+        ref={canvasRef}
+        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none", display: "block" }}
+      />
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 2 }}>
+        {/* Inputs */}
+        <div style={{ width: 148, flexShrink: 0 }}>
+          <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase", color: "#383838", marginBottom: 11 }}>Operational Inputs</div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+            {inputs.map(({ id, label, icon }) => (
+              <div key={id} ref={(el) => { pillRefs.current[id] = el; }} className="oeg-pill" style={pillBase}>
+                <span style={{ opacity: 0.38, flexShrink: 0, display: "flex" }}>{icon}</span>
+                {label}
+              </div>
+            ))}
+          </div>
+        </div>
+        {/* Engine */}
+        <div style={{ width: 280, flexShrink: 0 }}>
+          <div ref={engineRef} className="oeg-engine" style={{ width: "100%", border: "1px solid #3d2819", borderRadius: 7, background: "#161210" }}>
+            <div style={{ padding: "11px 13px 9px", borderBottom: "1px solid #201a16" }}>
+              <div style={{ fontSize: 8.5, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#c8581a", marginBottom: 3 }}>Novum System</div>
+              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "#d8d8d8" }}>Operational Engine</div>
+            </div>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              {engineRows.map(({ title, desc }, i) => (
+                <div key={title} style={{ display: "flex", alignItems: "flex-start", gap: 8, padding: "8px 11px", borderBottom: i < engineRows.length - 1 ? "1px solid #1c1c1c" : "none", fontSize: 10, color: "#4e4e4e", lineHeight: 1.5 }}>
+                  <div style={{ width: 4, height: 4, borderRadius: "50%", background: "#c8581a", flexShrink: 0, marginTop: 4, opacity: 0.55 }} />
+                  <div>
+                    <strong style={{ display: "block", fontWeight: 600, color: "#999", fontSize: 10.5, marginBottom: 1 }}>{title}</strong>
+                    {desc}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        {/* Outputs */}
+        <div style={{ width: 148, flexShrink: 0 }}>
+          <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase", color: "#383838", marginBottom: 11, textAlign: "right" }}>Operational Outputs</div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+            {outputs.map(({ id, label, icon }) => (
+              <div key={id} ref={(el) => { pillRefs.current[id] = el; }} className="oeg-pill" style={{ ...pillBase, flexDirection: "row-reverse", textAlign: "right", justifyContent: "flex-start" }}>
+                {label}
+                <span style={{ opacity: 0.38, flexShrink: 0, display: "flex" }}>{icon}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <svg ref={svgRef} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none", overflow: "visible", zIndex: 1 } as CSSProperties} />
+    </div>
   );
+
 }
+
 
 const glassCard: CSSProperties = {
   background: "rgba(255,255,255,0.1)",
@@ -480,11 +446,10 @@ export default function HomePage() {
             background:
               "radial-gradient(circle at 18% 18%, rgba(102,142,214,0.16), transparent 28%), radial-gradient(circle at 88% 24%, rgba(88,130,214,0.12), transparent 26%), linear-gradient(180deg, #191c24 0%, #151821 100%)",
             borderRadius: 28,
-            minHeight: 660,
             position: "relative",
             overflow: "hidden",
-            display: "grid",
-            gridTemplateColumns: "1fr 1.08fr",
+            display: "flex",
+            flexDirection: "column",
             border: "1px solid rgba(255,255,255,0.06)",
             boxShadow: "0 36px 90px rgba(15,18,25,0.22)",
           }}
@@ -494,10 +459,9 @@ export default function HomePage() {
             style={{
               position: "relative",
               zIndex: 3,
-              padding: "72px 32px 72px 52px",
+              padding: "72px 52px 52px",
               display: "flex",
               flexDirection: "column",
-              justifyContent: "center",
             }}
           >
             <div
@@ -620,8 +584,8 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div style={{ position: "relative", minHeight: 660 }}>
-            {graphicReady ? <HeroWorkflowGraphic /> : null}
+          <div style={{ position: "relative" }}>
+            {graphicReady ? <OperationalEngineGraphic /> : null}
           </div>
         </div>
       </section>
