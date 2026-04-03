@@ -315,6 +315,9 @@ function HeroWorkflowGraphic() {
       time++;
       const W = canvas!.offsetWidth;
       const H = canvas!.offsetHeight;
+      // Re-apply DPR transform every frame so retina displays stay crisp
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.imageSmoothingEnabled = false;
       if (!W || !H) { raf = requestAnimationFrame(tick); return; }
 
       ctx.clearRect(0, 0, W, H);
