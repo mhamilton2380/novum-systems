@@ -29,8 +29,8 @@ export default function ApproachPage() {
     {
       name: "OpsCore",
       color: "var(--gold)",
-      colorBg: "rgba(201,169,110,0.08)",
-      colorBorder: "rgba(201,169,110,0.2)",
+      colorBg: "rgba(79,124,255,0.08)",
+      colorBorder: "rgba(79,124,255,0.2)",
       desc: "AI-powered operational command center. Task generation, team chat, project boards, calendar, and platform integrations — all in one system.",
       href: "/systems#opscore",
     },
@@ -93,7 +93,7 @@ export default function ApproachPage() {
       </section>
 
       {/* What sets us apart */}
-      <section style={{ padding: "100px 48px", borderTop: "1px solid rgba(245,242,236,0.06)" }}>
+      <section style={{ padding: "100px 48px", borderTop: "1px solid rgba(234,234,234,0.06)" }}>
         <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
           <div
             style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: "80px", alignItems: "start" }}
@@ -112,8 +112,8 @@ export default function ApproachPage() {
               <div
                 style={{
                   padding: "20px 24px",
-                  background: "rgba(201,169,110,0.06)",
-                  border: "1px solid rgba(201,169,110,0.2)",
+                  background: "rgba(79,124,255,0.06)",
+                  border: "1px solid rgba(79,124,255,0.2)",
                   borderRadius: "10px",
                 }}
               >
@@ -170,8 +170,8 @@ export default function ApproachPage() {
                 <div
                   style={{
                     padding: "28px",
-                    background: "rgba(201,169,110,0.05)",
-                    border: "1px solid rgba(201,169,110,0.2)",
+                    background: "rgba(79,124,255,0.05)",
+                    border: "1px solid rgba(79,124,255,0.2)",
                     borderRadius: "12px",
                   }}
                 >
@@ -212,8 +212,8 @@ export default function ApproachPage() {
         style={{
           padding: "100px 48px",
           background: "var(--ink-soft)",
-          borderTop: "1px solid rgba(245,242,236,0.06)",
-          borderBottom: "1px solid rgba(245,242,236,0.06)",
+          borderTop: "1px solid rgba(234,234,234,0.06)",
+          borderBottom: "1px solid rgba(234,234,234,0.06)",
         }}
       >
         <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
@@ -233,19 +233,19 @@ export default function ApproachPage() {
                   gridTemplateColumns: "100px 1fr",
                   gap: "40px",
                   padding: "40px 48px",
-                  border: "1px solid rgba(245,242,236,0.07)",
+                  border: "1px solid rgba(234,234,234,0.07)",
                   borderRadius: "12px",
                   background: "rgba(255,255,255,0.02)",
                   transition: "border-color 0.3s",
                 }}
                 className="principle-row"
-                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(201,169,110,0.2)"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(245,242,236,0.07)"; }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(79,124,255,0.2)"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(234,234,234,0.07)"; }}
               >
                 <div>
                   <span
                     className="font-serif"
-                    style={{ fontSize: "2.5rem", color: "rgba(201,169,110,0.3)", letterSpacing: "-0.03em" }}
+                    style={{ fontSize: "2.5rem", color: "rgba(79,124,255,0.3)", letterSpacing: "-0.03em" }}
                   >
                     {p.num}
                   </span>
@@ -268,7 +268,7 @@ export default function ApproachPage() {
       </section>
 
       {/* Our Systems */}
-      <section style={{ padding: "100px 48px", borderBottom: "1px solid rgba(245,242,236,0.06)" }}>
+      <section style={{ padding: "100px 48px", borderBottom: "1px solid rgba(234,234,234,0.06)" }}>
         <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "56px", flexWrap: "wrap", gap: "24px" }}>
             <div>
@@ -360,7 +360,7 @@ export default function ApproachPage() {
                 className="card-hover"
                 style={{
                   padding: "36px",
-                  border: "1px solid rgba(245,242,236,0.08)",
+                  border: "1px solid rgba(234,234,234,0.08)",
                   borderRadius: "16px",
                   background: "rgba(255,255,255,0.025)",
                   textAlign: "center",
@@ -380,7 +380,7 @@ export default function ApproachPage() {
       </section>
 
       {/* CTA */}
-      <section style={{ padding: "100px 48px", textAlign: "center", borderTop: "1px solid rgba(245,242,236,0.06)" }}>
+      <section style={{ padding: "100px 48px", textAlign: "center", borderTop: "1px solid rgba(234,234,234,0.06)" }}>
         <div style={{ maxWidth: "560px", margin: "0 auto" }}>
           <h2 className="font-serif" style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", letterSpacing: "-0.02em", marginBottom: "20px" }}>
             Sound like the right fit?

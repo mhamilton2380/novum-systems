@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer style={{ borderTop: "1px solid rgba(245,242,236,0.08)", padding: "64px 48px 40px" }}>
+    <footer style={{ borderTop: "1px solid rgba(234,234,234,0.08)", padding: "64px 48px 40px" }}>
       <div>
         <div
           style={{

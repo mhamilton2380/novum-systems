@@ -31,11 +31,11 @@ export default function Navbar() {
         zIndex: 100,
         transition: "all 0.3s ease",
         background: scrolled
-          ? "rgba(13, 15, 20, 0.92)"
+          ? "rgba(15, 17, 19, 0.92)"
           : "transparent",
         backdropFilter: scrolled ? "blur(20px)" : "none",
         borderBottom: scrolled
-          ? "1px solid rgba(245,242,236,0.06)"
+          ? "1px solid rgba(234,234,234,0.06)"
           : "1px solid transparent",
       }}
     >
@@ -102,7 +102,7 @@ export default function Navbar() {
                 transition: "color 0.2s",
                 background:
                   pathname === link.href
-                    ? "rgba(201, 169, 110, 0.08)"
+                    ? "rgba(79, 124, 255, 0.08)"
                     : "transparent",
               }}
             >
@@ -129,7 +129,7 @@ export default function Navbar() {
           onClick={() => setMenuOpen(!menuOpen)}
           style={{
             background: "none",
-            border: "1px solid rgba(245,242,236,0.12)",
+            border: "1px solid rgba(234,234,234,0.12)",
             borderRadius: "8px",
             padding: "8px 12px",
             color: "var(--ivory)",
@@ -150,9 +150,9 @@ export default function Navbar() {
       {menuOpen && (
         <div
           style={{
-            background: "rgba(13, 15, 20, 0.98)",
+            background: "rgba(15, 17, 19, 0.98)",
             backdropFilter: "blur(20px)",
-            borderTop: "1px solid rgba(245,242,236,0.06)",
+            borderTop: "1px solid rgba(234,234,234,0.06)",
             padding: "20px 32px 32px",
           }}
           className="md:hidden"
@@ -165,7 +165,7 @@ export default function Navbar() {
               style={{
                 display: "block",
                 padding: "14px 0",
-                borderBottom: "1px solid rgba(245,242,236,0.06)",
+                borderBottom: "1px solid rgba(234,234,234,0.06)",
                 fontSize: "1rem",
                 color: pathname === link.href ? "var(--gold)" : "var(--ivory-muted)",
                 textDecoration: "none",

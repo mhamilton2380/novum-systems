@@ -51,8 +51,8 @@ export default function SystemsPage() {
       name: "OpsCore",
       subtitle: "Operational Command Center",
       color: "var(--gold)",
-      colorBg: "rgba(201,169,110,0.08)",
-      colorBorder: "rgba(201,169,110,0.2)",
+      colorBg: "rgba(79,124,255,0.08)",
+      colorBorder: "rgba(79,124,255,0.2)",
       tagline: "Your entire operation, unified in one intelligent system.",
       desc: "OpsCore is more than a dashboard — it's a live operational brain for your business. Powered by AI, it automatically generates tasks from incoming emails, text messages, and documents so nothing slips through the cracks. Your team communicates via built-in project chat, shares notes, tracks deadlines on a unified calendar, and monitors budgets — all filtered by project, all in one place. Think Slack, Notion, and your PM tool merged into a single system built exactly around how you operate.",
       forWho: ["Any team managing multiple active projects", "Operators who need full visibility across their business", "Organizations replacing a stack of disconnected tools", "Businesses where tasks, communication, and data live in separate places"],
@@ -185,7 +185,7 @@ export default function SystemsPage() {
         style={{
           padding: "160px 48px 100px",
           textAlign: "center",
-          background: "radial-gradient(ellipse 900px 500px at 50% 0%, rgba(201,169,110,0.06) 0%, transparent 60%), var(--ink)",
+          background: "radial-gradient(ellipse 900px 500px at 50% 0%, rgba(79,124,255,0.06) 0%, transparent 60%), var(--ink)",
         }}
       >
         <div style={{ maxWidth: "720px", margin: "0 auto" }}>
@@ -246,7 +246,7 @@ export default function SystemsPage() {
           style={{
             padding: "100px 48px",
             background: i % 2 === 1 ? "rgba(255,255,255,0.015)" : "transparent",
-            borderTop: "1px solid rgba(245,242,236,0.06)",
+            borderTop: "1px solid rgba(234,234,234,0.06)",
           }}
         >
           <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
@@ -276,8 +276,8 @@ export default function SystemsPage() {
                       display: "inline-flex",
                       alignItems: "center",
                       padding: "5px 14px",
-                      background: "rgba(201,169,110,0.06)",
-                      border: "1px solid rgba(201,169,110,0.2)",
+                      background: "rgba(79,124,255,0.06)",
+                      border: "1px solid rgba(79,124,255,0.2)",
                       borderRadius: "100px",
                       fontSize: "0.72rem",
                       fontWeight: "500",
@@ -383,7 +383,7 @@ export default function SystemsPage() {
                     style={{
                       padding: "26px 28px",
                       background: "rgba(255,255,255,0.025)",
-                      border: "1px solid rgba(245,242,236,0.08)",
+                      border: "1px solid rgba(234,234,234,0.08)",
                       borderRadius: "14px",
                     }}
                   >
@@ -428,8 +428,8 @@ export default function SystemsPage() {
         style={{
           padding: "100px 48px",
           textAlign: "center",
-          borderTop: "1px solid rgba(245,242,236,0.06)",
-          background: "radial-gradient(ellipse 800px 400px at 50% 50%, rgba(167,139,250,0.04) 0%, rgba(201,169,110,0.03) 60%, transparent 80%)",
+          borderTop: "1px solid rgba(234,234,234,0.06)",
+          background: "radial-gradient(ellipse 800px 400px at 50% 50%, rgba(167,139,250,0.04) 0%, rgba(79,124,255,0.03) 60%, transparent 80%)",
         }}
       >
         <div style={{ maxWidth: "600px", margin: "0 auto" }}>
