@@ -226,11 +226,13 @@ export default function ApproachPage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "16px" }} className="who-grid">
             {[
               {
-                title: "Field Service",
-                desc: "HVAC, plumbing, electrical, landscaping, equipment service — any business with teams dispatched to job sites.",
+                title: "Forge",
+                desc: "Operations that don't fit a template — unique structures, mixed service models, or complex workflows that require a fully custom build.",
                 icon: (
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" stroke="#00C87A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#00C87A" strokeWidth="1.5" strokeLinejoin="round" />
+                    <path d="M2 17l10 5 10-5" stroke="#00C87A" strokeWidth="1.5" strokeLinejoin="round" />
+                    <path d="M2 12l10 5 10-5" stroke="#00C87A" strokeWidth="1.5" strokeLinejoin="round" />
                   </svg>
                 ),
               },
@@ -257,13 +259,11 @@ export default function ApproachPage() {
                 ),
               },
               {
-                title: "Forge",
-                desc: "Operations that don't fit a template — unique structures, mixed service models, or complex workflows that require a fully custom build.",
+                title: "Field Service",
+                desc: "HVAC, plumbing, electrical, landscaping, equipment service — any business with teams dispatched to job sites.",
                 icon: (
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                    <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#00C87A" strokeWidth="1.5" strokeLinejoin="round" />
-                    <path d="M2 17l10 5 10-5" stroke="#00C87A" strokeWidth="1.5" strokeLinejoin="round" />
-                    <path d="M2 12l10 5 10-5" stroke="#00C87A" strokeWidth="1.5" strokeLinejoin="round" />
+                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" stroke="#00C87A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 ),
               },
