@@ -29,7 +29,7 @@ export default function DotCanvas() {
           const a = 0.08 + 0.52 * wave * wave;
           ctx.beginPath();
           ctx.arc(x, y, DOT_R, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(175,105,55,${a})`;
+          ctx.fillStyle = `rgba(0,200,122,${a})`;
           ctx.fill();
         }
       }

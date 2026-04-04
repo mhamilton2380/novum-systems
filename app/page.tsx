@@ -70,7 +70,7 @@ function PlexusBg() {
 
       // Grid lines
       ctx.lineWidth = 1;
-      ctx.strokeStyle = "rgba(175,100,40,0.07)";
+      ctx.strokeStyle = "rgba(0,200,122,0.07)";
       for (let c = 1; c < cols; c++) {
         ctx.beginPath(); ctx.moveTo(c * SPACING, 0); ctx.lineTo(c * SPACING, H); ctx.stroke();
       }
@@ -91,26 +91,26 @@ function PlexusBg() {
           const px = p.t * W;
           const tx = t0 * W;
           const tg = ctx.createLinearGradient(tx, y, px, y);
-          tg.addColorStop(0, "rgba(200,88,26,0)");
-          tg.addColorStop(1, `rgba(200,100,40,${brightness * p.alpha * 0.55})`);
+          tg.addColorStop(0, "rgba(0,200,122,0)");
+          tg.addColorStop(1, `rgba(0,200,122,${brightness * p.alpha * 0.55})`);
           ctx.beginPath(); ctx.moveTo(tx, y); ctx.lineTo(px, y);
           ctx.strokeStyle = tg; ctx.lineWidth = 1.5; ctx.stroke();
           const gr = ctx.createRadialGradient(px, y, 0, px, y, 14);
-          gr.addColorStop(0, `rgba(220,120,60,${brightness * p.alpha * 0.6})`);
-          gr.addColorStop(1, "rgba(200,88,26,0)");
+          gr.addColorStop(0, `rgba(0,210,130,${brightness * p.alpha * 0.6})`);
+          gr.addColorStop(1, "rgba(0,200,122,0)");
           ctx.beginPath(); ctx.arc(px, y, 14, 0, Math.PI * 2); ctx.fillStyle = gr; ctx.fill();
         } else {
           const x = p.line * SPACING;
           const py2 = p.t * H;
           const ty = t0 * H;
           const tg = ctx.createLinearGradient(x, ty, x, py2);
-          tg.addColorStop(0, "rgba(200,88,26,0)");
-          tg.addColorStop(1, `rgba(200,100,40,${brightness * p.alpha * 0.55})`);
+          tg.addColorStop(0, "rgba(0,200,122,0)");
+          tg.addColorStop(1, `rgba(0,200,122,${brightness * p.alpha * 0.55})`);
           ctx.beginPath(); ctx.moveTo(x, ty); ctx.lineTo(x, py2);
           ctx.strokeStyle = tg; ctx.lineWidth = 1.5; ctx.stroke();
           const gr = ctx.createRadialGradient(x, py2, 0, x, py2, 14);
-          gr.addColorStop(0, `rgba(220,120,60,${brightness * p.alpha * 0.6})`);
-          gr.addColorStop(1, "rgba(200,88,26,0)");
+          gr.addColorStop(0, `rgba(0,210,130,${brightness * p.alpha * 0.6})`);
+          gr.addColorStop(1, "rgba(0,200,122,0)");
           ctx.beginPath(); ctx.arc(x, py2, 14, 0, Math.PI * 2); ctx.fillStyle = gr; ctx.fill();
         }
       }
@@ -168,7 +168,7 @@ function HeroDotCanvas() {
           const a = 0.08 + 0.52 * wave * wave;
           ctx.beginPath();
           ctx.arc(x, y, DOT_R, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(175,105,55,${a})`;
+          ctx.fillStyle = `rgba(0,200,122,${a})`;
           ctx.fill();
         }
       }
@@ -216,7 +216,7 @@ function OperationalEngineGraphic() {
         p.setAttribute("stroke", "#1e1e1e");
         p.setAttribute("stroke-width", "1");
       } else {
-        p.setAttribute("stroke", "#c8581a");
+        p.setAttribute("stroke", "#00C87A");
         p.setAttribute("stroke-width", "1.6");
         p.setAttribute("stroke-linecap", "round");
         p.setAttribute("opacity", "0");
@@ -277,7 +277,7 @@ function OperationalEngineGraphic() {
       if (phase === "in") {
         const t = Math.min(1, elapsed / IN_DUR), te = ease(t);
         inLines.forEach((p) => {
-          p.el.setAttribute("stroke-dashoffset", String((p.len + p.trail) * (1 - te)));
+          p.el.setAttribute("stroke-dashoffset", String(p.trail + p.len * (1 - te)));
           p.el.setAttribute("opacity", t > 0 ? "1" : "0");
         });
         if (t >= 1) { inLines.forEach(resetPulse); setEngineGlow(true); phase = "engine"; phaseStart = ts; }
@@ -286,9 +286,9 @@ function OperationalEngineGraphic() {
       } else if (phase === "out") {
         const t = Math.min(1, elapsed / OUT_DUR), te = ease(t);
         outLines.forEach((p) => {
-          p.el.setAttribute("stroke-dashoffset", String((p.len + p.trail) * (1 - te)));
+          p.el.setAttribute("stroke-dashoffset", String(p.trail + p.len * (1 - te)));
           p.el.setAttribute("opacity", t > 0 ? "1" : "0");
-          const front = (p.len + p.trail) * te - p.trail;
+          const front = p.trail + p.len * te;
           if (!p.lit && front >= p.len) {
             p.lit = true;
             const pill = p.pillId ? pillRefs.current[p.pillId] : null;
@@ -365,15 +365,15 @@ function OperationalEngineGraphic() {
         </div>
         {/* Engine */}
         <div style={{ width: 280, flexShrink: 0 }}>
-          <div ref={engineRef} className="oeg-engine" style={{ width: "100%", border: "1px solid #3d2819", borderRadius: 7, background: "#161210" }}>
-            <div style={{ padding: "11px 13px 9px", borderBottom: "1px solid #201a16" }}>
-              <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#c8581a", marginBottom: 3 }}>Novum System</div>
+          <div ref={engineRef} className="oeg-engine" style={{ width: "100%", border: "1px solid #0d2418", borderRadius: 7, background: "#0c1510" }}>
+            <div style={{ padding: "11px 13px 9px", borderBottom: "1px solid #0d1e14" }}>
+              <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#00C87A", marginBottom: 3 }}>Novum System</div>
               <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "#d8d8d8" }}>Operational Engine</div>
             </div>
             <div style={{ display: "flex", flexDirection: "column" }}>
               {engineRows.map(({ title, desc }, i) => (
                 <div key={title} style={{ display: "flex", alignItems: "flex-start", gap: 8, padding: "9px 12px", borderBottom: i < engineRows.length - 1 ? "1px solid #1c1c1c" : "none", fontSize: 11.5, color: "#4e4e4e", lineHeight: 1.5 }}>
-                  <div style={{ width: 4, height: 4, borderRadius: "50%", background: "#c8581a", flexShrink: 0, marginTop: 5, opacity: 0.55 }} />
+                  <div style={{ width: 4, height: 4, borderRadius: "50%", background: "#00C87A", flexShrink: 0, marginTop: 5, opacity: 0.55 }} />
                   <div>
                     <strong style={{ display: "block", fontWeight: 600, color: "#999", fontSize: 12, marginBottom: 1 }}>{title}</strong>
                     {desc}
@@ -517,8 +517,8 @@ export default function HomePage() {
                   fontStyle: ADAPT_FONTS[fontIdx].style as "italic" | "normal",
                   fontWeight: ADAPT_FONTS[fontIdx].weight,
                   letterSpacing: ADAPT_FONTS[fontIdx].tracking,
-                  color: "#c8581a",
-                  textShadow: "0 0 22px rgba(200,88,26,0.55), 0 0 60px rgba(200,88,26,0.2)",
+                  color: "#00C87A",
+                  textShadow: "0 0 22px rgba(0,200,122,0.55), 0 0 60px rgba(0,200,122,0.2)",
                   opacity: fading ? 0 : 1,
                   transition: "opacity 0.3s ease",
                   display: "inline-block",
@@ -550,8 +550,8 @@ export default function HomePage() {
                 style={{
                   padding: "14px 28px",
                   borderRadius: "999px",
-                  background: "#efe4cc",
-                  color: "#17181B",
+                  background: "#00C87A",
+                  color: "#0a1a12",
                   fontSize: "0.92rem",
                   fontWeight: 600,
                   textDecoration: "none",
@@ -851,7 +851,7 @@ export default function HomePage() {
                     transition: "border-color 0.25s, background 0.25s, transform 0.25s",
                   }}
                   onMouseEnter={(event) => {
-                    event.currentTarget.style.borderColor = "rgba(200,88,26,0.32)";
+                    event.currentTarget.style.borderColor = "rgba(0,200,122,0.32)";
                     event.currentTarget.style.background = "rgba(255,255,255,0.08)";
                     event.currentTarget.style.transform = "translateY(-3px)";
                   }}
@@ -975,8 +975,8 @@ export default function HomePage() {
                 name: "OpsCore",
                 badge: "Operations Hub",
                 badgeColor: "var(--accent)",
-                badgeBg: "rgba(200,88,26,0.08)",
-                badgeBorder: "rgba(200,88,26,0.2)",
+                badgeBg: "rgba(0,200,122,0.08)",
+                badgeBorder: "rgba(0,200,122,0.2)",
                 desc: "A unified command center for tasks, communication, projects, budgets, reporting, and integrations. OpsCore creates structure across the entire business.",
                 features: [
                   "AI task generation",
@@ -1032,7 +1032,7 @@ export default function HomePage() {
                   cursor: "pointer",
                 }}
                 onMouseEnter={(event) => {
-                  event.currentTarget.style.borderColor = "rgba(200,88,26,0.28)";
+                  event.currentTarget.style.borderColor = "rgba(0,200,122,0.28)";
                   event.currentTarget.style.boxShadow = "0 16px 38px rgba(22,28,38,0.08)";
                   event.currentTarget.style.transform = "translateY(-2px)";
                 }}

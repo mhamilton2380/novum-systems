@@ -50,7 +50,7 @@ export default function ContactPage() {
               color: "#fff", marginBottom: "20px",
             }}>
               Let&apos;s talk about<br />
-              <span style={{ fontStyle: "italic", fontWeight: 300, color: "rgba(240,196,160,0.85)" }}>your operation.</span>
+              <span style={{ fontStyle: "italic", fontWeight: 300, color: "rgba(0,200,122,0.9)" }}>your operation.</span>
             </h1>
             <p style={{ color: "rgba(255,255,255,0.48)", fontSize: "1.02rem", lineHeight: 1.75, maxWidth: "460px" }}>
               A discovery call is how every Novum engagement starts. Tell us about your business and we&apos;ll reach out to schedule time.
@@ -82,7 +82,7 @@ export default function ContactPage() {
                         width: 32, height: 32, borderRadius: "50%",
                         border: "1.5px solid #f0c4a0", background: "#fdf0e8",
                         display: "flex", alignItems: "center", justifyContent: "center",
-                        flexShrink: 0, fontSize: "0.8rem", color: "#c8581a", fontWeight: 600,
+                        flexShrink: 0, fontSize: "0.8rem", color: "#00C87A", fontWeight: 600,
                       }}>{item.step}</div>
                       <div>
                         <p style={{ fontWeight: 600, fontSize: "0.92rem", marginBottom: "4px", color: "#1A1A1A" }}>{item.title}</p>
@@ -105,7 +105,7 @@ export default function ContactPage() {
                   display: "inline-flex", alignItems: "center", gap: "8px",
                   padding: "10px 20px", background: "#fff",
                   border: "1.5px solid #f0c4a0", borderRadius: "100px",
-                  color: "#c8581a", textDecoration: "none",
+                  color: "#00C87A", textDecoration: "none",
                   fontSize: "0.875rem", fontWeight: 600, transition: "all 0.2s",
                 }}>
                   <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
@@ -148,7 +148,7 @@ export default function ContactPage() {
                     width: 64, height: 64,
                     background: "#fdf0e8", border: "1.5px solid #f0c4a0",
                     borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center",
-                    margin: "0 auto 24px", fontSize: "1.5rem", color: "#c8581a",
+                    margin: "0 auto 24px", fontSize: "1.5rem", color: "#00C87A",
                   }}>✓</div>
                   <h3 style={{ fontWeight: 700, fontSize: "1.5rem", letterSpacing: "-0.02em", marginBottom: "12px" }}>
                     We&apos;ll be in touch.
@@ -179,7 +179,7 @@ export default function ContactPage() {
                         }}
                           type="text" name="name" required placeholder="Jane Smith"
                           value={form.name} onChange={handleChange}
-                          onFocus={e => (e.target as HTMLElement).style.borderColor = "#c8581a"}
+                          onFocus={e => (e.target as HTMLElement).style.borderColor = "#00C87A"}
                           onBlur={e => (e.target as HTMLElement).style.borderColor = "#E8E6E1"}
                         />
                       </div>
@@ -194,7 +194,7 @@ export default function ContactPage() {
                         }}
                           type="email" name="email" required placeholder="jane@company.com"
                           value={form.email} onChange={handleChange}
-                          onFocus={e => (e.target as HTMLElement).style.borderColor = "#c8581a"}
+                          onFocus={e => (e.target as HTMLElement).style.borderColor = "#00C87A"}
                           onBlur={e => (e.target as HTMLElement).style.borderColor = "#E8E6E1"}
                         />
                       </div>
@@ -211,7 +211,7 @@ export default function ContactPage() {
                       }}
                         type="text" name="company" required placeholder="Acme Services LLC"
                         value={form.company} onChange={handleChange}
-                        onFocus={e => (e.target as HTMLElement).style.borderColor = "#c8581a"}
+                        onFocus={e => (e.target as HTMLElement).style.borderColor = "#00C87A"}
                         onBlur={e => (e.target as HTMLElement).style.borderColor = "#E8E6E1"}
                       />
                     </div>
@@ -248,7 +248,7 @@ export default function ContactPage() {
                         name="message" required rows={5}
                         placeholder="Describe your business, what software you currently use, and what problems you're trying to solve..."
                         value={form.message} onChange={handleChange}
-                        onFocus={e => (e.target as HTMLElement).style.borderColor = "#c8581a"}
+                        onFocus={e => (e.target as HTMLElement).style.borderColor = "#00C87A"}
                         onBlur={e => (e.target as HTMLElement).style.borderColor = "#E8E6E1"}
                       />
                     </div>
@@ -262,7 +262,7 @@ export default function ContactPage() {
                       display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
                       transition: "background 0.2s",
                     }}
-                      onMouseEnter={e => { if (!loading) (e.currentTarget as HTMLElement).style.background = "#c8581a"; }}
+                      onMouseEnter={e => { if (!loading) (e.currentTarget as HTMLElement).style.background = "#00C87A"; }}
                       onMouseLeave={e => { if (!loading) (e.currentTarget as HTMLElement).style.background = "#1C1E26"; }}
                     >
                       {loading ? (

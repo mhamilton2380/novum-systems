@@ -41,9 +41,9 @@ export default function SystemsPage() {
       id: "opscore",
       name: "OpsCore",
       subtitle: "Operational Command Center",
-      accent: "#c8581a",
-      accentBg: "#fdf0e8",
-      accentBorder: "#f0c4a0",
+      accent: "#00C87A",
+      accentBg: "#e6f9f2",
+      accentBorder: "#a0e8cb",
       tagline: "Visibility across every part of your business.",
       desc: "OpsCore is the operational layer that ties everything together. Custom dashboards, automated workflows, and reporting designed around the KPIs that actually matter to your business.",
       forWho: ["Multi-location operators", "Franchise systems", "Teams with complex approval workflows", "Businesses needing cross-department reporting"],
@@ -169,7 +169,7 @@ export default function SystemsPage() {
               color: "#fff", marginBottom: "20px",
             }}>
               Custom systems.<br />
-              <span style={{ color: "rgba(240,196,160,0.85)", fontStyle: "italic", fontWeight: 300, textShadow: "0 0 24px rgba(240,196,160,0.55), 0 0 70px rgba(200,88,26,0.22)" }}>One coherent operation.</span>
+              <span style={{ color: "rgba(0,200,122,0.9)", fontStyle: "italic", fontWeight: 300, textShadow: "0 0 24px rgba(0,200,122,0.5), 0 0 70px rgba(0,200,122,0.2)" }}>One coherent operation.</span>
             </h1>
             <p style={{ color: "rgba(255,255,255,0.48)", fontSize: "1.05rem", lineHeight: 1.75, maxWidth: "520px" }}>
               Each Novum system is customized to your business. Most clients start with one and expand — or combine them into a fully integrated operational platform.
