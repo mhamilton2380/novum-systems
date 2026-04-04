@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import DotCanvas from "@/components/DotCanvas";
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", email: "", company: "", businessType: "", message: "" });
@@ -27,11 +28,7 @@ export default function ContactPage() {
           background: "#141414", borderRadius: "20px",
           padding: "80px 60px", position: "relative", overflow: "hidden",
         }}>
-          <div style={{
-            position: "absolute", inset: 0,
-            backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
-            backgroundSize: "24px 24px, 80px 80px, 80px 80px",
-          }} />
+          <DotCanvas />
           <div style={{ position: "relative", zIndex: 1, maxWidth: "600px" }}>
             <div style={{
               display: "inline-flex", alignItems: "center", gap: "7px",
