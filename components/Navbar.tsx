@@ -43,8 +43,8 @@ export default function Navbar() {
   const textColor = "#17181B";
   const mutedColor = "#68635e";
   const logoBg = "#00C87A";
-  const ctaBg = "#F2EBD9";
-  const ctaColor = "#17181B";
+  const ctaBg = "#00C87A";
+  const ctaColor = "#0a1a12";
 
   return (
     <header
