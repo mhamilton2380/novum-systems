@@ -226,7 +226,7 @@ export default function ApproachPage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "16px" }} className="who-grid">
             {[
               {
-                title: "Forge",
+                title: "Complex Operations",
                 desc: "Operations that don't fit a template — unique structures, mixed service models, or complex workflows that require a fully custom build.",
                 icon: (
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
