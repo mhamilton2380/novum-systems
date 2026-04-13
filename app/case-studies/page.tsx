@@ -4,10 +4,21 @@ import DotCanvas from "@/components/DotCanvas";
 
 const cases = [
   {
+    slug: "seneca-development",
+    client: "Seneca Development Co.",
+    industry: "Real Estate Development & Investment",
+    system: "Forge · OpsCore · Vault · A.R.I.S",
+    headline: "Unified deal tracking, project execution, and portfolio oversight into one custom platform.",
+    outcome: "Replaced 6 disconnected tools. LP reporting went from a week to a day. Full deal history queryable in under 60 seconds.",
+    accent: "#6D4FBB",
+    accentBg: "#F3F0FC",
+    accentBorder: "#D9D0F5",
+  },
+  {
     slug: "meridian-law",
     client: "Meridian Law Group",
     industry: "Legal Services",
-    system: "OpsCore + Vault + A.R.I.S",
+    system: "OpsCore · Vault · A.R.I.S",
     headline: "From scattered documents and manual billing to a fully queryable knowledge base.",
     outcome: "40% reduction in time spent on document retrieval. Matter history surfaced instantly.",
     accent: "#1E3A8A",
@@ -18,7 +29,7 @@ const cases = [
     slug: "summit-hvac",
     client: "Summit Mechanical",
     industry: "HVAC & Field Service",
-    system: "FieldOps + OpsCore",
+    system: "FieldOps · OpsCore",
     headline: "Replaced spreadsheet scheduling and phone dispatch with a live operational system.",
     outcome: "Dispatchers went from managing chaos to managing a board. Job completion rates up 28%.",
     accent: "#236B4E",
