@@ -1123,6 +1123,56 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── Enterprise Banner ── */}
+      <section style={{ padding: "40px 24px 0", position: "relative", zIndex: 1 }}>
+        <div className="fade-section" style={{
+          background: "#141414", borderRadius: 24,
+          padding: "64px 60px", position: "relative", overflow: "hidden",
+          border: "1px solid rgba(255,255,255,0.06)",
+          display: "grid", gridTemplateColumns: "1fr auto", gap: 48, alignItems: "center",
+          maxWidth: "1400px", margin: "0 auto",
+        }} >
+          <div className="dot-grid" style={{ position: "absolute", inset: 0, opacity: 0.6 }} />
+          <div style={{ position: "relative", zIndex: 1 }}>
+            <div style={{
+              display: "inline-flex", alignItems: "center", gap: 7,
+              padding: "5px 14px", borderRadius: 100,
+              border: "1px solid rgba(255,255,255,0.12)", background: "rgba(255,255,255,0.06)",
+              fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.09em", textTransform: "uppercase" as const,
+              color: "rgba(255,255,255,0.45)", marginBottom: 20,
+            }}>
+              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(255,255,255,0.4)", display: "inline-block" }} />
+              Enterprise
+            </div>
+            <h2 style={{
+              fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
+              fontSize: "clamp(1.6rem, 3vw, 2.4rem)",
+              letterSpacing: "-0.03em", lineHeight: 1.1,
+              color: "#fff", marginBottom: 14,
+            }}>
+              Running a larger operation?
+            </h2>
+            <p style={{ color: "rgba(255,255,255,0.48)", lineHeight: 1.8, fontSize: "0.95rem", maxWidth: 580, margin: 0 }}>
+              We deploy the full Novum stack — OpsCore, Vault, A.R.I.S, and more — as an integrated platform for multi-team organizations. Encrypted, role-controlled, and built around how your business actually operates.
+            </p>
+          </div>
+          <div style={{ position: "relative", zIndex: 1, flexShrink: 0 }}>
+            <Link href="/enterprise" style={{
+              display: "inline-flex", alignItems: "center", gap: 8,
+              padding: "14px 32px", borderRadius: 100,
+              background: "#00C87A", color: "#0a1a12",
+              fontSize: "0.92rem", fontWeight: 600, textDecoration: "none",
+              whiteSpace: "nowrap" as const,
+            }}
+              onMouseEnter={e => (e.currentTarget as HTMLElement).style.opacity = "0.88"}
+              onMouseLeave={e => (e.currentTarget as HTMLElement).style.opacity = "1"}
+            >
+              Learn about Enterprise →
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section style={{ padding: "0 24px", position: "relative", zIndex: 1 }}>
         <div
           style={{
