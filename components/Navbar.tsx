@@ -32,6 +32,7 @@ export default function Navbar() {
 
   const links = [
     { href: "/systems", label: "Systems" },
+    { href: "/enterprise", label: "Enterprise" },
     { href: "/approach", label: "Approach" },
     { href: "/contact", label: "Contact" },
   ];
