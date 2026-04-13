@@ -277,6 +277,136 @@ export default function SystemsPage() {
         </section>
       ))}
 
+      {/* ── Additional Tools ── */}
+      <section style={{ padding: "96px 40px", borderTop: "1px solid #EDECEA", background: "#f5f4f1" }}>
+        <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+          <div style={{ marginBottom: "56px" }}>
+            <div style={{
+              display: "inline-flex", alignItems: "center", gap: "7px",
+              padding: "5px 14px", borderRadius: "100px",
+              border: "1px solid #DDDBD7", background: "#EDECEA",
+              fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.09em", textTransform: "uppercase",
+              color: "#7A7774", marginBottom: "20px",
+            }}>
+              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#B0ADA8", display: "inline-block" }} />
+              Additional Tools
+            </div>
+            <h2 style={{
+              fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
+              fontSize: "clamp(2rem, 3.5vw, 3rem)",
+              letterSpacing: "-0.03em", lineHeight: 1.08,
+              color: "#1A1A1A", marginBottom: "14px",
+            }}>Built to work alongside your system.</h2>
+            <p style={{ color: "#7A7774", fontSize: "0.95rem", lineHeight: 1.8, maxWidth: "520px" }}>
+              These tools extend any Novum system — or run independently. Add them when you need them.
+            </p>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px" }} className="tools-grid">
+
+            {/* Vault */}
+            <div style={{
+              background: "#fff", border: "1px solid #EDECEA", borderRadius: "20px",
+              padding: "48px 44px", display: "flex", flexDirection: "column", gap: "32px",
+            }}>
+              <div>
+                <span style={{
+                  display: "inline-flex", alignItems: "center",
+                  padding: "5px 14px", borderRadius: "100px",
+                  background: "#EEF2FF", border: "1px solid #C7D2FE",
+                  fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.09em", textTransform: "uppercase",
+                  color: "#1E3A8A", marginBottom: "20px",
+                }}>Encrypted Document Intelligence</span>
+                <h3 style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "2.2rem", letterSpacing: "-0.03em", marginBottom: "12px", color: "#1A1A1A" }}>Vault</h3>
+                <p style={{ color: "#1E3A8A", fontWeight: 500, fontSize: "0.95rem", marginBottom: "16px" }}>Your business knowledge. Secure. Searchable. Always current.</p>
+                <p style={{ color: "#7A7774", lineHeight: 1.8, fontSize: "0.9rem" }}>
+                  Drop a file into your designated folder and within minutes it&apos;s encrypted, indexed, and answerable. Ask a question in plain English — Jarvis pulls the answer directly from your own documents and links back to the original file.
+                </p>
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+                {[
+                  { label: "Encrypted Drop Folders", desc: "Files encrypted at rest and in transit. Role-segregated by team or business line.", icon: <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><rect x="2" y="6" width="12" height="9" rx="1.5" stroke="#1E3A8A" strokeWidth="1.4"/><path d="M5 6V4.5a3 3 0 016 0V6" stroke="#1E3A8A" strokeWidth="1.4" strokeLinecap="round"/><circle cx="8" cy="10.5" r="1.5" stroke="#1E3A8A" strokeWidth="1.2"/></svg> },
+                  { label: "AI Document Query", desc: "Plain English questions answered from your own files — not the internet.", icon: <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="#1E3A8A" strokeWidth="1.4"/><line x1="10.5" y1="10.5" x2="14" y2="14" stroke="#1E3A8A" strokeWidth="1.4" strokeLinecap="round"/><line x1="5" y1="7" x2="9" y2="7" stroke="#1E3A8A" strokeWidth="1.2" strokeLinecap="round"/><line x1="7" y1="5" x2="7" y2="9" stroke="#1E3A8A" strokeWidth="1.2" strokeLinecap="round"/></svg> },
+                  { label: "Instant File Retrieval", desc: "Ask for a document and get a direct link back to the original.", icon: <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><rect x="3" y="1.5" width="10" height="13" rx="1.5" stroke="#1E3A8A" strokeWidth="1.4"/><line x1="6" y1="5" x2="10" y2="5" stroke="#1E3A8A" strokeWidth="1.2" strokeLinecap="round"/><line x1="6" y1="7.5" x2="10" y2="7.5" stroke="#1E3A8A" strokeWidth="1.2" strokeLinecap="round"/><polyline points="6,11 8,13 10,11" stroke="#1E3A8A" strokeWidth="1.3" strokeLinejoin="round" strokeLinecap="round"/></svg> },
+                  { label: "Role-Based Access Control", desc: "Each person sees only the vaults they&apos;re cleared for. Enforced automatically.", icon: <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 1.5L2 4v5c0 3.5 2.7 5.8 6 6.5 3.3-.7 6-3 6-6.5V4L8 1.5z" stroke="#1E3A8A" strokeWidth="1.4" strokeLinejoin="round"/><polyline points="5.5,8 7.5,10 11,7" stroke="#1E3A8A" strokeWidth="1.3" strokeLinejoin="round" strokeLinecap="round"/></svg> },
+                ].map(f => (
+                  <div key={f.label} style={{ display: "flex", alignItems: "flex-start", gap: "14px" }}>
+                    <div style={{ width: 34, height: 34, background: "#EEF2FF", border: "1px solid #C7D2FE", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>{f.icon}</div>
+                    <div>
+                      <div style={{ fontWeight: 600, fontSize: "0.875rem", color: "#1A1A1A", marginBottom: "3px" }}>{f.label}</div>
+                      <div style={{ fontSize: "0.825rem", color: "#7A7774", lineHeight: 1.65 }}>{f.desc}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <Link href="/contact" style={{
+                display: "inline-flex", alignItems: "center", gap: "8px", alignSelf: "flex-start",
+                padding: "12px 26px", borderRadius: "100px",
+                background: "#141414", color: "#fff",
+                fontSize: "0.875rem", fontWeight: 600, textDecoration: "none",
+              }}
+                onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = "#1E3A8A"}
+                onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = "#141414"}
+              >
+                Ask about Vault →
+              </Link>
+            </div>
+
+            {/* Jarvis */}
+            <div style={{
+              background: "#141414", border: "1px solid #2A2A2A", borderRadius: "20px",
+              padding: "48px 44px", display: "flex", flexDirection: "column", gap: "32px",
+              position: "relative", overflow: "hidden",
+            }}>
+              <DotCanvas />
+              <div style={{ position: "relative", zIndex: 2 }}>
+                <span style={{
+                  display: "inline-flex", alignItems: "center",
+                  padding: "5px 14px", borderRadius: "100px",
+                  background: "rgba(0,200,122,0.12)", border: "1px solid rgba(0,200,122,0.25)",
+                  fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.09em", textTransform: "uppercase",
+                  color: "#00C87A", marginBottom: "20px",
+                }}>Adaptive Response Intelligence System</span>
+                <h3 style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "2.2rem", letterSpacing: "-0.03em", marginBottom: "12px", color: "#fff" }}>A.R.I.S</h3>
+                <p style={{ color: "#00C87A", fontWeight: 500, fontSize: "0.95rem", marginBottom: "16px" }}>Ask your operation anything. Get an answer in seconds.</p>
+                <p style={{ color: "rgba(255,255,255,0.48)", lineHeight: 1.8, fontSize: "0.9rem" }}>
+                  A.R.I.S is an AI assistant trained on your business — your documents, your data, your history. Ask it a question in plain English and it searches across every connected system and vault to find the answer. No dashboards to dig through. No spreadsheets to open.
+                </p>
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: "16px", position: "relative", zIndex: 2 }}>
+                {[
+                  { label: "Plain English Queries", desc: "Ask anything the way you'd say it out loud. A.R.I.S handles the rest.", color: "#00C87A", borderColor: "rgba(0,200,122,0.25)", bg: "rgba(0,200,122,0.08)", icon: <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M2 3.5h12M2 6.5h8M2 9.5h10M2 12.5h6" stroke="#00C87A" strokeWidth="1.4" strokeLinecap="round"/></svg> },
+                  { label: "Cross-System Search", desc: "Searches your vaults, project data, and operational records simultaneously.", color: "#00C87A", borderColor: "rgba(0,200,122,0.25)", bg: "rgba(0,200,122,0.08)", icon: <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="#00C87A" strokeWidth="1.4"/><line x1="10.5" y1="10.5" x2="14" y2="14" stroke="#00C87A" strokeWidth="1.4" strokeLinecap="round"/></svg> },
+                  { label: "Document Retrieval", desc: "Get answers and the original file — pulled directly from Vault.", color: "#00C87A", borderColor: "rgba(0,200,122,0.25)", bg: "rgba(0,200,122,0.08)", icon: <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><rect x="3" y="1.5" width="10" height="13" rx="1.5" stroke="#00C87A" strokeWidth="1.4"/><polyline points="6,11 8,13 10,11" stroke="#00C87A" strokeWidth="1.3" strokeLinejoin="round" strokeLinecap="round"/></svg> },
+                  { label: "Role-Aware Responses", desc: "Jarvis only surfaces information the person querying is cleared to see.", color: "#00C87A", borderColor: "rgba(0,200,122,0.25)", bg: "rgba(0,200,122,0.08)", icon: <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 1.5L2 4v5c0 3.5 2.7 5.8 6 6.5 3.3-.7 6-3 6-6.5V4L8 1.5z" stroke="#00C87A" strokeWidth="1.4" strokeLinejoin="round"/></svg> },
+                ].map(f => (
+                  <div key={f.label} style={{ display: "flex", alignItems: "flex-start", gap: "14px" }}>
+                    <div style={{ width: 34, height: 34, background: f.bg, border: `1px solid ${f.borderColor}`, borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>{f.icon}</div>
+                    <div>
+                      <div style={{ fontWeight: 600, fontSize: "0.875rem", color: "#fff", marginBottom: "3px" }}>{f.label}</div>
+                      <div style={{ fontSize: "0.825rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.65 }}>{f.desc}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <Link href="/contact" style={{
+                display: "inline-flex", alignItems: "center", gap: "8px", alignSelf: "flex-start",
+                padding: "12px 26px", borderRadius: "100px",
+                background: "#00C87A", color: "#fff",
+                fontSize: "0.875rem", fontWeight: 600, textDecoration: "none",
+                position: "relative", zIndex: 2,
+              }}
+                onMouseEnter={e => (e.currentTarget as HTMLElement).style.opacity = "0.85"}
+                onMouseLeave={e => (e.currentTarget as HTMLElement).style.opacity = "1"}
+              >
+                Ask about A.R.I.S →
+              </Link>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* ── Combine CTA ── */}
       <section style={{ padding: "24px 24px 80px" }}>
         <div style={{
@@ -311,6 +441,7 @@ export default function SystemsPage() {
         @media (max-width: 900px) {
           .sys-detail-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
           .sys-detail-grid > div:first-child { position: static !important; }
+          .tools-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </div>
