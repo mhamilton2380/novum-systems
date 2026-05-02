@@ -6,6 +6,9 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import dynamic from "next/dynamic";
+
+const ThreeScene = dynamic(() => import("../components/ThreeScene"), { ssr: false });
 
 // ─── Canvas background: animated grid + pulses ───────────────────────────────
 function PlexusBg() {
@@ -400,18 +403,18 @@ const ADAPT_FONTS = [
 
 // ─── Animation variants ───────────────────────────────────────────────────────
 const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 14 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] } },
 };
 
 const fadeLeft = {
-  hidden: { opacity: 0, x: -28 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, x: -16 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] } },
 };
 
 const fadeRight = {
-  hidden: { opacity: 0, x: 28 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, x: 16 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] } },
 };
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
@@ -524,7 +527,7 @@ export default function HomePage() {
             animate="visible"
             variants={{
               hidden: {},
-              visible: { transition: { staggerChildren: 0.13, delayChildren: 0.18 } },
+              visible: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
             }}
             style={{
               position: "relative",
@@ -645,6 +648,58 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── 3D Visualization ── */}
+      <section style={{ padding: "24px 24px 0", position: "relative", zIndex: 1 }}>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.07 } } }}
+          style={{
+            background: "#0e0e0e",
+            borderRadius: 24,
+            border: "1px solid rgba(255,255,255,0.06)",
+            overflow: "hidden",
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            alignItems: "center",
+            minHeight: 460,
+          }}
+        >
+          {/* Left: text */}
+          <div style={{ padding: "72px 60px", position: "relative", zIndex: 1 }}>
+            <motion.div
+              variants={fadeUp}
+              className="pill-tag"
+              style={{ border: "1px solid rgba(0,200,122,0.2)", background: "rgba(0,200,122,0.06)", color: "rgba(0,200,122,0.8)", marginBottom: 24 }}
+            >
+              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#00C87A", display: "inline-block" }} />
+              Operational Platform
+            </motion.div>
+            <motion.h2
+              variants={fadeUp}
+              className="font-serif"
+              style={{ fontSize: "clamp(2rem, 3.5vw, 3.2rem)", lineHeight: 1.08, letterSpacing: "-0.04em", color: "#fff", marginBottom: 20 }}
+            >
+              One system.
+              <br />
+              <span style={{ color: "#00C87A" }}>Everything connected.</span>
+            </motion.h2>
+            <motion.p
+              variants={fadeUp}
+              style={{ color: "rgba(255,255,255,0.48)", lineHeight: 1.82, fontSize: "0.96rem", maxWidth: 400 }}
+            >
+              Projects, teams, field crews, finance, and reporting — unified into a single operational layer built around how your business actually works.
+            </motion.p>
+          </div>
+
+          {/* Right: 3D scene */}
+          <div style={{ height: 460, position: "relative" }}>
+            {graphicReady && <ThreeScene />}
+          </div>
+        </motion.div>
+      </section>
+
       {/* ── Problem ── */}
       <section style={{ padding: "100px 48px", position: "relative", zIndex: 1 }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
@@ -690,7 +745,7 @@ export default function HomePage() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-60px" }}
-              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.09 } } }}
+              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.06 } } }}
             >
               {[
                 "Generic platforms that force you to work around them",
@@ -772,7 +827,7 @@ export default function HomePage() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-60px" }}
-              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.13 } } }}
+              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.07 } } }}
             >
               {[
                 {
@@ -975,7 +1030,7 @@ export default function HomePage() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12 } } }}
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.07 } } }}
         >
           <div className="dot-grid" style={{ position: "absolute", inset: 0, opacity: 0.6 }} />
           <motion.div variants={fadeUp} style={{ position: "relative", zIndex: 1 }}>

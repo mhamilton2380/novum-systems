@@ -10,6 +10,10 @@
   },
   "dependencies": {
     "@next/font": "^14.2.15",
+    "@react-three/fiber": "^8",
+    "@react-three/drei": "^9",
+    "three": "^0.170",
+    "@types/three": "^0.170",
     "framer-motion": "^11",
     "gsap": "^3",
     "next": "16.2.2",
