@@ -3,28 +3,11 @@
 import type { CSSProperties } from "react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-function useScrollReveal() {
-  useEffect(() => {
-    const elements = document.querySelectorAll(".fade-section");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12 }
-    );
-
-    elements.forEach((element) => observer.observe(element));
-
-    return () => observer.disconnect();
-  }, []);
-}
-
+// ─── Canvas background: animated grid + pulses ───────────────────────────────
 function PlexusBg() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -68,7 +51,6 @@ function PlexusBg() {
       const cols = Math.floor(W / SPACING);
       const rows = Math.floor(H / SPACING);
 
-      // Grid lines
       ctx.lineWidth = 1;
       ctx.strokeStyle = "rgba(0,200,122,0.07)";
       for (let c = 1; c < cols; c++) {
@@ -78,7 +60,6 @@ function PlexusBg() {
         ctx.beginPath(); ctx.moveTo(0, r * SPACING); ctx.lineTo(W, r * SPACING); ctx.stroke();
       }
 
-      // Pulses
       for (let i = pulses.length - 1; i >= 0; i--) {
         const p = pulses[i];
         p.t += p.speed;
@@ -140,6 +121,7 @@ function PlexusBg() {
   );
 }
 
+// ─── Hero animated dot field ──────────────────────────────────────────────────
 function HeroDotCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
@@ -185,6 +167,7 @@ function HeroDotCanvas() {
   );
 }
 
+// ─── Operational Engine graphic ───────────────────────────────────────────────
 function OperationalEngineGraphic() {
   const svgRef = useRef<SVGSVGElement>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -351,7 +334,6 @@ function OperationalEngineGraphic() {
       style={{ position: "relative", background: "transparent", padding: "44px 40px 48px", overflow: "hidden" }}
     >
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 2 }}>
-        {/* Inputs */}
         <div style={{ width: 148, flexShrink: 0 }}>
           <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase", color: "#383838", marginBottom: 11 }}>Operational Inputs</div>
           <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
@@ -363,7 +345,6 @@ function OperationalEngineGraphic() {
             ))}
           </div>
         </div>
-        {/* Engine */}
         <div style={{ width: 280, flexShrink: 0 }}>
           <div ref={engineRef} className="oeg-engine" style={{ width: "100%", border: "1px solid #0d2418", borderRadius: 7, background: "#0c1510" }}>
             <div style={{ padding: "11px 13px 9px", borderBottom: "1px solid #0d1e14" }}>
@@ -383,7 +364,6 @@ function OperationalEngineGraphic() {
             </div>
           </div>
         </div>
-        {/* Outputs */}
         <div style={{ width: 148, flexShrink: 0 }}>
           <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase", color: "#383838", marginBottom: 11, textAlign: "right" }}>Operational Outputs</div>
           <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
@@ -399,10 +379,9 @@ function OperationalEngineGraphic() {
       <svg ref={svgRef} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none", overflow: "visible", zIndex: 1 } as CSSProperties} />
     </div>
   );
-
 }
 
-
+// ─── Shared glass card style ──────────────────────────────────────────────────
 const glassCard: CSSProperties = {
   background: "rgba(255,255,255,0.1)",
   backdropFilter: "blur(12px) saturate(1.4)",
@@ -419,15 +398,31 @@ const ADAPT_FONTS = [
   { font: "'Brush Script MT', cursive",   style: "italic",  weight: 400, tracking: "0.01em"  },
 ];
 
+// ─── Animation variants ───────────────────────────────────────────────────────
+const fadeUp = {
+  hidden: { opacity: 0, y: 28 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
+};
+
+const fadeLeft = {
+  hidden: { opacity: 0, x: -28 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+};
+
+const fadeRight = {
+  hidden: { opacity: 0, x: 28 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
+};
+
+// ─── Page ─────────────────────────────────────────────────────────────────────
 export default function HomePage() {
-  useScrollReveal();
   const [graphicReady, setGraphicReady] = useState(false);
   const [fontIdx, setFontIdx] = useState(0);
   const [fading, setFading] = useState(false);
+  const spotRef = useRef<HTMLDivElement>(null);
+  const connectorRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    setGraphicReady(true);
-  }, []);
+  useEffect(() => { setGraphicReady(true); }, []);
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -440,19 +435,73 @@ export default function HomePage() {
     return () => clearInterval(id);
   }, []);
 
+  // Cursor spotlight — direct DOM update to avoid re-renders
+  useEffect(() => {
+    const el = spotRef.current;
+    if (!el) return;
+    const handleMouse = (e: MouseEvent) => {
+      el.style.transform = `translate(${e.clientX - 250}px, ${e.clientY - 250}px)`;
+    };
+    window.addEventListener("mousemove", handleMouse, { passive: true });
+    return () => window.removeEventListener("mousemove", handleMouse);
+  }, []);
+
+  // GSAP: connector line draws left-to-right on scroll
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    const el = connectorRef.current;
+    if (!el) return;
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        el,
+        { scaleX: 0, transformOrigin: "left center" },
+        {
+          scaleX: 1,
+          ease: "power2.inOut",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 80%",
+            end: "top 40%",
+            scrub: 1,
+          },
+        }
+      );
+    });
+    return () => ctx.revert();
+  }, []);
+
   return (
     <div
       style={{
-        background:
-          "#f5f4f1",
+        background: "#f5f4f1",
         color: "var(--text)",
         fontFamily: "'DM Sans', sans-serif",
         position: "relative",
         overflow: "hidden",
       }}
     >
+      {/* Cursor spotlight */}
+      <div
+        ref={spotRef}
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: 500,
+          height: 500,
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(0,200,122,0.07) 0%, transparent 65%)",
+          pointerEvents: "none",
+          zIndex: 9999,
+          transform: "translate(-600px, -600px)",
+          transition: "transform 0.08s ease-out",
+          willChange: "transform",
+        }}
+      />
+
       <PlexusBg />
 
+      {/* ── Hero ── */}
       <section style={{ padding: "86px 20px 0", position: "relative", zIndex: 1 }}>
         <div
           className="hero-card"
@@ -468,7 +517,15 @@ export default function HomePage() {
           }}
         >
           {graphicReady && <HeroDotCanvas />}
-          <div
+
+          {/* Staggered hero entrance */}
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.13, delayChildren: 0.18 } },
+            }}
             style={{
               position: "relative",
               zIndex: 3,
@@ -477,7 +534,8 @@ export default function HomePage() {
               flexDirection: "column",
             }}
           >
-            <div
+            <motion.div
+              variants={fadeUp}
               className="pill-tag"
               style={{
                 border: "1px solid rgba(255,255,255,0.1)",
@@ -487,19 +545,12 @@ export default function HomePage() {
                 alignSelf: "flex-start",
               }}
             >
-              <span
-                style={{
-                  width: 5,
-                  height: 5,
-                  borderRadius: "50%",
-                  background: "rgba(255,255,255,0.42)",
-                  display: "inline-block",
-                }}
-              />
+              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(255,255,255,0.42)", display: "inline-block" }} />
               Operational Software for Growing Businesses
-            </div>
+            </motion.div>
 
-            <h1
+            <motion.h1
+              variants={fadeUp}
               className="font-serif"
               style={{
                 fontSize: "clamp(3rem, 5vw, 5.4rem)",
@@ -528,9 +579,10 @@ export default function HomePage() {
               </span>
               <br />
               to your business.
-            </h1>
+            </motion.h1>
 
-            <p
+            <motion.p
+              variants={fadeUp}
               style={{
                 fontSize: "clamp(1rem, 1.3vw, 1.12rem)",
                 color: "rgba(255,255,255,0.56)",
@@ -542,9 +594,9 @@ export default function HomePage() {
               We replace rigid, expensive software with operational systems
               designed around how your business actually runs, with one
               intelligent layer across projects, teams, field work, and reporting.
-            </p>
+            </motion.p>
 
-            <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+            <motion.div variants={fadeUp} style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
               <Link
                 href="/contact"
                 style={{
@@ -561,22 +613,12 @@ export default function HomePage() {
                   boxShadow: "0 12px 24px rgba(0,0,0,0.12)",
                   transition: "transform 0.15s ease",
                 }}
-                onMouseEnter={(event) => {
-                  event.currentTarget.style.transform = "translateY(-1px)";
-                }}
-                onMouseLeave={(event) => {
-                  event.currentTarget.style.transform = "translateY(0)";
-                }}
+                onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-1px)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; }}
               >
                 Book a Discovery Call
                 <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
-                  <path
-                    d="M3 8h10M9 4l4 4-4 4"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </Link>
               <Link
@@ -594,8 +636,8 @@ export default function HomePage() {
               >
                 See Our Systems
               </Link>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           <div style={{ position: "relative" }} className="oeg-graphic-outer">
             {graphicReady ? <OperationalEngineGraphic /> : null}
@@ -603,82 +645,52 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── Problem ── */}
       <section style={{ padding: "100px 48px", position: "relative", zIndex: 1 }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
           <div
             className="problem-grid"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "80px",
-              alignItems: "start",
-            }}
+            style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "80px", alignItems: "start" }}
           >
-            <div className="fade-section">
-              <div
-                className="pill-tag"
-                style={{
-                  ...glassCard,
-                  color: "var(--text-soft)",
-                  marginBottom: 28,
-                }}
-              >
-                <span
-                  style={{
-                    width: 5,
-                    height: 5,
-                    borderRadius: "50%",
-                    background: "var(--text-soft)",
-                    display: "inline-block",
-                  }}
-                />
+            {/* Left: text staggered up */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-80px" }}
+              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
+            >
+              <motion.div variants={fadeUp} className="pill-tag" style={{ ...glassCard, color: "var(--text-soft)", marginBottom: 28 }}>
+                <span style={{ width: 5, height: 5, borderRadius: "50%", background: "var(--text-soft)", display: "inline-block" }} />
                 The Problem
-              </div>
-              <h2
+              </motion.div>
+              <motion.h2
+                variants={fadeUp}
                 className="font-serif"
-                style={{
-                  fontSize: "clamp(1.95rem, 3.5vw, 3rem)",
-                  lineHeight: 1.1,
-                  letterSpacing: "-0.03em",
-                  marginBottom: 24,
-                }}
+                style={{ fontSize: "clamp(1.95rem, 3.5vw, 3rem)", lineHeight: 1.1, letterSpacing: "-0.03em", marginBottom: 24 }}
               >
                 Your operations are unique.
                 <br />
-                <span style={{ color: "var(--text-soft)", fontStyle: "italic" }}>
-                  Your software isn&apos;t.
-                </span>
-              </h2>
-              <p
-                style={{
-                  color: "var(--text-soft)",
-                  lineHeight: 1.88,
-                  fontSize: "0.98rem",
-                  marginBottom: 16,
-                  maxWidth: 560,
-                }}
-              >
+                <span style={{ color: "var(--text-soft)", fontStyle: "italic" }}>Your software isn&apos;t.</span>
+              </motion.h2>
+              <motion.p variants={fadeUp} style={{ color: "var(--text-soft)", lineHeight: 1.88, fontSize: "0.98rem", marginBottom: 16, maxWidth: 560 }}>
                 Off-the-shelf platforms were designed for the average business,
                 which means they fit nobody perfectly. You end up bending your
                 workflows to match your software instead of the other way around.
-              </p>
-              <p
-                style={{
-                  color: "var(--text-soft)",
-                  lineHeight: 1.88,
-                  fontSize: "0.98rem",
-                  maxWidth: 560,
-                }}
-              >
+              </motion.p>
+              <motion.p variants={fadeUp} style={{ color: "var(--text-soft)", lineHeight: 1.88, fontSize: "0.98rem", maxWidth: 560 }}>
                 The result is fragmented operations, manual workarounds, and a
                 team spending too much energy managing tools instead of managing
                 the business.
-              </p>
-            </div>
+              </motion.p>
+            </motion.div>
 
-            <div
-              className="fade-section"
+            {/* Right: cards slide in from right, staggered */}
+            <motion.div
               style={{ display: "flex", flexDirection: "column", gap: 10 }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-60px" }}
+              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.09 } } }}
             >
               {[
                 "Generic platforms that force you to work around them",
@@ -686,8 +698,9 @@ export default function HomePage() {
                 "Disconnected tools requiring manual data entry between systems",
                 "No visibility into your actual operations across teams",
               ].map((item) => (
-                <div
+                <motion.div
                   key={item}
+                  variants={fadeRight}
                   style={{
                     ...glassCard,
                     display: "flex",
@@ -698,51 +711,29 @@ export default function HomePage() {
                     borderRadius: 16,
                     transition: "transform 0.25s, box-shadow 0.25s",
                   }}
-                  onMouseEnter={(event) => {
-                    event.currentTarget.style.transform = "translateY(-2px)";
-                    event.currentTarget.style.boxShadow =
-                      "0 12px 30px rgba(22,28,38,0.06)";
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = "translateY(-2px)";
+                    e.currentTarget.style.boxShadow = "0 12px 30px rgba(22,28,38,0.06)";
                   }}
-                  onMouseLeave={(event) => {
-                    event.currentTarget.style.transform = "translateY(0)";
-                    event.currentTarget.style.boxShadow =
-                      "0 8px 32px rgba(22,28,38,0.06)";
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = "translateY(0)";
+                    e.currentTarget.style.boxShadow = "0 8px 32px rgba(22,28,38,0.06)";
                   }}
                 >
-                  <span
-                    style={{
-                      color: "var(--red)",
-                      fontSize: "0.85rem",
-                      marginTop: 1,
-                      fontWeight: 700,
-                      flexShrink: 0,
-                    }}
-                  >
-                    ✕
-                  </span>
-                  <p
-                    style={{
-                      color: "var(--text-mid)",
-                      fontSize: "0.92rem",
-                      lineHeight: 1.68,
-                      margin: 0,
-                    }}
-                  >
-                    {item}
-                  </p>
-                </div>
+                  <span style={{ color: "var(--red)", fontSize: "0.85rem", marginTop: 1, fontWeight: 700, flexShrink: 0 }}>✕</span>
+                  <p style={{ color: "var(--text-mid)", fontSize: "0.92rem", lineHeight: 1.68, margin: 0 }}>{item}</p>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
+      {/* ── Approach ── */}
       <section style={{ padding: "0 24px", position: "relative", zIndex: 1 }}>
         <div
-          className="fade-section"
           style={{
-            background:
-              "linear-gradient(180deg, #1c1814 0%, #141414 100%)",
+            background: "linear-gradient(180deg, #1c1814 0%, #141414 100%)",
             borderRadius: 24,
             padding: "84px 60px",
             position: "relative",
@@ -753,55 +744,35 @@ export default function HomePage() {
         >
           <div className="dot-grid" style={{ position: "absolute", inset: 0, opacity: 0.8 }} />
           <div style={{ position: "relative", zIndex: 1 }}>
-            <div style={{ textAlign: "center", maxWidth: 580, margin: "0 auto 64px" }}>
-              <div
-                className="pill-tag"
-                style={{
-                  border: "1px solid rgba(255,255,255,0.1)",
-                  background: "rgba(255,255,255,0.05)",
-                  color: "rgba(255,255,255,0.5)",
-                  marginBottom: 24,
-                }}
-              >
-                <span
-                  style={{
-                    width: 5,
-                    height: 5,
-                    borderRadius: "50%",
-                    background: "rgba(255,255,255,0.45)",
-                    display: "inline-block",
-                  }}
-                />
+            <motion.div
+              style={{ textAlign: "center", maxWidth: 580, margin: "0 auto 64px" }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-80px" }}
+              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
+            >
+              <motion.div variants={fadeUp} className="pill-tag" style={{ border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.5)", marginBottom: 24 }}>
+                <span style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(255,255,255,0.45)", display: "inline-block" }} />
                 The Novum Approach
-              </div>
-              <h2
-                className="font-serif"
-                style={{
-                  fontSize: "clamp(1.95rem, 3.6vw, 3rem)",
-                  lineHeight: 1.12,
-                  letterSpacing: "-0.03em",
-                  marginBottom: 18,
-                  color: "#fff",
-                }}
-              >
+              </motion.div>
+              <motion.h2 variants={fadeUp} className="font-serif" style={{ fontSize: "clamp(1.95rem, 3.6vw, 3rem)", lineHeight: 1.12, letterSpacing: "-0.03em", marginBottom: 18, color: "#fff" }}>
                 Systems built around how you actually run.
-              </h2>
-              <p
-                style={{
-                  color: "rgba(255,255,255,0.54)",
-                  lineHeight: 1.82,
-                  fontSize: "0.98rem",
-                }}
-              >
+              </motion.h2>
+              <motion.p variants={fadeUp} style={{ color: "rgba(255,255,255,0.54)", lineHeight: 1.82, fontSize: "0.98rem" }}>
                 We start with your operation, not a generic template. Every
                 system is structured around your workflows, team, reporting
                 needs, and business model.
-              </p>
-            </div>
+              </motion.p>
+            </motion.div>
 
-            <div
+            {/* Approach cards — staggered */}
+            <motion.div
               className="solution-grid"
               style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 14 }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-60px" }}
+              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.13 } } }}
             >
               {[
                 {
@@ -840,8 +811,9 @@ export default function HomePage() {
                   ),
                 },
               ].map((item) => (
-                <div
+                <motion.div
                   key={item.title}
+                  variants={fadeUp}
                   style={{
                     padding: 32,
                     background: "rgba(255,255,255,0.05)",
@@ -850,112 +822,63 @@ export default function HomePage() {
                     borderRadius: 18,
                     transition: "border-color 0.25s, background 0.25s, transform 0.25s",
                   }}
-                  onMouseEnter={(event) => {
-                    event.currentTarget.style.borderColor = "rgba(0,200,122,0.32)";
-                    event.currentTarget.style.background = "rgba(255,255,255,0.08)";
-                    event.currentTarget.style.transform = "translateY(-3px)";
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = "rgba(0,200,122,0.32)";
+                    e.currentTarget.style.background = "rgba(255,255,255,0.08)";
+                    e.currentTarget.style.transform = "translateY(-3px)";
                   }}
-                  onMouseLeave={(event) => {
-                    event.currentTarget.style.borderColor = "rgba(255,255,255,0.08)";
-                    event.currentTarget.style.background = "rgba(255,255,255,0.05)";
-                    event.currentTarget.style.transform = "translateY(0)";
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)";
+                    e.currentTarget.style.background = "rgba(255,255,255,0.05)";
+                    e.currentTarget.style.transform = "translateY(0)";
                   }}
                 >
-                  <div
-                    style={{
-                      width: 48,
-                      height: 48,
-                      background: "rgba(255,255,255,0.06)",
-                      borderRadius: 12,
-                      marginBottom: 20,
-                      border: "1px solid rgba(255,255,255,0.09)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
+                  <div style={{ width: 48, height: 48, background: "rgba(255,255,255,0.06)", borderRadius: 12, marginBottom: 20, border: "1px solid rgba(255,255,255,0.09)", display: "flex", alignItems: "center", justifyContent: "center" }}>
                     {item.icon}
                   </div>
-                  <h3
-                    className="font-serif"
-                    style={{
-                      fontSize: "1.16rem",
-                      marginBottom: 12,
-                      letterSpacing: "-0.01em",
-                      color: "#fff",
-                    }}
-                  >
-                    {item.title}
-                  </h3>
-                  <p
-                    style={{
-                      color: "rgba(255,255,255,0.5)",
-                      fontSize: "0.92rem",
-                      lineHeight: 1.76,
-                      margin: 0,
-                    }}
-                  >
-                    {item.desc}
-                  </p>
-                </div>
+                  <h3 className="font-serif" style={{ fontSize: "1.16rem", marginBottom: 12, letterSpacing: "-0.01em", color: "#fff" }}>{item.title}</h3>
+                  <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.92rem", lineHeight: 1.76, margin: 0 }}>{item.desc}</p>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
+      {/* ── Systems ── */}
       <section style={{ padding: "100px 48px", position: "relative", zIndex: 1 }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
-          <div
-            className="fade-section"
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "flex-end",
-              marginBottom: 56,
-              flexWrap: "wrap",
-              gap: 24,
-            }}
+          <motion.div
+            style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 56, flexWrap: "wrap", gap: 24 }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
           >
             <div>
-              <div
-                className="pill-tag"
-                style={{
-                  ...glassCard,
-                  color: "var(--text-soft)",
-                  marginBottom: 18,
-                }}
-              >
-                <span
-                  style={{
-                    width: 5,
-                    height: 5,
-                    borderRadius: "50%",
-                    background: "var(--text-soft)",
-                    display: "inline-block",
-                  }}
-                />
+              <motion.div variants={fadeUp} className="pill-tag" style={{ ...glassCard, color: "var(--text-soft)", marginBottom: 18 }}>
+                <span style={{ width: 5, height: 5, borderRadius: "50%", background: "var(--text-soft)", display: "inline-block" }} />
                 Our Systems
-              </div>
-              <h2
-                className="font-serif"
-                style={{
-                  fontSize: "clamp(1.95rem, 3.5vw, 3rem)",
-                  lineHeight: 1.08,
-                  letterSpacing: "-0.03em",
-                }}
-              >
+              </motion.div>
+              <motion.h2 variants={fadeUp} className="font-serif" style={{ fontSize: "clamp(1.95rem, 3.5vw, 3rem)", lineHeight: 1.08, letterSpacing: "-0.03em" }}>
                 Every operation covered.
                 <br />
                 One platform.
-              </h2>
+              </motion.h2>
             </div>
-            <Link href="/systems" className="btn-outline">
-              View All Systems →
-            </Link>
-          </div>
+            <motion.div variants={fadeUp}>
+              <Link href="/systems" className="btn-outline">View All Systems →</Link>
+            </motion.div>
+          </motion.div>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          {/* System rows — slide in from left, staggered */}
+          <motion.div
+            style={{ display: "flex", flexDirection: "column", gap: 10 }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
+          >
             {[
               {
                 name: "Forge",
@@ -964,12 +887,7 @@ export default function HomePage() {
                 badgeBg: "rgba(119,86,201,0.08)",
                 badgeBorder: "rgba(119,86,201,0.18)",
                 desc: "For operations that do not fit any mold. Forge is architected from the ground up around your structure, workflows, terminology, and reporting logic.",
-                features: [
-                  "Custom operational architecture",
-                  "Tailored data model",
-                  "Workflow engine",
-                  "White-glove deployment",
-                ],
+                features: ["Custom operational architecture", "Tailored data model", "Workflow engine", "White-glove deployment"],
               },
               {
                 name: "OpsCore",
@@ -978,14 +896,7 @@ export default function HomePage() {
                 badgeBg: "rgba(0,200,122,0.08)",
                 badgeBorder: "rgba(0,200,122,0.2)",
                 desc: "A unified command center for tasks, communication, projects, budgets, reporting, and integrations. OpsCore creates structure across the entire business.",
-                features: [
-                  "AI task generation",
-                  "Team chat and notes",
-                  "Project calendars and tasks",
-                  "QuickBooks and CRM integrations",
-                  "Role dashboards",
-                  "Workflow automation",
-                ],
+                features: ["AI task generation", "Team chat and notes", "Project calendars and tasks", "QuickBooks and CRM integrations", "Role dashboards", "Workflow automation"],
               },
               {
                 name: "ProjectOps",
@@ -994,13 +905,7 @@ export default function HomePage() {
                 badgeBg: "rgba(61,110,138,0.08)",
                 badgeBorder: "rgba(61,110,138,0.2)",
                 desc: "Project lifecycle management from estimate to closeout, with live budget visibility, timeline tracking, document workflows, and profitability reporting.",
-                features: [
-                  "Budget vs actuals",
-                  "Vendor management",
-                  "Milestone tracking",
-                  "Document workflows",
-                  "Profitability reporting",
-                ],
+                features: ["Budget vs actuals", "Vendor management", "Milestone tracking", "Document workflows", "Profitability reporting"],
               },
               {
                 name: "FieldOps",
@@ -1009,17 +914,13 @@ export default function HomePage() {
                 badgeBg: "rgba(35,114,89,0.08)",
                 badgeBorder: "rgba(35,114,89,0.18)",
                 desc: "Field service management built around your crews, territories, scheduling model, and invoicing process from dispatch through completion.",
-                features: [
-                  "Scheduling and dispatch",
-                  "Mobile field access",
-                  "Automated invoicing",
-                  "Customer history",
-                ],
+                features: ["Scheduling and dispatch", "Mobile field access", "Automated invoicing", "Customer history"],
               },
             ].map((system) => (
-              <div
+              <motion.div
                 key={system.name}
-                className="sys-row fade-section"
+                className="sys-row"
+                variants={fadeLeft}
                 style={{
                   ...glassCard,
                   display: "grid",
@@ -1031,200 +932,106 @@ export default function HomePage() {
                   transition: "border-color 0.2s, box-shadow 0.2s, transform 0.25s",
                   cursor: "pointer",
                 }}
-                onMouseEnter={(event) => {
-                  event.currentTarget.style.borderColor = "rgba(0,200,122,0.28)";
-                  event.currentTarget.style.boxShadow = "0 16px 38px rgba(22,28,38,0.08)";
-                  event.currentTarget.style.transform = "translateY(-2px)";
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = "rgba(0,200,122,0.28)";
+                  e.currentTarget.style.boxShadow = "0 16px 38px rgba(22,28,38,0.08)";
+                  e.currentTarget.style.transform = "translateY(-2px)";
                 }}
-                onMouseLeave={(event) => {
-                  event.currentTarget.style.borderColor = "rgba(255,255,255,0.55)";
-                  event.currentTarget.style.boxShadow = "0 8px 32px rgba(22,28,38,0.06)";
-                  event.currentTarget.style.transform = "translateY(0)";
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = "rgba(255,255,255,0.55)";
+                  e.currentTarget.style.boxShadow = "0 8px 32px rgba(22,28,38,0.06)";
+                  e.currentTarget.style.transform = "translateY(0)";
                 }}
               >
                 <div>
-                  <h3
-                    className="font-serif"
-                    style={{
-                      fontSize: "1.74rem",
-                      letterSpacing: "-0.03em",
-                      marginBottom: 10,
-                      color: "var(--text)",
-                    }}
-                  >
-                    {system.name}
-                  </h3>
-                  <span
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      padding: "4px 12px",
-                      background: system.badgeBg,
-                      border: `1px solid ${system.badgeBorder}`,
-                      borderRadius: "999px",
-                      fontSize: "0.7rem",
-                      fontWeight: 700,
-                      letterSpacing: "0.06em",
-                      color: system.badgeColor,
-                    }}
-                  >
-                    {system.badge}
-                  </span>
+                  <h3 className="font-serif" style={{ fontSize: "1.74rem", letterSpacing: "-0.03em", marginBottom: 10, color: "var(--text)" }}>{system.name}</h3>
+                  <span style={{ display: "inline-flex", alignItems: "center", padding: "4px 12px", background: system.badgeBg, border: `1px solid ${system.badgeBorder}`, borderRadius: "999px", fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.06em", color: system.badgeColor }}>{system.badge}</span>
                 </div>
                 <div>
-                  <p
-                    style={{
-                      color: "var(--text-soft)",
-                      fontSize: "0.92rem",
-                      lineHeight: 1.78,
-                      marginBottom: 14,
-                    }}
-                  >
-                    {system.desc}
-                  </p>
+                  <p style={{ color: "var(--text-soft)", fontSize: "0.92rem", lineHeight: 1.78, marginBottom: 14 }}>{system.desc}</p>
                   <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
                     {system.features.map((feature) => (
-                      <span
-                        key={feature}
-                        style={{
-                          padding: "4px 12px",
-                          background: "rgba(255,255,255,0.52)",
-                          border: "1px solid rgba(229,225,216,0.92)",
-                          borderRadius: 8,
-                          fontSize: "0.77rem",
-                          color: "var(--text-soft)",
-                        }}
-                      >
-                        {feature}
-                      </span>
+                      <span key={feature} style={{ padding: "4px 12px", background: "rgba(255,255,255,0.52)", border: "1px solid rgba(229,225,216,0.92)", borderRadius: 8, fontSize: "0.77rem", color: "var(--text-soft)" }}>{feature}</span>
                     ))}
                   </div>
                 </div>
-                <Link
-                  href="/systems"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width: 40,
-                    height: 40,
-                    border: "1px solid rgba(229,225,216,0.9)",
-                    borderRadius: 12,
-                    color: "var(--text-soft)",
-                    textDecoration: "none",
-                    flexShrink: 0,
-                  }}
-                >
-                  →
-                </Link>
-              </div>
+                <Link href="/systems" style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 40, height: 40, border: "1px solid rgba(229,225,216,0.9)", borderRadius: 12, color: "var(--text-soft)", textDecoration: "none", flexShrink: 0 }}>→</Link>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* ── Enterprise Banner ── */}
       <section style={{ padding: "40px 24px 0", position: "relative", zIndex: 1 }}>
-        <div className="fade-section" style={{
-          background: "#141414", borderRadius: 24,
-          padding: "64px 60px", position: "relative", overflow: "hidden",
-          border: "1px solid rgba(255,255,255,0.06)",
-          display: "grid", gridTemplateColumns: "1fr auto", gap: 48, alignItems: "center",
-          maxWidth: "1400px", margin: "0 auto",
-        }} >
+        <motion.div
+          style={{
+            background: "#141414", borderRadius: 24,
+            padding: "64px 60px", position: "relative", overflow: "hidden",
+            border: "1px solid rgba(255,255,255,0.06)",
+            display: "grid", gridTemplateColumns: "1fr auto", gap: 48, alignItems: "center",
+            maxWidth: "1400px", margin: "0 auto",
+          }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12 } } }}
+        >
           <div className="dot-grid" style={{ position: "absolute", inset: 0, opacity: 0.6 }} />
-          <div style={{ position: "relative", zIndex: 1 }}>
-            <div style={{
-              display: "inline-flex", alignItems: "center", gap: 7,
-              padding: "5px 14px", borderRadius: 100,
-              border: "1px solid rgba(255,255,255,0.12)", background: "rgba(255,255,255,0.06)",
-              fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.09em", textTransform: "uppercase" as const,
-              color: "rgba(255,255,255,0.45)", marginBottom: 20,
-            }}>
+          <motion.div variants={fadeUp} style={{ position: "relative", zIndex: 1 }}>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "5px 14px", borderRadius: 100, border: "1px solid rgba(255,255,255,0.12)", background: "rgba(255,255,255,0.06)", fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.09em", textTransform: "uppercase" as const, color: "rgba(255,255,255,0.45)", marginBottom: 20 }}>
               <span style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(255,255,255,0.4)", display: "inline-block" }} />
               Enterprise
             </div>
-            <h2 style={{
-              fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
-              fontSize: "clamp(1.6rem, 3vw, 2.4rem)",
-              letterSpacing: "-0.03em", lineHeight: 1.1,
-              color: "#fff", marginBottom: 14,
-            }}>
+            <h2 style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "clamp(1.6rem, 3vw, 2.4rem)", letterSpacing: "-0.03em", lineHeight: 1.1, color: "#fff", marginBottom: 14 }}>
               Running a larger operation?
             </h2>
             <p style={{ color: "rgba(255,255,255,0.48)", lineHeight: 1.8, fontSize: "0.95rem", maxWidth: 580, margin: 0 }}>
               We deploy the full Novum stack — OpsCore, Vault, A.R.I.S, and more — as an integrated platform for multi-team organizations. Encrypted, role-controlled, and built around how your business actually operates.
             </p>
-          </div>
-          <div style={{ position: "relative", zIndex: 1, flexShrink: 0 }}>
-            <Link href="/enterprise" style={{
-              display: "inline-flex", alignItems: "center", gap: 8,
-              padding: "14px 32px", borderRadius: 100,
-              background: "#00C87A", color: "#0a1a12",
-              fontSize: "0.92rem", fontWeight: 600, textDecoration: "none",
-              whiteSpace: "nowrap" as const,
-            }}
-              onMouseEnter={e => (e.currentTarget as HTMLElement).style.opacity = "0.88"}
-              onMouseLeave={e => (e.currentTarget as HTMLElement).style.opacity = "1"}
+          </motion.div>
+          <motion.div variants={fadeUp} style={{ position: "relative", zIndex: 1, flexShrink: 0 }}>
+            <Link href="/enterprise"
+              style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 32px", borderRadius: 100, background: "#00C87A", color: "#0a1a12", fontSize: "0.92rem", fontWeight: 600, textDecoration: "none", whiteSpace: "nowrap" as const }}
+              onMouseEnter={(e) => (e.currentTarget as HTMLElement).style.opacity = "0.88"}
+              onMouseLeave={(e) => (e.currentTarget as HTMLElement).style.opacity = "1"}
             >
               Learn about Enterprise →
             </Link>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
 
+      {/* ── How It Works ── */}
       <section style={{ padding: "0 24px", position: "relative", zIndex: 1 }}>
-        <div
-          style={{
-            ...glassCard,
-            maxWidth: "1400px",
-            margin: "0 auto",
-            padding: "72px 60px",
-            borderRadius: 24,
-          }}
-        >
-          <div className="fade-section" style={{ textAlign: "center", marginBottom: 64 }}>
-            <div
-              className="pill-tag"
-              style={{
-                ...glassCard,
-                color: "var(--text-soft)",
-                marginBottom: 20,
-              }}
-            >
-              <span
-                style={{
-                  width: 5,
-                  height: 5,
-                  borderRadius: "50%",
-                  background: "var(--text-soft)",
-                  display: "inline-block",
-                }}
-              />
-              How It Works
-            </div>
-            <h2
-              className="font-serif"
-              style={{
-                fontSize: "clamp(1.95rem, 3.5vw, 3rem)",
-                lineHeight: 1.08,
-                letterSpacing: "-0.03em",
-              }}
-            >
-              From discovery to deployed, in three steps.
-            </h2>
-          </div>
-
-          <div
-            className="process-grid"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
-              gap: 16,
-              position: "relative",
-            }}
+        <div style={{ ...glassCard, maxWidth: "1400px", margin: "0 auto", padding: "72px 60px", borderRadius: 24 }}>
+          <motion.div
+            style={{ textAlign: "center", marginBottom: 64 }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
           >
+            <motion.div variants={fadeUp} className="pill-tag" style={{ ...glassCard, color: "var(--text-soft)", marginBottom: 20 }}>
+              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "var(--text-soft)", display: "inline-block" }} />
+              How It Works
+            </motion.div>
+            <motion.h2 variants={fadeUp} className="font-serif" style={{ fontSize: "clamp(1.95rem, 3.5vw, 3rem)", lineHeight: 1.08, letterSpacing: "-0.03em" }}>
+              From discovery to deployed, in three steps.
+            </motion.h2>
+          </motion.div>
+
+          <motion.div
+            className="process-grid"
+            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, position: "relative" }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.2 } } }}
+          >
+            {/* Connector line — GSAP draws it left-to-right on scroll */}
             <div
+              ref={connectorRef}
               className="process-connector"
               style={{
                 position: "absolute",
@@ -1237,28 +1044,16 @@ export default function HomePage() {
             />
 
             {[
-              {
-                step: "01",
-                title: "Discovery",
-                desc: "We spend time with your team to understand how the business actually runs, where the friction lives, and what information matters.",
-              },
-              {
-                step: "02",
-                title: "System Design",
-                desc: "We architect the operational model around your workflows so you can see exactly what is being built before it gets deployed.",
-              },
-              {
-                step: "03",
-                title: "Build & Deploy",
-                desc: "We configure, ship, and launch your system with training, handoff, and continued support once it is live.",
-              },
+              { step: "01", title: "Discovery", desc: "We spend time with your team to understand how the business actually runs, where the friction lives, and what information matters." },
+              { step: "02", title: "System Design", desc: "We architect the operational model around your workflows so you can see exactly what is being built before it gets deployed." },
+              { step: "03", title: "Build & Deploy", desc: "We configure, ship, and launch your system with training, handoff, and continued support once it is live." },
             ].map((step) => (
-              <div
+              <motion.div
                 key={step.step}
-                className="fade-section"
+                variants={fadeUp}
                 style={{ textAlign: "center", padding: "0 20px" }}
               >
-                <div
+                <motion.div
                   style={{
                     ...glassCard,
                     width: 72,
@@ -1270,158 +1065,67 @@ export default function HomePage() {
                     margin: "0 auto 32px",
                     position: "relative",
                     zIndex: 1,
-                    transition: "border-color 0.25s, transform 0.25s",
                   }}
-                  onMouseEnter={(event) => {
-                    event.currentTarget.style.borderColor = "var(--accent-border)";
-                    event.currentTarget.style.transform = "translateY(-2px)";
-                  }}
-                  onMouseLeave={(event) => {
-                    event.currentTarget.style.borderColor = "rgba(255,255,255,0.55)";
-                    event.currentTarget.style.transform = "translateY(0)";
-                  }}
+                  whileHover={{ scale: 1.1, y: -4 }}
+                  transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <span
-                    className="font-serif"
-                    style={{
-                      fontSize: "1.45rem",
-                      color: "var(--accent)",
-                      letterSpacing: "-0.03em",
-                    }}
-                  >
-                    {step.step}
-                  </span>
-                </div>
-                <h3
-                  className="font-serif"
-                  style={{
-                    fontSize: "1.3rem",
-                    marginBottom: 14,
-                    letterSpacing: "-0.02em",
-                    color: "var(--text)",
-                  }}
-                >
-                  {step.title}
-                </h3>
-                <p
-                  style={{
-                    color: "var(--text-soft)",
-                    fontSize: "0.92rem",
-                    lineHeight: 1.82,
-                  }}
-                >
-                  {step.desc}
-                </p>
-              </div>
+                  <span className="font-serif" style={{ fontSize: "1.45rem", color: "var(--accent)", letterSpacing: "-0.03em" }}>{step.step}</span>
+                </motion.div>
+                <h3 className="font-serif" style={{ fontSize: "1.3rem", marginBottom: 14, letterSpacing: "-0.02em", color: "var(--text)" }}>{step.title}</h3>
+                <p style={{ color: "var(--text-soft)", fontSize: "0.92rem", lineHeight: 1.82 }}>{step.desc}</p>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
+      {/* ── Final CTA ── */}
       <section style={{ padding: "40px 24px 88px", textAlign: "center", position: "relative", zIndex: 1 }}>
-        <div
-          className="fade-section"
+        <motion.div
           style={{
             maxWidth: 700,
             margin: "0 auto",
             padding: "76px 64px",
-            background:
-              "linear-gradient(180deg, #1c1814 0%, #141414 100%)",
+            background: "linear-gradient(180deg, #1c1814 0%, #141414 100%)",
             borderRadius: 28,
             position: "relative",
             overflow: "hidden",
             border: "1px solid rgba(255,255,255,0.06)",
             boxShadow: "0 28px 70px rgba(15,18,25,0.18)",
           }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
         >
           <div className="dot-grid" style={{ position: "absolute", inset: 0 }} />
           <div style={{ position: "relative", zIndex: 1 }}>
-            <div
-              className="pill-tag"
-              style={{
-                border: "1px solid rgba(255,255,255,0.1)",
-                background: "rgba(255,255,255,0.05)",
-                color: "rgba(255,255,255,0.5)",
-                marginBottom: 32,
-              }}
-            >
-              <span
-                style={{
-                  width: 5,
-                  height: 5,
-                  borderRadius: "50%",
-                  background: "rgba(255,255,255,0.45)",
-                  display: "inline-block",
-                }}
-              />
+            <motion.div variants={fadeUp} className="pill-tag" style={{ border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.5)", marginBottom: 32 }}>
+              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(255,255,255,0.45)", display: "inline-block" }} />
               Ready to Build
-            </div>
-            <h2
-              className="font-serif"
-              style={{
-                fontSize: "clamp(2rem, 4.5vw, 3.4rem)",
-                lineHeight: 1.06,
-                letterSpacing: "-0.04em",
-                marginBottom: 20,
-                color: "#fff",
-              }}
-            >
+            </motion.div>
+            <motion.h2 variants={fadeUp} className="font-serif" style={{ fontSize: "clamp(2rem, 4.5vw, 3.4rem)", lineHeight: 1.06, letterSpacing: "-0.04em", marginBottom: 20, color: "#fff" }}>
               Stop adapting to your software.
-            </h2>
-            <p
-              style={{
-                color: "rgba(255,255,255,0.56)",
-                fontSize: "1rem",
-                lineHeight: 1.82,
-                marginBottom: 44,
-              }}
-            >
+            </motion.h2>
+            <motion.p variants={fadeUp} style={{ color: "rgba(255,255,255,0.56)", fontSize: "1rem", lineHeight: 1.82, marginBottom: 44 }}>
               Book a discovery call and let&apos;s map out what an operational
               system built specifically for your business could look like.
-            </p>
-            <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
+            </motion.p>
+            <motion.div variants={fadeUp} style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
               <Link
                 href="/contact"
-                style={{
-                  padding: "15px 32px",
-                  borderRadius: "999px",
-                  background: "#FFFFFF",
-                  color: "var(--text)",
-                  fontSize: "0.92rem",
-                  fontWeight: 600,
-                  textDecoration: "none",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 8,
-                  transition: "transform 0.15s",
-                }}
-                onMouseEnter={(event) => {
-                  event.currentTarget.style.transform = "translateY(-1px)";
-                }}
-                onMouseLeave={(event) => {
-                  event.currentTarget.style.transform = "translateY(0)";
-                }}
+                style={{ padding: "15px 32px", borderRadius: "999px", background: "#FFFFFF", color: "var(--text)", fontSize: "0.92rem", fontWeight: 600, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 8, transition: "transform 0.15s" }}
+                onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-1px)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; }}
               >
                 Book a Discovery Call →
               </Link>
-              <Link
-                href="/systems"
-                style={{
-                  padding: "15px 28px",
-                  borderRadius: "999px",
-                  border: "1.5px solid rgba(255,255,255,0.16)",
-                  color: "rgba(255,255,255,0.72)",
-                  background: "transparent",
-                  fontSize: "0.92rem",
-                  fontWeight: 500,
-                  textDecoration: "none",
-                }}
-              >
+              <Link href="/systems" style={{ padding: "15px 28px", borderRadius: "999px", border: "1.5px solid rgba(255,255,255,0.16)", color: "rgba(255,255,255,0.72)", background: "transparent", fontSize: "0.92rem", fontWeight: 500, textDecoration: "none" }}>
                 Explore Systems
               </Link>
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       <style jsx>{`
