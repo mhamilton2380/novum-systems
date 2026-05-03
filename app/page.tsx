@@ -6,9 +6,6 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import dynamic from "next/dynamic";
-
-const HeroScene = dynamic(() => import("../components/HeroScene"), { ssr: false, loading: () => null });
 
 // ─── Canvas background: animated grid + pulses ───────────────────────────────
 function PlexusBg() {
@@ -120,6 +117,52 @@ function PlexusBg() {
         pointerEvents: "none",
         zIndex: 0,
       }}
+    />
+  );
+}
+
+// ─── Hero animated dot field ──────────────────────────────────────────────────
+function HeroDotCanvas() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d")!;
+    let raf = 0;
+    const SPACING = 22, DOT_R = 1.1;
+    function resize() {
+      canvas!.width = canvas!.offsetWidth;
+      canvas!.height = canvas!.offsetHeight;
+    }
+    resize();
+    window.addEventListener("resize", resize);
+    function tick(ts: number) {
+      ctx.clearRect(0, 0, canvas!.width, canvas!.height);
+      const cx = canvas!.width * 0.5, cy = canvas!.height * 0.5;
+      const wt = ts * 0.00045;
+      const cols = Math.ceil(canvas!.width / SPACING) + 1;
+      const rows = Math.ceil(canvas!.height / SPACING) + 1;
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const x = c * SPACING, y = r * SPACING;
+          const dist = Math.sqrt((x - cx) ** 2 + (y - cy) ** 2);
+          const wave = Math.sin(wt * 1.6 - dist * 0.026) * 0.5 + 0.5;
+          const a = 0.08 + 0.52 * wave * wave;
+          ctx.beginPath();
+          ctx.arc(x, y, DOT_R, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(0,200,122,${a})`;
+          ctx.fill();
+        }
+      }
+      raf = requestAnimationFrame(tick);
+    }
+    raf = requestAnimationFrame(tick);
+    return () => { cancelAnimationFrame(raf); window.removeEventListener("resize", resize); };
+  }, []);
+  return (
+    <canvas
+      ref={canvasRef}
+      style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none", display: "block", zIndex: 1 }}
     />
   );
 }
@@ -347,29 +390,50 @@ const glassCard: CSSProperties = {
   boxShadow: "0 8px 32px rgba(22,28,38,0.06), inset 0 1px 0 rgba(255,255,255,0.8)",
 };
 
+const ADAPT_FONTS = [
+  { font: "'DM Sans', sans-serif",        style: "italic",  weight: 700, tracking: "-0.04em" },
+  { font: "Georgia, serif",               style: "italic",  weight: 400, tracking: "-0.01em" },
+  { font: "'Courier New', monospace",     style: "normal",  weight: 700, tracking: "0.04em"  },
+  { font: "Impact, 'Arial Narrow', sans-serif", style: "normal", weight: 900, tracking: "0.01em" },
+  { font: "'Brush Script MT', cursive",   style: "italic",  weight: 400, tracking: "0.01em"  },
+];
+
 // ─── Animation variants ───────────────────────────────────────────────────────
 const fadeUp = {
-  hidden: { opacity: 0, y: 14 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] } },
+  hidden: { opacity: 0, y: 28 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
 };
 
 const fadeLeft = {
-  hidden: { opacity: 0, x: -16 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] } },
+  hidden: { opacity: 0, x: -28 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
 };
 
 const fadeRight = {
-  hidden: { opacity: 0, x: 16 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] } },
+  hidden: { opacity: 0, x: 28 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
 };
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function HomePage() {
   const [graphicReady, setGraphicReady] = useState(false);
+  const [fontIdx, setFontIdx] = useState(0);
+  const [fading, setFading] = useState(false);
   const spotRef = useRef<HTMLDivElement>(null);
   const connectorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => { setGraphicReady(true); }, []);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setFading(true);
+      setTimeout(() => {
+        setFontIdx((i) => (i + 1) % ADAPT_FONTS.length);
+        setFading(false);
+      }, 300);
+    }, 4000);
+    return () => clearInterval(id);
+  }, []);
 
   // Cursor spotlight — direct DOM update to avoid re-renders
   useEffect(() => {
@@ -437,21 +501,147 @@ export default function HomePage() {
 
       <PlexusBg />
 
-      {/* ── Cinematic Hero (3-act scroll experience) ── */}
-      <HeroScene />
+      {/* ── Hero ── */}
+      <section style={{ padding: "86px 20px 0", position: "relative", zIndex: 1 }}>
+        <div
+          className="hero-card"
+          style={{
+            background: "#141414",
+            borderRadius: 28,
+            position: "relative",
+            overflow: "hidden",
+            display: "flex",
+            flexDirection: "column",
+            border: "1px solid rgba(255,255,255,0.06)",
+            boxShadow: "0 36px 90px rgba(15,18,25,0.22)",
+          }}
+        >
+          {graphicReady && <HeroDotCanvas />}
 
-      {/* ── Operational Engine (preserved from old hero — TBD whether to keep here, integrate into hero, or delete) ── */}
-      <section style={{ padding: "60px 24px 0", position: "relative", zIndex: 1 }}>
-        <div style={{
-          background: "#141414",
-          borderRadius: 24,
-          border: "1px solid rgba(255,255,255,0.06)",
-          maxWidth: 1400,
-          margin: "0 auto",
-          overflow: "hidden",
-          padding: "32px 0",
-        }}>
-          {graphicReady ? <OperationalEngineGraphic /> : null}
+          {/* Staggered hero entrance */}
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.13, delayChildren: 0.18 } },
+            }}
+            style={{
+              position: "relative",
+              zIndex: 3,
+              padding: "72px 52px 52px",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <motion.div
+              variants={fadeUp}
+              className="pill-tag"
+              style={{
+                border: "1px solid rgba(255,255,255,0.1)",
+                background: "rgba(255,255,255,0.05)",
+                color: "rgba(255,255,255,0.48)",
+                marginBottom: 28,
+                alignSelf: "flex-start",
+              }}
+            >
+              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(255,255,255,0.42)", display: "inline-block" }} />
+              Operational Software for Growing Businesses
+            </motion.div>
+
+            <motion.h1
+              variants={fadeUp}
+              className="font-serif"
+              style={{
+                fontSize: "clamp(3rem, 5vw, 5.4rem)",
+                lineHeight: 0.98,
+                letterSpacing: "-0.04em",
+                color: "#fff",
+                marginBottom: 24,
+                maxWidth: 820,
+              }}
+            >
+              Software that{" "}
+              <span
+                style={{
+                  fontFamily: ADAPT_FONTS[fontIdx].font,
+                  fontStyle: ADAPT_FONTS[fontIdx].style as "italic" | "normal",
+                  fontWeight: ADAPT_FONTS[fontIdx].weight,
+                  letterSpacing: ADAPT_FONTS[fontIdx].tracking,
+                  color: "#00C87A",
+                  textShadow: "0 0 22px rgba(0,200,122,0.55), 0 0 60px rgba(0,200,122,0.2)",
+                  opacity: fading ? 0 : 1,
+                  transition: "opacity 0.3s ease",
+                  display: "inline-block",
+                }}
+              >
+                adapts
+              </span>
+              <br />
+              to your business.
+            </motion.h1>
+
+            <motion.p
+              variants={fadeUp}
+              style={{
+                fontSize: "clamp(1rem, 1.3vw, 1.12rem)",
+                color: "rgba(255,255,255,0.56)",
+                lineHeight: 1.85,
+                maxWidth: 680,
+                marginBottom: 38,
+              }}
+            >
+              We replace rigid, expensive software with operational systems
+              designed around how your business actually runs, with one
+              intelligent layer across projects, teams, field work, and reporting.
+            </motion.p>
+
+            <motion.div variants={fadeUp} style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+              <Link
+                href="/contact"
+                style={{
+                  padding: "14px 28px",
+                  borderRadius: "999px",
+                  background: "#00C87A",
+                  color: "#0a1a12",
+                  fontSize: "0.92rem",
+                  fontWeight: 600,
+                  textDecoration: "none",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  boxShadow: "0 12px 24px rgba(0,0,0,0.12)",
+                  transition: "transform 0.15s ease",
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-1px)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; }}
+              >
+                Book a Discovery Call
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </Link>
+              <Link
+                href="/systems"
+                style={{
+                  padding: "14px 28px",
+                  borderRadius: "999px",
+                  border: "1.5px solid rgba(255,255,255,0.16)",
+                  color: "rgba(255,255,255,0.72)",
+                  background: "rgba(255,255,255,0.02)",
+                  fontSize: "0.92rem",
+                  fontWeight: 500,
+                  textDecoration: "none",
+                }}
+              >
+                See Our Systems
+              </Link>
+            </motion.div>
+          </motion.div>
+
+          <div style={{ position: "relative" }} className="oeg-graphic-outer">
+            {graphicReady ? <OperationalEngineGraphic /> : null}
+          </div>
         </div>
       </section>
 
@@ -500,7 +690,7 @@ export default function HomePage() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-60px" }}
-              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.06 } } }}
+              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.09 } } }}
             >
               {[
                 "Generic platforms that force you to work around them",
@@ -582,7 +772,7 @@ export default function HomePage() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-60px" }}
-              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.07 } } }}
+              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.13 } } }}
             >
               {[
                 {
@@ -785,7 +975,7 @@ export default function HomePage() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.07 } } }}
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12 } } }}
         >
           <div className="dot-grid" style={{ position: "absolute", inset: 0, opacity: 0.6 }} />
           <motion.div variants={fadeUp} style={{ position: "relative", zIndex: 1 }}>
@@ -939,19 +1129,39 @@ export default function HomePage() {
       </section>
 
       <style jsx>{`
+        .hero-card {
+          grid-template-columns: 1fr 1.08fr;
+        }
+
         @media (max-width: 1080px) {
+          .hero-card {
+            grid-template-columns: 1fr !important;
+          }
+
+          .hero-card > div:first-child {
+            padding: 58px 28px 10px !important;
+          }
+
+          .hero-card > div:last-child {
+            min-height: 540px;
+          }
+
           .problem-grid {
             grid-template-columns: 1fr !important;
           }
+
           .solution-grid {
             grid-template-columns: 1fr !important;
           }
+
           .process-grid {
             grid-template-columns: 1fr !important;
           }
+
           .process-connector {
             display: none;
           }
+
           .sys-row {
             grid-template-columns: 1fr !important;
             gap: 18px !important;
@@ -963,6 +1173,10 @@ export default function HomePage() {
           section {
             padding-left: 16px !important;
             padding-right: 16px !important;
+          }
+
+          .hero-card > div:last-child {
+            min-height: 420px;
           }
         }
       `}</style>
