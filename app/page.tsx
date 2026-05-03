@@ -13,7 +13,7 @@ const Spline = dynamic(() => import("@splinetool/react-spline"), {
   loading: () => null,
 });
 
-const SPLINE_SCENE = "https://prod.spline.design/XsPp0DbFEyd8vOws/scene.splinecode";
+const SPLINE_SCENE = "https://prod.spline.design/REmq3VZsd3qc2f-0/scene.splinecode";
 
 // ─── Canvas background: animated grid + pulses ───────────────────────────────
 function PlexusBg() {
@@ -125,52 +125,6 @@ function PlexusBg() {
         pointerEvents: "none",
         zIndex: 0,
       }}
-    />
-  );
-}
-
-// ─── Hero animated dot field ──────────────────────────────────────────────────
-function HeroDotCanvas() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d")!;
-    let raf = 0;
-    const SPACING = 22, DOT_R = 1.1;
-    function resize() {
-      canvas!.width = canvas!.offsetWidth;
-      canvas!.height = canvas!.offsetHeight;
-    }
-    resize();
-    window.addEventListener("resize", resize);
-    function tick(ts: number) {
-      ctx.clearRect(0, 0, canvas!.width, canvas!.height);
-      const cx = canvas!.width * 0.5, cy = canvas!.height * 0.5;
-      const wt = ts * 0.00045;
-      const cols = Math.ceil(canvas!.width / SPACING) + 1;
-      const rows = Math.ceil(canvas!.height / SPACING) + 1;
-      for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < cols; c++) {
-          const x = c * SPACING, y = r * SPACING;
-          const dist = Math.sqrt((x - cx) ** 2 + (y - cy) ** 2);
-          const wave = Math.sin(wt * 1.6 - dist * 0.026) * 0.5 + 0.5;
-          const a = 0.08 + 0.52 * wave * wave;
-          ctx.beginPath();
-          ctx.arc(x, y, DOT_R, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(0,200,122,${a})`;
-          ctx.fill();
-        }
-      }
-      raf = requestAnimationFrame(tick);
-    }
-    raf = requestAnimationFrame(tick);
-    return () => { cancelAnimationFrame(raf); window.removeEventListener("resize", resize); };
-  }, []);
-  return (
-    <canvas
-      ref={canvasRef}
-      style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none", display: "block", zIndex: 1 }}
     />
   );
 }
@@ -514,17 +468,39 @@ export default function HomePage() {
         <div
           className="hero-card"
           style={{
-            background: "#141414",
+            background: "#0A0C0F",
             borderRadius: 28,
             position: "relative",
             overflow: "hidden",
-            display: "flex",
-            flexDirection: "column",
             border: "1px solid rgba(255,255,255,0.06)",
             boxShadow: "0 36px 90px rgba(15,18,25,0.22)",
+            minHeight: "min(86vh, 760px)",
+            display: "flex",
+            alignItems: "center",
           }}
         >
-          {graphicReady && <HeroDotCanvas />}
+          {/* Full-bleed Spline scene */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              zIndex: 1,
+            }}
+          >
+            {graphicReady ? <Spline scene={SPLINE_SCENE} /> : null}
+          </div>
+
+          {/* Subtle left-side gradient for text legibility */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              zIndex: 2,
+              background:
+                "linear-gradient(90deg, rgba(10,12,15,0.78) 0%, rgba(10,12,15,0.55) 32%, rgba(10,12,15,0.15) 58%, rgba(10,12,15,0) 80%)",
+              pointerEvents: "none",
+            }}
+          />
 
           {/* Staggered hero entrance */}
           <motion.div
@@ -537,9 +513,10 @@ export default function HomePage() {
             style={{
               position: "relative",
               zIndex: 3,
-              padding: "72px 52px 52px",
+              padding: "0 52px",
               display: "flex",
               flexDirection: "column",
+              maxWidth: 720,
             }}
           >
             <motion.div
@@ -646,10 +623,6 @@ export default function HomePage() {
               </Link>
             </motion.div>
           </motion.div>
-
-          <div className="hero-spline" style={{ position: "relative", minHeight: 540 }}>
-            {graphicReady ? <Spline scene={SPLINE_SCENE} /> : null}
-          </div>
         </div>
       </section>
 
