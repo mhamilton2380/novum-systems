@@ -641,21 +641,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Operational Engine (preserved here for now) ── */}
-      <section style={{ padding: "60px 24px 0", position: "relative", zIndex: 1 }}>
-        <div style={{
-          background: "#141414",
-          borderRadius: 24,
-          border: "1px solid rgba(255,255,255,0.06)",
-          maxWidth: 1400,
-          margin: "0 auto",
-          overflow: "hidden",
-          padding: "32px 0",
-        }}>
-          {graphicReady ? <OperationalEngineGraphic /> : null}
-        </div>
-      </section>
-
       {/* ── Problem ── */}
       <section style={{ padding: "100px 48px", position: "relative", zIndex: 1 }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
@@ -851,6 +836,24 @@ export default function HomePage() {
                   <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.92rem", lineHeight: 1.76, margin: 0 }}>{item.desc}</p>
                 </motion.div>
               ))}
+            </motion.div>
+
+            {/* Operational Engine diagram — visualizes the approach in action */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
+              style={{
+                marginTop: 48,
+                background: "rgba(255,255,255,0.02)",
+                border: "1px solid rgba(255,255,255,0.06)",
+                borderRadius: 18,
+                overflow: "hidden",
+                padding: "24px 0",
+              }}
+            >
+              {graphicReady ? <OperationalEngineGraphic /> : null}
             </motion.div>
           </div>
         </div>
