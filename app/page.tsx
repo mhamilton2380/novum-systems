@@ -490,15 +490,16 @@ export default function HomePage() {
             {graphicReady ? <Spline scene={SPLINE_SCENE} /> : null}
           </div>
 
-          {/* Cover Spline watermark in bottom-right */}
+          {/* Cover Spline watermark in bottom-right with a soft fade */}
           <div
             style={{
               position: "absolute",
               bottom: 0,
               right: 0,
-              width: 200,
-              height: 56,
-              background: "#0A0C0F",
+              width: 360,
+              height: 140,
+              background:
+                "radial-gradient(ellipse at bottom right, #0A0C0F 0%, #0A0C0F 38%, rgba(10,12,15,0) 78%)",
               zIndex: 4,
               pointerEvents: "none",
             }}
