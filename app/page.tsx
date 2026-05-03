@@ -490,16 +490,16 @@ export default function HomePage() {
             {graphicReady ? <Spline scene={SPLINE_SCENE} /> : null}
           </div>
 
-          {/* Bottom fade across the whole hero — covers the watermark and unifies the bottom edge */}
+          {/* Bottom fade across the whole hero — solid base hides watermark, soft fade unifies the edge */}
           <div
             style={{
               position: "absolute",
               bottom: 0,
               left: 0,
               right: 0,
-              height: 140,
+              height: 180,
               background:
-                "linear-gradient(to top, #0A0C0F 0%, rgba(10,12,15,0.85) 35%, rgba(10,12,15,0) 100%)",
+                "linear-gradient(to top, #0A0C0F 0%, #0A0C0F 38%, rgba(10,12,15,0.6) 65%, rgba(10,12,15,0) 100%)",
               zIndex: 4,
               pointerEvents: "none",
             }}
