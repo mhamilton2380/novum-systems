@@ -6,6 +6,14 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import dynamic from "next/dynamic";
+
+const Spline = dynamic(() => import("@splinetool/react-spline"), {
+  ssr: false,
+  loading: () => null,
+});
+
+const SPLINE_SCENE = "https://prod.spline.design/XsPp0DbFEyd8vOws/scene.splinecode";
 
 // ─── Canvas background: animated grid + pulses ───────────────────────────────
 function PlexusBg() {
@@ -639,9 +647,24 @@ export default function HomePage() {
             </motion.div>
           </motion.div>
 
-          <div style={{ position: "relative" }} className="oeg-graphic-outer">
-            {graphicReady ? <OperationalEngineGraphic /> : null}
+          <div className="hero-spline" style={{ position: "relative", minHeight: 540 }}>
+            {graphicReady ? <Spline scene={SPLINE_SCENE} /> : null}
           </div>
+        </div>
+      </section>
+
+      {/* ── Operational Engine (preserved here for now) ── */}
+      <section style={{ padding: "60px 24px 0", position: "relative", zIndex: 1 }}>
+        <div style={{
+          background: "#141414",
+          borderRadius: 24,
+          border: "1px solid rgba(255,255,255,0.06)",
+          maxWidth: 1400,
+          margin: "0 auto",
+          overflow: "hidden",
+          padding: "32px 0",
+        }}>
+          {graphicReady ? <OperationalEngineGraphic /> : null}
         </div>
       </section>
 

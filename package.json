@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@next/font": "^14.2.15",
+    "@splinetool/react-spline": "^4",
+    "@splinetool/runtime": "^1",
     "framer-motion": "^11",
     "gsap": "^3",
     "next": "16.2.2",
