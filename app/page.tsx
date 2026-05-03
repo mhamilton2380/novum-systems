@@ -490,6 +490,20 @@ export default function HomePage() {
             {graphicReady ? <Spline scene={SPLINE_SCENE} /> : null}
           </div>
 
+          {/* Cover Spline watermark in bottom-right */}
+          <div
+            style={{
+              position: "absolute",
+              bottom: 0,
+              right: 0,
+              width: 200,
+              height: 56,
+              background: "#0A0C0F",
+              zIndex: 4,
+              pointerEvents: "none",
+            }}
+          />
+
           {/* Subtle left-side gradient for text legibility */}
           <div
             style={{
