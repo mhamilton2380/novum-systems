@@ -39,3 +39,13 @@ body {
 .oeg-engine { transition: border-color 0.4s ease, box-shadow 0.4s ease; }
 .oeg-engine.oeg-engine-glow { border-color: #00C87A !important; box-shadow: 0 0 0 1px rgba(0,200,122,0.3), 0 0 28px rgba(0,200,122,0.5), 0 0 70px rgba(0,200,122,0.18); }
 @media (max-width: 640px) { .oeg-graphic-outer { display: none !important; } }
+
+/* Hide Spline watermark */
+a[href*="spline.design"],
+a[href*="spline.design"][target="_blank"],
+canvas + a[target="_blank"] {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
