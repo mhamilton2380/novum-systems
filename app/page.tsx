@@ -246,13 +246,11 @@ export default function HomePage() {
               inset: 0,
               zIndex: 3,
               pointerEvents: "none",
+              mixBlendMode: "screen",
+              opacity: 0.7,
               backgroundImage:
-                "linear-gradient(to right, rgba(170,195,235,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(170,195,235,0.06) 1px, transparent 1px)",
+                "linear-gradient(to right, rgba(170,195,235,0.22) 1px, transparent 1px), linear-gradient(to bottom, rgba(170,195,235,0.22) 1px, transparent 1px)",
               backgroundSize: "72px 72px",
-              maskImage:
-                "linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.15) 100%)",
-              WebkitMaskImage:
-                "linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.15) 100%)",
             }}
           />
 
