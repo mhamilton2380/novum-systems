@@ -353,8 +353,6 @@ export default function HomePage() {
       {/* ── What We Deploy ── */}
       <section style={{ padding: "60px 24px", position: "relative" }}>
         <div style={{
-          maxWidth: "1280px",
-          margin: "0 auto",
           background: "rgba(255,255,255,0.02)",
           border: "1px solid rgba(255,255,255,0.08)",
           borderRadius: "20px",
@@ -383,8 +381,9 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "12px", marginBottom: "12px" }} className="stack-grid">
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "12px", marginBottom: "12px" }} className="stack-grid">
               {[
+                { name: "Forge", sub: "Fully Custom", desc: "For operations that do not fit any mold. Forge is architected from the ground up around your structure, workflows, terminology, and reporting logic.", accent: "#7756C9", accentBg: "rgba(119,86,201,0.08)", accentBorder: "rgba(119,86,201,0.2)" },
                 { name: "OpsCore", sub: "Command Center", desc: "Cross-department dashboards, workflow automation, and reporting. The operational backbone for multi-team organizations.", accent: "#00C87A", accentBg: "rgba(0,200,122,0.08)", accentBorder: "rgba(0,200,122,0.2)" },
                 { name: "ProjectOps", sub: "Project Management", desc: "Full project lifecycle management — budgets, milestones, vendor tracking, and profitability across every active engagement.", accent: "#5B9EC9", accentBg: "rgba(91,158,201,0.08)", accentBorder: "rgba(91,158,201,0.2)" },
                 { name: "FieldOps", sub: "Field Operations", desc: "Scheduling, dispatch, job management, and invoicing for distributed teams operating across multiple locations or territories.", accent: "#4BAD8A", accentBg: "rgba(75,173,138,0.08)", accentBorder: "rgba(75,173,138,0.2)" },
@@ -646,55 +645,6 @@ export default function HomePage() {
         </div>
       </section>
 
-
-      {/* ── Final CTA ── */}
-      <section style={{ padding: "40px 24px 88px", textAlign: "center", position: "relative", zIndex: 1 }}>
-        <motion.div
-          style={{
-            maxWidth: 700,
-            margin: "0 auto",
-            padding: "76px 64px",
-            background: "linear-gradient(180deg, #1c1814 0%, #141414 100%)",
-            borderRadius: 28,
-            position: "relative",
-            overflow: "hidden",
-            border: "1px solid rgba(255,255,255,0.06)",
-            boxShadow: "0 28px 70px rgba(15,18,25,0.18)",
-          }}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
-        >
-          <div className="dot-grid" style={{ position: "absolute", inset: 0 }} />
-          <div style={{ position: "relative", zIndex: 1 }}>
-            <motion.div variants={fadeUp} className="pill-tag" style={{ border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.5)", marginBottom: 32 }}>
-              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(255,255,255,0.45)", display: "inline-block" }} />
-              Ready to Build
-            </motion.div>
-            <motion.h2 variants={fadeUp} className="font-serif" style={{ fontSize: "clamp(2rem, 4.5vw, 3.4rem)", lineHeight: 1.06, letterSpacing: "-0.04em", marginBottom: 20, color: "#fff" }}>
-              Stop adapting to your software.
-            </motion.h2>
-            <motion.p variants={fadeUp} style={{ color: "rgba(255,255,255,0.56)", fontSize: "1rem", lineHeight: 1.82, marginBottom: 44 }}>
-              Book a discovery call and let&apos;s map out what an operational
-              system built specifically for your business could look like.
-            </motion.p>
-            <motion.div variants={fadeUp} style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-              <Link
-                href="/contact"
-                style={{ padding: "15px 32px", borderRadius: "999px", background: "#FFFFFF", color: "#0a1a12", fontSize: "0.92rem", fontWeight: 600, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 8, transition: "transform 0.15s" }}
-                onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-1px)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; }}
-              >
-                Book a Discovery Call →
-              </Link>
-              <Link href="/systems" style={{ padding: "15px 28px", borderRadius: "999px", border: "1.5px solid rgba(255,255,255,0.16)", color: "rgba(255,255,255,0.72)", background: "transparent", fontSize: "0.92rem", fontWeight: 500, textDecoration: "none" }}>
-                Explore Systems
-              </Link>
-            </motion.div>
-          </div>
-        </motion.div>
-      </section>
 
       <style jsx>{`
         .hero-card {
