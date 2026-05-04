@@ -316,7 +316,7 @@ export default function HomePage() {
                 overflow: "hidden",
                 border: "1px solid rgba(255,255,255,0.1)",
                 boxShadow: "0 24px 60px rgba(0,0,0,0.5)",
-                aspectRatio: "1080 / 700",
+                aspectRatio: "600 / 800",
                 width: "100%",
               }}>
                 <video
