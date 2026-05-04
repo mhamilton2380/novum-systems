@@ -14,7 +14,7 @@ const Spline = dynamic(() => import("@splinetool/react-spline"), {
   loading: () => null,
 });
 
-const SPLINE_SCENE = "https://prod.spline.design/6bC7-nltqoSMdm8b/scene.splinecode";
+const SPLINE_SCENE = "https://prod.spline.design/XsPp0DbFEyd8vOws/scene.splinecode";
 
 // ─── Canvas background: animated grid + pulses ───────────────────────────────
 function PlexusBg() {
@@ -241,22 +241,20 @@ export default function HomePage() {
 
       <PlexusBg />
 
-      {/* ── Hero ── */}
-      <section style={{ padding: "86px 20px 0", position: "relative", zIndex: 1 }}>
-        <div
-          className="hero-card"
-          style={{
-            background: "#0A0C0F",
-            borderRadius: 28,
-            position: "relative",
-            overflow: "hidden",
-            border: "1px solid rgba(255,255,255,0.06)",
-            boxShadow: "0 36px 90px rgba(15,18,25,0.22)",
-            minHeight: "min(86vh, 760px)",
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
+      {/* ── Hero (full-bleed) ── */}
+      <section
+        className="hero-card"
+        style={{
+          background: "#0A0C0F",
+          position: "relative",
+          overflow: "hidden",
+          width: "100%",
+          height: "100vh",
+          display: "flex",
+          alignItems: "center",
+          zIndex: 1,
+        }}
+      >
           {/* Full-bleed Spline scene */}
           <div
             style={{
@@ -416,7 +414,6 @@ export default function HomePage() {
               </Link>
             </motion.div>
           </motion.div>
-        </div>
       </section>
 
       {/* ── The Problem ── */}
