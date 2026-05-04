@@ -312,12 +312,11 @@ export default function HomePage() {
 
               {/* ARIS demo — autoplays as user scrolls past */}
               <div style={{
-                borderRadius: "16px",
+                borderRadius: "20px",
                 overflow: "hidden",
-                border: "1px solid rgba(255,255,255,0.1)",
-                boxShadow: "0 24px 60px rgba(0,0,0,0.5)",
                 aspectRatio: "600 / 800",
                 width: "100%",
+                maxWidth: "380px",
               }}>
                 <video
                   autoPlay
