@@ -61,7 +61,7 @@ function PlexusBg() {
       const rows = Math.floor(H / SPACING);
 
       ctx.lineWidth = 1;
-      ctx.strokeStyle = "rgba(0,200,122,0.07)";
+      ctx.strokeStyle = "rgba(170,195,235,0.07)";
       for (let c = 1; c < cols; c++) {
         ctx.beginPath(); ctx.moveTo(c * SPACING, 0); ctx.lineTo(c * SPACING, H); ctx.stroke();
       }
@@ -81,26 +81,26 @@ function PlexusBg() {
           const px = p.t * W;
           const tx = t0 * W;
           const tg = ctx.createLinearGradient(tx, y, px, y);
-          tg.addColorStop(0, "rgba(0,200,122,0)");
-          tg.addColorStop(1, `rgba(0,200,122,${brightness * p.alpha * 0.55})`);
+          tg.addColorStop(0, "rgba(170,195,235,0)");
+          tg.addColorStop(1, `rgba(150,180,235,${brightness * p.alpha * 0.55})`);
           ctx.beginPath(); ctx.moveTo(tx, y); ctx.lineTo(px, y);
           ctx.strokeStyle = tg; ctx.lineWidth = 1.5; ctx.stroke();
           const gr = ctx.createRadialGradient(px, y, 0, px, y, 14);
-          gr.addColorStop(0, `rgba(0,210,130,${brightness * p.alpha * 0.6})`);
-          gr.addColorStop(1, "rgba(0,200,122,0)");
+          gr.addColorStop(0, `rgba(200,220,255,${brightness * p.alpha * 0.7})`);
+          gr.addColorStop(1, "rgba(170,195,235,0)");
           ctx.beginPath(); ctx.arc(px, y, 14, 0, Math.PI * 2); ctx.fillStyle = gr; ctx.fill();
         } else {
           const x = p.line * SPACING;
           const py2 = p.t * H;
           const ty = t0 * H;
           const tg = ctx.createLinearGradient(x, ty, x, py2);
-          tg.addColorStop(0, "rgba(0,200,122,0)");
-          tg.addColorStop(1, `rgba(0,200,122,${brightness * p.alpha * 0.55})`);
+          tg.addColorStop(0, "rgba(170,195,235,0)");
+          tg.addColorStop(1, `rgba(150,180,235,${brightness * p.alpha * 0.55})`);
           ctx.beginPath(); ctx.moveTo(x, ty); ctx.lineTo(x, py2);
           ctx.strokeStyle = tg; ctx.lineWidth = 1.5; ctx.stroke();
           const gr = ctx.createRadialGradient(x, py2, 0, x, py2, 14);
-          gr.addColorStop(0, `rgba(0,210,130,${brightness * p.alpha * 0.6})`);
-          gr.addColorStop(1, "rgba(0,200,122,0)");
+          gr.addColorStop(0, `rgba(200,220,255,${brightness * p.alpha * 0.7})`);
+          gr.addColorStop(1, "rgba(170,195,235,0)");
           ctx.beginPath(); ctx.arc(x, py2, 14, 0, Math.PI * 2); ctx.fillStyle = gr; ctx.fill();
         }
       }
@@ -230,7 +230,7 @@ export default function HomePage() {
           width: 500,
           height: 500,
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(0,200,122,0.07) 0%, transparent 65%)",
+          background: "radial-gradient(circle, rgba(170,200,240,0.08) 0%, transparent 65%)",
           pointerEvents: "none",
           zIndex: 9999,
           transform: "translate(-600px, -600px)",
