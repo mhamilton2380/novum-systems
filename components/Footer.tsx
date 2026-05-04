@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer style={{ background: "#f0ede8", borderTop: "1px solid rgba(0,0,0,0.07)" }}>
+    <footer style={{ background: "#0D0F12", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
       <div style={{ padding: "72px 48px 0", maxWidth: "1400px", margin: "0 auto" }}>
         <div
           className="footer-grid"
@@ -12,7 +12,7 @@ export default function Footer() {
             gridTemplateColumns: "1.6fr 1fr 1fr 1fr",
             gap: 48,
             paddingBottom: 56,
-            borderBottom: "1px solid rgba(0,0,0,0.07)",
+            borderBottom: "1px solid rgba(255,255,255,0.06)",
           }}
         >
           {/* Brand */}
@@ -26,44 +26,44 @@ export default function Footer() {
                   <rect x="8" y="8" width="5" height="5" rx="1.2" fill="white"/>
                 </svg>
               </div>
-              <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.975rem", color: "#17181B", letterSpacing: "-0.015em" }}>Novum Systems</span>
+              <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.975rem", color: "#EAEAEA", letterSpacing: "-0.015em" }}>Novum Systems</span>
             </div>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: "#6b6560", lineHeight: 1.75, margin: "0 0 6px" }}>hello@novumsystems.co</p>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: "#6b6560", lineHeight: 1.75, margin: 0 }}>Operational software for growing businesses.</p>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, margin: "0 0 6px" }}>hello@novumsystems.co</p>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, margin: 0 }}>Operational software for growing businesses.</p>
           </div>
 
           {/* Systems */}
           <div>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.72rem", color: "#17181B", marginBottom: 20, letterSpacing: "0.08em", textTransform: "uppercase" }}>Systems</p>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.72rem", color: "#EAEAEA", marginBottom: 20, letterSpacing: "0.08em", textTransform: "uppercase" }}>Systems</p>
             {(["Forge", "OpsCore", "ProjectOps", "FieldOps"] as const).map((s) => (
               <Link key={s} href="/systems"
-                style={{ display: "block", fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: "#6b6560", textDecoration: "none", marginBottom: 11, transition: "color 0.18s" }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#17181B"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "#6b6560"; }}
+                style={{ display: "block", fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", textDecoration: "none", marginBottom: 11, transition: "color 0.18s" }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#EAEAEA"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.55)"; }}
               >{s}</Link>
             ))}
           </div>
 
           {/* Company */}
           <div>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.72rem", color: "#17181B", marginBottom: 20, letterSpacing: "0.08em", textTransform: "uppercase" }}>Company</p>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.72rem", color: "#EAEAEA", marginBottom: 20, letterSpacing: "0.08em", textTransform: "uppercase" }}>Company</p>
             {([["Approach", "/approach"], ["Systems", "/systems"], ["Case Studies", "/case-studies"], ["Contact", "/contact"]] as const).map(([label, href]) => (
               <Link key={label} href={href}
-                style={{ display: "block", fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: "#6b6560", textDecoration: "none", marginBottom: 11, transition: "color 0.18s" }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#17181B"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "#6b6560"; }}
+                style={{ display: "block", fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", textDecoration: "none", marginBottom: 11, transition: "color 0.18s" }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#EAEAEA"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.55)"; }}
               >{label}</Link>
             ))}
           </div>
 
           {/* Get Started */}
           <div>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.72rem", color: "#17181B", marginBottom: 20, letterSpacing: "0.08em", textTransform: "uppercase" }}>Get Started</p>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.72rem", color: "#EAEAEA", marginBottom: 20, letterSpacing: "0.08em", textTransform: "uppercase" }}>Get Started</p>
             {([["Book a Discovery Call", "/contact"], ["Explore Systems", "/systems"]] as const).map(([label, href]) => (
               <Link key={label} href={href}
-                style={{ display: "block", fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: "#6b6560", textDecoration: "none", marginBottom: 11, transition: "color 0.18s" }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#17181B"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "#6b6560"; }}
+                style={{ display: "block", fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", textDecoration: "none", marginBottom: 11, transition: "color 0.18s" }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#EAEAEA"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.55)"; }}
               >{label}</Link>
             ))}
           </div>
@@ -71,7 +71,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <div style={{ padding: "18px 0 0" }}>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem", color: "#a09890", margin: 0 }}>Novum Systems © {new Date().getFullYear()}</p>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem", color: "rgba(255,255,255,0.4)", margin: 0 }}>Novum Systems © {new Date().getFullYear()}</p>
         </div>
       </div>
 
@@ -81,7 +81,7 @@ export default function Footer() {
           fontFamily: "'DM Sans', sans-serif",
           fontWeight: 700,
           fontSize: "clamp(90px, 22.5vw, 280px)",
-          color: "#17181B",
+          color: "#EAEAEA",
           letterSpacing: "-0.045em",
           margin: 0,
           padding: "0 36px",

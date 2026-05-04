@@ -16,8 +16,8 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background: #f5f4f1;
-  color: var(--text);
+  background: #0A0C0F;
+  color: #EAEAEA;
   font-family: 'DM Sans', sans-serif;
   font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;

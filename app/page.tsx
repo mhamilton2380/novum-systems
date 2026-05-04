@@ -131,13 +131,13 @@ function PlexusBg() {
 }
 
 
-// ─── Shared glass card style ──────────────────────────────────────────────────
+// ─── Shared glass card style (dark) ───────────────────────────────────────────
 const glassCard: CSSProperties = {
-  background: "rgba(255,255,255,0.1)",
-  backdropFilter: "blur(12px) saturate(1.4)",
-  WebkitBackdropFilter: "blur(12px) saturate(1.4)",
-  border: "1px solid rgba(255,255,255,0.55)",
-  boxShadow: "0 8px 32px rgba(22,28,38,0.06), inset 0 1px 0 rgba(255,255,255,0.8)",
+  background: "rgba(255,255,255,0.03)",
+  backdropFilter: "blur(14px) saturate(1.4)",
+  WebkitBackdropFilter: "blur(14px) saturate(1.4)",
+  border: "1px solid rgba(255,255,255,0.08)",
+  boxShadow: "0 8px 32px rgba(0,0,0,0.35)",
 };
 
 const ADAPT_FONTS = [
@@ -213,8 +213,8 @@ export default function HomePage() {
   return (
     <div
       style={{
-        background: "#f5f4f1",
-        color: "var(--text)",
+        background: "#0A0C0F",
+        color: "#EAEAEA",
         fontFamily: "'DM Sans', sans-serif",
         position: "relative",
         overflow: "hidden",
@@ -285,18 +285,18 @@ export default function HomePage() {
       </section>
 
       {/* ── The Problem ── */}
-      <section style={{ padding: "96px 40px", borderTop: "1px solid #EDECEA" }}>
+      <section style={{ padding: "96px 40px", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
         <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "80px", alignItems: "start" }} className="two-col">
             <div style={{ position: "sticky", top: "88px" }}>
               <div style={{
                 display: "inline-flex", alignItems: "center", gap: "7px",
                 padding: "5px 14px", borderRadius: "100px",
-                border: "1px solid #E8E6E1", background: "#F7F6F3",
+                border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.05)",
                 fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.09em", textTransform: "uppercase",
-                color: "#7A7774", marginBottom: "20px",
+                color: "rgba(255,255,255,0.55)", marginBottom: "20px",
               }}>
-                <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#7A7774", display: "inline-block" }} />
+                <span style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(255,255,255,0.5)", display: "inline-block" }} />
                 The Problem
               </div>
               <h2 style={{
@@ -306,7 +306,7 @@ export default function HomePage() {
               }}>
                 Growing organizations outgrow their tools. Fast.
               </h2>
-              <p style={{ color: "#7A7774", lineHeight: 1.8, fontSize: "0.95rem" }}>
+              <p style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.8, fontSize: "0.95rem" }}>
                 The platforms that worked at 20 people break at 100. Data lives in disconnected systems. Teams work around tools instead of with them. Leadership makes decisions with incomplete information. And no one can answer a simple question without digging through three different apps.
               </p>
             </div>
@@ -334,15 +334,15 @@ export default function HomePage() {
                 },
               ].map((item) => (
                 <div key={item.problem} style={{
-                  padding: "28px 32px", background: "#fff",
-                  border: "1px solid #EDECEA", borderRadius: "14px",
+                  padding: "28px 32px", background: "rgba(255,255,255,0.04)",
+                  border: "1px solid rgba(255,255,255,0.08)", borderRadius: "14px",
                   transition: "border-color 0.2s, box-shadow 0.2s",
                 }}
                   onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "#a0e8cb"; (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 20px rgba(0,0,0,0.06)"; }}
-                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "#EDECEA"; (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.08)"; (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
                 >
-                  <h4 style={{ fontWeight: 600, fontSize: "0.975rem", marginBottom: "8px", color: "#1A1A1A" }}>{item.problem}</h4>
-                  <p style={{ color: "#7A7774", fontSize: "0.875rem", lineHeight: 1.75, margin: 0 }}>{item.detail}</p>
+                  <h4 style={{ fontWeight: 600, fontSize: "0.975rem", marginBottom: "8px", color: "#EAEAEA" }}>{item.problem}</h4>
+                  <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.875rem", lineHeight: 1.75, margin: 0 }}>{item.detail}</p>
                 </div>
               ))}
             </div>
@@ -427,17 +427,17 @@ export default function HomePage() {
       </section>
 
       {/* ── Security ── */}
-      <section style={{ padding: "96px 40px", borderTop: "1px solid #EDECEA" }}>
+      <section style={{ padding: "96px 40px", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
         <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
           <div style={{ textAlign: "center", maxWidth: "560px", margin: "0 auto 56px" }}>
             <div style={{
               display: "inline-flex", alignItems: "center", gap: "7px",
               padding: "5px 14px", borderRadius: "100px",
-              border: "1px solid #E8E6E1", background: "#F7F6F3",
+              border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.05)",
               fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.09em", textTransform: "uppercase",
-              color: "#7A7774", marginBottom: "20px",
+              color: "rgba(255,255,255,0.55)", marginBottom: "20px",
             }}>
-              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#7A7774", display: "inline-block" }} />
+              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(255,255,255,0.5)", display: "inline-block" }} />
               Security & Compliance
             </div>
             <h2 style={{
@@ -445,7 +445,7 @@ export default function HomePage() {
               fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
               letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: "16px",
             }}>Security isn&apos;t a feature. It&apos;s the foundation.</h2>
-            <p style={{ color: "#7A7774", lineHeight: 1.8, fontSize: "0.95rem" }}>
+            <p style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.8, fontSize: "0.95rem" }}>
               Larger organizations face real compliance exposure. Every system we build is designed with encryption, access control, and auditability from day one — not bolted on later.
             </p>
           </div>
@@ -490,12 +490,12 @@ export default function HomePage() {
               },
             ].map(item => (
               <div key={item.title} style={{
-                padding: "32px", background: "#fff",
-                border: "1px solid #EDECEA", borderRadius: "16px",
+                padding: "32px", background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(255,255,255,0.08)", borderRadius: "16px",
                 transition: "border-color 0.2s, box-shadow 0.2s",
               }}
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = item.accentBorder; (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 20px rgba(0,0,0,0.06)"; }}
-                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "#EDECEA"; (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.08)"; (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
               >
                 <div style={{
                   width: 48, height: 48, background: item.accentBg,
@@ -503,8 +503,8 @@ export default function HomePage() {
                   display: "flex", alignItems: "center", justifyContent: "center",
                   marginBottom: "20px",
                 }}>{item.icon}</div>
-                <h3 style={{ fontWeight: 700, fontSize: "0.975rem", marginBottom: "10px", color: "#1A1A1A" }}>{item.title}</h3>
-                <p style={{ color: "#7A7774", fontSize: "0.875rem", lineHeight: 1.75, margin: 0 }}>{item.desc}</p>
+                <h3 style={{ fontWeight: 700, fontSize: "0.975rem", marginBottom: "10px", color: "#EAEAEA" }}>{item.title}</h3>
+                <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.875rem", lineHeight: 1.75, margin: 0 }}>{item.desc}</p>
               </div>
             ))}
           </div>
@@ -514,7 +514,7 @@ export default function HomePage() {
       {/* ── How We Engage ── */}
       <section style={{ padding: "0 24px" }}>
         <div style={{
-          background: "#fff", border: "1px solid #EDECEA", borderRadius: "20px",
+          background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "20px",
           padding: "80px 60px",
         }}>
           <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
@@ -523,11 +523,11 @@ export default function HomePage() {
                 <div style={{
                   display: "inline-flex", alignItems: "center", gap: "7px",
                   padding: "5px 14px", borderRadius: "100px",
-                  border: "1px solid #E8E6E1", background: "#F7F6F3",
+                  border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.05)",
                   fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.09em", textTransform: "uppercase",
-                  color: "#7A7774", marginBottom: "20px",
+                  color: "rgba(255,255,255,0.55)", marginBottom: "20px",
                 }}>
-                  <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#7A7774", display: "inline-block" }} />
+                  <span style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(255,255,255,0.5)", display: "inline-block" }} />
                   How We Engage
                 </div>
                 <h2 style={{
@@ -535,7 +535,7 @@ export default function HomePage() {
                   fontSize: "clamp(1.8rem, 3vw, 2.6rem)",
                   letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: "18px",
                 }}>We map before we build. Always.</h2>
-                <p style={{ color: "#7A7774", lineHeight: 1.8, fontSize: "0.95rem" }}>
+                <p style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.8, fontSize: "0.95rem" }}>
                   Enterprise engagements start with a structured discovery phase. We don&apos;t propose solutions before we understand the problem — and we don&apos;t build until we do.
                 </p>
               </div>
@@ -550,19 +550,19 @@ export default function HomePage() {
                   <div key={step.num} style={{
                     display: "grid", gridTemplateColumns: "64px 1fr",
                     gap: "32px", padding: "32px 36px",
-                    background: "#F7F6F3", border: "1px solid #EDECEA",
+                    background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)",
                     borderRadius: "14px", transition: "border-color 0.2s",
                   }}
                     onMouseEnter={e => (e.currentTarget as HTMLElement).style.borderColor = "#a0e8cb"}
-                    onMouseLeave={e => (e.currentTarget as HTMLElement).style.borderColor = "#EDECEA"}
+                    onMouseLeave={e => (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.08)"}
                   >
                     <span style={{
                       fontSize: "2rem", fontWeight: 700, letterSpacing: "-0.03em",
                       color: "#DDDBD7", lineHeight: 1,
                     }}>{step.num}</span>
                     <div>
-                      <h4 style={{ fontWeight: 700, fontSize: "0.975rem", marginBottom: "8px", color: "#1A1A1A" }}>{step.title}</h4>
-                      <p style={{ color: "#7A7774", fontSize: "0.875rem", lineHeight: 1.75, margin: 0 }}>{step.desc}</p>
+                      <h4 style={{ fontWeight: 700, fontSize: "0.975rem", marginBottom: "8px", color: "#EAEAEA" }}>{step.title}</h4>
+                      <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.875rem", lineHeight: 1.75, margin: 0 }}>{step.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -581,7 +581,7 @@ export default function HomePage() {
               fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
               letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: "14px",
             }}>Who this is built for.</h2>
-            <p style={{ color: "#7A7774", lineHeight: 1.8, fontSize: "0.95rem" }}>
+            <p style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.8, fontSize: "0.95rem" }}>
               Any organization that has outgrown generic software and needs something that actually matches how they operate.
             </p>
           </div>
@@ -596,16 +596,16 @@ export default function HomePage() {
               { title: "Growing Mid-Market Businesses", desc: "Companies that have scaled past their original tools and need a system that can grow with them — built once, expanded as the business demands." },
             ].map(item => (
               <div key={item.title} style={{
-                padding: "36px", background: "#fff",
-                border: "1px solid #EDECEA", borderRadius: "16px",
+                padding: "36px", background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(255,255,255,0.08)", borderRadius: "16px",
                 transition: "border-color 0.2s, box-shadow 0.2s",
               }}
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "#a0e8cb"; (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 20px rgba(0,0,0,0.06)"; }}
-                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "#EDECEA"; (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.08)"; (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
               >
                 <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#00C87A", marginBottom: "20px" }} />
-                <h3 style={{ fontWeight: 700, fontSize: "1rem", letterSpacing: "-0.015em", marginBottom: "10px", color: "#1A1A1A" }}>{item.title}</h3>
-                <p style={{ color: "#7A7774", fontSize: "0.875rem", lineHeight: 1.75, margin: 0 }}>{item.desc}</p>
+                <h3 style={{ fontWeight: 700, fontSize: "1rem", letterSpacing: "-0.015em", marginBottom: "10px", color: "#EAEAEA" }}>{item.title}</h3>
+                <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.875rem", lineHeight: 1.75, margin: 0 }}>{item.desc}</p>
               </div>
             ))}
           </div>
@@ -710,7 +710,7 @@ export default function HomePage() {
                 >
                   <span className="font-serif" style={{ fontSize: "1.45rem", color: "var(--accent)", letterSpacing: "-0.03em" }}>{step.step}</span>
                 </motion.div>
-                <h3 className="font-serif" style={{ fontSize: "1.3rem", marginBottom: 14, letterSpacing: "-0.02em", color: "var(--text)" }}>{step.title}</h3>
+                <h3 className="font-serif" style={{ fontSize: "1.3rem", marginBottom: 14, letterSpacing: "-0.02em", color: "#EAEAEA" }}>{step.title}</h3>
                 <p style={{ color: "var(--text-soft)", fontSize: "0.92rem", lineHeight: 1.82 }}>{step.desc}</p>
               </motion.div>
             ))}
@@ -753,7 +753,7 @@ export default function HomePage() {
             <motion.div variants={fadeUp} style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
               <Link
                 href="/contact"
-                style={{ padding: "15px 32px", borderRadius: "999px", background: "#FFFFFF", color: "var(--text)", fontSize: "0.92rem", fontWeight: 600, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 8, transition: "transform 0.15s" }}
+                style={{ padding: "15px 32px", borderRadius: "999px", background: "#FFFFFF", color: "#0a1a12", fontSize: "0.92rem", fontWeight: 600, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 8, transition: "transform 0.15s" }}
                 onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-1px)"; }}
                 onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; }}
               >
