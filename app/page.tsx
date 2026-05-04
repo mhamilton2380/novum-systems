@@ -287,48 +287,45 @@ export default function HomePage() {
           }}
         />
         <div style={{ maxWidth: "1280px", margin: "0 auto", position: "relative", zIndex: 1 }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "80px", alignItems: "start" }} className="two-col">
-            <div style={{ position: "sticky", top: "88px" }}>
-              <div style={{
-                display: "inline-flex", alignItems: "center", gap: "7px",
-                padding: "5px 14px", borderRadius: "100px",
-                border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.05)",
-                fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.09em", textTransform: "uppercase",
-                color: "rgba(255,255,255,0.55)", marginBottom: "20px",
-              }}>
-                <span style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(255,255,255,0.5)", display: "inline-block" }} />
-                The Problem
-              </div>
-              <h2 style={{
-                fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
-                fontSize: "clamp(1.8rem, 3vw, 2.8rem)",
-                letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: "18px",
-              }}>
-                Growing organizations outgrow their tools. Fast.
-              </h2>
-              <p style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.8, fontSize: "0.95rem", marginBottom: "32px" }}>
-                The platforms that worked at 20 people break at 100. Data lives in disconnected systems. Teams work around tools instead of with them. Leadership makes decisions with incomplete information. And no one can answer a simple question without digging through three different apps.
-              </p>
 
-              {/* ARIS demo — autoplays as user scrolls past */}
-              <div style={{
-                borderRadius: "20px",
-                overflow: "hidden",
-                aspectRatio: "600 / 800",
-                width: "100%",
-                maxWidth: "600px",
-              }}>
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }}
-                >
-                  <source src="/aris-demo-silent.mp4" type="video/mp4" />
-                </video>
-              </div>
+          {/* ── Centered header ── */}
+          <div style={{ textAlign: "center", marginBottom: "56px" }}>
+            <div style={{
+              display: "inline-flex", alignItems: "center", gap: "7px",
+              padding: "5px 14px", borderRadius: "100px",
+              border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.05)",
+              fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.09em", textTransform: "uppercase",
+              color: "rgba(255,255,255,0.55)", marginBottom: "20px",
+            }}>
+              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(255,255,255,0.5)", display: "inline-block" }} />
+              The Problem
             </div>
+            <h2 style={{
+              fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
+              fontSize: "clamp(1.8rem, 3vw, 2.8rem)",
+              letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: "18px",
+            }}>
+              Growing organizations outgrow their tools. Fast.
+            </h2>
+            <p style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.8, fontSize: "0.95rem", maxWidth: "580px", margin: "0 auto" }}>
+              The platforms that worked at 20 people break at 100. Data lives in disconnected systems. Teams work around tools instead of with them. Leadership makes decisions with incomplete information.
+            </p>
+          </div>
+
+          {/* ── Video + cards, equal height ── */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px", alignItems: "stretch" }}>
+
+            {/* Video — fills the full height of the cards column */}
+            <div style={{ borderRadius: "20px", overflow: "hidden", minHeight: 0 }}>
+              <video
+                autoPlay loop muted playsInline
+                style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }}
+              >
+                <source src="/aris-demo-silent.mp4" type="video/mp4" />
+              </video>
+            </div>
+
+            {/* Cards */}
             <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
               {[
                 {
@@ -355,7 +352,7 @@ export default function HomePage() {
                 <div key={item.problem} style={{
                   padding: "28px 32px", background: "rgba(255,255,255,0.04)",
                   border: "1px solid rgba(255,255,255,0.08)", borderRadius: "14px",
-                  transition: "border-color 0.2s, box-shadow 0.2s",
+                  transition: "border-color 0.2s, box-shadow 0.2s", flex: 1,
                 }}
                   onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "#a0e8cb"; (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 20px rgba(0,0,0,0.06)"; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.08)"; (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
