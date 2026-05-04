@@ -238,17 +238,15 @@ export default function HomePage() {
             {graphicReady ? <Spline scene={SPLINE_SCENE} /> : null}
           </div>
 
-          {/* Grid overlay — extends the page grid through the hero so it doesn't feel disconnected */}
+          {/* Grid overlay — same color/opacity as body PlexusBg so it matches exactly */}
           <div
             style={{
               position: "absolute",
               inset: 0,
               zIndex: 3,
               pointerEvents: "none",
-              mixBlendMode: "screen",
-              opacity: 0.7,
               backgroundImage:
-                "linear-gradient(to right, rgba(170,195,235,0.22) 1px, transparent 1px), linear-gradient(to bottom, rgba(170,195,235,0.22) 1px, transparent 1px)",
+                "linear-gradient(to right, rgba(170,195,235,0.07) 1px, transparent 1px), linear-gradient(to bottom, rgba(170,195,235,0.07) 1px, transparent 1px)",
               backgroundSize: "72px 72px",
             }}
           />
@@ -272,8 +270,23 @@ export default function HomePage() {
       </section>
 
       {/* ── The Problem ── */}
-      <section style={{ padding: "96px 40px", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-        <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+      <section style={{ padding: "96px 40px", position: "relative" }}>
+        {/* Top fade mirrors the bottom of the Spline hero for a seamless transition */}
+        <div
+          aria-hidden
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            height: 180,
+            background:
+              "linear-gradient(to bottom, #0A0C0F 0%, #0A0C0F 38%, rgba(10,12,15,0.6) 65%, rgba(10,12,15,0) 100%)",
+            zIndex: 0,
+            pointerEvents: "none",
+          }}
+        />
+        <div style={{ maxWidth: "1280px", margin: "0 auto", position: "relative", zIndex: 1 }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "80px", alignItems: "start" }} className="two-col">
             <div style={{ position: "sticky", top: "88px" }}>
               <div style={{
