@@ -316,7 +316,7 @@ export default function HomePage() {
                 overflow: "hidden",
                 aspectRatio: "600 / 800",
                 width: "100%",
-                maxWidth: "500px",
+                maxWidth: "600px",
               }}>
                 <video
                   autoPlay
