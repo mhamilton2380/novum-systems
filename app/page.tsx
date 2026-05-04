@@ -306,9 +306,29 @@ export default function HomePage() {
               }}>
                 Growing organizations outgrow their tools. Fast.
               </h2>
-              <p style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.8, fontSize: "0.95rem" }}>
+              <p style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.8, fontSize: "0.95rem", marginBottom: "32px" }}>
                 The platforms that worked at 20 people break at 100. Data lives in disconnected systems. Teams work around tools instead of with them. Leadership makes decisions with incomplete information. And no one can answer a simple question without digging through three different apps.
               </p>
+
+              {/* ARIS demo — autoplays as user scrolls past */}
+              <div style={{
+                borderRadius: "16px",
+                overflow: "hidden",
+                border: "1px solid rgba(255,255,255,0.1)",
+                boxShadow: "0 24px 60px rgba(0,0,0,0.5)",
+                aspectRatio: "1080 / 700",
+                width: "100%",
+              }}>
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }}
+                >
+                  <source src="/aris-demo-silent.mp4" type="video/mp4" />
+                </video>
+              </div>
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
               {[
