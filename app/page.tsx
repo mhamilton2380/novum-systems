@@ -239,6 +239,23 @@ export default function HomePage() {
             {graphicReady ? <Spline scene={SPLINE_SCENE} /> : null}
           </div>
 
+          {/* Grid overlay — extends the page grid through the hero so it doesn't feel disconnected */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              zIndex: 3,
+              pointerEvents: "none",
+              backgroundImage:
+                "linear-gradient(to right, rgba(170,195,235,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(170,195,235,0.06) 1px, transparent 1px)",
+              backgroundSize: "72px 72px",
+              maskImage:
+                "linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.15) 100%)",
+              WebkitMaskImage:
+                "linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.15) 100%)",
+            }}
+          />
+
           {/* Bottom fade across the whole hero — solid base hides watermark, soft fade unifies the edge */}
           <div
             style={{
