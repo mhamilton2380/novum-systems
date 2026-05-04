@@ -146,10 +146,27 @@ const ADAPT_FONTS = [
 ];
 
 // ─── Animation variants ───────────────────────────────────────────────────────
+const EASE = [0.25, 0.46, 0.45, 0.94];
+
 const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: EASE } },
 };
+
+const fromLeft = {
+  hidden: { opacity: 0, x: -32 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: EASE } },
+};
+
+const fromRight = {
+  hidden: { opacity: 0, x: 32 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: EASE } },
+};
+
+const stagger = (childStagger = 0.08, delay = 0) => ({
+  hidden: {},
+  visible: { transition: { staggerChildren: childStagger, delayChildren: delay } },
+});
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function HomePage() {
@@ -313,20 +330,29 @@ export default function HomePage() {
           </div>
 
           {/* ── Video + cards, equal height ── */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px", alignItems: "stretch" }}>
+          <motion.div
+            style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px", alignItems: "stretch" }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={stagger(0.08)}
+          >
 
             {/* Video — fills the full height of the cards column */}
-            <div style={{ borderRadius: "20px", overflow: "hidden", minHeight: 0 }}>
+            <motion.div variants={fromLeft} style={{ borderRadius: "20px", overflow: "hidden", minHeight: 0 }}>
               <video
                 autoPlay loop muted playsInline
                 style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }}
               >
                 <source src="/aris-demo-silent.mp4" type="video/mp4" />
               </video>
-            </div>
+            </motion.div>
 
             {/* Cards */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+            <motion.div
+              style={{ display: "flex", flexDirection: "column", gap: "12px" }}
+              variants={stagger(0.08, 0.1)}
+            >
               {[
                 {
                   problem: "Data silos across departments",
@@ -349,7 +375,7 @@ export default function HomePage() {
                   detail: "Sensitive documents sitting in unencrypted shared folders. No audit trail. No enforcement. As organizations scale, this becomes a material risk.",
                 },
               ].map((item) => (
-                <div key={item.problem} style={{
+                <motion.div key={item.problem} variants={fromRight} style={{
                   padding: "28px 32px", background: "rgba(255,255,255,0.04)",
                   border: "1px solid rgba(255,255,255,0.08)", borderRadius: "14px",
                   transition: "border-color 0.2s, box-shadow 0.2s", flex: 1,
@@ -359,10 +385,10 @@ export default function HomePage() {
                 >
                   <h4 style={{ fontWeight: 600, fontSize: "0.975rem", marginBottom: "8px", color: "#EAEAEA" }}>{item.problem}</h4>
                   <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.875rem", lineHeight: 1.75, margin: 0 }}>{item.detail}</p>
-                </div>
+                </motion.div>
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
@@ -397,14 +423,21 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "12px", marginBottom: "12px" }} className="stack-grid">
+            <motion.div
+              style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "12px", marginBottom: "12px" }}
+              className="stack-grid"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-80px" }}
+              variants={stagger(0.09)}
+            >
               {[
                 { name: "Forge", sub: "Fully Custom", desc: "For operations that do not fit any mold. Forge is architected from the ground up around your structure, workflows, terminology, and reporting logic.", accent: "#7756C9", accentBg: "rgba(119,86,201,0.08)", accentBorder: "rgba(119,86,201,0.2)" },
                 { name: "OpsCore", sub: "Command Center", desc: "Cross-department dashboards, workflow automation, and reporting. The operational backbone for multi-team organizations.", accent: "#00C87A", accentBg: "rgba(0,200,122,0.08)", accentBorder: "rgba(0,200,122,0.2)" },
                 { name: "ProjectOps", sub: "Project Management", desc: "Full project lifecycle management — budgets, milestones, vendor tracking, and profitability across every active engagement.", accent: "#5B9EC9", accentBg: "rgba(91,158,201,0.08)", accentBorder: "rgba(91,158,201,0.2)" },
                 { name: "FieldOps", sub: "Field Operations", desc: "Scheduling, dispatch, job management, and invoicing for distributed teams operating across multiple locations or territories.", accent: "#4BAD8A", accentBg: "rgba(75,173,138,0.08)", accentBorder: "rgba(75,173,138,0.2)" },
-              ].map(s => (
-                <div key={s.name} style={{
+              ].map((s, i) => (
+                <motion.div key={s.name} variants={i % 2 === 0 ? fromLeft : fromRight} style={{
                   padding: "32px", background: "rgba(255,255,255,0.04)",
                   border: `1px solid ${s.accentBorder}`, borderRadius: "16px",
                 }}>
@@ -416,16 +449,23 @@ export default function HomePage() {
                   }}>{s.sub}</span>
                   <h3 style={{ fontWeight: 700, fontSize: "1.3rem", letterSpacing: "-0.02em", color: "#fff", marginBottom: "10px" }}>{s.name}</h3>
                   <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.875rem", lineHeight: 1.75, margin: 0 }}>{s.desc}</p>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }} className="stack-grid-2">
+            <motion.div
+              style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}
+              className="stack-grid-2"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-80px" }}
+              variants={stagger(0.1)}
+            >
               {[
                 { name: "Vault", sub: "Encrypted Document Intelligence", desc: "Every document across the organization — encrypted, indexed, and queryable. Drop a file, get an answer. Role-controlled access at every level.", accent: "#8B9FD4", accentBg: "rgba(139,159,212,0.08)", accentBorder: "rgba(139,159,212,0.2)" },
                 { name: "A.R.I.S", sub: "Adaptive Response Intelligence System", desc: "The AI layer that ties it all together. Ask anything across every connected system and vault — and get an answer in plain English, instantly.", accent: "#00C87A", accentBg: "rgba(0,200,122,0.08)", accentBorder: "rgba(0,200,122,0.2)" },
-              ].map(s => (
-                <div key={s.name} style={{
+              ].map((s, i) => (
+                <motion.div key={s.name} variants={i === 0 ? fromLeft : fromRight} style={{
                   padding: "32px", background: "rgba(255,255,255,0.04)",
                   border: `1px solid ${s.accentBorder}`, borderRadius: "16px",
                   display: "flex", flexDirection: "column", gap: "10px",
@@ -438,9 +478,9 @@ export default function HomePage() {
                   }}>{s.sub}</span>
                   <h3 style={{ fontWeight: 700, fontSize: "1.3rem", letterSpacing: "-0.02em", color: "#fff", margin: 0 }}>{s.name}</h3>
                   <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.875rem", lineHeight: 1.75, margin: 0 }}>{s.desc}</p>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -459,7 +499,14 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px" }} className="who-grid">
+          <motion.div
+            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px" }}
+            className="who-grid"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={stagger(0.08)}
+          >
             {[
               { title: "Multi-Location Operators", desc: "Organizations running operations across multiple locations, divisions, or territories — who need visibility and coordination across the entire footprint." },
               { title: "Professional Services Firms", desc: "Firms managing client engagements, project budgets, and team utilization — where every job is unique and the data needs to follow it." },
@@ -467,8 +514,8 @@ export default function HomePage() {
               { title: "Logistics & Distribution", desc: "Operations with complex routing, vendor relationships, and real-time coordination needs that standard platforms can't model." },
               { title: "Healthcare & Managed Services", desc: "Organizations with compliance requirements, role-based access mandates, and document-heavy workflows that demand auditability at every level." },
               { title: "Growing Mid-Market Businesses", desc: "Companies that have scaled past their original tools and need a system that can grow with them — built once, expanded as the business demands." },
-            ].map(item => (
-              <div key={item.title} style={{
+            ].map((item, i) => (
+              <motion.div key={item.title} variants={i % 2 === 0 ? fromLeft : fromRight} style={{
                 padding: "36px", background: "rgba(255,255,255,0.04)",
                 border: "1px solid rgba(255,255,255,0.08)", borderRadius: "16px",
                 transition: "border-color 0.2s, box-shadow 0.2s",
@@ -479,9 +526,9 @@ export default function HomePage() {
                 <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#00C87A", marginBottom: "20px" }} />
                 <h3 style={{ fontWeight: 700, fontSize: "1rem", letterSpacing: "-0.015em", marginBottom: "10px", color: "#EAEAEA" }}>{item.title}</h3>
                 <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.875rem", lineHeight: 1.75, margin: 0 }}>{item.desc}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -509,7 +556,14 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px" }} className="sec-grid">
+          <motion.div
+            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px" }}
+            className="sec-grid"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={stagger(0.07)}
+          >
             {[
               {
                 title: "Encryption at Rest & in Transit",
@@ -547,8 +601,8 @@ export default function HomePage() {
                 icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#B45309" strokeWidth="1.5"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07" stroke="#B45309" strokeWidth="1.5" strokeLinecap="round"/></svg>,
                 accent: "#B45309", accentBg: "#FEF3C7", accentBorder: "#FDE68A",
               },
-            ].map(item => (
-              <div key={item.title} style={{
+            ].map((item, i) => (
+              <motion.div key={item.title} variants={i % 2 === 0 ? fromLeft : fromRight} style={{
                 padding: "32px", background: "rgba(255,255,255,0.04)",
                 border: "1px solid rgba(255,255,255,0.08)", borderRadius: "16px",
                 transition: "border-color 0.2s, box-shadow 0.2s",
@@ -564,9 +618,9 @@ export default function HomePage() {
                 }}>{item.icon}</div>
                 <h3 style={{ fontWeight: 700, fontSize: "0.975rem", marginBottom: "10px", color: "#EAEAEA" }}>{item.title}</h3>
                 <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.875rem", lineHeight: 1.75, margin: 0 }}>{item.desc}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -598,7 +652,13 @@ export default function HomePage() {
                   Enterprise engagements start with a structured discovery phase. We don&apos;t propose solutions before we understand the problem — and we don&apos;t build until we do.
                 </p>
               </div>
-              <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+              <motion.div
+                style={{ display: "flex", flexDirection: "column", gap: "8px" }}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-80px" }}
+                variants={stagger(0.07)}
+              >
                 {[
                   { num: "01", title: "Operational Discovery", desc: "We spend time with your team understanding how your business actually runs — the workflows, the workarounds, the data flows, and the decision-making structure. This informs everything." },
                   { num: "02", title: "System Architecture", desc: "We design the full system architecture before a single line is written — data models, access structure, integration points, and the intelligence layer. You review and approve." },
@@ -606,7 +666,7 @@ export default function HomePage() {
                   { num: "04", title: "Training & Handoff", desc: "Every system comes with structured training and documentation. Your team owns it. We don't create dependency — we create capability." },
                   { num: "05", title: "Ongoing Support", desc: "We remain available after deployment. As your operation evolves, the system evolves with it. Retainer-based support available for enterprise clients." },
                 ].map(step => (
-                  <div key={step.num} style={{
+                  <motion.div key={step.num} variants={fromRight} style={{
                     display: "grid", gridTemplateColumns: "64px 1fr",
                     gap: "32px", padding: "32px 36px",
                     background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)",
@@ -623,9 +683,9 @@ export default function HomePage() {
                       <h4 style={{ fontWeight: 700, fontSize: "0.975rem", marginBottom: "8px", color: "#EAEAEA" }}>{step.title}</h4>
                       <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.875rem", lineHeight: 1.75, margin: 0 }}>{step.desc}</p>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
