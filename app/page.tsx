@@ -14,7 +14,7 @@ const Spline = dynamic(() => import("@splinetool/react-spline"), {
   loading: () => null,
 });
 
-const SPLINE_SCENE = "https://prod.spline.design/REmq3VZsd3qc2f-0/scene.splinecode";
+const SPLINE_SCENE = "https://prod.spline.design/6bC7-nltqoSMdm8b/scene.splinecode";
 
 // ─── Canvas background: animated grid + pulses ───────────────────────────────
 function PlexusBg() {
