@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
-import DotCanvas from "@/components/DotCanvas";
 
 const Spline = dynamic(() => import("@splinetool/react-spline"), {
   ssr: false,
@@ -339,12 +338,16 @@ export default function HomePage() {
       </section>
 
       {/* ── What We Deploy ── */}
-      <section style={{ padding: "0 24px" }}>
+      <section style={{ padding: "60px 24px", position: "relative" }}>
         <div style={{
-          background: "#141414", borderRadius: "20px",
-          padding: "80px 60px", position: "relative", overflow: "hidden",
+          maxWidth: "1280px",
+          margin: "0 auto",
+          background: "rgba(255,255,255,0.02)",
+          border: "1px solid rgba(255,255,255,0.08)",
+          borderRadius: "20px",
+          padding: "80px 60px",
+          position: "relative",
         }}>
-          <DotCanvas />
           <div style={{ position: "relative", zIndex: 2 }}>
             <div style={{ textAlign: "center", marginBottom: "64px" }}>
               <div style={{
@@ -603,11 +606,12 @@ export default function HomePage() {
       {/* ── CTA ── */}
       <section style={{ padding: "24px 24px 80px" }}>
         <div style={{
-          background: "#141414", borderRadius: "20px",
+          background: "rgba(255,255,255,0.02)",
+          border: "1px solid rgba(255,255,255,0.08)",
+          borderRadius: "20px",
           padding: "80px 60px", textAlign: "center",
-          position: "relative", overflow: "hidden",
+          position: "relative",
         }}>
-          <DotCanvas />
           <div style={{ position: "relative", zIndex: 2, maxWidth: "580px", margin: "0 auto" }}>
             <h2 style={{
               fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
