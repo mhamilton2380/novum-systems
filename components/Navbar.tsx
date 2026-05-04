@@ -55,9 +55,9 @@ export default function Navbar() {
   const textColor = onDarkHero ? "#EAEAEA" : "#17181B";
   const mutedColor = onDarkHero ? "rgba(234,234,234,0.6)" : "#68635e";
   const activeBg = onDarkHero ? "rgba(255,255,255,0.08)" : "rgba(23,26,34,0.05)";
-  const logoBg = "#00C87A";
-  const ctaBg = "#00C87A";
-  const ctaColor = "#0a1a12";
+  const logoBg = "#5B8DEF";
+  const ctaBg = "#5B8DEF";
+  const ctaColor = "#ffffff";
 
   return (
     <header

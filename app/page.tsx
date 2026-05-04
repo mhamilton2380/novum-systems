@@ -4,8 +4,6 @@ import type { CSSProperties } from "react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import dynamic from "next/dynamic";
 import DotCanvas from "@/components/DotCanvas";
 
@@ -160,7 +158,6 @@ export default function HomePage() {
   const [fontIdx, setFontIdx] = useState(0);
   const [fading, setFading] = useState(false);
   const spotRef = useRef<HTMLDivElement>(null);
-  const connectorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => { setGraphicReady(true); }, []);
 
@@ -184,30 +181,6 @@ export default function HomePage() {
     };
     window.addEventListener("mousemove", handleMouse, { passive: true });
     return () => window.removeEventListener("mousemove", handleMouse);
-  }, []);
-
-  // GSAP: connector line draws left-to-right on scroll
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    const el = connectorRef.current;
-    if (!el) return;
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        el,
-        { scaleX: 0, transformOrigin: "left center" },
-        {
-          scaleX: 1,
-          ease: "power2.inOut",
-          scrollTrigger: {
-            trigger: el,
-            start: "top 80%",
-            end: "top 40%",
-            scrub: 1,
-          },
-        }
-      );
-    });
-    return () => ctx.revert();
   }, []);
 
   return (
@@ -641,82 +614,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── How It Works ── */}
-      <section style={{ padding: "0 24px", position: "relative", zIndex: 1 }}>
-        <div style={{ ...glassCard, maxWidth: "1400px", margin: "0 auto", padding: "72px 60px", borderRadius: 24 }}>
-          <motion.div
-            style={{ textAlign: "center", marginBottom: 64 }}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
-          >
-            <motion.div variants={fadeUp} className="pill-tag" style={{ ...glassCard, color: "var(--text-soft)", marginBottom: 20 }}>
-              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "var(--text-soft)", display: "inline-block" }} />
-              How It Works
-            </motion.div>
-            <motion.h2 variants={fadeUp} className="font-serif" style={{ fontSize: "clamp(1.95rem, 3.5vw, 3rem)", lineHeight: 1.08, letterSpacing: "-0.03em" }}>
-              From discovery to deployed, in three steps.
-            </motion.h2>
-          </motion.div>
-
-          <motion.div
-            className="process-grid"
-            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, position: "relative" }}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.2 } } }}
-          >
-            {/* Connector line — GSAP draws it left-to-right on scroll */}
-            <div
-              ref={connectorRef}
-              className="process-connector"
-              style={{
-                position: "absolute",
-                top: 48,
-                left: "calc(16.67% + 36px)",
-                right: "calc(16.67% + 36px)",
-                height: 1,
-                background: "rgba(201,197,188,0.8)",
-              }}
-            />
-
-            {[
-              { step: "01", title: "Discovery", desc: "We spend time with your team to understand how the business actually runs, where the friction lives, and what information matters." },
-              { step: "02", title: "System Design", desc: "We architect the operational model around your workflows so you can see exactly what is being built before it gets deployed." },
-              { step: "03", title: "Build & Deploy", desc: "We configure, ship, and launch your system with training, handoff, and continued support once it is live." },
-            ].map((step) => (
-              <motion.div
-                key={step.step}
-                variants={fadeUp}
-                style={{ textAlign: "center", padding: "0 20px" }}
-              >
-                <motion.div
-                  style={{
-                    ...glassCard,
-                    width: 72,
-                    height: 72,
-                    borderRadius: "50%",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    margin: "0 auto 32px",
-                    position: "relative",
-                    zIndex: 1,
-                  }}
-                  whileHover={{ scale: 1.1, y: -4 }}
-                  transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <span className="font-serif" style={{ fontSize: "1.45rem", color: "var(--accent)", letterSpacing: "-0.03em" }}>{step.step}</span>
-                </motion.div>
-                <h3 className="font-serif" style={{ fontSize: "1.3rem", marginBottom: 14, letterSpacing: "-0.02em", color: "#EAEAEA" }}>{step.title}</h3>
-                <p style={{ color: "var(--text-soft)", fontSize: "0.92rem", lineHeight: 1.82 }}>{step.desc}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
 
       {/* ── Final CTA ── */}
       <section style={{ padding: "40px 24px 88px", textAlign: "center", position: "relative", zIndex: 1 }}>
