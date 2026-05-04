@@ -6,12 +6,16 @@ import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [pastHero, setPastHero] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 32);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 32);
+      setPastHero(window.scrollY > window.innerHeight * 0.85);
+    };
     const onResize = () => setIsMobile(window.innerWidth < 768);
 
     onScroll();
@@ -38,11 +42,19 @@ export default function Navbar() {
   ];
 
   const isHome = pathname === "/";
-  const navBg =
-    scrolled || !isHome ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.76)";
-  const navBorder = "1px solid rgba(255,255,255,0.64)";
-  const textColor = "#17181B";
-  const mutedColor = "#68635e";
+  const onDarkHero = isHome && !pastHero;
+
+  const navBg = onDarkHero
+    ? "rgba(10,12,15,0.55)"
+    : scrolled || !isHome
+      ? "rgba(255,255,255,0.9)"
+      : "rgba(255,255,255,0.76)";
+  const navBorder = onDarkHero
+    ? "1px solid rgba(255,255,255,0.08)"
+    : "1px solid rgba(255,255,255,0.64)";
+  const textColor = onDarkHero ? "#EAEAEA" : "#17181B";
+  const mutedColor = onDarkHero ? "rgba(234,234,234,0.6)" : "#68635e";
+  const activeBg = onDarkHero ? "rgba(255,255,255,0.08)" : "rgba(23,26,34,0.05)";
   const logoBg = "#00C87A";
   const ctaBg = "#00C87A";
   const ctaColor = "#0a1a12";
@@ -71,8 +83,9 @@ export default function Navbar() {
           backdropFilter: "blur(22px) saturate(165%)",
           WebkitBackdropFilter: "blur(22px) saturate(165%)",
           border: navBorder,
-          boxShadow:
-            scrolled || !isHome
+          boxShadow: onDarkHero
+            ? "0 10px 30px rgba(0, 0, 0, 0.35)"
+            : scrolled || !isHome
               ? "0 10px 26px rgba(33, 37, 45, 0.08)"
               : "0 8px 20px rgba(33, 37, 45, 0.06)",
           transition:
@@ -134,9 +147,7 @@ export default function Navbar() {
                   fontWeight: 500,
                   color: pathname === link.href ? textColor : mutedColor,
                   background:
-                    pathname === link.href
-                      ? "rgba(23,26,34,0.05)"
-                      : "transparent",
+                    pathname === link.href ? activeBg : "transparent",
                   textDecoration: "none",
                   transition: "color 0.2s, background 0.2s",
                 }}
