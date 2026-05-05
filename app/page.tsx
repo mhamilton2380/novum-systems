@@ -30,7 +30,7 @@ function PlexusBg() {
 
     const init = () => {
       canvas.width = window.innerWidth;
-      canvas.height = Math.max(document.documentElement.scrollHeight, window.innerHeight);
+      canvas.height = window.innerHeight;
       pulses.length = 0;
     };
 
@@ -115,11 +115,11 @@ function PlexusBg() {
     <canvas
       ref={canvasRef}
       style={{
-        position: "absolute",
+        position: "fixed",
         top: 0,
         left: 0,
-        width: "100%",
-        height: "100%",
+        width: "100vw",
+        height: "100vh",
         pointerEvents: "none",
         zIndex: 0,
       }}
@@ -205,7 +205,7 @@ export default function HomePage() {
       <section
         className="hero-card"
         style={{
-          background: "#000000",
+          background: "transparent",
           position: "relative",
           overflow: "hidden",
           width: "100%",
@@ -237,20 +237,7 @@ export default function HomePage() {
             ) : null}
           </div>
 
-          {/* Grid overlay — same color/opacity as body PlexusBg so it matches exactly */}
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              zIndex: 3,
-              pointerEvents: "none",
-              backgroundImage:
-                "linear-gradient(to right, rgba(170,195,235,0.07) 1px, transparent 1px), linear-gradient(to bottom, rgba(170,195,235,0.07) 1px, transparent 1px)",
-              backgroundSize: "72px 72px",
-            }}
-          />
-
-          {/* Bottom fade across the whole hero — solid base hides watermark, soft fade unifies the edge */}
+          {/* Bottom fade — blends hero into page */}
           <div
             style={{
               position: "absolute",
@@ -264,8 +251,6 @@ export default function HomePage() {
               pointerEvents: "none",
             }}
           />
-
-          {/* Subtle left-side gradient for text legibility */}
       </section>
 
       {/* ── The Problem ── */}
