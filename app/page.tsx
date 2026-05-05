@@ -277,7 +277,7 @@ export default function HomePage() {
               right: 0,
               height: 180,
               background:
-                "linear-gradient(to top, #0A0C0F 0%, #0A0C0F 38%, rgba(10,12,15,0.6) 65%, rgba(10,12,15,0) 100%)",
+                "linear-gradient(to top, #09090A 0%, #09090A 38%, rgba(9,9,10,0.6) 65%, rgba(9,9,10,0) 100%)",
               zIndex: 4,
               pointerEvents: "none",
             }}
@@ -298,7 +298,7 @@ export default function HomePage() {
             right: 0,
             height: 180,
             background:
-              "linear-gradient(to bottom, #0A0C0F 0%, #0A0C0F 38%, rgba(10,12,15,0.6) 65%, rgba(10,12,15,0) 100%)",
+              "linear-gradient(to bottom, #09090A 0%, #09090A 38%, rgba(9,9,10,0.6) 65%, rgba(9,9,10,0) 100%)",
             zIndex: 0,
             pointerEvents: "none",
           }}
