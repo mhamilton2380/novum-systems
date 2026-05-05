@@ -257,10 +257,9 @@ export default function HomePage() {
                 scene={SPLINE_SCENE}
                 onLoad={(splineApp) => {
                   try {
-                    // Force scene background to exactly match page bg — eliminates any hue mismatch
-                    if (splineApp?.setBackgroundColor) {
-                      splineApp.setBackgroundColor("#0A0C0F");
-                    }
+                    // Hide the BG rectangle in the scene so the page bg shows through
+                    const bg = splineApp.findObjectByName("BG");
+                    if (bg) bg.visible = false;
                   } catch (_) {}
                 }}
               />
