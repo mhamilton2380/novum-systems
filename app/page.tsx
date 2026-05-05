@@ -14,123 +14,7 @@ const Spline = dynamic(() => import("@splinetool/react-spline"), {
 
 const SPLINE_SCENE = "https://prod.spline.design/XsPp0DbFEyd8vOws/scene.splinecode";
 
-// ─── Canvas background: animated grid + pulses ───────────────────────────────
-function PlexusBg() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas || !canvas.getContext) return;
-    const ctx = canvas.getContext("2d")!;
-    let raf = 0;
-    let time = 0;
-
-    const SPACING = 72;
-    type GridPulse = { axis: "h" | "v"; line: number; t: number; speed: number; alpha: number };
-    const pulses: GridPulse[] = [];
-
-    const init = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      pulses.length = 0;
-    };
-
-    const spawnPulse = () => {
-      const W = canvas.width;
-      const H = canvas.height;
-      const cols = Math.floor(W / SPACING);
-      const rows = Math.floor(H / SPACING);
-      const axis: "h" | "v" = Math.random() < 0.5 ? "h" : "v";
-      const line = axis === "h"
-        ? 1 + Math.floor(Math.random() * (rows - 1))
-        : 1 + Math.floor(Math.random() * (cols - 1));
-      pulses.push({ axis, line, t: 0, speed: 0.0012 + Math.random() * 0.0018, alpha: 0.45 + Math.random() * 0.35 });
-    };
-
-    let lastDraw = 0;
-    const tick = (now: number) => {
-      raf = requestAnimationFrame(tick);
-      if (now - lastDraw < 32) return; // ~30fps cap
-      lastDraw = now;
-      time++;
-      const W = canvas.width;
-      const H = canvas.height;
-      ctx.clearRect(0, 0, W, H);
-
-      if (time % 90 === 0 && pulses.length < 10) spawnPulse();
-
-      const cols = Math.floor(W / SPACING);
-      const rows = Math.floor(H / SPACING);
-
-      ctx.lineWidth = 1;
-      ctx.strokeStyle = "rgba(140,175,255,0.07)";
-      for (let c = 1; c < cols; c++) {
-        ctx.beginPath(); ctx.moveTo(c * SPACING, 0); ctx.lineTo(c * SPACING, H); ctx.stroke();
-      }
-      for (let r = 1; r < rows; r++) {
-        ctx.beginPath(); ctx.moveTo(0, r * SPACING); ctx.lineTo(W, r * SPACING); ctx.stroke();
-      }
-
-      for (let i = pulses.length - 1; i >= 0; i--) {
-        const p = pulses[i];
-        p.t += p.speed;
-        if (p.t > 1) { pulses.splice(i, 1); continue; }
-        const brightness = Math.sin(p.t * Math.PI);
-        const t0 = Math.max(0, p.t - 0.09);
-
-        if (p.axis === "h") {
-          const y = p.line * SPACING;
-          const px = p.t * W;
-          const tx = t0 * W;
-          const tg = ctx.createLinearGradient(tx, y, px, y);
-          tg.addColorStop(0, "rgba(100,160,255,0)");
-          tg.addColorStop(1, `rgba(100,160,255,${brightness * p.alpha * 0.65})`);
-          ctx.beginPath(); ctx.moveTo(tx, y); ctx.lineTo(px, y);
-          ctx.strokeStyle = tg; ctx.lineWidth = 1.5; ctx.stroke();
-          const gr = ctx.createRadialGradient(px, y, 0, px, y, 14);
-          gr.addColorStop(0, `rgba(140,190,255,${brightness * p.alpha * 0.8})`);
-          gr.addColorStop(1, "rgba(100,160,255,0)");
-          ctx.beginPath(); ctx.arc(px, y, 14, 0, Math.PI * 2); ctx.fillStyle = gr; ctx.fill();
-        } else {
-          const x = p.line * SPACING;
-          const py2 = p.t * H;
-          const ty = t0 * H;
-          const tg = ctx.createLinearGradient(x, ty, x, py2);
-          tg.addColorStop(0, "rgba(100,160,255,0)");
-          tg.addColorStop(1, `rgba(100,160,255,${brightness * p.alpha * 0.65})`);
-          ctx.beginPath(); ctx.moveTo(x, ty); ctx.lineTo(x, py2);
-          ctx.strokeStyle = tg; ctx.lineWidth = 1.5; ctx.stroke();
-          const gr = ctx.createRadialGradient(x, py2, 0, x, py2, 14);
-          gr.addColorStop(0, `rgba(140,190,255,${brightness * p.alpha * 0.8})`);
-          gr.addColorStop(1, "rgba(100,160,255,0)");
-          ctx.beginPath(); ctx.arc(x, py2, 14, 0, Math.PI * 2); ctx.fillStyle = gr; ctx.fill();
-        }
-      }
-
-    };
-
-    init();
-    window.addEventListener("resize", init);
-    raf = requestAnimationFrame(tick);
-    return () => { cancelAnimationFrame(raf); window.removeEventListener("resize", init); };
-  }, []);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100vw",
-        height: "100vh",
-        pointerEvents: "none",
-        zIndex: 0,
-        willChange: "transform",
-      }}
-    />
-  );
-}
 
 
 // ─── Hero-matched heading gradient ────────────────────────────────────────────
@@ -223,9 +107,11 @@ export default function HomePage() {
         color: "#EAEAEA",
         fontFamily: "'DM Sans', sans-serif",
         position: "relative",
+        backgroundImage: "linear-gradient(rgba(140,175,255,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(140,175,255,0.07) 1px, transparent 1px)",
+        backgroundSize: "72px 72px",
+        backgroundAttachment: "fixed",
       }}
     >
-      <PlexusBg />
 
       {/* ── Hero (full-bleed) ── */}
       <section
@@ -328,7 +214,7 @@ export default function HomePage() {
           >
 
             {/* A.R.I.S live chat demo */}
-            <motion.div variants={fromLeft} style={{ display: "flex", overflow: "hidden", minHeight: 0 }}>
+            <motion.div variants={fromLeft} style={{ overflow: "hidden" }}>
               <ArisChat />
             </motion.div>
 
