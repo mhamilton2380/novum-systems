@@ -128,6 +128,18 @@ function PlexusBg() {
 }
 
 
+// ─── Hero-matched heading gradient ────────────────────────────────────────────
+const heroHeading: CSSProperties = {
+  fontFamily: "'DM Sans', sans-serif",
+  fontWeight: 700,
+  letterSpacing: "-0.03em",
+  lineHeight: 1.1,
+  background: "linear-gradient(115deg, #00D4FF 0%, #5B8DEF 55%, #A0BAFF 100%)",
+  WebkitBackgroundClip: "text",
+  WebkitTextFillColor: "transparent",
+  backgroundClip: "text",
+};
+
 // ─── Shared glass card style (dark) ───────────────────────────────────────────
 const glassCard: CSSProperties = {
   background: "rgba(255,255,255,0.03)",
@@ -305,14 +317,10 @@ export default function HomePage() {
               <span style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(255,255,255,0.5)", display: "inline-block" }} />
               The Problem
             </div>
-            <h2 style={{
-              fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
-              fontSize: "clamp(1.8rem, 3vw, 2.8rem)",
-              letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: "18px",
-            }}>
+            <h2 style={{ ...heroHeading, fontSize: "clamp(1.8rem, 3vw, 2.8rem)", marginBottom: "18px" }}>
               Growing organizations outgrow their tools. Fast.
             </h2>
-            <p style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.8, fontSize: "0.95rem", maxWidth: "580px", margin: "0 auto" }}>
+            <p style={{ color: "rgba(150,210,240,0.7)", lineHeight: 1.8, fontSize: "0.95rem", maxWidth: "580px", margin: "0 auto" }}>
               The platforms that worked at 20 people break at 100. Data lives in disconnected systems. Teams work around tools instead of with them. Leadership makes decisions with incomplete information.
             </p>
           </div>
@@ -405,12 +413,8 @@ export default function HomePage() {
                 <span style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(255,255,255,0.4)", display: "inline-block" }} />
                 The System
               </div>
-              <h2 style={{
-                fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
-                fontSize: "clamp(2rem, 3.5vw, 3rem)",
-                letterSpacing: "-0.03em", color: "#fff", marginBottom: "16px",
-              }}>One system. Built around how you actually operate.</h2>
-              <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.95rem", lineHeight: 1.8, maxWidth: "640px", margin: "0 auto" }}>
+              <h2 style={{ ...heroHeading, fontSize: "clamp(2rem, 3.5vw, 3rem)", marginBottom: "16px" }}>One system. Built around how you actually operate.</h2>
+              <p style={{ color: "rgba(150,210,240,0.7)", fontSize: "0.95rem", lineHeight: 1.8, maxWidth: "640px", margin: "0 auto" }}>
                 We don&apos;t sell software. We build the operational layer your business runs on — custom to your workflows, connected to your tools, and intelligent by default.
               </p>
             </div>
@@ -471,12 +475,8 @@ export default function HomePage() {
       <section style={{ padding: "96px 40px" }}>
         <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
           <div style={{ textAlign: "center", maxWidth: "520px", margin: "0 auto 56px" }}>
-            <h2 style={{
-              fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
-              fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
-              letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: "14px",
-            }}>Who this is built for.</h2>
-            <p style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.8, fontSize: "0.95rem" }}>
+            <h2 style={{ ...heroHeading, fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", marginBottom: "14px" }}>Who this is built for.</h2>
+            <p style={{ color: "rgba(150,210,240,0.7)", lineHeight: 1.8, fontSize: "0.95rem" }}>
               Any organization that has outgrown generic software and needs something that actually matches how they operate.
             </p>
           </div>
@@ -528,12 +528,8 @@ export default function HomePage() {
               <span style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(255,255,255,0.5)", display: "inline-block" }} />
               Security & Compliance
             </div>
-            <h2 style={{
-              fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
-              fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
-              letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: "16px",
-            }}>Security isn&apos;t a feature. It&apos;s the foundation.</h2>
-            <p style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.8, fontSize: "0.95rem" }}>
+            <h2 style={{ ...heroHeading, fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", marginBottom: "16px" }}>Security isn&apos;t a feature. It&apos;s the foundation.</h2>
+            <p style={{ color: "rgba(150,210,240,0.7)", lineHeight: 1.8, fontSize: "0.95rem" }}>
               Larger organizations face real compliance exposure. Every system we build is designed with encryption, access control, and auditability from day one — not bolted on later.
             </p>
           </div>
@@ -625,12 +621,8 @@ export default function HomePage() {
                   <span style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(255,255,255,0.5)", display: "inline-block" }} />
                   How We Engage
                 </div>
-                <h2 style={{
-                  fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
-                  fontSize: "clamp(1.8rem, 3vw, 2.6rem)",
-                  letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: "18px",
-                }}>We map before we build. Always.</h2>
-                <p style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.8, fontSize: "0.95rem" }}>
+                <h2 style={{ ...heroHeading, fontSize: "clamp(1.8rem, 3vw, 2.6rem)", marginBottom: "18px" }}>We map before we build. Always.</h2>
+                <p style={{ color: "rgba(150,210,240,0.7)", lineHeight: 1.8, fontSize: "0.95rem" }}>
                   We don&apos;t propose solutions before we understand the problem. Every engagement starts with discovery — and nothing gets built until the architecture is approved.
                 </p>
               </div>
@@ -654,12 +646,14 @@ export default function HomePage() {
                     background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)",
                     borderRadius: "14px", transition: "border-color 0.2s",
                   }}
-                    onMouseEnter={e => (e.currentTarget as HTMLElement).style.borderColor = "#a0e8cb"}
+                    onMouseEnter={e => (e.currentTarget as HTMLElement).style.borderColor = "rgba(91,141,239,0.45)"}
                     onMouseLeave={e => (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.08)"}
                   >
                     <span style={{
                       fontSize: "2rem", fontWeight: 700, letterSpacing: "-0.03em",
-                      color: "#DDDBD7", lineHeight: 1,
+                      background: "linear-gradient(115deg, #00D4FF, #5B8DEF)",
+                      WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
+                      backgroundClip: "text", lineHeight: 1,
                     }}>{step.num}</span>
                     <div>
                       <h4 style={{ fontWeight: 700, fontSize: "0.975rem", marginBottom: "8px", color: "#EAEAEA" }}>{step.title}</h4>
@@ -683,12 +677,8 @@ export default function HomePage() {
           position: "relative",
         }}>
           <div style={{ position: "relative", zIndex: 2, maxWidth: "580px", margin: "0 auto" }}>
-            <h2 style={{
-              fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
-              fontSize: "clamp(2rem, 4vw, 3rem)",
-              letterSpacing: "-0.03em", color: "#fff", marginBottom: "18px",
-            }}>Ready to talk about your operation?</h2>
-            <p style={{ color: "rgba(255,255,255,0.48)", lineHeight: 1.8, marginBottom: "36px", fontSize: "1rem" }}>
+            <h2 style={{ ...heroHeading, fontSize: "clamp(2rem, 4vw, 3rem)", marginBottom: "18px" }}>Ready to talk about your operation?</h2>
+            <p style={{ color: "rgba(150,210,240,0.7)", lineHeight: 1.8, marginBottom: "36px", fontSize: "1rem" }}>
               Enterprise engagements start with a conversation. No slide deck, no sales process — just an honest discussion about what you&apos;re running and whether we&apos;re the right fit.
             </p>
             <Link href="/contact" style={{
