@@ -47,7 +47,11 @@ function PlexusBg() {
       pulses.push({ axis, line, t: 0, speed: 0.0012 + Math.random() * 0.0018, alpha: 0.45 + Math.random() * 0.35 });
     };
 
-    const tick = () => {
+    let lastDraw = 0;
+    const tick = (now: number) => {
+      raf = requestAnimationFrame(tick);
+      if (now - lastDraw < 32) return; // ~30fps cap
+      lastDraw = now;
       time++;
       const W = canvas.width;
       const H = canvas.height;
@@ -103,7 +107,6 @@ function PlexusBg() {
         }
       }
 
-      raf = requestAnimationFrame(tick);
     };
 
     init();
@@ -325,7 +328,7 @@ export default function HomePage() {
           >
 
             {/* A.R.I.S live chat demo */}
-            <motion.div variants={fromLeft} style={{ display: "flex" }}>
+            <motion.div variants={fromLeft} style={{ display: "flex", overflow: "hidden", minHeight: 0 }}>
               <ArisChat />
             </motion.div>
 
