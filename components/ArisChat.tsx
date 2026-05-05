@@ -271,7 +271,7 @@ export function ArisChat() {
   const [messages, setMessages] = useState<Msg[]>([]);
   const [inputActive, setInputActive] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const bottomRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   const runScript = () => {
     setMessages([]);
@@ -304,7 +304,8 @@ export function ArisChat() {
   }, []);
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    const el = scrollRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
   }, [messages]);
 
   return (
@@ -341,11 +342,10 @@ export function ArisChat() {
       </div>
 
       {/* Messages */}
-      <div style={{ flex: 1, overflowY: "auto", padding: "20px 22px 8px", scrollbarWidth: "none" }}>
+      <div ref={scrollRef} style={{ flex: 1, overflowY: "auto", padding: "20px 22px 8px", scrollbarWidth: "none" }}>
         {messages.map((msg, i) => (
           <Message key={i} msg={msg} isLatest={i === messages.length - 1} />
         ))}
-        <div ref={bottomRef} />
       </div>
 
       {/* Input bar */}
