@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import dynamic from "next/dynamic";
+import { ArisChat } from "../components/ArisChat";
 
 const Spline = dynamic(() => import("@splinetool/react-spline"), {
   ssr: false,
@@ -311,7 +312,7 @@ export default function HomePage() {
             <p style={{ color: "rgba(150,210,240,0.7)", lineHeight: 1.8, fontSize: "0.95rem", maxWidth: "580px", margin: "0 auto" }}>
               The platforms that worked at 20 people break at 100. Data lives in disconnected systems. Teams work around tools instead of with them. Leadership makes decisions with incomplete information.
             </p>
-          </motion.div>
+          </div>
 
           {/* ── Video + cards, equal height ── */}
           <motion.div
@@ -322,14 +323,9 @@ export default function HomePage() {
             variants={stagger(0.08)}
           >
 
-            {/* Video — fills the full height of the cards column */}
-            <motion.div variants={fromLeft} style={{ borderRadius: "20px", overflow: "hidden", minHeight: 0 }}>
-              <video
-                autoPlay loop muted playsInline
-                style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }}
-              >
-                <source src="/aris-demo-silent.mp4" type="video/mp4" />
-              </video>
+            {/* A.R.I.S live chat demo */}
+            <motion.div variants={fromLeft} style={{ minHeight: 0 }}>
+              <ArisChat />
             </motion.div>
 
             {/* Cards */}
