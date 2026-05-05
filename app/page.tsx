@@ -324,7 +324,7 @@ export default function HomePage() {
           >
 
             {/* A.R.I.S live chat demo */}
-            <motion.div variants={fromLeft} style={{ minHeight: 0 }}>
+            <motion.div variants={fromLeft} style={{ minHeight: 0, height: "100%" }}>
               <ArisChat />
             </motion.div>
 
