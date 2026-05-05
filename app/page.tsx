@@ -494,7 +494,7 @@ export default function HomePage() {
           </div>
 
           <motion.div
-            style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "16px" }}
+            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px" }}
             className="who-grid"
             initial="hidden"
             whileInView="visible"
@@ -505,6 +505,8 @@ export default function HomePage() {
               { title: "Multi-Location Operators", desc: "Organizations running operations across multiple locations, divisions, or territories — who need visibility and coordination across the entire footprint." },
               { title: "Professional Services Firms", desc: "Firms managing client engagements, project budgets, and team utilization — where every job is unique and the data needs to follow it." },
               { title: "Franchise Systems", desc: "Franchise brands that need consistency across locations while preserving flexibility — with a centralized intelligence layer the corporate team can query." },
+              { title: "Logistics & Distribution", desc: "Operations with complex routing, vendor relationships, and real-time coordination needs that standard platforms can't model." },
+              { title: "Healthcare & Managed Services", desc: "Organizations with compliance requirements, role-based access mandates, and document-heavy workflows that demand auditability at every level." },
               { title: "Growing Mid-Market Businesses", desc: "Companies that have scaled past their original tools and need a system that can grow with them — built once, expanded as the business demands." },
             ].map((item, i) => (
               <motion.div key={item.title} variants={i % 2 === 0 ? fromLeft : fromRight} style={{
