@@ -287,40 +287,31 @@ export default function HomePage() {
       </section>
 
       {/* ── The Problem ── */}
-      <section style={{ padding: "96px 40px", position: "relative" }}>
-        {/* Top fade mirrors the bottom of the Spline hero for a seamless transition */}
-        <div
-          aria-hidden
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            height: 180,
-            background:
-              "linear-gradient(to bottom, #000000 0%, #000000 38%, rgba(0,0,0,0.6) 65%, rgba(0,0,0,0) 100%)",
-            zIndex: 0,
-            pointerEvents: "none",
-          }}
-        />
+      <section style={{ padding: "220px 40px 96px", position: "relative" }}>
         <div style={{ maxWidth: "1280px", margin: "0 auto", position: "relative", zIndex: 1 }}>
 
           {/* ── Centered header ── */}
-          <div style={{ textAlign: "center", marginBottom: "56px" }}>
+          <motion.div
+            style={{ textAlign: "center", marginBottom: "56px" }}
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-120px" }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          >
             <h2 style={{ ...heroHeading, fontSize: "clamp(1.8rem, 3vw, 2.8rem)", marginBottom: "18px" }}>
               Growing organizations outgrow their tools. Fast.
             </h2>
             <p style={{ color: "rgba(150,210,240,0.7)", lineHeight: 1.8, fontSize: "0.95rem", maxWidth: "580px", margin: "0 auto" }}>
               The platforms that worked at 20 people break at 100. Data lives in disconnected systems. Teams work around tools instead of with them. Leadership makes decisions with incomplete information.
             </p>
-          </div>
+          </motion.div>
 
           {/* ── Video + cards, equal height ── */}
           <motion.div
             style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px", alignItems: "stretch" }}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
+            viewport={{ once: true, margin: "-100px" }}
             variants={stagger(0.08)}
           >
 
