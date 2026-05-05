@@ -494,7 +494,7 @@ export default function HomePage() {
           </div>
 
           <motion.div
-            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px" }}
+            style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "16px" }}
             className="who-grid"
             initial="hidden"
             whileInView="visible"
