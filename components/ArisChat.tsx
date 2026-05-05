@@ -267,7 +267,7 @@ function Message({ msg, isLatest }: { msg: Msg; isLatest: boolean }) {
 }
 
 // ─── Main component ───────────────────────────────────────────────────────────
-export function ArisChat() {
+export function ArisChat({ height = 600 }: { height?: number }) {
   const [messages, setMessages] = useState<Msg[]>([]);
   const [inputActive, setInputActive] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -318,7 +318,7 @@ export function ArisChat() {
       boxShadow: "0 0 0 1px rgba(255,255,255,0.04), 0 24px 80px rgba(0,0,0,0.5), 0 0 60px rgba(91,141,239,0.04)",
       display: "flex", flexDirection: "column",
       width: "100%",
-      height: "100%",
+      height: height,
       overflow: "hidden",
       fontFamily: "'DM Sans', sans-serif",
     }}>

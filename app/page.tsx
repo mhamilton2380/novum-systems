@@ -79,6 +79,8 @@ export default function HomePage() {
 
   // Sticky scroll reveal for Problem section
   const problemScrollRef = useRef(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
+  const [chatHeight, setChatHeight] = useState(600);
   const { scrollYProgress: problemProgress } = useScroll({
     target: problemScrollRef,
     offset: ["start end", "0.5 start"],
@@ -87,6 +89,14 @@ export default function HomePage() {
   const problemY = useTransform(problemProgress, [0, 0.25], [60, 0]);
 
   useEffect(() => { setGraphicReady(true); }, []);
+
+  useEffect(() => {
+    const el = cardsRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(entries => setChatHeight(entries[0].contentRect.height));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -102,16 +112,14 @@ export default function HomePage() {
 
   return (
     <div
-      style={{
-        background: "#000000",
-        color: "#EAEAEA",
-        fontFamily: "'DM Sans', sans-serif",
-        position: "relative",
+      style={{ background: "#000000", color: "#EAEAEA", fontFamily: "'DM Sans', sans-serif", position: "relative" }}
+    >
+      {/* Fixed grid background — GPU composited, zero repaint on scroll */}
+      <div style={{
+        position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none",
         backgroundImage: "linear-gradient(rgba(140,175,255,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(140,175,255,0.07) 1px, transparent 1px)",
         backgroundSize: "72px 72px",
-        backgroundAttachment: "fixed",
-      }}
-    >
+      }} />
 
       {/* ── Hero (full-bleed) ── */}
       <section
@@ -213,13 +221,14 @@ export default function HomePage() {
             variants={stagger(0.08)}
           >
 
-            {/* A.R.I.S live chat demo */}
-            <motion.div variants={fromLeft} style={{ overflow: "hidden" }}>
-              <ArisChat />
+            {/* A.R.I.S live chat demo — height locked to cards column via ResizeObserver */}
+            <motion.div variants={fromLeft}>
+              <ArisChat height={chatHeight} />
             </motion.div>
 
             {/* Cards */}
             <motion.div
+              ref={cardsRef}
               style={{ display: "flex", flexDirection: "column", gap: "12px" }}
               variants={stagger(0.08, 0.1)}
             >
