@@ -278,7 +278,7 @@ export function ArisChat({ height = 600 }: { height?: number }) {
     setInputActive(false);
     const step = (idx: number) => {
       if (idx >= SCRIPT.length) {
-        timerRef.current = setTimeout(runScript, 4000);
+        timerRef.current = setTimeout(runScript, 6000);
         return;
       }
       const { msg, delay } = SCRIPT[idx];
@@ -305,7 +305,8 @@ export function ArisChat({ height = 600 }: { height?: number }) {
 
   useEffect(() => {
     const el = scrollRef.current;
-    if (el) el.scrollTop = el.scrollHeight;
+    if (!el) return;
+    requestAnimationFrame(() => { el.scrollTop = el.scrollHeight; });
   }, [messages]);
 
   return (
