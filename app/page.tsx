@@ -222,6 +222,7 @@ export default function HomePage() {
               position: "absolute",
               inset: 0,
               zIndex: 1,
+              background: "#000000",
               opacity: splineLoaded ? 1 : 0,
               transition: "opacity 0.4s ease",
             }}
@@ -229,7 +230,15 @@ export default function HomePage() {
             {graphicReady ? (
               <Spline
                 scene={SPLINE_SCENE}
-                onLoad={() => {
+                onLoad={(splineApp) => {
+                  try {
+                    // Force WebGL renderer to clear to transparent so the
+                    // #000000 container behind shows through — guarantees exact black
+                    const renderer = (splineApp as any)._renderer;
+                    if (renderer?.setClearColor) renderer.setClearColor(0x000000, 0);
+                    const scene = (splineApp as any)._scene ?? (splineApp as any).scene;
+                    if (scene) scene.background = null;
+                  } catch (_) {}
                   setSplineLoaded(true);
                 }}
               />
