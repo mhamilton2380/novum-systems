@@ -315,7 +315,8 @@ export function ArisChat() {
       borderRadius: 20,
       boxShadow: "0 0 0 1px rgba(255,255,255,0.04), 0 24px 80px rgba(0,0,0,0.5), 0 0 60px rgba(91,141,239,0.04)",
       display: "flex", flexDirection: "column",
-      height: 580,
+      width: "100%",
+      height: "100%",
       overflow: "hidden",
       fontFamily: "'DM Sans', sans-serif",
     }}>
