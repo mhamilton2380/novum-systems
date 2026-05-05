@@ -205,7 +205,7 @@ export default function HomePage() {
       <section
         className="hero-card"
         style={{
-          background: "transparent",
+          background: "#000000",
           position: "relative",
           overflow: "hidden",
           width: "100%",
@@ -228,9 +228,12 @@ export default function HomePage() {
                 scene={SPLINE_SCENE}
                 onLoad={(splineApp) => {
                   try {
-                    // Hide the BG rectangle in the scene so the page bg shows through
+                    // Hide the BG rectangle
                     const bg = splineApp.findObjectByName("BG");
                     if (bg) bg.visible = false;
+                    // Null out the Three.js scene background → canvas becomes transparent
+                    const scene = (splineApp as any)._scene ?? (splineApp as any).scene;
+                    if (scene) scene.background = null;
                   } catch (_) {}
                 }}
               />
