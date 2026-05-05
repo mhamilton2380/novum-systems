@@ -173,7 +173,7 @@ export default function HomePage() {
   const [graphicReady, setGraphicReady] = useState(false);
   const [fontIdx, setFontIdx] = useState(0);
   const [fading, setFading] = useState(false);
-  const spotRef = useRef<HTMLDivElement>(null);
+  const spotRef = useRef<HTMLDivElement>(null); // unused — spotlight removed
 
   useEffect(() => { setGraphicReady(true); }, []);
 
@@ -188,16 +188,6 @@ export default function HomePage() {
     return () => clearInterval(id);
   }, []);
 
-  // Cursor spotlight — direct DOM update to avoid re-renders
-  useEffect(() => {
-    const el = spotRef.current;
-    if (!el) return;
-    const handleMouse = (e: MouseEvent) => {
-      el.style.transform = `translate(${e.clientX - 250}px, ${e.clientY - 250}px)`;
-    };
-    window.addEventListener("mousemove", handleMouse, { passive: true });
-    return () => window.removeEventListener("mousemove", handleMouse);
-  }, []);
 
   return (
     <div
@@ -209,25 +199,6 @@ export default function HomePage() {
         overflow: "hidden",
       }}
     >
-      {/* Cursor spotlight */}
-      <div
-        ref={spotRef}
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: 500,
-          height: 500,
-          borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(170,200,240,0.08) 0%, transparent 65%)",
-          pointerEvents: "none",
-          zIndex: 9999,
-          transform: "translate(-600px, -600px)",
-          transition: "transform 0.08s ease-out",
-          willChange: "transform",
-        }}
-      />
-
       <PlexusBg />
 
       {/* ── Hero (full-bleed) ── */}
