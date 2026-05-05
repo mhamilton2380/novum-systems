@@ -380,7 +380,7 @@ export default function HomePage() {
                   border: "1px solid rgba(255,255,255,0.08)", borderRadius: "14px",
                   transition: "border-color 0.2s, box-shadow 0.2s", flex: 1,
                 }}
-                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "#a0e8cb"; (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 20px rgba(0,0,0,0.06)"; }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(91,141,239,0.45)"; (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 24px rgba(91,141,239,0.08)"; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.08)"; (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
                 >
                   <h4 style={{ fontWeight: 600, fontSize: "0.975rem", marginBottom: "8px", color: "#EAEAEA" }}>{item.problem}</h4>
