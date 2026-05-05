@@ -229,13 +229,7 @@ export default function HomePage() {
             {graphicReady ? (
               <Spline
                 scene={SPLINE_SCENE}
-                onLoad={(splineApp) => {
-                  try {
-                    const bg = splineApp.findObjectByName("BG");
-                    if (bg) bg.visible = false;
-                    const scene = (splineApp as any)._scene ?? (splineApp as any).scene;
-                    if (scene) scene.background = null;
-                  } catch (_) {}
+                onLoad={() => {
                   setSplineLoaded(true);
                 }}
               />
