@@ -131,8 +131,8 @@ function PlexusBg() {
 // ─── Hero-matched heading gradient ────────────────────────────────────────────
 const heroHeading: CSSProperties = {
   fontFamily: "'DM Sans', sans-serif",
-  fontWeight: 700,
-  letterSpacing: "-0.03em",
+  fontWeight: 400,
+  letterSpacing: "-0.02em",
   lineHeight: 1.1,
   background: "linear-gradient(115deg, #00D4FF 0%, #5B8DEF 55%, #A0BAFF 100%)",
   WebkitBackgroundClip: "text",
