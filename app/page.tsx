@@ -31,7 +31,7 @@ function PlexusBg() {
 
     const init = () => {
       canvas.width = window.innerWidth;
-      canvas.height = Math.max(document.documentElement.scrollHeight, window.innerHeight);
+      canvas.height = window.innerHeight;
       pulses.length = 0;
     };
 
@@ -116,13 +116,14 @@ function PlexusBg() {
     <canvas
       ref={canvasRef}
       style={{
-        position: "absolute",
+        position: "fixed",
         top: 0,
         left: 0,
-        width: "100%",
-        height: "100%",
+        width: "100vw",
+        height: "100vh",
         pointerEvents: "none",
         zIndex: 0,
+        willChange: "transform",
       }}
     />
   );
