@@ -30,7 +30,7 @@ function PlexusBg() {
 
     const init = () => {
       canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      canvas.height = Math.max(document.documentElement.scrollHeight, window.innerHeight);
       pulses.length = 0;
     };
 
@@ -115,11 +115,11 @@ function PlexusBg() {
     <canvas
       ref={canvasRef}
       style={{
-        position: "fixed",
+        position: "absolute",
         top: 0,
         left: 0,
-        width: "100vw",
-        height: "100vh",
+        width: "100%",
+        height: "100%",
         pointerEvents: "none",
         zIndex: 0,
       }}
@@ -239,6 +239,19 @@ export default function HomePage() {
               />
             ) : null}
           </div>
+
+          {/* Grid overlay — matches PlexusBg exactly */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              zIndex: 3,
+              pointerEvents: "none",
+              backgroundImage:
+                "linear-gradient(to right, rgba(170,195,235,0.07) 1px, transparent 1px), linear-gradient(to bottom, rgba(170,195,235,0.07) 1px, transparent 1px)",
+              backgroundSize: "72px 72px",
+            }}
+          />
 
           {/* Bottom fade — blends hero into page */}
           <div
