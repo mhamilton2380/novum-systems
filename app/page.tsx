@@ -192,7 +192,7 @@ export default function HomePage() {
   return (
     <div
       style={{
-        background: "#0A0C0F",
+        background: "#000000",
         color: "#EAEAEA",
         fontFamily: "'DM Sans', sans-serif",
         position: "relative",
@@ -205,7 +205,7 @@ export default function HomePage() {
       <section
         className="hero-card"
         style={{
-          background: "#0A0C0F",
+          background: "#000000",
           position: "relative",
           overflow: "hidden",
           width: "100%",
@@ -259,7 +259,7 @@ export default function HomePage() {
               right: 0,
               height: 180,
               background:
-                "linear-gradient(to top, #09090A 0%, #09090A 38%, rgba(9,9,10,0.6) 65%, rgba(9,9,10,0) 100%)",
+                "linear-gradient(to top, #000000 0%, #000000 38%, rgba(0,0,0,0.6) 65%, rgba(0,0,0,0) 100%)",
               zIndex: 4,
               pointerEvents: "none",
             }}
@@ -280,7 +280,7 @@ export default function HomePage() {
             right: 0,
             height: 180,
             background:
-              "linear-gradient(to bottom, #09090A 0%, #09090A 38%, rgba(9,9,10,0.6) 65%, rgba(9,9,10,0) 100%)",
+              "linear-gradient(to bottom, #000000 0%, #000000 38%, rgba(0,0,0,0.6) 65%, rgba(0,0,0,0) 100%)",
             zIndex: 0,
             pointerEvents: "none",
           }}

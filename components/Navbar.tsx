@@ -45,7 +45,7 @@ export default function Navbar() {
   const onDarkHero = isHome && !pastHero;
 
   const navBg = onDarkHero
-    ? "rgba(10,12,15,0.55)"
+    ? "rgba(0,0,0,0.55)"
     : scrolled || !isHome
       ? "rgba(255,255,255,0.9)"
       : "rgba(255,255,255,0.76)";
