@@ -305,9 +305,7 @@ export function ArisChat({ height = 600 }: { height?: number }) {
 
   useEffect(() => {
     const el = scrollRef.current;
-    if (!el) return;
-    const nearBottom = el.scrollHeight - el.scrollTop - el.clientHeight < 80;
-    if (nearBottom) el.scrollTop = el.scrollHeight;
+    if (el) el.scrollTop = el.scrollHeight;
   }, [messages]);
 
   return (
