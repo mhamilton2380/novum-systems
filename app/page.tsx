@@ -252,7 +252,19 @@ export default function HomePage() {
               zIndex: 1,
             }}
           >
-            {graphicReady ? <Spline scene={SPLINE_SCENE} /> : null}
+            {graphicReady ? (
+              <Spline
+                scene={SPLINE_SCENE}
+                onLoad={(splineApp) => {
+                  try {
+                    // Force scene background to exactly match page bg — eliminates any hue mismatch
+                    if (splineApp?.setBackgroundColor) {
+                      splineApp.setBackgroundColor("#0A0C0F");
+                    }
+                  } catch (_) {}
+                }}
+              />
+            ) : null}
           </div>
 
           {/* Grid overlay — same color/opacity as body PlexusBg so it matches exactly */}
