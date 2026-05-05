@@ -307,16 +307,6 @@ export default function HomePage() {
 
           {/* ── Centered header ── */}
           <div style={{ textAlign: "center", marginBottom: "56px" }}>
-            <div style={{
-              display: "inline-flex", alignItems: "center", gap: "7px",
-              padding: "5px 14px", borderRadius: "100px",
-              border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.05)",
-              fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.09em", textTransform: "uppercase",
-              color: "rgba(255,255,255,0.55)", marginBottom: "20px",
-            }}>
-              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(255,255,255,0.5)", display: "inline-block" }} />
-              The Problem
-            </div>
             <h2 style={{ ...heroHeading, fontSize: "clamp(1.8rem, 3vw, 2.8rem)", marginBottom: "18px" }}>
               Growing organizations outgrow their tools. Fast.
             </h2>
