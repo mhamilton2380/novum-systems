@@ -3,7 +3,7 @@
 import type { CSSProperties } from "react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import dynamic from "next/dynamic";
 
 const Spline = dynamic(() => import("@splinetool/react-spline"), {
@@ -188,6 +188,15 @@ export default function HomePage() {
   const [fading, setFading] = useState(false);
   const spotRef = useRef<HTMLDivElement>(null); // unused — spotlight removed
 
+  // Sticky scroll reveal for Problem section
+  const problemScrollRef = useRef(null);
+  const { scrollYProgress: problemProgress } = useScroll({
+    target: problemScrollRef,
+    offset: ["start end", "0.5 start"],
+  });
+  const problemOpacity = useTransform(problemProgress, [0, 0.25, 0.85], [0, 1, 1]);
+  const problemY = useTransform(problemProgress, [0, 0.25], [60, 0]);
+
   useEffect(() => { setGraphicReady(true); }, []);
 
   useEffect(() => {
@@ -209,7 +218,6 @@ export default function HomePage() {
         color: "#EAEAEA",
         fontFamily: "'DM Sans', sans-serif",
         position: "relative",
-        overflow: "hidden",
       }}
     >
       <PlexusBg />
@@ -286,17 +294,16 @@ export default function HomePage() {
           />
       </section>
 
-      {/* ── The Problem ── */}
-      <section style={{ padding: "220px 40px 96px", position: "relative" }}>
+      {/* ── The Problem — sticky scroll reveal ── */}
+      <div ref={problemScrollRef} style={{ position: "relative" }}>
+        {/* Sticky pin */}
+        <section style={{ padding: "96px 40px", position: "relative", background: "#000000" }}>
+        <motion.div style={{ opacity: problemOpacity, y: problemY }}>
         <div style={{ maxWidth: "1280px", margin: "0 auto", position: "relative", zIndex: 1 }}>
 
           {/* ── Centered header ── */}
-          <motion.div
+          <div
             style={{ textAlign: "center", marginBottom: "56px" }}
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-120px" }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
             <h2 style={{ ...heroHeading, fontSize: "clamp(1.8rem, 3vw, 2.8rem)", marginBottom: "18px" }}>
               Growing organizations outgrow their tools. Fast.
@@ -371,7 +378,9 @@ export default function HomePage() {
             </motion.div>
           </motion.div>
         </div>
-      </section>
+        </motion.div>
+        </section>
+      </div>
 
       {/* ── What We Deploy ── */}
       <section style={{ padding: "60px 24px", position: "relative" }}>
