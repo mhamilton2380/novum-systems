@@ -315,17 +315,17 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* ── Video + cards, equal height ── */}
+          {/* ── Chat + cards ── */}
           <motion.div
-            style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px", alignItems: "stretch" }}
+            style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px", alignItems: "start" }}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={stagger(0.08)}
           >
 
-            {/* A.R.I.S live chat demo */}
-            <motion.div variants={fromLeft} style={{ minHeight: 0, height: "100%" }}>
+            {/* A.R.I.S live chat demo — sticky so it stays in view while cards scroll */}
+            <motion.div variants={fromLeft} style={{ position: "sticky", top: "96px" }}>
               <ArisChat />
             </motion.div>
 
