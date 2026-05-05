@@ -305,7 +305,9 @@ export function ArisChat() {
 
   useEffect(() => {
     const el = scrollRef.current;
-    if (el) el.scrollTop = el.scrollHeight;
+    if (!el) return;
+    const nearBottom = el.scrollHeight - el.scrollTop - el.clientHeight < 80;
+    if (nearBottom) el.scrollTop = el.scrollHeight;
   }, [messages]);
 
   return (
@@ -343,7 +345,7 @@ export function ArisChat() {
       </div>
 
       {/* Messages */}
-      <div ref={scrollRef} style={{ flex: 1, minHeight: 0, overflowY: "auto", padding: "20px 22px 8px", scrollbarWidth: "none" }}>
+      <div ref={scrollRef} style={{ flex: 1, minHeight: 0, overflowY: "auto", padding: "20px 22px 8px", scrollbarWidth: "thin", scrollbarColor: "rgba(91,141,239,0.25) transparent" }}>
         {messages.map((msg, i) => (
           <Message key={i} msg={msg} isLatest={i === messages.length - 1} />
         ))}
