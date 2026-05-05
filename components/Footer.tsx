@@ -29,14 +29,14 @@ export default function Footer() {
               <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.975rem", color: "#EAEAEA", letterSpacing: "-0.015em" }}>Novum Systems</span>
             </div>
             <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, margin: "0 0 6px" }}>hello@novumsystems.co</p>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, margin: 0 }}>Operational software for growing businesses.</p>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, margin: 0 }}>Custom operational systems for businesses that have outgrown generic software.</p>
           </div>
 
           {/* Systems */}
           <div>
             <p style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.72rem", color: "#EAEAEA", marginBottom: 20, letterSpacing: "0.08em", textTransform: "uppercase" }}>Systems</p>
-            {(["Forge", "OpsCore", "ProjectOps", "FieldOps"] as const).map((s) => (
-              <Link key={s} href="/systems"
+            {(["Core", "Vault", "A.R.I.S"] as const).map((s) => (
+              <Link key={s} href="/work"
                 style={{ display: "block", fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", textDecoration: "none", marginBottom: 11, transition: "color 0.18s" }}
                 onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#EAEAEA"; }}
                 onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.55)"; }}

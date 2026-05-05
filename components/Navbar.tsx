@@ -35,7 +35,7 @@ export default function Navbar() {
   }, [pathname]);
 
   const links = [
-    { href: "/systems", label: "Systems" },
+    { href: "/systems", label: "Work" },
     { href: "/case-studies", label: "Case Studies" },
     { href: "/approach", label: "Approach" },
     { href: "/contact", label: "Contact" },

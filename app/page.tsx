@@ -374,6 +374,10 @@ export default function HomePage() {
                   problem: "Compliance exposure",
                   detail: "Sensitive documents sitting in unencrypted shared folders. No audit trail. No enforcement. As organizations scale, this becomes a material risk.",
                 },
+                {
+                  problem: "Manual work that should already be automated",
+                  detail: "Your team is doing by hand what a properly configured system would handle automatically. Every repeated task is time and money leaving the business.",
+                },
               ].map((item) => (
                 <motion.div key={item.problem} variants={fromRight} style={{
                   padding: "28px 32px", background: "rgba(255,255,255,0.04)",
@@ -411,20 +415,20 @@ export default function HomePage() {
                 color: "rgba(255,255,255,0.45)", marginBottom: "20px",
               }}>
                 <span style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(255,255,255,0.4)", display: "inline-block" }} />
-                The Full Stack
+                The System
               </div>
               <h2 style={{
                 fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
                 fontSize: "clamp(2rem, 3.5vw, 3rem)",
                 letterSpacing: "-0.03em", color: "#fff", marginBottom: "16px",
-              }}>One coherent operational platform.</h2>
-              <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.95rem", lineHeight: 1.8, maxWidth: "520px", margin: "0 auto" }}>
-                Each system works independently. At scale, they&apos;re deployed as an integrated platform — with a shared intelligence layer across the entire operation.
+              }}>One system. Built around how you actually operate.</h2>
+              <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.95rem", lineHeight: 1.8, maxWidth: "640px", margin: "0 auto" }}>
+                We don&apos;t sell software. We build the operational layer your business runs on — custom to your workflows, connected to your tools, and intelligent by default.
               </p>
             </div>
 
             <motion.div
-              style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "12px", marginBottom: "12px" }}
+              style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "12px" }}
               className="stack-grid"
               initial="hidden"
               whileInView="visible"
@@ -432,40 +436,26 @@ export default function HomePage() {
               variants={stagger(0.09)}
             >
               {[
-                { name: "Forge", sub: "Fully Custom", desc: "For operations that do not fit any mold. Forge is architected from the ground up around your structure, workflows, terminology, and reporting logic.", accent: "#7756C9", accentBg: "rgba(119,86,201,0.08)", accentBorder: "rgba(119,86,201,0.2)" },
-                { name: "OpsCore", sub: "Command Center", desc: "Cross-department dashboards, workflow automation, and reporting. The operational backbone for multi-team organizations.", accent: "#00C87A", accentBg: "rgba(0,200,122,0.08)", accentBorder: "rgba(0,200,122,0.2)" },
-                { name: "ProjectOps", sub: "Project Management", desc: "Full project lifecycle management — budgets, milestones, vendor tracking, and profitability across every active engagement.", accent: "#5B9EC9", accentBg: "rgba(91,158,201,0.08)", accentBorder: "rgba(91,158,201,0.2)" },
-                { name: "FieldOps", sub: "Field Operations", desc: "Scheduling, dispatch, job management, and invoicing for distributed teams operating across multiple locations or territories.", accent: "#4BAD8A", accentBg: "rgba(75,173,138,0.08)", accentBorder: "rgba(75,173,138,0.2)" },
+                {
+                  name: "Core",
+                  sub: "The operational system",
+                  desc: "Every engagement starts here. We map your workflows, connect your existing tools, build what's missing, and deploy a single system your entire operation runs on. Where it makes sense, we build agents that automate workflows, handle follow-ups, and eliminate manual ops work entirely. No templates. No compromises.",
+                  accent: "#00C87A", accentBg: "rgba(0,200,122,0.08)", accentBorder: "rgba(0,200,122,0.2)",
+                },
+                {
+                  name: "Vault",
+                  sub: "Encrypted document intelligence",
+                  desc: "Every document your organization produces — contracts, records, reports, history — encrypted, indexed, and queryable. Drop a file, get an answer. Role-controlled access at every level.",
+                  accent: "#8B9FD4", accentBg: "rgba(139,159,212,0.08)", accentBorder: "rgba(139,159,212,0.2)",
+                },
+                {
+                  name: "A.R.I.S",
+                  sub: "Adaptive Response Intelligence System",
+                  desc: "Ask anything about your operation and get an answer in plain English — instantly. A.R.I.S is trained on your data, queries your Vault, and connects across every system we build. It doesn't know the internet. It knows your business.",
+                  accent: "#5B8DEF", accentBg: "rgba(91,141,239,0.08)", accentBorder: "rgba(91,141,239,0.22)",
+                },
               ].map((s, i) => (
-                <motion.div key={s.name} variants={i % 2 === 0 ? fromLeft : fromRight} style={{
-                  padding: "32px", background: "rgba(255,255,255,0.04)",
-                  border: `1px solid ${s.accentBorder}`, borderRadius: "16px",
-                }}>
-                  <span style={{
-                    display: "inline-block", padding: "3px 12px", borderRadius: "100px",
-                    background: s.accentBg, border: `1px solid ${s.accentBorder}`,
-                    fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase",
-                    color: s.accent, marginBottom: "16px",
-                  }}>{s.sub}</span>
-                  <h3 style={{ fontWeight: 700, fontSize: "1.3rem", letterSpacing: "-0.02em", color: "#fff", marginBottom: "10px" }}>{s.name}</h3>
-                  <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.875rem", lineHeight: 1.75, margin: 0 }}>{s.desc}</p>
-                </motion.div>
-              ))}
-            </motion.div>
-
-            <motion.div
-              style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}
-              className="stack-grid-2"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-80px" }}
-              variants={stagger(0.1)}
-            >
-              {[
-                { name: "Vault", sub: "Encrypted Document Intelligence", desc: "Every document across the organization — encrypted, indexed, and queryable. Drop a file, get an answer. Role-controlled access at every level.", accent: "#8B9FD4", accentBg: "rgba(139,159,212,0.08)", accentBorder: "rgba(139,159,212,0.2)" },
-                { name: "A.R.I.S", sub: "Adaptive Response Intelligence System", desc: "The AI layer that ties it all together. Ask anything across every connected system and vault — and get an answer in plain English, instantly.", accent: "#00C87A", accentBg: "rgba(0,200,122,0.08)", accentBorder: "rgba(0,200,122,0.2)" },
-              ].map((s, i) => (
-                <motion.div key={s.name} variants={i === 0 ? fromLeft : fromRight} style={{
+                <motion.div key={s.name} variants={i === 1 ? fadeUp : (i === 0 ? fromLeft : fromRight)} style={{
                   padding: "32px", background: "rgba(255,255,255,0.04)",
                   border: `1px solid ${s.accentBorder}`, borderRadius: "16px",
                   display: "flex", flexDirection: "column", gap: "10px",
@@ -474,13 +464,17 @@ export default function HomePage() {
                     display: "inline-block", padding: "3px 12px", borderRadius: "100px",
                     background: s.accentBg, border: `1px solid ${s.accentBorder}`,
                     fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase",
-                    color: s.accent, alignSelf: "flex-start",
+                    color: s.accent, alignSelf: "flex-start", marginBottom: "6px",
                   }}>{s.sub}</span>
                   <h3 style={{ fontWeight: 700, fontSize: "1.3rem", letterSpacing: "-0.02em", color: "#fff", margin: 0 }}>{s.name}</h3>
-                  <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.875rem", lineHeight: 1.75, margin: 0 }}>{s.desc}</p>
+                  <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.875rem", lineHeight: 1.75, margin: 0 }}>{s.desc}</p>
                 </motion.div>
               ))}
             </motion.div>
+
+            <p style={{ textAlign: "center", color: "rgba(255,255,255,0.45)", fontSize: "0.875rem", lineHeight: 1.7, marginTop: "32px", maxWidth: 640, marginLeft: "auto", marginRight: "auto" }}>
+              Every Novum system includes all three. They&apos;re not add-ons — they&apos;re what a Novum system is.
+            </p>
           </div>
         </div>
       </section>
@@ -511,8 +505,6 @@ export default function HomePage() {
               { title: "Multi-Location Operators", desc: "Organizations running operations across multiple locations, divisions, or territories — who need visibility and coordination across the entire footprint." },
               { title: "Professional Services Firms", desc: "Firms managing client engagements, project budgets, and team utilization — where every job is unique and the data needs to follow it." },
               { title: "Franchise Systems", desc: "Franchise brands that need consistency across locations while preserving flexibility — with a centralized intelligence layer the corporate team can query." },
-              { title: "Logistics & Distribution", desc: "Operations with complex routing, vendor relationships, and real-time coordination needs that standard platforms can't model." },
-              { title: "Healthcare & Managed Services", desc: "Organizations with compliance requirements, role-based access mandates, and document-heavy workflows that demand auditability at every level." },
               { title: "Growing Mid-Market Businesses", desc: "Companies that have scaled past their original tools and need a system that can grow with them — built once, expanded as the business demands." },
             ].map((item, i) => (
               <motion.div key={item.title} variants={i % 2 === 0 ? fromLeft : fromRight} style={{
@@ -649,7 +641,7 @@ export default function HomePage() {
                   letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: "18px",
                 }}>We map before we build. Always.</h2>
                 <p style={{ color: "rgba(255,255,255,0.55)", lineHeight: 1.8, fontSize: "0.95rem" }}>
-                  Enterprise engagements start with a structured discovery phase. We don&apos;t propose solutions before we understand the problem — and we don&apos;t build until we do.
+                  We don&apos;t propose solutions before we understand the problem. Every engagement starts with discovery — and nothing gets built until the architecture is approved.
                 </p>
               </div>
               <motion.div
