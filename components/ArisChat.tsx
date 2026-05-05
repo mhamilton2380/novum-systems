@@ -11,16 +11,16 @@ type Msg =
 
 // ─── Conversation script ──────────────────────────────────────────────────────
 const SCRIPT: { msg: Msg; delay: number }[] = [
-  { delay: 600,  msg: { kind: "user", text: "Hey A.R.I.S — pull the Henderson contract documents and send them to Charlie at Mercer Group." } },
-  { delay: 800,  msg: { kind: "thinking" } },
-  { delay: 2200, msg: { kind: "aris",  text: "Found 3 documents — the Master Service Agreement, the 2024 Amendment, and the Statement of Work. Sending to Charlie Walsh at Mercer Group now. Should I include a message?" } },
-  { delay: 3000, msg: { kind: "user",  text: "No — but after that, pull the revenue reports for the last 5 years and show me which SKUs are driving the most losses." } },
-  { delay: 800,  msg: { kind: "aris",  text: "Sent. Pulling five years of revenue data now — SKU loss breakdown incoming." } },
-  { delay: 1400, msg: { kind: "report" } },
-  { delay: 3200, msg: { kind: "user",  text: "Run a stress test on the Henderson financial model — 2008, 2020, 2022. Set up weekly monitoring and alert me if conditions shift." } },
-  { delay: 700,  msg: { kind: "thinking" } },
-  { delay: 2000, msg: { kind: "aris",  text: "Stress testing against three historical drawdown scenarios. Weekly monitoring is active — I'll flag you the moment volatility or credit spreads cross your thresholds." } },
-  { delay: 1200, msg: { kind: "stress" } },
+  { delay: 1000, msg: { kind: "user", text: "Hey A.R.I.S — pull the Henderson contract documents and send them to Charlie at Mercer Group." } },
+  { delay: 1400, msg: { kind: "thinking" } },
+  { delay: 3000, msg: { kind: "aris",  text: "Found 3 documents — the Master Service Agreement, the 2024 Amendment, and the Statement of Work. Sending to Charlie Walsh at Mercer Group now. Should I include a message?" } },
+  { delay: 5000, msg: { kind: "user",  text: "No — but after that, pull the revenue reports for the last 5 years and show me which SKUs are driving the most losses." } },
+  { delay: 1600, msg: { kind: "aris",  text: "Sent. Pulling five years of revenue data now — SKU loss breakdown incoming." } },
+  { delay: 2200, msg: { kind: "report" } },
+  { delay: 5000, msg: { kind: "user",  text: "Run a stress test on the Henderson financial model — 2008, 2020, 2022. Set up weekly monitoring and alert me if conditions shift." } },
+  { delay: 1400, msg: { kind: "thinking" } },
+  { delay: 3000, msg: { kind: "aris",  text: "Stress testing against three historical drawdown scenarios. Weekly monitoring is active — I'll flag you the moment volatility or credit spreads cross your thresholds." } },
+  { delay: 2000, msg: { kind: "stress" } },
 ];
 
 // ─── Logo mark ────────────────────────────────────────────────────────────────
@@ -42,7 +42,7 @@ function LogoMark({ size = 28 }: { size?: number }) {
 }
 
 // ─── Typewriter text ──────────────────────────────────────────────────────────
-function Typewriter({ text, speed = 18, color = "#EAEAEA", size = "0.875rem" }: {
+function Typewriter({ text, speed = 30, color = "#EAEAEA", size = "0.875rem" }: {
   text: string; speed?: number; color?: string; size?: string;
 }) {
   const [displayed, setDisplayed] = useState("");
@@ -342,7 +342,7 @@ export function ArisChat() {
       </div>
 
       {/* Messages */}
-      <div ref={scrollRef} style={{ flex: 1, overflowY: "auto", padding: "20px 22px 8px", scrollbarWidth: "none" }}>
+      <div ref={scrollRef} style={{ flex: 1, minHeight: 0, overflowY: "auto", padding: "20px 22px 8px", scrollbarWidth: "none" }}>
         {messages.map((msg, i) => (
           <Message key={i} msg={msg} isLatest={i === messages.length - 1} />
         ))}
