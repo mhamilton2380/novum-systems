@@ -428,13 +428,13 @@ export default function HomePage() {
                   name: "Core",
                   sub: "The operational system",
                   desc: "Every engagement starts here. We map your workflows, connect your existing tools, build what's missing, and deploy a single system your entire operation runs on. Where it makes sense, we build agents that automate workflows, handle follow-ups, and eliminate manual ops work entirely. No templates. No compromises.",
-                  accent: "#00C87A", accentBg: "rgba(0,200,122,0.08)", accentBorder: "rgba(0,200,122,0.2)",
+                  accent: "#5B8DEF", accentBg: "rgba(91,141,239,0.08)", accentBorder: "rgba(91,141,239,0.2)",
                 },
                 {
                   name: "Vault",
                   sub: "Encrypted document intelligence",
                   desc: "Every document your organization produces — contracts, records, reports, history — encrypted, indexed, and queryable. Drop a file, get an answer. Role-controlled access at every level.",
-                  accent: "#8B9FD4", accentBg: "rgba(139,159,212,0.08)", accentBorder: "rgba(139,159,212,0.2)",
+                  accent: "#5B8DEF", accentBg: "rgba(91,141,239,0.08)", accentBorder: "rgba(91,141,239,0.2)",
                 },
                 {
                   name: "A.R.I.S",
@@ -502,10 +502,10 @@ export default function HomePage() {
                 border: "1px solid rgba(255,255,255,0.08)", borderRadius: "16px",
                 transition: "border-color 0.2s, box-shadow 0.2s",
               }}
-                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "#a0e8cb"; (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 20px rgba(0,0,0,0.06)"; }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(91,141,239,0.45)"; (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 24px rgba(91,141,239,0.08)"; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.08)"; (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
               >
-                <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#00C87A", marginBottom: "20px" }} />
+                <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#5B8DEF", marginBottom: "20px" }} />
                 <h3 style={{ fontWeight: 700, fontSize: "1rem", letterSpacing: "-0.015em", marginBottom: "10px", color: "#EAEAEA" }}>{item.title}</h3>
                 <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.875rem", lineHeight: 1.75, margin: 0 }}>{item.desc}</p>
               </motion.div>
@@ -550,38 +550,38 @@ export default function HomePage() {
               {
                 title: "Encryption at Rest & in Transit",
                 desc: "All data encrypted end-to-end. Files, records, and documents are never exposed in plain text — whether stored or moving between systems.",
-                icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="11" width="18" height="11" rx="2" stroke="#1E3A8A" strokeWidth="1.5"/><path d="M7 11V7a5 5 0 0110 0v4" stroke="#1E3A8A" strokeWidth="1.5" strokeLinecap="round"/><circle cx="12" cy="16" r="1.5" fill="#1E3A8A"/></svg>,
-                accent: "#1E3A8A", accentBg: "#EEF2FF", accentBorder: "#C7D2FE",
+                icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="11" width="18" height="11" rx="2" stroke="#5B8DEF" strokeWidth="1.5"/><path d="M7 11V7a5 5 0 0110 0v4" stroke="#5B8DEF" strokeWidth="1.5" strokeLinecap="round"/><circle cx="12" cy="16" r="1.5" fill="#5B8DEF"/></svg>,
+                accent: "#5B8DEF", accentBg: "rgba(91,141,239,0.08)", accentBorder: "rgba(91,141,239,0.2)",
               },
               {
                 title: "Role-Based Access Control",
                 desc: "Granular permissions enforced at the system level. Every team member sees exactly what they should — nothing more. Enforced automatically, no manual management.",
-                icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2L3 7v8c0 5 4 8.5 9 9.5 5-1 9-4.5 9-9.5V7L12 2z" stroke="#236B4E" strokeWidth="1.5" strokeLinejoin="round"/><polyline points="8,12 11,15 16,10" stroke="#236B4E" strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round"/></svg>,
-                accent: "#236B4E", accentBg: "#EEF7F3", accentBorder: "#C4E0D5",
+                icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2L3 7v8c0 5 4 8.5 9 9.5 5-1 9-4.5 9-9.5V7L12 2z" stroke="#5B8DEF" strokeWidth="1.5" strokeLinejoin="round"/><polyline points="8,12 11,15 16,10" stroke="#5B8DEF" strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round"/></svg>,
+                accent: "#5B8DEF", accentBg: "rgba(91,141,239,0.08)", accentBorder: "rgba(91,141,239,0.2)",
               },
               {
                 title: "Isolated Data Environments",
                 desc: "Each business unit, team, or partner operates within its own data environment. No cross-contamination. No accidental exposure. Clean separation by design.",
-                icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="9" height="9" rx="1.5" stroke="#6D4FBB" strokeWidth="1.5"/><rect x="13" y="3" width="9" height="9" rx="1.5" stroke="#6D4FBB" strokeWidth="1.5" opacity="0.45"/><rect x="2" y="14" width="9" height="9" rx="1.5" stroke="#6D4FBB" strokeWidth="1.5" opacity="0.45"/><rect x="13" y="14" width="9" height="9" rx="1.5" stroke="#6D4FBB" strokeWidth="1.5"/></svg>,
-                accent: "#6D4FBB", accentBg: "#F3F0FC", accentBorder: "#D9D0F5",
+                icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="9" height="9" rx="1.5" stroke="#5B8DEF" strokeWidth="1.5"/><rect x="13" y="3" width="9" height="9" rx="1.5" stroke="#5B8DEF" strokeWidth="1.5" opacity="0.45"/><rect x="2" y="14" width="9" height="9" rx="1.5" stroke="#5B8DEF" strokeWidth="1.5" opacity="0.45"/><rect x="13" y="14" width="9" height="9" rx="1.5" stroke="#5B8DEF" strokeWidth="1.5"/></svg>,
+                accent: "#5B8DEF", accentBg: "rgba(91,141,239,0.08)", accentBorder: "rgba(91,141,239,0.2)",
               },
               {
                 title: "Your Data Stays Yours",
                 desc: "We don't aggregate, sell, or train on your data. Everything lives in your infrastructure. You own it fully — before, during, and after the engagement.",
-                icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="5" rx="9" ry="3" stroke="#3d6e8a" strokeWidth="1.5"/><path d="M3 5v6c0 1.66 4.03 3 9 3s9-1.34 9-3V5" stroke="#3d6e8a" strokeWidth="1.5"/><path d="M3 11v6c0 1.66 4.03 3 9 3s9-1.34 9-3v-6" stroke="#3d6e8a" strokeWidth="1.5"/></svg>,
-                accent: "#3d6e8a", accentBg: "#eef3f7", accentBorder: "#b0c8d8",
+                icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="5" rx="9" ry="3" stroke="#5B8DEF" strokeWidth="1.5"/><path d="M3 5v6c0 1.66 4.03 3 9 3s9-1.34 9-3V5" stroke="#5B8DEF" strokeWidth="1.5"/><path d="M3 11v6c0 1.66 4.03 3 9 3s9-1.34 9-3v-6" stroke="#5B8DEF" strokeWidth="1.5"/></svg>,
+                accent: "#5B8DEF", accentBg: "rgba(91,141,239,0.08)", accentBorder: "rgba(91,141,239,0.2)",
               },
               {
                 title: "Audit-Ready Architecture",
                 desc: "Every action in the system is logged. Who accessed what, when, and what changed. When compliance questions arise, the answers are already there.",
-                icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="4" y="2" width="16" height="20" rx="2" stroke="#00C87A" strokeWidth="1.5"/><line x1="8" y1="7" x2="16" y2="7" stroke="#00C87A" strokeWidth="1.3" strokeLinecap="round"/><line x1="8" y1="11" x2="16" y2="11" stroke="#00C87A" strokeWidth="1.3" strokeLinecap="round"/><line x1="8" y1="15" x2="12" y2="15" stroke="#00C87A" strokeWidth="1.3" strokeLinecap="round"/></svg>,
-                accent: "#00C87A", accentBg: "#e6f9f2", accentBorder: "#a0e8cb",
+                icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="4" y="2" width="16" height="20" rx="2" stroke="#5B8DEF" strokeWidth="1.5"/><line x1="8" y1="7" x2="16" y2="7" stroke="#5B8DEF" strokeWidth="1.3" strokeLinecap="round"/><line x1="8" y1="11" x2="16" y2="11" stroke="#5B8DEF" strokeWidth="1.3" strokeLinecap="round"/><line x1="8" y1="15" x2="12" y2="15" stroke="#5B8DEF" strokeWidth="1.3" strokeLinecap="round"/></svg>,
+                accent: "#5B8DEF", accentBg: "rgba(91,141,239,0.08)", accentBorder: "rgba(91,141,239,0.2)",
               },
               {
                 title: "No Generic AI Exposure",
                 desc: "A.R.I.S queries only your data. It doesn't pass documents to public AI models or use your information to train anything external. Intelligent — and contained.",
-                icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#B45309" strokeWidth="1.5"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07" stroke="#B45309" strokeWidth="1.5" strokeLinecap="round"/></svg>,
-                accent: "#B45309", accentBg: "#FEF3C7", accentBorder: "#FDE68A",
+                icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#5B8DEF" strokeWidth="1.5"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07" stroke="#5B8DEF" strokeWidth="1.5" strokeLinecap="round"/></svg>,
+                accent: "#5B8DEF", accentBg: "rgba(91,141,239,0.08)", accentBorder: "rgba(91,141,239,0.2)",
               },
             ].map((item, i) => (
               <motion.div key={item.title} variants={i % 2 === 0 ? fromLeft : fromRight} style={{
@@ -589,7 +589,7 @@ export default function HomePage() {
                 border: "1px solid rgba(255,255,255,0.08)", borderRadius: "16px",
                 transition: "border-color 0.2s, box-shadow 0.2s",
               }}
-                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = item.accentBorder; (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 20px rgba(0,0,0,0.06)"; }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(91,141,239,0.45)"; (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 24px rgba(91,141,239,0.08)"; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.08)"; (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
               >
                 <div style={{
@@ -694,7 +694,7 @@ export default function HomePage() {
             <Link href="/contact" style={{
               display: "inline-flex", alignItems: "center", gap: "8px",
               padding: "14px 36px", borderRadius: "100px",
-              background: "#00C87A", color: "#0a1a12",
+              background: "#5B8DEF", color: "#ffffff",
               fontSize: "0.92rem", fontWeight: 600, textDecoration: "none",
             }}>
               Schedule a conversation →
