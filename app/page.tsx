@@ -171,6 +171,7 @@ const stagger = (childStagger = 0.08, delay = 0) => ({
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function HomePage() {
   const [graphicReady, setGraphicReady] = useState(false);
+  const [splineLoaded, setSplineLoaded] = useState(false);
   const [fontIdx, setFontIdx] = useState(0);
   const [fading, setFading] = useState(false);
   const spotRef = useRef<HTMLDivElement>(null); // unused — spotlight removed
@@ -215,12 +216,14 @@ export default function HomePage() {
           zIndex: 1,
         }}
       >
-          {/* Full-bleed Spline scene */}
+          {/* Full-bleed Spline scene — hidden until fully loaded to prevent flash */}
           <div
             style={{
               position: "absolute",
               inset: 0,
               zIndex: 1,
+              opacity: splineLoaded ? 1 : 0,
+              transition: "opacity 0.4s ease",
             }}
           >
             {graphicReady ? (
@@ -228,13 +231,12 @@ export default function HomePage() {
                 scene={SPLINE_SCENE}
                 onLoad={(splineApp) => {
                   try {
-                    // Hide the BG rectangle
                     const bg = splineApp.findObjectByName("BG");
                     if (bg) bg.visible = false;
-                    // Null out the Three.js scene background → canvas becomes transparent
                     const scene = (splineApp as any)._scene ?? (splineApp as any).scene;
                     if (scene) scene.background = null;
                   } catch (_) {}
+                  setSplineLoaded(true);
                 }}
               />
             ) : null}
