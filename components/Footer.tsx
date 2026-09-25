@@ -19,7 +19,6 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div style={{ marginBottom: 24 }}><Logo dark /></div>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, margin: "0 0 6px" }}>hello@novumsystems.co</p>
             <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, margin: 0 }}>We replace SaaS subscriptions with custom software built around how your business actually works.</p>
           </div>
 

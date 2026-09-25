@@ -3,8 +3,6 @@ import { useState } from "react";
 import { PageHero } from "@/components/PageBits";
 import { USE_CASE_NAV } from "@/lib/nav";
 
-const EMAIL = "hello@novumsystems.co";
-
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", email: "", company: "", industry: "", tools: "", availability: "", message: "", website: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -41,14 +39,14 @@ export default function ContactPage() {
           <div className="h-contact-side">
             <div><b>What happens next</b><p>We read what you send, then set up a call to walk through how your operation runs.</p></div>
             <div><b>What to bring</b><p>The tools you pay for, roughly what they cost, and where your team loses the most time.</p></div>
-            <div><b>Prefer email?</b><a href={`mailto:${EMAIL}`}>{EMAIL}</a></div>
+            <div><b>When you&apos;ll hear back</b><p>Usually within one business day, with a time that fits what you tell us below.</p></div>
           </div>
 
           <div className="h-formcard">
             {status === "sent" ? (
               <div style={{ textAlign: "center", padding: "40px 0" }}>
                 <h2 style={{ fontSize: "1.8rem", marginBottom: 12 }}>Got it. Thank you.</h2>
-                <p style={{ color: "#64748b" }}>We&apos;ll read what you sent and come back with a time that works, usually within one business day. If it&apos;s urgent, email <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.</p>
+                <p style={{ color: "#64748b" }}>We&apos;ll read what you sent and come back with a time that works, usually within one business day.</p>
               </div>
             ) : (
               <form className="h-form" onSubmit={submit}>
@@ -71,7 +69,7 @@ export default function ContactPage() {
                 <label>Anything else we should know?<textarea name="message" value={form.message} onChange={set} /></label>
                 <input name="website" value={form.website} onChange={set} tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: "absolute", left: -9999, width: 1, height: 1, opacity: 0 }} />
                 {status === "error" && (
-                  <p style={{ color: "#b42318", fontSize: "0.9rem" }}>Something went wrong sending that. Please email us at <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.</p>
+                  <p style={{ color: "#b42318", fontSize: "0.9rem" }}>Something went wrong sending that. Please try again in a moment.</p>
                 )}
                 <button type="submit" className="h-btn h-btn-primary" disabled={status === "sending"}>{status === "sending" ? "Sending..." : "Send"}</button>
               </form>
