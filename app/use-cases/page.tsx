@@ -37,12 +37,12 @@ export default function UseCasesPage() {
             <div className="h-case-l">
               <div className="h-eyebrow">Case study · Construction</div>
               <h3>A $100,000-a-year software bill, replaced.</h3>
-              <p>A construction company swapped its project management subscription for a system it owns, with an AI assistant on top.</p>
+              <p>A construction company swapped its construction management subscription for a system it owns, connected to its billing, with agents drafting RFIs and submittals.</p>
               <span className="h-btn h-btn-ghost">Read the case study →</span>
             </div>
             <div className="h-case-r">
-              <div><small>Before</small><strong>$100,000 a year in subscriptions and six disconnected tools</strong></div>
-              <div><small>After</small><strong>One system they own, connected to their accounting</strong></div>
+              <div><small>Before</small><strong>$100,000 a year for construction management software</strong></div>
+              <div><small>After</small><strong>A system they own, connected to their billing, with agents drafting RFIs and submittals</strong></div>
             </div>
           </Link>
         </div>
