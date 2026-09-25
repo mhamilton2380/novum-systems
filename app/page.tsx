@@ -232,35 +232,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Case study */}
-      <section className="h-sec h-soft">
-        <div className="h-wrap h-roi">
-          <div>
-            <div className="h-eyebrow">Case study · Construction company</div>
-            <h2>What would you do with a <span className="h-grad">$100,000</span> software bill back?</h2>
-            <p className="h-roi-sub">
-              A construction company was paying $100,000 a year for construction management software. We rebuilt it around how they run projects, connected it to the rest of the business, and put an AI assistant on top. After the build, they pay only for hosting, storage, and security, a small fraction of what the subscription cost.
-            </p>
-            <div className="h-chips">
-              <span>$100,000/yr before</span>
-              <span>One-time build</span>
-              <span>Hosting only after that</span>
-            </div>
-          </div>
-          <div className="h-roi-card">
-            <h3>What they run on now</h3>
-            <ul>
-              <li><b>Construction management</b> rebuilt around their own workflows, replacing the subscription platform.</li>
-              <li><b>Projects, documents, and investor reporting</b> in one system instead of spreadsheets and shared drives.</li>
-              <li><b>An AI assistant</b> answering questions across every project and document the firm has.</li>
-            </ul>
-            <div className="h-roi-foot">
-              <p>One build fee. Then storage, security, and hosting. No seats, no revenue share, no renewal.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Systems */}
       <section className="h-sec">
         <div className="h-wrap">
@@ -314,7 +285,7 @@ export default function HomePage() {
       </section>
 
       {/* Security */}
-      <section className="h-sec h-dark h-secure">
+      <section className="h-sec h-soft h-secure">
         <div className="h-wrap h-secure-grid">
           <div>
             <div className="h-head" style={{ marginBottom: 36 }}>
@@ -373,8 +344,37 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Case study */}
+      <section className="h-sec h-soft">
+        <div className="h-wrap h-roi">
+          <div>
+            <div className="h-eyebrow">Case study · Construction company</div>
+            <h2>What would you do with a <span className="h-grad">$100,000</span> software bill back?</h2>
+            <p className="h-roi-sub">
+              A construction company was paying $100,000 a year for construction management software. We rebuilt it around how they run projects, connected it to the rest of the business, and put an AI assistant on top. After the build, they pay only for hosting, storage, and security, a small fraction of what the subscription cost.
+            </p>
+            <div className="h-chips">
+              <span>$100,000/yr before</span>
+              <span>One-time build</span>
+              <span>Hosting only after that</span>
+            </div>
+          </div>
+          <div className="h-roi-card">
+            <h3>What they run on now</h3>
+            <ul>
+              <li><b>Construction management</b> rebuilt around their own workflows, replacing the subscription platform.</li>
+              <li><b>Projects, documents, and investor reporting</b> in one system instead of spreadsheets and shared drives.</li>
+              <li><b>An AI assistant</b> answering questions across every project and document the firm has.</li>
+            </ul>
+            <div className="h-roi-foot">
+              <p>One build fee. Then storage, security, and hosting. No seats, no revenue share, no renewal.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
-      <section className="h-sec" style={{ paddingTop: 0 }}>
+      <section className="h-sec">
         <div className="h-wrap">
           <div className="h-cta">
             <h2>Tell us what you pay for today.</h2>
