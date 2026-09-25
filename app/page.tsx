@@ -79,13 +79,31 @@ const SYSTEMS = [
   },
 ];
 
+const INDUSTRIES = [
+  "Construction", "Field services", "Professional services", "Legal", "Accounting", "Sales teams",
+  "Marketing agencies", "Insurance", "Healthcare", "Manufacturing", "Logistics", "Distribution",
+  "Engineering", "Architecture", "Home services", "Staffing", "Franchises", "Hospitality",
+  "Financial services", "Nonprofits",
+];
+
 const SECURITY = [
-  ["Encrypted everywhere", "Files and records are encrypted at rest and in transit."],
-  ["Role-based access", "Each person sees exactly what their role allows."],
-  ["Your infrastructure", "Deployed on accounts your company owns."],
-  ["No data resale", "We never aggregate, sell, or train on your data."],
-  ["Full audit trail", "Every view and edit is logged with who and when."],
-  ["Private AI", "A.R.I.S and your agents work on your data and nothing else."],
+  { t: "Encrypted everywhere", d: "Files and records are encrypted at rest and in transit.", icon: "M7 11V8a5 5 0 0 1 10 0v3M5 11h14v10H5zM12 15v2" },
+  { t: "Role-based access", d: "Each person sees exactly what their role allows.", icon: "M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7zM9 12l2 2 4-4" },
+  { t: "Your infrastructure", d: "Deployed on accounts your company owns.", icon: "M4 5h16v6H4zM4 13h16v6H4zM8 8h.01M8 16h.01" },
+  { t: "No data resale", d: "We never aggregate, sell, or train on your data.", icon: "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM5.6 5.6l12.8 12.8" },
+  { t: "Full audit trail", d: "Every view and edit is logged with who and when.", icon: "M8 4h11v16H5V7zM8 4v3H5M9 12h7M9 16h5" },
+  { t: "Private AI", d: "A.R.I.S and your agents work on your data and nothing else.", icon: "M12 2l2.4 5.6L20 10l-5.6 2.4L12 18l-2.4-5.6L4 10l5.6-2.4z" },
+];
+
+const AUDIT = [
+  { who: "J. Alvarez", role: "Project manager", what: "opened Henderson_Contract.pdf", ok: true },
+  { who: "A.R.I.S", role: "AI", what: "answered budget query for Project 14", ok: true },
+  { who: "Field tablet 07", role: "Superintendent", what: "uploaded daily log", ok: true },
+  { who: "Contractor login", role: "External", what: "tried to open Payroll_Q3.xlsx", ok: false },
+  { who: "M. Chen", role: "Finance", what: "exported AP aging report", ok: true },
+  { who: "Invoice agent", role: "AI", what: "matched 12 invoices to POs", ok: true },
+  { who: "S. Patel", role: "Estimator", what: "edited bid sheet v4", ok: true },
+  { who: "Unknown device", role: "Blocked", what: "sign-in attempt from new location", ok: false },
 ];
 
 const FAQ = [
@@ -165,13 +183,13 @@ export default function HomePage() {
 
       {/* Strip */}
       <div className="h-strip">
-        <div className="h-wrap">
-          <p>Built for operators in</p>
-          <span>Construction</span>
-          <span>Real estate</span>
-          <span>Field services</span>
-          <span>Professional services</span>
-          <span>Logistics</span>
+        <p className="h-strip-label">Built for operators in</p>
+        <div className="h-marquee">
+          <div className="h-marquee-track">
+            {[...INDUSTRIES, ...INDUSTRIES].map((name, i) => (
+              <span key={i} aria-hidden={i >= INDUSTRIES.length}>{name}</span>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -296,17 +314,43 @@ export default function HomePage() {
       </section>
 
       {/* Security */}
-      <section className="h-sec h-soft">
-        <div className="h-wrap">
-          <div className="h-head">
-            <div className="h-eyebrow">Security</div>
-            <h2>Built locked down from day one.</h2>
-            <p>Every build ships with these in place.</p>
+      <section className="h-sec h-dark h-secure">
+        <div className="h-wrap h-secure-grid">
+          <div>
+            <div className="h-head" style={{ marginBottom: 36 }}>
+              <div className="h-eyebrow">Security</div>
+              <h2>Built locked down from day one.</h2>
+              <p>Every build ships with these in place. Every action is logged, and every person sees only what their role allows.</p>
+            </div>
+            <div className="h-secgrid">
+              {SECURITY.map((x) => (
+                <div className="h-seccard" key={x.t}>
+                  <div className="h-secicon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d={x.icon} /></svg>
+                  </div>
+                  <h3>{x.t}</h3>
+                  <p>{x.d}</p>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="h-sec6">
-            {SECURITY.map(([t, d]) => (
-              <div key={t}><h3>{t}</h3><p>{d}</p></div>
-            ))}
+
+          <div className="h-audit" aria-hidden="true">
+            <div className="h-audit-bar">
+              <span className="h-live"><i />Audit log · live</span>
+              <span className="h-enc">Encrypted</span>
+            </div>
+            <div className="h-audit-window">
+              <div className="h-audit-track">
+                {[...AUDIT, ...AUDIT].map((a, i) => (
+                  <div className={`h-audit-row${a.ok ? "" : " h-denied"}`} key={i}>
+                    <div className="h-audit-who"><b>{a.who}</b><span>{a.role}</span></div>
+                    <div className="h-audit-what">{a.what}</div>
+                    <div className="h-audit-status">{a.ok ? "Allowed" : "Denied"}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
