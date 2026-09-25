@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArisChat } from "../components/ArisChat";
+import { AssistantChat } from "../components/AssistantChat";
 import "./home.css";
 
 // ─── Content ──────────────────────────────────────────────────────────────────
@@ -8,7 +8,7 @@ const PROBLEMS = [
     title: "Priced to grow with you",
     body: (
       <>
-        Procore bills on annual construction volume. Win a bigger year and the bill goes up <em>for the same software</em>. Seat-based tools do the same with every hire. Stop paying and access goes with it.
+        Most business software bills on your revenue, your project volume, or your headcount. Grow and the bill goes up <em>for the same software</em>. Stop paying and access goes with it.
       </>
     ),
   },
@@ -33,7 +33,7 @@ const PROBLEMS = [
 const COMPARE = [
   ["What it costs", "A subscription for every tool, rising every year.", "One build fee, then hosting at cost."],
   ["How it fits", "Your team bends to the template.", "Built around how you already work."],
-  ["How many systems", "One per department, stitched together by hand.", "One system, one set of data."],
+  ["How many systems", "One per department, stitched together by hand.", "One system, connected to the tools you keep."],
   ["AI", "Sold as an add-on, one tool at a time.", "Built in, across everything."],
   ["If you stop paying", "Access is cut off.", "It keeps running. It's yours."],
   ["Who can change it", "Only the vendor, on their roadmap.", "Us, your team, or any developer you hire."],
@@ -49,8 +49,8 @@ const STEPS = [
   {
     title: "Build",
     tag: "Fixed price · no subscription",
-    body: "We build your system in phases, highest-impact first, with A.R.I.S and agents wired into it. Each phase is live and in use before the next starts.",
-    includes: "data migrated from your current tools, AI built in, team training, and the code handed to you",
+    body: "We build your system in phases, highest-impact first, with your AI assistant and agents wired into it. Each phase is live and in use before the next starts.",
+    includes: "data migrated from your current tools, integrations with the ones you keep, AI built in, team training, and the code handed to you",
   },
   {
     title: "Run",
@@ -66,11 +66,15 @@ const SYSTEMS = [
     body: "Projects, schedules, budgets, vendors, and reporting in one place, built around how your team works. This replaces the platforms you rent today.",
   },
   {
+    title: "Integrations",
+    body: "Keep the tools that work. We connect QuickBooks, Salesforce, Outlook, and the rest so data moves between them on its own and nobody types the same thing twice.",
+  },
+  {
     title: "Vault",
     body: "Contracts, drawings, records, and history. Encrypted, indexed, and searchable in plain English, with access controlled by role.",
   },
   {
-    title: "A.R.I.S",
+    title: "AI Assistant",
     body: "Ask a question about any part of your operation and get the answer in seconds. It runs on your data only.",
   },
   {
@@ -103,12 +107,12 @@ const SECURITY = [
   { t: "Your infrastructure", d: "Deployed on accounts your company owns.", icon: "M4 5h16v6H4zM4 13h16v6H4zM8 8h.01M8 16h.01" },
   { t: "No data resale", d: "We never aggregate, sell, or train on your data.", icon: "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM5.6 5.6l12.8 12.8" },
   { t: "Full audit trail", d: "Every view and edit is logged with who and when.", icon: "M8 4h11v16H5V7zM8 4v3H5M9 12h7M9 16h5" },
-  { t: "Private AI", d: "A.R.I.S and your agents work on your data and nothing else.", icon: "M12 2l2.4 5.6L20 10l-5.6 2.4L12 18l-2.4-5.6L4 10l5.6-2.4z" },
+  { t: "Private AI", d: "Your assistant and agents work on your data and nothing else.", icon: "M12 2l2.4 5.6L20 10l-5.6 2.4L12 18l-2.4-5.6L4 10l5.6-2.4z" },
 ];
 
 const AUDIT = [
   { who: "J. Alvarez", role: "Project manager", what: "opened Henderson_Contract.pdf", ok: true },
-  { who: "A.R.I.S", role: "AI", what: "answered budget query for Project 14", ok: true },
+  { who: "AI Assistant", role: "AI", what: "answered budget query for Project 14", ok: true },
   { who: "Field tablet 07", role: "Superintendent", what: "uploaded daily log", ok: true },
   { who: "Contractor login", role: "External", what: "tried to open Payroll_Q3.xlsx", ok: false },
   { who: "M. Chen", role: "Finance", what: "exported AP aging report", ok: true },
@@ -123,12 +127,12 @@ const FAQ = [
     a: "Discovery is a flat fee that credits toward the build. The build is a fixed price we quote after discovery. After that you pay hosting, storage, and security at cost. For Seneca Development that runs about $700 a year.",
   },
   {
-    q: "Will it do everything Procore (or our current tool) does?",
+    q: "Will it do everything our current software does?",
     a: "It will do what your team uses. Most companies pay for a full platform and use a slice of it. We build that slice around how you work, connect it to the rest of your operation, and add what the platform never had.",
   },
   {
     q: "What can the AI actually do?",
-    a: "A.R.I.S answers questions across every project, document, and report in your system. Agents handle the repeat work: drafting, matching, chasing, and reporting. We scope the agents with you during discovery.",
+    a: "The AI assistant answers questions across every project, document, and report in your system. Agents handle the repeat work: drafting, matching, chasing, and reporting. We scope the agents with you during discovery.",
   },
   {
     q: "What happens to our data in the old system?",
@@ -148,16 +152,15 @@ export default function HomePage() {
       <section className="h-hero">
         <div className="h-wrap h-hero-grid">
           <div>
-            <span className="h-pill">Custom software · AI built in</span>
             <h1>
               One system for your entire operation, at a <span className="h-grad">fraction of the cost</span>.
             </h1>
             <p className="h-hero-sub">
-              We replace the software you rent with a platform built around how your team works, then put AI to work inside it.
+              We replace the software you rent, connect the tools you keep, and put AI to work across all of it.
             </p>
             <ul className="h-proof">
-              <li>Built around your workflows, not a template.</li>
-              <li>A.R.I.S and AI agents working across all of it.</li>
+              <li>Built around your workflows, connected to the tools you already use.</li>
+              <li>An AI assistant and agents working across all of it.</li>
               <li>One build fee, then hosting at cost. The code is yours.</li>
             </ul>
             <div className="h-ctas">
@@ -242,7 +245,7 @@ export default function HomePage() {
             <div className="h-eyebrow">Case study · Seneca Development Co.</div>
             <h2>What would you do with <span className="h-grad">$99,300</span> back every year?</h2>
             <p className="h-roi-sub">
-              Seneca was paying $100,000 a year for construction management software. We rebuilt it around how they run projects, connected it to the rest of the business, and put A.R.I.S on top. After the build, the system costs about $700 a year to host, store, and secure.
+              Seneca was paying $100,000 a year for construction management software. We rebuilt it around how they run projects, connected it to the rest of the business, and put an AI assistant on top. After the build, the system costs about $700 a year to host, store, and secure.
             </p>
             <div className="h-chips">
               <span>$100,000/yr before</span>
@@ -255,7 +258,7 @@ export default function HomePage() {
             <ul>
               <li><b>Construction management</b> rebuilt around their own workflows, replacing the subscription platform.</li>
               <li><b>Projects, documents, and investor reporting</b> in one system instead of spreadsheets and shared drives.</li>
-              <li><b>A.R.I.S</b> answering questions across every project and document the firm has.</li>
+              <li><b>An AI assistant</b> answering questions across every project and document the firm has.</li>
             </ul>
             <div className="h-roi-foot">
               <p>One build fee. Then storage, security, and hosting. No seats, no revenue share, no renewal.</p>
@@ -284,8 +287,8 @@ export default function HomePage() {
             </div>
           </div>
           <div className="h-demo">
-            <div className="h-demo-bar"><i /><i /><i /><span>A.R.I.S · live demo</span></div>
-            <ArisChat height={620} />
+            <div className="h-demo-bar"><i /><i /><i /><span>Live demo</span></div>
+            <AssistantChat height={640} />
           </div>
         </div>
       </section>
