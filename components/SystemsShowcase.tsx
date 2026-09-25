@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, type ComponentType } from "react";
 import { AssistantChat } from "./AssistantChat";
 
 // ─── Slides ───────────────────────────────────────────────────────────────────
@@ -215,6 +215,43 @@ function AgentsDemo() {
 }
 
 const DEMOS = [CoreDemo, IntegrationsDemo, VaultDemo, null, AgentsDemo];
+
+function AssistantDemo() {
+  return <AssistantChat height={480} compact bare />;
+}
+
+const BY_NAME: Record<string, ComponentType> = {
+  Core: CoreDemo, Integrations: IntegrationsDemo, Vault: VaultDemo, "AI Assistant": AssistantDemo, Agents: AgentsDemo,
+};
+
+// A single demo in the standard panel; starts playing when scrolled into view
+export function DemoPanel({ name }: { name: keyof typeof BY_NAME }) {
+  const slide = SLIDES.find((s) => s.head === name)!;
+  const Demo = BY_NAME[name];
+  const ref = useRef<HTMLDivElement>(null);
+  const [seen, setSeen] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setSeen(true); io.disconnect(); } }, { threshold: 0.35 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return (
+    <div className="h-demo" ref={ref}>
+      <div className="h-demo-bar"><i /><i /><i /><span>Live demo · {slide.head}</span></div>
+      <div className="sc-head">
+        <div className="sc-mark" />
+        <div>
+          <div className="sc-title">{slide.head}</div>
+          <div className="sc-sub">{slide.sub}</div>
+        </div>
+        <span className="sc-industry">Example: {slide.industry}</span>
+      </div>
+      <div className="sc-stage">{seen && <Demo />}</div>
+    </div>
+  );
+}
 
 // ─── Showcase ─────────────────────────────────────────────────────────────────
 export function SystemsShowcase() {

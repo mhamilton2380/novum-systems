@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { SystemsShowcase } from "../components/SystemsShowcase";
-import "./home.css";
 
 // ─── Content ──────────────────────────────────────────────────────────────────
 const PROBLEMS = [
@@ -31,7 +30,7 @@ const PROBLEMS = [
 ];
 
 const COMPARE = [
-  ["What it costs", "A subscription for every tool, rising every year.", "One build fee, then hosting at cost."],
+  ["What it costs", "A subscription for every tool, rising every year.", "A build, then hosting. No seats."],
   ["How it fits", "Your team bends to the template.", "Built around how you already work."],
   ["How many systems", "One per department, stitched together by hand.", "One system, connected to the tools you keep."],
   ["AI", "Sold as an add-on, one tool at a time.", "Built in, across everything."],
@@ -42,13 +41,13 @@ const COMPARE = [
 const STEPS = [
   {
     title: "Discovery",
-    tag: "Flat fee · credits toward the build",
+    tag: "The first step on every project",
     body: "We sit with your team, map how the work actually moves, and list every tool you pay for and what it costs.",
-    includes: "workflow and tool audit, a written scope, a fixed price, and the full fee credited if you build",
+    includes: "workflow and tool audit, a written scope, and a price before anything is built",
   },
   {
     title: "Build",
-    tag: "Fixed price · no subscription",
+    tag: "Scoped and priced per project",
     body: "We build your system in phases, highest-impact first, with your AI assistant and agents wired into it. Each phase is live and in use before the next starts.",
     includes: "data migrated from your current tools, integrations with the ones you keep, AI built in, team training, and the code handed to you",
   },
@@ -138,7 +137,7 @@ export default function HomePage() {
             <ul className="h-proof">
               <li>Built around your workflows, connected to the tools you already use.</li>
               <li>An AI assistant and agents working across all of it.</li>
-              <li>One build fee, then hosting at cost. The code is yours.</li>
+              <li>No seats, no revenue share. The code is yours.</li>
             </ul>
             <div className="h-ctas">
               <Link href="/contact" className="h-btn h-btn-primary">Book a conversation</Link>
@@ -245,7 +244,7 @@ export default function HomePage() {
           <div className="h-howgrid">
             <div className="h-head">
               <div className="h-eyebrow">How it works</div>
-              <h2>Three steps. One price for the build.</h2>
+              <h2>Three steps. No subscription.</h2>
               <p>Nothing gets built until the scope and the price are agreed in writing.</p>
             </div>
             <div className="h-vsteps">

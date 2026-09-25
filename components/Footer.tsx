@@ -26,8 +26,8 @@ export default function Footer() {
           {/* Systems */}
           <div>
             <p style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.72rem", color: "#EAEAEA", marginBottom: 20, letterSpacing: "0.08em", textTransform: "uppercase" }}>Systems</p>
-            {(["Core", "Integrations", "Vault", "AI Assistant"] as const).map((s) => (
-              <Link key={s} href="/work"
+            {([["Core", "core"], ["Integrations", "integrations"], ["Vault", "vault"], ["AI Assistant", "assistant"], ["Agents", "agents"]] as const).map(([s, id]) => (
+              <Link key={s} href={`/solutions#${id}`}
                 style={{ display: "block", fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", textDecoration: "none", marginBottom: 11, transition: "color 0.18s" }}
                 onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#EAEAEA"; }}
                 onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.55)"; }}
@@ -38,7 +38,7 @@ export default function Footer() {
           {/* Company */}
           <div>
             <p style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.72rem", color: "#EAEAEA", marginBottom: 20, letterSpacing: "0.08em", textTransform: "uppercase" }}>Company</p>
-            {([["Approach", "/approach"], ["Systems", "/systems"], ["Case Studies", "/case-studies"], ["Contact", "/contact"]] as const).map(([label, href]) => (
+            {([["Solutions", "/solutions"], ["Use Cases", "/use-cases"], ["How We Work", "/how-we-work"], ["About", "/about"], ["Case Study", "/case-studies"]] as const).map(([label, href]) => (
               <Link key={label} href={href}
                 style={{ display: "block", fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", textDecoration: "none", marginBottom: 11, transition: "color 0.18s" }}
                 onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#EAEAEA"; }}
@@ -50,7 +50,7 @@ export default function Footer() {
           {/* Get Started */}
           <div>
             <p style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.72rem", color: "#EAEAEA", marginBottom: 20, letterSpacing: "0.08em", textTransform: "uppercase" }}>Get Started</p>
-            {([["Book a Discovery Call", "/contact"], ["Explore Systems", "/systems"]] as const).map(([label, href]) => (
+            {([["Book a Call", "/contact"], ["Explore Solutions", "/solutions"]] as const).map(([label, href]) => (
               <Link key={label} href={href}
                 style={{ display: "block", fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", textDecoration: "none", marginBottom: 11, transition: "color 0.18s" }}
                 onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#EAEAEA"; }}

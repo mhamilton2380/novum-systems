@@ -1,147 +1,85 @@
-"use client";
-import Link from "next/link";
-import DotCanvas from "@/components/DotCanvas";
+import type { Metadata } from "next";
+import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
 
-const cases = [
-  {
-    slug: "seneca-development",
-    client: "Seneca Development Co.",
-    industry: "Real Estate Development & Investment",
-    system: "Fully custom build",
-    headline: "Unified deal tracking, project execution, and portfolio oversight into one custom platform.",
-    outcome: "Replaced 6 disconnected tools. LP reporting went from a week to a day. Full deal history queryable in under 60 seconds.",
-    accent: "#6D4FBB",
-    accentBg: "#F3F0FC",
-    accentBorder: "#D9D0F5",
-  },
+export const metadata: Metadata = {
+  title: "Case Study · Novum AI",
+  description: "How a construction company replaced a $100,000-a-year software subscription with a system it owns.",
+};
+
+const BEFORE = [
+  { title: "Six tools, none of them talking", body: "Projects, budgets, documents, and reporting each lived in a different tool. Getting a full picture meant pulling from all of them by hand." },
+  { title: "Budget to actual was a manual job", body: "Comparing job costs to budget meant exporting from accounting and rebuilding the numbers in a spreadsheet every time someone asked." },
+  { title: "Reporting took a week", body: "Owner and investor reports were assembled from scratch each cycle, from accounting, spreadsheets, and email." },
+  { title: "Documents only one person could find", body: "Years of contracts, drawings, and correspondence sat in a folder structure that made sense to whoever built it." },
 ];
 
-export default function CaseStudiesPage() {
+const BUILT = [
+  { tag: "Core", title: "Projects run in one system", body: "Every job, budget, schedule, and change order in one place, with a dashboard for leadership and one for each project manager." },
+  { tag: "Integrations", title: "Accounting connected", body: "Job costs flow in from accounting on their own, so budget to actual is always current." },
+  { tag: "Vault", title: "Every document, searchable", body: "Contracts, drawings, and records encrypted, organized by project, and searchable by what's inside them." },
+  { tag: "AI Assistant", title: "Answers in plain English", body: "The team asks about any project or document and gets the answer, with the source, in seconds." },
+];
+
+const RESULTS = [
+  { title: "The subscription is gone", body: "The $100,000-a-year platform was replaced. After the build, they pay for hosting, storage, and security, a small fraction of the old bill." },
+  { title: "Six tools became one system", body: "One place for projects, documents, and reporting, connected to the accounting they already used." },
+  { title: "Reporting went from a week to a day", body: "Reports now pull from live data instead of being rebuilt by hand every cycle." },
+  { title: "Any project's history in under a minute", body: "Ask the assistant and it pulls the contract, the change orders, and the numbers, with links to each." },
+  { title: "They own it", body: "The code, the data, and the accounts it runs on are in the company's name. No seats, no renewal." },
+  { title: "It grows with them", body: "More projects and more people add no new license fees." },
+];
+
+export default function CaseStudyPage() {
   return (
-    <div style={{ background: "#f5f4f1", color: "#1A1A1A", fontFamily: "'DM Sans', sans-serif" }}>
+    <div className="home">
+      <PageHero
+        eyebrow="Case study · Construction"
+        title={<>A <span className="h-grad">$100,000-a-year</span> software bill, replaced.</>}
+        sub="A construction company was paying six figures a year for project management software that didn't fit how it worked. We built them a system they own, connected it to their accounting, and put an AI assistant on top."
+        side={
+          <div className="h-phero-card h-stats">
+            <div><strong>$100,000/yr</strong><small>Subscription replaced</small></div>
+            <div><strong>6 → 1</strong><small>Disconnected tools into one system</small></div>
+            <div><strong>A week → a day</strong><small>Reporting turnaround</small></div>
+            <div><strong>Under 60 sec</strong><small>To pull any project&apos;s full history</small></div>
+          </div>
+        }
+      />
 
-      {/* ── Hero ── */}
-      <section style={{ padding: "100px 24px 0" }}>
-        <div style={{
-          background: "#141414", borderRadius: "20px",
-          padding: "80px 60px", position: "relative", overflow: "hidden",
-        }}>
-          <DotCanvas />
-          <div style={{ position: "relative", zIndex: 2, maxWidth: "640px" }}>
-            <div style={{
-              display: "inline-flex", alignItems: "center", gap: "7px",
-              padding: "5px 14px", borderRadius: "100px",
-              border: "1px solid rgba(255,255,255,0.12)", background: "rgba(255,255,255,0.06)",
-              fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.09em", textTransform: "uppercase",
-              color: "rgba(255,255,255,0.45)", marginBottom: "28px",
-            }}>
-              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(255,255,255,0.4)", display: "inline-block" }} />
-              Case Studies
-            </div>
-            <h1 style={{
-              fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
-              fontSize: "clamp(2.8rem, 5vw, 4.5rem)",
-              lineHeight: 1.04, letterSpacing: "-0.035em",
-              color: "#fff", marginBottom: "20px",
-            }}>
-              Real operations.<br />
-              <span style={{ fontStyle: "italic", fontWeight: 300, color: "rgba(0,200,122,0.9)", textShadow: "0 0 24px rgba(0,200,122,0.5), 0 0 70px rgba(0,200,122,0.2)" }}>Real results.</span>
-            </h1>
-            <p style={{ color: "rgba(255,255,255,0.48)", fontSize: "1.05rem", lineHeight: 1.75, maxWidth: "520px" }}>
-              We built our own first. It replaced six subscriptions and saves us $100,000 a year. Here is what happens when the software is shaped around the operation instead of the other way around.
-            </p>
+      <section className="h-sec">
+        <div className="h-wrap">
+          <SectionHead eyebrow="Before" title="A growing company held together by spreadsheets and memory." />
+          <div className="h-grid4">
+            {BEFORE.map((b) => (
+              <div className="h-card2" key={b.title}><h3>{b.title}</h3><p>{b.body}</p></div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ── Cases ── */}
-      <section style={{ padding: "80px 40px" }}>
-        <div style={{ maxWidth: "1280px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "20px" }}>
-          {cases.map((c) => (
-            <Link key={c.slug} href={`/case-studies/${c.slug}`} style={{ textDecoration: "none" }}>
-              <div style={{
-                background: "#fff", border: "1px solid #EDECEA", borderRadius: "20px",
-                padding: "52px 56px",
-                display: "grid", gridTemplateColumns: "1fr auto",
-                gap: "48px", alignItems: "center",
-                transition: "border-color 0.2s, box-shadow 0.2s, transform 0.2s",
-              }}
-                onMouseEnter={e => {
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.borderColor = c.accentBorder;
-                  el.style.boxShadow = "0 8px 32px rgba(0,0,0,0.08)";
-                  el.style.transform = "translateY(-2px)";
-                }}
-                onMouseLeave={e => {
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.borderColor = "#EDECEA";
-                  el.style.boxShadow = "none";
-                  el.style.transform = "translateY(0)";
-                }}
-              >
-                <div>
-                  <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px", flexWrap: "wrap" }}>
-                    <span style={{
-                      padding: "4px 14px", borderRadius: "100px",
-                      background: c.accentBg, border: `1px solid ${c.accentBorder}`,
-                      fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase",
-                      color: c.accent,
-                    }}>{c.industry}</span>
-                    <span style={{ fontSize: "0.8rem", color: "#B0ADA8" }}>{c.system}</span>
-                  </div>
-                  <p style={{ fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#B0ADA8", marginBottom: "10px" }}>{c.client}</p>
-                  <h2 style={{
-                    fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
-                    fontSize: "clamp(1.4rem, 2.5vw, 2rem)",
-                    letterSpacing: "-0.025em", lineHeight: 1.2,
-                    color: "#1A1A1A", marginBottom: "20px",
-                  }}>{c.headline}</h2>
-                  <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                    <div style={{ width: 6, height: 6, borderRadius: "50%", background: c.accent, flexShrink: 0 }} />
-                    <p style={{ color: "#4A4947", fontSize: "0.9rem", lineHeight: 1.6, margin: 0 }}>{c.outcome}</p>
-                  </div>
-                </div>
-                <div style={{
-                  width: 48, height: 48, borderRadius: "12px",
-                  border: `1px solid ${c.accentBorder}`, background: c.accentBg,
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  flexShrink: 0, color: c.accent, fontSize: "1.2rem",
-                }}>→</div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* ── CTA ── */}
-      <section style={{ padding: "0 24px 80px" }}>
-        <div style={{
-          background: "#141414", borderRadius: "20px",
-          padding: "80px 60px", textAlign: "center",
-          position: "relative", overflow: "hidden",
-        }}>
-          <DotCanvas />
-          <div style={{ position: "relative", zIndex: 2, maxWidth: "520px", margin: "0 auto" }}>
-            <h2 style={{
-              fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
-              fontSize: "clamp(2rem, 4vw, 3rem)",
-              letterSpacing: "-0.03em", color: "#fff", marginBottom: "18px",
-            }}>Your operation could be next.</h2>
-            <p style={{ color: "rgba(255,255,255,0.48)", lineHeight: 1.8, marginBottom: "36px" }}>
-              Every engagement starts with a 30-minute discovery call. No obligation — just an honest conversation about what you&apos;re running and whether we&apos;re the right fit.
-            </p>
-            <Link href="/contact" style={{
-              display: "inline-flex", alignItems: "center", gap: "8px",
-              padding: "14px 32px", borderRadius: "100px",
-              background: "#00C87A", color: "#0a1a12",
-              fontSize: "0.92rem", fontWeight: 600, textDecoration: "none",
-            }}>
-              Book a Discovery Call →
-            </Link>
+      <section className="h-sec h-soft">
+        <div className="h-wrap">
+          <SectionHead eyebrow="What we built" title="One system, built around how they run projects." />
+          <div className="h-grid4">
+            {BUILT.map((b) => (
+              <div className="h-card2" key={b.tag}><span className="h-card2-tag">{b.tag}</span><h3>{b.title}</h3><p>{b.body}</p></div>
+            ))}
           </div>
         </div>
       </section>
 
+      <section className="h-sec">
+        <div className="h-wrap">
+          <SectionHead eyebrow="After" title="The company runs like a much larger one." />
+          <div className="h-grid3">
+            {RESULTS.map((r) => (
+              <div className="h-card2" key={r.title}><h3>{r.title}</h3><p>{r.body}</p></div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <CtaBand title="Paying for software that doesn't fit?" />
     </div>
   );
 }
