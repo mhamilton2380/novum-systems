@@ -6,7 +6,7 @@ import { USE_CASE_NAV } from "@/lib/nav";
 const EMAIL = "hello@novumsystems.co";
 
 export default function ContactPage() {
-  const [form, setForm] = useState({ name: "", email: "", company: "", industry: "", tools: "", message: "", website: "" });
+  const [form, setForm] = useState({ name: "", email: "", company: "", industry: "", tools: "", availability: "", message: "", website: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   const set = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
@@ -48,7 +48,7 @@ export default function ContactPage() {
             {status === "sent" ? (
               <div style={{ textAlign: "center", padding: "40px 0" }}>
                 <h2 style={{ fontSize: "1.8rem", marginBottom: 12 }}>Got it. Thank you.</h2>
-                <p style={{ color: "#64748b" }}>We&apos;ll read what you sent and reach out to set up a call.</p>
+                <p style={{ color: "#64748b" }}>We&apos;ll read what you sent and come back with a time that works, usually within one business day. If it&apos;s urgent, email <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.</p>
               </div>
             ) : (
               <form className="h-form" onSubmit={submit}>
@@ -67,6 +67,7 @@ export default function ContactPage() {
                   </label>
                 </div>
                 <label>What software do you pay for today?<input name="tools" placeholder="e.g. project management, CRM, accounting" value={form.tools} onChange={set} /></label>
+                <label>When are you free to talk?<input name="availability" placeholder="e.g. weekday mornings Pacific, or Tues/Thurs afternoons" value={form.availability} onChange={set} /></label>
                 <label>Anything else we should know?<textarea name="message" value={form.message} onChange={set} /></label>
                 <input name="website" value={form.website} onChange={set} tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: "absolute", left: -9999, width: 1, height: 1, opacity: 0 }} />
                 {status === "error" && (
