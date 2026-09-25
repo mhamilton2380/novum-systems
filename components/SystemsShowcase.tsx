@@ -18,8 +18,8 @@ const SLIDES: Slide[] = [
   },
   {
     title: "Vault",
-    body: "Contracts, client files, records, and history. Encrypted, indexed, and searchable in plain English, with access controlled by role.",
-    head: "Vault", sub: "Encrypted document search", industry: "Law firm", ms: 10000,
+    body: "Depositions, exhibits, productions, and case history. Encrypted, indexed, and searchable in plain English, with privileged material walled off by role.",
+    head: "Vault", sub: "Matter files · depositions · discovery", industry: "Law firm", ms: 10000,
   },
   {
     title: "AI Assistant",
@@ -123,11 +123,11 @@ function IntegrationsDemo() {
 }
 
 // ─── Vault: document search ───────────────────────────────────────────────────
-const QUERY = "Which client agreements auto-renew with less than 60 days notice?";
+const QUERY = "Where did Nordvale admit knowing about the defect before the March filing?";
 const DOCS = [
-  { name: "MSA_HalversonGroup.pdf", proj: "Halverson Group", page: "p. 6", pre: "This Agreement shall ", hit: "renew automatically unless terminated with 30 days", post: " written notice…" },
-  { name: "Services_Agreement_BrightPath.pdf", proj: "BrightPath Inc.", page: "p. 4", pre: "Term extends for successive one-year periods ", hit: "absent 45 days prior notice", post: "…" },
-  { name: "Engagement_Letter_Corwin.pdf", proj: "Corwin & Sons", page: "p. 2", pre: "The engagement ", hit: "renews each January 1 unless cancelled 30 days", post: " in advance…" },
+  { name: "Depo_Hartley_Vol2.pdf", proj: "Nordvale v. Cascade Mfg.", page: "p. 148", pre: "Q. You saw the cracking in ", hit: "January, about two months before anyone was notified", post: "? A. That's right." },
+  { name: "NORD_004821.pdf", proj: "Nordvale v. Cascade Mfg. · Exhibit 14", page: "p. 1", pre: "Internal email, Feb 4: ", hit: "we've known about the seam failures since the fall", post: " — hold off telling the client…" },
+  { name: "Expert_Report_Vance.pdf", proj: "Nordvale v. Cascade Mfg.", page: "p. 31", pre: "Maintenance logs confirm the defect ", hit: "was documented on 11 units prior to March 12", post: "…" },
 ];
 
 function VaultDemo() {
@@ -160,7 +160,7 @@ function VaultDemo() {
         ))}
       </div>
       <div className={`sc-note${n > DOCS.length ? " in" : ""}`}>
-        <span className="sc-lock">Encrypted</span> Searched 12,480 documents in 0.8s · showing only files your role can open
+        <span className="sc-lock">Encrypted</span> Searched 41,600 pages across 3 matters in 0.9s · privileged and work-product files hidden from this role
       </div>
     </div>
   );
