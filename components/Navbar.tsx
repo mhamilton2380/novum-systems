@@ -42,7 +42,7 @@ export default function Navbar() {
   ];
 
   const isHome = pathname === "/";
-  const onDarkHero = isHome && !pastHero;
+  const onDarkHero = false;
 
   const navBg = onDarkHero
     ? "rgba(0,0,0,0.55)"
@@ -56,7 +56,7 @@ export default function Navbar() {
   const mutedColor = onDarkHero ? "rgba(234,234,234,0.6)" : "#68635e";
   const activeBg = onDarkHero ? "rgba(255,255,255,0.08)" : "rgba(23,26,34,0.05)";
   const logoBg = "#5B8DEF";
-  const ctaBg = "#5B8DEF";
+  const ctaBg = "#0b1b2e";
   const ctaColor = "#ffffff";
 
   return (

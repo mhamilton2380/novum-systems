@@ -1,749 +1,345 @@
-"use client";
-
-import type { CSSProperties } from "react";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import dynamic from "next/dynamic";
 import { ArisChat } from "../components/ArisChat";
+import "./home.css";
 
-const Spline = dynamic(() => import("@splinetool/react-spline"), {
-  ssr: false,
-  loading: () => null,
-});
-
-const SPLINE_SCENE = "https://prod.spline.design/XsPp0DbFEyd8vOws/scene.splinecode";
-
-
-
-
-// ─── Hero-matched heading gradient ────────────────────────────────────────────
-const heroHeading: CSSProperties = {
-  fontFamily: "'DM Sans', sans-serif",
-  fontWeight: 400,
-  letterSpacing: "-0.02em",
-  lineHeight: 1.1,
-  background: "linear-gradient(115deg, #00D4FF 0%, #5B8DEF 55%, #A0BAFF 100%)",
-  WebkitBackgroundClip: "text",
-  WebkitTextFillColor: "transparent",
-  backgroundClip: "text",
-};
-
-// ─── Shared glass card style (dark) ───────────────────────────────────────────
-const glassCard: CSSProperties = {
-  background: "rgba(255,255,255,0.03)",
-  backdropFilter: "blur(14px) saturate(1.4)",
-  WebkitBackdropFilter: "blur(14px) saturate(1.4)",
-  border: "1px solid rgba(255,255,255,0.08)",
-  boxShadow: "0 8px 32px rgba(0,0,0,0.35)",
-};
-
-const ADAPT_FONTS = [
-  { font: "'DM Sans', sans-serif",        style: "italic",  weight: 700, tracking: "-0.04em" },
-  { font: "Georgia, serif",               style: "italic",  weight: 400, tracking: "-0.01em" },
-  { font: "'Courier New', monospace",     style: "normal",  weight: 700, tracking: "0.04em"  },
-  { font: "Impact, 'Arial Narrow', sans-serif", style: "normal", weight: 900, tracking: "0.01em" },
-  { font: "'Brush Script MT', cursive",   style: "italic",  weight: 400, tracking: "0.01em"  },
+// ─── Content ──────────────────────────────────────────────────────────────────
+const PROBLEMS = [
+  {
+    title: "Priced to grow with you",
+    body: (
+      <>
+        Procore bills on annual construction volume. Win a bigger year and the bill goes up <em>for the same software</em>. Seat-based tools do the same with every hire. Stop paying and access goes with it.
+      </>
+    ),
+  },
+  {
+    title: "Tools that don't talk",
+    body: (
+      <>
+        Projects in one system, accounting in another, documents on a shared drive. Your team re-enters the same data three times, and <em>nobody has the full picture</em>.
+      </>
+    ),
+  },
+  {
+    title: "AI that doesn't know you",
+    body: (
+      <>
+        Vendors sell AI as another upgrade tier, and it only sees the data inside their one tool. It can&apos;t answer a question that <em>spans your business</em>.
+      </>
+    ),
+  },
 ];
 
-// ─── Animation variants ───────────────────────────────────────────────────────
-const EASE = [0.25, 0.46, 0.45, 0.94];
+const COMPARE = [
+  ["What it costs", "A subscription for every tool, rising every year.", "One build fee, then hosting at cost."],
+  ["How it fits", "Your team bends to the template.", "Built around how you already work."],
+  ["How many systems", "One per department, stitched together by hand.", "One system, one set of data."],
+  ["AI", "Sold as an add-on, one tool at a time.", "Built in, across everything."],
+  ["If you stop paying", "Access is cut off.", "It keeps running. It's yours."],
+  ["Who can change it", "Only the vendor, on their roadmap.", "Us, your team, or any developer you hire."],
+];
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 18 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: EASE } },
-};
+const STEPS = [
+  {
+    title: "Discovery",
+    tag: "Flat fee · credits toward the build",
+    body: "We sit with your team, map how the work actually moves, and list every tool you pay for and what it costs.",
+    includes: "workflow and tool audit, a written scope, a fixed price, and the full fee credited if you build",
+  },
+  {
+    title: "Build",
+    tag: "Fixed price · no subscription",
+    body: "We build your system in phases, highest-impact first, with A.R.I.S and agents wired into it. Each phase is live and in use before the next starts.",
+    includes: "data migrated from your current tools, AI built in, team training, and the code handed to you",
+  },
+  {
+    title: "Run",
+    tag: "Hosting at cost · support optional",
+    body: "You pay for storage, security, and hosting. Nothing is priced on seats or revenue. Add support when you want new features or new agents.",
+    includes: "monitoring, backups, security updates, and month-to-month support you can cancel anytime",
+  },
+];
 
-const fromLeft = {
-  hidden: { opacity: 0, x: -32 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: EASE } },
-};
+const SYSTEMS = [
+  {
+    title: "Core",
+    body: "Projects, schedules, budgets, vendors, and reporting in one place, built around how your team works. This replaces the platforms you rent today.",
+  },
+  {
+    title: "Vault",
+    body: "Contracts, drawings, records, and history. Encrypted, indexed, and searchable in plain English, with access controlled by role.",
+  },
+  {
+    title: "A.R.I.S",
+    body: "Ask a question about any part of your operation and get the answer in seconds. It runs on your data only.",
+  },
+  {
+    title: "Agents",
+    body: "Because everything lives in one system, AI can do real work inside it: draft the RFI, match the invoice to the PO, chase the missing lien waiver, build the weekly report.",
+  },
+];
 
-const fromRight = {
-  hidden: { opacity: 0, x: 32 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: EASE } },
-};
+const SECURITY = [
+  ["Encrypted everywhere", "Files and records are encrypted at rest and in transit."],
+  ["Role-based access", "Each person sees exactly what their role allows."],
+  ["Your infrastructure", "Deployed on accounts your company owns."],
+  ["No data resale", "We never aggregate, sell, or train on your data."],
+  ["Full audit trail", "Every view and edit is logged with who and when."],
+  ["Private AI", "A.R.I.S and your agents work on your data and nothing else."],
+];
 
-const stagger = (childStagger = 0.08, delay = 0) => ({
-  hidden: {},
-  visible: { transition: { staggerChildren: childStagger, delayChildren: delay } },
-});
+const FAQ = [
+  {
+    q: "What does it cost?",
+    a: "Discovery is a flat fee that credits toward the build. The build is a fixed price we quote after discovery. After that you pay hosting, storage, and security at cost. For Seneca Development that runs about $700 a year.",
+  },
+  {
+    q: "Will it do everything Procore (or our current tool) does?",
+    a: "It will do what your team uses. Most companies pay for a full platform and use a slice of it. We build that slice around how you work, connect it to the rest of your operation, and add what the platform never had.",
+  },
+  {
+    q: "What can the AI actually do?",
+    a: "A.R.I.S answers questions across every project, document, and report in your system. Agents handle the repeat work: drafting, matching, chasing, and reporting. We scope the agents with you during discovery.",
+  },
+  {
+    q: "What happens to our data in the old system?",
+    a: "We move it. Migration from your current tools is part of the build, so your history comes with you.",
+  },
+  {
+    q: "Do we own it?",
+    a: "Yes. The code, the database, and the hosting accounts are in your company's name. If we stop working together, nothing breaks.",
+  },
+];
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function HomePage() {
-  const [graphicReady, setGraphicReady] = useState(false);
-  const [splineLoaded, setSplineLoaded] = useState(false);
-  const [fontIdx, setFontIdx] = useState(0);
-  const [fading, setFading] = useState(false);
-  const spotRef = useRef<HTMLDivElement>(null); // unused — spotlight removed
-
-  // Sticky scroll reveal for Problem section
-  const problemScrollRef = useRef(null);
-  const cardsRef = useRef<HTMLDivElement>(null);
-  const [chatHeight, setChatHeight] = useState(600);
-  const { scrollYProgress: problemProgress } = useScroll({
-    target: problemScrollRef,
-    offset: ["start end", "0.5 start"],
-  });
-  const problemOpacity = useTransform(problemProgress, [0, 0.25, 0.85], [0, 1, 1]);
-  const problemY = useTransform(problemProgress, [0, 0.25], [60, 0]);
-
-  useEffect(() => { setGraphicReady(true); }, []);
-
-  useEffect(() => {
-    const el = cardsRef.current;
-    if (!el) return;
-    const ro = new ResizeObserver(entries => setChatHeight(entries[0].contentRect.height));
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setFading(true);
-      setTimeout(() => {
-        setFontIdx((i) => (i + 1) % ADAPT_FONTS.length);
-        setFading(false);
-      }, 300);
-    }, 4000);
-    return () => clearInterval(id);
-  }, []);
-
-
   return (
-    <div
-      style={{ background: "#000000", color: "#EAEAEA", fontFamily: "'DM Sans', sans-serif", position: "relative" }}
-    >
-      {/* Fixed grid background — GPU composited, zero repaint on scroll */}
-      <div style={{
-        position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none",
-        backgroundImage: "linear-gradient(rgba(140,175,255,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(140,175,255,0.07) 1px, transparent 1px)",
-        backgroundSize: "72px 72px",
-      }} />
-
-      {/* ── Hero (full-bleed) ── */}
-      <section
-        className="hero-card"
-        style={{
-          background: "#000000",
-          position: "relative",
-          overflow: "hidden",
-          width: "100%",
-          height: "100vh",
-          display: "flex",
-          alignItems: "center",
-          zIndex: 1,
-        }}
-      >
-          {/* Full-bleed Spline scene — hidden until fully loaded to prevent flash */}
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              zIndex: 1,
-              background: "#000000",
-              opacity: splineLoaded ? 1 : 0,
-              transition: "opacity 0.4s ease",
-            }}
-          >
-            {graphicReady ? (
-              <Spline
-                scene={SPLINE_SCENE}
-                onLoad={(splineApp) => {
-                  try {
-                    // Force WebGL renderer to clear to transparent so the
-                    // #000000 container behind shows through — guarantees exact black
-                    const renderer = (splineApp as any)._renderer;
-                    if (renderer?.setClearColor) renderer.setClearColor(0x000000, 0);
-                    const scene = (splineApp as any)._scene ?? (splineApp as any).scene;
-                    if (scene) scene.background = null;
-                  } catch (_) {}
-                  setSplineLoaded(true);
-                }}
-              />
-            ) : null}
+    <div className="home">
+      {/* Hero */}
+      <section className="h-hero">
+        <div className="h-wrap h-hero-grid">
+          <div>
+            <span className="h-pill">Custom software · AI built in</span>
+            <h1>
+              One system for your entire operation, at a <span className="h-grad">fraction of the cost</span>.
+            </h1>
+            <p className="h-hero-sub">
+              We replace the software you rent with a platform built around how your team works, then put AI to work inside it. Seneca Development cut a $100,000-a-year software bill to about $700.
+            </p>
+            <ul className="h-proof">
+              <li>Built around your workflows, not a template.</li>
+              <li>A.R.I.S and AI agents working across all of it.</li>
+              <li>One build fee, then hosting at cost. The code is yours.</li>
+            </ul>
+            <div className="h-ctas">
+              <Link href="/contact" className="h-btn h-btn-primary">Book a conversation</Link>
+              <a href="#how" className="h-btn h-btn-ghost">How it works →</a>
+            </div>
           </div>
 
-          {/* Grid overlay — matches PlexusBg exactly */}
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              zIndex: 3,
-              pointerEvents: "none",
-              backgroundImage:
-                "linear-gradient(to right, rgba(140,175,255,0.07) 1px, transparent 1px), linear-gradient(to bottom, rgba(140,175,255,0.07) 1px, transparent 1px)",
-              backgroundSize: "72px 72px",
-            }}
-          />
+          <div className="h-vis" aria-hidden="true">
+            <div className="h-card h-card-rent">
+              <div className="h-card-bar"><i /><i /><i /><span>Annual software cost</span></div>
+              <div className="h-card-body">
+                <div className="h-bill">
+                  <div className="h-bill-row h-bill-old"><span>Construction management platform</span><s>$100,000</s></div>
+                  <div className="h-bill-row"><span>Novum system: hosting, storage, security</span><b>$700</b></div>
+                </div>
+              </div>
+            </div>
 
-          {/* Bottom fade — blends hero into page */}
-          <div
-            style={{
-              position: "absolute",
-              bottom: 0,
-              left: 0,
-              right: 0,
-              height: 180,
-              background:
-                "linear-gradient(to top, #000000 0%, #000000 38%, rgba(0,0,0,0.6) 65%, rgba(0,0,0,0) 100%)",
-              zIndex: 4,
-              pointerEvents: "none",
-            }}
-          />
-
-          {/* Left scrim — keeps hero copy legible over the Spline scene */}
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              zIndex: 4,
-              pointerEvents: "none",
-              background:
-                "linear-gradient(to right, #000000 0%, rgba(0,0,0,0.97) 40%, rgba(0,0,0,0.88) 56%, rgba(0,0,0,0.5) 72%, rgba(0,0,0,0) 92%)",
-            }}
-          />
-
-          {/* Hero copy */}
-          <div
-            className="hero-copy"
-            style={{
-              position: "relative",
-              zIndex: 5,
-              maxWidth: "1280px",
-              width: "100%",
-              margin: "0 auto",
-              padding: "0 40px",
-            }}
-          >
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={stagger(0.12, 0.15)}
-              style={{ maxWidth: "660px" }}
-            >
-              <motion.h1
-                variants={fadeUp}
-                style={{
-                  ...heroHeading,
-                  fontWeight: 700,
-                  fontSize: "clamp(2.4rem, 5vw, 4.2rem)",
-                  letterSpacing: "-0.035em",
-                  margin: "0 0 22px",
-                }}
-              >
-                We built software for our own company. It saves us $100,000 a year.
-              </motion.h1>
-
-              <motion.p
-                variants={fadeUp}
-                style={{
-                  color: "rgba(255,255,255,0.62)",
-                  fontSize: "clamp(0.95rem, 1.4vw, 1.1rem)",
-                  lineHeight: 1.8,
-                  maxWidth: "540px",
-                  margin: "0 0 36px",
-                }}
-              >
-                Now we do it for yours. Custom software that{" "}
-                <span
-                  style={{
-                    display: "inline-block",
-                    color: "#00D4FF",
-                    fontFamily: ADAPT_FONTS[fontIdx].font,
-                    fontStyle: ADAPT_FONTS[fontIdx].style,
-                    fontWeight: ADAPT_FONTS[fontIdx].weight,
-                    letterSpacing: ADAPT_FONTS[fontIdx].tracking,
-                    opacity: fading ? 0 : 1,
-                    transition: "opacity 0.3s ease",
-                  }}
-                >
-                  adapts
-                </span>{" "}
-                to how your business actually works, instead of forcing your team into
-                someone else&apos;s workflow. AI is why it now costs less than the
-                subscriptions it replaces.
-              </motion.p>
-
-              <motion.div variants={fadeUp} style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
-                <Link
-                  href="/contact"
-                  style={{
-                    display: "inline-flex", alignItems: "center", gap: "8px",
-                    padding: "14px 30px", borderRadius: "100px",
-                    background: "#00C87A", color: "#0a1a12",
-                    fontSize: "0.92rem", fontWeight: 600, textDecoration: "none",
-                  }}
-                >
-                  Book a call →
-                </Link>
-                <Link
-                  href="/case-studies/seneca-development"
-                  style={{
-                    display: "inline-flex", alignItems: "center", gap: "8px",
-                    padding: "14px 30px", borderRadius: "100px",
-                    background: "rgba(255,255,255,0.06)",
-                    border: "1px solid rgba(255,255,255,0.14)",
-                    color: "#EAEAEA",
-                    fontSize: "0.92rem", fontWeight: 600, textDecoration: "none",
-                  }}
-                >
-                  See what we built →
-                </Link>
-              </motion.div>
-            </motion.div>
+            <div className="h-card h-card-own">
+              <div className="h-card-bar"><i /><i /><i /><span>ops.yourcompany.com · agent activity</span></div>
+              <div className="h-card-body">
+                <div className="h-feed">
+                  <div><i className="h-dot" /><span>Drafted RFI #214 from the superintendent&apos;s field note</span><small>2m</small></div>
+                  <div><i className="h-dot" /><span>Matched 38 invoices to purchase orders, flagged 2</span><small>14m</small></div>
+                  <div><i className="h-dot" /><span>Requested missing lien waiver from Apex Electric</span><small>1h</small></div>
+                  <div><i className="h-dot" /><span>Built the weekly owner report for 4 projects</span><small>3h</small></div>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
       </section>
 
-      {/* ── The Problem — sticky scroll reveal ── */}
-      <div ref={problemScrollRef} style={{ position: "relative" }}>
-        {/* Sticky pin */}
-        <section style={{ padding: "96px 40px", position: "relative", background: "#000000" }}>
-        <motion.div style={{ opacity: problemOpacity, y: problemY }}>
-        <div style={{ maxWidth: "1280px", margin: "0 auto", position: "relative", zIndex: 1 }}>
-
-          {/* ── Centered header ── */}
-          <div
-            style={{ textAlign: "center", marginBottom: "56px" }}
-          >
-            <h2 style={{ ...heroHeading, fontSize: "clamp(1.8rem, 3vw, 2.8rem)", marginBottom: "18px" }}>
-              You are renting software that does not fit.
-            </h2>
-            <p style={{ color: "rgba(150,210,240,0.7)", lineHeight: 1.8, fontSize: "0.95rem", maxWidth: "580px", margin: "0 auto" }}>
-              Every subscription in your stack is a compromise. You pay monthly for features you never touch, work around the ones you need, and patch the gaps with spreadsheets. The stack keeps growing. The fit never improves.
-            </p>
-          </div>
-
-          {/* ── Chat + cards ── */}
-          <motion.div
-            style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px", alignItems: "stretch" }}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={stagger(0.08)}
-          >
-
-            {/* A.R.I.S live chat demo — height locked to cards column via ResizeObserver */}
-            <motion.div variants={fromLeft}>
-              <ArisChat height={chatHeight} />
-            </motion.div>
-
-            {/* Cards */}
-            <motion.div
-              ref={cardsRef}
-              style={{ display: "flex", flexDirection: "column", gap: "12px" }}
-              variants={stagger(0.08, 0.1)}
-            >
-              {[
-                {
-                  problem: "Data silos across departments",
-                  detail: "Finance, operations, and project teams each have their own tools — and none of them talk to each other. Getting a full picture requires manual aggregation every time.",
-                },
-                {
-                  problem: "No queryable intelligence layer",
-                  detail: "Years of documents, contracts, records, and history — all locked in folders. When someone needs an answer, they dig. Every time.",
-                },
-                {
-                  problem: "Access control is an afterthought",
-                  detail: "Shared drives with no structure. The wrong people see sensitive financials. The right people can't find what they need. Permissions are a patchwork.",
-                },
-                {
-                  problem: "Generic platforms slow you down",
-                  detail: "Off-the-shelf tools force your team to adapt workflows to the software. Every workaround is a tax on productivity — and a gap in your data.",
-                },
-                {
-                  problem: "Compliance exposure",
-                  detail: "Sensitive documents sitting in unencrypted shared folders. No audit trail. No enforcement. As organizations scale, this becomes a material risk.",
-                },
-                {
-                  problem: "Manual work that should already be automated",
-                  detail: "Your team is doing by hand what a properly configured system would handle automatically. Every repeated task is time and money leaving the business.",
-                },
-              ].map((item) => (
-                <motion.div key={item.problem} variants={fromRight} style={{
-                  padding: "28px 32px", background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(255,255,255,0.08)", borderRadius: "14px",
-                  transition: "border-color 0.2s, box-shadow 0.2s", flex: 1,
-                }}
-                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(91,141,239,0.45)"; (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 24px rgba(91,141,239,0.08)"; }}
-                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.08)"; (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
-                >
-                  <h4 style={{ fontWeight: 600, fontSize: "0.975rem", marginBottom: "8px", color: "#EAEAEA" }}>{item.problem}</h4>
-                  <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.875rem", lineHeight: 1.75, margin: 0 }}>{item.detail}</p>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
+      {/* Strip */}
+      <div className="h-strip">
+        <div className="h-wrap">
+          <p>Built for operators in</p>
+          <span>Construction</span>
+          <span>Real estate</span>
+          <span>Field services</span>
+          <span>Professional services</span>
+          <span>Logistics</span>
         </div>
-        </motion.div>
-        </section>
       </div>
 
-      {/* ── What We Deploy ── */}
-      <section style={{ padding: "60px 24px", position: "relative" }}>
-        <div style={{
-          background: "rgba(255,255,255,0.02)",
-          border: "1px solid rgba(255,255,255,0.08)",
-          borderRadius: "20px",
-          padding: "80px 60px",
-          position: "relative",
-        }}>
-          <div style={{ position: "relative", zIndex: 2 }}>
-            <div style={{ textAlign: "center", marginBottom: "64px" }}>
-              <div style={{
-                display: "inline-flex", alignItems: "center", gap: "7px",
-                padding: "5px 14px", borderRadius: "100px",
-                border: "1px solid rgba(255,255,255,0.12)", background: "rgba(255,255,255,0.06)",
-                fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.09em", textTransform: "uppercase",
-                color: "rgba(255,255,255,0.45)", marginBottom: "20px",
-              }}>
-                <span style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(255,255,255,0.4)", display: "inline-block" }} />
-                What We Do
+      {/* Problem */}
+      <section className="h-sec h-dark">
+        <div className="h-wrap">
+          <div className="h-head">
+            <div className="h-eyebrow">The problem</div>
+            <h2>You rent a stack of tools that were never built for you.</h2>
+            <p>Each one costs more every year, holds a piece of your data, and makes your team work its way. None of them see the whole business.</p>
+          </div>
+          <div className="h-cards3">
+            {PROBLEMS.map((p, i) => (
+              <div className="h-pcard" key={p.title}>
+                <div className="h-num">0{i + 1}</div>
+                <h3>{p.title}</h3>
+                <p>{p.body}</p>
               </div>
-              <h2 style={{ ...heroHeading, fontSize: "clamp(2rem, 3.5vw, 3rem)", marginBottom: "16px" }}>We replace your SaaS stack with software built for you.</h2>
-              <p style={{ color: "rgba(150,210,240,0.7)", fontSize: "0.95rem", lineHeight: 1.8, maxWidth: "640px", margin: "0 auto" }}>
-                You own it outright instead of renting it forever. It maps to your workflow instead of the average of ten thousand other companies. And when your operation changes, the software changes with it.
-              </p>
-            </div>
-
-            <motion.div
-              style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "12px" }}
-              className="stack-grid"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-80px" }}
-              variants={stagger(0.09)}
-            >
-              {[
-                {
-                  name: "Your operations layer",
-                  sub: "Built from your workflows",
-                  desc: "We map how your business actually runs, connect the tools you keep, build what is missing, and deploy one system your operation works in. Where a task repeats, we automate it outright. No templates to conform to.",
-                  accent: "#5B8DEF", accentBg: "rgba(91,141,239,0.08)", accentBorder: "rgba(91,141,239,0.2)",
-                },
-                {
-                  name: "Document intelligence",
-                  sub: "Encrypted and queryable",
-                  desc: "Contracts, records, reports, history. Encrypted, indexed, and answerable in plain English. Drop a file in, ask a question, get the answer and the original document back. Access controlled by role.",
-                  accent: "#5B8DEF", accentBg: "rgba(91,141,239,0.08)", accentBorder: "rgba(91,141,239,0.2)",
-                },
-                {
-                  name: "A.R.I.S",
-                  sub: "Ask your business anything",
-                  desc: "Ask a question about your operation and get an answer in seconds. A.R.I.S runs on your data and searches across everything we build for you. It does not know the internet. It knows your business.",
-                  accent: "#5B8DEF", accentBg: "rgba(91,141,239,0.08)", accentBorder: "rgba(91,141,239,0.22)",
-                },
-              ].map((s, i) => (
-                <motion.div key={s.name} variants={i === 1 ? fadeUp : (i === 0 ? fromLeft : fromRight)} style={{
-                  padding: "32px", background: "rgba(255,255,255,0.04)",
-                  border: `1px solid ${s.accentBorder}`, borderRadius: "16px",
-                  display: "flex", flexDirection: "column", gap: "10px",
-                }}>
-                  <span style={{
-                    display: "inline-block", padding: "3px 12px", borderRadius: "100px",
-                    background: s.accentBg, border: `1px solid ${s.accentBorder}`,
-                    fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase",
-                    color: s.accent, alignSelf: "flex-start", marginBottom: "6px",
-                  }}>{s.sub}</span>
-                  <h3 style={{ fontWeight: 700, fontSize: "1.3rem", letterSpacing: "-0.02em", color: "#fff", margin: 0 }}>{s.name}</h3>
-                  <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.875rem", lineHeight: 1.75, margin: 0 }}>{s.desc}</p>
-                </motion.div>
-              ))}
-            </motion.div>
-
-            <p style={{ textAlign: "center", color: "rgba(255,255,255,0.45)", fontSize: "0.875rem", lineHeight: 1.7, marginTop: "32px", maxWidth: 640, marginLeft: "auto", marginRight: "auto" }}>
-              These are examples, not a product menu. Most builds include some version of all three. What yours looks like depends entirely on how you operate.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Who This Is For ── */}
-      <section style={{ padding: "96px 40px" }}>
-        <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
-          <div style={{ textAlign: "center", maxWidth: "520px", margin: "0 auto 56px" }}>
-            <h2 style={{ ...heroHeading, fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", marginBottom: "14px" }}>Who this is for.</h2>
-            <p style={{ color: "rgba(150,210,240,0.7)", lineHeight: 1.8, fontSize: "0.95rem" }}>
-              We do not build for industries. We build for operations. These are places the fit problem shows up most, but the work is the same everywhere: figure out how you run, then build exactly that.
-            </p>
-          </div>
-
-          <motion.div
-            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px" }}
-            className="who-grid"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={stagger(0.08)}
-          >
-            {[
-              { title: "Multi-Location Operators", desc: "Organizations running operations across multiple locations, divisions, or territories — who need visibility and coordination across the entire footprint." },
-              { title: "Professional Services Firms", desc: "Firms managing client engagements, project budgets, and team utilization — where every job is unique and the data needs to follow it." },
-              { title: "Franchise Systems", desc: "Franchise brands that need consistency across locations while preserving flexibility — with a centralized intelligence layer the corporate team can query." },
-              { title: "Logistics & Distribution", desc: "Operations with complex routing, vendor relationships, and real-time coordination needs that standard platforms can't model." },
-              { title: "Healthcare & Managed Services", desc: "Organizations with compliance requirements, role-based access mandates, and document-heavy workflows that demand auditability at every level." },
-              { title: "Growing Mid-Market Businesses", desc: "Companies that have scaled past their original tools and need a system that can grow with them — built once, expanded as the business demands." },
-            ].map((item, i) => (
-              <motion.div key={item.title} variants={i % 2 === 0 ? fromLeft : fromRight} style={{
-                padding: "36px", background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.08)", borderRadius: "16px",
-                transition: "border-color 0.2s, box-shadow 0.2s",
-              }}
-                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(91,141,239,0.45)"; (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 24px rgba(91,141,239,0.08)"; }}
-                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.08)"; (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
-              >
-                <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#5B8DEF", marginBottom: "20px" }} />
-                <h3 style={{ fontWeight: 700, fontSize: "1rem", letterSpacing: "-0.015em", marginBottom: "10px", color: "#EAEAEA" }}>{item.title}</h3>
-                <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.875rem", lineHeight: 1.75, margin: 0 }}>{item.desc}</p>
-              </motion.div>
             ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ── Security ── */}
-      <section style={{ padding: "96px 40px", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-        <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
-          <div style={{ textAlign: "center", maxWidth: "560px", margin: "0 auto 56px" }}>
-            <div style={{
-              display: "inline-flex", alignItems: "center", gap: "7px",
-              padding: "5px 14px", borderRadius: "100px",
-              border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.05)",
-              fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.09em", textTransform: "uppercase",
-              color: "rgba(255,255,255,0.55)", marginBottom: "20px",
-            }}>
-              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(255,255,255,0.5)", display: "inline-block" }} />
-              Security & Compliance
-            </div>
-            <h2 style={{ ...heroHeading, fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", marginBottom: "16px" }}>Security isn&apos;t a feature. It&apos;s the foundation.</h2>
-            <p style={{ color: "rgba(150,210,240,0.7)", lineHeight: 1.8, fontSize: "0.95rem" }}>
-              Larger organizations face real compliance exposure. Every system we build is designed with encryption, access control, and auditability from day one — not bolted on later.
-            </p>
           </div>
-
-          <motion.div
-            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px" }}
-            className="sec-grid"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={stagger(0.07)}
-          >
-            {[
-              {
-                title: "Encryption at Rest & in Transit",
-                desc: "All data encrypted end-to-end. Files, records, and documents are never exposed in plain text — whether stored or moving between systems.",
-                icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="11" width="18" height="11" rx="2" stroke="#5B8DEF" strokeWidth="1.5"/><path d="M7 11V7a5 5 0 0110 0v4" stroke="#5B8DEF" strokeWidth="1.5" strokeLinecap="round"/><circle cx="12" cy="16" r="1.5" fill="#5B8DEF"/></svg>,
-                accent: "#5B8DEF", accentBg: "rgba(91,141,239,0.08)", accentBorder: "rgba(91,141,239,0.2)",
-              },
-              {
-                title: "Role-Based Access Control",
-                desc: "Granular permissions enforced at the system level. Every team member sees exactly what they should — nothing more. Enforced automatically, no manual management.",
-                icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2L3 7v8c0 5 4 8.5 9 9.5 5-1 9-4.5 9-9.5V7L12 2z" stroke="#5B8DEF" strokeWidth="1.5" strokeLinejoin="round"/><polyline points="8,12 11,15 16,10" stroke="#5B8DEF" strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round"/></svg>,
-                accent: "#5B8DEF", accentBg: "rgba(91,141,239,0.08)", accentBorder: "rgba(91,141,239,0.2)",
-              },
-              {
-                title: "Isolated Data Environments",
-                desc: "Each business unit, team, or partner operates within its own data environment. No cross-contamination. No accidental exposure. Clean separation by design.",
-                icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="9" height="9" rx="1.5" stroke="#5B8DEF" strokeWidth="1.5"/><rect x="13" y="3" width="9" height="9" rx="1.5" stroke="#5B8DEF" strokeWidth="1.5" opacity="0.45"/><rect x="2" y="14" width="9" height="9" rx="1.5" stroke="#5B8DEF" strokeWidth="1.5" opacity="0.45"/><rect x="13" y="14" width="9" height="9" rx="1.5" stroke="#5B8DEF" strokeWidth="1.5"/></svg>,
-                accent: "#5B8DEF", accentBg: "rgba(91,141,239,0.08)", accentBorder: "rgba(91,141,239,0.2)",
-              },
-              {
-                title: "Your Data Stays Yours",
-                desc: "We don't aggregate, sell, or train on your data. Everything lives in your infrastructure. You own it fully — before, during, and after the engagement.",
-                icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="5" rx="9" ry="3" stroke="#5B8DEF" strokeWidth="1.5"/><path d="M3 5v6c0 1.66 4.03 3 9 3s9-1.34 9-3V5" stroke="#5B8DEF" strokeWidth="1.5"/><path d="M3 11v6c0 1.66 4.03 3 9 3s9-1.34 9-3v-6" stroke="#5B8DEF" strokeWidth="1.5"/></svg>,
-                accent: "#5B8DEF", accentBg: "rgba(91,141,239,0.08)", accentBorder: "rgba(91,141,239,0.2)",
-              },
-              {
-                title: "Audit-Ready Architecture",
-                desc: "Every action in the system is logged. Who accessed what, when, and what changed. When compliance questions arise, the answers are already there.",
-                icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="4" y="2" width="16" height="20" rx="2" stroke="#5B8DEF" strokeWidth="1.5"/><line x1="8" y1="7" x2="16" y2="7" stroke="#5B8DEF" strokeWidth="1.3" strokeLinecap="round"/><line x1="8" y1="11" x2="16" y2="11" stroke="#5B8DEF" strokeWidth="1.3" strokeLinecap="round"/><line x1="8" y1="15" x2="12" y2="15" stroke="#5B8DEF" strokeWidth="1.3" strokeLinecap="round"/></svg>,
-                accent: "#5B8DEF", accentBg: "rgba(91,141,239,0.08)", accentBorder: "rgba(91,141,239,0.2)",
-              },
-              {
-                title: "No Generic AI Exposure",
-                desc: "A.R.I.S queries only your data. It doesn't pass documents to public AI models or use your information to train anything external. Intelligent — and contained.",
-                icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#5B8DEF" strokeWidth="1.5"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07" stroke="#5B8DEF" strokeWidth="1.5" strokeLinecap="round"/></svg>,
-                accent: "#5B8DEF", accentBg: "rgba(91,141,239,0.08)", accentBorder: "rgba(91,141,239,0.2)",
-              },
-            ].map((item, i) => (
-              <motion.div key={item.title} variants={i % 2 === 0 ? fromLeft : fromRight} style={{
-                padding: "32px", background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.08)", borderRadius: "16px",
-                transition: "border-color 0.2s, box-shadow 0.2s",
-              }}
-                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(91,141,239,0.45)"; (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 24px rgba(91,141,239,0.08)"; }}
-                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.08)"; (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
-              >
-                <div style={{
-                  width: 48, height: 48, background: item.accentBg,
-                  border: `1px solid ${item.accentBorder}`, borderRadius: "12px",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  marginBottom: "20px",
-                }}>{item.icon}</div>
-                <h3 style={{ fontWeight: 700, fontSize: "0.975rem", marginBottom: "10px", color: "#EAEAEA" }}>{item.title}</h3>
-                <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.875rem", lineHeight: 1.75, margin: 0 }}>{item.desc}</p>
-              </motion.div>
-            ))}
-          </motion.div>
         </div>
       </section>
 
-      {/* ── How We Engage ── */}
-      <section style={{ padding: "0 24px" }}>
-        <div style={{
-          background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "20px",
-          padding: "80px 60px",
-        }}>
-          <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: "80px", alignItems: "start" }} className="engage-col">
-              <div style={{ position: "sticky", top: "88px" }}>
-                <div style={{
-                  display: "inline-flex", alignItems: "center", gap: "7px",
-                  padding: "5px 14px", borderRadius: "100px",
-                  border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.05)",
-                  fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.09em", textTransform: "uppercase",
-                  color: "rgba(255,255,255,0.55)", marginBottom: "20px",
-                }}>
-                  <span style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(255,255,255,0.5)", display: "inline-block" }} />
-                  How We Engage
+      {/* Case study */}
+      <section className="h-sec h-soft">
+        <div className="h-wrap h-roi">
+          <div>
+            <div className="h-eyebrow">Case study · Seneca Development Co.</div>
+            <h2>What would you do with <span className="h-grad">$99,300</span> back every year?</h2>
+            <p className="h-roi-sub">
+              Seneca was paying $100,000 a year for construction management software. We rebuilt it around how they run projects, connected it to the rest of the business, and put A.R.I.S on top. After the build, the system costs about $700 a year to host, store, and secure.
+            </p>
+            <div className="h-chips">
+              <span>$100,000/yr before</span>
+              <span>~$700/yr after</span>
+              <span>99% lower annual cost</span>
+            </div>
+          </div>
+          <div className="h-roi-card">
+            <h3>What Seneca runs on now</h3>
+            <ul>
+              <li><b>Construction management</b> rebuilt around their own workflows, replacing the subscription platform.</li>
+              <li><b>Projects, documents, and investor reporting</b> in one system instead of spreadsheets and shared drives.</li>
+              <li><b>A.R.I.S</b> answering questions across every project and document the firm has.</li>
+            </ul>
+            <div className="h-roi-foot">
+              <p>One build fee. Then storage, security, and hosting. No seats, no revenue share, no renewal.</p>
+              <Link href="/case-studies/seneca-development">Read the full case study →</Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Systems */}
+      <section className="h-sec">
+        <div className="h-wrap h-sys">
+          <div>
+            <div className="h-head" style={{ marginBottom: 32 }}>
+              <div className="h-eyebrow">What we build</div>
+              <h2>One system. AI across all of it.</h2>
+              <p>Each piece works on its own. Together they share one set of data, which is what lets the AI answer real questions and do real work.</p>
+            </div>
+            <div className="h-syslist">
+              {SYSTEMS.map((s) => (
+                <div className="h-sysitem" key={s.title}>
+                  <h3>{s.title}</h3>
+                  <p>{s.body}</p>
                 </div>
-                <h2 style={{ ...heroHeading, fontSize: "clamp(1.8rem, 3vw, 2.6rem)", marginBottom: "18px" }}>We map before we build. Always.</h2>
-                <p style={{ color: "rgba(150,210,240,0.7)", lineHeight: 1.8, fontSize: "0.95rem" }}>
-                  We don&apos;t propose solutions before we understand the problem. Every engagement starts with discovery — and nothing gets built until the architecture is approved.
-                </p>
-              </div>
-              <motion.div
-                style={{ display: "flex", flexDirection: "column", gap: "8px" }}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-80px" }}
-                variants={stagger(0.07)}
-              >
-                {[
-                  { num: "01", title: "Operational Discovery", desc: "We spend time with your team understanding how your business actually runs — the workflows, the workarounds, the data flows, and the decision-making structure. This informs everything." },
-                  { num: "02", title: "System Architecture", desc: "We design the full system architecture before a single line is written — data models, access structure, integration points, and the intelligence layer. You review and approve." },
-                  { num: "03", title: "Phased Build & Deployment", desc: "We build in phases, starting with the highest-impact systems. Each phase is tested, trained on, and live before the next begins. No big-bang launches." },
-                  { num: "04", title: "Training & Handoff", desc: "Every system comes with structured training and documentation. Your team owns it. We don't create dependency — we create capability." },
-                  { num: "05", title: "Ongoing Support", desc: "We remain available after deployment. As your operation evolves, the system evolves with it. Retainer-based support available for enterprise clients." },
-                ].map(step => (
-                  <motion.div key={step.num} variants={fromRight} style={{
-                    display: "grid", gridTemplateColumns: "64px 1fr",
-                    gap: "32px", padding: "32px 36px",
-                    background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)",
-                    borderRadius: "14px", transition: "border-color 0.2s",
-                  }}
-                    onMouseEnter={e => (e.currentTarget as HTMLElement).style.borderColor = "rgba(91,141,239,0.45)"}
-                    onMouseLeave={e => (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.08)"}
-                  >
-                    <span style={{
-                      fontSize: "2rem", fontWeight: 700, letterSpacing: "-0.03em",
-                      background: "linear-gradient(115deg, #00D4FF, #5B8DEF)",
-                      WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
-                      backgroundClip: "text", lineHeight: 1,
-                    }}>{step.num}</span>
-                    <div>
-                      <h4 style={{ fontWeight: 700, fontSize: "0.975rem", marginBottom: "8px", color: "#EAEAEA" }}>{step.title}</h4>
-                      <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.875rem", lineHeight: 1.75, margin: 0 }}>{step.desc}</p>
+              ))}
+            </div>
+          </div>
+          <div className="h-demo">
+            <div className="h-demo-bar"><i /><i /><i /><span>A.R.I.S · live demo</span></div>
+            <ArisChat height={620} />
+          </div>
+        </div>
+      </section>
+
+      {/* How it works */}
+      <section className="h-sec h-soft" id="how">
+        <div className="h-wrap">
+          <div className="h-howgrid">
+            <div className="h-head">
+              <div className="h-eyebrow">How it works</div>
+              <h2>Three steps. One price for the build.</h2>
+              <p>Nothing gets built until the scope and the price are agreed in writing.</p>
+            </div>
+            <div className="h-vsteps">
+              {STEPS.map((s, i) => (
+                <div className="h-vstep" key={s.title}>
+                  <div className="h-vstep-n">{i + 1}</div>
+                  <div>
+                    <div className="h-vstep-head">
+                      <h3>{s.title}</h3>
+                      <span className="h-badge">{s.tag}</span>
                     </div>
-                  </motion.div>
-                ))}
-              </motion.div>
+                    <p>{s.body}</p>
+                    <div className="h-includes"><b>Includes:</b> {s.includes}</div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── CTA ── */}
-      <section style={{ padding: "24px 24px 80px" }}>
-        <div style={{
-          background: "rgba(255,255,255,0.02)",
-          border: "1px solid rgba(255,255,255,0.08)",
-          borderRadius: "20px",
-          padding: "80px 60px", textAlign: "center",
-          position: "relative",
-        }}>
-          <div style={{ position: "relative", zIndex: 2, maxWidth: "580px", margin: "0 auto" }}>
-            <h2 style={{ ...heroHeading, fontSize: "clamp(2rem, 4vw, 3rem)", marginBottom: "18px" }}>Ready to talk about your operation?</h2>
-            <p style={{ color: "rgba(150,210,240,0.7)", lineHeight: 1.8, marginBottom: "36px", fontSize: "1rem" }}>
-              Enterprise engagements start with a conversation. No slide deck, no sales process — just an honest discussion about what you&apos;re running and whether we&apos;re the right fit.
-            </p>
-            <Link href="/contact" style={{
-              display: "inline-flex", alignItems: "center", gap: "8px",
-              padding: "14px 36px", borderRadius: "100px",
-              background: "#5B8DEF", color: "#ffffff",
-              fontSize: "0.92rem", fontWeight: 600, textDecoration: "none",
-            }}>
-              Schedule a conversation →
-            </Link>
+      {/* Compare */}
+      <section className="h-sec">
+        <div className="h-wrap">
+          <div className="h-head h-center">
+            <div className="h-eyebrow">The difference</div>
+            <h2>Your rented stack vs. your own system.</h2>
+            <p>AI cut the cost of building custom software. A system built for you now costs less than the tools you rent.</p>
+          </div>
+          <div className="h-table">
+            <div className="h-trow h-thead"><div /><div>Rented software</div><div>Built by Novum</div></div>
+            {COMPARE.map(([label, rent, own]) => (
+              <div className="h-trow" key={label}><div>{label}</div><div>{rent}</div><div>{own}</div></div>
+            ))}
           </div>
         </div>
       </section>
 
+      {/* Security */}
+      <section className="h-sec h-soft">
+        <div className="h-wrap">
+          <div className="h-head">
+            <div className="h-eyebrow">Security</div>
+            <h2>Built locked down from day one.</h2>
+            <p>Every build ships with these in place.</p>
+          </div>
+          <div className="h-sec6">
+            {SECURITY.map(([t, d]) => (
+              <div key={t}><h3>{t}</h3><p>{d}</p></div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-      <style jsx>{`
-        .hero-card {
-          grid-template-columns: 1fr 1.08fr;
-        }
+      {/* FAQ */}
+      <section className="h-sec">
+        <div className="h-wrap">
+          <div className="h-head h-center">
+            <div className="h-eyebrow">Questions</div>
+            <h2>What people ask first.</h2>
+          </div>
+          <div className="h-faq">
+            {FAQ.map((f) => (
+              <details key={f.q}>
+                <summary>{f.q}</summary>
+                <p>{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
 
-        @media (max-width: 900px) {
-          .two-col { grid-template-columns: 1fr !important; }
-          .two-col > div:first-child { position: static !important; }
-          .stack-grid { grid-template-columns: 1fr !important; }
-          .stack-grid-2 { grid-template-columns: 1fr !important; }
-          .sec-grid { grid-template-columns: 1fr !important; }
-          .engage-col { grid-template-columns: 1fr !important; }
-          .engage-col > div:first-child { position: static !important; }
-          .who-grid { grid-template-columns: 1fr !important; }
-        }
-
-        @media (max-width: 1080px) {
-          .hero-card {
-            grid-template-columns: 1fr !important;
-          }
-
-          .hero-card > div:first-child {
-            padding: 58px 28px 10px !important;
-          }
-
-          .hero-card > div:last-child {
-            min-height: 540px;
-          }
-
-          .problem-grid {
-            grid-template-columns: 1fr !important;
-          }
-
-          .solution-grid {
-            grid-template-columns: 1fr !important;
-          }
-
-          .process-grid {
-            grid-template-columns: 1fr !important;
-          }
-
-          .process-connector {
-            display: none;
-          }
-
-          .sys-row {
-            grid-template-columns: 1fr !important;
-            gap: 18px !important;
-            padding: 24px !important;
-          }
-        }
-
-        @media (max-width: 720px) {
-          section {
-            padding-left: 16px !important;
-            padding-right: 16px !important;
-          }
-
-          .hero-card > div:last-child {
-            min-height: 420px;
-          }
-        }
-      `}</style>
+      {/* CTA */}
+      <section className="h-sec" style={{ paddingTop: 0 }}>
+        <div className="h-wrap">
+          <div className="h-cta">
+            <h2>Tell us what you pay for today.</h2>
+            <p>Send us your software stack and what it costs. We&apos;ll tell you what we&apos;d replace, where AI would do the work, and what it would cost to run.</p>
+            <Link href="/contact" className="h-btn h-btn-light">Book a conversation</Link>
+            <p className="h-cta-meta">No obligation. No sales deck.</p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
