@@ -6,26 +6,25 @@ import { USE_CASE_NAV } from "@/lib/nav";
 const EMAIL = "hello@novumsystems.co";
 
 export default function ContactPage() {
-  const [form, setForm] = useState({ name: "", email: "", company: "", industry: "", tools: "", message: "" });
-  const [sent, setSent] = useState(false);
+  const [form, setForm] = useState({ name: "", email: "", company: "", industry: "", tools: "", message: "", website: "" });
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   const set = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  // No form backend yet: hand the message to the visitor's email app, pre-filled
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const body = [
-      `Name: ${form.name}`,
-      `Email: ${form.email}`,
-      `Company: ${form.company}`,
-      `Industry: ${form.industry}`,
-      `Tools we pay for today: ${form.tools}`,
-      "",
-      form.message,
-    ].join("\n");
-    window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(`Intro: ${form.company || form.name}`)}&body=${encodeURIComponent(body)}`;
-    setSent(true);
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      setStatus(res.ok ? "sent" : "error");
+    } catch {
+      setStatus("error");
+    }
   };
 
   return (
@@ -46,10 +45,10 @@ export default function ContactPage() {
           </div>
 
           <div className="h-formcard">
-            {sent ? (
+            {status === "sent" ? (
               <div style={{ textAlign: "center", padding: "40px 0" }}>
-                <h2 style={{ fontSize: "1.8rem", marginBottom: 12 }}>Almost there.</h2>
-                <p style={{ color: "#64748b" }}>Your email app should have opened with your message filled in. Hit send and we&apos;ll be in touch. If nothing opened, email us at <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.</p>
+                <h2 style={{ fontSize: "1.8rem", marginBottom: 12 }}>Got it. Thank you.</h2>
+                <p style={{ color: "#64748b" }}>We&apos;ll read what you sent and reach out to set up a call.</p>
               </div>
             ) : (
               <form className="h-form" onSubmit={submit}>
@@ -69,7 +68,11 @@ export default function ContactPage() {
                 </div>
                 <label>What software do you pay for today?<input name="tools" placeholder="e.g. project management, CRM, accounting" value={form.tools} onChange={set} /></label>
                 <label>Anything else we should know?<textarea name="message" value={form.message} onChange={set} /></label>
-                <button type="submit" className="h-btn h-btn-primary">Send</button>
+                <input name="website" value={form.website} onChange={set} tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: "absolute", left: -9999, width: 1, height: 1, opacity: 0 }} />
+                {status === "error" && (
+                  <p style={{ color: "#b42318", fontSize: "0.9rem" }}>Something went wrong sending that. Please email us at <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.</p>
+                )}
+                <button type="submit" className="h-btn h-btn-primary" disabled={status === "sending"}>{status === "sending" ? "Sending..." : "Send"}</button>
               </form>
             )}
           </div>
