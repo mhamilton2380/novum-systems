@@ -219,10 +219,10 @@ export default function HomePage() {
       <section className="h-sec h-soft">
         <div className="h-wrap h-roi">
           <div>
-            <div className="h-eyebrow">Case study · Real estate developer</div>
+            <div className="h-eyebrow">Case study · Construction company</div>
             <h2>What would you do with <span className="h-grad">$99,300</span> back every year?</h2>
             <p className="h-roi-sub">
-              A multifamily developer was paying $100,000 a year for construction management software. We rebuilt it around how they run projects, connected it to the rest of the business, and put an AI assistant on top. After the build, the system costs about $700 a year to host, store, and secure.
+              A construction company was paying $100,000 a year for construction management software. We rebuilt it around how they run projects, connected it to the rest of the business, and put an AI assistant on top. After the build, the system costs about $700 a year to host, store, and secure.
             </p>
             <div className="h-chips">
               <span>$100,000/yr before</span>
