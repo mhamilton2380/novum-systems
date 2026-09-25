@@ -152,7 +152,7 @@ export default function HomePage() {
               <div className="h-card-body">
                 <div className="h-bill">
                   <div className="h-bill-row h-bill-old"><span>Software subscriptions</span><s>$100,000</s></div>
-                  <div className="h-bill-row"><span>Your own system: hosting, storage, security</span><b>$700</b></div>
+                  <div className="h-bill-row"><span>Your own system: one build, then hosting</span><b>A fraction</b></div>
                 </div>
               </div>
             </div>
@@ -220,14 +220,14 @@ export default function HomePage() {
         <div className="h-wrap h-roi">
           <div>
             <div className="h-eyebrow">Case study · Construction company</div>
-            <h2>What would you do with <span className="h-grad">$99,300</span> back every year?</h2>
+            <h2>What would you do with a <span className="h-grad">$100,000</span> software bill back?</h2>
             <p className="h-roi-sub">
-              A construction company was paying $100,000 a year for construction management software. We rebuilt it around how they run projects, connected it to the rest of the business, and put an AI assistant on top. After the build, the system costs about $700 a year to host, store, and secure.
+              A construction company was paying $100,000 a year for construction management software. We rebuilt it around how they run projects, connected it to the rest of the business, and put an AI assistant on top. After the build, they pay only for hosting, storage, and security, a small fraction of what the subscription cost.
             </p>
             <div className="h-chips">
               <span>$100,000/yr before</span>
-              <span>~$700/yr after</span>
-              <span>99% lower annual cost</span>
+              <span>One-time build</span>
+              <span>Hosting only after that</span>
             </div>
           </div>
           <div className="h-roi-card">
