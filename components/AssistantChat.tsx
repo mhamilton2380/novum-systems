@@ -237,7 +237,11 @@ function Message({ msg, isLatest }: { msg: Msg; isLatest: boolean }) {
 }
 
 // ─── Main component ───────────────────────────────────────────────────────────
-export function AssistantChat({ height = 600 }: { height?: number }) {
+// Compact version skips the document exchange, for the rotating showcase
+const COMPACT: typeof SCRIPT = [{ ...SCRIPT[3], delay: 700 }, ...SCRIPT.slice(4)];
+
+export function AssistantChat({ height = 600, compact = false, bare = false }: { height?: number; compact?: boolean; bare?: boolean }) {
+  const script = compact ? COMPACT : SCRIPT;
   const [messages, setMessages] = useState<Msg[]>([]);
   const [listening, setListening] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -248,11 +252,11 @@ export function AssistantChat({ height = 600 }: { height?: number }) {
       setMessages([]);
       setListening(false);
       const step = (idx: number) => {
-        if (idx >= SCRIPT.length) {
+        if (idx >= script.length) {
           timerRef.current = setTimeout(run, 6000);
           return;
         }
-        const { msg, delay } = SCRIPT[idx];
+        const { msg, delay } = script[idx];
         timerRef.current = setTimeout(() => {
           setListening(msg.kind === "user");
           setMessages(prev => (msg.kind === "user" || msg.kind === "thinking")
@@ -265,7 +269,7 @@ export function AssistantChat({ height = 600 }: { height?: number }) {
     };
     run();
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
-  }, []);
+  }, [script]);
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -279,7 +283,7 @@ export function AssistantChat({ height = 600 }: { height?: number }) {
       width: "100%", height, overflow: "hidden", fontFamily: "'DM Sans', sans-serif",
     }}>
       {/* Header */}
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, padding: "16px 20px", borderBottom: `1px solid ${C.line}`, flexShrink: 0 }}>
+      {!bare && <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, padding: "16px 20px", borderBottom: `1px solid ${C.line}`, flexShrink: 0 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <Mark size={34} />
           <div>
@@ -291,7 +295,7 @@ export function AssistantChat({ height = 600 }: { height?: number }) {
           <span style={{ width: 8, height: 8, borderRadius: "50%", background: C.green, animation: "ac-pulse 1.6s ease-in-out infinite" }} />
           <span style={{ fontSize: "0.76rem", color: C.ink3 }}>Online</span>
         </div>
-      </div>
+      </div>}
 
       {/* Messages */}
       <div ref={scrollRef} style={{ flex: 1, minHeight: 0, overflowY: "auto", padding: "20px 20px 6px", background: "#fcfdfe", scrollbarWidth: "thin" }}>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { AssistantChat } from "../components/AssistantChat";
+import { SystemsShowcase } from "../components/SystemsShowcase";
 import "./home.css";
 
 // ─── Content ──────────────────────────────────────────────────────────────────
@@ -60,29 +60,6 @@ const STEPS = [
   },
 ];
 
-const SYSTEMS = [
-  {
-    title: "Core",
-    body: "Projects, schedules, budgets, vendors, and reporting in one place, built around how your team works. This replaces the platforms you rent today.",
-  },
-  {
-    title: "Integrations",
-    body: "Keep the tools that work. We connect QuickBooks, Salesforce, Outlook, and the rest so data moves between them on its own and nobody types the same thing twice.",
-  },
-  {
-    title: "Vault",
-    body: "Contracts, drawings, records, and history. Encrypted, indexed, and searchable in plain English, with access controlled by role.",
-  },
-  {
-    title: "AI Assistant",
-    body: "Ask a question about any part of your operation and get the answer in seconds. It runs on your data only.",
-  },
-  {
-    title: "Agents",
-    body: "Because everything lives in one system, AI can do real work inside it: draft the RFI, match the invoice to the PO, chase the missing lien waiver, build the weekly report.",
-  },
-];
-
 const INDUSTRIES = [
   "Construction", "Field services", "Professional services", "Legal", "Accounting", "Sales teams",
   "Marketing agencies", "Insurance", "Healthcare", "Manufacturing", "Logistics", "Distribution",
@@ -124,7 +101,7 @@ const AUDIT = [
 const FAQ = [
   {
     q: "What does it cost?",
-    a: "Discovery is a flat fee that credits toward the build. The build is a fixed price we quote after discovery. After that you pay hosting, storage, and security at cost. For Seneca Development that runs about $700 a year.",
+    a: "It depends on what you need. Every company runs differently: some need a new system built from scratch, some need the tools they already use connected, and most need a mix of both. We price every project case by case, after we understand how your business works.",
   },
   {
     q: "Will it do everything our current software does?",
@@ -270,26 +247,8 @@ export default function HomePage() {
 
       {/* Systems */}
       <section className="h-sec">
-        <div className="h-wrap h-sys">
-          <div>
-            <div className="h-head" style={{ marginBottom: 32 }}>
-              <div className="h-eyebrow">What we build</div>
-              <h2>One system. AI across all of it.</h2>
-              <p>Each piece works on its own. Together they share one set of data, which is what lets the AI answer real questions and do real work.</p>
-            </div>
-            <div className="h-syslist">
-              {SYSTEMS.map((s) => (
-                <div className="h-sysitem" key={s.title}>
-                  <h3>{s.title}</h3>
-                  <p>{s.body}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="h-demo">
-            <div className="h-demo-bar"><i /><i /><i /><span>Live demo</span></div>
-            <AssistantChat height={640} />
-          </div>
+        <div className="h-wrap">
+          <SystemsShowcase />
         </div>
       </section>
 
