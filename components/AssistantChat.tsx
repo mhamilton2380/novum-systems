@@ -11,16 +11,16 @@ type Msg =
 
 // ─── Conversation script ──────────────────────────────────────────────────────
 const SCRIPT: { msg: Msg; delay: number }[] = [
-  { delay: 1000, msg: { kind: "user", text: "Pull the Henderson contract documents and send them to Charlie at Mercer Group." } },
+  { delay: 1000, msg: { kind: "user", text: "Send the Miller service agreement and last invoice to Dana Miller." } },
   { delay: 1400, msg: { kind: "thinking" } },
-  { delay: 2600, msg: { kind: "ai", text: "Found 3 documents in Vault: the Master Service Agreement, the 2024 Amendment, and the Statement of Work. Sent to Charlie Walsh at Mercer Group from your Outlook." } },
-  { delay: 5000, msg: { kind: "user", text: "Which jobs are over budget this month, and why?" } },
+  { delay: 2600, msg: { kind: "ai", text: "Found both in Vault: the 2025 maintenance agreement and invoice #8812. Sent to Dana Miller from your Outlook." } },
+  { delay: 5000, msg: { kind: "user", text: "Which techs are running behind today, and why?" } },
   { delay: 1400, msg: { kind: "thinking" } },
-  { delay: 2600, msg: { kind: "ai", text: "Four jobs are over. I compared committed costs in Core against actuals in QuickBooks." } },
+  { delay: 2600, msg: { kind: "ai", text: "Four techs are behind. I compared the dispatch board in Core against GPS and job notes." } },
   { delay: 1800, msg: { kind: "budget" } },
-  { delay: 5500, msg: { kind: "user", text: "Email the PMs on those jobs and ask for a recovery plan by Friday." } },
+  { delay: 5500, msg: { kind: "user", text: "Text the customers on those jobs with a new arrival window." } },
   { delay: 1400, msg: { kind: "thinking" } },
-  { delay: 2400, msg: { kind: "ai", text: "Done. Four emails sent. I'll follow up Thursday morning with anyone who hasn't replied." } },
+  { delay: 2400, msg: { kind: "ai", text: "Done. Four texts sent with updated windows. I'll let you know if anyone asks to reschedule." } },
   { delay: 1600, msg: { kind: "followup" } },
 ];
 
@@ -135,17 +135,17 @@ function Sources({ items }: { items: string[] }) {
 
 // ─── Budget card ──────────────────────────────────────────────────────────────
 const JOBS = [
-  { job: "Riverside Clinic", why: "Change order #7 not billed", over: "+$48,200" },
-  { job: "Oak St. Retail", why: "Steel price increase", over: "+$31,900" },
-  { job: "Harbor Warehouse", why: "Overtime on framing crew", over: "+$18,400" },
-  { job: "Lincoln School", why: "Duplicate sub invoice", over: "+$9,750" },
+  { job: "Marcus L.", why: "Compressor swap ran 90 min long", over: "2 jobs late" },
+  { job: "Priya S.", why: "Waiting on a part from the warehouse", over: "1 job late" },
+  { job: "Tom R.", why: "Traffic on I-5, 40 min delay", over: "1 job late" },
+  { job: "Alex K.", why: "Customer added a second unit", over: "1 job late" },
 ];
 
 function BudgetCard() {
   const n = useReveal(JOBS.length);
   return (
     <div style={cardStyle}>
-      <CardHead tag="Report" title="Jobs over budget · September" />
+      <CardHead tag="Report" title="Techs behind schedule · Today" />
       {JOBS.map((j, i) => (
         <div key={j.job} style={{
           display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12, marginBottom: 10,
@@ -155,22 +155,22 @@ function BudgetCard() {
             <div style={{ fontSize: "0.88rem", fontWeight: 600, color: C.ink }}>{j.job}</div>
             <div style={{ fontSize: "0.78rem", color: C.ink3 }}>{j.why}</div>
           </div>
-          <span style={{ fontSize: "0.92rem", fontWeight: 700, color: C.red, whiteSpace: "nowrap" }}>{j.over}</span>
+          <span style={{ fontSize: "0.82rem", fontWeight: 700, color: C.red, whiteSpace: "nowrap" }}>{j.over}</span>
         </div>
       ))}
-      {n > JOBS.length && <Sources items={["Core", "QuickBooks", "Vault"]} />}
+      {n > JOBS.length && <Sources items={["Core", "GPS", "Job notes"]} />}
     </div>
   );
 }
 
 // ─── Follow-up card ───────────────────────────────────────────────────────────
-const PMS = ["D. Reyes · Riverside Clinic", "K. Okafor · Oak St. Retail", "L. Brandt · Harbor Warehouse", "T. Nguyen · Lincoln School"];
+const PMS = ["J. Ortiz · 2:00 to 4:00 PM", "R. Coleman · 3:00 to 5:00 PM", "B. Walsh · 3:30 to 5:30 PM", "M. Greene · 4:00 to 6:00 PM"];
 
 function FollowupCard() {
   const n = useReveal(PMS.length, 140);
   return (
     <div style={cardStyle}>
-      <CardHead tag="Task" title="Recovery plans due Friday" />
+      <CardHead tag="Task" title="Customers notified" />
       {PMS.map((p, i) => (
         <div key={p} style={{
           display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8,
@@ -183,8 +183,8 @@ function FollowupCard() {
       {n > PMS.length && (
         <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 12, paddingTop: 12, borderTop: `1px solid ${C.line}` }}>
           <span style={{ width: 8, height: 8, borderRadius: "50%", background: C.green, animation: "ac-pulse 1.6s ease-in-out infinite" }} />
-          <span style={{ fontSize: "0.8rem", fontWeight: 600, color: C.ink }}>Follow-up scheduled</span>
-          <span style={{ fontSize: "0.78rem", color: C.ink3 }}>Thursday, 9:00 AM</span>
+          <span style={{ fontSize: "0.8rem", fontWeight: 600, color: C.ink }}>Watching for replies</span>
+          <span style={{ fontSize: "0.78rem", color: C.ink3 }}>Auto-reschedule on</span>
         </div>
       )}
     </div>
@@ -288,7 +288,7 @@ export function AssistantChat({ height = 600, compact = false, bare = false }: {
           <Mark size={34} />
           <div>
             <div style={{ fontSize: "1rem", fontWeight: 700, color: C.ink, letterSpacing: "-0.01em" }}>AI Assistant</div>
-            <div style={{ fontSize: "0.74rem", color: C.ink3 }}>Connected to Core, Vault, QuickBooks, Outlook</div>
+            <div style={{ fontSize: "0.74rem", color: C.ink3 }}>Connected to Core, Vault, GPS, Outlook</div>
           </div>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 7, flexShrink: 0 }}>

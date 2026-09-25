@@ -3,33 +3,33 @@ import { useEffect, useState } from "react";
 import { AssistantChat } from "./AssistantChat";
 
 // ─── Slides ───────────────────────────────────────────────────────────────────
-type Slide = { title: string; body: string; head: string; sub: string; ms: number };
+type Slide = { title: string; body: string; head: string; sub: string; industry: string; ms: number };
 
 const SLIDES: Slide[] = [
   {
     title: "Core",
-    body: "Projects, schedules, budgets, vendors, and reporting in one place, built around how your team works. This replaces the platforms you rent today.",
-    head: "Core", sub: "Projects · budgets · schedules", ms: 8000,
+    body: "Clients, projects, schedules, budgets, and reporting in one place, built around how your team works. This replaces the platforms you rent today.",
+    head: "Core", sub: "Client work · budgets · deadlines", industry: "Marketing agency", ms: 8000,
   },
   {
     title: "Integrations",
     body: "Keep the tools that work. We connect QuickBooks, Salesforce, Outlook, and the rest so data moves between them on its own and nobody types the same thing twice.",
-    head: "Integrations", sub: "6 tools connected · syncing live", ms: 9000,
+    head: "Integrations", sub: "6 tools connected · syncing live", industry: "Sales team", ms: 9000,
   },
   {
     title: "Vault",
-    body: "Contracts, drawings, records, and history. Encrypted, indexed, and searchable in plain English, with access controlled by role.",
-    head: "Vault", sub: "Encrypted document search", ms: 10000,
+    body: "Contracts, client files, records, and history. Encrypted, indexed, and searchable in plain English, with access controlled by role.",
+    head: "Vault", sub: "Encrypted document search", industry: "Law firm", ms: 10000,
   },
   {
     title: "AI Assistant",
     body: "Ask a question about any part of your operation and get the answer in seconds. It runs on your data only.",
-    head: "AI Assistant", sub: "Connected to Core, Vault, QuickBooks, Outlook", ms: 22000,
+    head: "AI Assistant", sub: "Connected to Core, Vault, GPS, Outlook", industry: "HVAC company", ms: 22000,
   },
   {
     title: "Agents",
-    body: "Because everything lives in one system, AI can do real work inside it: draft the RFI, match the invoice to the PO, chase the missing lien waiver, build the weekly report.",
-    head: "Agents", sub: "Running in the background", ms: 11000,
+    body: "Because everything lives in one system, AI can do real work inside it: send the renewal quotes, chase missing documents, reconcile payments, build the weekly report.",
+    head: "Agents", sub: "Running in the background", industry: "Insurance agency", ms: 11000,
   },
 ];
 
@@ -46,11 +46,11 @@ function useStep(count: number, gap: number, start = 300) {
 
 // ─── Core: project dashboard ──────────────────────────────────────────────────
 const PROJECTS = [
-  { name: "Riverside Clinic", pm: "D. Reyes", pct: 78, ok: false },
-  { name: "Oak St. Retail", pm: "K. Okafor", pct: 54, ok: true },
-  { name: "Harbor Warehouse", pm: "L. Brandt", pct: 91, ok: false },
-  { name: "Lincoln School", pm: "T. Nguyen", pct: 36, ok: true },
-  { name: "Pine Ridge Offices", pm: "S. Patel", pct: 22, ok: true },
+  { name: "Brightline Coffee", pm: "Rebrand · J. Park", pct: 82, ok: false },
+  { name: "Summit Health", pm: "Paid social · A. Cruz", pct: 48, ok: true },
+  { name: "Northside Auto", pm: "Website · M. Bell", pct: 94, ok: false },
+  { name: "Evergreen Credit Union", pm: "SEO retainer · R. Kim", pct: 37, ok: true },
+  { name: "Tidewater Hotels", pm: "Campaign · L. Moss", pct: 25, ok: true },
 ];
 
 function CoreDemo() {
@@ -58,12 +58,12 @@ function CoreDemo() {
   return (
     <div className="sc-body">
       <div className="sc-kpis">
-        <div><small>Active projects</small><strong>6</strong></div>
-        <div><small>Budget used</small><strong>62%</strong></div>
-        <div><small>On schedule</small><strong>4 of 6</strong></div>
+        <div><small>Active clients</small><strong>14</strong></div>
+        <div><small>Hours billed</small><strong>1,206</strong></div>
+        <div><small>On deadline</small><strong>12 of 14</strong></div>
       </div>
       <div className="sc-table">
-        <div className="sc-thead"><span>Project</span><span>Budget used</span><span>Status</span></div>
+        <div className="sc-thead"><span>Client</span><span>Hours used</span><span>Status</span></div>
         {PROJECTS.map((p, i) => (
           <div className={`sc-trow${n > i ? " in" : ""}`} key={p.name}>
             <span><b>{p.name}</b><small>{p.pm}</small></span>
@@ -72,19 +72,19 @@ function CoreDemo() {
           </div>
         ))}
       </div>
-      <div className={`sc-note${n > PROJECTS.length ? " in" : ""}`}>Updated 2 minutes ago from field logs, timecards, and QuickBooks</div>
+      <div className={`sc-note${n > PROJECTS.length ? " in" : ""}`}>Updated 2 minutes ago from timesheets, Asana, and QuickBooks</div>
     </div>
   );
 }
 
 // ─── Integrations: hub + sync log ─────────────────────────────────────────────
-const TOOLS = ["QuickBooks", "Salesforce", "Outlook", "Google Drive", "Slack", "Gusto"];
+const TOOLS = ["HubSpot", "QuickBooks", "Gmail", "DocuSign", "Slack", "Stripe"];
 const SYNCS = [
-  { from: "QuickBooks", to: "Core", what: "Invoice #1042 posted to Riverside Clinic" },
-  { from: "Salesforce", to: "Core", what: "Oak St. deal won, project created" },
-  { from: "Outlook", to: "Vault", what: "3 attachments filed to Harbor Warehouse" },
-  { from: "Gusto", to: "Core", what: "Crew hours synced to job costs" },
-  { from: "Core", to: "Slack", what: "Budget alert posted to #ops" },
+  { from: "HubSpot", to: "Core", what: "14 new leads assigned by territory" },
+  { from: "DocuSign", to: "Core", what: "Acme contract signed, onboarding started" },
+  { from: "Stripe", to: "QuickBooks", what: "First payment reconciled for Acme" },
+  { from: "Gmail", to: "Core", what: "Reply from Delta Foods logged to the deal" },
+  { from: "Core", to: "Slack", what: "#sales: Acme closed at $48,000" },
 ];
 
 function IntegrationsDemo() {
@@ -123,11 +123,11 @@ function IntegrationsDemo() {
 }
 
 // ─── Vault: document search ───────────────────────────────────────────────────
-const QUERY = "Which subcontracts have a 10% retainage clause?";
+const QUERY = "Which client agreements auto-renew with less than 60 days notice?";
 const DOCS = [
-  { name: "Subcontract_ApexElectric.pdf", proj: "Riverside Clinic", page: "p. 14", pre: "Owner shall withhold ", hit: "ten percent (10%) retainage", post: " from each progress payment…" },
-  { name: "Subcontract_NorthwestSteel.pdf", proj: "Oak St. Retail", page: "p. 9", pre: "Contractor will retain ", hit: "10% of each payment", post: " until substantial completion…" },
-  { name: "Subcontract_CascadeConcrete.pdf", proj: "Harbor Warehouse", page: "p. 11", pre: "A ", hit: "retainage of 10%", post: " applies to all invoiced work…" },
+  { name: "MSA_HalversonGroup.pdf", proj: "Halverson Group", page: "p. 6", pre: "This Agreement shall ", hit: "renew automatically unless terminated with 30 days", post: " written notice…" },
+  { name: "Services_Agreement_BrightPath.pdf", proj: "BrightPath Inc.", page: "p. 4", pre: "Term extends for successive one-year periods ", hit: "absent 45 days prior notice", post: "…" },
+  { name: "Engagement_Letter_Corwin.pdf", proj: "Corwin & Sons", page: "p. 2", pre: "The engagement ", hit: "renews each January 1 unless cancelled 30 days", post: " in advance…" },
 ];
 
 function VaultDemo() {
@@ -168,10 +168,10 @@ function VaultDemo() {
 
 // ─── Agents: task runs ────────────────────────────────────────────────────────
 const RUNS = [
-  { agent: "RFI agent", task: "Drafted RFI #214 from the superintendent's field note", saved: "25 min" },
-  { agent: "AP agent", task: "Matched 38 invoices to POs, flagged 2 for review", saved: "2.5 hrs" },
-  { agent: "Compliance agent", task: "Requested missing lien waiver from Apex Electric", saved: "15 min" },
-  { agent: "Reporting agent", task: "Built the weekly owner report for 4 projects", saved: "3 hrs" },
+  { agent: "Renewal agent", task: "Sent 23 renewal quotes for policies expiring in 30 days", saved: "3 hrs" },
+  { agent: "Intake agent", task: "Collected missing documents from 9 new clients", saved: "1.5 hrs" },
+  { agent: "Claims agent", task: "Summarized a 212-page claim file for the adjuster", saved: "2 hrs" },
+  { agent: "Reporting agent", task: "Built the monthly book-of-business report", saved: "4 hrs" },
 ];
 
 function AgentsDemo() {
@@ -263,6 +263,7 @@ export function SystemsShowcase() {
             <div className="sc-title">{slide.head}</div>
             <div className="sc-sub">{slide.sub}</div>
           </div>
+          <span className="sc-industry">Example: {slide.industry}</span>
           <span className="sc-online"><i />Live</span>
         </div>
         <div className="sc-stage" key={`${idx}-${run}`}>

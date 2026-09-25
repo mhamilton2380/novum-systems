@@ -88,13 +88,13 @@ const SECURITY = [
 ];
 
 const AUDIT = [
-  { who: "J. Alvarez", role: "Project manager", what: "opened Henderson_Contract.pdf", ok: true },
-  { who: "AI Assistant", role: "AI", what: "answered budget query for Project 14", ok: true },
-  { who: "Field tablet 07", role: "Superintendent", what: "uploaded daily log", ok: true },
+  { who: "J. Alvarez", role: "Account manager", what: "opened Halverson_MSA.pdf", ok: true },
+  { who: "AI Assistant", role: "AI", what: "answered a Q3 revenue question for Finance", ok: true },
+  { who: "Field tablet 07", role: "Technician", what: "uploaded job photos", ok: true },
   { who: "Contractor login", role: "External", what: "tried to open Payroll_Q3.xlsx", ok: false },
   { who: "M. Chen", role: "Finance", what: "exported AP aging report", ok: true },
-  { who: "Invoice agent", role: "AI", what: "matched 12 invoices to POs", ok: true },
-  { who: "S. Patel", role: "Estimator", what: "edited bid sheet v4", ok: true },
+  { who: "Renewal agent", role: "AI", what: "sent 23 renewal quotes", ok: true },
+  { who: "S. Patel", role: "Paralegal", what: "edited Engagement_Letter_v4", ok: true },
   { who: "Unknown device", role: "Blocked", what: "sign-in attempt from new location", ok: false },
 ];
 
