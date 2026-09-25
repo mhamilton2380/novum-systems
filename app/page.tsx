@@ -219,10 +219,10 @@ export default function HomePage() {
       <section className="h-sec h-soft">
         <div className="h-wrap h-roi">
           <div>
-            <div className="h-eyebrow">Case study · Seneca Development Co.</div>
+            <div className="h-eyebrow">Case study · Real estate developer</div>
             <h2>What would you do with <span className="h-grad">$99,300</span> back every year?</h2>
             <p className="h-roi-sub">
-              Seneca was paying $100,000 a year for construction management software. We rebuilt it around how they run projects, connected it to the rest of the business, and put an AI assistant on top. After the build, the system costs about $700 a year to host, store, and secure.
+              A multifamily developer was paying $100,000 a year for construction management software. We rebuilt it around how they run projects, connected it to the rest of the business, and put an AI assistant on top. After the build, the system costs about $700 a year to host, store, and secure.
             </p>
             <div className="h-chips">
               <span>$100,000/yr before</span>
@@ -231,7 +231,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="h-roi-card">
-            <h3>What Seneca runs on now</h3>
+            <h3>What they run on now</h3>
             <ul>
               <li><b>Construction management</b> rebuilt around their own workflows, replacing the subscription platform.</li>
               <li><b>Projects, documents, and investor reporting</b> in one system instead of spreadsheets and shared drives.</li>
@@ -239,7 +239,6 @@ export default function HomePage() {
             </ul>
             <div className="h-roi-foot">
               <p>One build fee. Then storage, security, and hosting. No seats, no revenue share, no renewal.</p>
-              <Link href="/case-studies/seneca-development">Read the full case study →</Link>
             </div>
           </div>
         </div>
