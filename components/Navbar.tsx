@@ -130,7 +130,7 @@ export default function Navbar() {
               transition: "color 0.3s ease",
             }}
           >
-            NOVUM SYSTEMS
+            NOVUM AI
           </span>
         </Link>
 

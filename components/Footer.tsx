@@ -26,10 +26,10 @@ export default function Footer() {
                   <rect x="8" y="8" width="5" height="5" rx="1.2" fill="white"/>
                 </svg>
               </div>
-              <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.975rem", color: "#EAEAEA", letterSpacing: "-0.015em" }}>Novum Systems</span>
+              <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.975rem", color: "#EAEAEA", letterSpacing: "-0.015em" }}>Novum AI</span>
             </div>
             <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, margin: "0 0 6px" }}>hello@novumsystems.co</p>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, margin: 0 }}>Custom operational systems for businesses that have outgrown generic software.</p>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, margin: 0 }}>We replace SaaS subscriptions with custom software built around how your business actually works.</p>
           </div>
 
           {/* Systems */}
@@ -71,7 +71,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <div style={{ padding: "18px 0 0" }}>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem", color: "rgba(255,255,255,0.4)", margin: 0 }}>Novum Systems © {new Date().getFullYear()}</p>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem", color: "rgba(255,255,255,0.4)", margin: 0 }}>Novum AI © {new Date().getFullYear()}</p>
         </div>
       </div>
 

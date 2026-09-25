@@ -35,7 +35,7 @@ export default function SenecaDevelopmentPage() {
                 fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase",
                 color: "#C4B5FD",
               }}>Real Estate Development & Investment</span>
-              <span style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.35)" }}>Forge · OpsCore · Vault · A.R.I.S</span>
+              <span style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.35)" }}>Fully custom build</span>
             </div>
             <h1 style={{
               fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
@@ -143,14 +143,14 @@ export default function SenecaDevelopmentPage() {
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px", marginBottom: "12px" }} className="built-grid">
               {[
                 {
-                  name: "Forge",
-                  sub: "Custom Operational Architecture",
+                  name: "Custom architecture",
+                  sub: "Built from scratch",
                   desc: "Because no off-the-shelf tool maps cleanly to a vertically integrated development and investment operation, we built from scratch. The data model was designed around Seneca's specific deal stages, project types, asset classes, and LP structure — not adapted from a template.",
                   color: "#C4B5FD", borderColor: "rgba(109,79,187,0.35)", bg: "rgba(109,79,187,0.1)",
                 },
                 {
-                  name: "OpsCore",
-                  sub: "Operational Command Center",
+                  name: "Command center",
+                  sub: "Role-based visibility",
                   desc: "A unified dashboard layer giving each role exactly what they need. Leadership sees portfolio performance, deal pipeline, and active project status. Project managers see budgets, milestones, and vendor activity. The accounting team sees financial performance by asset. Role-based, real time, no manual pulls.",
                   color: "#6EE7B7", borderColor: "rgba(0,200,122,0.25)", bg: "rgba(0,200,122,0.08)",
                 },
@@ -173,8 +173,8 @@ export default function SenecaDevelopmentPage() {
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }} className="built-grid">
               {[
                 {
-                  name: "Vault",
-                  sub: "Encrypted Document Intelligence",
+                  name: "Document intelligence",
+                  sub: "Encrypted and searchable",
                   desc: "Every deal document, appraisal, loan agreement, operating agreement, and LP communication is now encrypted, structured, and stored by deal or asset. Sensitive financial documents are access-controlled by role — partners see everything, investors see their positions.",
                   color: "#93C5FD", borderColor: "rgba(30,58,138,0.3)", bg: "rgba(30,58,138,0.08)",
                 },

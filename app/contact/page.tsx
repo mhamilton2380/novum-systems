@@ -119,7 +119,7 @@ export default function ContactPage() {
                   fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase",
                   color: "#B0ADA8", marginBottom: "14px",
                 }}>Direct contact</p>
-                <a href="mailto:hello@novumsystems.com" style={{
+                <a href="mailto:hello@novumsystems.co" style={{
                   display: "flex", alignItems: "center", gap: "10px",
                   color: "#1A1A1A", textDecoration: "none", fontSize: "0.95rem",
                 }}>
@@ -127,7 +127,7 @@ export default function ContactPage() {
                     <path d="M3 6l7 5 7-5" stroke="#7A7774" strokeWidth="1.5" strokeLinecap="round" />
                     <rect x="2" y="4" width="16" height="12" rx="2" stroke="#7A7774" strokeWidth="1.5" />
                   </svg>
-                  hello@novumsystems.com
+                  hello@novumsystems.co
                 </a>
               </div>
             </div>

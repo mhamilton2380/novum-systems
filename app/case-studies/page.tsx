@@ -7,34 +7,12 @@ const cases = [
     slug: "seneca-development",
     client: "Seneca Development Co.",
     industry: "Real Estate Development & Investment",
-    system: "Forge · OpsCore · Vault · A.R.I.S",
+    system: "Fully custom build",
     headline: "Unified deal tracking, project execution, and portfolio oversight into one custom platform.",
     outcome: "Replaced 6 disconnected tools. LP reporting went from a week to a day. Full deal history queryable in under 60 seconds.",
     accent: "#6D4FBB",
     accentBg: "#F3F0FC",
     accentBorder: "#D9D0F5",
-  },
-  {
-    slug: "meridian-law",
-    client: "Meridian Law Group",
-    industry: "Legal Services",
-    system: "OpsCore · Vault · A.R.I.S",
-    headline: "From scattered documents and manual billing to a fully queryable knowledge base.",
-    outcome: "40% reduction in time spent on document retrieval. Matter history surfaced instantly.",
-    accent: "#1E3A8A",
-    accentBg: "#EEF2FF",
-    accentBorder: "#C7D2FE",
-  },
-  {
-    slug: "summit-hvac",
-    client: "Summit Mechanical",
-    industry: "HVAC & Field Service",
-    system: "FieldOps · OpsCore",
-    headline: "Replaced spreadsheet scheduling and phone dispatch with a live operational system.",
-    outcome: "Dispatchers went from managing chaos to managing a board. Job completion rates up 28%.",
-    accent: "#236B4E",
-    accentBg: "#EEF7F3",
-    accentBorder: "#C4E0D5",
   },
 ];
 
@@ -70,7 +48,7 @@ export default function CaseStudiesPage() {
               <span style={{ fontStyle: "italic", fontWeight: 300, color: "rgba(0,200,122,0.9)", textShadow: "0 0 24px rgba(0,200,122,0.5), 0 0 70px rgba(0,200,122,0.2)" }}>Real results.</span>
             </h1>
             <p style={{ color: "rgba(255,255,255,0.48)", fontSize: "1.05rem", lineHeight: 1.75, maxWidth: "520px" }}>
-              Every engagement starts with a business that has outgrown its tools. Here&apos;s what happens when we build something that actually fits.
+              We built our own first. It replaced six subscriptions and saves us $100,000 a year. Here is what happens when the software is shaped around the operation instead of the other way around.
             </p>
           </div>
         </div>

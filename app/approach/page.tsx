@@ -54,10 +54,10 @@ export default function ApproachPage() {
               color: "#fff", marginBottom: "20px",
             }}>
               We don&apos;t sell software.<br />
-              <span style={{ fontStyle: "italic", fontWeight: 300, color: "rgba(0,200,122,0.9)", textShadow: "0 0 24px rgba(0,200,122,0.5), 0 0 70px rgba(0,200,122,0.2)" }}>We design systems.</span>
+              <span style={{ fontStyle: "italic", fontWeight: 300, color: "rgba(0,200,122,0.9)", textShadow: "0 0 24px rgba(0,200,122,0.5), 0 0 70px rgba(0,200,122,0.2)" }}>We replace it.</span>
             </h1>
             <p style={{ color: "rgba(255,255,255,0.48)", fontSize: "1.05rem", lineHeight: 1.75, maxWidth: "540px" }}>
-              There&apos;s a meaningful difference between deploying software and designing an operational system. One puts a tool in your hands. The other changes how your business operates.
+              For twenty years, custom software was the expensive option, so everyone rented the generic one and adapted around it. AI inverted that math. We build the version that fits you, for less than the subscriptions it retires.
             </p>
           </div>
         </div>
@@ -75,10 +75,10 @@ export default function ApproachPage() {
                 letterSpacing: "-0.03em", lineHeight: 1.1,
                 marginBottom: "18px",
               }}>
-                What makes Novum different.
+                What makes Novum AI different.
               </h2>
               <p style={{ color: "#7A7774", lineHeight: 1.8, fontSize: "0.95rem", marginBottom: "28px" }}>
-                We&apos;re not a dev shop. We&apos;re not a SaaS company. We&apos;re a systems practice — and that distinction changes everything about how we work and what we deliver.
+                We are not a dev shop and we are not a SaaS company. We map an operation, build the software it needs, and hand it over. We ran the process on ourselves first and cut $100,000 a year out of our own operation.
               </p>
               <div style={{
                 padding: "20px 24px",
@@ -124,7 +124,7 @@ export default function ApproachPage() {
                   <p style={{
                     fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase",
                     color: "#00C87A", marginBottom: "18px",
-                  }}>Novum Systems</p>
+                  }}>Novum AI</p>
                   {[
                     "Built around your operations",
                     "The system adapts to you",

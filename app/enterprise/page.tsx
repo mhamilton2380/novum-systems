@@ -34,7 +34,7 @@ export default function EnterprisePage() {
               <span style={{ fontStyle: "italic", fontWeight: 300, color: "rgba(0,200,122,0.9)", textShadow: "0 0 24px rgba(0,200,122,0.5), 0 0 70px rgba(0,200,122,0.2)" }}>at scale.</span>
             </h1>
             <p style={{ color: "rgba(255,255,255,0.48)", fontSize: "1.05rem", lineHeight: 1.75, maxWidth: "580px", marginBottom: "40px" }}>
-              Larger organizations don&apos;t need more software. They need a coherent operational layer — one that connects their teams, surfaces their data, and enforces the right access at every level. That&apos;s what we build.
+              Larger organizations do not need another subscription. They need one coherent system that connects their teams, surfaces their data, and enforces the right access at every level. We build that, custom, and you own it.
             </p>
             <div style={{ display: "flex", gap: "14px", flexWrap: "wrap" }}>
               <Link href="/contact" style={{
@@ -51,7 +51,7 @@ export default function EnterprisePage() {
                 border: "1px solid rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.7)",
                 fontSize: "0.92rem", fontWeight: 500, textDecoration: "none",
               }}>
-                View our systems
+                See our work
               </Link>
             </div>
           </div>

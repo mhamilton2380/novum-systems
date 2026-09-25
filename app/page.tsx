@@ -191,6 +191,108 @@ export default function HomePage() {
               pointerEvents: "none",
             }}
           />
+
+          {/* Left scrim — keeps hero copy legible over the Spline scene */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              zIndex: 4,
+              pointerEvents: "none",
+              background:
+                "linear-gradient(to right, #000000 0%, rgba(0,0,0,0.97) 40%, rgba(0,0,0,0.88) 56%, rgba(0,0,0,0.5) 72%, rgba(0,0,0,0) 92%)",
+            }}
+          />
+
+          {/* Hero copy */}
+          <div
+            className="hero-copy"
+            style={{
+              position: "relative",
+              zIndex: 5,
+              maxWidth: "1280px",
+              width: "100%",
+              margin: "0 auto",
+              padding: "0 40px",
+            }}
+          >
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={stagger(0.12, 0.15)}
+              style={{ maxWidth: "660px" }}
+            >
+              <motion.h1
+                variants={fadeUp}
+                style={{
+                  ...heroHeading,
+                  fontWeight: 700,
+                  fontSize: "clamp(2.4rem, 5vw, 4.2rem)",
+                  letterSpacing: "-0.035em",
+                  margin: "0 0 22px",
+                }}
+              >
+                We built software for our own company. It saves us $100,000 a year.
+              </motion.h1>
+
+              <motion.p
+                variants={fadeUp}
+                style={{
+                  color: "rgba(255,255,255,0.62)",
+                  fontSize: "clamp(0.95rem, 1.4vw, 1.1rem)",
+                  lineHeight: 1.8,
+                  maxWidth: "540px",
+                  margin: "0 0 36px",
+                }}
+              >
+                Now we do it for yours. Custom software that{" "}
+                <span
+                  style={{
+                    display: "inline-block",
+                    color: "#00D4FF",
+                    fontFamily: ADAPT_FONTS[fontIdx].font,
+                    fontStyle: ADAPT_FONTS[fontIdx].style,
+                    fontWeight: ADAPT_FONTS[fontIdx].weight,
+                    letterSpacing: ADAPT_FONTS[fontIdx].tracking,
+                    opacity: fading ? 0 : 1,
+                    transition: "opacity 0.3s ease",
+                  }}
+                >
+                  adapts
+                </span>{" "}
+                to how your business actually works, instead of forcing your team into
+                someone else&apos;s workflow. AI is why it now costs less than the
+                subscriptions it replaces.
+              </motion.p>
+
+              <motion.div variants={fadeUp} style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+                <Link
+                  href="/contact"
+                  style={{
+                    display: "inline-flex", alignItems: "center", gap: "8px",
+                    padding: "14px 30px", borderRadius: "100px",
+                    background: "#00C87A", color: "#0a1a12",
+                    fontSize: "0.92rem", fontWeight: 600, textDecoration: "none",
+                  }}
+                >
+                  Book a call →
+                </Link>
+                <Link
+                  href="/case-studies/seneca-development"
+                  style={{
+                    display: "inline-flex", alignItems: "center", gap: "8px",
+                    padding: "14px 30px", borderRadius: "100px",
+                    background: "rgba(255,255,255,0.06)",
+                    border: "1px solid rgba(255,255,255,0.14)",
+                    color: "#EAEAEA",
+                    fontSize: "0.92rem", fontWeight: 600, textDecoration: "none",
+                  }}
+                >
+                  See what we built →
+                </Link>
+              </motion.div>
+            </motion.div>
+          </div>
       </section>
 
       {/* ── The Problem — sticky scroll reveal ── */}
@@ -205,10 +307,10 @@ export default function HomePage() {
             style={{ textAlign: "center", marginBottom: "56px" }}
           >
             <h2 style={{ ...heroHeading, fontSize: "clamp(1.8rem, 3vw, 2.8rem)", marginBottom: "18px" }}>
-              Growing organizations outgrow their tools. Fast.
+              You are renting software that does not fit.
             </h2>
             <p style={{ color: "rgba(150,210,240,0.7)", lineHeight: 1.8, fontSize: "0.95rem", maxWidth: "580px", margin: "0 auto" }}>
-              The platforms that worked at 20 people break at 100. Data lives in disconnected systems. Teams work around tools instead of with them. Leadership makes decisions with incomplete information.
+              Every subscription in your stack is a compromise. You pay monthly for features you never touch, work around the ones you need, and patch the gaps with spreadsheets. The stack keeps growing. The fit never improves.
             </p>
           </div>
 
@@ -296,11 +398,11 @@ export default function HomePage() {
                 color: "rgba(255,255,255,0.45)", marginBottom: "20px",
               }}>
                 <span style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(255,255,255,0.4)", display: "inline-block" }} />
-                The System
+                What We Do
               </div>
-              <h2 style={{ ...heroHeading, fontSize: "clamp(2rem, 3.5vw, 3rem)", marginBottom: "16px" }}>One system. Built around how you actually operate.</h2>
+              <h2 style={{ ...heroHeading, fontSize: "clamp(2rem, 3.5vw, 3rem)", marginBottom: "16px" }}>We replace your SaaS stack with software built for you.</h2>
               <p style={{ color: "rgba(150,210,240,0.7)", fontSize: "0.95rem", lineHeight: 1.8, maxWidth: "640px", margin: "0 auto" }}>
-                We don&apos;t sell software. We build the operational layer your business runs on — custom to your workflows, connected to your tools, and intelligent by default.
+                You own it outright instead of renting it forever. It maps to your workflow instead of the average of ten thousand other companies. And when your operation changes, the software changes with it.
               </p>
             </div>
 
@@ -314,21 +416,21 @@ export default function HomePage() {
             >
               {[
                 {
-                  name: "Core",
-                  sub: "The operational system",
-                  desc: "Every engagement starts here. We map your workflows, connect your existing tools, build what's missing, and deploy a single system your entire operation runs on. Where it makes sense, we build agents that automate workflows, handle follow-ups, and eliminate manual ops work entirely. No templates. No compromises.",
+                  name: "Your operations layer",
+                  sub: "Built from your workflows",
+                  desc: "We map how your business actually runs, connect the tools you keep, build what is missing, and deploy one system your operation works in. Where a task repeats, we automate it outright. No templates to conform to.",
                   accent: "#5B8DEF", accentBg: "rgba(91,141,239,0.08)", accentBorder: "rgba(91,141,239,0.2)",
                 },
                 {
-                  name: "Vault",
-                  sub: "Encrypted document intelligence",
-                  desc: "Every document your organization produces — contracts, records, reports, history — encrypted, indexed, and queryable. Drop a file, get an answer. Role-controlled access at every level.",
+                  name: "Document intelligence",
+                  sub: "Encrypted and queryable",
+                  desc: "Contracts, records, reports, history. Encrypted, indexed, and answerable in plain English. Drop a file in, ask a question, get the answer and the original document back. Access controlled by role.",
                   accent: "#5B8DEF", accentBg: "rgba(91,141,239,0.08)", accentBorder: "rgba(91,141,239,0.2)",
                 },
                 {
                   name: "A.R.I.S",
-                  sub: "Adaptive Response Intelligence System",
-                  desc: "Ask anything about your operation and get an answer in plain English — instantly. A.R.I.S is trained on your data, queries your Vault, and connects across every system we build. It doesn't know the internet. It knows your business.",
+                  sub: "Ask your business anything",
+                  desc: "Ask a question about your operation and get an answer in seconds. A.R.I.S runs on your data and searches across everything we build for you. It does not know the internet. It knows your business.",
                   accent: "#5B8DEF", accentBg: "rgba(91,141,239,0.08)", accentBorder: "rgba(91,141,239,0.22)",
                 },
               ].map((s, i) => (
@@ -350,7 +452,7 @@ export default function HomePage() {
             </motion.div>
 
             <p style={{ textAlign: "center", color: "rgba(255,255,255,0.45)", fontSize: "0.875rem", lineHeight: 1.7, marginTop: "32px", maxWidth: 640, marginLeft: "auto", marginRight: "auto" }}>
-              Every Novum system includes all three. They&apos;re not add-ons — they&apos;re what a Novum system is.
+              These are examples, not a product menu. Most builds include some version of all three. What yours looks like depends entirely on how you operate.
             </p>
           </div>
         </div>
@@ -360,9 +462,9 @@ export default function HomePage() {
       <section style={{ padding: "96px 40px" }}>
         <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
           <div style={{ textAlign: "center", maxWidth: "520px", margin: "0 auto 56px" }}>
-            <h2 style={{ ...heroHeading, fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", marginBottom: "14px" }}>Who this is built for.</h2>
+            <h2 style={{ ...heroHeading, fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", marginBottom: "14px" }}>Who this is for.</h2>
             <p style={{ color: "rgba(150,210,240,0.7)", lineHeight: 1.8, fontSize: "0.95rem" }}>
-              Any organization that has outgrown generic software and needs something that actually matches how they operate.
+              We do not build for industries. We build for operations. These are places the fit problem shows up most, but the work is the same everywhere: figure out how you run, then build exactly that.
             </p>
           </div>
 

@@ -6,13 +6,13 @@ export default function SystemsPage() {
   const systems = [
     {
       id: "forge",
-      name: "Forge",
-      subtitle: "Fully Custom Build",
+      name: "A ground-up platform",
+      subtitle: "Example build",
       accent: "#6D4FBB",
       accentBg: "#F3F0FC",
       accentBorder: "#D9D0F5",
-      tagline: "For operations that don't fit any mold.",
-      desc: "Forge is a completely custom-built system designed from the ground up around your unique structure, terminology, and workflows. No templates, no constraints — just your system, architected exactly the way your business runs.",
+      tagline: "For operations that fit nothing on the market.",
+      desc: "Some businesses run on a model no vendor has bothered to build for. We start from your structure, your terminology, and your workflows, and architect the whole thing around them. No template underneath it.",
       forWho: ["Operations with proprietary workflows", "Businesses with unique data models", "Companies needing white-label systems", "Operators who've outgrown every tool they've tried"],
       modules: [
         {
@@ -39,13 +39,13 @@ export default function SystemsPage() {
     },
     {
       id: "opscore",
-      name: "OpsCore",
-      subtitle: "Operational Command Center",
+      name: "An operational command center",
+      subtitle: "Example build",
       accent: "#00C87A",
       accentBg: "#e6f9f2",
       accentBorder: "#a0e8cb",
       tagline: "Visibility across every part of your business.",
-      desc: "OpsCore is the operational layer that ties everything together. Custom dashboards, automated workflows, and reporting designed around the KPIs that actually matter to your business.",
+      desc: "The layer that ties a fragmented operation together. Custom dashboards, automated workflows, and reporting built around the numbers your leadership actually reviews, not a vendor's idea of a KPI.",
       forWho: ["Multi-location operators", "Franchise systems", "Teams with complex approval workflows", "Businesses needing cross-department reporting"],
       modules: [
         {
@@ -72,13 +72,13 @@ export default function SystemsPage() {
     },
     {
       id: "projectops",
-      name: "ProjectOps",
-      subtitle: "Project-Based Business Management",
+      name: "A project and budget system",
+      subtitle: "Example build",
       accent: "#3d6e8a",
       accentBg: "#eef3f7",
       accentBorder: "#b0c8d8",
       tagline: "Run every project on budget and on time.",
-      desc: "ProjectOps gives project-based businesses a command center for managing complex jobs from bid to close. Track milestones, budgets, vendors, and profitability across every project.",
+      desc: "For businesses that run on projects, a single place to manage complex jobs from bid to close. Milestones, budgets, vendors, and profitability on every active project, structured the way your team scopes work.",
       forWho: ["General contractors", "Specialty trades & subcontractors", "IT & tech project firms", "Marketing & creative agencies"],
       modules: [
         {
@@ -105,13 +105,13 @@ export default function SystemsPage() {
     },
     {
       id: "fieldops",
-      name: "FieldOps",
-      subtitle: "Field Service Management",
+      name: "A dispatch and job system",
+      subtitle: "Example build",
       accent: "#236B4E",
       accentBg: "#EEF7F3",
       accentBorder: "#C4E0D5",
-      tagline: "Schedule, dispatch, and close jobs — without the chaos.",
-      desc: "FieldOps is a complete operational system for field service businesses. Built around your specific job types, team structure, and billing needs — not a one-size-fits-all platform.",
+      tagline: "Schedule, dispatch, and close jobs without the chaos.",
+      desc: "For teams working out in the field. Built around your specific job types, crew structure, and billing rules, which is the part every off-the-shelf dispatch tool gets wrong.",
       forWho: ["HVAC & mechanical contractors", "Plumbing & electrical", "Landscaping & property maintenance", "Equipment services & repair"],
       modules: [
         {
@@ -160,7 +160,7 @@ export default function SystemsPage() {
               color: "rgba(255,255,255,0.45)", marginBottom: "28px",
             }}>
               <span style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(255,255,255,0.4)", display: "inline-block" }} />
-              Our Systems
+              Our Work
             </div>
             <h1 style={{
               fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
@@ -168,11 +168,11 @@ export default function SystemsPage() {
               lineHeight: 1.04, letterSpacing: "-0.035em",
               color: "#fff", marginBottom: "20px",
             }}>
-              Custom systems.<br />
-              <span style={{ color: "rgba(0,200,122,0.9)", fontStyle: "italic", fontWeight: 300, textShadow: "0 0 24px rgba(0,200,122,0.5), 0 0 70px rgba(0,200,122,0.2)" }}>One coherent operation.</span>
+              We have never built<br />
+              <span style={{ color: "rgba(0,200,122,0.9)", fontStyle: "italic", fontWeight: 300, textShadow: "0 0 24px rgba(0,200,122,0.5), 0 0 70px rgba(0,200,122,0.2)" }}>the same thing twice.</span>
             </h1>
             <p style={{ color: "rgba(255,255,255,0.48)", fontSize: "1.05rem", lineHeight: 1.75, maxWidth: "520px" }}>
-              Each Novum system is customized to your business. Most clients start with one and expand — or combine them into a fully integrated operational platform.
+              These are examples of what a build can look like, not a catalog to order from. Yours will not match any of them. They are here to show you the range.
             </p>
           </div>
         </div>
@@ -289,16 +289,16 @@ export default function SystemsPage() {
               color: "#7A7774", marginBottom: "20px",
             }}>
               <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#B0ADA8", display: "inline-block" }} />
-              Additional Tools
+              Common Building Blocks
             </div>
             <h2 style={{
               fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
               fontSize: "clamp(2rem, 3.5vw, 3rem)",
               letterSpacing: "-0.03em", lineHeight: 1.08,
               color: "#1A1A1A", marginBottom: "14px",
-            }}>Built to work alongside your system.</h2>
+            }}>Two capabilities that show up in almost every build.</h2>
             <p style={{ color: "#7A7774", fontSize: "0.95rem", lineHeight: 1.8, maxWidth: "520px" }}>
-              These tools extend any Novum system — or run independently. Add them when you need them.
+              Nearly every operation we map has documents nobody can find and questions nobody can answer quickly. These solve both, and they get shaped to your data like everything else.
             </p>
           </div>
 
@@ -320,7 +320,7 @@ export default function SystemsPage() {
                 <h3 style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "2.2rem", letterSpacing: "-0.03em", marginBottom: "12px", color: "#1A1A1A" }}>Vault</h3>
                 <p style={{ color: "#1E3A8A", fontWeight: 500, fontSize: "0.95rem", marginBottom: "16px" }}>Your business knowledge. Secure. Searchable. Always current.</p>
                 <p style={{ color: "#7A7774", lineHeight: 1.8, fontSize: "0.9rem" }}>
-                  Drop a file into your designated folder and within minutes it&apos;s encrypted, indexed, and answerable. Ask a question in plain English — Jarvis pulls the answer directly from your own documents and links back to the original file.
+                  Drop a file into your designated folder and within minutes it&apos;s encrypted, indexed, and answerable. Ask a question in plain English — A.R.I.S pulls the answer directly from your own documents and links back to the original file.
                 </p>
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
@@ -352,7 +352,7 @@ export default function SystemsPage() {
               </Link>
             </div>
 
-            {/* Jarvis */}
+            {/* A.R.I.S */}
             <div style={{
               background: "#141414", border: "1px solid #2A2A2A", borderRadius: "20px",
               padding: "48px 44px", display: "flex", flexDirection: "column", gap: "32px",
@@ -378,7 +378,7 @@ export default function SystemsPage() {
                   { label: "Plain English Queries", desc: "Ask anything the way you'd say it out loud. A.R.I.S handles the rest.", color: "#00C87A", borderColor: "rgba(0,200,122,0.25)", bg: "rgba(0,200,122,0.08)", icon: <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M2 3.5h12M2 6.5h8M2 9.5h10M2 12.5h6" stroke="#00C87A" strokeWidth="1.4" strokeLinecap="round"/></svg> },
                   { label: "Cross-System Search", desc: "Searches your vaults, project data, and operational records simultaneously.", color: "#00C87A", borderColor: "rgba(0,200,122,0.25)", bg: "rgba(0,200,122,0.08)", icon: <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="#00C87A" strokeWidth="1.4"/><line x1="10.5" y1="10.5" x2="14" y2="14" stroke="#00C87A" strokeWidth="1.4" strokeLinecap="round"/></svg> },
                   { label: "Document Retrieval", desc: "Get answers and the original file — pulled directly from Vault.", color: "#00C87A", borderColor: "rgba(0,200,122,0.25)", bg: "rgba(0,200,122,0.08)", icon: <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><rect x="3" y="1.5" width="10" height="13" rx="1.5" stroke="#00C87A" strokeWidth="1.4"/><polyline points="6,11 8,13 10,11" stroke="#00C87A" strokeWidth="1.3" strokeLinejoin="round" strokeLinecap="round"/></svg> },
-                  { label: "Role-Aware Responses", desc: "Jarvis only surfaces information the person querying is cleared to see.", color: "#00C87A", borderColor: "rgba(0,200,122,0.25)", bg: "rgba(0,200,122,0.08)", icon: <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 1.5L2 4v5c0 3.5 2.7 5.8 6 6.5 3.3-.7 6-3 6-6.5V4L8 1.5z" stroke="#00C87A" strokeWidth="1.4" strokeLinejoin="round"/></svg> },
+                  { label: "Role-Aware Responses", desc: "A.R.I.S only surfaces information the person querying is cleared to see.", color: "#00C87A", borderColor: "rgba(0,200,122,0.25)", bg: "rgba(0,200,122,0.08)", icon: <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 1.5L2 4v5c0 3.5 2.7 5.8 6 6.5 3.3-.7 6-3 6-6.5V4L8 1.5z" stroke="#00C87A" strokeWidth="1.4" strokeLinejoin="round"/></svg> },
                 ].map(f => (
                   <div key={f.label} style={{ display: "flex", alignItems: "flex-start", gap: "14px" }}>
                     <div style={{ width: 34, height: 34, background: f.bg, border: `1px solid ${f.borderColor}`, borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>{f.icon}</div>
@@ -421,9 +421,9 @@ export default function SystemsPage() {
               fontSize: "clamp(2rem, 4vw, 3rem)",
               letterSpacing: "-0.03em", lineHeight: 1.08,
               color: "#fff", marginBottom: "18px",
-            }}>Need more than one system?</h2>
+            }}>None of this is a menu.</h2>
             <p style={{ color: "rgba(255,255,255,0.48)", lineHeight: 1.8, marginBottom: "36px", fontSize: "1rem" }}>
-              Our systems are designed to work together. Many clients run FieldOps and OpsCore in tandem, or combine all four into a fully integrated operational platform.
+              Every engagement starts by mapping how your business actually runs. What gets built is whatever that map calls for, which is usually some combination of the above and several things that appear on no page of this website.
             </p>
             <Link href="/contact" style={{
               display: "inline-flex", alignItems: "center", gap: "8px",
