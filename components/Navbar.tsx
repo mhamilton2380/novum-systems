@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Logo } from "./Logo";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -55,7 +56,6 @@ export default function Navbar() {
   const textColor = onDarkHero ? "#EAEAEA" : "#17181B";
   const mutedColor = onDarkHero ? "rgba(234,234,234,0.6)" : "#68635e";
   const activeBg = onDarkHero ? "rgba(255,255,255,0.08)" : "rgba(23,26,34,0.05)";
-  const logoBg = "#5B8DEF";
   const ctaBg = "#0b1b2e";
   const ctaColor = "#ffffff";
 
@@ -101,37 +101,7 @@ export default function Navbar() {
             gap: "9px",
           }}
         >
-          <div
-            style={{
-              width: 28,
-              height: 28,
-              background: logoBg,
-              borderRadius: "8px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              transition: "background 0.3s ease",
-            }}
-          >
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <rect x="1" y="1" width="5" height="5" rx="1.2" fill="white" />
-              <rect x="8" y="1" width="5" height="5" rx="1.2" fill="white" opacity="0.42" />
-              <rect x="1" y="8" width="5" height="5" rx="1.2" fill="white" opacity="0.42" />
-              <rect x="8" y="8" width="5" height="5" rx="1.2" fill="white" />
-            </svg>
-          </div>
-          <span
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontWeight: 700,
-              fontSize: "0.975rem",
-              color: textColor,
-              letterSpacing: "-0.045em",
-              transition: "color 0.3s ease",
-            }}
-          >
-            NOVUM AI
-          </span>
+          <Logo />
         </Link>
 
         {!isMobile && (

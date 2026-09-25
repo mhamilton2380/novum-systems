@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { Logo } from "./Logo";
 
 export default function Footer() {
   return (
@@ -17,17 +18,7 @@ export default function Footer() {
         >
           {/* Brand */}
           <div>
-            <div style={{ display: "flex", alignItems: "center", gap: 9, marginBottom: 24 }}>
-              <div style={{ width: 28, height: 28, background: "#00C87A", borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <rect x="1" y="1" width="5" height="5" rx="1.2" fill="white"/>
-                  <rect x="8" y="1" width="5" height="5" rx="1.2" fill="white" opacity="0.42"/>
-                  <rect x="1" y="8" width="5" height="5" rx="1.2" fill="white" opacity="0.42"/>
-                  <rect x="8" y="8" width="5" height="5" rx="1.2" fill="white"/>
-                </svg>
-              </div>
-              <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.975rem", color: "#EAEAEA", letterSpacing: "-0.015em" }}>Novum AI</span>
-            </div>
+            <div style={{ marginBottom: 24 }}><Logo dark /></div>
             <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, margin: "0 0 6px" }}>hello@novumsystems.co</p>
             <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, margin: 0 }}>We replace SaaS subscriptions with custom software built around how your business actually works.</p>
           </div>
