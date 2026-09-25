@@ -5,8 +5,9 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Novum AI — Custom software that replaces your SaaS stack",
-  description: "We replace SaaS subscriptions with custom software built around how your business actually works. Built with AI, which is why it now costs less than the tools it replaces.",
+  title: "Novum AI · One system for your whole operation",
+  description: "We replace the software you rent, connect the tools you keep, and put AI to work across all of it. One custom system you own, for a fraction of the cost.",
+  metadataBase: new URL("https://novum-systems.vercel.app"),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
