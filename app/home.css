@@ -185,7 +185,7 @@
 .h-denied .h-audit-status { color: #f87171; background: rgba(248,113,113,0.12); }
 @keyframes h-scrollup { to { transform: translateY(-50%); } }
 @keyframes h-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(52,211,153,0.5); } 50% { box-shadow: 0 0 0 6px rgba(52,211,153,0); } }
-@media (prefers-reduced-motion: reduce) { .h-marquee-track, .h-audit-track, .h-live i { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .h-marquee-track, .h-audit-track, .h-feed-track, .h-live i { animation: none; } }
 
 /* FAQ */
 .h-faq { max-width: 820px; margin: 0 auto; }
@@ -211,11 +211,18 @@
 .h-bill-row b { color: #067a4d; font-size: 1.35rem; letter-spacing: -0.02em; }
 .h-bill-old { background: var(--soft); color: var(--ink-3); }
 .h-bill-old s { color: var(--red); font-size: 1.15rem; font-weight: 700; }
-.h-feed { display: grid; gap: 4px; }
-.h-feed div { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; padding: 10px 4px; border-bottom: 1px solid var(--line); font-size: 0.88rem; color: var(--ink-2); }
-.h-feed div:last-child { border-bottom: 0; }
-.h-feed small { color: var(--ink-3); font-size: 0.75rem; }
-.h-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px #e8f7f0; }
+.h-dash-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
+.h-dash-stats div { background: var(--soft); border-radius: 10px; padding: 10px 12px; }
+.h-dash-stats small { display: block; font-size: 0.68rem; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.05em; line-height: 1.3; }
+.h-dash-stats strong { color: var(--ink); font-size: 1.2rem; letter-spacing: -0.02em; }
+.h-dash-label { margin-bottom: 6px; font-size: 0.75rem; }
+.h-dash-label .h-live { color: var(--ink-2); }
+.h-feed-window { height: 260px; overflow: hidden; -webkit-mask-image: linear-gradient(#000 75%, transparent); mask-image: linear-gradient(#000 75%, transparent); }
+.h-feed-track { animation: h-scrollup 24s linear infinite; }
+.h-feed-row { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; padding: 10px 2px; border-bottom: 1px solid var(--line); font-size: 0.86rem; color: var(--ink-2); }
+.h-feed-tag { font-size: 0.68rem; font-weight: 700; padding: 3px 8px; border-radius: 6px; white-space: nowrap; }
+.h-feed-what { line-height: 1.4; }
+.h-feed-row small { color: var(--ink-3); font-size: 0.72rem; }
 
 /* Case study (Kiingo-style value block) */
 .h-roi { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }

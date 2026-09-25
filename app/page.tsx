@@ -86,6 +86,17 @@ const INDUSTRIES = [
   "Financial services", "Nonprofits",
 ];
 
+const AGENT_FEED = [
+  { tag: "Legal", c: "#7c3aed", what: "Redlined 3 NDAs against the firm's playbook", t: "1m" },
+  { tag: "Sales", c: "#0891b2", what: "Logged 42 calls to the CRM, booked 6 follow-ups", t: "4m" },
+  { tag: "Accounting", c: "#059669", what: "Matched 38 invoices to POs, flagged 2", t: "9m" },
+  { tag: "Construction", c: "#d97706", what: "Drafted an RFI from the superintendent's field note", t: "15m" },
+  { tag: "Field services", c: "#2563eb", what: "Dispatched 6 techs by skill and drive time", t: "22m" },
+  { tag: "Marketing", c: "#db2777", what: "Built the weekly campaign report for 4 clients", t: "38m" },
+  { tag: "Insurance", c: "#0d9488", what: "Summarized a 212-page claim file for the adjuster", t: "1h" },
+  { tag: "Healthcare", c: "#4f46e5", what: "Sent 19 appointment reminders, rebooked 3", t: "1h" },
+];
+
 const SECURITY = [
   { t: "Encrypted everywhere", d: "Files and records are encrypted at rest and in transit.", icon: "M7 11V8a5 5 0 0 1 10 0v3M5 11h14v10H5zM12 15v2" },
   { t: "Role-based access", d: "Each person sees exactly what their role allows.", icon: "M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7zM9 12l2 2 4-4" },
@@ -142,7 +153,7 @@ export default function HomePage() {
               One system for your entire operation, at a <span className="h-grad">fraction of the cost</span>.
             </h1>
             <p className="h-hero-sub">
-              We replace the software you rent with a platform built around how your team works, then put AI to work inside it. Seneca Development cut a $100,000-a-year software bill to about $700.
+              We replace the software you rent with a platform built around how your team works, then put AI to work inside it.
             </p>
             <ul className="h-proof">
               <li>Built around your workflows, not a template.</li>
@@ -160,20 +171,31 @@ export default function HomePage() {
               <div className="h-card-bar"><i /><i /><i /><span>Annual software cost</span></div>
               <div className="h-card-body">
                 <div className="h-bill">
-                  <div className="h-bill-row h-bill-old"><span>Construction management platform</span><s>$100,000</s></div>
-                  <div className="h-bill-row"><span>Novum system: hosting, storage, security</span><b>$700</b></div>
+                  <div className="h-bill-row h-bill-old"><span>Software subscriptions</span><s>$100,000</s></div>
+                  <div className="h-bill-row"><span>Your own system: hosting, storage, security</span><b>$700</b></div>
                 </div>
               </div>
             </div>
 
             <div className="h-card h-card-own">
-              <div className="h-card-bar"><i /><i /><i /><span>ops.yourcompany.com · agent activity</span></div>
+              <div className="h-card-bar"><i /><i /><i /><span>ops.yourcompany.com · agents</span></div>
               <div className="h-card-body">
-                <div className="h-feed">
-                  <div><i className="h-dot" /><span>Drafted RFI #214 from the superintendent&apos;s field note</span><small>2m</small></div>
-                  <div><i className="h-dot" /><span>Matched 38 invoices to purchase orders, flagged 2</span><small>14m</small></div>
-                  <div><i className="h-dot" /><span>Requested missing lien waiver from Apex Electric</span><small>1h</small></div>
-                  <div><i className="h-dot" /><span>Built the weekly owner report for 4 projects</span><small>3h</small></div>
+                <div className="h-dash-stats">
+                  <div><small>Agents running</small><strong>12</strong></div>
+                  <div><small>Tasks today</small><strong>1,284</strong></div>
+                  <div><small>Hours saved this week</small><strong>212</strong></div>
+                </div>
+                <div className="h-dash-label"><span className="h-live"><i />Live activity</span></div>
+                <div className="h-feed-window">
+                  <div className="h-feed-track">
+                    {[...AGENT_FEED, ...AGENT_FEED].map((a, i) => (
+                      <div className="h-feed-row" key={i}>
+                        <span className="h-feed-tag" style={{ color: a.c, background: `${a.c}14` }}>{a.tag}</span>
+                        <span className="h-feed-what">{a.what}</span>
+                        <small>{a.t}</small>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
