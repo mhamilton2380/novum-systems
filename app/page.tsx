@@ -60,7 +60,7 @@ const STEPS = [
 ];
 
 const INDUSTRIES = [
-  "Construction", "Field services", "Professional services", "Legal", "Accounting", "Sales teams",
+  "Professional services", "Field services", "Legal", "Accounting", "Construction", "Sales teams",
   "Marketing agencies", "Insurance", "Healthcare", "Manufacturing", "Logistics", "Distribution",
   "Engineering", "Architecture", "Home services", "Staffing", "Franchises", "Hospitality",
   "Financial services", "Nonprofits",

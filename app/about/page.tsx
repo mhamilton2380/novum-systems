@@ -21,7 +21,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About Novum"
         title={<>We built it for ourselves <span className="h-grad">first</span>.</>}
-        sub="Novum started inside a construction company paying $100,000 a year for software that didn't fit how it worked. So we built our own. Now we build them for other businesses."
+        sub="We were business owners and operators paying $100,000 a year for software that didn't fit how we worked. So we built our own. Now we build them for other businesses."
       />
 
       <section className="h-sec">
@@ -31,8 +31,8 @@ export default function AboutPage() {
             <h2>Operators first, software second.</h2>
           </div>
           <div className="h-prose">
-            <p>We came to software as operators. We ran construction projects on a $100,000-a-year management platform that didn't fit our billing process, and our project managers spent hours every week writing RFIs and submittals by hand.</p>
-            <p>AI changed the math. Building a custom system used to cost more than renting one. Now it costs a fraction. We rebuilt ours, connected it to our billing, and put agents to work drafting the RFIs and submittals. The subscription went away, and so did the busywork.</p>
+            <p>We came to software as operators, not engineers. We ran our business on a $100,000-a-year management platform that didn't fit our billing process, and our team spent hours every week producing documents by hand that the software should have drafted for them.</p>
+            <p>AI changed the math. Building a custom system used to cost more than renting one. Now it costs a fraction. We rebuilt ours, connected it to our billing, and put agents to work on the paperwork. The subscription went away, and so did the busywork.</p>
             <p><strong>Novum exists to do the same for other businesses:</strong> one system for the whole operation, built around how you work, with AI built in, that you own outright.</p>
           </div>
         </div>
