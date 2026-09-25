@@ -265,7 +265,7 @@
 .h-denied .h-audit-status { color: #f87171; background: rgba(248,113,113,0.12); }
 @keyframes h-scrollup { to { transform: translateY(-50%); } }
 @keyframes h-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(52,211,153,0.5); } 50% { box-shadow: 0 0 0 6px rgba(52,211,153,0); } }
-@media (prefers-reduced-motion: reduce) { .sc-link.on, .h-marquee-track, .h-audit-track, .h-feed-track, .h-live i { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .h-chart-bars i, .sc-link.on, .h-marquee-track, .h-audit-track, .h-feed-track, .h-live i { animation: none; } }
 
 /* FAQ */
 .h-faq { max-width: 820px; margin: 0 auto; }
@@ -285,7 +285,19 @@
 .h-cta-meta { margin-top: 22px !important; margin-bottom: 0 !important; font-size: 0.85rem !important; color: #64748b !important; }
 
 
-/* Hero cost card + agent feed */
+/* Hero cost chart + agent feed */
+.h-chart { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; height: 150px; align-items: end; }
+.h-chart-col { display: flex; flex-direction: column; align-items: center; gap: 8px; height: 100%; }
+.h-chart-bars { flex: 1; width: 100%; display: flex; align-items: flex-end; justify-content: center; gap: 5px; }
+.h-chart-bars i { display: block; width: 42%; max-width: 22px; border-radius: 5px 5px 2px 2px; transform-origin: bottom; animation: h-grow 0.8s cubic-bezier(.2,.7,.2,1) both; }
+.h-chart-col small { font-size: 0.72rem; color: var(--ink-3); }
+.h-bar-rent { background: #e7b4b4; }
+.h-bar-own { background: var(--green); }
+.h-bar-own.build { background: linear-gradient(#0891b2, #00b36e); }
+@keyframes h-grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+.h-legend { display: grid; gap: 6px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 0.82rem; color: var(--ink-2); }
+.h-legend span { display: flex; align-items: center; gap: 8px; }
+.h-legend i { width: 10px; height: 10px; border-radius: 3px; flex: none; }
 .h-bill { display: grid; gap: 12px; }
 .h-bill-row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 12px 14px; border-radius: 10px; background: #f3fbf7; font-size: 0.9rem; color: var(--ink-2); }
 .h-bill-row b { color: #067a4d; font-size: 1.35rem; letter-spacing: -0.02em; }

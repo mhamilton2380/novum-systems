@@ -148,11 +148,28 @@ export default function HomePage() {
 
           <div className="h-vis" aria-hidden="true">
             <div className="h-card h-card-rent">
-              <div className="h-card-bar"><i /><i /><i /><span>Annual software cost</span></div>
+              <div className="h-card-bar"><i /><i /><i /><span>5-year software cost</span></div>
               <div className="h-card-body">
-                <div className="h-bill">
-                  <div className="h-bill-row h-bill-old"><span>Software subscriptions</span><s>$100,000</s></div>
-                  <div className="h-bill-row"><span>Your own system: one build, then hosting</span><b>A fraction</b></div>
+                <div className="h-chart">
+                  {[
+                    { y: "Yr 1", rent: 74, own: 40, build: true },
+                    { y: "Yr 2", rent: 80, own: 5 },
+                    { y: "Yr 3", rent: 86, own: 5 },
+                    { y: "Yr 4", rent: 93, own: 5 },
+                    { y: "Yr 5", rent: 100, own: 5 },
+                  ].map((c, i) => (
+                    <div className="h-chart-col" key={c.y}>
+                      <div className="h-chart-bars">
+                        <i className="h-bar-rent" style={{ height: `${c.rent}%`, animationDelay: `${i * 90}ms` }} />
+                        <i className={`h-bar-own${c.build ? " build" : ""}`} style={{ height: `${c.own}%`, animationDelay: `${i * 90 + 45}ms` }} />
+                      </div>
+                      <small>{c.y}</small>
+                    </div>
+                  ))}
+                </div>
+                <div className="h-legend">
+                  <span><i className="h-bar-rent" />Subscriptions, renewing every year</span>
+                  <span><i className="h-bar-own" />Your own system: build once, then hosting</span>
                 </div>
               </div>
             </div>
