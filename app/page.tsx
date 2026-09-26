@@ -129,7 +129,7 @@ export default function HomePage() {
         <div className="h-wrap h-hero-grid">
           <div>
             <h1>
-              One system for your entire operation, at a <span className="h-grad">fraction of the cost</span>.
+              A system for your entire operation, at a <span className="h-grad">fraction of the cost</span>.
             </h1>
             <p className="h-hero-sub">
               We replace the software you rent, connect the tools you keep, and put AI to work across all of it.
