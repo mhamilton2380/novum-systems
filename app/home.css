@@ -503,3 +503,14 @@ a.h-card2 .h-more { margin-top: 14px; font-weight: 700; color: var(--ink); font-
   .h-grid4, .h-form .h-2col { grid-template-columns: 1fr; }
   .h-formcard { padding: 24px; }
 }
+
+/* Explainer video under the hero */
+.h-video { padding: 8px 0 88px; }
+.h-video-frame { position: relative; aspect-ratio: 16 / 9; border-radius: 22px; overflow: hidden; background: var(--navy); box-shadow: 0 30px 80px rgba(11, 27, 46, 0.22), 0 0 0 1px rgba(11, 27, 46, 0.06); }
+.h-video-frame video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.h-video-play { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 14px; padding-bottom: 7%; border: 0; background: linear-gradient(180deg, transparent 55%, rgba(11, 27, 46, 0.45)); cursor: pointer; color: #fff; }
+.h-video-btn { display: grid; place-items: center; width: 84px; height: 84px; border-radius: 50%; background: rgba(255, 255, 255, 0.14); border: 1px solid rgba(255, 255, 255, 0.35); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 0 40px rgba(59, 111, 224, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.35); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.h-video-btn svg { width: 34px; height: 34px; margin-left: 4px; fill: #fff; }
+.h-video-play:hover .h-video-btn { transform: scale(1.06); box-shadow: 0 0 56px rgba(8, 145, 178, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.4); }
+.h-video-label { font-size: 0.95rem; font-weight: 600; letter-spacing: 0.02em; text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4); }
+@media (max-width: 640px) { .h-video { padding: 0 0 56px; } .h-video-frame { border-radius: 14px; } .h-video-btn { width: 64px; height: 64px; } .h-video-btn svg { width: 26px; height: 26px; } }

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SystemsShowcase } from "../components/SystemsShowcase";
+import { ExplainerVideo } from "../components/ExplainerVideo";
 
 // ─── Content ──────────────────────────────────────────────────────────────────
 const PROBLEMS = [
@@ -196,6 +197,13 @@ export default function HomePage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Explainer video */}
+      <section className="h-video">
+        <div className="h-wrap">
+          <ExplainerVideo />
         </div>
       </section>
 
