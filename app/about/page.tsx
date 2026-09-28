@@ -31,8 +31,8 @@ export default function AboutPage() {
             <h2>Operators first, software second.</h2>
           </div>
           <div className="h-prose">
-            <p>We came to software as operators, not engineers. We ran our business on a $100,000-a-year management platform that didn't fit our billing process, and our team spent hours every week producing documents by hand that the software should have drafted for them.</p>
-            <p>AI changed the math. Building a custom system used to cost more than renting one. Now it costs a fraction. We rebuilt ours, connected it to our billing, and put agents to work on the paperwork. The subscription went away, and so did the busywork.</p>
+            <p>We came to software as operators, not engineers. We spent years running a business on platforms we rented, building workarounds for the parts that never fit, and paying more for them every year as we grew.</p>
+            <p>AI changed the math. A custom system used to cost more than renting one, so almost nobody built. Now it costs a fraction, and the calculation runs the other way. We built our own, retired the subscriptions, and handed the repetitive work to agents that run in the background.</p>
             <p><strong>Novum exists to do the same for other businesses:</strong> one system for the whole operation, built around how you work, with AI built in, that you own outright.</p>
           </div>
         </div>
