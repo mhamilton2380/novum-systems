@@ -61,7 +61,7 @@
 .h-proof li::before { content: ""; flex: none; width: 18px; height: 2px; margin-top: 12px; background: var(--green); }
 .h-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
 
-/* Hero visual: rented vs owned */
+/* Hero visual: subscriptions vs owned */
 .h-vis { display: flex; flex-direction: column; }
 .h-card {
   position: relative; width: 88%; border-radius: 16px; background: #fff;

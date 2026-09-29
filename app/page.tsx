@@ -133,7 +133,7 @@ export default function HomePage() {
               A system for your entire operation, at a <span className="h-grad">fraction of the cost</span>.
             </h1>
             <p className="h-hero-sub">
-              We replace the software you rent, connect the tools you keep, and put AI to work across all of it.
+              We replace your software subscriptions, connect the tools you keep, and put AI to work across all of it.
             </p>
             <ul className="h-proof">
               <li>Built around your workflows, connected to the tools you already use.</li>
@@ -224,7 +224,7 @@ export default function HomePage() {
         <div className="h-wrap">
           <div className="h-head">
             <div className="h-eyebrow">The problem</div>
-            <h2>You rent a stack of tools that were never built for you.</h2>
+            <h2>You pay every year for tools that were never built for you.</h2>
             <p>Each one costs more every year, holds a piece of your data, and makes your team work its way. None of them see the whole business.</p>
           </div>
           <div className="h-cards3">
@@ -279,11 +279,11 @@ export default function HomePage() {
         <div className="h-wrap">
           <div className="h-head h-center">
             <div className="h-eyebrow">The difference</div>
-            <h2>Your rented stack vs. your own system.</h2>
-            <p>AI cut the cost of building custom software. A system built for you now costs less than the tools you rent.</p>
+            <h2>What you pay for now vs. a system you own.</h2>
+            <p>AI cut the cost of building custom software. A system built for you now costs less than the subscriptions it replaces.</p>
           </div>
           <div className="h-table">
-            <div className="h-trow h-thead"><div /><div>Rented software</div><div>Built by Novum</div></div>
+            <div className="h-trow h-thead"><div /><div>Your subscriptions</div><div>Built by Novum</div></div>
             {COMPARE.map(([label, rent, own]) => (
               <div className="h-trow" key={label}><div>{label}</div><div>{rent}</div><div>{own}</div></div>
             ))}

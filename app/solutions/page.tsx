@@ -46,7 +46,7 @@ const FEATURES = [
     id: "agents", n: "05", name: "Agents" as const,
     title: "AI that does the repeat work.",
     sub: "Because everything lives in one system, agents can do real work inside it, on a schedule or when something happens.",
-    checks: ["Runs recurring work: follow-ups, reconciliations, reports", "Follows your rules and approval steps", "Every action logged with what it did and why", "A person signs off before money moves or anything leaves the company"],
+    checks: ["Runs recurring work: follow-ups, reconciliations, reports", "Follows your rules and approval steps", "Every action logged with what it did and why", "A person reviews and signs off before anything leaves the company"],
     chipLabel: "For example", chips: ["Renewal quotes", "Invoice matching", "Missing-document chasers", "Weekly reports", "Appointment reminders"],
   },
 ];

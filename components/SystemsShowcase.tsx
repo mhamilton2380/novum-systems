@@ -8,7 +8,7 @@ type Slide = { title: string; body: string; head: string; sub: string; industry:
 const SLIDES: Slide[] = [
   {
     title: "Core",
-    body: "Clients, projects, schedules, budgets, and reporting in one place, built around how your team works. This replaces the platforms you rent today.",
+    body: "Clients, projects, schedules, budgets, and reporting in one place, built around how your team works. This replaces the platforms you pay for today.",
     head: "Core", sub: "Client work · budgets · deadlines", industry: "Marketing agency", ms: 8000,
   },
   {

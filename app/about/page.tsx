@@ -3,7 +3,7 @@ import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
 
 export const metadata: Metadata = {
   title: "About · Novum AI",
-  description: "Novum builds custom software businesses own, with AI built in, for a fraction of what they pay to rent it.",
+  description: "Novum builds custom software businesses own, with AI built in, for a fraction of what they pay in subscriptions.",
 };
 
 const BELIEFS = [
@@ -21,7 +21,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About Novum"
         title={<>We built it for ourselves <span className="h-grad">first</span>.</>}
-        sub="We were business owners and operators, renting software that never fit how we worked. So we built our own. Now we build them for other businesses."
+        sub="We were business owners and operators, paying every year for software that never fit how we worked. So we built our own. Now we build them for other businesses."
       />
 
       <section className="h-sec">
@@ -31,8 +31,8 @@ export default function AboutPage() {
             <h2>Operators first, software second.</h2>
           </div>
           <div className="h-prose">
-            <p>We came to software as operators, not engineers. We spent years running a business on platforms we rented, building workarounds for the parts that never fit, and paying more for them every year as we grew.</p>
-            <p>AI changed the math. A custom system used to cost more than renting one, so almost nobody built. Now it costs a fraction, and the calculation runs the other way. We built our own, retired the subscriptions, and handed the repetitive work to agents that run in the background.</p>
+            <p>We came to software as operators, not engineers. We spent years running a business on platforms we paid for by the seat, building workarounds for the parts that never fit, and watching the bill climb every year as we grew.</p>
+            <p>AI changed the math. A custom system used to cost more than a subscription, so almost nobody built one. Now it costs a fraction, and the calculation runs the other way. We built our own, retired the subscriptions, and handed the repetitive work to agents that run in the background.</p>
             <p><strong>Novum exists to do the same for other businesses:</strong> one system for the whole operation, built around how you work, with AI built in, that you own outright.</p>
           </div>
         </div>

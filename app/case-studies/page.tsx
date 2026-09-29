@@ -7,13 +7,13 @@ export const metadata: Metadata = {
 };
 
 const BEFORE = [
-  { title: "$100,000 a year in rent", body: "The company paid six figures a year for a construction management platform, and the price only went up as the business grew." },
+  { title: "$100,000 a year, every year", body: "The company paid six figures annually for a construction management platform, and the price only went up as the business grew." },
   { title: "Billing ran on its own system", body: "Their billing ran on a custom application and process the platform couldn't fit, so the same project data got entered twice." },
   { title: "RFIs and submittals by hand", body: "Project managers spent hours every week writing RFIs and assembling submittals from drawings, specs, and field notes." },
 ];
 
 const BUILT = [
-  { tag: "Core", title: "Construction management, rebuilt", body: "We rebuilt the platform they were renting around how they run jobs: projects, schedules, RFIs, submittals, and change orders." },
+  { tag: "Core", title: "Construction management, rebuilt", body: "We rebuilt the platform they were paying for around how they run jobs: projects, schedules, RFIs, submittals, and change orders." },
   { tag: "Integrations", title: "Connected to their billing", body: "The new system talks to their custom billing application, so project and billing data stay in sync and their billing process didn't have to change." },
   { tag: "Agents", title: "RFIs and submittals, drafted", body: "Agents draft RFIs and submittal packages from field notes and project documents. A project manager reviews, edits, and sends." },
 ];
