@@ -21,7 +21,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About Novum"
         title={<>We built it for ourselves <span className="h-grad">first</span>.</>}
-        sub="We were business owners and operators paying $100,000 a year for software that didn't fit how we worked. So we built our own. Now we build them for other businesses."
+        sub="We were business owners and operators, renting software that never fit how we worked. So we built our own. Now we build them for other businesses."
       />
 
       <section className="h-sec">
