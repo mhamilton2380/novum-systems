@@ -384,8 +384,8 @@ export default function HomePage() {
       <section className="h-sec">
         <div className="h-wrap">
           <div className="h-cta">
-            <h2>Tell us what you pay for today.</h2>
-            <p>Send us your software stack and what it costs. We&apos;ll tell you what we&apos;d replace, where AI would do the work, and what it would cost to run.</p>
+            <h2>Start with an operational audit.</h2>
+            <p>We spend time with your team, map how work actually moves, and account for every tool you pay for. You get a written assessment of where the work breaks down, what your stack costs over five years, and what a system built around you would replace. If the numbers don&apos;t justify a build, we say so.</p>
             <Link href="/contact" className="h-btn h-btn-light">Book a conversation</Link>
             <p className="h-cta-meta">No obligation. No sales deck.</p>
           </div>

@@ -24,7 +24,7 @@ export function PageHero({ eyebrow, title, sub, side, ctas = true }: {
   );
 }
 
-export function CtaBand({ title = "Tell us what you pay for today.", body = "Send us your software stack and what it costs. We'll tell you what we'd replace, what we'd connect, and where AI would do the work." }: { title?: string; body?: string }) {
+export function CtaBand({ title = "Start with an operational audit.", body = "We spend time with your team, map how work actually moves through the business, and account for every tool you pay for. You get a written assessment of where the work breaks down, what your stack costs over five years, and what a system built around you would replace." }: { title?: string; body?: string }) {
   return (
     <section className="h-sec">
       <div className="h-wrap">
