@@ -35,7 +35,7 @@ const COMPARE = [
   ["How it fits", "Your team bends to the template.", "Built around how you already work."],
   ["How many systems", "One per department, stitched together by hand.", "One system, connected to the tools you keep."],
   ["AI", "Sold as an add-on, one tool at a time.", "Built in, across everything."],
-  ["If you stop paying", "Access is cut off.", "It keeps running. It's yours."],
+  ["If you stop paying", "Access is cut off. Your data stays with the vendor.", "Hosting is already in your name. Support stops, the system doesn't."],
   ["Who can change it", "Only the vendor, on their roadmap.", "Us, your team, or any developer you hire."],
 ];
 

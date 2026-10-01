@@ -31,7 +31,7 @@ const FAQ = [
   { q: "Do we pay per user?", a: "No. There are no seats and no revenue share. Adding people or growing the business adds no license fees." },
   { q: "How long does a build take?", a: "It depends on the scope. We build in phases, so your team starts using the first piece before the whole system is done." },
   { q: "What happens to our data in the old system?", a: "We move it. Migration is part of the build, so your history comes with you." },
-  { q: "What if we stop working with you?", a: "Nothing breaks. You own the code, the data, and the accounts. Keep running it, hire another developer, or bring us back." },
+  { q: "What if we stop working with you?", a: "The hosting accounts are in your company's name, so the system keeps running and you keep paying the host directly. What stops is our support. Hire another developer, or bring us back." },
 ];
 
 export default function HowWeWorkPage() {
