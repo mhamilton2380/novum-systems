@@ -24,7 +24,7 @@ export function PageHero({ eyebrow, title, sub, side, ctas = true }: {
   );
 }
 
-export function CtaBand({ title = "Start with an operational audit.", body = "We spend time with your team, map how work actually moves through the business, and account for every tool you pay for. You get a written assessment of where the work breaks down, what your stack costs over five years, and what a system built around you would replace." }: { title?: string; body?: string }) {
+export function CtaBand({ title = "Start with a discovery.", body = "We spend time with your team, map how work actually moves through the business, and account for every tool you pay for. You get a written assessment of where the work breaks down, what your stack costs over five years, and what a system built around you would replace. If you build with us, the discovery fee comes off the price." }: { title?: string; body?: string }) {
   return (
     <section className="h-sec">
       <div className="h-wrap">
@@ -32,7 +32,7 @@ export function CtaBand({ title = "Start with an operational audit.", body = "We
           <h2>{title}</h2>
           <p>{body}</p>
           <Link href="/contact" className="h-btn h-btn-light">Book a conversation</Link>
-          <p className="h-cta-meta">No obligation. No sales deck.</p>
+          <p className="h-cta-meta">The first conversation is free. No sales deck.</p>
         </div>
       </div>
     </section>

@@ -21,10 +21,10 @@ const PROBLEMS = [
     ),
   },
   {
-    title: "AI that doesn't know you",
+    title: "AI with no one steering it",
     body: (
       <>
-        Vendors sell AI as another upgrade tier, and it only sees the data inside their one tool. It can&apos;t answer a question that <em>spans your business</em>.
+        Your team tries ChatGPT, a vendor adds an AI tier, someone buys another tool. <em>Nobody decides</em> which ones work on your data or earn their price.
       </>
     ),
   },
@@ -36,27 +36,34 @@ const COMPARE = [
   ["How many systems", "One per department, stitched together by hand.", "One system, connected to the tools you keep."],
   ["AI", "Sold as an add-on, one tool at a time.", "Built in, across everything."],
   ["If you stop paying", "Access is cut off. Your data stays with the vendor.", "Hosting is already in your name. Support stops, the system doesn't."],
+  ["Who's in charge", "Nobody. Tools get bought one at a time.", "A Chief AI Officer on call who knows your whole stack."],
   ["Who can change it", "Only the vendor, on their roadmap.", "Us, your team, or any developer you hire."],
 ];
 
 const STEPS = [
   {
     title: "Discovery",
-    tag: "The first step on every project",
-    body: "We sit with your team, map how the work actually moves, and list every tool you pay for and what it costs.",
-    includes: "workflow and tool audit, a written scope, and a price before anything is built",
+    tag: "Credited toward your build",
+    body: "We sit with your team, map how the work actually moves, and list every tool you pay for and what it costs. If you build with us, the discovery fee comes off the price.",
+    includes: "workflow and tool audit, a written scope, and a price before anything is built. The scope and audit are yours either way",
   },
   {
-    title: "Build",
-    tag: "Scoped and priced per project",
-    body: "We build your system in phases, highest-impact first, with your AI assistant and agents wired into it. Each phase is live and in use before the next starts.",
-    includes: "data migrated from your current tools, integrations with the ones you keep, AI built in, team training, and the code handed to you",
+    title: "Build, or AI Officer, or both",
+    tag: "Your choice after discovery",
+    body: "We build your system in phases, highest-impact first, each one live and in use before the next starts. Or we start as your Chief AI Officer on a monthly plan and build later.",
+    includes: "data migrated from your current tools, integrations with the ones you keep, AI built in, and the code handed to you",
+  },
+  {
+    title: "Train",
+    tag: "Built into every phase",
+    body: "Before each phase goes live, we train the people who will use it, on your system and your data. A system the team doesn't use saves nothing.",
+    includes: "hands-on sessions per team, written guides, and follow-up coaching after launch",
   },
   {
     title: "Run",
-    tag: "Hosting at cost · support optional",
-    body: "You pay for storage, security, and hosting. Nothing is priced on seats or revenue. Add support when you want new features or new agents.",
-    includes: "monitoring, backups, security updates, and month-to-month support you can cancel anytime",
+    tag: "Your AI Officer · monthly, cancel anytime",
+    body: "You pay for hosting, storage, and security. Nothing is priced on seats or revenue. Your AI Officer keeps everything current and brings in new AI as it's worth using.",
+    includes: "maintenance, a quarterly tool audit, new-tool testing, ongoing training, and a set number of changes and new agents each month",
   },
 ];
 
@@ -101,7 +108,15 @@ const AUDIT = [
 const FAQ = [
   {
     q: "What does it cost?",
-    a: "It depends on what you need. Every company runs differently: some need a new system built from scratch, some need the tools they already use connected, and most need a mix of both. We price every project case by case, after we understand how your business works.",
+    a: "Discovery is priced case by case, based on the type of business, its size, and the tools in use. It ranges from $2,500 to $15,000 for the initial audit, and it comes off the price of your build if you go ahead. After that it depends on what you need. Every company runs differently: some need a new system built from scratch, some need the tools they already use connected, and most need a mix of both. We price every build case by case, after we understand how your business works. The Chief AI Officer role is priced monthly, also after discovery.",
+  },
+  {
+    q: "What is a fractional Chief AI Officer?",
+    a: "Most companies under 100 people can't justify a full-time technical executive. We fill the role part-time. We keep your systems running, watch what you spend, and bring in new AI tools when they're worth it.",
+  },
+  {
+    q: "Can we hire you for just that?",
+    a: "Yes. Start with a discovery. We map your stack and set up a monthly plan. If a build makes sense later, the discovery fee comes off it.",
   },
   {
     q: "Will it do everything our current software does?",
@@ -130,18 +145,18 @@ export default function HomePage() {
         <div className="h-wrap h-hero-grid">
           <div>
             <h1>
-              A system for your entire operation, at a <span className="h-grad">fraction of the cost</span>.
+              The technical team your company <span className="h-grad">doesn&apos;t have</span>.
             </h1>
             <p className="h-hero-sub">
-              We replace your software subscriptions, connect the tools you keep, and put AI to work across all of it.
+              We build the software your business runs on, then act as your Chief AI Officer: keeping it current, cutting what you don&apos;t need, and bringing in new AI as it arrives. You own all of it.
             </p>
             <ul className="h-proof">
-              <li>Built around your workflows, connected to the tools you already use.</li>
-              <li>An AI assistant and agents working across all of it.</li>
-              <li>No seats, no revenue share. The code is yours.</li>
+              <li>Software built around how you work, connected to the tools you keep.</li>
+              <li>A fractional Chief AI Officer on call for maintenance, audits, and upgrades.</li>
+              <li>No seats, no revenue share. The code, data, and accounts are yours.</li>
             </ul>
             <div className="h-ctas">
-              <Link href="/contact" className="h-btn h-btn-primary">Book a conversation</Link>
+              <Link href="/contact" className="h-btn h-btn-primary">Start with a discovery</Link>
               <a href="#how" className="h-btn h-btn-ghost">How it works →</a>
             </div>
           </div>
@@ -224,8 +239,8 @@ export default function HomePage() {
         <div className="h-wrap">
           <div className="h-head">
             <div className="h-eyebrow">The problem</div>
-            <h2>You pay every year for tools that were never built for you.</h2>
-            <p>Each one costs more every year, holds a piece of your data, and makes your team work its way. None of them see the whole business.</p>
+            <h2>You pay for software every year and nobody owns the decision.</h2>
+            <p>Most companies under 100 people have no CTO. Tools get bought by whoever needed one that week, and nobody checks what they cost, overlap, or share.</p>
           </div>
           <div className="h-cards3">
             {PROBLEMS.map((p, i) => (
@@ -246,13 +261,38 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Two ways */}
+      <section className="h-sec">
+        <div className="h-wrap">
+          <div className="h-head h-center">
+            <div className="h-eyebrow">Two ways we work with you</div>
+            <h2>Build it, run it, or both.</h2>
+            <p>Most clients build first, then keep us as their AI Officer. Some start with the AI Officer and build later. Both start with the same discovery.</p>
+          </div>
+          <div className="h-grid3" style={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+            <Link href="/build" className="h-card2">
+              <span className="h-card2-tag">Build</span>
+              <h3>We build and connect your systems.</h3>
+              <p>We replace the platforms you&apos;ve outgrown, connect the tools you keep, and put an AI assistant and agents on top. Priced per project and quoted in writing. You own the code, the data, and the accounts.</p>
+              <div className="h-more">See Build and pricing →</div>
+            </Link>
+            <Link href="/ai-officer" className="h-card2">
+              <span className="h-card2-tag">Fractional Chief AI Officer</span>
+              <h3>We run your AI and systems for you.</h3>
+              <p>Maintenance and security, a quarterly audit of every tool and what it costs, new AI tested on your data, ongoing training, and a set number of changes each month. Monthly, cancel anytime.</p>
+              <div className="h-more">See AI Officer and pricing →</div>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* How it works */}
       <section className="h-sec h-soft" id="how">
         <div className="h-wrap">
           <div className="h-howgrid">
             <div className="h-head">
               <div className="h-eyebrow">How it works</div>
-              <h2>Three steps. No subscription.</h2>
+              <h2>Four steps. No subscription.</h2>
               <p>Nothing gets built until the scope and the price are agreed in writing.</p>
             </div>
             <div className="h-vsteps">
@@ -384,10 +424,10 @@ export default function HomePage() {
       <section className="h-sec">
         <div className="h-wrap">
           <div className="h-cta">
-            <h2>Start with an operational audit.</h2>
-            <p>We spend time with your team, map how work actually moves, and account for every tool you pay for. You get a written assessment of where the work breaks down, what your stack costs over five years, and what a system built around you would replace. If the numbers don&apos;t justify a build, we say so.</p>
+            <h2>Start with a discovery.</h2>
+            <p>We spend time with your team, map how work actually moves, and account for every tool you pay for. You get a written assessment of where the work breaks down, what your stack costs over five years, and what a system built around you would replace. If the numbers don&apos;t justify a build, we say so. If they do, the discovery fee comes off your build.</p>
             <Link href="/contact" className="h-btn h-btn-light">Book a conversation</Link>
-            <p className="h-cta-meta">No obligation. No sales deck.</p>
+            <p className="h-cta-meta">The first conversation is free. No sales deck.</p>
           </div>
         </div>
       </section>
