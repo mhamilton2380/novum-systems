@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { SystemsShowcase } from "../components/SystemsShowcase";
 import { HeroReel } from "../components/HeroReel";
-import { InboxAgent } from "../components/InboxAgent";
+import { ExampleBuilds } from "../components/ExampleBuilds";
 
 // ─── Content ──────────────────────────────────────────────────────────────────
 const PROBLEMS = [
@@ -64,7 +64,7 @@ const STEPS = [
     title: "Run",
     tag: "Your AI Officer · plans from $500/mo",
     body: "You pay for hosting, storage, and security. Nothing is priced on seats or revenue. Your AI Officer keeps the team trained and brings in new AI as it's worth using.",
-    includes: "ongoing training, new AI tested on your data, a quarterly tool audit, maintenance, and a set number of changes and new agents each month",
+    includes: "ongoing training, new AI tested on your data, a quarterly tool audit, maintenance, and new agents and changes on a schedule set by your plan",
   },
 ];
 
@@ -90,7 +90,7 @@ const AUDIT = [
   { who: "Field tablet 07", role: "Technician", what: "uploaded job photos", ok: true },
   { who: "Contractor login", role: "External", what: "tried to open Payroll_Q3.xlsx", ok: false },
   { who: "M. Chen", role: "Finance", what: "exported AP aging report", ok: true },
-  { who: "Renewal agent", role: "AI", what: "sent 23 renewal quotes", ok: true },
+  { who: "Renewal agent", role: "AI", what: "drafted 23 renewal quotes for review", ok: true },
   { who: "S. Patel", role: "Paralegal", what: "edited Engagement_Letter_v4", ok: true },
   { who: "Unknown device", role: "Blocked", what: "sign-in attempt from new location", ok: false },
 ];
@@ -98,7 +98,7 @@ const AUDIT = [
 const FAQ = [
   {
     q: "What does it cost?",
-    a: "Discovery is priced case by case, based on the type of business, its size, and the tools in use. It ranges from $2,500 to $15,000, and it comes off the price of your build if you go ahead. After that it depends on what you need: some companies need their team trained and a few agents built, some need their tools connected, some need a new system. We price every project after discovery, in writing. AI Officer plans run $500, $1,500, or $3,500 a month on a 12-month plan, with the first two months free. Growth includes replacing one costly SaaS tool a year and Pro is unlimited, so most clients never need a separate build.",
+    a: "Discovery is priced case by case, based on the type of business, its size, and the tools in use. It ranges from $2,500 to $15,000, and it comes off the price of your build if you go ahead. After that it depends on what you need: some companies need their team trained and a few agents built, some need their tools connected, some need a new system. We price every project after discovery, in writing. AI Officer plans run $500, $1,500, or $3,500 a month on a 12-month plan, with the first two months free. Enterprise is priced per company. Growth includes replacing one costly SaaS tool a year and Pro is unlimited, so most clients never need a separate build.",
   },
   {
     q: "We already pay for AI tools. Why would we need you?",
@@ -187,6 +187,25 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Example builds */}
+      <section className="h-sec h-soft">
+        <div className="h-wrap">
+          <div className="h-ia-head">
+            <div className="h-head">
+              <div className="h-eyebrow">See it work</div>
+              <h2>Nine jobs your team does by hand. An agent drafts each one. A person checks it.</h2>
+              <p>Pick one. Each runs on the company&apos;s own data and tools, and nothing leaves the company until someone on the team approves it.</p>
+            </div>
+            <ul className="h-ia-points">
+              <li><span><b>Reads whatever arrives.</b> Email, PDFs, faxes, calls, voice memos, and spreadsheets.</span></li>
+              <li><span><b>Checks it against your data.</b> Order history, the policy on file, last year&apos;s return.</span></li>
+              <li><span><b>Shows what it isn&apos;t sure about.</b> Then waits for a person to decide.</span></li>
+            </ul>
+          </div>
+          <ExampleBuilds />
+        </div>
+      </section>
+
       {/* Systems */}
       <section className="h-sec">
         <div className="h-wrap">
@@ -194,27 +213,54 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Example build */}
+      {/* Case study */}
       <section className="h-sec h-soft">
-        <div className="h-wrap">
-          <div className="h-ia-head">
-            <div className="h-head">
-              <div className="h-eyebrow">An example of what we build</div>
-              <h2>The order lands in the inbox. The sales order is drafted before anyone opens it.</h2>
-              <p>Most companies pay someone to read PDFs and type them into another system. An agent does the reading and the typing. Your team does the checking.</p>
+        <div className="h-wrap h-roi">
+          <div>
+            <div className="h-eyebrow">Case study · Construction company</div>
+            <h2>Agents drafting the paperwork, and a <span className="h-grad">$100,000</span> software bill gone.</h2>
+            <p className="h-roi-sub">
+              A construction company was paying $100,000 a year for construction management software. We rebuilt it around how they run projects, connected it to their custom billing application, and put agents to work drafting RFIs and submittals. After the build, they pay only for hosting, storage, and security, a small fraction of what the subscription cost.
+            </p>
+            <div className="h-chips">
+              <span>$100,000/yr before</span>
+              <span>One-time build</span>
+              <span>Hosting only after that</span>
             </div>
-            <ul className="h-ia-points">
-              <li><span><b>Reads anything that arrives.</b> Email text, PDFs, spreadsheets, and faxes.</span></li>
-              <li><span><b>Matches it to your data.</b> Customer part numbers to your SKUs, using their order history.</span></li>
-              <li><span><b>Shows what it isn&apos;t sure about.</b> A person approves every order before it&apos;s released.</span></li>
-            </ul>
           </div>
-          <InboxAgent />
+          <div className="h-roi-card">
+            <h3>What they run on now</h3>
+            <ul>
+              <li><b>Construction management</b> rebuilt around their own workflows, replacing the subscription platform.</li>
+              <li><b>Their custom billing application</b> connected, so project and billing data stay in sync with no double entry.</li>
+              <li><b>Agents drafting RFIs and submittals</b> for the project team to review and send, saving hours every week.</li>
+            </ul>
+            <div className="h-roi-foot">
+              <p>One build fee. Then storage, security, and hosting. No seats, no revenue share, no renewal.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Compare */}
+      <section className="h-sec">
+        <div className="h-wrap">
+          <div className="h-head h-center">
+            <div className="h-eyebrow">The difference</div>
+            <h2>Buying AI tools vs. putting AI to work.</h2>
+            <p>Most companies already pay for AI. What&apos;s missing is someone to set it up around the work and teach the team to use it.</p>
+          </div>
+          <div className="h-table">
+            <div className="h-trow h-thead"><div /><div>AI on your own</div><div>AI with Novum</div></div>
+            {COMPARE.map(([label, rent, own]) => (
+              <div className="h-trow" key={label}><div>{label}</div><div>{rent}</div><div>{own}</div></div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Two ways */}
-      <section className="h-sec">
+      <section className="h-sec h-soft">
         <div className="h-wrap">
           <div className="h-head h-center">
             <div className="h-eyebrow">Two ways we work with you</div>
@@ -234,13 +280,12 @@ export default function HomePage() {
               <p>We scope it in a paid discovery, then build the tools, connect your systems, train your team, and hand you the code. Priced per project and quoted in writing. You own all of it.</p>
               <div className="h-more">See Build and pricing →</div>
             </Link>
-
           </div>
         </div>
       </section>
 
       {/* How it works */}
-      <section className="h-sec h-soft" id="how">
+      <section className="h-sec" id="how">
         <div className="h-wrap">
           <div className="h-howgrid">
             <div className="h-head">
@@ -263,23 +308,6 @@ export default function HomePage() {
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Compare */}
-      <section className="h-sec">
-        <div className="h-wrap">
-          <div className="h-head h-center">
-            <div className="h-eyebrow">The difference</div>
-            <h2>Buying AI tools vs. putting AI to work.</h2>
-            <p>Most companies already pay for AI. What&apos;s missing is someone to set it up around the work and teach the team to use it.</p>
-          </div>
-          <div className="h-table">
-            <div className="h-trow h-thead"><div /><div>AI on your own</div><div>AI with Novum</div></div>
-            {COMPARE.map(([label, rent, own]) => (
-              <div className="h-trow" key={label}><div>{label}</div><div>{rent}</div><div>{own}</div></div>
-            ))}
           </div>
         </div>
       </section>
@@ -340,35 +368,6 @@ export default function HomePage() {
                 <p>{f.a}</p>
               </details>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Case study */}
-      <section className="h-sec h-soft">
-        <div className="h-wrap h-roi">
-          <div>
-            <div className="h-eyebrow">Case study · Construction company</div>
-            <h2>Agents drafting the paperwork, and a <span className="h-grad">$100,000</span> software bill gone.</h2>
-            <p className="h-roi-sub">
-              A construction company was paying $100,000 a year for construction management software. We rebuilt it around how they run projects, connected it to their custom billing application, and put agents to work drafting RFIs and submittals. After the build, they pay only for hosting, storage, and security, a small fraction of what the subscription cost.
-            </p>
-            <div className="h-chips">
-              <span>$100,000/yr before</span>
-              <span>One-time build</span>
-              <span>Hosting only after that</span>
-            </div>
-          </div>
-          <div className="h-roi-card">
-            <h3>What they run on now</h3>
-            <ul>
-              <li><b>Construction management</b> rebuilt around their own workflows, replacing the subscription platform.</li>
-              <li><b>Their custom billing application</b> connected, so project and billing data stay in sync with no double entry.</li>
-              <li><b>Agents drafting RFIs and submittals</b> for the project team to review and send, saving hours every week.</li>
-            </ul>
-            <div className="h-roi-foot">
-              <p>One build fee. Then storage, security, and hosting. No seats, no revenue share, no renewal.</p>
-            </div>
           </div>
         </div>
       </section>

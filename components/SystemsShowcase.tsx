@@ -28,7 +28,7 @@ const SLIDES: Slide[] = [
   },
   {
     title: "Agents",
-    body: "Because everything lives in one system, AI can do real work inside it: send the renewal quotes, chase missing documents, reconcile payments, build the weekly report.",
+    body: "Because everything lives in one system, AI can do real work inside it: draft the renewal quotes, chase missing documents, reconcile payments, build the weekly report. A person approves before anything goes out.",
     head: "Agents", sub: "Running in the background", industry: "Insurance agency", ms: 11000,
   },
 ];
@@ -168,7 +168,7 @@ function VaultDemo() {
 
 // ─── Agents: task runs ────────────────────────────────────────────────────────
 const RUNS = [
-  { agent: "Renewal agent", task: "Sent 23 renewal quotes for policies expiring in 30 days", saved: "3 hrs" },
+  { agent: "Renewal agent", task: "Drafted 23 renewal quotes for policies expiring in 30 days, held for review", saved: "3 hrs" },
   { agent: "Intake agent", task: "Collected missing documents from 9 new clients", saved: "1.5 hrs" },
   { agent: "Claims agent", task: "Summarized a 212-page claim file for the adjuster", saved: "2 hrs" },
   { agent: "Reporting agent", task: "Built the monthly book-of-business report", saved: "4 hrs" },
@@ -271,7 +271,7 @@ export function SystemsShowcase() {
     <div className="h-sys">
       <div>
         <div className="h-head" style={{ marginBottom: 32 }}>
-          <div className="h-eyebrow">What we build</div>
+          <div className="h-eyebrow">Under the hood</div>
           <h2>One system. AI across all of it.</h2>
           <p>Each piece works on its own. Together they share one set of data, which is what lets the AI answer real questions and do real work.</p>
         </div>
