@@ -6,13 +6,15 @@ const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY ?? "eyJhbGciOiJIUzI1NiIs
 const FIELDS = ["name", "email", "company", "industry", "tools", "availability", "message"] as const;
 type Lead = Record<(typeof FIELDS)[number], string>;
 
+const PLAN_NAMES: Record<string, string> = { basic: "Basic ($500/mo)", growth: "Growth ($1,500/mo)" };
+
 const clean = (v: unknown, max: number) => (typeof v === "string" ? v.trim().slice(0, max) : "");
 const escape = (s: string) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 
 // A lead that reaches Supabase but not the inbox is a lead nobody answers, so every
 // failure here is logged loudly. LEAD NOT EMAILED is the string to search for in the
 // Vercel logs, and the lead itself is always recoverable from the Supabase leads table.
-async function notify(lead: Lead) {
+async function notify(lead: Lead, plan?: string) {
   const key = process.env.RESEND_API_KEY;
   const to = process.env.LEADS_TO;
   if (!key || !to) {
@@ -29,7 +31,7 @@ async function notify(lead: Lead) {
         from: process.env.RESEND_FROM ?? "Novum Website <onboarding@resend.dev>",
         to: to.split(",").map((s) => s.trim()),
         reply_to: lead.email,
-        subject: `New lead: ${lead.company} (${lead.name})`,
+        subject: plan ? `AI Officer sign-up, ${plan}: ${lead.company} (${lead.name})` : `New lead: ${lead.company} (${lead.name})`,
         html: `<table style="font-family:sans-serif;font-size:14px">${rows}</table>`,
       }),
     });
@@ -61,6 +63,8 @@ export async function POST(request: Request) {
     availability: clean(body.availability, 500),
     message: clean(body.message, 5000),
   };
+  const plan = PLAN_NAMES[clean(body.plan, 20)];
+  if (plan) lead.message = `AI OFFICER SIGN-UP: ${plan}, 12-month plan, first 2 months free.\n\n${lead.message}`.slice(0, 5000);
   if (!lead.name || !lead.company || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(lead.email)) {
     return Response.json({ error: "Name, company, and a valid email are required." }, { status: 400 });
   }
@@ -97,6 +101,6 @@ export async function POST(request: Request) {
     return Response.json({ error: "Could not save your message." }, { status: 502 });
   }
 
-  await notify(lead);
+  await notify(lead, plan);
   return Response.json({ ok: true });
 }

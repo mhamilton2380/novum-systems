@@ -8,9 +8,9 @@ export const metadata: Metadata = {
 
 const STEPS = [
   { title: "Discovery", tag: "Credited toward your build", body: "We sit with your team, watch how the work actually moves, find where AI saves the most hours, and list every tool you pay for and what it costs. If you build with us, the discovery fee comes off the price.", includes: "workflow mapping, a tool and cost audit, a written plan for what to train, build, and connect, and a price before anything is built. The plan and audit are yours to keep either way" },
-  { title: "Build, or AI Officer, or both", tag: "Your choice after discovery", body: "We build in phases, highest-impact first, each one live and in use before the next starts. Or we start as your fractional Chief AI Officer on a monthly plan, training your team first, and build later.", includes: "the AI assistant and agents, integrations with the tools you keep, and data migration where a platform gets replaced" },
+  { title: "Build, or AI Officer, or both", tag: "Your choice after discovery", body: "We build in phases, highest-impact first, each one live and in use before the next starts. Or start with a fractional Chief AI Officer plan, training your team first, and build later.", includes: "the AI assistant and agents, integrations with the tools you keep, and data migration where a platform gets replaced" },
   { title: "Train", tag: "Built into every phase", body: "Before each phase goes live, we train the people who will use it, on their own work and your data. AI the team doesn't use saves nothing.", includes: "hands-on sessions per team, written guides, and follow-up coaching after launch" },
-  { title: "Run", tag: "Your AI Officer, monthly", body: "You pay for hosting, storage, and security. Your AI Officer keeps the team trained, audits your tools each quarter, and brings in new AI as it's worth using.", includes: "ongoing training, monitoring, backups, security updates, and a plan you can cancel anytime" },
+  { title: "Run", tag: "Your AI Officer, from $500/mo", body: "You pay for hosting, storage, and security. Your AI Officer keeps the team trained, audits your tools each quarter, and brings in new AI as it's worth using.", includes: "ongoing training, monitoring, backups, and security updates on a 12-month plan, first two months free" },
 ];
 
 const HANDOFF = [

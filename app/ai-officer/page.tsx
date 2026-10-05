@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
+import { PlanCards } from "@/components/PlanCards";
 
 export const metadata: Metadata = {
   title: "Fractional Chief AI Officer · Novum AI",
-  description: "A part-time Chief AI Officer for companies without a technical team. We train your team, test new AI on your data, audit your tools, and keep everything running.",
+  description: "A part-time Chief AI Officer for companies without a technical team. Plans from $500 a month, first two months free. We train your team, test new AI on your data, and audit your tools.",
 };
 
 const MONTHLY = [
@@ -22,18 +23,12 @@ const FIT = [
   { title: "Not ready to build", body: "You want your team using AI well first. The AI Officer starts with training and builds later if it makes sense." },
 ];
 
-const DRIVERS = [
-  { title: "How many systems", body: "More systems and integrations mean more to maintain and monitor." },
-  { title: "How many people", body: "A team of 15 needs less training and support than a team of 100." },
-  { title: "How much changes", body: "More monthly changes and new agents take more of our time." },
-  { title: "Standalone or after a build", body: "If we built your system, we already know it. Starting from an existing stack takes more setup." },
-];
 
 const FAQ = [
   { q: "What is a fractional Chief AI Officer?", a: "Most companies under 100 people can't justify a full-time technical executive. We fill the role part-time. We train your team, test new AI on your data, keep your systems running, and cut tools that don't earn their price." },
-  { q: "Do we have to build with you first?", a: "No. Start with a discovery. We map your stack and set up a monthly plan. If a build makes sense later, the discovery fee comes off it." },
-  { q: "Can we cancel?", a: "Yes, month to month. Your accounts, data, and code stay in your company's name, so nothing breaks if we part ways." },
-  { q: "What's not included?", a: "Large new builds are scoped and priced as projects. The monthly plan covers upkeep, audits, training, and a set number of changes." },
+  { q: "Do we need a discovery first?", a: "Not for Basic or Growth. Sign up and we book your first training session. Pro and Enterprise start with a discovery, because they include building and running systems, and the discovery fee comes off any build." },
+  { q: "How long is the commitment?", a: "Every plan is 12 months. That commitment is what pays for the two free months. Your accounts, data, and code stay in your company's name either way, so nothing breaks if we part ways." },
+  { q: "What's not included?", a: "Large new builds are scoped and priced as projects. Each plan covers the training, audits, and changes listed on it." },
 ];
 
 export default function AiOfficerPage() {
@@ -42,7 +37,7 @@ export default function AiOfficerPage() {
       <PageHero
         eyebrow="Fractional Chief AI Officer"
         title={<>Your AI team, <span className="h-grad">on call</span>.</>}
-        sub="Most companies under 100 people have no one whose job is AI. We act as yours: training your team, testing new AI on your data, auditing what you pay for, and keeping it all running."
+        sub="Most companies under 100 people have no one whose job is AI. We act as yours: training your team, testing new AI on your data, and auditing what you pay for. Plans from $500 a month, first two months free."
       />
 
       <section className="h-sec">
@@ -58,7 +53,7 @@ export default function AiOfficerPage() {
 
       <section className="h-sec h-soft">
         <div className="h-wrap">
-          <SectionHead eyebrow="Every month" title="What the retainer covers." sub="A defined scope, so you know what you're getting and what costs extra." />
+          <SectionHead eyebrow="The role" title="What an AI Officer does." sub="Your plan sets how much of each you get, so you know what's included and what costs extra." />
           <div className="h-grid3">
             {MONTHLY.map((m) => (
               <div className="h-card2" key={m.title}><h3>{m.title}</h3><p>{m.body}</p></div>
@@ -70,15 +65,11 @@ export default function AiOfficerPage() {
       <section className="h-sec" id="pricing">
         <div className="h-wrap">
           <SectionHead
-            eyebrow="Pricing"
-            title="A monthly fee, set after discovery."
-            sub="Discovery is priced case by case, based on the type of business, its size, and the tools in use. It ranges from $2,500 to $15,000, and that fee comes off a build if you go ahead. We then agree the monthly scope and price in writing. No seats, and you can cancel any month."
+            eyebrow="Plans"
+            title="Pick a plan. The first two months are free."
+            sub="Every plan runs 12 months, and the first two are on us. Basic and Growth start today. Pro and Enterprise start with a discovery, because they include building and running systems."
           />
-          <div className="h-grid4">
-            {DRIVERS.map((d) => (
-              <div className="h-card2" key={d.title}><h3>{d.title}</h3><p>{d.body}</p></div>
-            ))}
-          </div>
+          <PlanCards />
           <p style={{ marginTop: 28, color: "var(--ink-2)", maxWidth: 720 }}>
             Need something built? That's a separate project, scoped on our{" "}
             <Link href="/build" style={{ color: "inherit", fontWeight: 700 }}>Build</Link> page.

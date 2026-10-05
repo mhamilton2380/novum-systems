@@ -50,7 +50,7 @@ const STEPS = [
   {
     title: "Build, or AI Officer, or both",
     tag: "Your choice after discovery",
-    body: "We build the tools in phases, highest-impact first, each one live and in use before the next starts. Or we start as your Chief AI Officer on a monthly plan, training your team and building later.",
+    body: "We build the tools in phases, highest-impact first, each one live and in use before the next starts. Or start with an AI Officer plan, training your team first, and build later.",
     includes: "an AI assistant and agents on your data, integrations with the tools you keep, a custom system where it pays, and the code handed to you",
   },
   {
@@ -61,7 +61,7 @@ const STEPS = [
   },
   {
     title: "Run",
-    tag: "Your AI Officer · monthly, cancel anytime",
+    tag: "Your AI Officer · plans from $500/mo",
     body: "You pay for hosting, storage, and security. Nothing is priced on seats or revenue. Your AI Officer keeps the team trained and brings in new AI as it's worth using.",
     includes: "ongoing training, new AI tested on your data, a quarterly tool audit, maintenance, and a set number of changes and new agents each month",
   },
@@ -97,7 +97,7 @@ const AUDIT = [
 const FAQ = [
   {
     q: "What does it cost?",
-    a: "Discovery is priced case by case, based on the type of business, its size, and the tools in use. It ranges from $2,500 to $15,000, and it comes off the price of your build if you go ahead. After that it depends on what you need: some companies need their team trained and a few agents built, some need their tools connected, some need a new system. We price every project after discovery, in writing. The Chief AI Officer role is priced monthly, also after discovery.",
+    a: "Discovery is priced case by case, based on the type of business, its size, and the tools in use. It ranges from $2,500 to $15,000, and it comes off the price of your build if you go ahead. After that it depends on what you need: some companies need their team trained and a few agents built, some need their tools connected, some need a new system. We price every project after discovery, in writing. AI Officer plans start at $500 a month on a 12-month plan, with the first two months free, and Basic and Growth need no discovery.",
   },
   {
     q: "We already pay for AI tools. Why would we need you?",
@@ -211,8 +211,8 @@ export default function HomePage() {
             <Link href="/ai-officer" className="h-card2">
               <span className="h-card2-tag">Fractional Chief AI Officer</span>
               <h3>We keep AI working for you, every month.</h3>
-              <p>Ongoing training, new AI tested on your data, a quarterly audit of every tool and what it costs, maintenance and security, and a set number of changes and new agents each month. Monthly, cancel anytime.</p>
-              <div className="h-more">See AI Officer and pricing →</div>
+              <p>Ongoing training, new AI tested on your data, a quarterly audit of every tool and what it costs, maintenance and security, and a set number of changes and new agents each month. Plans from $500 a month, first two months free.</p>
+              <div className="h-more">See plans and sign up →</div>
             </Link>
           </div>
         </div>
