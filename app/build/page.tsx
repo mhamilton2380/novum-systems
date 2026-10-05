@@ -34,8 +34,8 @@ export default function BuildPage() {
     <div className="home">
       <PageHero
         eyebrow="Build"
-        title={<>AI tools built around how you work. <span className="h-grad">You own them.</span></>}
-        sub="We build an AI assistant and agents on your data, connect the tools you keep, and train your team on every piece. Where a platform costs more to rent than to own, we rebuild it. No seats, no revenue share."
+        title={<>A one-time build. <span className="h-grad">You own it.</span></>}
+        sub="For companies that want a project without a monthly plan. We build an AI assistant and agents on your data, connect the tools you keep, replace what costs more to rent than to own, and train your team on every piece. No seats, no revenue share."
       />
 
       <section className="h-sec">
@@ -78,8 +78,8 @@ export default function BuildPage() {
             ))}
           </div>
           <p style={{ marginTop: 28, color: "var(--ink-2)", maxWidth: 720 }}>
-            After the build you pay for hosting, storage, and security. Most clients then keep us on as their{" "}
-            <Link href="/ai-officer" style={{ color: "inherit", fontWeight: 700 }}>fractional Chief AI Officer</Link>.
+            After the build you pay for hosting, storage, and security. Want builds as part of a monthly price instead? Growth includes one SaaS replacement a year and Pro is unlimited. See the{" "}
+            <Link href="/ai-officer#pricing" style={{ color: "inherit", fontWeight: 700 }}>AI Officer plans</Link>.
           </p>
         </div>
       </section>

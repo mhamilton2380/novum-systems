@@ -11,24 +11,24 @@ export const metadata: Metadata = {
 const MONTHLY = [
   { title: "Ongoing training", body: "Sessions and coaching for your team on their own work, as the tools change, so people keep using what you paid for." },
   { title: "New AI, tested for you", body: "AI tools change monthly. We test the ones that matter on your data and adopt the ones that pay off." },
-  { title: "A quarterly tool audit", body: "Every tool, what it costs, and where it overlaps. We cut what you don't use and flag what's about to renew." },
-  { title: "Maintenance and security", body: "Monitoring, backups, and security updates, so your systems keep running and nobody on your team has to think about it." },
-  { title: "Changes and new agents", body: "A set number each month. New reports, new workflows, new agents for the work your team still does by hand." },
-  { title: "One person to call", body: "When something breaks or someone asks \"can AI do this,\" you have an answer within a business day." },
+  { title: "Costly software, replaced", body: "When a SaaS tool costs more than it's worth, we build the version that fits and hand you the code. Growth includes one a year, Pro is unlimited." },
+  { title: "Marketing handled", body: "SEO that doesn't depend on paid ads, social reels, and explainer videos, made for you every month on Growth and Pro." },
+  { title: "Audits and security", body: "A quarterly audit of every tool and what it costs, plus monitoring, backups, and security updates on everything we set up." },
 ];
 
 const FIT = [
   { title: "No technical team", body: "You run a company of 15 to 100 people, nobody owns software, and tools get bought one at a time." },
   { title: "Software you want kept current", body: "You built with us and want the system maintained and improved as the business grows." },
-  { title: "Not ready to build", body: "You want your team using AI well first. The AI Officer starts with training and builds later if it makes sense." },
+  { title: "Starting small", body: "You want your team using AI well before anything gets built. Start on Basic and move up when the results show." },
 ];
 
 
 const FAQ = [
   { q: "What is a fractional Chief AI Officer?", a: "Most companies under 100 people can't justify a full-time technical executive. We fill the role part-time. We train your team, test new AI on your data, keep your systems running, and cut tools that don't earn their price." },
   { q: "Do we need a discovery first?", a: "Not for Basic or Growth. Sign up and we book your first training session. Pro and Enterprise start with a discovery, because they include building and running systems, and the discovery fee comes off any build." },
+  { q: "Do we keep what you build if we leave?", a: "Yes. Replacements, agents, and integrations are built on accounts in your company's name. The code, data, and accounts stay yours." },
   { q: "How long is the commitment?", a: "Every plan is 12 months. That commitment is what pays for the two free months. Your accounts, data, and code stay in your company's name either way, so nothing breaks if we part ways." },
-  { q: "What's not included?", a: "Large new builds are scoped and priced as projects. Each plan covers the training, audits, and changes listed on it." },
+  { q: "What's not included?", a: "Anything past your plan's limits, like a second replacement on Growth, is quoted as a project. Pro includes unlimited replacements, built one at a time." },
 ];
 
 export default function AiOfficerPage() {
@@ -67,7 +67,7 @@ export default function AiOfficerPage() {
           <SectionHead
             eyebrow="Plans"
             title="Pick a plan. The first two months are free."
-            sub="Every plan runs 12 months, and the first two are on us. Basic and Growth start today. Pro and Enterprise start with a discovery, because they include building and running systems."
+            sub="Every plan runs 12 months, and the first two are on us. Basic and Growth start today. Pro and Enterprise start with a discovery, so we can plan the builds before the first month."
           />
           <PlanCards />
           <p style={{ marginTop: 28, color: "var(--ink-2)", maxWidth: 720 }}>

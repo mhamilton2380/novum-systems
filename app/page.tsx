@@ -97,7 +97,7 @@ const AUDIT = [
 const FAQ = [
   {
     q: "What does it cost?",
-    a: "Discovery is priced case by case, based on the type of business, its size, and the tools in use. It ranges from $2,500 to $15,000, and it comes off the price of your build if you go ahead. After that it depends on what you need: some companies need their team trained and a few agents built, some need their tools connected, some need a new system. We price every project after discovery, in writing. AI Officer plans start at $500 a month on a 12-month plan, with the first two months free, and Basic and Growth need no discovery.",
+    a: "Discovery is priced case by case, based on the type of business, its size, and the tools in use. It ranges from $2,500 to $15,000, and it comes off the price of your build if you go ahead. After that it depends on what you need: some companies need their team trained and a few agents built, some need their tools connected, some need a new system. We price every project after discovery, in writing. AI Officer plans run $500, $1,500, or $3,500 a month on a 12-month plan, with the first two months free. Growth includes replacing one costly SaaS tool a year and Pro is unlimited, so most clients never need a separate build.",
   },
   {
     q: "We already pay for AI tools. Why would we need you?",
@@ -198,22 +198,23 @@ export default function HomePage() {
         <div className="h-wrap">
           <div className="h-head h-center">
             <div className="h-eyebrow">Two ways we work with you</div>
-            <h2>Build it, run it, or both.</h2>
-            <p>Most clients build first, then keep us as their AI Officer. Some start with the AI Officer, training the team, and build later. Both start with the same discovery.</p>
+            <h2>A plan, or a one-time build.</h2>
+            <p>Most clients choose an AI Officer plan: training, agents, connected tools, and costly software replaced, all in one monthly price. A one-time build is there for companies that want a project without a plan.</p>
           </div>
           <div className="h-grid3" style={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
-            <Link href="/build" className="h-card2">
-              <span className="h-card2-tag">Build</span>
-              <h3>We build the tools and connect your systems.</h3>
-              <p>An AI assistant and agents on your data, connected to the tools you keep, with your team trained on every piece. Where a platform costs more than owning it, we rebuild it. Priced per project and quoted in writing. You own all of it.</p>
-              <div className="h-more">See Build and pricing →</div>
-            </Link>
             <Link href="/ai-officer" className="h-card2">
-              <span className="h-card2-tag">Fractional Chief AI Officer</span>
-              <h3>We keep AI working for you, every month.</h3>
-              <p>Ongoing training, new AI tested on your data, a quarterly audit of every tool and what it costs, maintenance and security, and a set number of changes and new agents each month. Plans from $500 a month, first two months free.</p>
+              <span className="h-card2-tag">AI Officer plans · most clients</span>
+              <h3>Your AI team, on call, from $500 a month.</h3>
+              <p>Team training, connected tools, an AI assistant and agents, a company Vault, and on Growth and up, costly SaaS replaced with software you own plus SEO, reels, and explainer videos. 12-month plans, first two months free.</p>
               <div className="h-more">See plans and sign up →</div>
             </Link>
+            <Link href="/build" className="h-card2">
+              <span className="h-card2-tag">One-time build</span>
+              <h3>A project, without a plan.</h3>
+              <p>We scope it in a paid discovery, then build the tools, connect your systems, train your team, and hand you the code. Priced per project and quoted in writing. You own all of it.</p>
+              <div className="h-more">See Build and pricing →</div>
+            </Link>
+
           </div>
         </div>
       </section>

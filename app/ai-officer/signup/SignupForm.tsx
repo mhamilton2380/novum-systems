@@ -53,10 +53,11 @@ export function SignupForm({ initialPlan }: { initialPlan: "basic" | "growth" })
             <span className="h-card2-tag">{p.name}</span>
             <div className="h-plan-price"><strong>{usd(p.monthly!)}</strong><span>/month</span></div>
             <p className="h-plan-terms">12-month plan, first 2 months free. {usd(firstYear(p)!)} for the year.</p>
-            <ul className="h-checks">{p.features.map((f) => <li key={f}>{f}</li>)}</ul>
+            <p className="h-plan-pitch">{p.pitch}</p>
+            <ul className="h-checks">{p.highlights.map((f) => <li key={f}>{f}</li>)}</ul>
           </button>
         ))}
-        <p className="h-plan-terms">Need building and upkeep too? Pro and Enterprise start with a <a href="/contact">discovery</a>.</p>
+        <p className="h-plan-terms"><a href="/ai-officer#pricing">See everything in each plan</a>. Want unlimited replacements? Pro and Enterprise start with a <a href="/contact">discovery</a>.</p>
       </div>
 
       <div className="h-formcard">

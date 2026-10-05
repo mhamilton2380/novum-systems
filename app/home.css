@@ -504,21 +504,30 @@ a.h-card2 .h-more { margin-top: 14px; font-weight: 700; color: var(--ink); font-
   .h-formcard { padding: 24px; }
 }
 
-/* AI Officer plans */
-.h-plans { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; align-items: stretch; }
-.h-plan { display: flex; flex-direction: column; background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 26px; text-align: left; font: inherit; color: inherit; }
+/* AI Officer plans: every card spans the same subgrid rows, so features line up across plans */
+.h-plans { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 16px; margin-inline: calc((100% - min(1340px, 100vw - 48px)) / 2); }
+.h-plan { display: grid; grid-template-rows: subgrid; background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 26px 24px; text-align: left; font: inherit; color: inherit; }
 .h-plan-hi { border-color: #9fd9c3; box-shadow: 0 16px 40px rgba(0, 120, 80, 0.12); }
+.h-plan > .h-card2-tag { justify-self: start; align-self: start; }
 .h-plan-price { display: flex; align-items: baseline; gap: 4px; margin: 4px 0 6px; }
 .h-plan-price strong { font-size: 2.2rem; letter-spacing: -0.03em; color: var(--ink); }
 .h-plan-price span { color: var(--ink-3); font-weight: 600; }
 .h-plan-terms { font-size: 0.82rem; color: var(--ink-3); margin-bottom: 14px; }
 .h-plan-terms a { color: var(--ink); font-weight: 700; }
-.h-plan-pitch { font-weight: 600; color: var(--ink); margin-bottom: 12px; }
-.h-plan .h-checks { flex: 1; margin-bottom: 22px; font-size: 0.92rem; }
-.h-plan-cta { justify-content: center; }
+.h-plan-pitch { font-weight: 600; color: var(--ink); margin-bottom: 16px; }
+.h-plan-cta { justify-content: center; align-self: start; margin-bottom: 6px; }
+.h-plan-h { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); padding: 18px 0 8px; margin-top: 10px; border-top: 1px solid var(--line); align-self: end; }
+.h-plan-row { display: grid; grid-template-columns: 18px 1fr; gap: 6px; font-size: 0.86rem; line-height: 1.4; color: var(--ink-2); padding: 5px 0; }
+.h-plan-row > span[aria-hidden] { color: var(--green); font-weight: 700; }
+.h-plan-row.out { color: #b6bfca; }
+.h-plan-row.out > span[aria-hidden] { color: #cbd2da; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+@media (max-width: 1100px) { .h-plans { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-inline: 0; } }
+@media (max-width: 640px) { .h-plans { grid-template-columns: minmax(0, 1fr); row-gap: 16px; } .h-plan { grid-row: auto !important; display: block; } .h-plan-row.out { display: none; } }
 .h-plan-pick { display: grid; gap: 14px; }
 .h-plan-option { cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s; }
 .h-plan-option .h-checks { margin-bottom: 0; }
+.h-plan-option .h-plan-pitch { font-size: 0.92rem; }
 .h-plan-option.on { border-color: var(--green); box-shadow: 0 0 0 2px rgba(0, 179, 110, 0.25); }
 .h-agree { display: flex !important; flex-direction: row !important; gap: 10px; align-items: flex-start; font-weight: 500; font-size: 0.88rem; color: var(--ink-2); }
 .h-agree input { width: auto !important; margin-top: 3px; flex: none; }
