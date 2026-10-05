@@ -17,8 +17,8 @@ export const USE_CASES: UseCase[] = [
   {
     slug: "construction",
     name: "Construction",
-    headline: "One system for every job, budget, and crew",
-    sub: "Novum builds you a system that holds every project, budget, and document in one place, connected to the tools your office already runs on.",
+    headline: "AI that drafts the updates and watches every budget",
+    sub: "We train your office and field teams to use AI on real jobs, build agents for the paperwork, and connect it all to the tools your office already runs on.",
     pains: [
       {
         title: "Budgets live in three places",
@@ -77,8 +77,8 @@ export const USE_CASES: UseCase[] = [
   {
     slug: "field-services",
     name: "Field Services",
-    headline: "Dispatch, invoicing, and history in one place",
-    sub: "Novum builds you a system that connects dispatch, job history, and billing, with an assistant that knows every customer and every truck.",
+    headline: "AI that dispatches, invoices, and remembers every truck",
+    sub: "We train your dispatchers and techs, build an assistant that knows every customer and every truck, and connect dispatch, job history, and billing.",
     pains: [
       {
         title: "Dispatch and invoicing don't talk",
@@ -137,8 +137,8 @@ export const USE_CASES: UseCase[] = [
   {
     slug: "legal",
     name: "Legal",
-    headline: "Every matter, deadline, and file in one system",
-    sub: "Novum builds you a system that holds every matter, deadline, and document, connected to the tools your firm already relies on.",
+    headline: "AI that tracks every matter, deadline, and file",
+    sub: "We train your attorneys and staff to use AI on real matters, build tools around how your firm works, and connect them to the systems you rely on, with privileged material walled off by role.",
     pains: [
       {
         title: "Matter status lives in someone's head",
@@ -197,8 +197,8 @@ export const USE_CASES: UseCase[] = [
   {
     slug: "accounting",
     name: "Accounting",
-    headline: "Every client, deadline, and file in one place",
-    sub: "Novum builds you a system that holds every client engagement, deadline, and working paper, connected to the tools your firm already uses.",
+    headline: "AI that chases the documents and tracks every deadline",
+    sub: "We train your team to use AI on real engagements, build agents for document requests and deadline tracking, and connect them to the tools your firm already uses.",
     pains: [
       {
         title: "Client status is scattered across staff inboxes",
@@ -257,8 +257,8 @@ export const USE_CASES: UseCase[] = [
   {
     slug: "insurance",
     name: "Insurance",
-    headline: "Every policy, renewal, and client in one system",
-    sub: "Novum builds you a system that holds every client, policy, and renewal, connected to the carrier and CRM tools your agency already runs on.",
+    headline: "AI that handles renewals and knows every policy",
+    sub: "We train your agency to use AI on real accounts, build agents for renewals and claim files, and connect them to your carrier and CRM tools.",
     pains: [
       {
         title: "Renewals get tracked in a spreadsheet",
@@ -317,8 +317,8 @@ export const USE_CASES: UseCase[] = [
   {
     slug: "healthcare",
     name: "Healthcare",
-    headline: "Patient records, scheduling, and billing, connected",
-    sub: "Novum builds you a system that connects scheduling, patient records, and billing, with role-based access and a full audit trail on every record.",
+    headline: "AI that handles scheduling, intake, and reminders",
+    sub: "We train your staff to use AI safely, build tools for scheduling, intake, and billing, and connect them with role-based access and a full audit trail on every record.",
     pains: [
       {
         title: "Scheduling and billing run in separate systems",
@@ -377,8 +377,8 @@ export const USE_CASES: UseCase[] = [
   {
     slug: "marketing-agencies",
     name: "Marketing Agencies",
-    headline: "Every client, campaign, and file in one place",
-    sub: "Novum builds you a system that holds every client, campaign, and deliverable, connected to the tools your team already creates in.",
+    headline: "AI that builds the reports and tracks every campaign",
+    sub: "We train your team to use AI on client work, build agents for reporting and approvals, and connect them to the tools your team already creates in.",
     pains: [
       {
         title: "Client status depends on who you ask",
@@ -437,8 +437,8 @@ export const USE_CASES: UseCase[] = [
   {
     slug: "manufacturing",
     name: "Manufacturing",
-    headline: "Orders, inventory, and floor status in one system",
-    sub: "Novum builds you a system that connects orders, inventory, and production status, tied to the ERP and accounting tools you already run.",
+    headline: "AI that tracks orders, inventory, and the floor",
+    sub: "We train your team to use AI on daily operations, build tools for orders, inventory, and production status, and connect them to the ERP and accounting tools you already run.",
     pains: [
       {
         title: "Inventory counts don't match what's on the floor",

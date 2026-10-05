@@ -3,14 +3,14 @@ import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
 
 export const metadata: Metadata = {
   title: "How We Work · Novum AI",
-  description: "Discovery, build, train, and run. How Novum scopes, prices, and hands over custom software you own.",
+  description: "Discovery, build, train, and run. How Novum scopes, prices, and puts AI to work in your business, with everything handed over in your name.",
 };
 
 const STEPS = [
-  { title: "Discovery", tag: "Credited toward your build", body: "We sit with your team, watch how the work actually moves, and list every tool you pay for and what it costs. If you build with us, the discovery fee comes off the price.", includes: "workflow mapping, a tool and cost audit, a written scope, and a price before anything is built. The scope and audit are yours to keep either way" },
-  { title: "Build, or AI Officer, or both", tag: "Your choice after discovery", body: "We build in phases, highest-impact first, each one live and in use before the next starts. Or we start as your fractional Chief AI Officer on a monthly plan and build later.", includes: "data migration, integrations with the tools you keep, and the AI assistant and agents" },
-  { title: "Train", tag: "Built into every phase", body: "Before each phase goes live, we train the people who will use it, on your system and your data. A system the team doesn't use saves nothing.", includes: "hands-on sessions per team, written guides, and follow-up coaching after launch" },
-  { title: "Run", tag: "Your AI Officer, monthly", body: "You pay for hosting, storage, and security. Your AI Officer keeps everything current, audits your tools each quarter, and brings in new AI as it's worth using.", includes: "monitoring, backups, security updates, ongoing training, and a plan you can cancel anytime" },
+  { title: "Discovery", tag: "Credited toward your build", body: "We sit with your team, watch how the work actually moves, find where AI saves the most hours, and list every tool you pay for and what it costs. If you build with us, the discovery fee comes off the price.", includes: "workflow mapping, a tool and cost audit, a written plan for what to train, build, and connect, and a price before anything is built. The plan and audit are yours to keep either way" },
+  { title: "Build, or AI Officer, or both", tag: "Your choice after discovery", body: "We build in phases, highest-impact first, each one live and in use before the next starts. Or we start as your fractional Chief AI Officer on a monthly plan, training your team first, and build later.", includes: "the AI assistant and agents, integrations with the tools you keep, and data migration where a platform gets replaced" },
+  { title: "Train", tag: "Built into every phase", body: "Before each phase goes live, we train the people who will use it, on their own work and your data. AI the team doesn't use saves nothing.", includes: "hands-on sessions per team, written guides, and follow-up coaching after launch" },
+  { title: "Run", tag: "Your AI Officer, monthly", body: "You pay for hosting, storage, and security. Your AI Officer keeps the team trained, audits your tools each quarter, and brings in new AI as it's worth using.", includes: "ongoing training, monitoring, backups, security updates, and a plan you can cancel anytime" },
 ];
 
 const HANDOFF = [
@@ -21,17 +21,18 @@ const HANDOFF = [
 ];
 
 const DRIVERS = [
-  { title: "How much we build", body: "A full platform replacement is a bigger build than one new tool." },
+  { title: "How much we build", body: "A few agents on the tools you have is a smaller build than a full platform replacement." },
   { title: "How many tools we connect", body: "Each integration adds work, and some systems are easier to connect than others." },
   { title: "How much data moves", body: "Years of records from old systems take longer to migrate than a clean start." },
   { title: "What the AI does", body: "An assistant is one scope. Agents that take actions with approval steps are another." },
 ];
 
 const FAQ = [
-  { q: "What does it cost?", a: "Discovery is priced case by case, based on the type of business, its size, and the tools in use. It ranges from $2,500 to $15,000 for the initial audit, and it comes off the price of your build if you go ahead. After that it depends on what you need. Some companies need a new system, some need their tools connected, most need a mix. We price every project after discovery, and you get the number in writing before we build." },
+  { q: "What does it cost?", a: "Discovery is priced case by case, based on the type of business, its size, and the tools in use. It ranges from $2,500 to $15,000 for the initial audit, and it comes off the price of your build if you go ahead. After that it depends on what you need. Some companies need their team trained and a few agents built, some need their tools connected, some need a new system. We price every project after discovery, and you get the number in writing before we build." },
+  { q: "Do we have to replace our software?", a: "No. Most clients keep the tools that work. We connect them and put AI on top. We only rebuild a platform when owning it costs less than renting it." },
   { q: "Do we pay per user?", a: "No. There are no seats and no revenue share. Adding people or growing the business adds no license fees." },
   { q: "How long does a build take?", a: "It depends on the scope. We build in phases, so your team starts using the first piece before the whole system is done." },
-  { q: "What happens to our data in the old system?", a: "We move it. Migration is part of the build, so your history comes with you." },
+  { q: "If you replace a platform, what happens to our data?", a: "We move it. Migration is part of the build, so your history comes with you." },
   { q: "What if we stop working with you?", a: "The hosting accounts are in your company's name, so the system keeps running and you keep paying the host directly. What stops is our support. Hire another developer, or bring us back." },
 ];
 
@@ -41,12 +42,12 @@ export default function HowWeWorkPage() {
       <PageHero
         eyebrow="How we work"
         title={<>We map <span className="h-grad">before</span> we build.</>}
-        sub="Every company runs differently. Every project starts by learning how yours does, and nothing gets built until the scope and price are agreed in writing."
+        sub="Every company runs differently. Every project starts by learning how yours does and where AI fits, and nothing gets built until the scope and price are agreed in writing."
       />
 
       <section className="h-sec">
         <div className="h-wrap h-howgrid">
-          <SectionHead eyebrow="The process" title="Four steps. No subscription." sub="You always know what's being built, what it costs, and what comes next." />
+          <SectionHead eyebrow="The process" title="Four steps. Priced in writing first." sub="You always know what's being built, what it costs, and what comes next." />
           <div className="h-vsteps">
             {STEPS.map((s, i) => (
               <div className="h-vstep" key={s.title}>

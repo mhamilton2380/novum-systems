@@ -4,15 +4,15 @@ import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
 
 export const metadata: Metadata = {
   title: "Build · Novum AI",
-  description: "Custom software built around how your business works, connected to the tools you keep. You own the code, the data, and the accounts.",
+  description: "AI tools built around how your business works, connected to the tools you keep, with your team trained on every piece. You own the code, the data, and the accounts.",
 };
 
 const PIECES = [
-  { tag: "Core", title: "The system your team works in", body: "Clients, projects, jobs, schedules, budgets, and reporting, shaped around how you run." },
-  { tag: "Integrations", title: "The tools you keep, connected", body: "QuickBooks, Salesforce, HubSpot, Outlook, DocuSign, Stripe, and most things with an API. One change updates everywhere." },
-  { tag: "Vault", title: "Every document, searchable", body: "Encrypted, indexed by meaning, and limited by role." },
   { tag: "AI Assistant", title: "Ask your business anything", body: "Plain-English answers across every connected system, citing the records they came from." },
   { tag: "Agents", title: "AI doing the repeat work", body: "Drafting, matching, chasing, and reporting on your rules, with a person approving before anything leaves the company." },
+  { tag: "Integrations", title: "The tools you keep, connected", body: "QuickBooks, Salesforce, HubSpot, Outlook, DocuSign, Stripe, and most things with an API. One change updates everywhere." },
+  { tag: "Vault", title: "Every document, searchable", body: "Encrypted, indexed by meaning, and limited by role." },
+  { tag: "Core", title: "The system your team works in", body: "Clients, projects, jobs, schedules, budgets, and reporting, shaped around how you run. Built when it costs less than the platform you rent." },
 ];
 
 const PHASES = [
@@ -23,7 +23,7 @@ const PHASES = [
 ];
 
 const DRIVERS = [
-  { title: "How much we build", body: "A full platform replacement is a bigger build than one new tool." },
+  { title: "How much we build", body: "A few agents on the tools you have is a smaller build than a full platform replacement." },
   { title: "How many tools we connect", body: "Each integration adds work, and some systems are easier to connect than others." },
   { title: "How much data moves", body: "Years of records from old systems take longer to migrate than a clean start." },
   { title: "What the AI does", body: "An assistant is one scope. Agents that take actions with approval steps are another." },
@@ -34,8 +34,8 @@ export default function BuildPage() {
     <div className="home">
       <PageHero
         eyebrow="Build"
-        title={<>Software built around how you work. <span className="h-grad">You own it.</span></>}
-        sub="We replace the platforms you've outgrown, connect the tools you keep, and put an AI assistant and agents on top. No seats, no revenue share."
+        title={<>AI tools built around how you work. <span className="h-grad">You own them.</span></>}
+        sub="We build an AI assistant and agents on your data, connect the tools you keep, and train your team on every piece. Where a platform costs more to rent than to own, we rebuild it. No seats, no revenue share."
       />
 
       <section className="h-sec">

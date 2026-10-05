@@ -30,7 +30,7 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Contact"
         title={<>Tell us what you&apos;re <span className="h-grad">running</span>.</>}
-        sub="Every project starts with a conversation about how your business works and what you pay for today. No slide deck, no sales process."
+        sub="Every project starts with a conversation about how your business works and where AI could take work off your team. No slide deck, no sales process."
         ctas={false}
       />
 
@@ -38,7 +38,7 @@ export default function ContactPage() {
         <div className="h-wrap h-feature" style={{ alignItems: "start" }}>
           <div className="h-contact-side">
             <div><b>What happens next</b><p>We read what you send, then set up a call to walk through how your operation runs.</p></div>
-            <div><b>What to bring</b><p>The tools you pay for, roughly what they cost, and where your team loses the most time.</p></div>
+            <div><b>What to bring</b><p>The tools you pay for, where your team loses the most time, and what you&apos;ve tried with AI so far.</p></div>
             <div><b>When you&apos;ll hear back</b><p>Usually within one business day, with a time that fits what you tell us below.</p></div>
           </div>
 

@@ -4,13 +4,13 @@ import { DemoPanel } from "@/components/SystemsShowcase";
 
 export const metadata: Metadata = {
   title: "Solutions · Novum AI",
-  description: "Core, Integrations, Vault, an AI Assistant, and Agents. One system for your whole operation, built around how you work.",
+  description: "The pieces we build to put AI to work: an AI Assistant, Agents, Integrations, Vault, and Core. Built around how you work, and your team trained on every one.",
 };
 
 const WAYS = [
-  { tag: "Replace", title: "Replace a platform", body: "Swap a subscription you've outgrown for a system built around your workflows. Your data moves over with you." },
-  { tag: "Connect", title: "Connect what you have", body: "The tools that work stay. We wire them together so records move on their own and nobody re-types anything." },
-  { tag: "Add AI", title: "Put AI to work", body: "An assistant that answers questions across all of it, and agents that handle the repeat work in the background." },
+  { tag: "Add AI", title: "Put AI to work", body: "Your team trained on their own work, then an assistant that answers across your data and agents that handle the repeat work." },
+  { tag: "Connect", title: "Connect what you have", body: "The tools that work stay. We wire them together so records move on their own and the AI can see all of it." },
+  { tag: "Replace", title: "Replace a platform", body: "When owning a system costs less than renting one, we rebuild it around your workflows. Your data moves over with you." },
 ];
 
 const FEATURES = [
@@ -56,8 +56,8 @@ export default function SolutionsPage() {
     <div className="home">
       <PageHero
         eyebrow="Solutions"
-        title={<>Everything your operation runs on, in <span className="h-grad">one system</span>.</>}
-        sub="Five pieces that work on their own and work better together. We build the ones you need, connect the tools you keep, and put AI across all of it."
+        title={<>The pieces we build to put <span className="h-grad">AI to work</span>.</>}
+        sub="Five pieces that work on their own and work better together. We build the ones you need, connect the tools you keep, and train your team on every one."
         side={
           <div className="h-stack">
             {FEATURES.map((f) => (

@@ -76,7 +76,7 @@ export default function CaseStudyPage() {
         </div>
       </section>
 
-      <CtaBand title="Paying for software that doesn't fit?" />
+      <CtaBand title="See where AI fits in your business." />
     </div>
   );
 }

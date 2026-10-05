@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 
-// Explainer video under the hero. Shows the poster and a play button; the file only downloads once someone presses play.
+// 15-second reel under the hero. Shows the poster and a play button; the file only downloads once someone presses play.
 export function ExplainerVideo() {
   const ref = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
@@ -16,8 +16,8 @@ export function ExplainerVideo() {
     <div className="h-video-frame">
       <video
         ref={ref}
-        src="/novum-explainer.mp4"
-        poster="/novum-explainer-poster.jpg"
+        src="/novum-reel.mp4"
+        poster="/novum-reel-poster.jpg"
         preload="none"
         playsInline
         controls={playing}
@@ -26,13 +26,13 @@ export function ExplainerVideo() {
         Your browser does not support the video tag.
       </video>
       {!playing && (
-        <button type="button" className="h-video-play" onClick={play} aria-label="Play the Novum overview video">
+        <button type="button" className="h-video-play" onClick={play} aria-label="Play the 15-second Novum reel">
           <span className="h-video-btn">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M8 5.5v13l11-6.5z" />
             </svg>
           </span>
-          <span className="h-video-label">Watch the overview</span>
+          <span className="h-video-label">Watch the 15-second reel</span>
         </button>
       )}
     </div>

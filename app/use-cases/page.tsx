@@ -5,7 +5,7 @@ import { USE_CASES } from "@/lib/useCases";
 
 export const metadata: Metadata = {
   title: "Use Cases · Novum AI",
-  description: "How Novum builds one system, with AI built in, for construction, field services, legal, accounting, insurance, healthcare, agencies, and manufacturing.",
+  description: "How Novum puts AI to work in construction, field services, legal, accounting, insurance, healthcare, agencies, and manufacturing.",
 };
 
 export default function UseCasesPage() {
@@ -13,8 +13,8 @@ export default function UseCasesPage() {
     <div className="home">
       <PageHero
         eyebrow="Use cases"
-        title={<>Built around how <span className="h-grad">your industry</span> works.</>}
-        sub="Every business runs differently. Here's what one system, with AI built in, looks like across the industries we build for."
+        title={<>AI at work in <span className="h-grad">your industry</span>.</>}
+        sub="Every business runs differently. Here's where AI saves the most time across the industries we work with, and what we build to get it there."
       />
       <section className="h-sec">
         <div className="h-wrap">

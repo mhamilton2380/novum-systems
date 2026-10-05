@@ -24,7 +24,7 @@ export function PageHero({ eyebrow, title, sub, side, ctas = true }: {
   );
 }
 
-export function CtaBand({ title = "Start with a discovery.", body = "We spend time with your team, map how work actually moves through the business, and account for every tool you pay for. You get a written assessment of where the work breaks down, what your stack costs over five years, and what a system built around you would replace. If you build with us, the discovery fee comes off the price." }: { title?: string; body?: string }) {
+export function CtaBand({ title = "Start with a discovery.", body = "We spend time with your team, map how work actually moves through the business, and account for every tool you pay for. You get a written plan: where AI saves the most hours, what to train, what to build, what to connect, and what it costs. If you build with us, the discovery fee comes off the price." }: { title?: string; body?: string }) {
   return (
     <section className="h-sec">
       <div className="h-wrap">

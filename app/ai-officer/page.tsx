@@ -4,14 +4,14 @@ import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
 
 export const metadata: Metadata = {
   title: "Fractional Chief AI Officer · Novum AI",
-  description: "A part-time Chief AI Officer for companies without a technical team. We run your systems, audit your tools, and bring in new AI as it arrives.",
+  description: "A part-time Chief AI Officer for companies without a technical team. We train your team, test new AI on your data, audit your tools, and keep everything running.",
 };
 
 const MONTHLY = [
-  { title: "Maintenance and security", body: "Monitoring, backups, and security updates, so your systems keep running and nobody on your team has to think about it." },
-  { title: "A quarterly tool audit", body: "Every tool, what it costs, and where it overlaps. We cut what you don't use and flag what's about to renew." },
+  { title: "Ongoing training", body: "Sessions and coaching for your team on their own work, as the tools change, so people keep using what you paid for." },
   { title: "New AI, tested for you", body: "AI tools change monthly. We test the ones that matter on your data and adopt the ones that pay off." },
-  { title: "Ongoing training", body: "Coaching for your team as the tools change, so adoption stays high after launch." },
+  { title: "A quarterly tool audit", body: "Every tool, what it costs, and where it overlaps. We cut what you don't use and flag what's about to renew." },
+  { title: "Maintenance and security", body: "Monitoring, backups, and security updates, so your systems keep running and nobody on your team has to think about it." },
   { title: "Changes and new agents", body: "A set number each month. New reports, new workflows, new agents for the work your team still does by hand." },
   { title: "One person to call", body: "When something breaks or someone asks \"can AI do this,\" you have an answer within a business day." },
 ];
@@ -19,7 +19,7 @@ const MONTHLY = [
 const FIT = [
   { title: "No technical team", body: "You run a company of 15 to 100 people, nobody owns software, and tools get bought one at a time." },
   { title: "Software you want kept current", body: "You built with us and want the system maintained and improved as the business grows." },
-  { title: "Not ready to build", body: "You want to cut waste and use AI well first. The AI Officer starts there and builds later if it makes sense." },
+  { title: "Not ready to build", body: "You want your team using AI well first. The AI Officer starts with training and builds later if it makes sense." },
 ];
 
 const DRIVERS = [
@@ -30,7 +30,7 @@ const DRIVERS = [
 ];
 
 const FAQ = [
-  { q: "What is a fractional Chief AI Officer?", a: "Most companies under 100 people can't justify a full-time technical executive. We fill the role part-time. We keep your systems running, watch what you spend, and bring in new AI tools when they're worth it." },
+  { q: "What is a fractional Chief AI Officer?", a: "Most companies under 100 people can't justify a full-time technical executive. We fill the role part-time. We train your team, test new AI on your data, keep your systems running, and cut tools that don't earn their price." },
   { q: "Do we have to build with you first?", a: "No. Start with a discovery. We map your stack and set up a monthly plan. If a build makes sense later, the discovery fee comes off it." },
   { q: "Can we cancel?", a: "Yes, month to month. Your accounts, data, and code stay in your company's name, so nothing breaks if we part ways." },
   { q: "What's not included?", a: "Large new builds are scoped and priced as projects. The monthly plan covers upkeep, audits, training, and a set number of changes." },
@@ -42,7 +42,7 @@ export default function AiOfficerPage() {
       <PageHero
         eyebrow="Fractional Chief AI Officer"
         title={<>Your AI team, <span className="h-grad">on call</span>.</>}
-        sub="Most companies under 100 people have no CTO. We act as yours: running your systems, auditing what you pay for, and bringing in new AI as it arrives."
+        sub="Most companies under 100 people have no one whose job is AI. We act as yours: training your team, testing new AI on your data, auditing what you pay for, and keeping it all running."
       />
 
       <section className="h-sec">

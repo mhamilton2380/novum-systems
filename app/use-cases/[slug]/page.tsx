@@ -62,7 +62,7 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
 
       <section className="h-sec h-soft">
         <div className="h-wrap">
-          <SectionHead eyebrow="What we build" title="One system, built for how you run." sub="Five pieces, shaped around your workflows. You use the ones you need." />
+          <SectionHead eyebrow="What we build" title="The tools, built for how you run." sub="Five pieces, shaped around your workflows, and your team trained on each one. You use the ones you need." />
           <div className="h-grid3" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))" }}>
             {u.builds.map((b) => (
               <Link href={`/solutions#${SYSTEM_IDS[b.system]}`} className="h-card2" key={b.system}>
@@ -103,7 +103,7 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
 
       <section className="h-sec h-soft">
         <div className="h-wrap">
-          <SectionHead eyebrow="More use cases" title="Other industries we build for." />
+          <SectionHead eyebrow="More use cases" title="Other industries we work with." />
           <div className="h-grid4">
             {others.map((o) => (
               <Link href={`/use-cases/${o.slug}`} className="h-card2" key={o.slug}>
@@ -116,7 +116,7 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
         </div>
       </section>
 
-      <CtaBand title="See what this looks like for your business." />
+      <CtaBand title="See where AI fits in your business." />
     </div>
   );
 }
