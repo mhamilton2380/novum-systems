@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SystemsShowcase } from "../components/SystemsShowcase";
 import { HeroReel } from "../components/HeroReel";
+import { InboxAgent } from "../components/InboxAgent";
 
 // ─── Content ──────────────────────────────────────────────────────────────────
 const PROBLEMS = [
@@ -190,6 +191,25 @@ export default function HomePage() {
       <section className="h-sec">
         <div className="h-wrap">
           <SystemsShowcase />
+        </div>
+      </section>
+
+      {/* Example build */}
+      <section className="h-sec h-soft">
+        <div className="h-wrap">
+          <div className="h-ia-head">
+            <div className="h-head">
+              <div className="h-eyebrow">An example of what we build</div>
+              <h2>The order lands in the inbox. The sales order is drafted before anyone opens it.</h2>
+              <p>Most companies pay someone to read PDFs and type them into another system. An agent does the reading and the typing. Your team does the checking.</p>
+            </div>
+            <ul className="h-ia-points">
+              <li><span><b>Reads anything that arrives.</b> Email text, PDFs, spreadsheets, and faxes.</span></li>
+              <li><span><b>Matches it to your data.</b> Customer part numbers to your SKUs, using their order history.</span></li>
+              <li><span><b>Shows what it isn&apos;t sure about.</b> A person approves every order before it&apos;s released.</span></li>
+            </ul>
+          </div>
+          <InboxAgent />
         </div>
       </section>
 

@@ -494,6 +494,66 @@ export const USE_CASES: UseCase[] = [
     tools: ["NetSuite", "SAP", "QuickBooks", "Fishbowl", "Outlook", "Microsoft Dynamics"],
     replaces: ["Separate inventory spreadsheets", "Manual production reports", "Standalone quality logs", "Disconnected purchasing tools"],
   },
+  {
+    slug: "wholesale-distribution",
+    name: "Wholesale Distribution",
+    headline: "AI that turns emailed orders into sales orders",
+    sub: "We train your inside sales and customer service teams to use AI on real orders, build agents that read the order inbox and draft the entry, and connect it all to the ERP you already run.",
+    pains: [
+      {
+        title: "Orders arrive in every format",
+        body: "Purchase orders come in as email text, PDFs, spreadsheets, and the occasional fax. Someone on inside sales reads each one and types every line into the ERP.",
+      },
+      {
+        title: "\"Where's my order?\" eats the afternoon",
+        body: "Customer service looks up the order, checks with the warehouse, and writes back. The same question comes in forty times a day.",
+      },
+      {
+        title: "Pricing lives in one person's head",
+        body: "Contract prices, customer part numbers, and substitutions sit in a spreadsheet and a senior rep's memory. When that rep is out, orders slow down.",
+      },
+    ],
+    builds: [
+      {
+        system: "Core",
+        title: "Open orders, backorders, and margin in one view",
+        body: "See every open order, backordered line, and promise date by customer and rep, with margin tracked as orders are entered, built on your ERP data.",
+      },
+      {
+        system: "Integrations",
+        title: "Your ERP, inbox, and accounting, connected",
+        body: "The order inbox, the ERP, and accounting share one set of data, so an order entered once shows up everywhere it needs to.",
+      },
+      {
+        system: "Vault",
+        title: "Price agreements, spec sheets, and vendor terms, searchable",
+        body: "Customer contracts, cross-reference lists, product spec sheets, and vendor terms live in one place, searchable in plain English and limited by role.",
+      },
+      {
+        system: "AI Assistant",
+        title: "Ask about any order, customer, or SKU",
+        body: "Ask what a customer paid for an item last quarter or which orders are waiting on inbound stock, and get the answer from your live data.",
+      },
+      {
+        system: "Agents",
+        title: "Order entry straight from the inbox",
+        body: "An agent reads each emailed PO, matches customer part numbers to your SKUs, and drafts the sales order. Lines it isn't sure about are highlighted, and a rep approves every order before it's released.",
+      },
+    ],
+    questions: [
+      "Which open orders have lines on backorder past their promise date?",
+      "What did Harbor Plumbing pay for 3/4\" PEX elbows last quarter?",
+      "Which customers ordered at least 20% less this quarter than last?",
+    ],
+    agents: [
+      { task: "Drafted 46 sales orders from emailed POs, 5 lines flagged for a rep to check", saved: "3 hrs" },
+      { task: "Answered 18 order-status emails from live ERP data, pending your review", saved: "1.5 hrs" },
+      { task: "Drafted expedite requests to 3 vendors for late inbound purchase orders", saved: "40 min" },
+      { task: "Matched 112 vendor invoices to receipts and purchase orders", saved: "2 hrs" },
+    ],
+    tools: ["NetSuite", "Epicor Prophet 21", "Business Central", "Infor", "QuickBooks", "Outlook"],
+    replaces: ["Manual order entry", "Order-status phone tag", "Price lists in spreadsheets", "Separate quoting tools"],
+  },
 ];
 
 export const getUseCase = (slug: string) => USE_CASES.find((u) => u.slug === slug);

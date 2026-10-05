@@ -5,7 +5,7 @@ import { USE_CASES } from "@/lib/useCases";
 
 export const metadata: Metadata = {
   title: "Use Cases · Novum AI",
-  description: "How Novum puts AI to work in construction, field services, legal, accounting, insurance, healthcare, agencies, and manufacturing.",
+  description: "How Novum puts AI to work in construction, field services, legal, accounting, insurance, healthcare, agencies, manufacturing, and wholesale distribution.",
 };
 
 export default function UseCasesPage() {
