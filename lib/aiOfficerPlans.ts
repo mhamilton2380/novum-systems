@@ -16,7 +16,7 @@ export const PLANS: Plan[] = [
   {
     id: "basic",
     name: "Basic",
-    monthly: 500,
+    monthly: 250,
     pitch: "Your team trained, your tools connected, and your first agents running.",
     highlights: ["Monthly team training", "Connect up to 3 of your tools", "1 new agent a quarter", "A company Vault for every document"],
     selfServe: true,
@@ -24,15 +24,15 @@ export const PLANS: Plan[] = [
   {
     id: "growth",
     name: "Growth",
-    monthly: 1500,
+    monthly: 500,
     pitch: "AI across the business, a costly tool replaced, and marketing handled.",
-    highlights: ["2 training sessions a month", "AI Assistant plus 1 new agent a month", "1 costly SaaS tool replaced with software you own", "SEO, 4 reels a month, and an explainer video each quarter"],
+    highlights: ["2 training sessions a month", "AI Assistant plus unlimited agents", "1 costly SaaS tool replaced with software you own", "SEO, 4 reels a month, and an explainer video each quarter"],
     selfServe: true,
   },
   {
     id: "pro",
     name: "Pro",
-    monthly: 3500,
+    monthly: 1500,
     pitch: "Your technical team on call: unlimited replacements, more agents, more marketing.",
     highlights: [],
     selfServe: false,
@@ -80,7 +80,7 @@ export const FEATURES: FeatureGroup[] = [
   {
     group: "AI at work",
     rows: [
-      { label: "AI agents for your repeat work", v: ["1 new agent a quarter", "1 new agent a month", "2 new agents a month", "Agents scoped to every team"] },
+      { label: "AI agents for your repeat work", v: ["1 new agent a quarter", "Unlimited agents, built one at a time", "Unlimited agents, two built at a time", "Agents scoped to every team"] },
       { label: "An AI Assistant that answers questions across your company data, with sources", v: [false, true, true, true] },
       { label: "A scheduling agent that books and confirms meetings", v: [false, true, true, true] },
       { label: "Outreach and follow-up agents, with drafts held for your approval", v: [false, true, true, true] },

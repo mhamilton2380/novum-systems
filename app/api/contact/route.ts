@@ -6,7 +6,7 @@ const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY ?? "eyJhbGciOiJIUzI1NiIs
 const FIELDS = ["name", "email", "company", "industry", "tools", "availability", "message"] as const;
 type Lead = Record<(typeof FIELDS)[number], string>;
 
-const PLAN_NAMES: Record<string, string> = { basic: "Basic ($500/mo)", growth: "Growth ($1,500/mo)" };
+const PLAN_NAMES: Record<string, string> = { basic: "Basic ($250/mo)", growth: "Growth ($500/mo)" };
 
 const clean = (v: unknown, max: number) => (typeof v === "string" ? v.trim().slice(0, max) : "");
 const escape = (s: string) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);

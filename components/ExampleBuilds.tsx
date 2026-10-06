@@ -1,8 +1,8 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { EXAMPLES, type Example } from "./exampleData";
-import { USE_CASE_NAV } from "@/lib/nav";
+import { ORDER_EXAMPLE, type Example } from "./exampleData";
+import { PhoneDemo, PHONE_END, ReportDemo, REPORT_END, AuditDemo, AUDIT_END, TrainingDemo, TRAINING_END, OwnDemo, OWN_END } from "./exampleDemos";
 
 const TICK = 550;
 const BARS = [30, 55, 80, 45, 90, 65, 35, 75, 50, 95, 60, 40, 85, 55, 30, 70, 90, 45, 65, 35, 80, 50, 60, 40];
@@ -126,12 +126,69 @@ function Flow({ ex, t }: { ex: Example; t: number }) {
   );
 }
 
+type Tab = {
+  id: string;
+  tab: string;
+  small: string;
+  title: string;
+  sub: string;
+  example: string;
+  end: number;
+  Demo: (p: { t: number }) => React.ReactNode;
+  note: string;
+  link: { href: string; label: string };
+};
+
+const TABS: Tab[] = [
+  {
+    id: "orders", tab: "Order entry agent", small: "Build · Agents",
+    title: "Order entry agent", sub: "Email and fax in · draft sales order out · a rep approves", example: "Wholesale distributor",
+    end: timeline(ORDER_EXAMPLE).end, Demo: ({ t }) => <Flow ex={ORDER_EXAMPLE} t={t} />,
+    note: "The agent drafts. A person approves before anything is released.",
+    link: { href: "/use-cases/wholesale-distribution", label: "See wholesale distribution" },
+  },
+  {
+    id: "phone", tab: "Phone agent", small: "Build · Connect",
+    title: "After-hours phone agent", sub: "Answers the call · books the job on your board · dispatch confirms", example: "HVAC company",
+    end: PHONE_END, Demo: PhoneDemo,
+    note: "Connected to the dispatch board you already use. Emergencies go straight to a person.",
+    link: { href: "/use-cases/field-services", label: "See field services" },
+  },
+  {
+    id: "report", tab: "Report writer", small: "Build · Connect",
+    title: "Monthly report writer", sub: "Pulls the numbers · writes the report · the account manager edits", example: "Marketing agency",
+    end: REPORT_END, Demo: ReportDemo,
+    note: "Numbers come straight from the source systems. The AI writes the words, and flags what it can't prove.",
+    link: { href: "/use-cases/marketing-agencies", label: "See marketing agencies" },
+  },
+  {
+    id: "audit", tab: "Tool audit", small: "AI Officer",
+    title: "Quarterly tool audit", sub: "Every subscription · what it costs · who actually uses it", example: "Law firm, 22 people",
+    end: AUDIT_END, Demo: AuditDemo,
+    note: "Included every quarter in every AI Officer plan.",
+    link: { href: "/ai-officer", label: "See AI Officer plans" },
+  },
+  {
+    id: "training", tab: "Team training", small: "Teach",
+    title: "Training on your own work", sub: "Weekly sessions · playbooks built from real files · a usage policy", example: "CPA firm, 30 people",
+    end: TRAINING_END, Demo: TrainingDemo,
+    note: "Every session uses your team's own work and data, never a generic course.",
+    link: { href: "/ai-officer", label: "See AI Officer plans" },
+  },
+  {
+    id: "own", tab: "Software you own", small: "Own",
+    title: "Replace what you rent", sub: "One build · then hosting · the code, data, and accounts in your name", example: "Construction company",
+    end: OWN_END, Demo: OwnDemo,
+    note: "Growth plans include one replacement a year. Pro includes unlimited.",
+    link: { href: "/case-studies", label: "Read the case study" },
+  },
+];
+
 export function ExampleBuilds() {
   const ref = useRef<HTMLDivElement>(null);
   const [{ idx, t }, setPlay] = useState({ idx: 0, t: 0 });
   const [running, setRunning] = useState(false);
-  const ex = EXAMPLES[idx];
-  const end = timeline(ex).end;
+  const tab = TABS[idx];
 
   useEffect(() => {
     const el = ref.current;
@@ -150,46 +207,39 @@ export function ExampleBuilds() {
   useEffect(() => {
     if (!running) return;
     const id = setInterval(() => {
-      setPlay((p) => p.t < timeline(EXAMPLES[p.idx]).end ? { ...p, t: p.t + 1 } : { idx: (p.idx + 1) % EXAMPLES.length, t: 0 });
+      setPlay((p) => p.t < TABS[p.idx].end ? { ...p, t: p.t + 1 } : { idx: (p.idx + 1) % TABS.length, t: 0 });
     }, TICK);
     return () => clearInterval(id);
   }, [running]);
 
   const pick = (i: number) => setPlay({ idx: i, t: running ? 0 : 99 });
-  const useCase = USE_CASE_NAV.find((u) => u.slug === ex.slug);
+  const Demo = tab.Demo;
 
   return (
     <div className="ia" ref={ref}>
-      <div className="ia-tabs" role="tablist" aria-label="Example builds">
-        {EXAMPLES.map((e, i) => (
-          <button
-            type="button"
-            role="tab"
-            aria-selected={i === idx}
-            className={`ia-tab${i === idx ? " on" : ""}`}
-            key={e.id}
-            onClick={() => pick(i)}
-          >
-            <b>{e.tab}</b>
-            <small>{e.industry}</small>
-            {i === idx && running && <span className="ia-tabprog" style={{ width: `${Math.min(100, (t / end) * 100)}%` }} />}
+      <div className="ia-tabs" role="tablist" aria-label="Examples">
+        {TABS.map((x, i) => (
+          <button type="button" role="tab" aria-selected={i === idx} className={`ia-tab${i === idx ? " on" : ""}`} key={x.id} onClick={() => pick(i)}>
+            <b>{x.tab}</b>
+            <small>{x.small}</small>
+            {i === idx && running && <span className="ia-tabprog" style={{ width: `${Math.min(100, (t / x.end) * 100)}%` }} />}
           </button>
         ))}
       </div>
       <div className="sc-head">
         <div className="sc-mark" />
         <div>
-          <div className="sc-title">{ex.title}</div>
-          <div className="sc-sub">{ex.sub}</div>
+          <div className="sc-title">{tab.title}</div>
+          <div className="sc-sub">{tab.sub}</div>
         </div>
-        <span className="sc-industry">Example: {ex.industry}</span>
+        <span className="sc-industry">Example: {tab.example}</span>
       </div>
 
-      <Flow ex={ex} t={t} key={ex.id} />
+      <div className="ia-stage" key={tab.id}><Demo t={t} /></div>
 
       <div className="ia-foot">
-        <span className="ia-foot-label">Every example runs on your own data, and a person approves before anything leaves the company.</span>
-        <Link href={`/use-cases/${ex.slug}`} className="ia-foot-link">See the {useCase?.label ?? ex.industry} use case →</Link>
+        <span className="ia-foot-label">{tab.note}</span>
+        <Link href={tab.link.href} className="ia-foot-link">{tab.link.label} →</Link>
       </div>
     </div>
   );
