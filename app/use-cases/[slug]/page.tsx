@@ -15,10 +15,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return { title: `${u.name} · Novum AI`, description: u.sub };
 }
 
-const SYSTEM_IDS: Record<string, string> = {
-  Core: "core", Integrations: "integrations", Vault: "vault", "AI Assistant": "assistant", Agents: "agents",
-};
-
 export default async function UseCasePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const u = getUseCase(slug);
@@ -65,7 +61,7 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
           <SectionHead eyebrow="What we build" title="The tools, built for how you run." sub="Five pieces, shaped around your workflows, and your team trained on each one. You use the ones you need." />
           <div className="h-grid3" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))" }}>
             {u.builds.map((b) => (
-              <Link href={`/solutions#${SYSTEM_IDS[b.system]}`} className="h-card2" key={b.system}>
+              <Link href="/build" className="h-card2" key={b.system}>
                 <span className="h-card2-tag">{b.system}</span>
                 <h3>{b.title}</h3>
                 <p>{b.body}</p>

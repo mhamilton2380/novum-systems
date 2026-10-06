@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
+import { AssistantChat } from "@/components/AssistantChat";
 
 export const metadata: Metadata = {
   title: "Build · Novum AI",
@@ -43,18 +44,31 @@ export default function BuildPage() {
           <SectionHead eyebrow="What we build" title="One system, five pieces." sub="You get the pieces your operation needs. None of them are sold separately." />
           <div className="h-grid3">
             {PIECES.map((p) => (
-              <Link href="/solutions" className="h-card2" key={p.tag}>
+              <div className="h-card2" key={p.tag}>
                 <span className="h-card2-tag">{p.tag}</span>
                 <h3>{p.title}</h3>
                 <p>{p.body}</p>
-                <div className="h-more">See how it works →</div>
-              </Link>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       <section className="h-sec h-soft">
+        <div className="h-wrap h-feature">
+          <div>
+            <div className="h-eyebrow">Try it</div>
+            <h2>Ask a question the way your team would.</h2>
+            <p className="h-feature-sub">This assistant runs on a sample company. Yours answers from your own systems, cites the records it used, and only shows each person what their role allows.</p>
+          </div>
+          <div className="h-demo" style={{ position: "relative", top: 0 }}>
+            <div className="h-demo-bar"><i /><i /><i /><span>Live demo · AI assistant</span></div>
+            <AssistantChat height={520} compact bare />
+          </div>
+        </div>
+      </section>
+
+      <section className="h-sec">
         <div className="h-wrap">
           <SectionHead eyebrow="How a build runs" title="Scoped and priced before we write a line." />
           <div className="h-grid4">
@@ -65,7 +79,7 @@ export default function BuildPage() {
         </div>
       </section>
 
-      <section className="h-sec" id="pricing">
+      <section className="h-sec h-soft" id="pricing">
         <div className="h-wrap">
           <SectionHead
             eyebrow="Pricing"

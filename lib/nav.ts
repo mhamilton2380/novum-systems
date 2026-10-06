@@ -1,12 +1,4 @@
 // Site navigation. Use case slugs must match lib/useCases.ts
-export const SOLUTIONS_NAV = [
-  { href: "/solutions#core", label: "Core", desc: "Projects, clients, schedules, reporting" },
-  { href: "/solutions#integrations", label: "Integrations", desc: "Connect the tools you keep" },
-  { href: "/solutions#vault", label: "Vault", desc: "Encrypted, searchable documents" },
-  { href: "/solutions#assistant", label: "AI Assistant", desc: "Ask your business anything" },
-  { href: "/solutions#agents", label: "Agents", desc: "AI that does the repeat work" },
-];
-
 export const USE_CASE_NAV = [
   { slug: "field-services", label: "Field Services" },
   { slug: "legal", label: "Legal" },

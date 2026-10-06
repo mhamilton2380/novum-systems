@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { SystemsShowcase } from "../components/SystemsShowcase";
 import { HeroReel } from "../components/HeroReel";
 import { ExampleBuilds } from "../components/ExampleBuilds";
 
@@ -207,15 +206,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Systems */}
-      <section className="h-sec">
-        <div className="h-wrap">
-          <SystemsShowcase />
-        </div>
-      </section>
-
       {/* Case study */}
-      <section className="h-sec h-soft">
+      <section className="h-sec">
         <div className="h-wrap h-roi">
           <div>
             <div className="h-eyebrow">Case study · Construction company</div>
@@ -244,7 +236,7 @@ export default function HomePage() {
       </section>
 
       {/* Compare */}
-      <section className="h-sec">
+      <section className="h-sec h-soft">
         <div className="h-wrap">
           <div className="h-head h-center">
             <div className="h-eyebrow">The difference</div>
@@ -261,7 +253,7 @@ export default function HomePage() {
       </section>
 
       {/* Two ways */}
-      <section className="h-sec h-soft">
+      <section className="h-sec">
         <div className="h-wrap">
           <div className="h-head h-center">
             <div className="h-eyebrow">Two ways we work with you</div>
@@ -286,7 +278,7 @@ export default function HomePage() {
       </section>
 
       {/* How it works */}
-      <section className="h-sec" id="how">
+      <section className="h-sec h-soft" id="how">
         <div className="h-wrap">
           <div className="h-howgrid">
             <div className="h-head">
@@ -314,7 +306,7 @@ export default function HomePage() {
       </section>
 
       {/* Security */}
-      <section className="h-sec h-soft h-secure">
+      <section className="h-sec h-secure">
         <div className="h-wrap h-secure-grid">
           <div>
             <div className="h-head" style={{ marginBottom: 36 }}>
@@ -356,7 +348,7 @@ export default function HomePage() {
       </section>
 
       {/* FAQ */}
-      <section className="h-sec">
+      <section className="h-sec h-soft">
         <div className="h-wrap">
           <div className="h-head h-center">
             <div className="h-eyebrow">Questions</div>

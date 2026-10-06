@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Logo } from "./Logo";
-import { SOLUTIONS_NAV, USE_CASE_NAV } from "@/lib/nav";
+import { USE_CASE_NAV } from "@/lib/nav";
 
 function Chevron() {
   return (
@@ -67,19 +67,6 @@ export default function Navbar() {
         {!isMobile && (
           <nav style={{ display: "flex", alignItems: "center", gap: 2 }}>
             <div className="nv-item">
-              <Link href="/solutions" className={`nv-trigger${on("/solutions") ? " on" : ""}`}>Solutions <Chevron /></Link>
-              <div className="nv-menu">
-                <div className="nv-panel">
-                  {SOLUTIONS_NAV.map((s) => (
-                    <Link key={s.href} href={s.href}>{s.label}<small>{s.desc}</small></Link>
-                  ))}
-                  <hr />
-                  <Link href="/solutions">All solutions →</Link>
-                </div>
-              </div>
-            </div>
-
-            <div className="nv-item">
               <Link href="/use-cases" className={`nv-trigger${on("/use-cases") || on("/case-studies") ? " on" : ""}`}>Use Cases <Chevron /></Link>
               <div className="nv-menu">
                 <div className="nv-panel">
@@ -95,8 +82,8 @@ export default function Navbar() {
               </div>
             </div>
 
-            <Link href="/build" className={`nv-trigger${on("/build") ? " on" : ""}`}>Build</Link>
             <Link href="/ai-officer" className={`nv-trigger${on("/ai-officer") ? " on" : ""}`}>AI Officer</Link>
+            <Link href="/build" className={`nv-trigger${on("/build") ? " on" : ""}`}>Build</Link>
             <Link href="/how-we-work" className={`nv-trigger${on("/how-we-work") ? " on" : ""}`}>How We Work</Link>
             <Link href="/about" className={`nv-trigger${on("/about") ? " on" : ""}`}>About</Link>
 
@@ -142,13 +129,11 @@ export default function Navbar() {
 
         {isMobile && menuOpen && (
           <div className="nv-mobile">
-            <Link href="/solutions">Solutions</Link>
-            {SOLUTIONS_NAV.map((s) => <Link key={s.href} href={s.href} className="sub">{s.label}</Link>)}
             <Link href="/use-cases">Use Cases</Link>
             {USE_CASE_NAV.map((u) => <Link key={u.slug} href={`/use-cases/${u.slug}`} className="sub">{u.label}</Link>)}
             <Link href="/case-studies" className="sub">Case study</Link>
-            <Link href="/build">Build</Link>
             <Link href="/ai-officer">AI Officer</Link>
+            <Link href="/build">Build</Link>
             <Link href="/how-we-work">How We Work</Link>
             <Link href="/about">About</Link>
             <Link href="/contact" style={{ marginTop: 8, textAlign: "center", background: "#0b1b2e", color: "#fff", borderRadius: 999 }}>Book a Call</Link>
