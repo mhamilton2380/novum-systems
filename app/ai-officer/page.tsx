@@ -26,7 +26,7 @@ const FIT = [
 
 const FAQ = [
   { q: "What is a fractional Chief AI Officer?", a: "Most companies under 100 people can't justify a full-time technical executive. We fill the role part-time. We train your team, test new AI on your data, keep your systems running, and cut tools that don't earn their price." },
-  { q: "How does it start?", a: "With a discovery, priced $2,500 for a 10-person team up to $15,000 by size and tools. We map how your work moves, audit every tool you pay for, write your AI usage policy, train your team on its own work, and put your first agent live on your data. The fee is credited toward your plan." },
+  { q: "How does it start?", a: "With a discovery, priced $2,500 for a 10-person team up to $15,000 by size and tools. We map how your work moves, audit every tool you pay for (that report lands within 7 days), write your AI usage policy, train your team on its own work, and put your first agent live on your data within 30 days. The fee is credited toward your plan." },
   { q: "What does 'one build at a time' mean?", a: "There's no limit on how many agents, integrations, or tools you ask for. We work on one until it's live, then start the next. Pro works on two at once. Bigger projects, like replacing a platform, are split into steps that go live one by one." },
   { q: "Do we keep what you build if we leave?", a: "Yes. Replacements, agents, and integrations are built on accounts in your company's name. The code, data, and accounts stay yours." },
   { q: "How long is the commitment?", a: "Six months, then month to month. Pay yearly and it's 10% off. Your accounts, data, and code stay in your company's name either way, so nothing breaks if we part ways." },
@@ -69,7 +69,7 @@ export default function AiOfficerPage() {
           <SectionHead
             eyebrow="Plans"
             title="Two plans. Start with a discovery."
-            sub="Every plan starts with a discovery that ends with your first agent live, priced $2,500 to $15,000 by company size and credited toward your plan. Then six months minimum, month to month after that."
+            sub="Every plan starts with a discovery that ends with your first agent live within 30 days, priced $2,500 to $15,000 by company size and credited toward your plan. Then six months minimum, month to month after that."
           />
           <PlanCards />
           <p style={{ marginTop: 28, color: "var(--ink-2)", maxWidth: 720 }}>

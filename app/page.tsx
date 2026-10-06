@@ -43,9 +43,9 @@ const COMPARE = [
 const STEPS = [
   {
     title: "Discovery",
-    tag: "Ends with your first agent live",
-    body: "We sit with your team, map how the work actually moves, and list every tool you pay for. Then we put it to work: your team trained on its own work, an AI usage policy, and your first agent live on your own data. It runs $2,500 for a 10-person team up to $15,000, credited toward your plan or build.",
-    includes: "a workflow map, a tool and cost audit, an AI usage policy, a training session on your own work, your first agent live, and a written plan with prices for what comes next. All of it is yours either way",
+    tag: "First agent live within 30 days",
+    body: "We sit with your team, map how the work actually moves, and list every tool you pay for. Then we put it to work: your team trained on its own work, an AI usage policy, and your first agent live on your own data within 30 days. It runs $2,500 for a 10-person team up to $15,000, credited toward your plan or build.",
+    includes: "a workflow map, a tool and cost report within 7 days, an AI usage policy, a training session on your own work, your first agent live within 30 days, and a written plan with prices for what comes next. All of it is yours either way",
   },
   {
     title: "AI Officer plan, or a one-time build",
@@ -97,7 +97,7 @@ const AUDIT = [
 const FAQ = [
   {
     q: "What does it cost?",
-    a: "Everything starts with a discovery: $2,500 for a 10-person team, up to $15,000 for larger or more complex companies. It ends with your first agent live, and the fee is credited toward what comes next. AI Officer plans are $3,500 a month for Growth and $6,500 for Pro, with every tool connected and unlimited agents and builds. Six months minimum, then month to month, or 10% off paid yearly. Enterprise is priced per company. A one-time build is quoted in writing after discovery.",
+    a: "Everything starts with a discovery: $2,500 for a 10-person team, up to $15,000 for larger or more complex companies. It ends with your first agent live within 30 days, and the fee is credited toward what comes next. AI Officer plans are $3,500 a month for Growth and $6,500 for Pro, with every tool connected and unlimited agents and builds. Six months minimum, then month to month, or 10% off paid yearly. Enterprise is priced per company. A one-time build is quoted in writing after discovery.",
   },
   {
     q: "We already pay for AI tools. Why would we need you?",
@@ -370,7 +370,7 @@ export default function HomePage() {
         <div className="h-wrap">
           <div className="h-cta">
             <h2>Start with a discovery.</h2>
-            <p>We map how your work actually moves, audit every tool you pay for, train your team, and put your first agent live on your own data. You get a written plan and prices for what comes next. $2,500 for a 10-person team, up to $15,000, credited toward your plan.</p>
+            <p>We map how your work actually moves, audit every tool you pay for, train your team, and put your first agent live on your own data within 30 days. You get a written plan and prices for what comes next. $2,500 for a 10-person team, up to $15,000, credited toward your plan.</p>
             <Link href="/contact" className="h-btn h-btn-light">Book a conversation</Link>
             <p className="h-cta-meta">The first conversation is free. No sales deck.</p>
           </div>

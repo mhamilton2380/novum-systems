@@ -84,7 +84,7 @@ export default function BuildPage() {
           <SectionHead
             eyebrow="Pricing"
             title="Discovery first. The build is priced after."
-            sub="Discovery is $2,500 for a 10-person team, up to $15,000 for larger or more complex companies. It ends with your first agent live, a tool audit, and a written scope, and the fee comes off your build. The build is quoted in writing before we start, and never priced per seat."
+            sub="Discovery is $2,500 for a 10-person team, up to $15,000 for larger or more complex companies. It ends with your first agent live within 30 days, a tool and cost report within 7, and a written scope, and the fee comes off your build. The build is quoted in writing before we start, and never priced per seat."
           />
           <div className="h-grid4">
             {DRIVERS.map((d) => (
