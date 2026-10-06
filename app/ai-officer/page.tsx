@@ -5,7 +5,7 @@ import { PlanCards } from "@/components/PlanCards";
 
 export const metadata: Metadata = {
   title: "Fractional Chief AI Officer · Novum AI",
-  description: "A part-time Chief AI Officer for companies without a technical team. Plans from $250 a month, first two months free. We train your team, test new AI on your data, and audit your tools.",
+  description: "A part-time Chief AI Officer for companies without a technical team. Plans from $500 a month, first two months free. We train your team, test new AI on your data, and audit your tools.",
 };
 
 const MONTHLY = [
@@ -37,7 +37,7 @@ export default function AiOfficerPage() {
       <PageHero
         eyebrow="Fractional Chief AI Officer"
         title={<>Your AI team, <span className="h-grad">on call</span>.</>}
-        sub="Most companies under 100 people have no one whose job is AI. We act as yours: training your team, testing new AI on your data, and auditing what you pay for. Plans from $250 a month, first two months free."
+        sub="Most companies under 100 people have no one whose job is AI. We act as yours: training your team, testing new AI on your data, and auditing what you pay for. Plans from $500 a month, first two months free."
       />
 
       <section className="h-sec">

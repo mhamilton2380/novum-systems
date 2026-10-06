@@ -62,7 +62,7 @@ const STEPS = [
   },
   {
     title: "Run",
-    tag: "Your AI Officer · plans from $250/mo",
+    tag: "Your AI Officer · plans from $500/mo",
     body: "You pay for hosting, storage, and security. Nothing is priced on seats or revenue. Your AI Officer keeps the team trained and brings in new AI as it's worth using.",
     includes: "ongoing training, new AI tested on your data, a quarterly tool audit, maintenance, and new agents and changes on a schedule set by your plan",
   },
@@ -98,7 +98,7 @@ const AUDIT = [
 const FAQ = [
   {
     q: "What does it cost?",
-    a: "Discovery is priced case by case, based on the type of business, its size, and the tools in use. It ranges from $2,500 to $15,000, and it comes off the price of your build if you go ahead. After that it depends on what you need: some companies need their team trained and a few agents built, some need their tools connected, some need a new system. We price every project after discovery, in writing. AI Officer plans run $250, $500, or $1,500 a month on a 12-month plan, with the first two months free. Enterprise is priced per company. Growth includes replacing one costly SaaS tool a year and Pro is unlimited, so most clients never need a separate build.",
+    a: "Discovery is priced case by case, based on the type of business, its size, and the tools in use. It ranges from $2,500 to $15,000, and it comes off the price of your build if you go ahead. After that it depends on what you need: some companies need their team trained and a few agents built, some need their tools connected, some need a new system. We price every project after discovery, in writing. AI Officer plans run $500, $1,500, or $3,500 a month on a 12-month plan, with the first two months free. Enterprise is priced per company. Growth includes replacing one costly SaaS tool a year and Pro is unlimited, so most clients never need a separate build.",
   },
   {
     q: "We already pay for AI tools. Why would we need you?",
@@ -271,7 +271,7 @@ export default function HomePage() {
           <div className="h-grid3" style={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
             <Link href="/ai-officer" className="h-card2">
               <span className="h-card2-tag">AI Officer plans · most clients</span>
-              <h3>Your AI team, on call, from $250 a month.</h3>
+              <h3>Your AI team, on call, from $500 a month.</h3>
               <p>Team training, connected tools, an AI assistant and agents, a company Vault, and on Growth and up, costly SaaS replaced with software you own plus SEO, reels, and explainer videos. 12-month plans, first two months free.</p>
               <div className="h-more">See plans and sign up →</div>
             </Link>

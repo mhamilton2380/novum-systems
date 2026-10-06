@@ -4,7 +4,7 @@ import { SignupForm } from "./SignupForm";
 
 export const metadata: Metadata = {
   title: "Sign up · AI Officer · Novum AI",
-  description: "Sign up for a Novum AI Officer plan. 12-month plans from $250 a month, first two months free.",
+  description: "Sign up for a Novum AI Officer plan. 12-month plans from $500 a month, first two months free.",
 };
 
 export default async function SignupPage({ searchParams }: { searchParams: Promise<{ plan?: string }> }) {
