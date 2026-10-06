@@ -179,7 +179,7 @@ const TABS: Tab[] = [
     id: "own", tab: "Software you own", small: "Own",
     title: "Replace what you rent", sub: "One build · then hosting · the code, data, and accounts in your name", example: "Construction company",
     end: OWN_END, Demo: OwnDemo,
-    note: "Growth plans include one replacement a year. Pro includes unlimited.",
+    note: "AI Officer plans replace software through the build queue. Pro takes on full platforms.",
     link: { href: "/case-studies", label: "Read the case study" },
   },
 ];

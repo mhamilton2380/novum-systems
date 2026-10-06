@@ -7,10 +7,10 @@ export const metadata: Metadata = {
 };
 
 const STEPS = [
-  { title: "Discovery", tag: "Credited toward your build", body: "We sit with your team, watch how the work actually moves, find where AI saves the most hours, and list every tool you pay for and what it costs. If you build with us, the discovery fee comes off the price.", includes: "workflow mapping, a tool and cost audit, a written plan for what to train, build, and connect, and a price before anything is built. The plan and audit are yours to keep either way" },
-  { title: "Build, or AI Officer, or both", tag: "Your choice after discovery", body: "We build in phases, highest-impact first, each one live and in use before the next starts. Or start with a fractional Chief AI Officer plan, training your team first, and build later.", includes: "the AI assistant and agents, integrations with the tools you keep, and data migration where a platform gets replaced" },
+  { title: "Discovery", tag: "Ends with your first agent live", body: "We sit with your team, map how the work actually moves, and list every tool you pay for. Then we put it to work: your team trained on its own work, an AI usage policy, and your first agent live on your own data. It runs $2,500 for a 10-person team up to $15,000, credited toward your plan or build.", includes: "a workflow map, a tool and cost audit, an AI usage policy, a training session on your own work, your first agent live, and a written plan with prices for what comes next. All of it is yours either way" },
+  { title: "AI Officer plan, or a one-time build", tag: "Your choice after discovery", body: "Most clients go onto a fractional Chief AI Officer plan: every tool connected, and agents and builds shipping one after another, each live before the next starts. Or take one project as a fixed-price build.", includes: "the AI assistant and agents, integrations with the tools you keep, and data migration where a platform gets replaced" },
   { title: "Train", tag: "Built into every phase", body: "Before each phase goes live, we train the people who will use it, on their own work and your data. AI the team doesn't use saves nothing.", includes: "hands-on sessions per team, written guides, and follow-up coaching after launch" },
-  { title: "Run", tag: "Your AI Officer, from $500/mo", body: "You pay for hosting, storage, and security. Your AI Officer keeps the team trained, audits your tools each quarter, and brings in new AI as it's worth using.", includes: "ongoing training, monitoring, backups, and security updates on a 12-month plan, first two months free" },
+  { title: "Run", tag: "Your AI Officer, from $3,500/mo", body: "You pay for hosting, storage, and security. Your AI Officer keeps the team trained, audits your tools each quarter, and brings in new AI as it's worth using.", includes: "ongoing training, monitoring, backups, and security updates, on a 6-month minimum, then month to month" },
 ];
 
 const HANDOFF = [
@@ -28,7 +28,7 @@ const DRIVERS = [
 ];
 
 const FAQ = [
-  { q: "What does it cost?", a: "Discovery is priced case by case, based on the type of business, its size, and the tools in use. It ranges from $2,500 to $15,000 for the initial audit, and it comes off the price of your build if you go ahead. After that it depends on what you need. Some companies need their team trained and a few agents built, some need their tools connected, some need a new system. We price every project after discovery, and you get the number in writing before we build." },
+  { q: "What does it cost?", a: "Discovery is $2,500 for a 10-person team, up to $15,000 for larger or more complex companies, and it ends with your first agent live. The fee is credited toward what comes next. AI Officer plans are $3,500 a month for Growth and $6,500 for Pro, six months minimum. A one-time build is quoted in writing after discovery." },
   { q: "Do we have to replace our software?", a: "No. Most clients keep the tools that work. We connect them and put AI on top. We only rebuild a platform when owning it costs less than renting it." },
   { q: "Do we pay per user?", a: "No. There are no seats and no revenue share. Adding people or growing the business adds no license fees." },
   { q: "How long does a build take?", a: "It depends on the scope. We build in phases, so your team starts using the first piece before the whole system is done." },

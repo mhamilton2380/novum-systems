@@ -5,30 +5,32 @@ import { PlanCards } from "@/components/PlanCards";
 
 export const metadata: Metadata = {
   title: "Fractional Chief AI Officer · Novum AI",
-  description: "A part-time Chief AI Officer for companies without a technical team. Plans from $500 a month, first two months free. We train your team, test new AI on your data, and audit your tools.",
+  description: "A part-time Chief AI Officer for companies without a technical team. Every tool connected, unlimited agents and builds, and your team trained. Plans from $3,500 a month."
 };
 
 const MONTHLY = [
   { title: "Ongoing training", body: "Sessions and coaching for your team on their own work, as the tools change, so people keep using what you paid for." },
   { title: "New AI, tested for you", body: "AI tools change monthly. We test the ones that matter on your data and adopt the ones that pay off." },
-  { title: "Costly software, replaced", body: "When a SaaS tool costs more than it's worth, we build the version that fits and hand you the code. Growth includes one a year, Pro is unlimited." },
-  { title: "Marketing handled", body: "SEO that doesn't depend on paid ads, social reels, and explainer videos, made for you every month on Growth and Pro." },
+  { title: "Agents and builds, nonstop", body: "Ask for as many agents, integrations, and tools as you want. We work through them in order, each one live before the next starts. Pro runs two at once." },
+  { title: "Every tool connected", body: "Your accounting, CRM, project, and document tools wired together, so data entered once shows up everywhere and the AI can see all of it." },
+  { title: "Costly software, replaced", body: "When a SaaS tool costs more than it's worth, we build the version that fits through your build queue and hand you the code. Pro takes on full platforms." },
   { title: "Audits and security", body: "A quarterly audit of every tool and what it costs, plus monitoring, backups, and security updates on everything we set up." },
 ];
 
 const FIT = [
   { title: "No technical team", body: "You run a company of 15 to 100 people, nobody owns software, and tools get bought one at a time." },
   { title: "Software you want kept current", body: "You built with us and want the system maintained and improved as the business grows." },
-  { title: "Starting small", body: "You want your team using AI well before anything gets built. Start on Basic and move up when the results show." },
+  { title: "Ready to see it work", body: "You'd rather see one agent working on your own data before committing. Discovery ends with exactly that." },
 ];
 
 
 const FAQ = [
   { q: "What is a fractional Chief AI Officer?", a: "Most companies under 100 people can't justify a full-time technical executive. We fill the role part-time. We train your team, test new AI on your data, keep your systems running, and cut tools that don't earn their price." },
-  { q: "Do we need a discovery first?", a: "Not for Basic or Growth. Sign up and we book your first training session. Pro and Enterprise start with a discovery, because they include building and running systems, and the discovery fee comes off any build." },
+  { q: "How does it start?", a: "With a discovery, priced $2,500 for a 10-person team up to $15,000 by size and tools. We map how your work moves, audit every tool you pay for, write your AI usage policy, train your team on its own work, and put your first agent live on your data. The fee is credited toward your plan." },
+  { q: "What does 'one build at a time' mean?", a: "There's no limit on how many agents, integrations, or tools you ask for. We work on one until it's live, then start the next. Pro works on two at once. Bigger projects, like replacing a platform, are split into steps that go live one by one." },
   { q: "Do we keep what you build if we leave?", a: "Yes. Replacements, agents, and integrations are built on accounts in your company's name. The code, data, and accounts stay yours." },
-  { q: "How long is the commitment?", a: "Every plan is 12 months. That commitment is what pays for the two free months. Your accounts, data, and code stay in your company's name either way, so nothing breaks if we part ways." },
-  { q: "What's not included?", a: "Anything past your plan's limits, like a second replacement on Growth, is quoted as a project. Pro includes unlimited replacements, built one at a time." },
+  { q: "How long is the commitment?", a: "Six months, then month to month. Pay yearly and it's 10% off. Your accounts, data, and code stay in your company's name either way, so nothing breaks if we part ways." },
+  { q: "What about marketing?", a: "SEO, social reels, and explainer videos are available as an add-on, priced separately. They aren't part of the AI Officer plans." },
 ];
 
 export default function AiOfficerPage() {
@@ -37,7 +39,7 @@ export default function AiOfficerPage() {
       <PageHero
         eyebrow="Fractional Chief AI Officer"
         title={<>Your AI team, <span className="h-grad">on call</span>.</>}
-        sub="Most companies under 100 people have no one whose job is AI. We act as yours: training your team, testing new AI on your data, and auditing what you pay for. Plans from $500 a month, first two months free."
+        sub="Most companies under 100 people have no one whose job is AI. We act as yours: every tool connected, agents and builds shipping one after another, and your team trained to use them. Plans from $3,500 a month."
       />
 
       <section className="h-sec">
@@ -66,13 +68,13 @@ export default function AiOfficerPage() {
         <div className="h-wrap">
           <SectionHead
             eyebrow="Plans"
-            title="Pick a plan. The first two months are free."
-            sub="Every plan runs 12 months, and the first two are on us. Basic and Growth start today. Pro and Enterprise start with a discovery, so we can plan the builds before the first month."
+            title="Two plans. Start with a discovery."
+            sub="Every plan starts with a discovery that ends with your first agent live, priced $2,500 to $15,000 by company size and credited toward your plan. Then six months minimum, month to month after that."
           />
           <PlanCards />
           <p style={{ marginTop: 28, color: "var(--ink-2)", maxWidth: 720 }}>
-            Need something built? That's a separate project, scoped on our{" "}
-            <Link href="/build" style={{ color: "inherit", fontWeight: 700 }}>Build</Link> page.
+            Want one project without a plan? See{" "}
+            <Link href="/build" style={{ color: "inherit", fontWeight: 700 }}>Build</Link>.
           </p>
         </div>
       </section>

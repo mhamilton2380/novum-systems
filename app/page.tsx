@@ -43,14 +43,14 @@ const COMPARE = [
 const STEPS = [
   {
     title: "Discovery",
-    tag: "Credited toward your build",
-    body: "We sit with your team, map how the work actually moves, and find where AI saves the most hours. We list every tool you pay for and what it costs. If you build with us, the discovery fee comes off the price.",
-    includes: "a workflow and tool audit, a written plan for what to train, build, and connect, and a price before anything is built. The plan and audit are yours either way",
+    tag: "Ends with your first agent live",
+    body: "We sit with your team, map how the work actually moves, and list every tool you pay for. Then we put it to work: your team trained on its own work, an AI usage policy, and your first agent live on your own data. It runs $2,500 for a 10-person team up to $15,000, credited toward your plan or build.",
+    includes: "a workflow map, a tool and cost audit, an AI usage policy, a training session on your own work, your first agent live, and a written plan with prices for what comes next. All of it is yours either way",
   },
   {
-    title: "Build, or AI Officer, or both",
+    title: "AI Officer plan, or a one-time build",
     tag: "Your choice after discovery",
-    body: "We build the tools in phases, highest-impact first, each one live and in use before the next starts. Or start with an AI Officer plan, training your team first, and build later.",
+    body: "Most clients go onto a plan: every tool connected, and agents and builds shipping one after another, each live before the next starts. Or take one project as a fixed-price build.",
     includes: "an AI assistant and agents on your data, integrations with the tools you keep, a custom system where it pays, and the code handed to you",
   },
   {
@@ -61,9 +61,9 @@ const STEPS = [
   },
   {
     title: "Run",
-    tag: "Your AI Officer · plans from $500/mo",
+    tag: "Your AI Officer · plans from $3,500/mo",
     body: "You pay for hosting, storage, and security. Nothing is priced on seats or revenue. Your AI Officer keeps the team trained and brings in new AI as it's worth using.",
-    includes: "ongoing training, new AI tested on your data, a quarterly tool audit, maintenance, and new agents and changes on a schedule set by your plan",
+    includes: "ongoing training, new AI tested on your data, a quarterly tool audit, maintenance, and new agents, builds, and changes through your queue"
   },
 ];
 
@@ -97,7 +97,7 @@ const AUDIT = [
 const FAQ = [
   {
     q: "What does it cost?",
-    a: "Discovery is priced case by case, based on the type of business, its size, and the tools in use. It ranges from $2,500 to $15,000, and it comes off the price of your build if you go ahead. After that it depends on what you need: some companies need their team trained and a few agents built, some need their tools connected, some need a new system. We price every project after discovery, in writing. AI Officer plans run $500, $1,500, or $3,500 a month on a 12-month plan, with the first two months free. Enterprise is priced per company. Growth includes replacing one costly SaaS tool a year and Pro is unlimited, so most clients never need a separate build.",
+    a: "Everything starts with a discovery: $2,500 for a 10-person team, up to $15,000 for larger or more complex companies. It ends with your first agent live, and the fee is credited toward what comes next. AI Officer plans are $3,500 a month for Growth and $6,500 for Pro, with every tool connected and unlimited agents and builds. Six months minimum, then month to month, or 10% off paid yearly. Enterprise is priced per company. A one-time build is quoted in writing after discovery.",
   },
   {
     q: "We already pay for AI tools. Why would we need you?",
@@ -258,19 +258,19 @@ export default function HomePage() {
           <div className="h-head h-center">
             <div className="h-eyebrow">Two ways we work with you</div>
             <h2>A plan, or a one-time build.</h2>
-            <p>Most clients choose an AI Officer plan: training, agents, connected tools, and costly software replaced, all in one monthly price. A one-time build is there for companies that want a project without a plan.</p>
+            <p>Most clients choose an AI Officer plan: every tool connected, unlimited agents and builds, and the team trained, in one monthly price. A one-time build is there for companies that want a single project.</p>
           </div>
           <div className="h-grid3" style={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
             <Link href="/ai-officer" className="h-card2">
               <span className="h-card2-tag">AI Officer plans · most clients</span>
-              <h3>Your AI team, on call, from $500 a month.</h3>
-              <p>Team training, connected tools, an AI assistant and agents, a company Vault, and on Growth and up, costly SaaS replaced with software you own plus SEO, reels, and explainer videos. 12-month plans, first two months free.</p>
-              <div className="h-more">See plans and sign up →</div>
+              <h3>Your AI team, on call, from $3,500 a month.</h3>
+              <p>Every tool you use connected, unlimited agents and builds shipping one after another, costly software replaced with software you own, and your team trained on all of it. Six months minimum, then month to month.</p>
+              <div className="h-more">See plans →</div>
             </Link>
             <Link href="/build" className="h-card2">
               <span className="h-card2-tag">One-time build</span>
               <h3>A project, without a plan.</h3>
-              <p>We scope it in a paid discovery, then build the tools, connect your systems, train your team, and hand you the code. Priced per project and quoted in writing. You own all of it.</p>
+              <p>One project, scoped in the discovery and quoted in writing. We build it, connect it, train your team, and hand you the code. You own all of it.</p>
               <div className="h-more">See Build and pricing →</div>
             </Link>
           </div>
@@ -370,7 +370,7 @@ export default function HomePage() {
         <div className="h-wrap">
           <div className="h-cta">
             <h2>Start with a discovery.</h2>
-            <p>We spend time with your team, map how work actually moves, and account for every tool you pay for. You get a written plan: where AI saves the most hours, what to train, what to build, what to connect, and what it costs. If the numbers don&apos;t justify a build, we say so. If they do, the discovery fee comes off your build.</p>
+            <p>We map how your work actually moves, audit every tool you pay for, train your team, and put your first agent live on your own data. You get a written plan and prices for what comes next. $2,500 for a 10-person team, up to $15,000, credited toward your plan.</p>
             <Link href="/contact" className="h-btn h-btn-light">Book a conversation</Link>
             <p className="h-cta-meta">The first conversation is free. No sales deck.</p>
           </div>

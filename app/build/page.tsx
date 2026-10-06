@@ -84,7 +84,7 @@ export default function BuildPage() {
           <SectionHead
             eyebrow="Pricing"
             title="Discovery first. The build is priced after."
-            sub="Discovery is priced case by case, based on the type of business, its size, and the tools in use. It ranges from $2,500 to $15,000 for the initial audit, and that fee comes off your build if you go ahead. You keep the written scope and tool audit either way. The build is quoted in writing before we start, and never priced per seat."
+            sub="Discovery is $2,500 for a 10-person team, up to $15,000 for larger or more complex companies. It ends with your first agent live, a tool audit, and a written scope, and the fee comes off your build. The build is quoted in writing before we start, and never priced per seat."
           />
           <div className="h-grid4">
             {DRIVERS.map((d) => (
@@ -92,7 +92,7 @@ export default function BuildPage() {
             ))}
           </div>
           <p style={{ marginTop: 28, color: "var(--ink-2)", maxWidth: 720 }}>
-            After the build you pay for hosting, storage, and security. Want builds as part of a monthly price instead? Growth includes one SaaS replacement a year and Pro is unlimited. See the{" "}
+            After the build you pay for hosting, storage, and security. Want builds as part of a monthly price instead? Growth and Pro include unlimited agents and builds, worked through one or two at a time. See the{" "}
             <Link href="/ai-officer#pricing" style={{ color: "inherit", fontWeight: 700 }}>AI Officer plans</Link>.
           </p>
         </div>

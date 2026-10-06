@@ -12,7 +12,7 @@ const BELIEFS = [
   { title: "You should own what you pay for", body: "The code, the data, and the accounts belong to you. If we part ways, nothing breaks." },
   { title: "Growth shouldn't raise your bill", body: "No seats, no revenue share. Hiring people and winning work adds nothing to your software cost." },
   { title: "AI should work on your data", body: "An assistant and agents that know your business, see only what each role allows, and never train on your records." },
-  { title: "Map before you build", body: "We learn how the work moves before we write a line of code, and you get the scope and price in writing first. The discovery fee comes off your build." },
+  { title: "Map before you build", body: "We learn how the work moves before we write a line of code, and you get the scope and price in writing first. The discovery fee is credited toward what comes next." },
 ];
 
 export default function AboutPage() {

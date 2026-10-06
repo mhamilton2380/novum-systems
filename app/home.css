@@ -505,7 +505,7 @@ a.h-card2 .h-more { margin-top: 14px; font-weight: 700; color: var(--ink); font-
 }
 
 /* AI Officer plans: every card spans the same subgrid rows, so features line up across plans */
-.h-plans { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 16px; margin-inline: calc((100% - min(1340px, 100vw - 48px)) / 2); }
+.h-plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 16px; }
 .h-plan { display: grid; grid-template-rows: subgrid; background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 26px 24px; text-align: left; font: inherit; color: inherit; }
 .h-plan-hi { border-color: #9fd9c3; box-shadow: 0 16px 40px rgba(0, 120, 80, 0.12); }
 .h-plan > .h-card2-tag { justify-self: start; align-self: start; }

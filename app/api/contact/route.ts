@@ -6,7 +6,7 @@ const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY ?? "eyJhbGciOiJIUzI1NiIs
 const FIELDS = ["name", "email", "company", "industry", "tools", "availability", "message"] as const;
 type Lead = Record<(typeof FIELDS)[number], string>;
 
-const PLAN_NAMES: Record<string, string> = { basic: "Basic ($500/mo)", growth: "Growth ($1,500/mo)" };
+const PLAN_NAMES: Record<string, string> = { growth: "Growth ($3,500/mo)", pro: "Pro ($6,500/mo)" };
 
 const clean = (v: unknown, max: number) => (typeof v === "string" ? v.trim().slice(0, max) : "");
 const escape = (s: string) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
@@ -31,7 +31,7 @@ async function notify(lead: Lead, plan?: string) {
         from: process.env.RESEND_FROM ?? "Novum Website <onboarding@resend.dev>",
         to: to.split(",").map((s) => s.trim()),
         reply_to: lead.email,
-        subject: plan ? `AI Officer sign-up, ${plan}: ${lead.company} (${lead.name})` : `New lead: ${lead.company} (${lead.name})`,
+        subject: plan ? `AI Officer sign-up, discovery requested, ${plan}: ${lead.company} (${lead.name})` : `New lead: ${lead.company} (${lead.name})`,
         html: `<table style="font-family:sans-serif;font-size:14px">${rows}</table>`,
       }),
     });
@@ -64,7 +64,7 @@ export async function POST(request: Request) {
     message: clean(body.message, 5000),
   };
   const plan = PLAN_NAMES[clean(body.plan, 20)];
-  if (plan) lead.message = `AI OFFICER SIGN-UP: ${plan}, 12-month plan, first 2 months free.\n\n${lead.message}`.slice(0, 5000);
+  if (plan) lead.message = `AI OFFICER START: ${plan}, wants a discovery quote. 6-month minimum.\n\n${lead.message}`.slice(0, 5000);
   if (!lead.name || !lead.company || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(lead.email)) {
     return Response.json({ error: "Name, company, and a valid email are required." }, { status: 400 });
   }
