@@ -134,15 +134,15 @@ export default function HomePage() {
         <div className="h-wrap h-hero-grid">
           <div className="h-hero-text">
             <h1>
-              We put AI <span className="h-grad">to work</span> in your business.
+              AI and software built around <span className="h-grad">how you work</span>.
             </h1>
             <p className="h-hero-sub">
-              Every business has access to AI. Few know how to use it on the actual work. We teach your team, build the tools, connect your systems, and you own all of it.
+              Generic software makes your team work its way. We sit down with your team, learn how the work actually moves, and build what fits: AI agents on the repeat work, your tools connected, and the platforms you rent replaced with software you own.
             </p>
             <ul className="h-proof">
-              <li>Training on your team&apos;s own work and data, not a generic course.</li>
-              <li>An AI assistant and agents built around how you operate, connected to the tools you keep.</li>
-              <li>No seats, no revenue share. The code, data, and accounts are yours.</li>
+              <li>We learn your workflow before we build anything. Scope and price in writing first.</li>
+              <li>Your team trained on its own work and data, not a generic course.</li>
+              <li>No seats, no revenue share. The code, data, and accounts are in your name.</li>
             </ul>
             <div className="h-ctas">
               <Link href="/contact" className="h-btn h-btn-primary">Start with a discovery</Link>

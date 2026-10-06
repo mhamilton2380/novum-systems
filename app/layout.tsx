@@ -5,8 +5,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Novum AI · We put AI to work in your business",
-  description: "We help operational businesses put AI to work. We teach your team, build the tools, connect your systems, and you own all of it.",
+  title: "Novum AI · AI and software built around how you work",
+  description: "Generic software makes your team work its way. We learn how your business runs and build what fits: AI agents, connected tools, and software you own instead of rent.",
   metadataBase: new URL("https://novum-systems.vercel.app"),
 };
 

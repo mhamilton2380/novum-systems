@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
-export const alt = "Novum AI: we put AI to work in your business";
+export const alt = "Novum AI: AI and software built around how you work";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -55,20 +55,20 @@ export default async function Image() {
           {/* headline */}
           <div style={{ display: "flex", flexDirection: "column" }}>
             <div style={{ display: "flex", flexDirection: "column", fontSize: 62, fontWeight: 700, lineHeight: 1.08, letterSpacing: "-0.03em" }}>
-              <div style={{ display: "flex" }}>We put AI</div>
+              <div style={{ display: "flex" }}>AI and software</div>
+              <div style={{ display: "flex" }}>built around</div>
               <div style={{ display: "flex", backgroundImage: "linear-gradient(90deg, #34d399, #22d3ee 55%, #60a5fa)", backgroundClip: "text", color: "transparent" }}>
-                to work
+                how you work.
               </div>
-              <div style={{ display: "flex" }}>in your business.</div>
             </div>
             <div style={{ display: "flex", fontSize: 26, color: "#cbd5e1", marginTop: 22, lineHeight: 1.4 }}>
-              We teach your team, build the tools, connect your systems. You own all of it.
+              We learn how you run, build what fits, and train your team. You own all of it.
             </div>
           </div>
 
           {/* chips */}
           <div style={{ display: "flex", gap: 12 }}>
-            {["Training", "AI Assistant", "Agents", "Integrations", "You own it"].map((c) => (
+            {["Training", "Agents", "Connected tools", "Software you own"].map((c) => (
               <div key={c} style={{ display: "flex", fontSize: 20, color: "#e2e8f0", padding: "8px 16px", borderRadius: 10, border: "1px solid rgba(255,255,255,0.18)", background: "rgba(255,255,255,0.05)" }}>{c}</div>
             ))}
           </div>
