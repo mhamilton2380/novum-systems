@@ -25,7 +25,7 @@ export default function Footer() {
           {/* Work with us */}
           <div>
             <p style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.72rem", color: "#EAEAEA", marginBottom: 20, letterSpacing: "0.08em", textTransform: "uppercase" }}>Work with us</p>
-            {([["AI Officer", "/ai-officer"], ["Training", "/training"], ["Discovery", "/how-we-work"]] as const).map(([s, href]) => (
+            {([["AI Implementation", "/ai-implementation"], ["AI Officer", "/ai-officer"], ["Training", "/training"], ["Discovery", "/how-we-work"]] as const).map(([s, href]) => (
               <Link key={s} href={href}
                 style={{ display: "block", fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", textDecoration: "none", marginBottom: 11, transition: "color 0.18s" }}
                 onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#EAEAEA"; }}

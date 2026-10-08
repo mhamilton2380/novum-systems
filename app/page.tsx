@@ -256,8 +256,8 @@ export default function HomePage() {
       <section className="h-sec">
         <div className="h-wrap">
           <div className="h-head h-center">
-            <div className="h-eyebrow">What we do</div>
-            <h2>An AI Officer on call, or a training day.</h2>
+            <div className="h-eyebrow"><Link href="/ai-implementation" style={{ color: "inherit" }}>What we do</Link></div>
+            <h2>AI implementation: train your team, then keep an AI Officer.</h2>
             <p>Most clients start with a discovery and move onto an AI Officer: every tool connected, unlimited agents and builds, and the team trained, with a dedicated AI Officer on Pro. If you want to start smaller, book a training day and get your team up to speed in five hours.</p>
           </div>
           <div className="h-grid3" style={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
