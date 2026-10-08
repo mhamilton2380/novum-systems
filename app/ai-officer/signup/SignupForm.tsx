@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { DISCOVERY, PLANS, TERMS, usd, yearlyPrice } from "@/lib/aiOfficerPlans";
+import { PLANS, TERMS } from "@/lib/aiOfficerPlans";
 
-const STARTABLE = PLANS.filter((p) => p.monthly);
+const STARTABLE = PLANS.filter((p) => p.startable);
 
 export function SignupForm({ initialPlan }: { initialPlan: "growth" | "pro" }) {
   const [plan, setPlan] = useState<string>(initialPlan);
@@ -51,8 +51,7 @@ export function SignupForm({ initialPlan }: { initialPlan: "growth" | "pro" }) {
         {STARTABLE.map((p) => (
           <button type="button" key={p.id} className={`h-plan h-plan-option${plan === p.id ? " on" : ""}`} onClick={() => setPlan(p.id)} aria-pressed={plan === p.id}>
             <span className="h-card2-tag">{p.name}</span>
-            <div className="h-plan-price"><strong>{usd(p.monthly!)}</strong><span>/month</span></div>
-            <p className="h-plan-terms">{TERMS} Or {usd(yearlyPrice(p)!)} paid yearly, 10% off.</p>
+            <p className="h-plan-terms">{TERMS}</p>
             <p className="h-plan-pitch">{p.pitch}</p>
             <ul className="h-checks">{p.highlights.map((f) => <li key={f}>{f}</li>)}</ul>
           </button>
@@ -74,7 +73,7 @@ export function SignupForm({ initialPlan }: { initialPlan: "growth" | "pro" }) {
           <input name="website" value={form.website} onChange={set} tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: "absolute", left: -9999, width: 1, height: 1, opacity: 0 }} />
           <label className="h-agree">
             <input type="checkbox" name="agree" required checked={form.agree} onChange={set} />
-            <span>I&apos;d like to start {chosen.name} ({usd(chosen.monthly!)} a month, {TERMS.toLowerCase().replace(/\.$/, "")}) with a discovery, priced {usd(DISCOVERY.from)} to {usd(DISCOVERY.to)} by company size and credited toward the plan. Nothing is charged until I approve a written quote.</span>
+            <span>I&apos;d like to start {chosen.name} ({TERMS.toLowerCase().replace(/\.$/, "")}) with a discovery, which is credited toward the plan. Nothing is charged until I approve a written quote.</span>
           </label>
           {status === "error" && <p style={{ color: "#b42318", fontSize: "0.9rem" }}>Something went wrong sending that. Please try again in a moment.</p>}
           <button type="submit" className="h-btn h-btn-primary" disabled={status === "sending"}>{status === "sending" ? "Sending..." : "Start with a discovery"}</button>

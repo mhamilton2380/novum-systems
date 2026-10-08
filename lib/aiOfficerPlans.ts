@@ -1,13 +1,14 @@
-// Fractional Chief AI Officer plans. Every plan starts with a paid discovery ($2,500 to
-// $15,000 by company size, credited toward the plan), then runs on a 6-month minimum and
-// month to month after that, or 10% off paid yearly.
+// Fractional Chief AI Officer plans. Every plan starts with a paid discovery, then runs on
+// a 6-month minimum and month to month after that. Prices are not shown on the site (decided
+// 2026-10-08): the page says "start with discovery" and Michael quotes. Internal prices live
+// in novum-vault/CONTEXT.md.
 // Builds are metered by how many are in progress at once, never by count or hours.
 export type PlanId = "growth" | "pro" | "enterprise";
 
 export type Plan = {
   id: PlanId;
   name: string;
-  monthly: number | null;
+  startable: boolean; // false = talk to us
   pitch: string;
   highlights: string[]; // the short list shown on the start page
 };
@@ -16,21 +17,21 @@ export const PLANS: Plan[] = [
   {
     id: "growth",
     name: "Growth",
-    monthly: 3500,
+    startable: true,
     pitch: "Your AI team on call. Every tool connected, and agents and builds shipping one after another.",
     highlights: ["2 training sessions a month", "Every tool you use, connected", "Unlimited agents and builds, one at a time", "Upkeep of everything we build"],
   },
   {
     id: "pro",
     name: "Pro",
-    monthly: 6500,
-    pitch: "Twice the build speed, full platform replacements, and weekly time with your team.",
-    highlights: ["Weekly sessions and office hours", "Every tool you use, connected", "Unlimited agents and builds, two at a time", "Full platform replacements"],
+    startable: true,
+    pitch: "A dedicated AI Officer, twice the build speed, full platform replacements, and weekly time with your team.",
+    highlights: ["A dedicated AI Officer", "Weekly sessions and office hours", "Every tool you use, connected", "Unlimited agents and builds, two at a time", "Full platform replacements"],
   },
   {
     id: "enterprise",
     name: "Enterprise",
-    monthly: null,
+    startable: false,
     pitch: "For larger teams, regulated work, and several builds at once.",
     highlights: [],
   },
@@ -50,7 +51,7 @@ export const FEATURES: FeatureGroup[] = [
       { label: "New AI tools tested on your data", v: [true, true, true] },
       { label: "Tool and cost audit", v: ["Quarterly audit, cutting what you don't use", "Quarterly audit plus a monthly roadmap call", "Quarterly audit plus a monthly roadmap call"] },
       { label: "Response time", v: ["Answers within 1 business day", "Same-day answers", "Contractual response times"] },
-      { label: "A dedicated AI Officer", v: [false, false, true] },
+      { label: "A dedicated AI Officer", v: [false, true, true] },
     ],
   },
   {
@@ -100,17 +101,12 @@ export function planLines(id: PlanId) {
   }));
 }
 
-// Grid rows per card: tag, price, terms, pitch, button, then a heading and the rows for each group.
-export const CARD_ROWS = 5 + FEATURES.reduce((n, g) => n + 1 + g.rows.length, 0);
+// Grid rows per card: tag, terms, pitch, button, then a heading and the rows for each group.
+export const CARD_ROWS = 4 + FEATURES.reduce((n, g) => n + 1 + g.rows.length, 0);
 
 export const MIN_MONTHS = 6;
-export const YEARLY_DISCOUNT = 0.1;
-export const yearlyPrice = (p: Plan) => (p.monthly ? Math.round(p.monthly * 12 * (1 - YEARLY_DISCOUNT)) : null);
-export const usd = (n: number) => `$${n.toLocaleString("en-US")}`;
 export const TERMS = `${MIN_MONTHS}-month minimum, then month to month.`;
 
-export const DISCOVERY = { from: 2500, to: 15000 };
-
 export function startHref(p: Plan) {
-  return p.monthly ? `/ai-officer/signup?plan=${p.id}` : "/contact";
+  return p.startable ? `/ai-officer/signup?plan=${p.id}` : "/contact";
 }

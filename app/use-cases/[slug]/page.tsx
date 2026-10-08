@@ -61,7 +61,7 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
           <SectionHead eyebrow="What we build" title="The tools, built for how you run." sub="Five pieces, shaped around your workflows, and your team trained on each one. You use the ones you need." />
           <div className="h-grid3" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))" }}>
             {u.builds.map((b) => (
-              <Link href="/build" className="h-card2" key={b.system}>
+              <Link href="/ai-officer" className="h-card2" key={b.system}>
                 <span className="h-card2-tag">{b.system}</span>
                 <h3>{b.title}</h3>
                 <p>{b.body}</p>

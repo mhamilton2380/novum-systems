@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
 import { PlanCards } from "@/components/PlanCards";
+import { AssistantChat } from "@/components/AssistantChat";
 
 export const metadata: Metadata = {
   title: "Fractional Chief AI Officer · Novum AI",
-  description: "A part-time Chief AI Officer for companies without a technical team. Every tool connected, unlimited agents and builds, and your team trained. Plans from $3,500 a month."
+  description: "A part-time Chief AI Officer for companies without a technical team. Every tool connected, unlimited agents and builds, and your team trained. Start with a discovery."
 };
 
 const MONTHLY = [
@@ -26,10 +27,11 @@ const FIT = [
 
 const FAQ = [
   { q: "What is a fractional Chief AI Officer?", a: "Most companies under 100 people can't justify a full-time technical executive. We fill the role part-time. We train your team, test new AI on your data, keep your systems running, and cut tools that don't earn their price." },
-  { q: "How does it start?", a: "With a discovery, priced $2,500 for a 10-person team up to $15,000 by size and tools. We map how your work moves, audit every tool you pay for (that report lands within 7 days), write your AI usage policy, train your team on its own work, and put your first agent live on your data within 30 days. The fee is credited toward your plan." },
+  { q: "How does it start?", a: "With a paid discovery, quoted in writing by company size and tools. We map how your work moves, audit every tool you pay for (that report lands within 7 days), write your AI usage policy, train your team on its own work, and put your first agent live on your data within 30 days. The fee is credited toward your plan." },
+  { q: "Can we just buy one project?", a: "Yes. If you don't want a plan, we scope a single build after discovery and quote it in writing: an assistant, agents, integrations, or a platform replacement. You get the same training and you own the code, data, and accounts. Most clients end up on a plan, because the next project always shows up." },
   { q: "What does 'one build at a time' mean?", a: "There's no limit on how many agents, integrations, or tools you ask for. We work on one until it's live, then start the next. Pro works on two at once. Bigger projects, like replacing a platform, are split into steps that go live one by one." },
   { q: "Do we keep what you build if we leave?", a: "Yes. Replacements, agents, and integrations are built on accounts in your company's name. The code, data, and accounts stay yours." },
-  { q: "How long is the commitment?", a: "Six months, then month to month. Pay yearly and it's 10% off. Your accounts, data, and code stay in your company's name either way, so nothing breaks if we part ways." },
+  { q: "How long is the commitment?", a: "Six months, then month to month. Your accounts, data, and code stay in your company's name either way, so nothing breaks if we part ways." },
   { q: "What about marketing?", a: "SEO, social reels, and explainer videos are available as an add-on, priced separately. They aren't part of the AI Officer plans." },
 ];
 
@@ -39,7 +41,7 @@ export default function AiOfficerPage() {
       <PageHero
         eyebrow="Fractional Chief AI Officer"
         title={<>Your AI team, <span className="h-grad">on call</span>.</>}
-        sub="Most companies under 100 people have no one whose job is AI. We act as yours: every tool connected, agents and builds shipping one after another, and your team trained to use them. Plans from $3,500 a month."
+        sub="Most companies under 100 people have no one whose job is AI. We act as yours: every tool connected, agents and builds shipping one after another, and your team trained to use them. Pro gets a dedicated AI Officer. Start with a discovery."
       />
 
       <section className="h-sec">
@@ -64,17 +66,31 @@ export default function AiOfficerPage() {
         </div>
       </section>
 
+      <section className="h-sec">
+        <div className="h-wrap h-feature">
+          <div>
+            <div className="h-eyebrow">Try it</div>
+            <h2>Ask a question the way your team would.</h2>
+            <p className="h-feature-sub">This assistant runs on a sample company. Yours answers from your own systems, cites the records it used, and only shows each person what their role allows.</p>
+          </div>
+          <div className="h-demo" style={{ position: "relative", top: 0 }}>
+            <div className="h-demo-bar"><i /><i /><i /><span>Live demo · AI assistant</span></div>
+            <AssistantChat height={520} compact bare />
+          </div>
+        </div>
+      </section>
+
       <section className="h-sec" id="pricing">
         <div className="h-wrap">
           <SectionHead
             eyebrow="Plans"
             title="Two plans. Start with a discovery."
-            sub="Every plan starts with a discovery that ends with your first agent live within 30 days, priced $2,500 to $15,000 by company size and credited toward your plan. Then six months minimum, month to month after that."
+            sub="Every plan starts with a discovery that ends with your first agent live within 30 days, credited toward your plan. Then six months minimum, month to month after that."
           />
           <PlanCards />
           <p style={{ marginTop: 28, color: "var(--ink-2)", maxWidth: 720 }}>
-            Want one project without a plan? See{" "}
-            <Link href="/build" style={{ color: "inherit", fontWeight: 700 }}>Build</Link>.
+            Want one project without a plan? Start with a discovery and we&apos;ll scope it in writing. Want your team trained first? Book a{" "}
+            <Link href="/training" style={{ color: "inherit", fontWeight: 700 }}>training day</Link>.
           </p>
         </div>
       </section>

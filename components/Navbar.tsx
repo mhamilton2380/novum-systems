@@ -82,8 +82,15 @@ export default function Navbar() {
               </div>
             </div>
 
-            <Link href="/ai-officer" className={`nv-trigger${on("/ai-officer") ? " on" : ""}`}>AI Officer</Link>
-            <Link href="/build" className={`nv-trigger${on("/build") ? " on" : ""}`}>Build</Link>
+            <div className="nv-item">
+              <Link href="/ai-officer" className={`nv-trigger${on("/ai-officer") || on("/training") ? " on" : ""}`}>What We Do <Chevron /></Link>
+              <div className="nv-menu">
+                <div className="nv-panel">
+                  <Link href="/ai-officer">AI Officer<small>Your AI team on call. Pro gets a dedicated AI Officer.</small></Link>
+                  <Link href="/training">Training<small>A 5-hour AI training day for your team. Book it online.</small></Link>
+                </div>
+              </div>
+            </div>
             <Link href="/how-we-work" className={`nv-trigger${on("/how-we-work") ? " on" : ""}`}>How We Work</Link>
             <Link href="/about" className={`nv-trigger${on("/about") ? " on" : ""}`}>About</Link>
 
@@ -132,8 +139,9 @@ export default function Navbar() {
             <Link href="/use-cases">Use Cases</Link>
             {USE_CASE_NAV.map((u) => <Link key={u.slug} href={`/use-cases/${u.slug}`} className="sub">{u.label}</Link>)}
             <Link href="/case-studies" className="sub">Case study</Link>
-            <Link href="/ai-officer">AI Officer</Link>
-            <Link href="/build">Build</Link>
+            <Link href="/ai-officer">What We Do</Link>
+            <Link href="/ai-officer" className="sub">AI Officer</Link>
+            <Link href="/training" className="sub">Training</Link>
             <Link href="/how-we-work">How We Work</Link>
             <Link href="/about">About</Link>
             <Link href="/contact" style={{ marginTop: 8, textAlign: "center", background: "#0b1b2e", color: "#fff", borderRadius: 999 }}>Book a Call</Link>
