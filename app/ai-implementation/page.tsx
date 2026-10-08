@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
+import { ImplementationFlow, StartChooser } from "@/components/ImplementationFlow";
 
 export const metadata: Metadata = {
   title: "AI Implementation · Novum AI",
@@ -22,19 +23,6 @@ const PARTS = [
     href: "/ai-officer",
     more: "See AI Officer →",
   },
-];
-
-const STEPS = [
-  { title: "Discovery", body: "We map how your work moves, audit every tool and what it costs, write your AI usage policy, and put your first agent live on your own data within 30 days." },
-  { title: "Train", body: "Your team learns the tools on their own work, so what gets built gets used." },
-  { title: "Build and connect", body: "Agents, an AI assistant, and integrations with the tools you keep, one live before the next starts." },
-  { title: "Run", body: "Your AI Officer keeps everything current, tests new AI on your data, and keeps training going." },
-];
-
-const START = [
-  { title: "Start with a training day", body: "Your team gets up to speed in five hours, with a short list of agents worth building. Prices are on the Training page." },
-  { title: "Start with a discovery", body: "We map the work, audit your tools, and put your first agent live. The fee is credited toward what comes next." },
-  { title: "Start with an AI Officer", body: "Every plan begins with a discovery, then runs month to month after a six-month minimum." },
 ];
 
 const FAQ = [
@@ -71,23 +59,15 @@ export default function AiImplementationPage() {
 
       <section className="h-sec h-soft">
         <div className="h-wrap">
-          <SectionHead eyebrow="How it runs" title="Four steps, nothing built before it's scoped." />
-          <div className="h-grid4">
-            {STEPS.map((s) => (
-              <div className="h-card2" key={s.title}><h3>{s.title}</h3><p>{s.body}</p></div>
-            ))}
-          </div>
+          <SectionHead eyebrow="How it runs" title="Four steps, nothing built before it's scoped." sub="Pick a step to see what happens. It plays through on its own." />
+          <ImplementationFlow />
         </div>
       </section>
 
       <section className="h-sec">
         <div className="h-wrap">
           <SectionHead eyebrow="Where to start" title="Pick the door that fits." />
-          <div className="h-grid3">
-            {START.map((s) => (
-              <div className="h-card2" key={s.title}><h3>{s.title}</h3><p>{s.body}</p></div>
-            ))}
-          </div>
+          <StartChooser />
         </div>
       </section>
 
