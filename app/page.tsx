@@ -140,9 +140,9 @@ export default function HomePage() {
               Generic software makes your team work its way. We sit down with your team, learn how the work actually moves, and build what fits: AI agents on the repeat work, your tools connected, and the platforms you rent replaced with software you own.
             </p>
             <ul className="h-proof">
-              <li>We learn your workflow before we build anything. Scope and price in writing first.</li>
-              <li>Your team trained on its own work and data, not a generic course.</li>
-              <li>No seats, no revenue share. The code, data, and accounts are in your name.</li>
+              <li>We learn your workflow first. Scope and price in writing before anything is built.</li>
+              <li>Your team learns AI on the work they do every day, and an AI Officer keeps it going.</li>
+              <li>No seats, no revenue share. The code, data, and accounts are in your company&apos;s name.</li>
             </ul>
             <div className="h-ctas">
               <Link href="/contact" className="h-btn h-btn-primary">Start with a discovery</Link>
