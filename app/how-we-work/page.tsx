@@ -77,8 +77,8 @@ const DRIVERS = [
 ];
 
 const FAQ = [
-  { q: "What does it cost?", a: "We start with a discovery, quoted in writing by company size and tools. It ends with your first agent live, and the fee is credited toward what comes next. After that you pick an AI Officer plan (six months minimum, then month to month) or a one-time project quoted in writing. Training days are priced by team size on the Training page." },
-  { q: "Can we just book training?", a: "Yes. A training day is five hours, tailored to your company type, and you can book it online without a discovery. Many teams start there and add an AI Officer once they see what to build." },
+  { q: "What does it cost?", a: "We start with a discovery, quoted in writing by company size and tools. It ends with your first agent live, and the fee is credited toward what comes next. After that you pick an AI Officer plan (six months minimum, then month to month) or a one-time project quoted in writing. Training days are quoted by team size." },
+  { q: "Can we just book training?", a: "Yes. A training day is five hours, tailored to your company type, and you can request one without a discovery. Many teams start there and add an AI Officer once they see what to build." },
   { q: "Do we have to replace our software?", a: "No. Most clients keep the tools that work. We connect them and put AI on top. We only rebuild a platform when owning it costs less than renting it." },
   { q: "Do we pay per user?", a: "No. There are no seats and no revenue share. Adding people or growing the business adds no license fees." },
   { q: "How long until we see something working?", a: "Your tool and cost report arrives within 7 days of kickoff, and your first agent is live on your own data within 30 days. After that, work ships in phases, so your team is using each piece before the next starts." },
@@ -143,7 +143,7 @@ export default function HowWeWorkPage() {
             </div>
           </Reveal>
           <p style={{ marginTop: 28, color: "var(--ink-2)", maxWidth: 720 }}>
-            Not ready for a discovery? Start with a <Link href="/training" style={{ color: "inherit", fontWeight: 700 }}>training day</Link>, priced by team size and bookable online.
+            Not ready for a discovery? Start with a <Link href="/training" style={{ color: "inherit", fontWeight: 700 }}>training day</Link>.
           </p>
         </div>
       </section>

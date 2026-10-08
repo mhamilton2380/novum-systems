@@ -4,7 +4,7 @@ import { TrainingBooking } from "./TrainingBooking";
 
 export const metadata: Metadata = {
   title: "AI Training Day · Novum AI",
-  description: "A 5-hour AI training day for your team, tailored to your company type. We show your people the AI tools that matter, how they work, what to use and when, and which agents to build. Book online.",
+  description: "A 5-hour AI training day for your team, tailored to your company type. We show your people the AI tools that matter, how they work, what to use and when, and which agents to build. Request a quote.",
 };
 
 const COVERED = [
@@ -19,7 +19,7 @@ const FAQ = [
   { q: "Who is it for?", a: "Everyone on the team. It works for a ten-person shop and for a department of seventy. We tailor the examples to your company type, so a law firm and a roofer see different things." },
   { q: "Where does it happen?", a: "We come to your team. Tell us your location in the form and we'll confirm the details when we lock in the date." },
   { q: "What happens after?", a: "Your team knows what to use and when, and you have a short list of agents worth building first. If you want them built, that's what a discovery and an AI Officer are for." },
-  { q: "How does booking work?", a: "Pick your company type and team size, send your preferred dates, and book. We confirm a date within one business day. Teams over 75 get a written quote instead." },
+  { q: "How does booking work?", a: "Tell us your company type, team size, and preferred dates. We reply within one business day with a written quote and open dates. Nothing is charged until you approve it." },
 ];
 
 export default function TrainingPage() {
@@ -28,7 +28,7 @@ export default function TrainingPage() {
       <PageHero
         eyebrow="Training day"
         title={<>Five hours that get your team <span className="h-grad">using AI</span>.</>}
-        sub="We come to your team and show them the AI tools that matter for your kind of business, how they work, what to use and when, and which agents to build first. Pick your company type and team size, then book online."
+        sub="We come to your team and show them the AI tools that matter for your kind of business, how they work, what to use and when, and which agents to build first. Tell us your company type and team size and we send a quote."
         ctas={false}
       />
 
@@ -45,7 +45,7 @@ export default function TrainingPage() {
 
       <section className="h-sec h-soft">
         <div className="h-wrap">
-          <TrainingBooking payOnline={!!process.env.STRIPE_SECRET_KEY} />
+          <TrainingBooking />
         </div>
       </section>
 

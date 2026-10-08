@@ -1,54 +1,48 @@
 "use client";
 
 import { useState } from "react";
-import { COMPANY_TYPES, LARGE_FROM, LARGE_PER_100, MAX_ONLINE_HEADCOUNT, TRAINING_HOURS, TRAINING_TIERS, tierFor, trainingPrice, usd } from "@/lib/training";
+import { COMPANY_TYPES, TRAINING_HOURS } from "@/lib/training";
 
-// payOnline is true only when STRIPE_SECRET_KEY is set; otherwise bookings are requests we invoice by hand.
-export function TrainingBooking({ payOnline }: { payOnline: boolean }) {
+const STEPS = [
+  { t: "Tell us about your team", d: "Company type and team size, so the day fits." },
+  { t: "We send a quote and dates", d: "Within one business day, in writing." },
+  { t: "We come to your team", d: `${TRAINING_HOURS} hours, hands-on, on your own work.` },
+];
+
+export function TrainingBooking() {
   const [form, setForm] = useState({ industry: "", headcount: "", name: "", email: "", company: "", dates: "", message: "", website: "" });
-  const [status, setStatus] = useState<"idle" | "sending" | "request" | "error">("idle");
-  const [error, setError] = useState("");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   const set = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => setForm({ ...form, [e.target.name]: e.target.value });
-
-  const n = parseInt(form.headcount, 10);
-  const valid = Number.isInteger(n) && n >= 1;
-  const price = valid ? trainingPrice(n) : null;
-  const quote = valid && n > MAX_ONLINE_HEADCOUNT;
-  const tier = valid ? tierFor(n) : undefined;
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("sending");
-    setError("");
     try {
-      const res = await fetch("/api/training/checkout", {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, headcount: n, quote }),
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          company: form.company,
+          industry: form.industry,
+          availability: form.dates,
+          message: [`TRAINING DAY REQUEST. Team size: ${form.headcount}.`, form.message].filter(Boolean).join("\n\n"),
+          website: form.website,
+        }),
       });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok) {
-        setError(data.error ?? "Something went wrong. Please try again in a moment.");
-        setStatus("error");
-      } else if (data.mode === "pay" && data.url) {
-        window.location.href = data.url;
-      } else {
-        setStatus("request");
-      }
+      setStatus(res.ok ? "sent" : "error");
     } catch {
-      setError("Something went wrong. Please try again in a moment.");
       setStatus("error");
     }
   };
 
-  if (status === "request") {
+  if (status === "sent") {
     return (
       <div className="h-formcard" style={{ textAlign: "center", padding: "56px 32px", maxWidth: 640, margin: "0 auto" }}>
         <h2 style={{ fontSize: "1.8rem", marginBottom: 12 }}>Got it. We&apos;ll reply within one business day.</h2>
-        <p style={{ color: "#64748b" }}>
-          {quote ? "We'll scope your day and send a written quote. Nothing is charged until you approve it." : "We'll confirm a date and send an invoice. Nothing is charged until you approve it."}
-        </p>
+        <p style={{ color: "#64748b" }}>We&apos;ll send a written quote and open dates. Nothing is charged until you approve it.</p>
       </div>
     );
   }
@@ -56,20 +50,17 @@ export function TrainingBooking({ payOnline }: { payOnline: boolean }) {
   return (
     <div className="h-feature" style={{ alignItems: "start" }}>
       <div>
-        <div className="h-eyebrow">Pricing</div>
-        <h2>One price per day, set by team size.</h2>
-        <p className="h-feature-sub">{TRAINING_HOURS} hours, tailored to your company type, for everyone on the team.</p>
-        <div style={{ marginTop: 20, display: "grid", gap: 10 }}>
-          {TRAINING_TIERS.map((t) => (
-            <div key={t.label} style={{ display: "flex", justifyContent: "space-between", gap: 16, padding: "12px 16px", border: "1px solid var(--line)", borderRadius: 12, background: tier === t ? "#fff" : "transparent", fontWeight: tier === t ? 700 : 500 }}>
-              <span>{t.label}</span>
-              <span>{t.price !== null ? usd(t.price) : `From ${usd(LARGE_FROM)}`}</span>
-            </div>
+        <div className="h-eyebrow">Book a day</div>
+        <h2>Tell us about your team. We&apos;ll send a quote.</h2>
+        <p className="h-feature-sub">One {TRAINING_HOURS}-hour day, tailored to your company type, for everyone on the team.</p>
+        <ol className="tr-steps">
+          {STEPS.map((s, i) => (
+            <li key={s.t}>
+              <span aria-hidden="true">{i + 1}</span>
+              <div><strong>{s.t}</strong><small>{s.d}</small></div>
+            </li>
           ))}
-        </div>
-        <p className="h-plan-terms" style={{ marginTop: 14 }}>
-          Past 100 people, each additional 100 adds {usd(LARGE_PER_100)}. Teams over {MAX_ONLINE_HEADCOUNT} get a written quote.
-        </p>
+        </ol>
       </div>
 
       <div className="h-formcard" id="book">
@@ -83,11 +74,6 @@ export function TrainingBooking({ payOnline }: { payOnline: boolean }) {
             </label>
             <label>How many people? *<input name="headcount" type="number" min={1} required inputMode="numeric" placeholder="e.g. 18" value={form.headcount} onChange={set} /></label>
           </div>
-          {valid && (
-            <p style={{ margin: 0, fontWeight: 700 }}>
-              {quote ? `Teams of ${n}: from ${usd(LARGE_FROM)}, quoted in writing.` : `${tier?.label}: ${usd(price!)} for the day.`}
-            </p>
-          )}
           <div className="h-2col">
             <label>Name *<input name="name" required value={form.name} onChange={set} /></label>
             <label>Work email *<input name="email" type="email" required value={form.email} onChange={set} /></label>
@@ -96,13 +82,9 @@ export function TrainingBooking({ payOnline }: { payOnline: boolean }) {
           <label>Preferred dates<input name="dates" placeholder="e.g. any Tuesday in November" value={form.dates} onChange={set} /></label>
           <label>What does your team do all day? What should we cover?<textarea name="message" value={form.message} onChange={set} /></label>
           <input name="website" value={form.website} onChange={set} tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: "absolute", left: -9999, width: 1, height: 1, opacity: 0 }} />
-          {status === "error" && <p style={{ color: "#b42318", fontSize: "0.9rem" }}>{error}</p>}
-          <button type="submit" className="h-btn h-btn-primary" disabled={status === "sending" || !valid}>
-            {status === "sending" ? "Sending..." : quote ? "Request a quote" : valid ? `${payOnline ? "Book and pay" : "Book this day,"} ${usd(price!)}` : payOnline ? "Book and pay" : "Book this day"}
-          </button>
-          <p className="h-plan-terms" style={{ margin: 0 }}>
-            {quote ? "We'll scope your day and send a written quote." : payOnline ? "You pay securely through Stripe. We confirm your date within one business day." : "We confirm your date within one business day and send an invoice. Nothing is charged until then."}
-          </p>
+          {status === "error" && <p style={{ color: "#b42318", fontSize: "0.9rem" }}>Something went wrong sending that. Please try again in a moment.</p>}
+          <button type="submit" className="h-btn h-btn-primary" disabled={status === "sending"}>{status === "sending" ? "Sending..." : "Request a training day"}</button>
+          <p className="h-plan-terms" style={{ margin: 0 }}>We reply within one business day with a written quote. Nothing is charged until you approve it.</p>
         </form>
       </div>
     </div>

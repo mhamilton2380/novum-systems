@@ -11,6 +11,12 @@ export type Plan = {
   startable: boolean; // false = talk to us
   pitch: string;
   highlights: string[]; // the short list shown on the start page
+  // The plan card on /ai-officer: short on purpose. The full comparison sits behind a toggle.
+  tagline: string;
+  lanes: number; // builds in progress at once, drawn as lanes on the card
+  lanesLabel: string;
+  badge?: string;
+  points: string[];
 };
 
 export const PLANS: Plan[] = [
@@ -19,6 +25,10 @@ export const PLANS: Plan[] = [
     name: "Growth",
     startable: true,
     pitch: "Your AI team on call. Every tool connected, and agents and builds shipping one after another.",
+    tagline: "Start here",
+    lanes: 1,
+    lanesLabel: "1 build at a time",
+    points: ["Every tool connected", "2 training sessions a month", "Quarterly tool audit", "Answers within 1 business day"],
     highlights: ["2 training sessions a month", "Every tool you use, connected", "Unlimited agents and builds, one at a time", "Upkeep of everything we build"],
   },
   {
@@ -26,6 +36,11 @@ export const PLANS: Plan[] = [
     name: "Pro",
     startable: true,
     pitch: "A dedicated AI Officer, twice the build speed, full platform replacements, and weekly time with your team.",
+    tagline: "Go faster",
+    lanes: 2,
+    lanesLabel: "2 builds at a time",
+    badge: "Dedicated AI Officer",
+    points: ["A dedicated AI Officer", "Weekly sessions and office hours", "Full platform replacements", "Same-day answers"],
     highlights: ["A dedicated AI Officer", "Weekly sessions and office hours", "Every tool you use, connected", "Unlimited agents and builds, two at a time", "Full platform replacements"],
   },
   {
@@ -33,6 +48,10 @@ export const PLANS: Plan[] = [
     name: "Enterprise",
     startable: false,
     pitch: "For larger teams, regulated work, and several builds at once.",
+    tagline: "For bigger teams",
+    lanes: 4,
+    lanesLabel: "Several builds at once",
+    points: ["On-site training", "SSO, IP allowlisting, your own keys", "Annual pen test", "Contractual response times"],
     highlights: [],
   },
 ];

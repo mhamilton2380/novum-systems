@@ -97,7 +97,7 @@ const AUDIT = [
 const FAQ = [
   {
     q: "What does it cost?",
-    a: "Everything starts with a discovery, quoted in writing by company size and tools. It ends with your first agent live within 30 days, and the fee is credited toward what comes next. Then you choose an AI Officer plan (Growth or Pro, with every tool connected and unlimited agents and builds, six months minimum and then month to month) or a one-time project quoted in writing. Pro comes with a dedicated AI Officer. If you only want your team trained, a 5-hour training day is priced by team size and booked online.",
+    a: "Everything starts with a discovery, quoted in writing by company size and tools. It ends with your first agent live within 30 days, and the fee is credited toward what comes next. Then you choose an AI Officer plan (Growth or Pro, with every tool connected and unlimited agents and builds, six months minimum and then month to month) or a one-time project quoted in writing. Pro comes with a dedicated AI Officer. If you only want your team trained, request a 5-hour training day and we quote it by team size.",
   },
   {
     q: "We already pay for AI tools. Why would we need you?",
@@ -268,10 +268,10 @@ export default function HomePage() {
               <div className="h-more">See AI Officer →</div>
             </Link>
             <Link href="/training" className="h-card2">
-              <span className="h-card2-tag">Training · book online</span>
+              <span className="h-card2-tag">Training day</span>
               <h3>A 5-hour AI day for your team.</h3>
-              <p>We come to you and show your team the AI tools that matter for your kind of business, how they work, what to use and when, and which agents to build first. Pick your company type and team size, then book online.</p>
-              <div className="h-more">Book a training day →</div>
+              <p>We come to you and show your team the AI tools that matter for your kind of business, how they work, what to use and when, and which agents to build first. Tell us your company type and team size and we send a quote.</p>
+              <div className="h-more">Request a training day →</div>
             </Link>
           </div>
         </div>
