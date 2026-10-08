@@ -3,6 +3,8 @@ import Link from "next/link";
 import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
 import { PlanCards } from "@/components/PlanCards";
 import { AssistantChat } from "@/components/AssistantChat";
+import { Reveal } from "@/components/Reveal";
+import { MonthView, OfficerHeroCard, RoleCards } from "@/components/OfficerShowcase";
 
 export const metadata: Metadata = {
   title: "Fractional Chief AI Officer · Novum AI",
@@ -10,12 +12,12 @@ export const metadata: Metadata = {
 };
 
 const MONTHLY = [
-  { title: "Ongoing training", body: "Sessions and coaching for your team on their own work, as the tools change, so people keep using what you paid for." },
-  { title: "New AI, tested for you", body: "AI tools change monthly. We test the ones that matter on your data and adopt the ones that pay off." },
-  { title: "Agents and builds, nonstop", body: "Ask for as many agents, integrations, and tools as you want. We work through them in order, each one live before the next starts. Pro runs two at once." },
-  { title: "Every tool connected", body: "Your accounting, CRM, project, and document tools wired together, so data entered once shows up everywhere and the AI can see all of it." },
-  { title: "Costly software, replaced", body: "When a SaaS tool costs more than it's worth, we build the version that fits through your build queue and hand you the code. Pro takes on full platforms." },
-  { title: "Audits and security", body: "A quarterly audit of every tool and what it costs, plus monitoring, backups, and security updates on everything we set up." },
+  { icon: "train" as const, title: "Ongoing training", body: "Sessions and coaching for your team on their own work, as the tools change, so people keep using what you paid for." },
+  { icon: "ai" as const, title: "New AI, tested for you", body: "AI tools change monthly. We test the ones that matter on your data and adopt the ones that pay off." },
+  { icon: "queue" as const, title: "Agents and builds, nonstop", body: "Ask for as many agents, integrations, and tools as you want. We work through them in order, each one live before the next starts. Pro runs two at once." },
+  { icon: "link" as const, title: "Every tool connected", body: "Your accounting, CRM, project, and document tools wired together, so data entered once shows up everywhere and the AI can see all of it." },
+  { icon: "swap" as const, title: "Costly software, replaced", body: "When a SaaS tool costs more than it's worth, we build the version that fits through your build queue and hand you the code. Pro takes on full platforms." },
+  { icon: "shield" as const, title: "Audits and security", body: "A quarterly audit of every tool and what it costs, plus monitoring, backups, and security updates on everything we set up." },
 ];
 
 const FIT = [
@@ -41,32 +43,38 @@ export default function AiOfficerPage() {
       <PageHero
         eyebrow="Fractional Chief AI Officer"
         title={<>Your AI team, <span className="h-grad">on call</span>.</>}
+        side={<OfficerHeroCard />}
         sub="Most companies under 100 people have no one whose job is AI. We act as yours: every tool connected, agents and builds shipping one after another, and your team trained to use them. Pro gets a dedicated AI Officer. Start with a discovery."
       />
 
       <section className="h-sec">
         <div className="h-wrap">
           <SectionHead eyebrow="Who it's for" title="Companies that need technical leadership and can't hire it." />
-          <div className="h-grid3">
-            {FIT.map((f) => (
-              <div className="h-card2" key={f.title}><h3>{f.title}</h3><p>{f.body}</p></div>
-            ))}
-          </div>
+          <Reveal>
+            <div className="h-grid3">
+              {FIT.map((f, i) => (
+                <div className="h-card2 rv-item" key={f.title} style={{ ["--i" as string]: i }}><h3>{f.title}</h3><p>{f.body}</p></div>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </section>
 
       <section className="h-sec h-soft">
         <div className="h-wrap">
-          <SectionHead eyebrow="The role" title="What an AI Officer does." sub="Your plan sets how much of each you get, so you know what's included and what costs extra." />
-          <div className="h-grid3">
-            {MONTHLY.map((m) => (
-              <div className="h-card2" key={m.title}><h3>{m.title}</h3><p>{m.body}</p></div>
-            ))}
-          </div>
+          <SectionHead eyebrow="The role" title="What an AI Officer does." sub="Six jobs, all of them yours to hand off. Your plan sets how much of each you get." />
+          <Reveal><RoleCards items={MONTHLY} /></Reveal>
         </div>
       </section>
 
       <section className="h-sec">
+        <div className="h-wrap">
+          <SectionHead eyebrow="A month with us" title="See what each plan looks like in practice." sub="Switch between Growth and Pro. Same role, more of it on Pro, and a dedicated AI Officer." />
+          <Reveal><MonthView /></Reveal>
+        </div>
+      </section>
+
+      <section className="h-sec h-soft">
         <div className="h-wrap h-feature">
           <div>
             <div className="h-eyebrow">Try it</div>
@@ -87,7 +95,7 @@ export default function AiOfficerPage() {
             title="Two plans. Start with a discovery."
             sub="Every plan starts with a discovery that ends with your first agent live within 30 days, credited toward your plan. Then six months minimum, month to month after that."
           />
-          <PlanCards />
+          <Reveal><PlanCards /></Reveal>
           <p style={{ marginTop: 28, color: "var(--ink-2)", maxWidth: 720 }}>
             Want one project without a plan? Start with a discovery and we&apos;ll scope it in writing. Want your team trained first? Book a{" "}
             <Link href="/training" style={{ color: "inherit", fontWeight: 700 }}>training day</Link>.
