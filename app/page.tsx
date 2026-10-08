@@ -192,7 +192,7 @@ export default function HomePage() {
           <div className="h-ia-head">
             <div className="h-head">
               <div className="h-eyebrow">See it work</div>
-              <h2>Agents, training, audits, and software you own. Here&apos;s each one at work.</h2>
+              <h2>Agents doing the repeat work, in businesses like yours.</h2>
               <p>Pick one. Every example runs on the company&apos;s own data, and nothing leaves the company until someone on the team approves it.</p>
             </div>
             <ul className="h-ia-points">

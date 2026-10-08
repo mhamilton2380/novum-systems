@@ -1,5 +1,5 @@
-// Homepage example demos. Each takes the current tick and draws its state.
-// Names and numbers are illustrative.
+// Homepage example demos: agents at work in different kinds of business. Each takes the
+// current tick and draws its state. Names and numbers are illustrative.
 
 // ─── Phone agent: after-hours call booked onto the dispatch board ────────────
 const CALL = [
@@ -62,199 +62,202 @@ export function PhoneDemo({ t }: { t: number }) {
   );
 }
 
-// ─── Report writer: monthly client report drafted from live data ─────────────
-const MONTHS = [["Apr", 148], ["May", 160], ["Jun", 171], ["Jul", 165], ["Aug", 186], ["Sep", 212]] as const;
-const PARAS = [
-  "Leads rose 14% to 212 on the same $18,420 budget. Auto loan searches drove 61% of them.",
-  "Cost per lead fell 9% to $86.89 after the new video ads went live on Meta.",
+// ─── Shipment agent: logistics, a late load caught before the customer calls ──
+const LOADS = [
+  { id: "7728", lane: "Reno to Boise", eta: "1:10 PM", st: "On time" },
+  { id: "7731", lane: "Tacoma to Spokane", eta: "2:00 PM", st: "On time", late: "5:05 PM" },
+  { id: "7735", lane: "Portland to Salem", eta: "11:30 AM", st: "Delivered" },
+  { id: "7740", lane: "Eugene to Medford", eta: "8:00 AM +1", st: "On time" },
 ];
-const FLAGGED = "Mobile sign-ups fell after the September 12 form change. We recommend restoring the shorter form.";
-const words = (s: string) => s.split(" ");
-const TYPE_START = 4, PER_TICK = 6;
 
-export const REPORT_END = 26;
-export function ReportDemo({ t }: { t: number }) {
-  let budget = Math.max(0, (t - TYPE_START) * PER_TICK);
-  const typed = [...PARAS, FLAGGED].map((p) => {
-    const w = words(p);
-    const n = Math.min(w.length, budget);
-    budget -= n;
-    return w.slice(0, n).join(" ");
-  });
-  const doneTyping = typed[2].length === FLAGGED.length;
-  const confirmed = t >= 18;
+export const SHIPMENT_END = 20;
+export function ShipmentDemo({ t }: { t: number }) {
+  const late = t >= 5;
+  const fixed = t >= 11;
   return (
     <div className="ex-2col wide-left">
-      <div className="ex-card ex-doc">
-        <div className="ex-dochead">
-          <div><b>Evergreen Credit Union</b><small>September performance report</small></div>
-          <span className={`sc-chip ${t >= 19 ? "ok" : "warn"}`}>{t >= 19 ? "Approved" : "Draft"}</span>
+      <div className="ex-card">
+        <div className="ex-cardhead"><span className="h-live"><i />Watching 38 loads</span><small>Carrier feeds, weather, check calls</small></div>
+        <div className="ex-tr head" style={{ ["--cols" as string]: "64px 1.4fr 1fr 1fr" }}><span>Load</span><span>Lane</span><span>ETA</span><span>Status</span></div>
+        {LOADS.map((l, i) => {
+          const isLate = l.late && late;
+          return (
+            <div className={`ex-tr${t >= i ? " in" : ""}${isLate && !fixed ? " warn" : ""}${isLate && fixed ? " resolved" : ""}`} style={{ ["--cols" as string]: "64px 1.4fr 1fr 1fr" }} key={l.id}>
+              <b>{l.id}</b>
+              <span>{l.lane}</span>
+              <span>{isLate ? l.late : l.eta}</span>
+              <span className={`ex-pill ${isLate ? (fixed ? "ok" : "warn") : l.st === "Delivered" ? "soft" : "ok"}`}>{isLate ? (fixed ? "Dock moved" : "Late 3 hrs") : l.st}</span>
+            </div>
+          );
+        })}
+        <div className={`ex-draft${t >= 8 ? " in" : ""}`}>
+          <small>Draft to Northline Builders</small>
+          <p>Load 7731 is running about 3 hours behind because of a lane closure on I-90. New arrival is 5:05 PM. We&apos;ve asked for a 5:15 PM dock slot.</p>
         </div>
-        <div className="ex-kpis">
-          {[["Leads", "212", "+14%"], ["Cost per lead", "$86.89", "−9%"], ["Loan applications", "37", "+6%"]].map(([k, v, d], i) => (
-            <div className={t >= 1 + i ? "in" : ""} key={k}><small>{k}</small><b>{v}</b><em>{d}</em></div>
-          ))}
+      </div>
+      <div className="ex-stack">
+        <div className={`ia-review${t >= 7 ? " in" : ""}`}>
+          <div className="ia-review-q">Load 7731 will miss its 2:00 PM dock slot</div>
+          <p>Receiving closes at 5:30 PM, so the new ETA still fits.</p>
+          <div className="ex-btns">
+            <span className={`ex-btn${t >= 10 ? " sel" : ""}`}>Move dock to 5:15 PM and notify</span>
+            <span className="ex-btn">Rebook with backup carrier</span>
+          </div>
         </div>
-        <div className="ex-bars">
-          {MONTHS.map(([m, v], i) => (
-            <div key={m}><i style={{ height: t >= 2 ? `${((v - 110) / 102) * 100}%` : 0, transitionDelay: `${i * 80}ms` }} className={i === 5 ? "last" : ""} /><small>{m}</small></div>
-          ))}
+        <div className="ia-done">
+          <div className={t >= 11 ? "in" : ""}><em>✓</em>Approved by M. Reyes in 2 minutes</div>
+          <div className={t >= 12 ? "in" : ""}><em>✓</em>Dock appointment moved in the TMS</div>
+          <div className={t >= 13 ? "in" : ""}><em>✓</em>Update sent to Northline Builders</div>
         </div>
-        <div className="ex-prose">
-          <p>{typed[0]}{typed[0] && typed[0].length < PARAS[0].length && <i className="sc-caret" />}</p>
-          <p>{typed[1]}{typed[1] && typed[1].length < PARAS[1].length && <i className="sc-caret" />}</p>
-          <p><mark className={!doneTyping ? "" : confirmed ? "ok" : "warn"}>{typed[2]}</mark>{typed[2] && !doneTyping && <i className="sc-caret" />}</p>
+      </div>
+    </div>
+  );
+}
+
+// ─── Research agent: a law firm asks its own files a question ────────────────
+const QUESTION = "What did we agree on the indemnity cap in the Halvorsen MSA, and has our position changed since?";
+const ANSWER = "The signed MSA caps indemnity at 12 months of fees (section 9.2). On March 14, J. Park emailed Halvorsen agreeing to 24 months for data breaches only, but the signed redline (v4) still says 12. The email and the contract disagree.";
+const SOURCES = ["Document system · 214 files", "Email · 1,380 messages", "Billing notes · 62 entries"];
+const CITES = ["Halvorsen MSA §9.2", "Email · J. Park · Mar 14", "Redline v4"];
+
+export const RESEARCH_END = 24;
+export function ResearchDemo({ t }: { t: number }) {
+  const w = ANSWER.split(" ");
+  const n = Math.max(0, Math.min(w.length, (t - 3) * 6));
+  const done = n === w.length;
+  return (
+    <div className="ex-2col wide-left">
+      <div className="ex-card ex-chat">
+        <div className="ex-ask in"><small>Associate</small>{QUESTION}</div>
+        <div className={`ex-ans${t >= 3 ? " in" : ""}`}>
+          <small>Assistant</small>
+          <p>{w.slice(0, n).join(" ")}{t >= 3 && !done && <i className="sc-caret" />}</p>
+          <div className="ex-cites">
+            {CITES.map((c, i) => <span className={done && t >= 3 + 9 + i ? "in" : ""} key={c}>{c}</span>)}
+          </div>
         </div>
       </div>
       <div className="ex-stack">
         <div className="ex-card ex-pad">
-          <div className="ex-label">Pulled on the 1st</div>
-          <div className="ex-chips">{["Google Ads", "Meta Ads", "GA4", "HubSpot"].map((x, i) => <span className={t >= i ? "in" : ""} key={x}>✓ {x}</span>)}</div>
+          <div className="ex-label">Searched, limited to what this person may see</div>
+          <div className="ex-chips">{SOURCES.map((x, i) => <span className={t >= 1 + i ? "in" : ""} key={x}>✓ {x}</span>)}</div>
+          <div className={`ex-lock${t >= 4 ? " in" : ""}`}>2 files hidden: restricted matter</div>
         </div>
-        <div className={`ia-review${doneTyping ? " in" : ""}`}>
-          <div className="ia-review-q">{confirmed ? "Confirmed by R. Kim" : "Agent note for the account manager"}</div>
-          <p>The drop started the day the form changed. The data can&apos;t prove the form caused it. Keep this sentence?</p>
+        <div className={`ia-review${t >= 15 ? " in" : ""}`}>
+          <div className="ia-review-q">Agent note for the attorney</div>
+          <p>The email and the contract disagree. Confirm which governs before this goes to the client.</p>
           <div className="ex-btns">
-            <span className={`ex-btn${confirmed ? " sel" : ""}`}>Keep it</span>
-            <span className="ex-btn">Soften it</span>
+            <span className={`ex-btn${t >= 17 ? " sel" : ""}`}>Flag for partner review</span>
+            <span className="ex-btn">Add to matter notes</span>
           </div>
         </div>
         <div className="ia-done">
-          <div className={t >= 19 ? "in" : ""}><em>✓</em>Approved by R. Kim in 4 minutes</div>
-          <div className={t >= 20 ? "in" : ""}><em>✓</em>Scheduled to send Oct 2, 9 AM</div>
+          <div className={t >= 18 ? "in" : ""}><em>✓</em>Answer saved to the matter with its sources</div>
+          <div className={t >= 19 ? "in" : ""}><em>✓</em>Partner review requested</div>
         </div>
       </div>
     </div>
   );
 }
 
-// ─── Tool audit: every subscription, what it costs, what to do about it ─────
-const TOOLS: { name: string; seats: string; cost: number; used: number; verdict: string; kind: "keep" | "cut" | "trim" | "replace"; save: number }[] = [
-  { name: "Practice management", seats: "22 seats", cost: 26400, used: 95, verdict: "Keep", kind: "keep", save: 0 },
-  { name: "Document storage", seats: "22 seats", cost: 9240, used: 88, verdict: "Keep, connect it", kind: "keep", save: 0 },
-  { name: "AI research add-on", seats: "22 seats", cost: 18480, used: 14, verdict: "Trim to 4 seats", kind: "trim", save: 15120 },
-  { name: "E-signature, second plan", seats: "8 seats", cost: 3840, used: 0, verdict: "Cut", kind: "cut", save: 3840 },
-  { name: "Intake and scheduling forms", seats: "3 tools", cost: 7800, used: 41, verdict: "Replace with one intake agent", kind: "replace", save: 7800 },
-  { name: "Video meetings, two vendors", seats: "22 seats", cost: 4560, used: 50, verdict: "Keep one", kind: "trim", save: 2280 },
-  { name: "Billing and payments", seats: "Firm plan", cost: 6000, used: 100, verdict: "Keep", kind: "keep", save: 0 },
-];
-const SPEND = TOOLS.reduce((n, x) => n + x.cost, 0);
-const money = (n: number) => `$${n.toLocaleString("en-US")}`;
-
-export const AUDIT_END = 24;
-export function AuditDemo({ t }: { t: number }) {
-  const judged = Math.max(0, Math.min(TOOLS.length, t - 8));
-  const found = TOOLS.slice(0, judged).reduce((n, x) => n + x.save, 0);
-  return (
-    <div className="ex-stack">
-      <div className="sc-kpis">
-        <div><small>Software spend per year</small><strong>{money(SPEND)}</strong></div>
-        <div><small>Savings found</small><strong className="ex-green">{money(found)}</strong></div>
-        <div><small>Share of spend</small><strong>{Math.round((found / SPEND) * 100)}%</strong></div>
-      </div>
-      <div className="ex-card">
-        <div className="ex-audit ex-audit-head"><span>Tool</span><span>Per year</span><span>Actually used</span><span>Recommendation</span></div>
-        {TOOLS.map((x, i) => (
-          <div className={`ex-audit${t >= i ? " in" : ""}`} key={x.name}>
-            <span><b>{x.name}</b><small>{x.seats}</small></span>
-            <span className="ex-cost">{money(x.cost)}</span>
-            <span className="sc-bar"><span className="sc-track"><i style={{ width: t >= 7 ? `${x.used}%` : 0, background: x.used < 30 ? "#d64545" : x.used < 60 ? "#e8a33d" : "#00b36e" }} /></span><em>{x.used}%</em></span>
-            <span>{judged > i && <span className={`ex-verdict ${x.kind}`}>{x.verdict}{x.save > 0 && ` · saves ${money(x.save)}`}</span>}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-// ─── Team training: adoption and playbooks built on the firm's own work ─────
-const WEEKS = [3, 7, 12, 16, 19, 22, 24, 26];
-const PLAYBOOKS = [
-  { name: "Client email replies", team: "Tax team", hrs: 9 },
-  { name: "IRS notice responses", team: "Tax team", hrs: 4 },
-  { name: "Month-end commentary", team: "Advisory", hrs: 6 },
-  { name: "Bank reconciliation prep", team: "Bookkeeping", hrs: 7 },
+// ─── Invoice agent: accounting, three-way match on every vendor bill ─────────
+const BILLS = [
+  { v: "Ridge Supply", n: "INV-4410", po: "PO-2231", amt: "$6,210", ok: true },
+  { v: "Cascade Electric", n: "INV-0982", po: "PO-2240", amt: "$7,480", ok: true },
+  { v: "Northwest Lumber", n: "INV-7713", po: "PO-2252", amt: "$4,320", ok: false },
+  { v: "Summit Freight", n: "INV-3301", po: "PO-2258", amt: "$4,950", ok: true },
 ];
 
-export const TRAINING_END = 21;
-export function TrainingDemo({ t }: { t: number }) {
-  const weeks = Math.max(0, Math.min(WEEKS.length, t + 1));
-  const books = Math.max(0, Math.min(PLAYBOOKS.length, t - 7));
-  const hrs = PLAYBOOKS.slice(0, books).reduce((n, x) => n + x.hrs, 0);
-  return (
-    <div className="ex-2col">
-      <div className="ex-card ex-pad">
-        <div className="ex-label">Staff using AI on real work, by week <span>of 30</span></div>
-        <div className="ex-bars tall">
-          {WEEKS.map((v, i) => (
-            <div key={i}><b className={weeks > i ? "in" : ""}>{v}</b><i style={{ height: weeks > i ? `${(v / 30) * 100}%` : 0 }} className={i === weeks - 1 ? "last" : ""} /><small>Wk {i + 1}</small></div>
-          ))}
-        </div>
-        <div className="ex-session">This week&apos;s session: {["AI basics on your client files", "Email drafts that sound like you", "Reading IRS notices", "Month-end narratives", "Bank rec prep", "Prompting for review, not answers", "Tax season prep", "Agents on your own data"][Math.max(0, weeks - 1)]}</div>
-      </div>
-      <div className="ex-stack">
-        <div className="sc-kpis two">
-          <div><small>Using AI weekly</small><strong>{WEEKS[Math.max(0, weeks - 1)]} of 30</strong></div>
-          <div><small>Hours saved a week</small><strong className="ex-green">{hrs}</strong></div>
-        </div>
-        <div className="ex-card">
-          <div className="ex-cardhead"><b>Playbooks built from your own work</b></div>
-          {PLAYBOOKS.map((p, i) => (
-            <div className={`ex-book${books > i ? " in" : ""}`} key={p.name}>
-              <span><b>{p.name}</b><small>{p.team}</small></span>
-              <em>{p.hrs} hrs/wk</em>
-            </div>
-          ))}
-        </div>
-        <div className="ia-done">
-          <div className={t >= 13 ? "in" : ""}><em>✓</em>AI usage policy signed by 30 of 30</div>
-          <div className={t >= 14 ? "in" : ""}><em>✓</em>Client data stays in approved tools only</div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ─── Software you own: rent vs. own, and what's in your name ─────────────────
-const OWN = [
-  "Source code in your company's repository",
-  "Database on your company's account",
-  "Hosting in your company's name",
-  "Guides and training for every team",
-  "If you stop working with us, nothing breaks",
-];
-// cumulative cost, as a share of the chart height
-const RENT = [0.18, 0.36, 0.54, 0.72, 0.9];
-const OWNED = [0.15, 0.17, 0.19, 0.21, 0.23];
-const pts = (ys: number[]) => ys.map((y, i) => `${40 + i * 85},${210 - y * 200}`).join(" ");
-
-export const OWN_END = 20;
-export function OwnDemo({ t }: { t: number }) {
-  const drawn = t >= 1;
+export const INVOICE_END = 21;
+export function InvoiceDemo({ t }: { t: number }) {
+  const matched = Math.max(0, Math.min(BILLS.length, t - 2));
+  const fixed = t >= 11;
   return (
     <div className="ex-2col wide-left">
-      <div className="ex-card ex-pad">
-        <div className="ex-label">Five years of a $100,000-a-year platform</div>
-        <svg className="ex-chart" viewBox="0 0 420 240" aria-hidden="true">
-          {[0, 1, 2, 3].map((i) => <line key={i} x1="40" x2="400" y1={30 + i * 60} y2={30 + i * 60} className="ex-grid" />)}
-          <polygon points={`${pts(RENT)} ${pts(OWNED).split(" ").reverse().join(" ")}`} className={`ex-gap${t >= 5 ? " in" : ""}`} />
-          <polyline points={pts(RENT)} className={`ex-line rent${drawn ? " in" : ""}`} />
-          <polyline points={pts(OWNED)} className={`ex-line own${drawn ? " in" : ""}`} />
-          {RENT.map((_, i) => <text key={i} x={40 + i * 85} y="232" className="ex-axis" textAnchor="middle">Year {i + 1}</text>)}
-          <text x="392" y={210 - 0.9 * 200 - 10} textAnchor="end" className={`ex-tag rent${t >= 3 ? " in" : ""}`}>Renting: $500,000</text>
-          <text x="392" y={210 - 0.23 * 200 - 10} textAnchor="end" className={`ex-tag own${t >= 4 ? " in" : ""}`}>Owning: one build, then hosting</text>
-          <text x="300" y="120" textAnchor="middle" className={`ex-gaptext${t >= 5 ? " in" : ""}`}>What you keep</text>
-        </svg>
-        <div className="ex-caption">Illustrative. Your build is priced in writing after discovery.</div>
+      <div className="ex-card">
+        <div className="ex-cardhead"><b>AP inbox · 4 vendor bills</b><small>Matched to purchase order and receiving</small></div>
+        <div className="ex-tr head" style={{ ["--cols" as string]: "1.3fr 80px 70px 1fr" }}><span>Vendor</span><span>Invoice</span><span>Amount</span><span>Match</span></div>
+        {BILLS.map((b, i) => {
+          const shown = matched > i;
+          const flagged = !b.ok && shown;
+          return (
+            <div className={`ex-tr${t >= i ? " in" : ""}${flagged && !fixed ? " warn" : ""}${flagged && fixed ? " resolved" : ""}`} style={{ ["--cols" as string]: "1.3fr 80px 70px 1fr" }} key={b.n}>
+              <span><b>{b.v}</b><small>{b.po} + receiving</small></span>
+              <span>{b.n}</span>
+              <span>{b.amt}</span>
+              <span>{shown && <span className={`ex-pill ${b.ok ? "ok" : fixed ? "ok" : "warn"}`}>{b.ok ? "Matched" : fixed ? "Fixed" : "Billed 120, got 100"}</span>}</span>
+            </div>
+          );
+        })}
+        <div className={`ex-sum${t >= 7 ? " in" : ""}`}><span>Ready to pay <b>$18,640</b></span><span>Held for review <b>$4,320</b></span></div>
       </div>
       <div className="ex-stack">
-        <div className="ex-card">
-          <div className="ex-cardhead"><b>What&apos;s in your name</b></div>
-          {OWN.map((o, i) => (
-            <div className={`ex-own${t >= 6 + i ? " in" : ""}`} key={o}><em>✓</em>{o}</div>
-          ))}
+        <div className={`ia-review${t >= 8 ? " in" : ""}`}>
+          <div className="ia-review-q">1 bill held</div>
+          <p>Northwest Lumber billed 120 units. Receiving logged 100.</p>
+          <div className="ex-btns">
+            <span className={`ex-btn${t >= 10 ? " sel" : ""}`}>Pay 100, request credit for 20</span>
+            <span className="ex-btn">Pay as billed</span>
+          </div>
         </div>
-        <div className={`ex-quote${t >= 12 ? " in" : ""}`}>No seats, no renewal, no price increase when you hire.</div>
+        <div className="ia-done">
+          <div className={t >= 11 ? "in" : ""}><em>✓</em>Approved by S. Patel in 3 minutes</div>
+          <div className={t >= 12 ? "in" : ""}><em>✓</em>4 bills posted to QuickBooks for payment</div>
+          <div className={t >= 13 ? "in" : ""}><em>✓</em>Credit request drafted to Northwest Lumber</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Renewal agent: insurance, a month of renewals assembled for review ──────
+const RENEWALS = [
+  { c: "Alder Dental Group", l: "Commercial package", flag: false },
+  { c: "Brennan Roofing", l: "Workers comp", flag: false },
+  { c: "Coastal Cafe", l: "Property", flag: true },
+  { c: "Dunmore Logistics", l: "Auto fleet", flag: false },
+];
+
+export const RENEWAL_END = 21;
+export function RenewalDemo({ t }: { t: number }) {
+  const count = Math.min(23, Math.max(0, (t - 1) * 4));
+  const fixed = t >= 11;
+  return (
+    <div className="ex-2col wide-left">
+      <div className="ex-stack">
+        <div className="ex-kpis3">
+          <div><small>Renewals due in 60 days</small><b>23</b></div>
+          <div><small>Packets drafted</small><b>{count}</b></div>
+          <div><small>Need a producer</small><b className={count >= 23 ? "ex-warnnum" : ""}>{count >= 23 ? 2 : 0}</b></div>
+        </div>
+        <div className="ex-card">
+          <div className="ex-tr head" style={{ ["--cols" as string]: "1.4fr 1fr 1fr" }}><span>Client</span><span>Line</span><span>Status</span></div>
+          {RENEWALS.map((r, i) => {
+            const shown = t >= 4 + i;
+            return (
+              <div className={`ex-tr${t >= i ? " in" : ""}${r.flag && shown && !fixed ? " warn" : ""}${r.flag && shown && fixed ? " resolved" : ""}`} style={{ ["--cols" as string]: "1.4fr 1fr 1fr" }} key={r.c}>
+                <b>{r.c}</b>
+                <span>{r.l}</span>
+                <span>{shown && <span className={`ex-pill ${r.flag ? (fixed ? "ok" : "warn") : "ok"}`}>{r.flag ? (fixed ? "Remarketing" : "Claim in June") : "Packet ready"}</span>}</span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      <div className="ex-stack">
+        <div className={`ia-review${t >= 8 ? " in" : ""}`}>
+          <div className="ia-review-q">2 renewals need a producer</div>
+          <p>Coastal Cafe filed a property claim in June. Quoting it as is could misprice the account.</p>
+          <div className="ex-btns">
+            <span className={`ex-btn${t >= 10 ? " sel" : ""}`}>Remarket before quoting</span>
+            <span className="ex-btn">Quote as is</span>
+          </div>
+        </div>
+        <div className="ia-done">
+          <div className={t >= 11 ? "in" : ""}><em>✓</em>21 renewal packets held for producer sign-off</div>
+          <div className={t >= 12 ? "in" : ""}><em>✓</em>Coastal Cafe flagged for remarketing</div>
+          <div className={t >= 13 ? "in" : ""}><em>✓</em>Nothing sent to a client yet</div>
+        </div>
       </div>
     </div>
   );

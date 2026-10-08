@@ -56,7 +56,7 @@ const STEPS: ProcessStep[] = [
 ];
 
 const RULES = [
-  { title: "Written scope and price first", body: "You know what's being built and what it costs before we start. Nothing is built on a handshake." },
+  { title: "Written scope and price first", body: "You know what's being built and what it costs before we start." },
   { title: "A person approves", body: "Agents draft. Someone on your team reviews and signs off before anything leaves the company." },
   { title: "No seats, no revenue share", body: "Adding people or growing the business adds no license fees. Your bill doesn't climb when you do." },
   { title: "Your data stays yours", body: "AI works on your data, sees only what each role allows, and never trains on your records." },
@@ -91,7 +91,7 @@ export default function HowWeWorkPage() {
     <div className="home">
       <PageHero
         eyebrow="How we work"
-        title={<>We map <span className="h-grad">before</span> we build.</>}
+        title={<>We learn how you work <span className="h-grad">first</span>.</>}
         sub="Every company runs differently. We start by learning how yours does and where AI fits, and nothing gets built until the scope and price are agreed in writing."
         ctas={false}
       />
