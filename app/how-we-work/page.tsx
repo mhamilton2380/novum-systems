@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
 import { ProcessTimeline, type ProcessStep } from "@/components/ProcessTimeline";
 import { IconCards, ThirtyDayCard, type IconName } from "@/components/PageVisuals";
+import { DiscoveryArtifacts } from "@/components/DiscoveryArtifacts";
 
 export const metadata: Metadata = {
   title: "How We Work · Novum AI",
@@ -106,19 +107,26 @@ export default function HowWeWorkPage() {
 
       <section className="h-sec h-soft">
         <div className="h-wrap">
+          <SectionHead eyebrow="What discovery hands you" title="Four documents. Yours either way." sub="Whatever you decide next, you keep the map, the tool report, the policy, and the plan. Click through an example of each." />
+          <DiscoveryArtifacts />
+        </div>
+      </section>
+
+      <section className="h-sec">
+        <div className="h-wrap">
           <SectionHead eyebrow="How we operate" title="Four rules we work by." />
           <IconCards items={RULES} cols={4} />
         </div>
       </section>
 
-      <section className="h-sec">
+      <section className="h-sec h-soft">
         <div className="h-wrap">
           <SectionHead eyebrow="At handoff" title="Everything is yours." sub="Whether you stay on a plan or stop after a project, you walk away with all of it." />
           <IconCards items={HANDOFF} cols={4} />
         </div>
       </section>
 
-      <section className="h-sec h-soft">
+      <section className="h-sec">
         <div className="h-wrap">
           <SectionHead eyebrow="What shapes the price" title="Scoped to your company, never per seat." sub="Every discovery and project is quoted in writing. These are the things that move the number." />
           <IconCards items={DRIVERS} cols={4} />
@@ -128,7 +136,7 @@ export default function HowWeWorkPage() {
         </div>
       </section>
 
-      <section className="h-sec">
+      <section className="h-sec h-soft">
         <div className="h-wrap">
           <SectionHead eyebrow="Questions" title="What people ask first." center />
           <div className="h-faq">
