@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { HeroReel } from "../components/HeroReel";
 import { ExampleBuilds } from "../components/ExampleBuilds";
+import { PartArt, ThirtyDayCard, TrainingLibrary } from "../components/PageVisuals";
 
 // ─── Content ──────────────────────────────────────────────────────────────────
 const PROBLEMS = [
@@ -257,34 +258,50 @@ export default function HomePage() {
         <div className="h-wrap">
           <div className="h-head h-center">
             <div className="h-eyebrow"><Link href="/ai-implementation" style={{ color: "inherit" }}>What we do</Link></div>
-            <h2>AI implementation: train your team, then keep an AI Officer.</h2>
-            <p>Most clients start with a discovery and move onto an AI Officer: every tool connected, unlimited agents and builds, and the team trained, with a dedicated AI Officer on Pro. If you want to start smaller, book a training day and get your team up to speed in five hours.</p>
+            <h2>We build it. Then we make sure it gets used.</h2>
+            <p>Most clients start with a discovery and move onto an AI Officer: agents and tools built one after another, every system connected, and your team trained every month on its own tools. Not ready for a plan? Start with an on-site training day.</p>
           </div>
           <div className="h-grid3" style={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
-            <Link href="/ai-officer" className="h-card2">
+            <Link href="/ai-officer" className="h-card2 pv-card">
+              <PartArt kind="officer" />
               <span className="h-card2-tag">AI Officer · most clients</span>
-              <h3>Your AI team, on call.</h3>
-              <p>Every tool you use connected, unlimited agents and builds shipping one after another, costly software replaced with software you own, and your team trained on all of it. Start with a discovery. Pro gets a dedicated AI Officer.</p>
+              <h3>A Chief AI Officer, without the hire.</h3>
+              <p>Agents and tools built one after another, every system connected, costly software replaced with software you own, and your team trained on all of it. Start with a discovery.</p>
               <div className="h-more">See AI Officer →</div>
             </Link>
-            <Link href="/training" className="h-card2">
-              <span className="h-card2-tag">Training day</span>
-              <h3>A 5-hour AI day for your team.</h3>
-              <p>We come to you and show your team the AI tools that matter for your kind of business, how they work, what to use and when, and which agents to build first. Tell us your company type and team size and we send a quote.</p>
-              <div className="h-more">Request a training day →</div>
+            <Link href="/training" className="h-card2 pv-card">
+              <PartArt kind="training" />
+              <span className="h-card2-tag">Training · every plan</span>
+              <h3>Training that makes it stick.</h3>
+              <p>Live sessions every month on your own tools, a recorded library your team keeps for good, and an on-site training day when you want one.</p>
+              <div className="h-more">See how we train →</div>
             </Link>
           </div>
         </div>
       </section>
 
+      {/* Training */}
+      <section className="h-sec h-soft">
+        <div className="h-wrap h-feature">
+          <div>
+            <div className="h-eyebrow">Training, every month</div>
+            <h2>A login is not a skill.</h2>
+            <p className="pv-lead">A build nobody uses gets cancelled. So your team trains on each piece as it goes live, on your own tools and workflows, and every session lands in a library your company keeps, like the code.</p>
+            <p style={{ marginTop: 22 }}><Link href="/training" style={{ color: "var(--ink)", fontWeight: 700, textDecoration: "none" }}>How we train →</Link></p>
+          </div>
+          <TrainingLibrary />
+        </div>
+      </section>
+
       {/* How it works */}
-      <section className="h-sec h-soft" id="how">
+      <section className="h-sec" id="how">
         <div className="h-wrap">
           <div className="h-howgrid">
             <div className="h-head">
               <div className="h-eyebrow">How it works</div>
               <h2>Four steps. Priced in writing first.</h2>
               <p>Nothing gets built until the scope and the price are agreed in writing.</p>
+              <div className="pv-howcard"><ThirtyDayCard /></div>
             </div>
             <div className="h-vsteps">
               {STEPS.map((s, i) => (
@@ -306,7 +323,7 @@ export default function HomePage() {
       </section>
 
       {/* Security */}
-      <section className="h-sec h-secure">
+      <section className="h-sec h-soft h-secure">
         <div className="h-wrap h-secure-grid">
           <div>
             <div className="h-head" style={{ marginBottom: 36 }}>
@@ -348,7 +365,7 @@ export default function HomePage() {
       </section>
 
       {/* FAQ */}
-      <section className="h-sec h-soft">
+      <section className="h-sec">
         <div className="h-wrap">
           <div className="h-head h-center">
             <div className="h-eyebrow">Questions</div>
