@@ -11,11 +11,11 @@ import { Icon, type IconName } from "@/components/PageVisuals";
 export function ThreeWaysCard() {
   const rows: { t: string; s: string; w: number; tone: string; lo?: number; hi?: number }[] = [
     { t: "No AI", s: "The baseline", w: 100, tone: "base" },
-    { t: "A login and nothing else", s: "About 3% saved · University of Chicago", w: 97, tone: "flat" },
+    { t: "AI tools, no training", s: "About 3% saved · University of Chicago", w: 97, tone: "flat" },
     { t: "Trained, on the right task", s: "25% to 56% saved · controlled studies", w: 60, lo: 44, hi: 75, tone: "win" },
   ];
   return (
-    <div className="h-phero-card wy-three" aria-label="Time to do the same task: no AI, a login only, or trained on the right task">
+    <div className="h-phero-card wy-three" aria-label="Time to do the same task: no AI, AI tools with no training, or trained on the right task">
       <div className="oc-hero-h"><span className="oc-live" aria-hidden="true" /><strong>Same task, three ways</strong><em>Time it takes</em></div>
       {rows.map((r, i) => (
         <div key={r.t} className={`wy-three-row ${r.tone}`} style={{ ["--i" as string]: i, ["--w" as string]: `${r.w}%` }}>
@@ -239,7 +239,7 @@ export function WrongMeters() {
     <Reveal>
       <div className="wy-wrong">
         <div className="wy-wrong-row rv-item" style={{ ["--i" as string]: 0 }}>
-          <div className="wy-wrong-h"><strong>A login and nothing else</strong><em>Time saved</em></div>
+          <div className="wy-wrong-h"><strong>AI tools, no training</strong><em>Time saved</em></div>
           <div className="wy-meter"><i style={{ width: "3%" }} className="red" /><span>about 3%</span></div>
           <div className="wy-meter ghost"><i style={{ width: "40%", left: "25%" }} className="green" /><span>25% to 56% when trained, on the right task</span></div>
           <small>University of Chicago, 25,000 workers · controlled studies</small>

@@ -16,7 +16,7 @@ export default function WhyAiPage() {
       <PageHero
         eyebrow="Why implement AI"
         title={<>What AI actually does to <span className="h-grad">the work</span>.</>}
-        sub="On work that suits AI, controlled studies measure 25% to 56% less time per task. Hand people a login and nothing else, and it's closer to 3%. Here's what the research and real companies measured, with every source named."
+        sub="On work that suits AI, controlled studies measure 25% to 56% less time per task. Give people AI tools with no training, and it's closer to 3%. Here's what the research and real companies measured, with every source named."
         side={<ThreeWaysCard />}
       />
 
