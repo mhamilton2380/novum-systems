@@ -27,7 +27,7 @@ export async function notify(lead: Lead, subject: string) {
       method: "POST",
       headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
       body: JSON.stringify({
-        from: process.env.RESEND_FROM ?? "Novum Website <onboarding@resend.dev>",
+        from: process.env.RESEND_FROM ?? "Novum Website <michael@thenovumai.com>",
         to: to.split(",").map((s) => s.trim()),
         reply_to: lead.email,
         subject,

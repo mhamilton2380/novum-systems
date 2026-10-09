@@ -36,7 +36,7 @@ export default function WhyAiPage() {
             <div>
               <h3 className="wy-h3">The real cost of the agent is the setup.</h3>
               <p className="pv-lead">The per-task prices leave out the fixed work: building the agent, connecting it to your systems, monitoring it, and keeping it current. That&apos;s what an AI Officer plan covers, so the per-task math is what you actually get.</p>
-              <p className="pv-lead">The numbers favor agents on high-volume, repeatable tasks: invoices, intake, scheduling, status calls. On judgment work, the gain comes from people doing more in the same hours.</p>
+              <p className="pv-lead">The numbers favor agents on high-volume, repeatable tasks: invoices, intake, scheduling, status calls. On judgment work, the agent does the first pass: it reads the file, pulls the facts, flags the risks, and recommends a call. Your people make the decision, and make more of them in the same hours.</p>
             </div>
             <WageChart />
           </div>
@@ -49,7 +49,7 @@ export default function WhyAiPage() {
             <div>
               <div className="h-eyebrow">Phone calls and data entry</div>
               <h2>Where agents take over whole tasks.</h2>
-              <p className="pv-lead">On calls, intake, and data entry, an agent doesn&apos;t just speed a person up. It does the task, and a person handles the ones that need judgment.</p>
+              <p className="pv-lead">On calls, intake, and data entry, an agent does the whole task and sends the exceptions to a person.</p>
             </div>
             <CallLog />
           </div>

@@ -43,7 +43,7 @@ export async function POST(request: Request) {
   const top = r.flags[0]?.title ?? r.band.name;
   await notify(lead, `AI Readiness Score [${tier}]: ${company} scored ${r.score}, top flag: ${top}`);
 
-  // The visitor's write-up. Needs RESEND_FROM on a verified domain to reach outside addresses.
+  // The visitor's write-up. Sends from thenovumai.com (verified in Resend 2026-10-09) unless RESEND_FROM overrides.
   const key = process.env.RESEND_API_KEY;
   if (key) {
     const origin = new URL(request.url).origin;
@@ -68,7 +68,7 @@ export async function POST(request: Request) {
         method: "POST",
         headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
         body: JSON.stringify({
-          from: process.env.RESEND_FROM ?? "Novum AI <onboarding@resend.dev>",
+          from: process.env.RESEND_FROM ?? "Novum AI <michael@thenovumai.com>",
           to: [email],
           reply_to: process.env.LEADS_TO?.split(",")[0]?.trim() || undefined,
           subject: `Your AI Readiness Score: ${r.score} out of 100`,
