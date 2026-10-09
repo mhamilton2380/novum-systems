@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageBits";
 import { Assessment } from "@/components/Assessment";
-import { ProductivityEvidence } from "@/components/PageVisuals";
+import { NumbersTeaser } from "@/components/PageVisuals";
 
 export const metadata: Metadata = {
   title: "Free AI Readiness Score · Novum AI",
@@ -31,10 +31,9 @@ export default function AssessmentPage() {
       <section className="h-sec h-soft as-sec">
         <div className="h-wrap">
           <Assessment />
+          <div style={{ maxWidth: 860, margin: "0 auto" }}><NumbersTeaser /></div>
         </div>
       </section>
-
-      <ProductivityEvidence />
     </div>
   );
 }

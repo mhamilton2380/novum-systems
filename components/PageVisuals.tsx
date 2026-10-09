@@ -414,7 +414,7 @@ export function EvidenceBand() {
         <div className="h-head">
           <div className="h-eyebrow">What the studies measured</div>
           <h2>Same AI. Very different results.</h2>
-          <p>On the right tasks, with people trained to use it, controlled studies measure big gains. Hand people a login and nothing else, and the numbers barely move.</p>
+          <p>On the right tasks, with people trained to use it, controlled studies measure big gains. Hand people a login and nothing else, and the numbers barely move. <Link href="/the-numbers" style={{ color: "#7fe3c0", fontWeight: 700, textDecoration: "none" }}>See all the numbers →</Link></p>
         </div>
         <Reveal>
           <div className="pv-stats">
@@ -434,7 +434,7 @@ export function EvidenceBand() {
 
 // ─── the discovery guarantee (approved by Michael 2026-10-08) ───────────────
 export const GUARANTEE = {
-  text: "Your first build is live on your own data within 30 days, and the discovery finds at least three times its fee in yearly savings, in hours back or software you can cut. If either one doesn't happen, you get the fee back, and you keep everything we delivered.",
+  text: "Your first build is live on your own data within 30 days, and the discovery finds more than its fee in yearly savings, in hours back or software you can cut. If either one doesn't happen, you get the fee back, and you keep everything we delivered.",
   terms: [
     "You give us access, the tool list, and interview time on the schedule we agree at kickoff.",
     "Savings are measured the way the discovery report measures them: documented software cuts, plus hours at the wage rates in the report.",
@@ -450,7 +450,7 @@ export function GuaranteeSeal({ size = 120 }: { size?: number }) {
       </defs>
       <circle cx="60" cy="60" r="57" fill="#0b1b2e" stroke="url(#pv-seal-g)" strokeWidth="3" />
       <circle cx="60" cy="60" r="34" fill="none" stroke="rgba(255,255,255,0.14)" strokeWidth="1" />
-      <text fill="#7fe3c0" fontSize="9" fontWeight="700" letterSpacing="2.4"><textPath href="#pv-seal-arc">LIVE IN 30 DAYS · 3X THE FEE FOUND ·</textPath></text>
+      <text fill="#7fe3c0" fontSize="9" fontWeight="700" letterSpacing="2.4"><textPath href="#pv-seal-arc">LIVE IN 30 DAYS · SAVINGS OVER THE FEE ·</textPath></text>
       <path d="M48 61l8 8 16-17" fill="none" stroke="#34d399" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
@@ -460,7 +460,7 @@ export function Guarantee({ compact = false }: { compact?: boolean }) {
     return (
       <div className="pv-gline">
         <GuaranteeSeal size={54} />
-        <p><strong>The discovery guarantee.</strong> First build live in 30 days and at least 3x the fee in yearly savings found, or the fee comes back. <Link href="/how-we-work#guarantee">The terms →</Link></p>
+        <p><strong>The discovery guarantee.</strong> First build live in 30 days and more than the fee in yearly savings found, or the fee comes back. <Link href="/how-we-work#guarantee">The terms →</Link></p>
       </div>
     );
   return (
@@ -468,7 +468,7 @@ export function Guarantee({ compact = false }: { compact?: boolean }) {
       <GuaranteeSeal />
       <div>
         <div className="h-eyebrow">The discovery guarantee</div>
-        <h3>Live in 30 days, and worth three times the fee, or your money back.</h3>
+        <h3>Live in 30 days, and worth more than the fee, or your money back.</h3>
         <p>{GUARANTEE.text}</p>
         <details>
           <summary>The terms</summary>
@@ -573,80 +573,203 @@ const PER_TASK = [
   { t: "Draft a two-page memo", p: "45 minutes, about $24.50", a: "About $0.02, plus 10 minutes of review", n: "Review is most of the real cost" },
   { t: "Handle a three-minute phone call", p: "About $1.54", a: "About $0.33 to $0.42", n: "Answers at 2 a.m., many calls at once" },
 ];
-export function ProductivityEvidence() {
+// The numbers page sections (app/the-numbers). Each stands alone so pages can reuse them.
+export function EvidenceByWork() {
   return (
-    <>
-      <section className="h-sec">
-        <div className="h-wrap">
-          <div className="h-head">
-            <div className="h-eyebrow">What the studies measured</div>
-            <h2>On work that suits AI, studies measure 25% to 56% less time per task.</h2>
-            <p>Every figure below comes from a randomized trial, a field study at real companies, or a published company result. Company-reported numbers are marked.</p>
-          </div>
-          <Reveal>
-            <div className="pv-work">
-              {BY_WORK.map((x, i) => (
-                <div key={x.w} className="pv-workcard rv-item" style={{ ["--i" as string]: i }}>
-                  <span className="h-card2-tag">{x.w}</span>
-                  <strong>{x.n}</strong>
-                  <p>{x.d}</p>
-                  <small>{x.s}</small>
-                </div>
-              ))}
-            </div>
-          </Reveal>
+    <section className="h-sec">
+      <div className="h-wrap">
+        <div className="h-head">
+          <div className="h-eyebrow">By type of work</div>
+          <h2>On work that suits AI, studies measure 25% to 56% less time per task.</h2>
+          <p>Every figure comes from a randomized trial, a field study at real companies, or a published company result. Company-reported numbers are marked.</p>
         </div>
-      </section>
-
-      <section className="h-sec h-soft">
-        <div className="h-wrap">
-          <div className="h-head">
-            <div className="h-eyebrow">Cost per task</div>
-            <h2>An agent costs cents per task. A person in the same seat costs dollars.</h2>
-            <p>Agents rarely take over a whole job, so the useful comparison is one task at a time. Task times are our estimates; wages are BLS medians with benefits, and agent costs use published model and voice prices.</p>
+        <Reveal>
+          <div className="pv-work">
+            {BY_WORK.map((x, i) => (
+              <div key={x.w} className="pv-workcard rv-item" style={{ ["--i" as string]: i }}>
+                <span className="h-card2-tag">{x.w}</span>
+                <strong>{x.n}</strong>
+                <p>{x.d}</p>
+                <small>{x.s}</small>
+              </div>
+            ))}
           </div>
-          <Reveal>
-            <div className="pv-pertask">
-              <div className="pv-pt-row head"><span>Task</span><span>A person</span><span>An AI agent</span><span>Worth knowing</span></div>
-              {PER_TASK.map((r, i) => (
-                <div key={r.t} className="pv-pt-row rv-item" style={{ ["--i" as string]: i }}>
-                  <span>{r.t}</span><span>{r.p}</span><span className="pv-pt-a">{r.a}</span><span className="pv-pt-n">{r.n}</span>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-          <p className="pv-fine">The per-task prices leave out the fixed work: building the agent, connecting it to your systems, and keeping it running. That is what a plan covers.</p>
-        </div>
-      </section>
+        </Reveal>
+        <p className="pv-fine">Two patterns hold across the studies: the least experienced people gain the most, often two to three times as much, and the gains only show up on tasks that suit AI.</p>
+      </div>
+    </section>
+  );
+}
 
-      <section className="h-sec h-dark">
-        <div className="h-wrap h-feature">
+const WAGES = [
+  { r: "Receptionist", h: "$26.10", y: "$54,305" },
+  { r: "Data entry keyer", h: "$28.40", y: "$59,063" },
+  { r: "Customer service representative", h: "$30.76", y: "$63,963" },
+  { r: "Administrative assistant", h: "$32.66", y: "$67,920" },
+  { r: "Dispatcher", h: "$34.57", y: "$71,921" },
+  { r: "Bookkeeping clerk", h: "$34.80", y: "$72,392" },
+  { r: "Cargo and freight agent", h: "$35.90", y: "$74,664" },
+  { r: "Financial analyst", h: "$70.58", y: "$146,785" },
+];
+export function CostPerTask() {
+  return (
+    <section className="h-sec h-soft">
+      <div className="h-wrap">
+        <div className="h-head">
+          <div className="h-eyebrow">Cost per task</div>
+          <h2>An agent costs cents per task. A person in the same seat costs dollars.</h2>
+          <p>Agents rarely take over a whole job, so the useful comparison is one task at a time. Task times are our estimates. Wages are BLS medians with benefits, and agent costs use published model and voice prices.</p>
+        </div>
+        <Reveal>
+          <div className="pv-pertask">
+            <div className="pv-pt-row head"><span>Task</span><span>A person</span><span>An AI agent</span><span>Worth knowing</span></div>
+            {PER_TASK.map((r, i) => (
+              <div key={r.t} className="pv-pt-row rv-item" style={{ ["--i" as string]: i }}>
+                <span>{r.t}</span><span>{r.p}</span><span className="pv-pt-a">{r.a}</span><span className="pv-pt-n">{r.n}</span>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+        <div className="pv-wages">
           <div>
-            <div className="h-eyebrow">Where it goes wrong</div>
-            <h2>Handing people a chatbot moves the numbers very little.</h2>
-            <p className="pv-lead pv-lead-dark">The big gains come from three choices: picking tasks that suit AI, connecting it to your own data, and training people on where it fails. Skip them and the results look like the numbers on the right.</p>
+            <h3>What the person costs</h3>
+            <p>Median US wages (BLS, May 2025) with benefits added. Benefits are about 30% of private-sector pay, so wage plus benefits is 1.43 times the wage. Recruiting, training, equipment and supervision come on top.</p>
+            <p className="pv-fine" style={{ marginTop: 14 }}>The per-task prices leave out the fixed work: building the agent, connecting it to your systems, and keeping it running. That is what a plan covers.</p>
           </div>
           <Reveal>
-            <div className="pv-wrong">
-              <div className="pv-wrong-row rv-item" style={{ ["--i" as string]: 0 }}>
-                <strong>About 3%</strong>
-                <p>time saved when 25,000 workers were given AI with no plan, and no change in hours or earnings</p>
-                <small>University of Chicago, 2023 to 2024</small>
-              </div>
-              <div className="pv-wrong-row rv-item" style={{ ["--i" as string]: 1 }}>
-                <strong>84% down to 60% to 70%</strong>
-                <p>right answers fell when consultants used AI on a task it handles badly, and the wrong answers read as more polished</p>
-                <small>Harvard and BCG, 2023</small>
-              </div>
-              <div className="pv-wrong-row pv-wrong-ours rv-item" style={{ ["--i" as string]: 2 }}>
-                <strong>8 hours to 15 minutes</strong>
-                <p>a multi-step analysis and write-up, and a presentation deck from 7 to 10 days down to one, in our own operating work</p>
-                <small>Our own numbers, not a study</small>
-              </div>
+            <div className="pv-wtable">
+              <div className="pv-wrow head"><span>Role</span><span>Per hour</span><span>Per year</span></div>
+              {WAGES.map((w, i) => (
+                <div key={w.r} className="pv-wrow rv-item" style={{ ["--i" as string]: i }}><span>{w.r}</span><span>{w.h}</span><span>{w.y}</span></div>
+              ))}
             </div>
           </Reveal>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
+  );
+}
+
+const VOICE = [
+  { c: "Circle Logistics", w: "Freight booking and carrier calls", r: "18% of freight booked with no human involved, and every call answered" },
+  { c: "ARL Network", w: "Carrier calls and email", r: "Rep time on calls and email cut from 3 to 4 hours a day to minutes" },
+  { c: "Freight brokers on WireBee", w: "Inbound carrier calls", r: "40% to 90% of calls handled fully; tasks cut from 15 to 20 minutes to about 5" },
+  { c: "Revolut", w: "Customer service calls", r: "Time to resolve calls more than 8 times lower in the first phase" },
+  { c: "Klarna", w: "Customer service chat", r: "Two-thirds of chats handled in the first month, then people rehired when quality dropped" },
+];
+export function PhoneAgents() {
+  return (
+    <section className="h-sec">
+      <div className="h-wrap">
+        <div className="h-head">
+          <div className="h-eyebrow">Phone calls and data entry</div>
+          <h2>Where agents take over whole tasks.</h2>
+          <p>On calls, intake and data entry, agents don&apos;t just speed a person up. They do the task, and a person checks the ones that matter. These results are what the companies and their vendors published, not independent measurements.</p>
+        </div>
+        <Reveal>
+          <div className="pv-voice">
+            {VOICE.map((v, i) => (
+              <div key={v.c} className="pv-voice-row rv-item" style={{ ["--i" as string]: i }}>
+                <div><strong>{v.c}</strong><small>{v.w}</small></div>
+                <p>{v.r}</p>
+                <em>Vendor-reported</em>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+        <div className="pv-phone-rules">
+          <div><Icon name="users" /><strong>Customers have a say</strong><p>64% of consumers said they would prefer companies not use AI for service. Calls with carriers and vendors are a different audience, and still need testing.</p><small>Gartner, 2024</small></div>
+          <div><Icon name="shield" /><strong>The law applies</strong><p>The FCC treats AI voices as artificial under robocall law, so outbound AI calls need prior consent. Opening every call by saying it&apos;s an AI covers the known rules.</p><small>FCC 24-17, 2024</small></div>
+          <div><Icon name="check" /><strong>A way out, every time</strong><p>Every call needs a handoff to a person on request, and someone reviewing a sample of calls each week.</p><small>How we set them up</small></div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function LongTasks() {
+  return (
+    <section className="h-sec h-soft">
+      <div className="h-wrap h-feature">
+        <div>
+          <div className="h-eyebrow">Longer work</div>
+          <h2>The tasks agents can finish on their own keep getting longer.</h2>
+          <p className="pv-lead">The length of task an AI agent can finish alone has doubled about every 4 months since 2023. The same research shows why review still matters: counting the expert&apos;s time to check and fix the draft, the real speedup on 7-hour deliverables was 1.1 to 1.4 times, not 90.</p>
+        </div>
+        <Reveal>
+          <div className="pv-long">
+            <div className="rv-item" style={{ ["--i" as string]: 0 }}><strong>About 12 hours</strong><p>tasks the best agents finished half the time by early 2026, and 80% of the time on 1.5-hour tasks</p><small>METR, May 2026 · software and research tasks</small></div>
+            <div className="rv-item" style={{ ["--i" as string]: 1 }}><strong>47.6%</strong><p>of real 7-hour deliverables from 44 occupations matched or beat the expert&apos;s work, graded blind</p><small>OpenAI GDPval, October 2025</small></div>
+            <div className="rv-item" style={{ ["--i" as string]: 2 }}><strong>1.1x to 1.4x</strong><p>faster once the expert&apos;s review and fixes are counted, which is why a person approves the output</p><small>OpenAI GDPval, October 2025</small></div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+export function WhereItGoesWrong() {
+  return (
+    <section className="h-sec h-dark">
+      <div className="h-wrap h-feature">
+        <div>
+          <div className="h-eyebrow">Where it goes wrong</div>
+          <h2>Handing people a chatbot moves the numbers very little.</h2>
+          <p className="pv-lead pv-lead-dark">The big gains come from three choices: picking tasks that suit AI, connecting it to your own data, and training people on where it fails. Skip them and the results look like the numbers on the right.</p>
+        </div>
+        <Reveal>
+          <div className="pv-wrong">
+            <div className="pv-wrong-row rv-item" style={{ ["--i" as string]: 0 }}>
+              <strong>About 3%</strong>
+              <p>time saved when 25,000 workers were given AI with no plan, and no change in hours or earnings</p>
+              <small>University of Chicago, 2023 to 2024</small>
+            </div>
+            <div className="pv-wrong-row rv-item" style={{ ["--i" as string]: 1 }}>
+              <strong>84% down to 60% to 70%</strong>
+              <p>right answers fell when consultants used AI on a task it handles badly, and the wrong answers read as more polished</p>
+              <small>Harvard and BCG, 2023</small>
+            </div>
+            <div className="pv-wrong-row pv-wrong-ours rv-item" style={{ ["--i" as string]: 2 }}>
+              <strong>8 hours to 15 minutes</strong>
+              <p>a multi-step analysis and write-up, and a presentation deck from 7 to 10 days down to one, in our own operating work</p>
+              <small>Our own numbers, not a study</small>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+const CHOICES: { icon: IconName; title: string; body: string }[] = [
+  { icon: "target", title: "Pick the tasks", body: "Drafting, compiling reports, data entry and routine admin sit well inside what AI does. Judgment calls on unfamiliar problems sit outside it, and that's where results got worse." },
+  { icon: "db", title: "Put it on your own data", body: "A chatbot that can't see your files and systems saves minutes. An assistant and agents connected to them take over whole tasks." },
+  { icon: "users", title: "Train people, keep a reviewer", body: "The least experienced staff gain the most, once they know where AI is wrong. The time spent reviewing drafts sets the real speedup." },
+];
+export function ThreeChoices() {
+  return (
+    <section className="h-sec">
+      <div className="h-wrap">
+        <div className="h-head">
+          <div className="h-eyebrow">What this means for your team</div>
+          <h2>Three choices decide whether you land near 80% or near 3%.</h2>
+        </div>
+        <IconCards items={CHOICES} />
+      </div>
+    </section>
+  );
+}
+
+// A short pointer to the full numbers page (used on the assessment and Training pages).
+export function NumbersTeaser() {
+  return (
+    <Link href="/the-numbers" className="pv-teaser">
+      <div className="pv-teaser-stats">
+        <span><strong>25% to 56%</strong>less time per task in controlled studies</span>
+        <span><strong>About $0.01</strong>for an agent to key an invoice, against $1.89 for a person</span>
+        <span><strong>About 3%</strong>when people just get a login</span>
+      </div>
+      <div className="pv-teaser-cta">Where the numbers come from →</div>
+    </Link>
   );
 }
