@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
 import { ShadowAI, IndustryCards, Guarantee } from "@/components/PageVisuals";
-import { AgentDayCard, ToolSilos, SystemPicker, KeepReplace } from "@/components/UseCaseVisuals";
+import { AgentDayCard, ProblemPanel, SystemPicker, KeepReplace } from "@/components/UseCaseVisuals";
 
 // Regulated industries get the shadow-AI block, with the line that makes it their problem.
 const SHADOW_NOTE: Record<string, string> = {
@@ -43,7 +43,7 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
       <section className="h-sec">
         <div className="h-wrap">
           <SectionHead eyebrow="The problem" title="Where the current setup breaks." />
-          <ToolSilos u={u} />
+          <ProblemPanel u={u} />
         </div>
       </section>
 

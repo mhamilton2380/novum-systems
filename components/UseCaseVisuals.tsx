@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Reveal } from "@/components/Reveal";
 import { Icon, type IconName } from "@/components/PageVisuals";
 import type { UseCase, SystemName } from "@/lib/useCases";
+import { ProblemArt, PROBLEM_PAIN } from "@/components/ProblemArt";
 
 // Use case pages (one template, nine industries) and the construction case study.
 // Everything is driven by lib/useCases.ts, so each industry gets its own tools, questions and agents.
@@ -38,33 +39,19 @@ export function AgentDayCard({ agents }: { agents: UseCase["agents"] }) {
   );
 }
 
-// ─── the problem: tools that don't talk, a person in the middle ─────────────
-const SPOTS = [[14, 18], [86, 18], [14, 82], [86, 82]];
-export function ToolSilos({ u }: { u: UseCase }) {
-  const tools = u.tools.slice(0, 4);
+// ─── the problem: each industry's own graphic, beside its pain list ─────────
+export function ProblemPanel({ u }: { u: UseCase }) {
+  const lit = PROBLEM_PAIN[u.slug] ?? 0;
   return (
     <Reveal>
       <div className="uc-silo">
-        <div className="uc-silo-art rv-item" style={{ ["--i" as string]: 0 }} aria-label={`Today: ${tools.join(", ")}, with someone re-typing between them`}>
-          <div className="uc-silo-h"><span>Today</span>Every tool holds part of the job</div>
-          <div className="uc-silo-map">
-            <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-              {SPOTS.map(([x, y]) => (
-                <line key={`${x}${y}`} x1={x} y1={y} x2={50} y2={50} />
-              ))}
-            </svg>
-            {SPOTS.map(([x, y], i) => (
-              <span className="uc-silo-x" key={`x${i}`} style={{ left: `${(x + 50) / 2}%`, top: `${(y + 50) / 2}%`, ["--i" as string]: i }} aria-hidden="true">×</span>
-            ))}
-            {tools.map((t, i) => (
-              <div className="uc-silo-tool" key={t} style={{ left: `${SPOTS[i][0]}%`, top: `${SPOTS[i][1]}%`, ["--i" as string]: i }}>{t}</div>
-            ))}
-            <div className="uc-silo-you"><Icon name="users" size={18} /><strong>Your team</strong><small>re-typing in between</small></div>
-          </div>
+        <div className="uc-silo-art rv-item" style={{ ["--i" as string]: 0 }}>
+          <div className="uc-silo-h"><span>Today</span>{u.pains[lit].title}<em>Example</em></div>
+          <ProblemArt slug={u.slug} />
         </div>
         <ol className="uc-pains">
           {u.pains.map((p, i) => (
-            <li key={p.title} className="rv-item" style={{ ["--i" as string]: i + 1 }}>
+            <li key={p.title} className={`rv-item ${i === lit ? "lit" : ""}`} style={{ ["--i" as string]: i + 1 }}>
               <b>0{i + 1}</b>
               <div><h3>{p.title}</h3><p>{p.body}</p></div>
             </li>
