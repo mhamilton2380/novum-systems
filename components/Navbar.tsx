@@ -80,6 +80,7 @@ export default function Navbar() {
             </div>
             <Link href="/how-we-work" className={`nv-trigger${on("/how-we-work") ? " on" : ""}`}>How We Work</Link>
             <Link href="/about" className={`nv-trigger${on("/about") ? " on" : ""}`}>About</Link>
+            <Link href="/assessment" className={`nv-trigger${on("/assessment") ? " on" : ""}`}>AI Score <span className="nv-free">Free</span></Link>
 
             <div className="nv-item">
               <Link href="/use-cases" className={`nv-trigger${on("/use-cases") || on("/case-studies") ? " on" : ""}`}>Use Cases <Chevron /></Link>
@@ -146,6 +147,7 @@ export default function Navbar() {
             <Link href="/ai-implementation#software" className="sub">Custom software</Link>
             <Link href="/how-we-work">How We Work</Link>
             <Link href="/about">About</Link>
+            <Link href="/assessment">Free AI Readiness Score</Link>
             <Link href="/use-cases">Use Cases</Link>
             {USE_CASE_NAV.map((u) => <Link key={u.slug} href={`/use-cases/${u.slug}`} className="sub">{u.label}</Link>)}
             <Link href="/case-studies" className="sub">Case study</Link>

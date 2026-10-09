@@ -123,6 +123,15 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
         </div>
       </section>
 
+      <section className="h-sec" style={{ paddingBottom: 0 }}>
+        <div className="h-wrap">
+          <Link href="/assessment" className="pv-qproof" style={{ textDecoration: "none" }}>
+            <span><strong>How ready is your {u.name.toLowerCase()} business?</strong> Take the free AI Readiness Score: 12 questions, about 2 minutes.</span>
+            <span style={{ fontWeight: 700, color: "var(--ink)" }}>Get your score →</span>
+          </Link>
+        </div>
+      </section>
+
       <CtaBand title="See where AI fits in your business." />
     </div>
   );
