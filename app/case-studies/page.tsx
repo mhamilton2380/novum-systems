@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
-import { IconCards, CaseFlow, type IconName } from "@/components/PageVisuals";
+import { IconCards, CaseFlow, Guarantee, type IconName } from "@/components/PageVisuals";
+import { BillCard, RfiDraft, Ledger } from "@/components/UseCaseVisuals";
 
 export const metadata: Metadata = {
   title: "Case Study · Novum AI",
@@ -19,13 +20,13 @@ const BUILT: { icon: IconName; tag: string; title: string; body: string }[] = [
   { icon: "bot", tag: "Agents", title: "RFIs and submittals, drafted", body: "Agents draft RFIs and submittal packages from field notes and project documents. A project manager reviews, edits, and sends." },
 ];
 
-const RESULTS: { icon: IconName; title: string; body: string }[] = [
-  { icon: "coin", title: "The subscription is gone", body: "The $100,000-a-year platform was replaced. After the build, they pay for hosting, storage, and security, a small fraction of the old bill." },
-  { icon: "link", title: "No more double entry", body: "Project data flows into billing on its own, so nobody re-types the same numbers into two systems." },
-  { icon: "clock", title: "Hours back every week", body: "RFIs and submittals that took project managers hours now start as drafts. The team reviews instead of writing from scratch." },
-  { icon: "target", title: "Built around their process", body: "The software fits how they already work, including the billing process they'd built up over years." },
-  { icon: "key", title: "They own it", body: "The code, the data, and the accounts it runs on are in the company's name. No seats, no renewal." },
-  { icon: "flat", title: "It grows with them", body: "More projects and more people add no new license fees." },
+const LEDGER: { icon: IconName; what: string; before: string; after: string }[] = [
+  { icon: "coin", what: "The software bill", before: "$100,000 a year, rising as they grew", after: "Hosting, storage, and security, a small fraction of the old bill" },
+  { icon: "link", what: "Project and billing data", before: "Typed into two systems by hand", after: "Entered once, synced to billing on its own" },
+  { icon: "clock", what: "RFIs and submittals", before: "Written from scratch, hours every week", after: "Start as agent drafts. The PM reviews and sends" },
+  { icon: "target", what: "How the software fits", before: "The team bent its process to the platform", after: "Built around how they already run jobs" },
+  { icon: "key", what: "Who owns it", before: "Rented seats, renewed every year", after: "Code, data, and accounts in the company's name" },
+  { icon: "flat", what: "Growing the business", before: "More people meant more license fees", after: "More projects and people add no license fees" },
 ];
 
 export default function CaseStudyPage() {
@@ -35,13 +36,7 @@ export default function CaseStudyPage() {
         eyebrow="Case study · Construction"
         title={<>A <span className="h-grad">$100,000-a-year</span> software bill, replaced.</>}
         sub="A construction company was paying six figures a year for construction management software that didn't fit how it worked. We rebuilt it as a system they own, connected it to their custom billing application, and put agents to work drafting RFIs and submittals."
-        side={
-          <div className="h-phero-card h-stats">
-            <div><strong>$100,000/yr</strong><small>Construction management subscription replaced</small></div>
-            <div><strong>Billing, connected</strong><small>Integrated with their custom billing application</small></div>
-            <div><strong>RFIs and submittals</strong><small>Drafted by agents, reviewed by the team</small></div>
-          </div>
-        }
+        side={<BillCard />}
       />
 
       <section className="h-sec">
@@ -60,9 +55,21 @@ export default function CaseStudyPage() {
       </section>
 
       <section className="h-sec">
+        <div className="h-wrap h-feature uc-feature">
+          <div>
+            <div className="h-eyebrow">The agents</div>
+            <h2>Every RFI starts as a draft.</h2>
+            <p className="h-feature-sub">The agent reads the field note, the photos, and the drawings it references, then drafts the RFI in the company&apos;s format. The project manager checks it, edits what needs editing, and sends it. Nothing leaves without a person.</p>
+          </div>
+          <RfiDraft />
+        </div>
+      </section>
+
+      <section className="h-sec h-soft">
         <div className="h-wrap">
           <SectionHead eyebrow="After" title="Lower cost, fewer hours, same process." />
-          <IconCards items={RESULTS} />
+          <Ledger rows={LEDGER} />
+          <div style={{ marginTop: 28 }}><Guarantee compact /></div>
         </div>
       </section>
 
