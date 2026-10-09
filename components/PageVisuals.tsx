@@ -97,17 +97,17 @@ export function HeroSteps({ title, tag, items, label }: { title: string; tag: st
 
 // ─── Training hero: a team lighting up, and the program that keeps it going ──
 const PROGRAM = [
-  { t: "Training day", d: "On site, five hours, on your own work", s: "Day 1" },
-  { t: "Live sessions", d: "Every month, on the tools you just got", s: "Monthly" },
+  { t: "Live sessions", d: "On your own tools and workflows", s: "Monthly" },
   { t: "Training library", d: "Recorded on your tools, updated monthly", s: "Yours" },
+  { t: "Team challenge", d: "Departments build their own workflows", s: "Live" },
 ];
 export function TrainingHeroCard() {
   return (
-    <div className="h-phero-card pv-train" aria-label="How we train your team: a training day, live sessions every month, and a library you keep">
+    <div className="h-phero-card pv-train" aria-label="Training on every plan: live sessions every month, a library you keep, and team challenges">
       <div className="oc-hero-h">
         <span className="oc-live" aria-hidden="true" />
         <strong>Your team</strong>
-        <em>Getting up to speed</em>
+        <em>On every plan</em>
       </div>
       <div className="pv-team" aria-hidden="true">
         {Array.from({ length: 14 }).map((_, i) => (

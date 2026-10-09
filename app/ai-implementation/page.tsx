@@ -14,7 +14,7 @@ const PARTS = [
   {
     tag: "Training",
     title: "Your team learns to use AI on their own work.",
-    body: "A five-hour day on site, built from your team's own work. On a plan it keeps going: live sessions every month and a recorded library on your own tools that your team keeps for good.",
+    body: "Live sessions every month on your own tools and workflows, a recorded library your team keeps for good, and an on-site training day when you want one.",
     href: "/training",
     more: "See Training →",
   },
@@ -53,7 +53,7 @@ export default function AiImplementationPage() {
 
       <section className="h-sec">
         <div className="h-wrap">
-          <SectionHead eyebrow="Two parts" title="Train the team. Then keep someone building." sub="Training gets your people using AI in a day. An AI Officer builds what they ask for, every month after." />
+          <SectionHead eyebrow="Two parts" title="We build it. Then we make sure it gets used." sub="An AI Officer builds the agents and tools. Training on every plan gets your team using them, every month." />
           <div className="h-grid3" style={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
             {PARTS.map((p) => (
               <Link href={p.href} className="h-card2 pv-card" key={p.tag}>

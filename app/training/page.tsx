@@ -6,15 +6,16 @@ import { TrainingBooking } from "./TrainingBooking";
 
 export const metadata: Metadata = {
   title: "AI Training · Novum AI",
-  description: "Get your team using AI on the real work: a five-hour on-site training day built from your own work, live sessions every month, and a recorded training library on your own tools that your team keeps for good.",
+  description: "Training comes with every AI Officer plan: live sessions every month on your own tools and workflows, a recorded training library your team keeps for good, and team challenges. Add an on-site training day when you want one.",
 };
 
-// How training runs: the day starts it, the plan keeps it going (see lib/aiOfficerPlans.ts for what each plan includes).
+// Training is built into every plan, never sold as an advisory retainer; the on-site day is the add-on (and the way to start before a plan fits).
+// What each plan includes: lib/aiOfficerPlans.ts. Positioning: ~/Desktop/Novum/novum-vault/CONTEXT.md.
 const PROGRAM: { icon: IconName; tag: string; title: string; body: string }[] = [
-  { icon: "users", tag: "Day one", title: "A training day, on site", body: "Five hours with your team, built from the work they do every week. Everyone leaves knowing what to use and when." },
-  { icon: "clock", tag: "Every month", title: "Live sessions on your tools", body: "On a plan, your team trains on the assistant and agents as they go live, so what gets built gets used." },
-  { icon: "book", tag: "Yours to keep", title: "A training library", body: "Every session recorded on your own tools, with written guides, updated monthly. Your team keeps it for good, like the code." },
+  { icon: "clock", tag: "Every plan", title: "Live sessions every month", body: "Your team trains on your own tools and workflows, and on each assistant and agent as it goes live, so what gets built gets used." },
+  { icon: "book", tag: "Every plan", title: "A library you keep", body: "Every session recorded on your own tools, with written guides, updated monthly. Your team keeps it for good, like the code." },
   { icon: "grow", tag: "Bigger teams", title: "A team challenge", body: "Departments compete to build the most useful AI workflow for their own job, or a two-week challenge for smaller teams." },
+  { icon: "users", tag: "Add-on", title: "A day on site", body: "Five hours in the room with your team, to kick off a plan or to get started before a plan fits the budget." },
 ];
 
 const COVERED: { icon: IconName; title: string; body: string }[] = [
@@ -29,7 +30,7 @@ const COVERED: { icon: IconName; title: string; body: string }[] = [
 const FAQ = [
   { q: "Who is it for?", a: "Everyone on the team. It works for a ten-person shop and for a department of seventy. We tailor the examples to your company type, so a law firm and a roofer see different things." },
   { q: "Where does it happen?", a: "We come to your team. Tell us your location in the form and we'll confirm the details when we lock in the date." },
-  { q: "Can we book just the training day?", a: "Yes. Many teams start with the day, then move onto an AI Officer plan once they see what to build. The plan is where the monthly sessions and the library come in." },
+  { q: "Is training sold separately?", a: "Training comes with every AI Officer plan, because a build nobody uses gets cancelled. The on-site day is the one piece you can book on its own: as an add-on to a plan, or as a start before a plan fits the budget." },
   { q: "What's in the training library?", a: "Recordings of your sessions on your own tools, plus written guides for each assistant and agent. It's updated every month, and it belongs to your company like the code and the data." },
   { q: "How does booking work?", a: "Tell us your company type, team size, and preferred dates. We reply within one business day with a written quote and open dates. Nothing is charged until you approve it." },
 ];
@@ -39,22 +40,22 @@ export default function TrainingPage() {
     <div className="home">
       <PageHero
         eyebrow="AI training"
-        title={<>Get your team <span className="h-grad">using AI</span> on the real work.</>}
-        sub="It starts with a five-hour day on site, built from your team's own work. On a plan it keeps going: live sessions every month, and a recorded library on your own tools that your team keeps for good."
+        title={<>Training that makes the AI <span className="h-grad">stick</span>.</>}
+        sub="Every AI Officer plan trains your team on your own tools and workflows: live sessions every month, a recorded library your team keeps for good, and challenges that get departments building. Want a day in the room? Add an on-site training day."
         side={<TrainingHeroCard />}
         ctas={false}
       />
 
       <section className="h-sec">
         <div className="h-wrap">
-          <SectionHead eyebrow="How we train" title="A login is not a skill." sub="Most teams get an AI tool and a link to the help docs, try it twice, and go back to the old way. We train on your work until it sticks." />
+          <SectionHead eyebrow="How we train" title="A login is not a skill." sub="Most teams get an AI tool and a link to the help docs, try it twice, and go back to the old way. Training comes with the build, so what we build gets used." />
           <IconCards items={PROGRAM} cols={4} />
         </div>
       </section>
 
       <section className="h-sec h-soft">
         <div className="h-wrap">
-          <SectionHead eyebrow="Built for your company" title="Same five hours. Different company." sub="We build the examples from your company type, so a law firm and a roofer practice on different work." />
+          <SectionHead eyebrow="Built from your work" title="Your tools. Your workflows." sub="Every session uses the work your team already does, so a law firm and a roofer practice on different things." />
           <CompanyTypes />
         </div>
       </section>
@@ -83,7 +84,7 @@ export default function TrainingPage() {
 
       <section className="h-sec">
         <div className="h-wrap">
-          <SectionHead eyebrow="The training day" title="What five hours covers." />
+          <SectionHead eyebrow="Add-on" title="Want a day on site?" sub="A five-hour training day in the room with your team. Add it to a plan to kick things off, or book it on its own to get started before a plan fits the budget." />
           <IconCards items={COVERED} />
         </div>
       </section>
