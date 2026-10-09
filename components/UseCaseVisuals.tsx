@@ -5,6 +5,7 @@ import { Reveal } from "@/components/Reveal";
 import { Icon, type IconName } from "@/components/PageVisuals";
 import type { UseCase, SystemName } from "@/lib/useCases";
 import { ProblemArt, PROBLEM_PAIN } from "@/components/ProblemArt";
+import { BoardArt, DocsArt } from "@/components/SystemArt";
 
 // Use case pages (one template, nine industries) and the construction case study.
 // Everything is driven by lib/useCases.ts, so each industry gets its own tools, questions and agents.
@@ -72,21 +73,7 @@ const SYS_ICON: Record<SystemName, IconName> = {
 };
 
 function SysArt({ sys, u }: { sys: SystemName; u: UseCase }) {
-  if (sys === "Your system")
-    return (
-      <div className="uc-art uc-board" aria-hidden="true">
-        <div className="uc-win"><i /><i /><i /><span>{u.name} · Overview</span></div>
-        <div className="uc-board-tiles">
-          {["Active", "Needs you", "This week"].map((t, i) => <div key={t} style={{ ["--i" as string]: i }}><small>{t}</small><b /></div>)}
-        </div>
-        {["ok", "ok", "bad", "ok"].map((s, i) => (
-          <div className="uc-board-row" key={i} style={{ ["--i" as string]: i }}>
-            <i className={s} /><span style={{ width: `${[58, 44, 52, 38][i]}%` }} /><em><b style={{ width: `${[72, 40, 104, 55][i]}%` }} className={s} /></em>
-          </div>
-        ))}
-        <b className="pv-art-key">Yours</b>
-      </div>
-    );
+  if (sys === "Your system") return <BoardArt slug={u.slug} />;
   if (sys === "Connected tools")
     return (
       <div className="uc-art uc-sync" aria-hidden="true">
@@ -98,22 +85,7 @@ function SysArt({ sys, u }: { sys: SystemName; u: UseCase }) {
         <div className="uc-sync-hub"><Icon name="db" size={22} /><strong>Your data</strong><small>one place, in sync</small></div>
       </div>
     );
-  if (sys === "Documents")
-    return (
-      <div className="uc-art uc-docs" aria-hidden="true">
-        <div className="uc-docs-search"><Icon name="target" size={15} />Search every file</div>
-        {[
-          { tag: "Latest", c: "ok", w: 62 },
-          { tag: "Replaced", c: "old", w: 54 },
-          { tag: "Office only", c: "lock", w: 48 },
-        ].map((d, i) => (
-          <div className={`uc-docs-row ${d.c}`} key={d.tag} style={{ ["--i" as string]: i }}>
-            <Icon name="doc" size={17} /><span style={{ width: `${d.w}%` }} />
-            <em>{d.c === "lock" && <Icon name="lock" size={12} />}{d.tag}</em>
-          </div>
-        ))}
-      </div>
-    );
+  if (sys === "Documents") return <DocsArt slug={u.slug} />;
   if (sys === "AI Assistant")
     return (
       <div className="uc-art uc-ask" aria-hidden="true">
