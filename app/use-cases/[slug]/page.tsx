@@ -2,6 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
+import { ShadowAI } from "@/components/PageVisuals";
+
+// Regulated industries get the shadow-AI block, with the line that makes it their problem.
+const SHADOW_NOTE: Record<string, string> = {
+  insurance: "Client and policy details in a personal chatbot are an E&O exposure nobody can see.",
+  accounting: "Client tax and financial data in a personal chatbot is a confidentiality and consent problem.",
+  healthcare: "Patient information belongs only in tools covered by a business associate agreement, never in a personal account.",
+  legal: "Client confidences in a personal chatbot are a confidentiality problem the firm can't see.",
+};
 import { USE_CASES, getUseCase } from "@/lib/useCases";
 
 export function generateStaticParams() {
@@ -55,6 +64,8 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
           </div>
         </div>
       </section>
+
+      {SHADOW_NOTE[u.slug] && <ShadowAI note={SHADOW_NOTE[u.slug]} />}
 
       <section className="h-sec h-soft">
         <div className="h-wrap">

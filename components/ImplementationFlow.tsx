@@ -43,8 +43,8 @@ const STEPS = [
     key: "discovery",
     title: "Discovery",
     line: "Map the work. Audit the tools.",
-    tag: "First agent live in 30 days",
-    body: "We map how your work moves, audit every tool and what it costs, write your AI usage policy, and put your first agent live on your own data.",
+    tag: "First build live in 30 days",
+    body: "We map how your work moves, audit every tool and what it costs, write your AI usage policy, and put your first build live on your own data.",
   },
   {
     key: "train",
@@ -88,7 +88,7 @@ function SceneDiscovery() {
         <div className="if-marks">
           <span>Kickoff</span>
           <span>Day 7<small>Tool and cost report</small></span>
-          <span>Day 30<small>First agent live</small></span>
+          <span>Day 30<small>First build live</small></span>
         </div>
       </div>
       <div className="if-chips">
@@ -281,7 +281,7 @@ const DOORS = [
     id: "discovery",
     need: "I know what I want built",
     title: "Start with a discovery",
-    body: "We map the work, audit your tools, and put your first agent live. The fee is credited toward what comes next.",
+    body: "We map the work, audit your tools, and put your first build live. The fee is credited toward what comes next.",
     href: "/contact",
     cta: "Book a conversation",
     icon: "M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM21 21l-5-5",

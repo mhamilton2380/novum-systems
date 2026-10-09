@@ -40,7 +40,7 @@ export default function UseCasesPage() {
           </Link>
         </div>
       </section>
-      <CtaBand title="Your industry, your workflow." body="Every build starts from how your team actually works. A discovery maps it and puts the first agent live within 30 days." />
+      <CtaBand title="Your industry, your workflow." body="Every build starts from how your team actually works. A discovery maps it and puts the first build live within 30 days." />
     </div>
   );
 }

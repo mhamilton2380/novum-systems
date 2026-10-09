@@ -3,7 +3,7 @@ import Link from "next/link";
 import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
 import { ImplementationFlow, StartChooser } from "@/components/ImplementationFlow";
 import { HeroReel } from "@/components/HeroReel";
-import { PartArt } from "@/components/PageVisuals";
+import { PartArt, CaseProof } from "@/components/PageVisuals";
 
 export const metadata: Metadata = {
   title: "AI Implementation · Novum AI",
@@ -40,7 +40,7 @@ export default function AiImplementationPage() {
       <PageHero
         eyebrow="AI implementation"
         title={<>Every business has AI. We help yours <span className="h-grad">use it</span>.</>}
-        sub="We teach your team, build the tools, connect your systems, and you own all of it. Training gets your people using AI. An AI Officer keeps building and running it with you."
+        sub="We train your team in person, build the tools, connect your systems, and you own all of it. An AI Officer keeps building and running it with you, month after month."
         side={
           <HeroReel
             src="/ai-hero.mp4"
@@ -68,21 +68,37 @@ export default function AiImplementationPage() {
         </div>
       </section>
 
-      <section className="h-sec h-soft">
+      <section className="h-sec h-soft" id="software" style={{ scrollMarginTop: 90 }}>
+        <div className="h-wrap h-feature">
+          <div>
+            <div className="h-eyebrow">Custom software</div>
+            <h2>We build the software too.</h2>
+            <p className="pv-lead">When a platform costs more than it&apos;s worth, or your team spends the day working around it, we build the version that fits how you work, connected to the tools you keep. It runs through the same AI Officer plan, and the code, data, and accounts are in your company&apos;s name.</p>
+            <div className="pv-chips">
+              <span><b>Built</b> around your workflow</span>
+              <span><b>Connected</b> to the tools you keep</span>
+              <span><b>Owned</b> by your company</span>
+            </div>
+          </div>
+          <CaseProof />
+        </div>
+      </section>
+
+      <section className="h-sec">
         <div className="h-wrap">
           <SectionHead eyebrow="How it runs" title="Four steps, nothing built before it's scoped." sub="Pick a step to see what happens. It plays through on its own." />
           <ImplementationFlow />
         </div>
       </section>
 
-      <section className="h-sec">
+      <section className="h-sec h-soft">
         <div className="h-wrap">
           <SectionHead eyebrow="Where to start" title="Pick the door that fits." />
           <StartChooser />
         </div>
       </section>
 
-      <section className="h-sec h-soft">
+      <section className="h-sec">
         <div className="h-wrap">
           <SectionHead eyebrow="Questions" title="What people ask first." center />
           <div className="h-faq">
@@ -93,7 +109,7 @@ export default function AiImplementationPage() {
         </div>
       </section>
 
-      <CtaBand title="Put AI on the real work." body="In 30 days your workflow is mapped, your team has trained on its own work, and your first agent is live on your data." />
+      <CtaBand title="Put AI on the real work." body="In 30 days your workflow is mapped, your team has trained on its own work, and your first build is live on your data." />
     </div>
   );
 }

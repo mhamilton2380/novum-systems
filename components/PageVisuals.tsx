@@ -216,7 +216,7 @@ export function AboutHeroCard() {
 const DAYS = [
   { d: "Day 1", t: "Kickoff", s: "Workflow mapped with your team" },
   { d: "Day 7", t: "Tool and cost report", s: "Every subscription, what it costs" },
-  { d: "Day 30", t: "First agent live", s: "On your own data, in use" },
+  { d: "Day 30", t: "First build live", s: "On your own data, in use" },
 ];
 export function ThirtyDayCard() {
   return (
@@ -326,7 +326,15 @@ export function CaseFlow() {
 }
 
 // ─── AI Implementation "two parts" card art ─────────────────────────────────
-export function PartArt({ kind }: { kind: "training" | "officer" }) {
+export function PartArt({ kind }: { kind: "training" | "officer" | "software" }) {
+  if (kind === "software")
+    return (
+      <div className="pv-art pv-art-soft" aria-hidden="true">
+        <div className="pv-art-win"><i /><i /><i /></div>
+        <div className="pv-art-grid">{Array.from({ length: 6 }).map((_, i) => <span key={i} style={{ ["--i" as string]: i }} />)}</div>
+        <b className="pv-art-key">Yours</b>
+      </div>
+    );
   if (kind === "training")
     return (
       <div className="pv-art pv-art-team" aria-hidden="true">
@@ -339,5 +347,87 @@ export function PartArt({ kind }: { kind: "training" | "officer" }) {
       <div><i style={{ left: "10%", width: "30%" }} /><i style={{ left: "58%", width: "36%" }} /></div>
       <div><i style={{ left: "0%", width: "96%" }} className="soft" /></div>
     </div>
+  );
+}
+
+// ─── custom software: the anonymous $100k case, compact ─────────────────────
+export function CaseProof() {
+  return (
+    <Link href="/case-studies" className="pv-proof" aria-label="Case study: a $100,000-a-year platform replaced">
+      <div className="pv-proof-h"><span className="oc-live" aria-hidden="true" />Case study · Construction</div>
+      <div className="pv-proof-row">
+        <div><small>Before</small><strong className="pv-proof-cost">$100,000 a year</strong><em>for a platform the team worked around</em></div>
+        <span className="pv-proof-arrow" aria-hidden="true">→</span>
+        <div><small>After</small><strong>A system they own</strong><em>connected to billing, agents drafting RFIs</em></div>
+      </div>
+      <ul>
+        <li><Icon name="check" size={15} />Built around how they run projects</li>
+        <li><Icon name="check" size={15} />Code, data, and accounts in their name</li>
+        <li><Icon name="check" size={15} />Hosting only after the build</li>
+      </ul>
+      <span className="pv-proof-more">Read the case study →</span>
+    </Link>
+  );
+}
+
+// ─── shadow AI: staff on personal accounts, and what every plan puts in place ─
+const GUARDS = ["Company AI accounts, in your name", "A written AI usage policy", "Training on what stays private", "Access limited by role", "An audit log of every view and edit", "A person approves before anything leaves"];
+export function ShadowAI({ note }: { note?: string }) {
+  return (
+    <section className="h-sec h-dark">
+      <div className="h-wrap h-feature">
+        <div>
+          <div className="h-eyebrow">Shadow AI</div>
+          <h2>Your team is probably already using AI on personal accounts.</h2>
+          <p className="pv-lead pv-lead-dark">The first fix is giving them a safe way to do it.{note ? ` ${note}` : ""} Every plan puts these in place first.</p>
+        </div>
+        <Reveal>
+          <div className="pv-shadow">
+            <div className="pv-shadow-alert rv-item" style={{ ["--i" as string]: 0 }}>
+              <span className="pv-shadow-dot" aria-hidden="true" />
+              <div><strong>Personal chatbot account</strong><small>Client file pasted in · no policy · no log</small></div>
+              <b>Today</b>
+            </div>
+            <ul>
+              {GUARDS.map((g, i) => (
+                <li key={g} className="rv-item" style={{ ["--i" as string]: i + 1 }}><Icon name="check" size={15} />{g}</li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+// ─── evidence: what controlled studies measured (all from the productivity evidence doc) ─
+const STUDIES = [
+  { n: "40%", t: "less time writing reports and emails, with quality up 18%", s: "MIT, Science, 2023" },
+  { n: "7.5 days", t: "sooner to close the books at accounting firms using AI", s: "Stanford and MIT, 2025" },
+  { n: "34%", t: "more issues resolved per hour by the newest support staff", s: "Quarterly Journal of Economics, 2025" },
+  { n: "About 3%", t: "time saved when workers were handed a chatbot and nothing else", s: "University of Chicago, 25,000 workers" },
+];
+export function EvidenceBand() {
+  return (
+    <section className="h-sec h-dark">
+      <div className="h-wrap">
+        <div className="h-head">
+          <div className="h-eyebrow">What the studies measured</div>
+          <h2>Same AI. Very different results.</h2>
+          <p>On the right tasks, with people trained to use it, controlled studies measure big gains. Hand people a login and nothing else, and the numbers barely move.</p>
+        </div>
+        <Reveal>
+          <div className="pv-stats">
+            {STUDIES.map((x, i) => (
+              <div key={x.n} className={`pv-stat rv-item${i === 3 ? " pv-stat-low" : ""}`} style={{ ["--i" as string]: i }}>
+                <strong>{x.n}</strong>
+                <p>{x.t}</p>
+                <small>{x.s}</small>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+      </div>
+    </section>
   );
 }

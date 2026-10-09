@@ -5,7 +5,7 @@ import { PlanCards } from "@/components/PlanCards";
 import { AssistantChat } from "@/components/AssistantChat";
 import { Reveal } from "@/components/Reveal";
 import { MonthView, OfficerHeroCard, RoleCards } from "@/components/OfficerShowcase";
-import { IconCards, TrainingLibrary, type IconName } from "@/components/PageVisuals";
+import { IconCards, TrainingLibrary, ShadowAI, type IconName } from "@/components/PageVisuals";
 import { BuildQueue } from "@/components/BuildQueue";
 
 export const metadata: Metadata = {
@@ -23,22 +23,28 @@ const MONTHLY = [
 ];
 
 const FIT: { icon: IconName; tag: string; title: string; body: string }[] = [
-  { icon: "noseat", tag: "No technical team", title: "Nobody owns software", body: "You run a company under 100 people, and tools get bought one at a time by whoever needed one that week." },
+  { icon: "noseat", tag: "No technical team", title: "Nobody owns software", body: "You run a company of 15 to 100 people, and tools get bought one at a time by whoever needed one that week." },
   { icon: "users", tag: "Team on its own", title: "AI that nobody uses", body: "The logins exist. Nobody showed the team how to use them on their actual work, so they went back to the old way." },
   { icon: "tools", tag: "Built, then stuck", title: "Systems nobody keeps current", body: "Something got built once, and now no one maintains it or adds to it as the business grows." },
+];
+
+const HONEST: { icon: IconName; title: string; body: string }[] = [
+  { icon: "clock", title: "About 1 to 2 hours a month", body: "That's the training time for each person, in sessions built around the work they already do." },
+  { icon: "grow", title: "A short dip after each launch", body: "For the first few weeks after something new goes live, work slows a little while people check its output against the old way. That's normal, and it's short." },
+  { icon: "doc", title: "A straight answer when AI isn't it", body: "If AI isn't the right tool for a task, we'll tell you, and the discovery report says so in writing." },
 ];
 
 const OWN: { icon: IconName; title: string; body: string; foot: string }[] = [
   { icon: "code", title: "The code", body: "Every agent, integration, and replacement, in a repository your company owns.", foot: "Owner: your company" },
   { icon: "db", title: "The data", body: "Every record, on accounts in your company's name, never used to train anyone's AI.", foot: "Owner: your company" },
-  { icon: "key", title: "The accounts", body: "Hosting and services set up under your company, with your team as the owners.", foot: "Owner: your company" },
+  { icon: "key", title: "The accounts", body: "Hosting, services, and the AI account itself, set up in your company's name. You pay the AI provider at cost, with no markup.", foot: "Owner: your company" },
   { icon: "book", title: "The training library", body: "Every session recorded on your tools, with guides. Your team keeps it for good.", foot: "Owner: your company" },
 ];
 
 
 const FAQ = [
-  { q: "What is a fractional Chief AI Officer?", a: "Most companies under 100 people can't justify a full-time technical executive. We fill the role part-time. We train your team, test new AI on your data, keep your systems running, and cut tools that don't earn their price." },
-  { q: "How does it start?", a: "With a paid discovery, quoted in writing by company size and tools. We map how your work moves, audit every tool you pay for (that report lands within 7 days), write your AI usage policy, train your team on its own work, and put your first agent live on your data within 30 days. The fee is credited toward your plan." },
+  { q: "What is a fractional Chief AI Officer?", a: "Most companies of 15 to 100 people can't justify a full-time technical executive. We fill the role part-time. We train your team, test new AI on your data, keep your systems running, and cut tools that don't earn their price." },
+  { q: "How does it start?", a: "With a paid discovery, quoted in writing by company size and tools. We map how your work moves, audit every tool you pay for (that report lands within 7 days), write your AI usage policy, train your team on its own work, and put your first build live on your data within 30 days. The fee is credited toward your plan." },
   { q: "Can we just buy one project?", a: "Yes. If you don't want a plan, we scope a single build after discovery and quote it in writing: an assistant, agents, integrations, or a platform replacement. You get the same training and you own the code, data, and accounts. Most clients end up on a plan, because the next project always shows up." },
   { q: "What does 'one build at a time' mean?", a: "There's no limit on how many agents, integrations, or tools you ask for. We work on one until it's live, then start the next. Pro works on two at once. Bigger projects, like replacing a platform, are split into steps that go live one by one." },
   { q: "Do we keep what you build if we leave?", a: "Yes. Replacements, agents, and integrations are built on accounts in your company's name. The code, data, and accounts stay yours." },
@@ -53,15 +59,17 @@ export default function AiOfficerPage() {
         eyebrow="Fractional Chief AI Officer"
         title={<>A Chief AI Officer, <span className="h-grad">without the hire</span>.</>}
         side={<OfficerHeroCard />}
-        sub="Most companies under 100 people have no one whose job is AI. We take the role: agents and tools built one after another, every system connected, and your team trained every month. You own all of it."
+        sub="Most companies of 15 to 100 people have no one whose job is AI. We take the role: agents and tools built one after another, every system connected, and your team trained every month. You own all of it."
       />
 
       <section className="h-sec">
         <div className="h-wrap">
-          <SectionHead eyebrow="The problem" title="Nobody's job is AI." sub="A full-time Chief AI Officer costs more than most companies under 100 people can justify. So AI gets bought, half used, and never connected. An AI Officer makes it someone's job, part time." />
+          <SectionHead eyebrow="The problem" title="Nobody's job is AI." sub="A full-time Chief AI Officer costs more than most companies of 15 to 100 people can justify. So AI gets bought, half used, and never connected. An AI Officer makes it someone's job, part time." />
           <IconCards items={FIT} />
         </div>
       </section>
+
+      <ShadowAI />
 
       <section className="h-sec h-soft">
         <div className="h-wrap">
@@ -74,6 +82,10 @@ export default function AiOfficerPage() {
         <div className="h-wrap">
           <SectionHead eyebrow="The build queue" title="Ask for anything. It ships one after another." sub="No cap on agents, integrations, or tools. We build one until it's live and your team is trained on it, then start the next. Pro runs two at once." />
           <BuildQueue />
+          <div className="pv-qproof">
+            <span><strong>Software replacements go through the same queue.</strong> One client replaced a $100,000-a-year platform with a system it owns.</span>
+            <Link href="/case-studies">Read the case study →</Link>
+          </div>
         </div>
       </section>
 
@@ -127,7 +139,7 @@ export default function AiOfficerPage() {
           <SectionHead
             eyebrow="Plans"
             title="Pick a plan. Start with a discovery."
-            sub="Every plan starts with a discovery that ends with your first agent live within 30 days, credited toward your plan. Then six months minimum, month to month after that."
+            sub="Every plan starts with a discovery that ends with your first build live within 30 days, credited toward your plan. Then six months minimum, month to month after that."
           />
           <Reveal><PlanCards /></Reveal>
           <p style={{ marginTop: 28, color: "var(--ink-2)", maxWidth: 720 }}>
@@ -139,6 +151,13 @@ export default function AiOfficerPage() {
 
       <section className="h-sec">
         <div className="h-wrap">
+          <SectionHead eyebrow="The honest part" title="What it asks of your team." sub="AI takes some effort from your people too. Here's how much." />
+          <IconCards items={HONEST} />
+        </div>
+      </section>
+
+      <section className="h-sec h-soft">
+        <div className="h-wrap">
           <SectionHead eyebrow="Questions" title="What people ask first." center />
           <div className="h-faq">
             {FAQ.map((f) => (
@@ -148,7 +167,7 @@ export default function AiOfficerPage() {
         </div>
       </section>
 
-      <CtaBand title="Your AI Officer starts with a discovery." body="30 days: workflow mapped, tools audited, team trained, first agent live. The fee is credited toward your plan." />
+      <CtaBand title="Your AI Officer starts with a discovery." body="30 days: workflow mapped, tools audited, team trained, first build live. The fee is credited toward your plan." />
     </div>
   );
 }

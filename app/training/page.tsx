@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
-import { IconCards, TrainingHeroCard, TrainingLibrary, TeamChallenge, type IconName } from "@/components/PageVisuals";
+import { IconCards, TrainingHeroCard, TrainingLibrary, TeamChallenge, EvidenceBand, type IconName } from "@/components/PageVisuals";
 import { CompanyTypes } from "@/components/CompanyTypes";
 import { TrainingBooking } from "./TrainingBooking";
 
@@ -41,7 +41,7 @@ export default function TrainingPage() {
       <PageHero
         eyebrow="AI training"
         title={<>Training that makes the AI <span className="h-grad">stick</span>.</>}
-        sub="Every AI Officer plan trains your team on your own tools and workflows: live sessions every month, a recorded library your team keeps for good, and challenges that get departments building. Want a day in the room? Add an on-site training day."
+        sub="We train in person, and every AI Officer plan keeps it going on your own tools and workflows: live sessions every month, a recorded library your team keeps for good, and challenges that get departments building. Want a day in the room? Add an on-site training day."
         side={<TrainingHeroCard />}
         ctas={false}
       />
@@ -52,6 +52,8 @@ export default function TrainingPage() {
           <IconCards items={PROGRAM} cols={4} />
         </div>
       </section>
+
+      <EvidenceBand />
 
       <section className="h-sec h-soft">
         <div className="h-wrap">
@@ -106,7 +108,7 @@ export default function TrainingPage() {
         </div>
       </section>
 
-      <CtaBand title="Ready to build on what they learned?" body="A discovery maps how your work moves and puts the first agent live on your own data within 30 days. Your team will already know how to use it." />
+      <CtaBand title="Ready to build on what they learned?" body="A discovery maps how your work moves and puts the first build live on your own data within 30 days. Your team will already know how to use it." />
     </div>
   );
 }

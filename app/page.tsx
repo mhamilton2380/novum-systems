@@ -44,9 +44,9 @@ const COMPARE = [
 const STEPS = [
   {
     title: "Discovery",
-    tag: "First agent live within 30 days",
-    body: "We sit with your team, map how the work actually moves, and list every tool you pay for. Then we put it to work: your team trained on its own work, an AI usage policy, and your first agent live on your own data within 30 days. The fee is credited toward your plan or build.",
-    includes: "a workflow map, a tool and cost report within 7 days, an AI usage policy, a training session on your own work, your first agent live within 30 days, and a written plan with prices for what comes next. All of it is yours either way",
+    tag: "First build live within 30 days",
+    body: "We sit with your team, map how the work actually moves, and list every tool you pay for. Then we put it to work: your team trained on its own work, an AI usage policy, and your first build live on your own data within 30 days. The fee is credited toward your plan or build.",
+    includes: "a map of how the work moves today; every tool you pay for, what it costs, and what to keep, connect, replace, or cut, within 7 days; a written AI usage policy; a hands-on training session on your own work, recorded as the first entry in your training library; the first build live on your own data within 30 days; and a written plan with prices for what comes next. All of it is yours either way",
   },
   {
     title: "AI Officer, or a one-time project",
@@ -98,7 +98,7 @@ const AUDIT = [
 const FAQ = [
   {
     q: "What does it cost?",
-    a: "Everything starts with a discovery, quoted in writing by company size and tools. It ends with your first agent live within 30 days, and the fee is credited toward what comes next. Then you choose an AI Officer plan (Growth or Pro, with every tool connected and unlimited agents and builds, six months minimum and then month to month) or a one-time project quoted in writing. Pro comes with a dedicated AI Officer. If you only want your team trained, request a 5-hour training day and we quote it by team size.",
+    a: "Everything starts with a discovery, quoted in writing by company size and tools. It ends with your first build live within 30 days, and the fee is credited toward what comes next. Then you choose an AI Officer plan (Growth or Pro, with every tool connected and unlimited agents and builds, six months minimum and then month to month) or a one-time project quoted in writing. Pro comes with a dedicated AI Officer. If you only want your team trained, request a 5-hour training day and we quote it by team size.",
   },
   {
     q: "We already pay for AI tools. Why would we need you?",
@@ -110,7 +110,7 @@ const FAQ = [
   },
   {
     q: "What is a fractional Chief AI Officer?",
-    a: "Most companies under 100 people can't justify a full-time technical executive. We fill the role part-time. We train your team, test new AI on your data, keep your systems running, and cut tools that don't earn their price.",
+    a: "Most companies of 15 to 100 people can't justify a full-time technical executive. We fill the role part-time. We train your team, test new AI on your data, keep your systems running, and cut tools that don't earn their price.",
   },
   {
     q: "Do we have to replace our software?",
@@ -142,8 +142,8 @@ export default function HomePage() {
             </p>
             <ul className="h-proof">
               <li>We learn your workflow first. Scope and price in writing before anything is built.</li>
-              <li>Your team learns AI on the work they do every day, and an AI Officer keeps it going.</li>
-              <li>No seats, no revenue share. The code, data, and accounts are in your company&apos;s name.</li>
+              <li>We train your team in person, on the work they do every day, and an AI Officer keeps it going.</li>
+              <li>No seats, no revenue share. You own all of it: the code, the data, the accounts, and the AI account itself.</li>
             </ul>
             <div className="h-ctas">
               <Link href="/contact" className="h-btn h-btn-primary">Start with a discovery</Link>
@@ -173,7 +173,7 @@ export default function HomePage() {
           <div className="h-head">
             <div className="h-eyebrow">The problem</div>
             <h2>Everyone has AI. Almost nobody is using it on the real work.</h2>
-            <p>Most companies under 100 people have no one whose job is AI. Tools get bought by whoever needed one that week, nobody gets trained, and nothing connects to the data the business runs on.</p>
+            <p>Most companies of 15 to 100 people have no one whose job is AI. Tools get bought by whoever needed one that week, nobody gets trained, and nothing connects to the data the business runs on.</p>
           </div>
           <div className="h-cards3">
             {PROBLEMS.map((p, i) => (
@@ -261,7 +261,7 @@ export default function HomePage() {
             <h2>We build it. Then we make sure it gets used.</h2>
             <p>Most clients start with a discovery and move onto an AI Officer: agents and tools built one after another, every system connected, and your team trained every month on its own tools. Not ready for a plan? Start with an on-site training day.</p>
           </div>
-          <div className="h-grid3" style={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+          <div className="h-grid3">
             <Link href="/ai-officer" className="h-card2 pv-card">
               <PartArt kind="officer" />
               <span className="h-card2-tag">AI Officer · most clients</span>
@@ -275,6 +275,13 @@ export default function HomePage() {
               <h3>Training that makes it stick.</h3>
               <p>Live sessions every month on your own tools, a recorded library your team keeps for good, and an on-site training day when you want one.</p>
               <div className="h-more">See how we train →</div>
+            </Link>
+            <Link href="/case-studies" className="h-card2 pv-card">
+              <PartArt kind="software" />
+              <span className="h-card2-tag">Custom software</span>
+              <h3>Software you own.</h3>
+              <p>When a platform costs more than it&apos;s worth, we build the version that fits how you work. One client replaced a $100,000-a-year platform this way.</p>
+              <div className="h-more">Read the case study →</div>
             </Link>
           </div>
         </div>
@@ -387,7 +394,7 @@ export default function HomePage() {
         <div className="h-wrap">
           <div className="h-cta">
             <h2>Start with a discovery.</h2>
-            <p>We map how your work actually moves, audit every tool you pay for, train your team, and put your first agent live on your own data within 30 days. You get a written plan and prices for what comes next, and the discovery fee is credited toward it.</p>
+            <p>We map how your work actually moves, audit every tool you pay for, train your team, and put your first build live on your own data within 30 days. You get a written plan and prices for what comes next, and the discovery fee is credited toward it.</p>
             <Link href="/contact" className="h-btn h-btn-light">Book a conversation</Link>
             <p className="h-cta-meta">The first conversation is free. No sales deck.</p>
           </div>

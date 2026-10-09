@@ -69,7 +69,7 @@ export function SignupForm({ initialPlan }: { initialPlan: "growth" | "pro" }) {
             <label>Company *<input name="company" required value={form.company} onChange={set} /></label>
             <label>Team size<input name="teamSize" inputMode="numeric" placeholder="e.g. 18" value={form.teamSize} onChange={set} /></label>
           </div>
-          <label>What should the first agent take off your team&apos;s plate?<textarea name="message" value={form.message} onChange={set} /></label>
+          <label>What should the first build take off your team&apos;s plate?<textarea name="message" value={form.message} onChange={set} /></label>
           <input name="website" value={form.website} onChange={set} tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: "absolute", left: -9999, width: 1, height: 1, opacity: 0 }} />
           <label className="h-agree">
             <input type="checkbox" name="agree" required checked={form.agree} onChange={set} />

@@ -24,7 +24,7 @@ export function PageHero({ eyebrow, title, sub, side, ctas = true }: {
   );
 }
 
-export function CtaBand({ title = "Start with a discovery.", body = "Your workflow mapped, every tool audited, and your first agent live on your own data within 30 days. The discovery fee counts toward whatever comes next." }: { title?: string; body?: string }) {
+export function CtaBand({ title = "Start with a discovery.", body = "Your workflow mapped, every tool audited, and your first build live on your own data within 30 days. The discovery fee counts toward whatever comes next." }: { title?: string; body?: string }) {
   return (
     <section className="h-sec">
       <div className="h-wrap">
