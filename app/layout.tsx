@@ -9,7 +9,7 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Novum AI · AI and software built around how you work",
   description: "Generic software makes your team work its way. We learn how your business runs and build what fits: AI agents, connected tools, and software your company owns.",
-  metadataBase: new URL("https://novum-systems.vercel.app"),
+  metadataBase: new URL("https://thenovumai.com"),
 };
 
 // Self-hosted by next/font. The old @import in globals.css was dropped by the CSS bundler, so the site fell back to Helvetica/Arial.

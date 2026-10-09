@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { USE_CASES } from "@/lib/useCases";
 
-const BASE = "https://novum-systems.vercel.app";
+const BASE = "https://thenovumai.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = ["", "/use-cases", "/case-studies", "/ai-implementation", "/ai-officer", "/training", "/how-we-work", "/about", "/contact"];
