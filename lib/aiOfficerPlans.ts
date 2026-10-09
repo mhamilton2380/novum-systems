@@ -29,7 +29,7 @@ export const PLANS: Plan[] = [
     lanes: 1,
     lanesLabel: "1 build at a time",
     points: ["Every tool connected", "2 training sessions a month", "Quarterly tool audit", "Answers within 1 business day"],
-    highlights: ["2 training sessions a month", "Every tool you use, connected", "Unlimited agents and builds, one at a time", "Upkeep of everything we build"],
+    highlights: ["2 training sessions a month", "A training library your team keeps for good", "Every tool you use, connected", "Unlimited agents and builds, one at a time", "Upkeep of everything we build"],
   },
   {
     id: "pro",
@@ -41,7 +41,7 @@ export const PLANS: Plan[] = [
     lanesLabel: "2 builds at a time",
     badge: "Dedicated AI Officer",
     points: ["A dedicated AI Officer", "Weekly sessions and office hours", "Full platform replacements", "Same-day answers"],
-    highlights: ["A dedicated AI Officer", "Weekly sessions and office hours", "Every tool you use, connected", "Unlimited agents and builds, two at a time", "Full platform replacements"],
+    highlights: ["A dedicated AI Officer", "Weekly sessions and office hours", "A training library your team keeps for good", "Every tool you use, connected", "Unlimited agents and builds, two at a time", "Full platform replacements"],
   },
   {
     id: "enterprise",
@@ -66,6 +66,7 @@ export const FEATURES: FeatureGroup[] = [
     rows: [
       { label: "Live team training", v: ["2 training sessions a month, up to 25 people", "Weekly sessions and office hours, any team size", "On-site training, any team size"] },
       { label: "Written guides for every tool and agent we set up", v: [true, true, true] },
+      { label: "A recorded training library on your own tools, updated monthly, yours to keep", v: [true, true, true] },
       { label: "An AI usage policy: what data goes where", v: [true, true, true] },
       { label: "New AI tools tested on your data", v: [true, true, true] },
       { label: "Tool and cost audit", v: ["Quarterly audit, cutting what you don't use", "Quarterly audit plus a monthly roadmap call", "Quarterly audit plus a monthly roadmap call"] },
