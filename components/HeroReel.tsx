@@ -2,9 +2,16 @@
 
 import { useEffect, useRef, useState } from "react";
 
-// The 15-second reel in the hero. Browsers only autoplay muted video, so it loops silently on load;
+const HOME = {
+  src: "/novum-reel.mp4",
+  av1: "/novum-reel-av1.mp4",
+  poster: "/novum-reel-poster.jpg",
+  label: "Novum AI in 15 seconds: we teach your team, build the tools, connect your systems, and you own all of it.",
+};
+
+// A hero reel (the home page's 15-second one by default). Browsers only autoplay muted video, so it loops silently on load;
 // "Sound on" restarts it from the top with audio, then it drops back to the silent loop when it ends.
-export function HeroReel() {
+export function HeroReel({ src = HOME.src, av1 = HOME.av1, poster = HOME.poster, label = HOME.label }: { src?: string; av1?: string; poster?: string; label?: string }) {
   const ref = useRef<HTMLVideoElement>(null);
   const [muted, setMuted] = useState(true);
   const [paused, setPaused] = useState(true);
@@ -50,14 +57,14 @@ export function HeroReel() {
         loop
         playsInline
         preload="auto"
-        poster="/novum-reel-poster.jpg"
-        aria-label="Novum AI in 15 seconds: we teach your team, build the tools, connect your systems, and you own all of it."
+        poster={poster}
+        aria-label={label}
         onPlay={() => setPaused(false)}
         onPause={() => setPaused(true)}
         onEnded={backToSilentLoop}
       >
-        <source src="/novum-reel-av1.mp4" type='video/mp4; codecs="av01.0.09M.10"' />
-        <source src="/novum-reel.mp4" type="video/mp4" />
+        <source src={av1} type='video/mp4; codecs="av01.0.09M.10"' />
+        <source src={src} type="video/mp4" />
       </video>
       {paused && (
         <button type="button" className="h-reel-play" onClick={play} aria-label="Play the reel">

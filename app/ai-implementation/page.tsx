@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
 import { ImplementationFlow, StartChooser } from "@/components/ImplementationFlow";
+import { HeroReel } from "@/components/HeroReel";
 
 export const metadata: Metadata = {
   title: "AI Implementation · Novum AI",
@@ -39,6 +40,14 @@ export default function AiImplementationPage() {
         eyebrow="AI implementation"
         title={<>Every business has AI. We help yours <span className="h-grad">use it</span>.</>}
         sub="We teach your team, build the tools, connect your systems, and you own all of it. Training gets your people using AI. An AI Officer keeps building and running it with you."
+        side={
+          <HeroReel
+            src="/ai-hero.mp4"
+            av1="/ai-hero-av1.mp4"
+            poster="/ai-hero-poster.jpg"
+            label="Novum AI implementation in 35 seconds: we teach your team, build the tools, connect your systems, and you own all of it."
+          />
+        }
       />
 
       <section className="h-sec">

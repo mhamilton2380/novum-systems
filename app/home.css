@@ -552,6 +552,13 @@ a.h-card2 .h-more { margin-top: 14px; font-weight: 700; color: var(--ink); font-
   .h-reel { order: 2; margin: 2px 0 28px; }
   .h-hero-text > :not(h1) { order: 3; }
 }
+/* Page heroes with a reel get the same phone order: eyebrow and headline, then the reel, then the rest */
+@media (max-width: 960px) {
+  .h-phero-grid:has(.h-reel) { row-gap: 0; }
+  .h-phero-grid:has(.h-reel) > div:first-child { display: contents; }
+  .h-phero-grid:has(.h-reel) > div:first-child > .h-eyebrow, .h-phero-grid:has(.h-reel) > div:first-child > h1 { order: 1; }
+  .h-phero-grid:has(.h-reel) > div:first-child > :not(.h-eyebrow):not(h1) { order: 3; }
+}
 @media (max-width: 640px) { .h-reel { border-radius: 14px; } .h-video-btn { width: 64px; height: 64px; } .h-video-btn svg { width: 26px; height: 26px; } }
 
 /* ─── Inbox agent (homepage example build) ─────────────────────────────────── */
