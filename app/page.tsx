@@ -184,6 +184,10 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+          <Link href="/why-ai" className="pv-homewhy">
+            <span><strong>25% to 56% less time per task</strong> on work that suits AI, in controlled studies. About 3% when people just get a login.</span>
+            <b>Why AI, in numbers →</b>
+          </Link>
         </div>
       </section>
 

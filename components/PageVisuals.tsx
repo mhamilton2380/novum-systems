@@ -414,7 +414,7 @@ export function EvidenceBand() {
         <div className="h-head">
           <div className="h-eyebrow">What the studies measured</div>
           <h2>Same AI. Very different results.</h2>
-          <p>On the right tasks, with people trained to use it, controlled studies measure big gains. Hand people a login and nothing else, and the numbers barely move. <Link href="/the-numbers" style={{ color: "#7fe3c0", fontWeight: 700, textDecoration: "none" }}>See all the numbers →</Link></p>
+          <p>On the right tasks, with people trained to use it, controlled studies measure big gains. Hand people a login and nothing else, and the numbers barely move. <Link href="/why-ai" style={{ color: "#7fe3c0", fontWeight: 700, textDecoration: "none" }}>See all the numbers →</Link></p>
         </div>
         <Reveal>
           <div className="pv-stats">
@@ -573,7 +573,7 @@ const PER_TASK = [
   { t: "Draft a two-page memo", p: "45 minutes, about $24.50", a: "About $0.02, plus 10 minutes of review", n: "Review is most of the real cost" },
   { t: "Handle a three-minute phone call", p: "About $1.54", a: "About $0.33 to $0.42", n: "Answers at 2 a.m., many calls at once" },
 ];
-// The numbers page sections (app/the-numbers). Each stands alone so pages can reuse them.
+// The numbers page sections (app/why-ai). Each stands alone so pages can reuse them.
 export function EvidenceByWork() {
   return (
     <section className="h-sec">
@@ -763,7 +763,7 @@ export function ThreeChoices() {
 // A short pointer to the full numbers page (used on the assessment and Training pages).
 export function NumbersTeaser() {
   return (
-    <Link href="/the-numbers" className="pv-teaser">
+    <Link href="/why-ai" className="pv-teaser">
       <div className="pv-teaser-stats">
         <span><strong>25% to 56%</strong>less time per task in controlled studies</span>
         <span><strong>About $0.01</strong>for an agent to key an invoice, against $1.89 for a person</span>

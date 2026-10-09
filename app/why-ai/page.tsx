@@ -5,15 +5,15 @@ import { EvidenceByWork, CostPerTask, PhoneAgents, LongTasks, WhereItGoesWrong, 
 // Client-facing evidence, all from "How Much Faster AI Makes the Work" (2026-10-08):
 // https://claude.ai/code/artifact/ebae361d-f31e-471a-b67f-977d9ded0e2e. Vendor and company-reported figures are labeled.
 export const metadata: Metadata = {
-  title: "The Numbers · What AI Does to the Work · Novum AI",
+  title: "Why AI · What It Does to the Work · Novum AI",
   description: "What controlled studies and real companies measured: 25% to 56% less time on work that suits AI, cents per task for an agent against dollars for a person, and why handing people a chatbot moves the needle about 3%.",
 };
 
-export default function NumbersPage() {
+export default function WhyAiPage() {
   return (
     <div className="home">
       <PageHero
-        eyebrow="The numbers"
+        eyebrow="Why implement AI"
         title={<>What AI actually does to <span className="h-grad">the work</span>.</>}
         sub="On work that suits AI, controlled studies measure 25% to 56% less time per task. Hand people a login and nothing else, and it's closer to 3%. Here's what the research and real companies measured, with every source named."
         side={

@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
       { source: "/case-studies/:slug", destination: "/case-studies", permanent: true },
       { source: "/enterprise", destination: "/how-we-work", permanent: true },
       { source: "/approach", destination: "/how-we-work", permanent: true },
+      { source: "/the-numbers", destination: "/why-ai", permanent: true },
     ];
   },
 };

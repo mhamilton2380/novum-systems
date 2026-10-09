@@ -22,7 +22,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 32);
-    const onResize = () => setIsMobile(window.innerWidth < 900);
+    const onResize = () => setIsMobile(window.innerWidth < 980);
     onScroll();
     onResize();
     window.addEventListener("scroll", onScroll);
@@ -66,6 +66,7 @@ export default function Navbar() {
 
         {!isMobile && (
           <nav style={{ display: "flex", alignItems: "center", gap: 2 }}>
+            <Link href="/why-ai" className={`nv-trigger${on("/why-ai") ? " on" : ""}`}>Why AI</Link>
             <div className="nv-item">
               <Link href="/ai-implementation" className={`nv-trigger${on("/ai-implementation") || on("/ai-officer") || on("/training") ? " on" : ""}`}>What We Do <Chevron /></Link>
               <div className="nv-menu">
@@ -93,7 +94,6 @@ export default function Navbar() {
                   <hr />
                   <div className="nv-group">Proof</div>
                   <Link href="/case-studies">Case study<small>A $100,000-a-year software bill, replaced</small></Link>
-                  <Link href="/the-numbers">The numbers<small>What AI does to the work, from the studies</small></Link>
                   <Link href="/use-cases">All use cases →</Link>
                 </div>
               </div>
@@ -141,6 +141,7 @@ export default function Navbar() {
 
         {isMobile && menuOpen && (
           <div className="nv-mobile">
+            <Link href="/why-ai">Why AI</Link>
             <Link href="/ai-implementation">What We Do</Link>
             <Link href="/ai-implementation" className="sub">AI Implementation</Link>
             <Link href="/ai-officer" className="sub">AI Officer</Link>
@@ -152,7 +153,6 @@ export default function Navbar() {
             <Link href="/use-cases">Use Cases</Link>
             {USE_CASE_NAV.map((u) => <Link key={u.slug} href={`/use-cases/${u.slug}`} className="sub">{u.label}</Link>)}
             <Link href="/case-studies" className="sub">Case study</Link>
-            <Link href="/the-numbers" className="sub">The numbers</Link>
             <Link href="/contact" style={{ marginTop: 8, textAlign: "center", background: "#0b1b2e", color: "#fff", borderRadius: 999 }}>Book a Call</Link>
           </div>
         )}

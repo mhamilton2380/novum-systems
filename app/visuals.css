@@ -543,3 +543,7 @@
 .pv-teaser-cta { color: #fff; font-weight: 700; white-space: nowrap; }
 @media (max-width: 960px) { .pv-wages, .pv-teaser { grid-template-columns: minmax(0, 1fr); } .pv-phone-rules { grid-template-columns: minmax(0, 1fr); } .pv-voice-row { grid-template-columns: 1fr; gap: 6px; } .pv-voice-row em { justify-self: start; } }
 @media (max-width: 640px) { .pv-teaser-stats { grid-template-columns: minmax(0, 1fr); } }
+.pv-homewhy { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; margin-top: 22px; padding: 18px 22px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04); text-decoration: none; color: #94a3b8; font-size: 0.95rem; transition: background .2s, border-color .2s; }
+.pv-homewhy:hover { background: rgba(255,255,255,0.07); border-color: rgba(52,211,153,0.4); }
+.pv-homewhy strong { color: #fff; }
+.pv-homewhy b { color: #34d399; white-space: nowrap; }
