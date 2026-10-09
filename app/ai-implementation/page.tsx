@@ -39,9 +39,9 @@ export default function AiImplementationPage() {
     <div className="home">
       <PageHero
         eyebrow="AI implementation"
-        title={<>Every business has AI. We help yours <span className="h-grad">use it</span>.</>}
+        title={<>Every business has AI.<br />We help yours <span className="h-grad">use it</span>.</>}
         sub="We train your team in person, build the tools, connect your systems, and you own all of it. An AI Officer keeps building and running it with you, month after month."
-        side={
+        below={
           <HeroReel
             src="/ai-hero.mp4"
             av1="/ai-hero-av1.mp4"

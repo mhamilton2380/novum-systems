@@ -1,8 +1,9 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-export function PageHero({ eyebrow, title, sub, side, ctas = true }: {
-  eyebrow: string; title: ReactNode; sub: ReactNode; side?: ReactNode; ctas?: boolean;
+// `side` sits in a column next to the copy; `below` gets the full width under it (for a hero video).
+export function PageHero({ eyebrow, title, sub, side, below, ctas = true }: {
+  eyebrow: string; title: ReactNode; sub: ReactNode; side?: ReactNode; below?: ReactNode; ctas?: boolean;
 }) {
   return (
     <section className="h-phero">
@@ -19,6 +20,7 @@ export function PageHero({ eyebrow, title, sub, side, ctas = true }: {
           )}
         </div>
         {side}
+        {below && <div className="h-phero-below">{below}</div>}
       </div>
     </section>
   );

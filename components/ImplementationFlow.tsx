@@ -123,12 +123,19 @@ function SceneTrain() {
 }
 
 const TOOLS: [string, number, number][] = [
-  ["Accounting", 100, 50],
-  ["CRM", 100, 210],
-  ["Email", 500, 50],
-  ["Documents", 500, 210],
-  ["Payments", 300, 252],
+  ["Accounting", 104, 56],
+  ["CRM", 104, 200],
+  ["Email", 496, 56],
+  ["Documents", 496, 200],
+  ["Payments", 300, 250],
 ];
+// Each link runs from the tool's edge to the hub's ring, so nothing crosses a box or the hub.
+const HX = 300, HY = 128, HR = 50, PW = 58, PH = 17;
+function link(x: number, y: number) {
+  const dx = x - HX, dy = y - HY, len = Math.hypot(dx, dy), ux = dx / len, uy = dy / len;
+  const t = Math.min(ux ? PW / Math.abs(ux) : Infinity, uy ? PH / Math.abs(uy) : Infinity) + 6;
+  return `M${(x - ux * t).toFixed(1)},${(y - uy * t).toFixed(1)} L${(HX + ux * HR).toFixed(1)},${(HY + uy * HR).toFixed(1)}`;
+}
 
 function SceneBuild({ reduced }: { reduced: boolean }) {
   return (
@@ -136,7 +143,7 @@ function SceneBuild({ reduced }: { reduced: boolean }) {
       <svg viewBox="0 0 600 280" role="img" aria-label="Illustration: your tools connected to one hub of company data">
         {TOOLS.map(([, x, y], i) => (
           <g key={i}>
-            <path id={`if-p${i}`} d={`M300,128 L${x},${y}`} className="if-link" style={{ ["--i" as string]: i }} />
+            <path id={`if-p${i}`} d={link(x, y)} className="if-link" style={{ ["--i" as string]: i }} />
             {!reduced && (
               <circle r="3.5" className="if-dot">
                 <animateMotion dur="2.6s" begin={`${i * 0.5}s`} repeatCount="indefinite">
@@ -252,7 +259,6 @@ export function ImplementationFlow() {
         <div className="if-glow" aria-hidden="true" />
         <div className="if-stage-top">
           <span className="if-stage-n">Step {active + 1} of {STEPS.length}</span>
-          <span className="if-stage-tag">{s.tag}</span>
         </div>
         <div className="if-scene-wrap" key={`${s.key}-${cycle}`}>
           {s.key === "discovery" && <SceneDiscovery />}

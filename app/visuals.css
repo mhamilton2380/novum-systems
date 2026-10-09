@@ -676,3 +676,30 @@
   .wy-cost-bar b, .wy-wage b, .wy-meter i { transform: none; transition: none; }
   .wy-line { stroke-dashoffset: 0; transition: none; } .wy-area, .wy-mark { opacity: 1; transition: none; }
 }
+
+/* Why AI work picker: spacing pass */
+.wy-pick-body { justify-content: center; }
+.home .wy-desc { margin: 12px 0 28px; }
+.wy-bar { grid-template-columns: 170px minmax(0, 1fr) 130px; grid-template-rows: auto; }
+.wy-bar em { grid-column: 3; margin-top: 0; text-align: right; font-size: 0.85rem; color: #cbd5e1; font-weight: 600; }
+.wy-bars { gap: 18px; }
+.wy-src { margin-top: 28px; padding-top: 0; }
+.wy-statbox { gap: 16px; padding: 20px 22px; }
+.wy-statbox strong { display: block; font-size: 1.6rem; letter-spacing: -0.02em; color: #fff; line-height: 1.1; }
+.wy-statbox span { color: #94a3b8; font-size: 0.9rem; }
+@media (max-width: 560px) { .wy-bar { grid-template-columns: minmax(0, 1fr) auto; } .wy-bar i { grid-column: 1 / -1; grid-row: 2; } .wy-bar em { grid-column: 2; grid-row: 1; } }
+/* Hero with a full-width video under the copy (AI Implementation) */
+.h-phero-below { margin-top: 48px; }
+.h-phero-below .h-reel { box-shadow: 0 40px 100px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.08); }
+@media (max-width: 960px) { .h-phero-below { margin-top: 32px; } }
+/* How it runs, Build step: solid tool boxes so links stop at their edges */
+.if-tool rect { fill: #142b45; stroke: rgba(255,255,255,0.22); }
+.if-hub-ring { fill: rgba(0,179,110,0.08); }
+@media (max-width: 960px) {
+  .h-phero .h-wrap:has(> .h-phero-below) { display: flex; flex-direction: column; }
+  .h-phero .h-wrap:has(> .h-phero-below) > div:first-child { display: contents; }
+  .h-phero .h-wrap:has(> .h-phero-below) > div:first-child > .h-eyebrow, .h-phero .h-wrap:has(> .h-phero-below) > div:first-child > h1 { order: 1; }
+  .h-phero .h-wrap:has(> .h-phero-below) > .h-phero-below { order: 2; margin: 4px 0 28px; }
+  .h-phero .h-wrap:has(> .h-phero-below) > div:first-child > :not(.h-eyebrow):not(h1) { order: 3; }
+}
+.wy-pick + .pv-fine{margin-top:22px}

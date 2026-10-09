@@ -32,15 +32,15 @@ export function ThreeWaysCard() {
 }
 
 // ─── by type of work: pick one, see before and after ────────────────────────
-type Work = { w: string; icon: IconName; n: string; d: string; s: string; kind: "time" | "output" | "stat"; bars?: { l: string; v: number }[]; tag?: string };
+type Work = { w: string; icon: IconName; n: string; d: string; s: string; kind: "time" | "output" | "stat"; bars?: { l: string; v: number }[]; tag?: string; extra?: { n: string; d: string } };
 const WORK: Work[] = [
   { w: "Reports, emails, memos", icon: "doc", n: "40% less time", d: "Quality went up 18% at the same time.", s: "MIT, Science, 2023 · about 450 professionals, randomized", kind: "time", bars: [{ l: "Without AI", v: 100 }, { l: "With AI", v: 60 }] },
   { w: "Analysis and writing", icon: "pen", n: "25% faster", d: "12% more tasks done, and quality up more than 40%, on work inside AI's strengths.", s: "Harvard and BCG, 2023 · 758 consultants, randomized", kind: "time", bars: [{ l: "Without AI", v: 100 }, { l: "With AI", v: 80 }] },
   { w: "Insurance claims", icon: "insurance", n: "80% faster", d: "On small claims, with a person still approving every payment.", s: "Allianz, 2025", tag: "Company-reported", kind: "time", bars: [{ l: "Before", v: 100 }, { l: "With AI", v: 20 }] },
   { w: "Underwriting", icon: "shield", n: "About half", d: "The review time per application. Underwriters still make the call.", s: "Aviva, 2026", tag: "Company-reported", kind: "time", bars: [{ l: "Before", v: 100 }, { l: "With AI", v: 50 }] },
   { w: "Customer support", icon: "users", n: "14% more", d: "Issues resolved per hour, and 34% more for the newest staff.", s: "Quarterly Journal of Economics, 2025 · 5,172 agents", kind: "output", bars: [{ l: "Without AI", v: 100 }, { l: "With AI", v: 114 }, { l: "Newest staff with AI", v: 134 }] },
-  { w: "Accounting", icon: "accounting", n: "7.5 days sooner", d: "To close the books, with 55% more clients per accountant.", s: "Stanford and MIT, 2025 · early working paper", kind: "stat" },
-  { w: "Email", icon: "mail", n: "About 2 hours", d: "Less a week spent on email, per person.", s: "Microsoft and NBER, 2025 · 7,137 workers at 66 firms", kind: "stat" },
+  { w: "Accounting", icon: "accounting", n: "7.5 days sooner", d: "Sooner to close the books each month after firms adopted AI bookkeeping.", s: "Stanford and MIT, 2025 · early working paper", kind: "stat", extra: { n: "55% more", d: "clients served per accountant" } },
+  { w: "Email", icon: "mail", n: "About 2 hours", d: "Less a week spent on email, per person, over six months.", s: "Microsoft and NBER, 2025 · 7,137 workers at 66 firms", kind: "stat", extra: { n: "7,137", d: "workers measured at 66 companies" } },
   { w: "Documents and reports", icon: "book", n: "87% to 95%", d: "Less time per task across real work conversations.", s: "Anthropic, 2025 · an estimate from 100,000 conversations", tag: "Estimate", kind: "time", bars: [{ l: "Without AI", v: 100 }, { l: "With AI", v: 9 }] },
 ];
 export function WorkPicker() {
@@ -79,7 +79,7 @@ export function WorkPicker() {
             ))}
           </div>
         ) : (
-          <div className="wy-statbox"><Icon name="clock" size={22} /><span>Measured as time saved, not a share of the task.</span></div>
+          <div className="wy-statbox"><Icon name="check" size={20} /><div><strong>{w.extra?.n}</strong><span>{w.extra?.d}</span></div></div>
         )}
         <small className="wy-src">{w.s}</small>
       </div>
