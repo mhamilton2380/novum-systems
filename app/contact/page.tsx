@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { PageHero } from "@/components/PageBits";
+import { HeroSteps } from "@/components/PageVisuals";
 import { USE_CASE_NAV } from "@/lib/nav";
 
 export default function ContactPage() {
@@ -31,6 +32,19 @@ export default function ContactPage() {
         eyebrow="Contact"
         title={<>Tell us what you&apos;re <span className="h-grad">running</span>.</>}
         sub="Every project starts with a conversation about how your business works and where AI could take work off your team. No slide deck, no sales process."
+        side={
+          <HeroSteps
+            title="What happens next"
+            tag="From here"
+            label="What happens after you send the form"
+            items={[
+              { t: "You send the form", d: "The tools you pay for and where time goes", s: "2 min" },
+              { t: "We reply with a time", d: "One that fits what you told us", s: "1 day" },
+              { t: "A call about your operation", d: "How the work moves and where AI fits", s: "Free" },
+              { t: "If it fits, a discovery", d: "Scope and price in writing first", s: "Written" },
+            ]}
+          />
+        }
         ctas={false}
       />
 

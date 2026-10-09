@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import "./home.css";
+import "./visuals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 

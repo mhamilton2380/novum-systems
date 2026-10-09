@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
 import { ImplementationFlow, StartChooser } from "@/components/ImplementationFlow";
 import { HeroReel } from "@/components/HeroReel";
+import { PartArt } from "@/components/PageVisuals";
 
 export const metadata: Metadata = {
   title: "AI Implementation · Novum AI",
@@ -13,7 +14,7 @@ const PARTS = [
   {
     tag: "Training",
     title: "Your team learns to use AI on their own work.",
-    body: "A 5-hour training day: how AI works, which tools matter for your kind of business and when to use them, hands-on practice on real tasks, and which agents to build first. Book it online by team size.",
+    body: "A five-hour day on site, built from your team's own work. On a plan it keeps going: live sessions every month and a recorded library on your own tools that your team keeps for good.",
     href: "/training",
     more: "See Training →",
   },
@@ -55,7 +56,8 @@ export default function AiImplementationPage() {
           <SectionHead eyebrow="Two parts" title="Train the team. Then keep someone building." sub="Training gets your people using AI in a day. An AI Officer builds what they ask for, every month after." />
           <div className="h-grid3" style={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
             {PARTS.map((p) => (
-              <Link href={p.href} className="h-card2" key={p.tag}>
+              <Link href={p.href} className="h-card2 pv-card" key={p.tag}>
+                <PartArt kind={p.tag === "Training" ? "training" : "officer"} />
                 <span className="h-card2-tag">{p.tag}</span>
                 <h3>{p.title}</h3>
                 <p>{p.body}</p>

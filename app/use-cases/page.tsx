@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
 import { USE_CASES } from "@/lib/useCases";
+import { IndustryTicker, IndustryCards } from "@/components/PageVisuals";
 
 export const metadata: Metadata = {
   title: "Use Cases · Novum AI",
@@ -15,20 +16,12 @@ export default function UseCasesPage() {
         eyebrow="Use cases"
         title={<>AI at work in <span className="h-grad">your industry</span>.</>}
         sub="Every business runs differently. Here's where AI saves the most time across the industries we work with, and what we build to get it there."
+        side={<IndustryTicker cases={USE_CASES} />}
       />
       <section className="h-sec">
         <div className="h-wrap">
           <SectionHead eyebrow="By industry" title="Pick yours." sub="Don't see your industry? The same building blocks fit almost any operation. Tell us how yours runs." />
-          <div className="h-grid4">
-            {USE_CASES.map((u) => (
-              <Link href={`/use-cases/${u.slug}`} className="h-card2" key={u.slug}>
-                <span className="h-card2-tag">{u.name}</span>
-                <h3>{u.headline}</h3>
-                <p>{u.pains[0].title}.</p>
-                <div className="h-more">See the use case →</div>
-              </Link>
-            ))}
-          </div>
+          <IndustryCards cases={USE_CASES} />
         </div>
       </section>
       <section className="h-sec h-soft">

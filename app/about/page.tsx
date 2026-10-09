@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
 import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
+import { IconCards, AboutHeroCard, type IconName } from "@/components/PageVisuals";
 
 export const metadata: Metadata = {
   title: "About · Novum AI",
   description: "Novum helps operational businesses put AI to work. We teach your team, build the tools, connect your systems, and you own all of it."
 };
 
-const BELIEFS = [
-  { title: "Training is the job", body: "A tool nobody knows how to use saves nothing. We teach your team on their own work before anything goes live." },
-  { title: "AI should fit the work", body: "Your team shouldn't bend its workflow to a template. The tools should be built around how you already work." },
-  { title: "You should own what you pay for", body: "The code, the data, and the accounts belong to you. If we part ways, nothing breaks." },
-  { title: "Growth shouldn't raise your bill", body: "No seats, no revenue share. Hiring people and winning work adds nothing to your software cost." },
-  { title: "AI should work on your data", body: "An assistant and agents that know your business, see only what each role allows, and never train on your records." },
-  { title: "Map before you build", body: "We learn how the work moves before we write a line of code, and you get the scope and price in writing first. The discovery fee is credited toward what comes next." },
+const BELIEFS: { icon: IconName; title: string; body: string }[] = [
+  { icon: "users", title: "Training is the job", body: "A tool nobody knows how to use saves nothing. We teach your team on their own work before anything goes live." },
+  { icon: "target", title: "AI should fit the work", body: "Your team shouldn't bend its workflow to a template. The tools should be built around how you already work." },
+  { icon: "key", title: "You should own what you pay for", body: "The code, the data, the accounts, and the training library belong to your company, in its name." },
+  { icon: "flat", title: "Growth shouldn't raise your bill", body: "No seats, no revenue share. Hiring people and winning work adds nothing to your software cost." },
+  { icon: "db", title: "AI should work on your data", body: "An assistant and agents that know your business, see only what each role allows, and never train on your records." },
+  { icon: "map", title: "Map before you build", body: "We learn how the work moves before we write a line of code, and you get the scope and price in writing first. The discovery fee is credited toward what comes next." },
 ];
 
 export default function AboutPage() {
@@ -22,6 +23,7 @@ export default function AboutPage() {
         eyebrow="About Novum"
         title={<>We built it for ourselves <span className="h-grad">first</span>.</>}
         sub="We were business owners and operators. We put AI to work in our own company before we did it for anyone else: trained the team, built the tools, connected everything. Now we do it for other businesses."
+        side={<AboutHeroCard />}
       />
 
       <section className="h-sec">
@@ -41,11 +43,7 @@ export default function AboutPage() {
       <section className="h-sec h-soft">
         <div className="h-wrap">
           <SectionHead eyebrow="What we believe" title="How we build." />
-          <div className="h-grid3">
-            {BELIEFS.map((b) => (
-              <div className="h-card2" key={b.title}><h3>{b.title}</h3><p>{b.body}</p></div>
-            ))}
-          </div>
+          <IconCards items={BELIEFS} />
         </div>
       </section>
 

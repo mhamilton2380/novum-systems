@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
 import { ProcessTimeline, type ProcessStep } from "@/components/ProcessTimeline";
-import { Reveal } from "@/components/Reveal";
+import { IconCards, ThirtyDayCard, type IconName } from "@/components/PageVisuals";
 
 export const metadata: Metadata = {
   title: "How We Work · Novum AI",
@@ -55,25 +55,25 @@ const STEPS: ProcessStep[] = [
   },
 ];
 
-const RULES = [
-  { title: "Written scope and price first", body: "You know what's being built and what it costs before we start." },
-  { title: "A person approves", body: "Agents draft. Someone on your team reviews and signs off before anything leaves the company." },
-  { title: "No seats, no revenue share", body: "Adding people or growing the business adds no license fees. Your bill doesn't climb when you do." },
-  { title: "Your data stays yours", body: "AI works on your data, sees only what each role allows, and never trains on your records." },
+const RULES: { icon: IconName; title: string; body: string }[] = [
+  { icon: "pen", title: "Written scope and price first", body: "You know what's being built and what it costs before we start." },
+  { icon: "check", title: "A person approves", body: "Agents draft. Someone on your team reviews and signs off before anything leaves the company." },
+  { icon: "noseat", title: "No seats, no revenue share", body: "Adding people or growing the business adds no license fees. Your bill doesn't climb when you do." },
+  { icon: "lock", title: "Your data stays yours", body: "AI works on your data, sees only what each role allows, and never trains on your records." },
 ];
 
-const HANDOFF = [
-  { title: "The code", body: "The full source, in a repository your company owns. Any developer can work on it." },
-  { title: "The data", body: "Every record, in a database on an account in your company's name." },
-  { title: "The accounts", body: "Hosting and services set up under your company, with your team as the owners." },
-  { title: "The know-how", body: "Documentation and trained people, so your team knows how everything works." },
+const HANDOFF: { icon: IconName; title: string; body: string; foot: string }[] = [
+  { icon: "code", title: "The code", body: "The full source, in a repository your company owns. Any developer can work on it.", foot: "Owner: your company" },
+  { icon: "db", title: "The data", body: "Every record, in a database on an account in your company's name.", foot: "Owner: your company" },
+  { icon: "key", title: "The accounts", body: "Hosting and services set up under your company, with your team as the owners.", foot: "Owner: your company" },
+  { icon: "book", title: "The know-how", body: "Documentation, a recorded training library, and trained people, so your team knows how everything works.", foot: "Owner: your company" },
 ];
 
-const DRIVERS = [
-  { title: "How much we build", body: "A few agents on the tools you have is a smaller scope than a full platform replacement." },
-  { title: "How many tools we connect", body: "Each integration adds work, and some systems are easier to connect than others." },
-  { title: "How much data moves", body: "Years of records from old systems take longer to migrate than a clean start." },
-  { title: "How big the team is", body: "More people to train and more workflows to map means a larger discovery." },
+const DRIVERS: { icon: IconName; title: string; body: string }[] = [
+  { icon: "box", title: "How much we build", body: "A few agents on the tools you have is a smaller scope than a full platform replacement." },
+  { icon: "link", title: "How many tools we connect", body: "Each integration adds work, and some systems are easier to connect than others." },
+  { icon: "move", title: "How much data moves", body: "Years of records from old systems take longer to migrate than a clean start." },
+  { icon: "users", title: "How big the team is", body: "More people to train and more workflows to map means a larger discovery." },
 ];
 
 const FAQ = [
@@ -93,6 +93,7 @@ export default function HowWeWorkPage() {
         eyebrow="How we work"
         title={<>We learn how you work <span className="h-grad">first</span>.</>}
         sub="Every company runs differently. We start by learning how yours does and where AI fits, and nothing gets built until the scope and price are agreed in writing."
+        side={<ThirtyDayCard />}
         ctas={false}
       />
 
@@ -106,42 +107,21 @@ export default function HowWeWorkPage() {
       <section className="h-sec h-soft">
         <div className="h-wrap">
           <SectionHead eyebrow="How we operate" title="Four rules we work by." />
-          <Reveal>
-            <div className="hw-rules">
-              {RULES.map((r, i) => (
-                <div className="hw-rule rv-item" key={r.title} data-n={i + 1} style={{ ["--i" as string]: i }}>
-                  <h3>{r.title}</h3>
-                  <p>{r.body}</p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
+          <IconCards items={RULES} cols={4} />
         </div>
       </section>
 
       <section className="h-sec">
         <div className="h-wrap">
           <SectionHead eyebrow="At handoff" title="Everything is yours." sub="Whether you stay on a plan or stop after a project, you walk away with all of it." />
-          <Reveal>
-            <div className="h-grid4">
-              {HANDOFF.map((h, i) => (
-                <div className="h-card2 rv-item" key={h.title} style={{ ["--i" as string]: i }}><h3>{h.title}</h3><p>{h.body}</p></div>
-              ))}
-            </div>
-          </Reveal>
+          <IconCards items={HANDOFF} cols={4} />
         </div>
       </section>
 
       <section className="h-sec h-soft">
         <div className="h-wrap">
           <SectionHead eyebrow="What shapes the price" title="Scoped to your company, never per seat." sub="Every discovery and project is quoted in writing. These are the things that move the number." />
-          <Reveal>
-            <div className="h-grid4">
-              {DRIVERS.map((d, i) => (
-                <div className="h-card2 rv-item" key={d.title} style={{ ["--i" as string]: i }}><h3>{d.title}</h3><p>{d.body}</p></div>
-              ))}
-            </div>
-          </Reveal>
+          <IconCards items={DRIVERS} cols={4} />
           <p style={{ marginTop: 28, color: "var(--ink-2)", maxWidth: 720 }}>
             Not ready for a discovery? Start with a <Link href="/training" style={{ color: "inherit", fontWeight: 700 }}>training day</Link>.
           </p>
