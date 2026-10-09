@@ -20,7 +20,7 @@ const PARTS = [
   {
     tag: "AI Officer",
     title: "Someone owns AI for you, every month.",
-    body: "A fractional Chief AI Officer builds the agents and assistants, connects every tool you use, replaces costly software with software you own, and keeps the team trained as the tools change. Pro comes with a dedicated AI Officer.",
+    body: "A fractional Chief AI Officer builds the agents and assistants, connects every tool you use, replaces costly software with software you own, and keeps the team trained as the tools change.",
     href: "/ai-officer",
     more: "See AI Officer →",
   },
@@ -30,7 +30,7 @@ const FAQ = [
   { q: "What does AI implementation mean here?", a: "Getting AI into the daily work of your business. That takes two things: your people knowing how to use it, and someone building and maintaining the tools around your data. Training covers the first. An AI Officer covers the second." },
   { q: "Do we need both?", a: "No. Some teams book a training day and stop there. Most that go further find the training shows them what to build, and the AI Officer builds it." },
   { q: "Who owns what you build?", a: "You do. The code, the data, and the accounts are in your company's name, and your team keeps the know-how." },
-  { q: "Do we have to replace our software?", a: "No. We connect the tools that work and put AI on top. We only rebuild a platform when owning it costs less than renting it." },
+  { q: "Do we have to replace our software?", a: "No. We connect the tools that work and put AI on top. We only rebuild a platform when owning it costs less than the subscription." },
 ];
 
 export default function AiImplementationPage() {
@@ -52,7 +52,7 @@ export default function AiImplementationPage() {
 
       <section className="h-sec">
         <div className="h-wrap">
-          <SectionHead eyebrow="Two parts" title="Training and an AI Officer, working together." sub="Use one or both. Each makes the other work better." />
+          <SectionHead eyebrow="Two parts" title="Train the team. Then keep someone building." sub="Training gets your people using AI in a day. An AI Officer builds what they ask for, every month after." />
           <div className="h-grid3" style={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
             {PARTS.map((p) => (
               <Link href={p.href} className="h-card2" key={p.tag}>
@@ -91,7 +91,7 @@ export default function AiImplementationPage() {
         </div>
       </section>
 
-      <CtaBand />
+      <CtaBand title="Put AI on the real work." body="In 30 days your workflow is mapped, your team has trained on its own work, and your first agent is live on your data." />
     </div>
   );
 }

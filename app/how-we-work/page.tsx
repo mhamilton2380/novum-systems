@@ -79,7 +79,7 @@ const DRIVERS = [
 const FAQ = [
   { q: "What does it cost?", a: "We start with a discovery, quoted in writing by company size and tools. It ends with your first agent live, and the fee is credited toward what comes next. After that you pick an AI Officer plan (six months minimum, then month to month) or a one-time project quoted in writing. Training days are quoted by team size." },
   { q: "Can we just book training?", a: "Yes. A training day is five hours, tailored to your company type, and you can request one without a discovery. Many teams start there and add an AI Officer once they see what to build." },
-  { q: "Do we have to replace our software?", a: "No. Most clients keep the tools that work. We connect them and put AI on top. We only rebuild a platform when owning it costs less than renting it." },
+  { q: "Do we have to replace our software?", a: "No. Most clients keep the tools that work. We connect them and put AI on top. We only rebuild a platform when owning it costs less than the subscription." },
   { q: "Do we pay per user?", a: "No. There are no seats and no revenue share. Adding people or growing the business adds no license fees." },
   { q: "How long until we see something working?", a: "Your tool and cost report arrives within 7 days of kickoff, and your first agent is live on your own data within 30 days. After that, work ships in phases, so your team is using each piece before the next starts." },
   { q: "If you replace a platform, what happens to our data?", a: "We move it. Migration is part of the work, so your history comes with you." },
@@ -159,7 +159,7 @@ export default function HowWeWorkPage() {
         </div>
       </section>
 
-      <CtaBand />
+      <CtaBand title="Step one is a conversation." body="Tell us how your team works today. If a discovery makes sense, you get the scope and the price in writing before anything starts." />
     </div>
   );
 }

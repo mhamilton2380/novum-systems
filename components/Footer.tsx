@@ -19,15 +19,15 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div style={{ marginBottom: 24 }}><Logo dark /></div>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, margin: 0 }}>We help operational businesses put AI to work. We teach your team, build the tools, connect your systems, and you own all of it.</p>
+            <p style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, margin: 0 }}>We help operational businesses put AI to work. We teach your team, build the tools, connect your systems, and you own all of it.</p>
           </div>
 
           {/* Work with us */}
           <div>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.72rem", color: "#EAEAEA", marginBottom: 20, letterSpacing: "0.08em", textTransform: "uppercase" }}>Work with us</p>
+            <p style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontWeight: 600, fontSize: "0.72rem", color: "#EAEAEA", marginBottom: 20, letterSpacing: "0.08em", textTransform: "uppercase" }}>Work with us</p>
             {([["AI Implementation", "/ai-implementation"], ["AI Officer", "/ai-officer"], ["Training", "/training"], ["Discovery", "/how-we-work"]] as const).map(([s, href]) => (
               <Link key={s} href={href}
-                style={{ display: "block", fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", textDecoration: "none", marginBottom: 11, transition: "color 0.18s" }}
+                style={{ display: "block", fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", textDecoration: "none", marginBottom: 11, transition: "color 0.18s" }}
                 onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#EAEAEA"; }}
                 onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.55)"; }}
               >{s}</Link>
@@ -36,10 +36,10 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.72rem", color: "#EAEAEA", marginBottom: 20, letterSpacing: "0.08em", textTransform: "uppercase" }}>Company</p>
+            <p style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontWeight: 600, fontSize: "0.72rem", color: "#EAEAEA", marginBottom: 20, letterSpacing: "0.08em", textTransform: "uppercase" }}>Company</p>
             {([["Use Cases", "/use-cases"], ["Case Study", "/case-studies"], ["How We Work", "/how-we-work"], ["About", "/about"]] as const).map(([label, href]) => (
               <Link key={label} href={href}
-                style={{ display: "block", fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", textDecoration: "none", marginBottom: 11, transition: "color 0.18s" }}
+                style={{ display: "block", fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", textDecoration: "none", marginBottom: 11, transition: "color 0.18s" }}
                 onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#EAEAEA"; }}
                 onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.55)"; }}
               >{label}</Link>
@@ -48,10 +48,10 @@ export default function Footer() {
 
           {/* Get Started */}
           <div>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.72rem", color: "#EAEAEA", marginBottom: 20, letterSpacing: "0.08em", textTransform: "uppercase" }}>Get Started</p>
+            <p style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontWeight: 600, fontSize: "0.72rem", color: "#EAEAEA", marginBottom: 20, letterSpacing: "0.08em", textTransform: "uppercase" }}>Get Started</p>
             {([["Book a Call", "/contact"], ["Book a training day", "/training"]] as const).map(([label, href]) => (
               <Link key={label} href={href}
-                style={{ display: "block", fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", textDecoration: "none", marginBottom: 11, transition: "color 0.18s" }}
+                style={{ display: "block", fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", textDecoration: "none", marginBottom: 11, transition: "color 0.18s" }}
                 onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#EAEAEA"; }}
                 onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.55)"; }}
               >{label}</Link>
@@ -61,14 +61,14 @@ export default function Footer() {
 
         {/* Copyright */}
         <div style={{ padding: "18px 0 0" }}>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem", color: "rgba(255,255,255,0.4)", margin: 0 }}>Novum AI © {new Date().getFullYear()}</p>
+          <p style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "0.8rem", color: "rgba(255,255,255,0.4)", margin: 0 }}>Novum AI © {new Date().getFullYear()}</p>
         </div>
       </div>
 
       {/* Big NOVUM wordmark */}
       <div style={{ overflow: "hidden", lineHeight: 0.82, marginTop: 8 }}>
         <p style={{
-          fontFamily: "'DM Sans', sans-serif",
+          fontFamily: "var(--font-dm-sans), sans-serif",
           fontWeight: 700,
           fontSize: "clamp(90px, 22.5vw, 280px)",
           color: "#EAEAEA",

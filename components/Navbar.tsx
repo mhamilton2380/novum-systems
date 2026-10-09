@@ -72,7 +72,7 @@ export default function Navbar() {
                 <div className="nv-panel">
                   <Link href="/ai-implementation">AI Implementation<small>Training plus an AI Officer: your team using AI, and the tools built.</small></Link>
                   <hr />
-                  <Link href="/ai-officer">AI Officer<small>Your AI team on call. Pro gets a dedicated AI Officer.</small></Link>
+                  <Link href="/ai-officer">AI Officer<small>A fractional Chief AI Officer, every month.</small></Link>
                   <Link href="/training">Training<small>A 5-hour AI training day for your team.</small></Link>
                 </div>
               </div>

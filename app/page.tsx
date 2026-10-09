@@ -113,7 +113,7 @@ const FAQ = [
   },
   {
     q: "Do we have to replace our software?",
-    a: "No. Most clients keep the tools that work. We connect them and put AI on top. We only rebuild a platform when owning it costs less than renting it.",
+    a: "No. Most clients keep the tools that work. We connect them and put AI on top. We only rebuild a platform when owning it costs less than the subscription.",
   },
   {
     q: "What can the AI actually do?",
@@ -137,7 +137,7 @@ export default function HomePage() {
               AI and software built around <span className="h-grad">how you work</span>.
             </h1>
             <p className="h-hero-sub">
-              Generic software makes your team work its way. We sit down with your team, learn how the work actually moves, and build what fits: AI agents on the repeat work, your tools connected, and the platforms you rent replaced with software you own.
+              Generic software makes your team work its way. We sit down with your team, learn how the work actually moves, and build what fits: AI agents on the repeat work, your tools connected, and the platforms you overpay for replaced with software you own.
             </p>
             <ul className="h-proof">
               <li>We learn your workflow first. Scope and price in writing before anything is built.</li>
@@ -199,7 +199,7 @@ export default function HomePage() {
               <li><span><b>Teach.</b> Your team trained on its own work, with playbooks it keeps.</span></li>
               <li><span><b>Build.</b> Agents and an assistant that do the repeat work for review.</span></li>
               <li><span><b>Connect.</b> The tools you keep, wired so data moves on its own.</span></li>
-              <li><span><b>Own.</b> Software that replaces what you rent, in your company&apos;s name.</span></li>
+              <li><span><b>Own.</b> Software that replaces the costly subscriptions, in your company&apos;s name.</span></li>
             </ul>
           </div>
           <ExampleBuilds />

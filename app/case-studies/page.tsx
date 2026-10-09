@@ -13,8 +13,8 @@ const BEFORE = [
 ];
 
 const BUILT = [
-  { tag: "Core", title: "Construction management, rebuilt", body: "We rebuilt the platform they were paying for around how they run jobs: projects, schedules, RFIs, submittals, and change orders." },
-  { tag: "Integrations", title: "Connected to their billing", body: "The new system talks to their custom billing application, so project and billing data stay in sync and their billing process didn't have to change." },
+  { tag: "Rebuilt", title: "Construction management, rebuilt", body: "We rebuilt the platform they were paying for around how they run jobs: projects, schedules, RFIs, submittals, and change orders." },
+  { tag: "Connected", title: "Connected to their billing", body: "The new system talks to their custom billing application, so project and billing data stay in sync and their billing process didn't have to change." },
   { tag: "Agents", title: "RFIs and submittals, drafted", body: "Agents draft RFIs and submittal packages from field notes and project documents. A project manager reviews, edits, and sends." },
 ];
 
@@ -76,7 +76,7 @@ export default function CaseStudyPage() {
         </div>
       </section>
 
-      <CtaBand title="See where AI fits in your business." />
+      <CtaBand title="What is your software bill buying you?" body="Bring the bill. We'll map what each tool does for you, what it costs, and what owning the important ones would take." />
     </div>
   );
 }

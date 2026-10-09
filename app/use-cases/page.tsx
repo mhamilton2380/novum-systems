@@ -18,7 +18,7 @@ export default function UseCasesPage() {
       />
       <section className="h-sec">
         <div className="h-wrap">
-          <SectionHead eyebrow="By industry" title="Pick yours." sub="Don't see your industry? The same five pieces fit almost any operation. Tell us how yours runs." />
+          <SectionHead eyebrow="By industry" title="Pick yours." sub="Don't see your industry? The same building blocks fit almost any operation. Tell us how yours runs." />
           <div className="h-grid4">
             {USE_CASES.map((u) => (
               <Link href={`/use-cases/${u.slug}`} className="h-card2" key={u.slug}>
@@ -47,7 +47,7 @@ export default function UseCasesPage() {
           </Link>
         </div>
       </section>
-      <CtaBand />
+      <CtaBand title="Your industry, your workflow." body="Every build starts from how your team actually works. A discovery maps it and puts the first agent live within 30 days." />
     </div>
   );
 }

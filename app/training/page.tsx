@@ -60,7 +60,7 @@ export default function TrainingPage() {
         </div>
       </section>
 
-      <CtaBand title="Want it built, not just taught?" body="Start with a discovery. We map how your work moves, put your first agent live within 30 days, and you can move onto an AI Officer from there." />
+      <CtaBand title="Ready to build on what they learned?" body="A discovery maps how your work moves and puts the first agent live on your own data within 30 days. Your team will already know how to use it." />
     </div>
   );
 }

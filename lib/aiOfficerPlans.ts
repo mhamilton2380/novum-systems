@@ -51,7 +51,7 @@ export const PLANS: Plan[] = [
     tagline: "For bigger teams",
     lanes: 4,
     lanesLabel: "Several builds at once",
-    points: ["On-site training", "SSO, IP allowlisting, your own keys", "Annual pen test", "Contractual response times"],
+    points: ["On-site team sessions", "SSO, IP allowlisting, your own keys", "Annual pen test", "Contractual response times"],
     highlights: [],
   },
 ];

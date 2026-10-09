@@ -24,7 +24,7 @@ export function Logo({ dark = false, size = 30 }: { dark?: boolean; size?: numbe
     <span style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>
       <LogoMark size={size} dark={dark} />
       <span style={{
-        fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: `${size * 0.036}rem`,
+        fontFamily: "var(--font-dm-sans), sans-serif", fontWeight: 700, fontSize: `${size * 0.036}rem`,
         letterSpacing: "-0.035em", color: dark ? "#fff" : "#0b1b2e", lineHeight: 1,
       }}>
         Novum

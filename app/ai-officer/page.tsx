@@ -21,7 +21,7 @@ const MONTHLY = [
 ];
 
 const FIT = [
-  { title: "No technical team", body: "You run a company of 15 to 100 people, nobody owns software, and tools get bought one at a time." },
+  { title: "No technical team", body: "You run a company under 100 people, nobody owns software, and tools get bought one at a time." },
   { title: "Software you want kept current", body: "You built with us and want the system maintained and improved as the business grows." },
   { title: "Ready to see it work", body: "You'd rather see one agent working on your own data before committing. Discovery ends with exactly that." },
 ];
@@ -44,7 +44,7 @@ export default function AiOfficerPage() {
         eyebrow="Fractional Chief AI Officer"
         title={<>Your AI team, <span className="h-grad">on call</span>.</>}
         side={<OfficerHeroCard />}
-        sub="Most companies under 100 people have no one whose job is AI. We act as yours: every tool connected, agents and builds shipping one after another, and your team trained to use them. Pro gets a dedicated AI Officer. Start with a discovery."
+        sub="Most companies under 100 people have no one whose job is AI. We act as yours: every tool connected, agents and builds shipping one after another, and your team trained to use them. Start with a discovery."
       />
 
       <section className="h-sec">
@@ -114,7 +114,7 @@ export default function AiOfficerPage() {
         </div>
       </section>
 
-      <CtaBand />
+      <CtaBand title="Your AI Officer starts with a discovery." body="30 days: workflow mapped, tools audited, team trained, first agent live. The fee is credited toward your plan." />
     </div>
   );
 }

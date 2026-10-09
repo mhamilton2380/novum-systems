@@ -1,4 +1,4 @@
-export type SystemName = "Core" | "Integrations" | "Vault" | "AI Assistant" | "Agents";
+export type SystemName = "Your system" | "Connected tools" | "Documents" | "AI Assistant" | "Agents";
 
 export type UseCase = {
   slug: string;
@@ -35,17 +35,17 @@ export const USE_CASES: UseCase[] = [
     ],
     builds: [
       {
-        system: "Core",
+        system: "Your system",
         title: "Every job, budget, and schedule in one view",
         body: "Track projects, phases, budgets versus actuals, and crew schedules from a single dashboard built around how your company actually runs jobs.",
       },
       {
-        system: "Integrations",
+        system: "Connected tools",
         title: "QuickBooks and your scheduling tool, connected",
         body: "Job costs post to QuickBooks automatically and schedule changes sync both directions, so field and office never work from different numbers.",
       },
       {
-        system: "Vault",
+        system: "Documents",
         title: "Plans, permits, and submittals, always current",
         body: "Drawings, permits, and subcontractor certificates live in one searchable place with the latest revision flagged, and access set by role.",
       },
@@ -95,17 +95,17 @@ export const USE_CASES: UseCase[] = [
     ],
     builds: [
       {
-        system: "Core",
+        system: "Your system",
         title: "Jobs, techs, and schedules in one board",
         body: "See every scheduled call, technician location, and job status on one dashboard, with revenue and callback rates tracked automatically.",
       },
       {
-        system: "Integrations",
+        system: "Connected tools",
         title: "QuickBooks and your dispatch software, synced",
         body: "Completed jobs post to QuickBooks the moment a tech closes them out, and dispatch changes reflect everywhere without double entry.",
       },
       {
-        system: "Vault",
+        system: "Documents",
         title: "Equipment history and warranties on file",
         body: "Every unit's service history, warranty terms, and photos are searchable by address, so any tech can pull it up before a callback.",
       },
@@ -155,17 +155,17 @@ export const USE_CASES: UseCase[] = [
     ],
     builds: [
       {
-        system: "Core",
+        system: "Your system",
         title: "Every matter, deadline, and hour in one view",
         body: "Track matters, court dates, billable time, and client budgets from a single dashboard built around how your firm actually works.",
       },
       {
-        system: "Integrations",
+        system: "Connected tools",
         title: "Outlook and your billing system, connected",
         body: "Calendar entries, time entries, and client communications sync automatically so nothing has to be re-keyed between systems.",
       },
       {
-        system: "Vault",
+        system: "Documents",
         title: "Every filing and contract, version controlled",
         body: "Pleadings, contracts, and discovery documents live in one searchable place with role-based access, so paralegals and partners see what they should.",
       },
@@ -215,17 +215,17 @@ export const USE_CASES: UseCase[] = [
     ],
     builds: [
       {
-        system: "Core",
+        system: "Your system",
         title: "Every client engagement and deadline in one view",
         body: "Track engagements, filing deadlines, staff assignments, and billing from a single dashboard built around how your firm runs tax season.",
       },
       {
-        system: "Integrations",
+        system: "Connected tools",
         title: "QuickBooks and your tax software, connected",
         body: "Client bookkeeping data flows from QuickBooks into your workflow automatically, and engagement status syncs back without re-entry.",
       },
       {
-        system: "Vault",
+        system: "Documents",
         title: "Working papers and client files, organized and searchable",
         body: "Tax returns, working papers, and client source documents live in one searchable place with access set by staff role.",
       },
@@ -275,17 +275,17 @@ export const USE_CASES: UseCase[] = [
     ],
     builds: [
       {
-        system: "Core",
+        system: "Your system",
         title: "Every client, policy, and renewal in one view",
         body: "Track clients, policies, renewal dates, and producer pipelines from a single dashboard built around how your agency actually sells and services.",
       },
       {
-        system: "Integrations",
+        system: "Connected tools",
         title: "Salesforce and your carrier systems, connected",
         body: "Client and policy data sync between Salesforce and the tools you already use, so producers stop re-entering the same information twice.",
       },
       {
-        system: "Vault",
+        system: "Documents",
         title: "Policies, applications, and client files, all searchable",
         body: "Policy documents, applications, and correspondence live in one searchable place with access set by role across your agency.",
       },
@@ -335,17 +335,17 @@ export const USE_CASES: UseCase[] = [
     ],
     builds: [
       {
-        system: "Core",
+        system: "Your system",
         title: "Scheduling, visits, and billing in one view",
         body: "Track appointments, visit status, and billing from a single dashboard built around how your practice actually runs a patient day.",
       },
       {
-        system: "Integrations",
+        system: "Connected tools",
         title: "Your EHR and billing system, connected",
         body: "Scheduling, visit notes, and billing data sync between your existing EHR and practice management tools without duplicate entry.",
       },
       {
-        system: "Vault",
+        system: "Documents",
         title: "Patient records with role-based access and a full audit trail",
         body: "Records, intake forms, and referrals live in one searchable place, with access set by role and every view logged for accountability.",
       },
@@ -395,17 +395,17 @@ export const USE_CASES: UseCase[] = [
     ],
     builds: [
       {
-        system: "Core",
+        system: "Your system",
         title: "Every client, campaign, and deadline in one view",
         body: "Track clients, campaigns, deliverables, and budgets from a single dashboard built around how your agency actually runs projects.",
       },
       {
-        system: "Integrations",
+        system: "Connected tools",
         title: "Your ad platforms and CRM, connected",
         body: "Campaign performance data flows in from the ad platforms you already run, and client records sync with your CRM without manual pulls.",
       },
       {
-        system: "Vault",
+        system: "Documents",
         title: "Creative files and approvals, all in one place",
         body: "Creative assets, contracts, and approval history live in one searchable place with access set by client team and role.",
       },
@@ -455,17 +455,17 @@ export const USE_CASES: UseCase[] = [
     ],
     builds: [
       {
-        system: "Core",
+        system: "Your system",
         title: "Orders, inventory, and production status in one view",
         body: "Track orders, inventory levels, and production stage from a single dashboard built around how your shop actually runs a work order.",
       },
       {
-        system: "Integrations",
+        system: "Connected tools",
         title: "Your ERP and QuickBooks, connected",
         body: "Order and inventory data sync between your existing ERP and accounting systems, so numbers match without manual reconciliation.",
       },
       {
-        system: "Vault",
+        system: "Documents",
         title: "Specs, quality records, and supplier docs, organized",
         body: "Product specs, quality inspection records, and supplier documents live in one searchable place with access set by role.",
       },
@@ -515,17 +515,17 @@ export const USE_CASES: UseCase[] = [
     ],
     builds: [
       {
-        system: "Core",
+        system: "Your system",
         title: "Open orders, backorders, and margin in one view",
         body: "See every open order, backordered line, and promise date by customer and rep, with margin tracked as orders are entered, built on your ERP data.",
       },
       {
-        system: "Integrations",
+        system: "Connected tools",
         title: "Your ERP, inbox, and accounting, connected",
         body: "The order inbox, the ERP, and accounting share one set of data, so an order entered once shows up everywhere it needs to.",
       },
       {
-        system: "Vault",
+        system: "Documents",
         title: "Price agreements, spec sheets, and vendor terms, searchable",
         body: "Customer contracts, cross-reference lists, product spec sheets, and vendor terms live in one place, searchable in plain English and limited by role.",
       },

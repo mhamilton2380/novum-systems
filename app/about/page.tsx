@@ -49,7 +49,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <CtaBand title="Let's talk about your operation." />
+      <CtaBand title="Let's talk about your operation." body="Tell us how the work moves today and what the software costs. We'll tell you where AI fits, and where it doesn't." />
     </div>
   );
 }

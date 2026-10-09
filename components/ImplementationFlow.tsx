@@ -290,7 +290,7 @@ const DOORS = [
     id: "officer",
     need: "I want someone to own AI for us",
     title: "Start with an AI Officer",
-    body: "Every plan begins with a discovery, then runs month to month after a six-month minimum. Pro comes with a dedicated AI Officer.",
+    body: "Every plan begins with a discovery, then runs month to month after a six-month minimum.",
     href: "/ai-officer#pricing",
     cta: "See AI Officer plans",
     icon: "M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7zM9 12l2 2 4-4",

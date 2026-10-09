@@ -13,10 +13,10 @@ type Msg =
 const SCRIPT: { msg: Msg; delay: number }[] = [
   { delay: 1000, msg: { kind: "user", text: "Send the Miller service agreement and last invoice to Dana Miller." } },
   { delay: 1400, msg: { kind: "thinking" } },
-  { delay: 2600, msg: { kind: "ai", text: "Found both in Vault: the 2025 maintenance agreement and invoice #8812. Sent to Dana Miller from your Outlook." } },
+  { delay: 2600, msg: { kind: "ai", text: "Found both in your documents: the 2025 maintenance agreement and invoice #8812. Sent to Dana Miller from your Outlook." } },
   { delay: 5000, msg: { kind: "user", text: "Which techs are running behind today, and why?" } },
   { delay: 1400, msg: { kind: "thinking" } },
-  { delay: 2600, msg: { kind: "ai", text: "Four techs are behind. I compared the dispatch board in Core against GPS and job notes." } },
+  { delay: 2600, msg: { kind: "ai", text: "Four techs are behind. I compared the dispatch board against GPS and job notes." } },
   { delay: 1800, msg: { kind: "budget" } },
   { delay: 5500, msg: { kind: "user", text: "Text the customers on those jobs with a new arrival window." } },
   { delay: 1400, msg: { kind: "thinking" } },
@@ -158,7 +158,7 @@ function BudgetCard() {
           <span style={{ fontSize: "0.82rem", fontWeight: 700, color: C.red, whiteSpace: "nowrap" }}>{j.over}</span>
         </div>
       ))}
-      {n > JOBS.length && <Sources items={["Core", "GPS", "Job notes"]} />}
+      {n > JOBS.length && <Sources items={["Dispatch board", "GPS", "Job notes"]} />}
     </div>
   );
 }
@@ -280,7 +280,7 @@ export function AssistantChat({ height = 600, compact = false, bare = false }: {
   return (
     <div style={{
       background: "#fff", display: "flex", flexDirection: "column",
-      width: "100%", height, overflow: "hidden", fontFamily: "'DM Sans', sans-serif",
+      width: "100%", height, overflow: "hidden", fontFamily: "var(--font-dm-sans), sans-serif",
     }}>
       {/* Header */}
       {!bare && <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, padding: "16px 20px", borderBottom: `1px solid ${C.line}`, flexShrink: 0 }}>
@@ -288,7 +288,7 @@ export function AssistantChat({ height = 600, compact = false, bare = false }: {
           <Mark size={34} />
           <div>
             <div style={{ fontSize: "1rem", fontWeight: 700, color: C.ink, letterSpacing: "-0.01em" }}>AI Assistant</div>
-            <div style={{ fontSize: "0.74rem", color: C.ink3 }}>Connected to Core, Vault, GPS, Outlook</div>
+            <div style={{ fontSize: "0.74rem", color: C.ink3 }}>Connected to dispatch, documents, GPS, Outlook</div>
           </div>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 7, flexShrink: 0 }}>
