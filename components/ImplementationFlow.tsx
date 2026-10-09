@@ -272,7 +272,7 @@ const DOORS = [
     id: "train",
     need: "My team needs to learn AI",
     title: "Start with a training day",
-    body: "Your team gets up to speed in five hours, with a short list of agents worth building.",
+    body: "Your team gets up to speed in five hours, with a short list of tools and a clear sense of what AI can do for them.",
     href: "/training",
     cta: "Book a training day",
     icon: "M4 19V9l8-5 8 5v10M9 19v-6h6v6",
