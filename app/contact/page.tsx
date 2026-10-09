@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { PageHero } from "@/components/PageBits";
-import { HeroSteps } from "@/components/PageVisuals";
+import { HeroSteps, Guarantee } from "@/components/PageVisuals";
 import { USE_CASE_NAV } from "@/lib/nav";
 
 export default function ContactPage() {
@@ -54,6 +54,7 @@ export default function ContactPage() {
             <div><b>What happens next</b><p>We read what you send, then set up a call to walk through how your operation runs.</p></div>
             <div><b>What to bring</b><p>The tools you pay for, where your team loses the most time, and what you&apos;ve tried with AI so far.</p></div>
             <div><b>When you&apos;ll hear back</b><p>Usually within one business day, with a time that fits what you tell us below.</p></div>
+            <Guarantee compact />
           </div>
 
           <div className="h-formcard">

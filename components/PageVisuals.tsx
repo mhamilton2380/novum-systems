@@ -431,3 +431,222 @@ export function EvidenceBand() {
     </section>
   );
 }
+
+// ─── the discovery guarantee (approved by Michael 2026-10-08) ───────────────
+export const GUARANTEE = {
+  text: "Your first build is live on your own data within 30 days, and the discovery finds at least three times its fee in yearly savings, in hours back or software you can cut. If either one doesn't happen, you get the fee back, and you keep everything we delivered.",
+  terms: [
+    "You give us access, the tool list, and interview time on the schedule we agree at kickoff.",
+    "Savings are measured the way the discovery report measures them: documented software cuts, plus hours at the wage rates in the report.",
+    "Ask for the refund in writing within 14 days of the report.",
+  ],
+};
+export function GuaranteeSeal({ size = 120 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 120 120" aria-hidden="true" className="pv-seal">
+      <defs>
+        <linearGradient id="pv-seal-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#00b36e" /><stop offset="0.55" stopColor="#0891b2" /><stop offset="1" stopColor="#3b6fe0" /></linearGradient>
+        <path id="pv-seal-arc" d="M60 60 m-44 0 a44 44 0 1 1 88 0 a44 44 0 1 1 -88 0" />
+      </defs>
+      <circle cx="60" cy="60" r="57" fill="#0b1b2e" stroke="url(#pv-seal-g)" strokeWidth="3" />
+      <circle cx="60" cy="60" r="34" fill="none" stroke="rgba(255,255,255,0.14)" strokeWidth="1" />
+      <text fill="#7fe3c0" fontSize="9" fontWeight="700" letterSpacing="2.4"><textPath href="#pv-seal-arc">LIVE IN 30 DAYS · 3X THE FEE FOUND ·</textPath></text>
+      <path d="M48 61l8 8 16-17" fill="none" stroke="#34d399" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+export function Guarantee({ compact = false }: { compact?: boolean }) {
+  if (compact)
+    return (
+      <div className="pv-gline">
+        <GuaranteeSeal size={54} />
+        <p><strong>The discovery guarantee.</strong> First build live in 30 days and at least 3x the fee in yearly savings found, or the fee comes back. <Link href="/how-we-work#guarantee">The terms →</Link></p>
+      </div>
+    );
+  return (
+    <div className="pv-guar" id="guarantee">
+      <GuaranteeSeal />
+      <div>
+        <div className="h-eyebrow">The discovery guarantee</div>
+        <h3>Live in 30 days, and worth three times the fee, or your money back.</h3>
+        <p>{GUARANTEE.text}</p>
+        <details>
+          <summary>The terms</summary>
+          <ul>{GUARANTEE.terms.map((t) => <li key={t}>{t}</li>)}</ul>
+        </details>
+      </div>
+    </div>
+  );
+}
+
+// ─── How We Work: four rules, as a dark band with big numbers ───────────────
+export function RulesBand({ rules }: { rules: { title: string; body: string }[] }) {
+  return (
+    <section className="h-sec h-dark">
+      <div className="h-wrap">
+        <div className="h-head">
+          <div className="h-eyebrow">How we operate</div>
+          <h2>Four rules we work by.</h2>
+        </div>
+        <Reveal>
+          <div className="pv-rules">
+            {rules.map((r, i) => (
+              <div key={r.title} className="pv-rule rv-item" style={{ ["--i" as string]: i }}>
+                <span className="pv-rule-n">0{i + 1}</span>
+                <h3>{r.title}</h3>
+                <p>{r.body}</p>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+// ─── How We Work: the handoff, as an ownership transfer ─────────────────────
+export function HandoffDoc({ items }: { items: { icon: IconName; title: string; body: string; where: string }[] }) {
+  return (
+    <Reveal>
+      <div className="pv-transfer">
+        <div className="pv-transfer-h">
+          <span className="pv-dots" aria-hidden="true"><i /><i /><i /></span>
+          <strong>Transfer of ownership</strong>
+          <em>At handoff</em>
+        </div>
+        <div className="pv-transfer-body">
+          {items.map((it, i) => (
+            <div key={it.title} className="pv-transfer-row rv-item" style={{ ["--i" as string]: i }}>
+              <span className="oc-role-icon"><Icon name={it.icon} /></span>
+              <div><strong>{it.title}</strong><small>{it.body}</small><code>{it.where}</code></div>
+              <span className="pv-transfer-ok" aria-label="Transferred"><Icon name="check" size={16} /></span>
+            </div>
+          ))}
+          <div className="pv-transfer-foot">
+            <span>Owner on every account</span>
+            <strong>Your company</strong>
+            <span className="pv-stamp" aria-hidden="true">Signed over</span>
+          </div>
+        </div>
+      </div>
+    </Reveal>
+  );
+}
+
+// ─── How We Work: what moves the price, as scope meters ─────────────────────
+export function ScopeMeters({ items }: { items: { icon: IconName; title: string; lo: string; hi: string; body: string; at: number }[] }) {
+  return (
+    <Reveal>
+      <div className="pv-scope">
+        {items.map((it, i) => (
+          <div key={it.title} className="pv-scope-row rv-item" style={{ ["--i" as string]: i, ["--at" as string]: `${it.at}%` }}>
+            <div className="pv-scope-l"><span className="oc-role-icon"><Icon name={it.icon} /></span><div><strong>{it.title}</strong><small>{it.body}</small></div></div>
+            <div className="pv-scope-m">
+              <div className="pv-scope-track"><i /><b /></div>
+              <div className="pv-scope-ends"><span>{it.lo}</span><span>{it.hi}</span></div>
+            </div>
+          </div>
+        ))}
+        <div className="pv-scope-foot">
+          <span className="pv-noseat">Per seat</span>
+          <span className="pv-noseat">Revenue share</span>
+          <p>Neither one is ever part of the price. Every discovery and project is quoted in writing first.</p>
+        </div>
+      </div>
+    </Reveal>
+  );
+}
+
+// ─── productivity evidence, by type of work (all from "How Much Faster AI Makes the Work", 2026-10-08) ─
+const BY_WORK = [
+  { w: "Reports, emails, memos", n: "40% less time", d: "with quality up 18%", s: "MIT, Science, 2023 · about 450 professionals, randomized" },
+  { w: "Analysis and writing", n: "25% faster", d: "12% more tasks done, quality up more than 40%", s: "Harvard and BCG, 2023 · 758 consultants, randomized" },
+  { w: "Email", n: "About 2 hours", d: "less a week spent on email per person", s: "Microsoft and NBER, 2025 · 7,137 workers at 66 firms" },
+  { w: "Accounting", n: "7.5 days sooner", d: "to close the books, with 55% more clients per accountant", s: "Stanford and MIT, 2025 · early working paper" },
+  { w: "Customer support", n: "14% more", d: "issues resolved per hour, and 34% for the newest staff", s: "Quarterly Journal of Economics, 2025 · 5,172 agents" },
+  { w: "Insurance claims", n: "80% faster", d: "on small claims, with a person still approving each payment", s: "Allianz, 2025 · company-reported" },
+  { w: "Underwriting", n: "About half", d: "the review time per application, underwriters still decide", s: "Aviva, 2026 · company-reported" },
+  { w: "Documents and reports", n: "87% to 95%", d: "less time per task, across real work conversations", s: "Anthropic, 2025 · an estimate from 100,000 conversations" },
+];
+const PER_TASK = [
+  { t: "Key one invoice into the system", p: "4 minutes, about $1.89", a: "About $0.01", n: "Spot-check a sample" },
+  { t: "Draft a two-page memo", p: "45 minutes, about $24.50", a: "About $0.02, plus 10 minutes of review", n: "Review is most of the real cost" },
+  { t: "Handle a three-minute phone call", p: "About $1.54", a: "About $0.33 to $0.42", n: "Answers at 2 a.m., many calls at once" },
+];
+export function ProductivityEvidence() {
+  return (
+    <>
+      <section className="h-sec">
+        <div className="h-wrap">
+          <div className="h-head">
+            <div className="h-eyebrow">What the studies measured</div>
+            <h2>On work that suits AI, studies measure 25% to 56% less time per task.</h2>
+            <p>Every figure below comes from a randomized trial, a field study at real companies, or a published company result. Company-reported numbers are marked.</p>
+          </div>
+          <Reveal>
+            <div className="pv-work">
+              {BY_WORK.map((x, i) => (
+                <div key={x.w} className="pv-workcard rv-item" style={{ ["--i" as string]: i }}>
+                  <span className="h-card2-tag">{x.w}</span>
+                  <strong>{x.n}</strong>
+                  <p>{x.d}</p>
+                  <small>{x.s}</small>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="h-sec h-soft">
+        <div className="h-wrap">
+          <div className="h-head">
+            <div className="h-eyebrow">Cost per task</div>
+            <h2>An agent costs cents per task. A person in the same seat costs dollars.</h2>
+            <p>Agents rarely take over a whole job, so the useful comparison is one task at a time. Task times are our estimates; wages are BLS medians with benefits, and agent costs use published model and voice prices.</p>
+          </div>
+          <Reveal>
+            <div className="pv-pertask">
+              <div className="pv-pt-row head"><span>Task</span><span>A person</span><span>An AI agent</span><span>Worth knowing</span></div>
+              {PER_TASK.map((r, i) => (
+                <div key={r.t} className="pv-pt-row rv-item" style={{ ["--i" as string]: i }}>
+                  <span>{r.t}</span><span>{r.p}</span><span className="pv-pt-a">{r.a}</span><span className="pv-pt-n">{r.n}</span>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+          <p className="pv-fine">The per-task prices leave out the fixed work: building the agent, connecting it to your systems, and keeping it running. That is what a plan covers.</p>
+        </div>
+      </section>
+
+      <section className="h-sec h-dark">
+        <div className="h-wrap h-feature">
+          <div>
+            <div className="h-eyebrow">Where it goes wrong</div>
+            <h2>Handing people a chatbot moves the numbers very little.</h2>
+            <p className="pv-lead pv-lead-dark">The big gains come from three choices: picking tasks that suit AI, connecting it to your own data, and training people on where it fails. Skip them and the results look like the numbers on the right.</p>
+          </div>
+          <Reveal>
+            <div className="pv-wrong">
+              <div className="pv-wrong-row rv-item" style={{ ["--i" as string]: 0 }}>
+                <strong>About 3%</strong>
+                <p>time saved when 25,000 workers were given AI with no plan, and no change in hours or earnings</p>
+                <small>University of Chicago, 2023 to 2024</small>
+              </div>
+              <div className="pv-wrong-row rv-item" style={{ ["--i" as string]: 1 }}>
+                <strong>84% down to 60% to 70%</strong>
+                <p>right answers fell when consultants used AI on a task it handles badly, and the wrong answers read as more polished</p>
+                <small>Harvard and BCG, 2023</small>
+              </div>
+              <div className="pv-wrong-row pv-wrong-ours rv-item" style={{ ["--i" as string]: 2 }}>
+                <strong>8 hours to 15 minutes</strong>
+                <p>a multi-step analysis and write-up, and a presentation deck from 7 to 10 days down to one, in our own operating work</p>
+                <small>Our own numbers, not a study</small>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+    </>
+  );
+}

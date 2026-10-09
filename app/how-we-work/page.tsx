@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
 import { ProcessTimeline, type ProcessStep } from "@/components/ProcessTimeline";
-import { IconCards, ThirtyDayCard, type IconName } from "@/components/PageVisuals";
+import { ThirtyDayCard, Guarantee, GUARANTEE, RulesBand, HandoffDoc, ScopeMeters, type IconName } from "@/components/PageVisuals";
 import { DiscoveryArtifacts } from "@/components/DiscoveryArtifacts";
 
 export const metadata: Metadata = {
@@ -63,21 +63,22 @@ const RULES: { icon: IconName; title: string; body: string }[] = [
   { icon: "lock", title: "Your data stays yours", body: "AI works on your data, sees only what each role allows, and never trains on your records." },
 ];
 
-const HANDOFF: { icon: IconName; title: string; body: string; foot: string }[] = [
-  { icon: "code", title: "The code", body: "The full source, in a repository your company owns. Any developer can work on it.", foot: "Owner: your company" },
-  { icon: "db", title: "The data", body: "Every record, in a database on an account in your company's name.", foot: "Owner: your company" },
-  { icon: "key", title: "The accounts", body: "Hosting, services, and the AI account itself, set up in your company's name. You pay the AI provider at cost, with no markup.", foot: "Owner: your company" },
-  { icon: "book", title: "The know-how", body: "Documentation, a recorded training library, and trained people, so your team knows how everything works.", foot: "Owner: your company" },
+const HANDOFF: { icon: IconName; title: string; body: string; foot: string; where: string }[] = [
+  { icon: "code", title: "The code", body: "The full source, in a repository your company owns. Any developer can work on it.", foot: "Owner: your company", where: "github.com/your-company/operations" },
+  { icon: "db", title: "The data", body: "Every record, in a database on an account in your company's name.", foot: "Owner: your company", where: "Database on your company's account" },
+  { icon: "key", title: "The accounts", body: "Hosting, services, and the AI account itself, set up in your company's name. You pay the AI provider at cost, with no markup.", foot: "Owner: your company", where: "Hosting, services, and AI account, billed to you" },
+  { icon: "book", title: "The know-how", body: "Documentation, a recorded training library, and trained people, so your team knows how everything works.", foot: "Owner: your company", where: "Docs and the training library, yours to keep" },
 ];
 
-const DRIVERS: { icon: IconName; title: string; body: string }[] = [
-  { icon: "box", title: "How much we build", body: "A few agents on the tools you have is a smaller scope than a full platform replacement." },
-  { icon: "link", title: "How many tools we connect", body: "Each integration adds work, and some systems are easier to connect than others." },
-  { icon: "move", title: "How much data moves", body: "Years of records from old systems take longer to migrate than a clean start." },
-  { icon: "users", title: "How big the team is", body: "More people to train and more workflows to map means a larger discovery." },
+const DRIVERS: { icon: IconName; title: string; body: string; lo: string; hi: string; at: number }[] = [
+  { icon: "box", title: "How much we build", body: "A few agents on the tools you have is a smaller scope than a full platform replacement.", lo: "A few agents on your tools", hi: "A full platform replacement", at: 35 },
+  { icon: "link", title: "How many tools we connect", body: "Each integration adds work, and some systems are easier to connect than others.", lo: "One or two", hi: "Every system you run", at: 55 },
+  { icon: "move", title: "How much data moves", body: "Years of records from old systems take longer to migrate than a clean start.", lo: "A clean start", hi: "Years of records", at: 25 },
+  { icon: "users", title: "How big the team is", body: "More people to train and more workflows to map means a larger discovery.", lo: "One team", hi: "Every department", at: 65 },
 ];
 
 const FAQ = [
+  { q: "Is there a guarantee?", a: `Yes. ${GUARANTEE.text} The terms: ${GUARANTEE.terms.join(" ")}` },
   { q: "What does it cost?", a: "We start with a discovery, quoted in writing by company size and tools. It ends with your first build live, and the fee is credited toward what comes next. After that you pick an AI Officer plan (six months minimum, then month to month) or a one-time project quoted in writing. Training days are quoted by team size." },
   { q: "Can we just book training?", a: "Yes. A training day is five hours, tailored to your company type, and you can request one without a discovery. Many teams start there and add an AI Officer once they see what to build." },
   { q: "Do we have to replace our software?", a: "No. Most clients keep the tools that work. We connect them and put AI on top. We only rebuild a platform when owning it costs less than the subscription." },
@@ -102,6 +103,7 @@ export default function HowWeWorkPage() {
         <div className="h-wrap">
           <SectionHead eyebrow="The process" title="Four steps, from first conversation to running." sub="Scroll through it. Each step lists exactly what you get." />
           <ProcessTimeline steps={STEPS} />
+          <div style={{ marginTop: 48 }}><Guarantee /></div>
         </div>
       </section>
 
@@ -112,31 +114,30 @@ export default function HowWeWorkPage() {
         </div>
       </section>
 
+      <RulesBand rules={RULES} />
+
       <section className="h-sec">
-        <div className="h-wrap">
-          <SectionHead eyebrow="How we operate" title="Four rules we work by." />
-          <IconCards items={RULES} cols={4} />
+        <div className="h-wrap h-feature">
+          <div>
+            <div className="h-eyebrow">At handoff</div>
+            <h2>Everything is yours.</h2>
+            <p className="pv-lead">Whether you stay on a plan or stop after a project, every account is in your company&apos;s name from day one. Handoff just makes it official: the code, the data, the accounts, and the know-how, signed over.</p>
+          </div>
+          <HandoffDoc items={HANDOFF} />
         </div>
       </section>
 
       <section className="h-sec h-soft">
         <div className="h-wrap">
-          <SectionHead eyebrow="At handoff" title="Everything is yours." sub="Whether you stay on a plan or stop after a project, you walk away with all of it." />
-          <IconCards items={HANDOFF} cols={4} />
-        </div>
-      </section>
-
-      <section className="h-sec">
-        <div className="h-wrap">
           <SectionHead eyebrow="What shapes the price" title="Scoped to your company, never per seat." sub="Every discovery and project is quoted in writing. These are the things that move the number." />
-          <IconCards items={DRIVERS} cols={4} />
+          <ScopeMeters items={DRIVERS} />
           <p style={{ marginTop: 28, color: "var(--ink-2)", maxWidth: 720 }}>
             Not ready for a discovery? Start with a <Link href="/training" style={{ color: "inherit", fontWeight: 700 }}>training day</Link>.
           </p>
         </div>
       </section>
 
-      <section className="h-sec h-soft">
+      <section className="h-sec">
         <div className="h-wrap">
           <SectionHead eyebrow="Questions" title="What people ask first." center />
           <div className="h-faq">

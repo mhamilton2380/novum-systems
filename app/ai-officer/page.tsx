@@ -5,7 +5,7 @@ import { PlanCards } from "@/components/PlanCards";
 import { AssistantChat } from "@/components/AssistantChat";
 import { Reveal } from "@/components/Reveal";
 import { MonthView, OfficerHeroCard, RoleCards } from "@/components/OfficerShowcase";
-import { IconCards, TrainingLibrary, ShadowAI, type IconName } from "@/components/PageVisuals";
+import { IconCards, TrainingLibrary, ShadowAI, Guarantee, GUARANTEE, type IconName } from "@/components/PageVisuals";
 import { BuildQueue } from "@/components/BuildQueue";
 
 export const metadata: Metadata = {
@@ -43,6 +43,7 @@ const OWN: { icon: IconName; title: string; body: string; foot: string }[] = [
 
 
 const FAQ = [
+  { q: "Is there a guarantee?", a: `Yes, on the discovery every plan starts with. ${GUARANTEE.text}` },
   { q: "What is a fractional Chief AI Officer?", a: "Most companies of 15 to 100 people can't justify a full-time technical executive. We fill the role part-time. We train your team, test new AI on your data, keep your systems running, and cut tools that don't earn their price." },
   { q: "How does it start?", a: "With a paid discovery, quoted in writing by company size and tools. We map how your work moves, audit every tool you pay for (that report lands within 7 days), write your AI usage policy, train your team on its own work, and put your first build live on your data within 30 days. The fee is credited toward your plan." },
   { q: "Can we just buy one project?", a: "Yes. If you don't want a plan, we scope a single build after discovery and quote it in writing: an assistant, agents, integrations, or a platform replacement. You get the same training and you own the code, data, and accounts. Most clients end up on a plan, because the next project always shows up." },
@@ -142,6 +143,7 @@ export default function AiOfficerPage() {
             sub="Every plan starts with a discovery that ends with your first build live within 30 days, credited toward your plan. Then six months minimum, month to month after that."
           />
           <Reveal><PlanCards /></Reveal>
+          <div style={{ marginTop: 28 }}><Guarantee /></div>
           <p style={{ marginTop: 28, color: "var(--ink-2)", maxWidth: 720 }}>
             Want one project without a plan? Start with a discovery and we&apos;ll scope it in writing. Want your team trained first? Book a{" "}
             <Link href="/training" style={{ color: "inherit", fontWeight: 700 }}>training day</Link>.
