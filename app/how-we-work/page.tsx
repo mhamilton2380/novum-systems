@@ -4,11 +4,14 @@ import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
 import { ProcessTimeline, type ProcessStep } from "@/components/ProcessTimeline";
 import { ThirtyDayCard, Guarantee, GUARANTEE, RulesBand, HandoffDoc, ScopeMeters, type IconName } from "@/components/PageVisuals";
 import { DiscoveryArtifacts } from "@/components/DiscoveryArtifacts";
+import { JsonLd } from "@/components/JsonLd";
+import { pageMetadata, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "How We Work · Novum AI",
-  description: "Discovery, training, build, and run. How Novum learns your work, puts AI to work in it, and hands everything over in your company's name.",
-};
+export const metadata: Metadata = pageMetadata({
+  path: "/how-we-work",
+  title: "How AI Implementation Works: Discovery to Live · Novum AI",
+  description: "Discovery, build, train, run. Your workflow mapped, every tool audited, and your first build live on your own data within 30 days, all in your company's name.",
+});
 
 const STEPS: ProcessStep[] = [
   {
@@ -91,6 +94,7 @@ const FAQ = [
 export default function HowWeWorkPage() {
   return (
     <div className="home">
+      <JsonLd data={[breadcrumbJsonLd([{ name: "How We Work", path: "/how-we-work" }]), faqJsonLd(FAQ)]} />
       <PageHero
         eyebrow="How we work"
         title={<>We learn how you work <span className="h-grad">first</span>.</>}

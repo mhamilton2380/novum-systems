@@ -2,11 +2,14 @@ import type { Metadata } from "next";
 import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
 import { AboutHeroCard, Guarantee, type IconName } from "@/components/PageVisuals";
 import { StoryTrack, FitPanel, Beliefs, HoldUsTo } from "@/components/AboutVisuals";
+import { JsonLd } from "@/components/JsonLd";
+import { pageMetadata, breadcrumbJsonLd } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About · Novum AI",
-  description: "Novum helps operational businesses put AI to work. We teach your team, build the tools, connect your systems, and you own all of it."
-};
+export const metadata: Metadata = pageMetadata({
+  path: "/about",
+  title: "About Novum AI · We Built It for Ourselves First",
+  description: "Novum AI implements AI in operational businesses: training, agents, custom software, and a fractional AI Officer. Operators first. You own all of it.",
+});
 
 const BELIEFS: { icon: IconName; title: string; body: string; practice: string }[] = [
   { icon: "users", title: "Training is the job", body: "A tool nobody knows how to use saves nothing. We teach your team on their own work before anything goes live.", practice: "Monthly sessions, and a recorded library your team keeps" },
@@ -20,6 +23,7 @@ const BELIEFS: { icon: IconName; title: string; body: string; practice: string }
 export default function AboutPage() {
   return (
     <div className="home">
+      <JsonLd data={[breadcrumbJsonLd([{ name: "About", path: "/about" }])]} />
       <PageHero
         eyebrow="About Novum"
         title={<>We built it for ourselves <span className="h-grad">first</span>.</>}

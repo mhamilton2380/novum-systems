@@ -2,11 +2,14 @@ import type { Metadata } from "next";
 import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
 import { IconCards, CaseFlow, Guarantee, type IconName } from "@/components/PageVisuals";
 import { BillCard, RfiDraft, Ledger } from "@/components/UseCaseVisuals";
+import { JsonLd } from "@/components/JsonLd";
+import { pageMetadata, breadcrumbJsonLd } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Case Study · Novum AI",
-  description: "How a construction company replaced a $100,000-a-year construction management subscription with a system it owns, connected to its billing, with agents drafting RFIs and submittals.",
-};
+export const metadata: Metadata = pageMetadata({
+  path: "/case-studies",
+  title: "Case Study: A $100,000 Software Bill, Replaced · Novum AI",
+  description: "How a construction company replaced a $100,000-a-year construction management subscription with a system it owns, with agents drafting RFIs and submittals.",
+});
 
 const BEFORE: { icon: IconName; title: string; body: string }[] = [
   { icon: "coin", title: "$100,000 a year, every year", body: "The company paid six figures annually for a construction management platform, and the price only went up as the business grew." },
@@ -32,6 +35,7 @@ const LEDGER: { icon: IconName; what: string; before: string; after: string }[] 
 export default function CaseStudyPage() {
   return (
     <div className="home">
+      <JsonLd data={[breadcrumbJsonLd([{ name: "Case Study", path: "/case-studies" }])]} />
       <PageHero
         eyebrow="Case study · Construction"
         title={<>A <span className="h-grad">$100,000-a-year</span> software bill, replaced.</>}

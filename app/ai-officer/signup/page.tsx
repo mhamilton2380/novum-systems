@@ -1,16 +1,20 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageBits";
 import { SignupForm } from "./SignupForm";
+import { JsonLd } from "@/components/JsonLd";
+import { pageMetadata, breadcrumbJsonLd } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Get started · AI Officer · Novum AI",
+export const metadata: Metadata = pageMetadata({
+  path: "/ai-officer/signup",
+  title: "Get Started with an AI Officer · Novum AI",
   description: "Start a Novum AI Officer plan with a discovery that ends with your first build live within 30 days. 6-month minimum, then month to month.",
-};
+});
 
 export default async function SignupPage({ searchParams }: { searchParams: Promise<{ plan?: string }> }) {
   const { plan } = await searchParams;
   return (
     <div className="home">
+      <JsonLd data={[breadcrumbJsonLd([{ name: "AI Officer", path: "/ai-officer" }, { name: "Get started", path: "/ai-officer/signup" }])]} />
       <PageHero
         eyebrow="AI Officer · Get started"
         title={<>Your first build, <span className="h-grad">live in 30 days</span>.</>}

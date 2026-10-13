@@ -3,15 +3,19 @@ import Link from "next/link";
 import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
 import { USE_CASES } from "@/lib/useCases";
 import { IndustryTicker, IndustryCards } from "@/components/PageVisuals";
+import { JsonLd } from "@/components/JsonLd";
+import { pageMetadata, breadcrumbJsonLd } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Use Cases · Novum AI",
+export const metadata: Metadata = pageMetadata({
+  path: "/use-cases",
+  title: "AI Use Cases by Industry: Agents and Training · Novum AI",
   description: "How Novum puts AI to work in construction, field services, legal, accounting, insurance, healthcare, agencies, manufacturing, and wholesale distribution.",
-};
+});
 
 export default function UseCasesPage() {
   return (
     <div className="home">
+      <JsonLd data={[breadcrumbJsonLd([{ name: "Use Cases", path: "/use-cases" }])]} />
       <PageHero
         eyebrow="Use cases"
         title={<>AI at work in <span className="h-grad">your industry</span>.</>}

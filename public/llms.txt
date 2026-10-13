@@ -1,0 +1,41 @@
+# Novum AI
+
+> Novum AI implements AI in operational businesses of 15 to 100 people: training, agents, custom software, and a fractional Chief AI Officer. We teach your team, build the tools, connect your systems, and you own all of it: the code, the data, the accounts, and the training library are in the client's company name.
+
+Every engagement starts with a paid discovery, quoted in writing by company size and tools. It maps how the work moves, audits every tool and its cost (report within 7 days), writes an AI usage policy, trains the team on its own work, and puts the first build live on the client's own data within 30 days. After discovery, clients choose a fractional Chief AI Officer plan (six-month minimum, then month to month) or a one-time project quoted in writing. Prices are quoted on a call, not published.
+
+Key facts:
+- No seats, no per-user licenses, no revenue share.
+- Agents work inside the client's systems, see only what each role allows, and a person approves anything before it leaves the company.
+- Hosted on SOC 2 Type 2 infrastructure.
+- Training is hands-on, on the team's own tools and data, with a recorded library the client keeps.
+
+## Services
+
+- [AI Implementation](https://www.thenovumai.com/ai-implementation): training plus an AI Officer; your team using AI, and the tools built around your data.
+- [Fractional Chief AI Officer](https://www.thenovumai.com/ai-officer): every tool connected, unlimited agents and builds worked one or two at a time, team trained every month.
+- [AI Training](https://www.thenovumai.com/training): monthly training on your own tools, a library you keep, and a 5-hour on-site training day quoted by team size.
+- [How We Work](https://www.thenovumai.com/how-we-work): discovery, build, train, run; the discovery guarantee and its terms.
+
+## Industries
+
+- [AI for construction companies](https://www.thenovumai.com/use-cases/construction)
+- [AI for field service companies](https://www.thenovumai.com/use-cases/field-services)
+- [AI for law firms](https://www.thenovumai.com/use-cases/legal)
+- [AI for accounting firms](https://www.thenovumai.com/use-cases/accounting)
+- [AI for insurance agencies](https://www.thenovumai.com/use-cases/insurance)
+- [AI for healthcare practices](https://www.thenovumai.com/use-cases/healthcare)
+- [AI for marketing agencies](https://www.thenovumai.com/use-cases/marketing-agencies)
+- [AI for manufacturers](https://www.thenovumai.com/use-cases/manufacturing)
+- [AI for wholesale distributors](https://www.thenovumai.com/use-cases/wholesale-distribution)
+
+## Evidence and tools
+
+- [Why AI](https://www.thenovumai.com/why-ai): what controlled studies and real companies measured about AI and the time work takes.
+- [Case study](https://www.thenovumai.com/case-studies): a construction company replaced a $100,000-a-year software subscription with a system it owns.
+- [Free AI Readiness Score](https://www.thenovumai.com/assessment): 12 questions, a score out of 100, and an estimate of the hours on the table.
+
+## Company
+
+- [About](https://www.thenovumai.com/about): business owners and operators who put AI to work in their own company first.
+- [Contact](https://www.thenovumai.com/contact): book a conversation.

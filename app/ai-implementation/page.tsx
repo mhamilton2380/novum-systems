@@ -4,11 +4,14 @@ import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
 import { ImplementationFlow, StartChooser } from "@/components/ImplementationFlow";
 import { HeroReel } from "@/components/HeroReel";
 import { PartArt, CaseProof } from "@/components/PageVisuals";
+import { JsonLd } from "@/components/JsonLd";
+import { pageMetadata, breadcrumbJsonLd, serviceJsonLd, faqJsonLd } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "AI Implementation · Novum AI",
-  description: "Every business has access to AI. Few know how to use it. We train your team, then act as your fractional Chief AI Officer to build the tools, connect your systems, and keep it working. You own all of it.",
-};
+export const metadata: Metadata = pageMetadata({
+  path: "/ai-implementation",
+  title: "AI Implementation Services: Training and Builds · Novum AI",
+  description: "Every business has AI. Few use it on the real work. We train your team in person, build agents on your data, and connect your systems. You own all of it.",
+});
 
 const PARTS = [
   {
@@ -37,9 +40,10 @@ const FAQ = [
 export default function AiImplementationPage() {
   return (
     <div className="home">
+      <JsonLd data={[breadcrumbJsonLd([{ name: "AI Implementation", path: "/ai-implementation" }]), serviceJsonLd({ name: "AI implementation", serviceType: "AI implementation", path: "/ai-implementation", description: metadata.description as string }), faqJsonLd(FAQ)]} />
       <PageHero
         eyebrow="AI implementation"
-        title={<>Every business has AI.<br />We help yours <span className="h-grad">use it</span>.</>}
+        title={<>Every business has AI.{" "}<br />We help yours <span className="h-grad">use it</span>.</>}
         sub="We train your team in person, build the tools, connect your systems, and you own all of it. An AI Officer keeps building and running it with you, month after month."
         below={
           <HeroReel

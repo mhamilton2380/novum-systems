@@ -2,15 +2,19 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/PageBits";
 import { Assessment } from "@/components/Assessment";
 import { NumbersTeaser } from "@/components/PageVisuals";
+import { JsonLd } from "@/components/JsonLd";
+import { pageMetadata, breadcrumbJsonLd } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Free AI Readiness Score · Novum AI",
-  description: "12 questions, about 2 minutes. Get a score out of 100, the three things holding your company back on AI, and an estimate of the hours on the table. No email needed to see it.",
-};
+export const metadata: Metadata = pageMetadata({
+  path: "/assessment",
+  title: "Free AI Readiness Assessment: Score in 2 Minutes · Novum AI",
+  description: "12 questions, about 2 minutes. Get a score out of 100, the three things holding your company back on AI, and the hours on the table. No email needed to see it.",
+});
 
 export default function AssessmentPage() {
   return (
     <div className="home">
+      <JsonLd data={[breadcrumbJsonLd([{ name: "AI Readiness Score", path: "/assessment" }])]} />
       <PageHero
         eyebrow="Free · about 2 minutes"
         title={<>How ready is your company to <span className="h-grad">put AI to work</span>?</>}

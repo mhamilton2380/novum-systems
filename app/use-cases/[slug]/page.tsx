@@ -6,6 +6,11 @@ import { IndustryCards, Guarantee } from "@/components/PageVisuals";
 import { AgentDayCard, ProblemPanel, SystemPicker, KeepReplace } from "@/components/UseCaseVisuals";
 
 import { USE_CASES, getUseCase } from "@/lib/useCases";
+import { JsonLd } from "@/components/JsonLd";
+import { pageMetadata, breadcrumbJsonLd, serviceJsonLd, USE_CASE_SEO } from "@/lib/seo";
+
+// Body-text links into the money pages, styled like the rest of the copy.
+const BODY_LINK = { color: "var(--ink)", fontWeight: 600 } as const;
 
 export function generateStaticParams() {
   return USE_CASES.map((u) => ({ slug: u.slug }));
@@ -15,7 +20,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const u = getUseCase(slug);
   if (!u) return {};
-  return { title: `${u.name} · Novum AI`, description: u.sub };
+  const seo = USE_CASE_SEO[u.slug];
+  return pageMetadata({ path: `/use-cases/${u.slug}`, title: `${seo ? seo.title : u.name} · Novum AI`, description: u.sub });
 }
 
 export default async function UseCasePage({ params }: { params: Promise<{ slug: string }> }) {
@@ -23,11 +29,16 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
   const u = getUseCase(slug);
   if (!u) notFound();
   const others = USE_CASES.filter((o) => o.slug !== u.slug).slice(0, 4);
+  const audience = USE_CASE_SEO[u.slug]?.audience ?? u.name.toLowerCase();
 
   return (
     <div className="home">
+      <JsonLd data={[
+        breadcrumbJsonLd([{ name: "Use Cases", path: "/use-cases" }, { name: u.name, path: `/use-cases/${u.slug}` }]),
+        serviceJsonLd({ name: `AI implementation for ${audience}`, serviceType: "AI implementation", path: `/use-cases/${u.slug}`, description: u.sub, audience }),
+      ]} />
       <PageHero
-        eyebrow={`Use case · ${u.name}`}
+        eyebrow={`Use case · AI for ${audience}`}
         title={u.headline + "."}
         sub={u.sub}
         side={<AgentDayCard agents={u.agents} />}
@@ -44,6 +55,9 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
         <div className="h-wrap">
           <SectionHead eyebrow="What we build" title="The tools, built for how you run." sub="Shaped around your workflows, with your team trained on each piece. Pick one to see it work." />
           <SystemPicker u={u} />
+          <p style={{ marginTop: 24, color: "var(--ink-3)", maxWidth: 760 }}>
+            Every build starts with a <Link href="/how-we-work" style={BODY_LINK}>discovery that puts your first build live in 30 days</Link>. Your team learns each piece in <Link href="/training" style={BODY_LINK}>hands-on AI training on its own work</Link>, and a <Link href="/ai-officer" style={BODY_LINK}>fractional Chief AI Officer</Link> keeps building from there.
+          </p>
         </div>
       </section>
 

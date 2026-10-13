@@ -1,7 +1,16 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { HeroReel } from "../components/HeroReel";
 import { ExampleBuilds } from "../components/ExampleBuilds";
 import { PartArt, ThirtyDayCard, TrainingLibrary } from "../components/PageVisuals";
+import { JsonLd } from "@/components/JsonLd";
+import { pageMetadata, faqJsonLd } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata({
+  path: "/",
+  title: "Novum AI · AI Implementation for Operational Businesses",
+  description: "We implement AI in your business: training, agents, custom software, and a fractional AI Officer, built around how your team works. You own all of it.",
+});
 
 // ─── Content ──────────────────────────────────────────────────────────────────
 const PROBLEMS = [
@@ -130,6 +139,7 @@ const FAQ = [
 export default function HomePage() {
   return (
     <div className="home">
+      <JsonLd data={[faqJsonLd(FAQ)]} />
       {/* Hero */}
       <section className="h-hero">
         <div className="h-wrap h-hero-grid">

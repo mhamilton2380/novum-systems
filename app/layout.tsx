@@ -5,6 +5,8 @@ import "./home.css";
 import "./visuals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { JsonLd } from "@/components/JsonLd";
+import { ORGANIZATION_JSONLD } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Novum AI · AI and software built around how you work",
@@ -19,6 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={dmSans.variable}>
       <body>
+        <JsonLd data={ORGANIZATION_JSONLD} />
         <Navbar />
         <main>{children}</main>
         <Footer />

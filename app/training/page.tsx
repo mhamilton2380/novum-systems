@@ -3,11 +3,14 @@ import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
 import { IconCards, TrainingHeroCard, TrainingLibrary, TeamChallenge, EvidenceBand, type IconName } from "@/components/PageVisuals";
 import { CompanyTypes } from "@/components/CompanyTypes";
 import { TrainingBooking } from "./TrainingBooking";
+import { JsonLd } from "@/components/JsonLd";
+import { pageMetadata, breadcrumbJsonLd, serviceJsonLd, faqJsonLd } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "AI Training · Novum AI",
-  description: "Training comes with every AI Officer plan: live sessions every month on your own tools and workflows, a recorded training library your team keeps for good, and team challenges. Add an on-site training day when you want one.",
-};
+export const metadata: Metadata = pageMetadata({
+  path: "/training",
+  title: "AI Training for Teams, On Your Own Work · Novum AI",
+  description: "Hands-on AI training on your team's own tools and data: live sessions every month, a recorded library you keep, and an on-site training day when you want one.",
+});
 
 // Training is built into every plan, never sold as an advisory retainer; the on-site day is the add-on (and the way to start before a plan fits).
 // What each plan includes: lib/aiOfficerPlans.ts. Positioning: ~/Desktop/Novum/novum-vault/CONTEXT.md.
@@ -38,6 +41,7 @@ const FAQ = [
 export default function TrainingPage() {
   return (
     <div className="home">
+      <JsonLd data={[breadcrumbJsonLd([{ name: "Training", path: "/training" }]), serviceJsonLd({ name: "AI training for teams", serviceType: "AI training", path: "/training", description: metadata.description as string }), faqJsonLd(FAQ)]} />
       <PageHero
         eyebrow="AI training"
         title={<>Training that makes the AI <span className="h-grad">stick</span>.</>}

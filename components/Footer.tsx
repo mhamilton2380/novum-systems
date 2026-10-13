@@ -19,7 +19,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div style={{ marginBottom: 24 }}><Logo dark /></div>
-            <p style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, margin: 0 }}>We help operational businesses put AI to work. We teach your team, build the tools, connect your systems, and you own all of it.</p>
+            <p style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, margin: 0 }}>Novum AI implements AI in operational businesses: training, agents, custom software, and a fractional AI Officer. We teach your team, build the tools, connect your systems, and you own all of it.</p>
           </div>
 
           {/* Work with us */}
@@ -49,7 +49,7 @@ export default function Footer() {
           {/* Get Started */}
           <div>
             <p style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontWeight: 600, fontSize: "0.72rem", color: "#EAEAEA", marginBottom: 20, letterSpacing: "0.08em", textTransform: "uppercase" }}>Get Started</p>
-            {([["Book a Call", "/contact"], ["Book a training day", "/training"]] as const).map(([label, href]) => (
+            {([["Book a Call", "/contact"], ["Book a training day", "/training"], ["Free AI Readiness Score", "/assessment"]] as const).map(([label, href]) => (
               <Link key={label} href={href}
                 style={{ display: "block", fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", textDecoration: "none", marginBottom: 11, transition: "color 0.18s" }}
                 onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#EAEAEA"; }}

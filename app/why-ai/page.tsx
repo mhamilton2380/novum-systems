@@ -2,17 +2,21 @@ import type { Metadata } from "next";
 import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
 import { ThreeChoices, Icon } from "@/components/PageVisuals";
 import { ThreeWaysCard, WorkPicker, CostBars, WageChart, CallLog, VoiceResults, DoublingChart, WrongMeters } from "@/components/WhyAi";
+import { JsonLd } from "@/components/JsonLd";
+import { pageMetadata, breadcrumbJsonLd } from "@/lib/seo";
 
 // Client-facing evidence, all from "How Much Faster AI Makes the Work" (2026-10-08):
 // https://claude.ai/code/artifact/ebae361d-f31e-471a-b67f-977d9ded0e2e. Vendor and company-reported figures are labeled.
-export const metadata: Metadata = {
-  title: "Why AI · What It Does to the Work · Novum AI",
-  description: "What controlled studies and real companies measured: 25% to 56% less time on work that suits AI, cents per task for an agent against dollars for a person, and why handing people a chatbot moves the needle about 3%.",
-};
+export const metadata: Metadata = pageMetadata({
+  path: "/why-ai",
+  title: "Does AI Save Time at Work? What Studies Measured · Novum AI",
+  description: "Controlled studies measured 25% to 56% less time on work that suits AI. Agents cost cents per task. Handing people a chatbot moves the needle about 3%.",
+});
 
 export default function WhyAiPage() {
   return (
     <div className="home">
+      <JsonLd data={[breadcrumbJsonLd([{ name: "Why AI", path: "/why-ai" }])]} />
       <PageHero
         eyebrow="Why implement AI"
         title={<>What AI actually does to <span className="h-grad">the work</span>.</>}

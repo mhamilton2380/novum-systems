@@ -7,11 +7,14 @@ import { Reveal } from "@/components/Reveal";
 import { MonthView, OfficerHeroCard, RoleCards } from "@/components/OfficerShowcase";
 import { IconCards, TrainingLibrary, ShadowAI, Guarantee, GUARANTEE, type IconName } from "@/components/PageVisuals";
 import { BuildQueue } from "@/components/BuildQueue";
+import { JsonLd } from "@/components/JsonLd";
+import { pageMetadata, breadcrumbJsonLd, serviceJsonLd, faqJsonLd } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Fractional Chief AI Officer · Novum AI",
-  description: "A part-time Chief AI Officer for companies without a technical team. Every tool connected, unlimited agents and builds, and your team trained. Start with a discovery."
-};
+export const metadata: Metadata = pageMetadata({
+  path: "/ai-officer",
+  title: "Fractional Chief AI Officer, Without the Hire · Novum AI",
+  description: "A part-time Chief AI Officer for 15 to 100 person companies with no tech team: every tool connected, unlimited agents and builds, your team trained.",
+});
 
 const MONTHLY = [
   { icon: "train" as const, title: "Ongoing training", body: "Sessions and coaching for your team on their own work, as the tools change, so people keep using what you paid for." },
@@ -56,6 +59,7 @@ const FAQ = [
 export default function AiOfficerPage() {
   return (
     <div className="home">
+      <JsonLd data={[breadcrumbJsonLd([{ name: "AI Officer", path: "/ai-officer" }]), serviceJsonLd({ name: "Fractional Chief AI Officer", serviceType: "Fractional Chief AI Officer", path: "/ai-officer", description: metadata.description as string }), faqJsonLd(FAQ)]} />
       <PageHero
         eyebrow="Fractional Chief AI Officer"
         title={<>A Chief AI Officer, <span className="h-grad">without the hire</span>.</>}
