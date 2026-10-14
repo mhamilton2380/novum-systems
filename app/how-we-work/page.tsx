@@ -10,51 +10,63 @@ import { pageMetadata, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   path: "/how-we-work",
   title: "How AI Implementation Works: Discovery to Live · Novum AI",
-  description: "Discovery, build, train, run. Your workflow mapped, every tool audited, and your first build live on your own data, all in your company's name.",
+  description: "Map the work, report on every tool, write your AI policy, build, train the team, and keep it current as AI changes. All of it in your company's name.",
 });
 
 const STEPS: ProcessStep[] = [
   {
-    title: "Discovery",
-    tag: "First build live",
-    body: "We sit with your team, map how the work actually moves, and audit every tool you pay for. Then we put AI to work on your own data, so you see it running before you commit to anything bigger.",
+    title: "Map the work",
+    tag: "With your team",
+    body: "We sit with the people who do the work and map how it actually moves, step by step. Steps that shouldn't exist get cut before anything is automated.",
     gets: [
       "A map of how the work moves today",
-      "Every tool you pay for, what it costs, and what to keep, connect, replace, or cut, within 7 days",
-      "A written AI usage policy for your team",
-      "A hands-on training session on your own work, recorded as the first entry in your training library",
-      "The first build live on your own data,",
-      "A written plan with prices for what comes next",
+      "Where time leaks, and where AI fits",
     ],
     ask: "Access to the tools you use, and time with the people who do the work.",
   },
   {
-    title: "Train",
-    tag: "Built into every phase",
-    body: "Before each piece goes live, we train the people who will use it, on their own work and your data. AI the team doesn't use saves nothing, so training is part of every step.",
-    gets: ["Hands-on sessions for each team", "Written guides for every tool and agent", "Follow-up coaching after launch", "A short list of agents worth building next"],
-    link: { href: "/training", label: "Want only this? Book a training day" },
+    title: "Tool report and AI policy",
+    tag: "Within 7 days",
+    body: "Every tool you pay for, what it costs, and who actually uses it, with a call on each one. Then the rules: which AI tools your team may use, and what data never goes into them.",
+    gets: [
+      "Every subscription, seat count, and yearly cost",
+      "Overlaps and unused seats flagged",
+      "What to keep, connect, replace, or cut",
+      "A written AI usage policy your team signs off on",
+    ],
   },
   {
-    title: "Build and connect",
+    title: "Build",
     tag: "One live before the next starts",
-    body: "On an AI Officer plan, agents, integrations, and tools ship one after another, each in use before the next begins. Prefer one project? We scope it in writing and build it at a fixed price.",
+    body: "We build what the map calls for: custom software where a platform no longer fits, integrations between the tools you keep, and agents and automations on the repeat work.",
     gets: [
-      "An AI assistant that answers across your systems, with sources",
-      "Agents on the repeat work, with a person approving before anything leaves the company",
+      "Custom software, owned by your company",
       "The tools you keep, connected so data entered once shows up everywhere",
+      "Agents and automations, with a person approving before anything leaves the company",
       "Your data migrated where a platform gets replaced",
     ],
   },
   {
-    title: "Run",
-    tag: "Your AI Officer",
-    body: "You pay for hosting, storage, and security. Your AI Officer keeps the team trained, tests new AI on your data, audits your tools each quarter, and keeps what we built current.",
+    title: "Train the team",
+    tag: "Before each piece goes live",
+    body: "The people who will use each piece train on it first, on their own work and your data. AI the team doesn't use saves nothing.",
     gets: [
-      "Ongoing training as the tools change",
+      "Hands-on sessions for each team",
+      "Written guides for every tool and agent",
+      "A recorded training library your company keeps",
+      "Follow-up coaching after launch",
+    ],
+    link: { href: "/training", label: "Want only this? Book a training day" },
+  },
+  {
+    title: "Keep it current",
+    tag: "Your AI Officer",
+    body: "AI changes every few weeks. Every month we check how each agent and tool is performing and fix what slipped. When a better or cheaper model ships, or a new tool earns its place, we test it on your data and switch only if it wins.",
+    gets: [
+      "A monthly performance report: accuracy, hours saved, cost",
+      "New models and tools tested on your data, and your AI policy updated to match",
       "Monitoring, backups, and security updates",
       "New agents, changes, and fixes through your queue",
-      "Six months minimum on a plan, then month to month",
     ],
   },
 ];
@@ -104,14 +116,14 @@ export default function HowWeWorkPage() {
 
       <section className="h-sec">
         <div className="h-wrap">
-          <SectionHead eyebrow="The process" title="Four steps, from first conversation to running." sub="Scroll through it. Each step lists exactly what you get." />
+          <SectionHead eyebrow="The process" title="Five steps, from first conversation to running." sub="Scroll through it. Each step lists exactly what you get." />
           <ProcessTimeline steps={STEPS} />
         </div>
       </section>
 
       <section className="h-sec h-soft">
         <div className="h-wrap">
-          <SectionHead eyebrow="What discovery hands you" title="Four documents. Yours either way." sub="Whatever you decide next, you keep the map, the tool report, the policy, and the plan. Click through an example of each." />
+          <SectionHead eyebrow="What discovery hands you" title="Three documents. Yours either way." sub="Whatever you decide next, you keep the map, the tool report, and the policy. Click through an example of each." />
           <DiscoveryArtifacts />
         </div>
       </section>

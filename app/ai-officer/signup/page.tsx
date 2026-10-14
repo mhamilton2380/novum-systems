@@ -18,7 +18,7 @@ export default async function SignupPage({ searchParams }: { searchParams: Promi
       <PageHero
         eyebrow="AI Officer · Get started"
         title={<>Start with a <span className="h-grad">discovery</span>.</>}
-        sub="Every plan starts with a discovery: we map how your team works, audit your tools, train your people, and put your first build live on your own data. You get the tool and cost report within 7. The discovery fee is quoted in writing and credited toward your plan."
+        sub="Every plan starts with a discovery: we map how your team works, audit your tools, train your people, and put your first build live on your own data. You get the tool and cost report within 7 days. The discovery fee is quoted in writing and credited toward your plan."
         ctas={false}
       />
       <section className="h-sec h-soft">

@@ -55,7 +55,7 @@ const STEPS = [
     title: "Discovery",
     tag: "First build live",
     body: "We sit with your team, map how the work actually moves, cut the steps that shouldn't exist, and list every tool you pay for. Then we put it to work: your team trained on its own work, an AI usage policy, and your first build live on your own data. The fee is credited toward your plan or build.",
-    includes: "a map of how the work moves today; every tool you pay for, what it costs, and what to keep, connect, replace, or cut, within 7 days; a written AI usage policy; a hands-on training session on your own work, recorded as the first entry in your training library; the first build live on your own data; and a written plan with prices for what comes next. All of it is yours either way",
+    includes: "a map of how the work moves today; every tool you pay for, what it costs, and what to keep, connect, replace, or cut, within 7 days; a written AI usage policy; a hands-on training session on your own work, recorded as the first entry in your training library; and the first build live on your own data. All of it is yours either way",
   },
   {
     title: "AI Officer, or a one-time project",
@@ -408,7 +408,7 @@ export default function HomePage() {
         <div className="h-wrap">
           <div className="h-cta">
             <h2>Start with a discovery.</h2>
-            <p>We map how your work actually moves, audit every tool you pay for, train your team, and put your first build live on your own data. You get a written plan and prices for what comes next, and the discovery fee is credited toward it.</p>
+            <p>We map how your work actually moves, audit every tool you pay for, train your team, and put your first build live on your own data. The discovery fee is credited toward what comes next.</p>
             <Link href="/contact" className="h-btn h-btn-light">Book a conversation</Link>
             <p className="h-cta-meta">The first conversation is free. No sales deck.</p>
           </div>

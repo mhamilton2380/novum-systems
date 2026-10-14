@@ -306,7 +306,7 @@ export const USE_CASES: UseCase[] = [
       "Which quotes went out more than a week ago with no follow up?",
     ],
     agents: [
-      { task: "Sent 23 renewal quotes for policies expiring in 30 days", saved: "2 hrs" },
+      { task: "Drafted 23 renewal quotes for policies expiring in 30 days, held for approval", saved: "2 hrs" },
       { task: "Drafted follow up emails for 17 quotes with no response after a week", saved: "1.5 hrs" },
       { task: "Flagged 6 policies with lapsed payment status", saved: "45 min" },
       { task: "Compiled the weekly book of business report by producer", saved: "1 hr" },

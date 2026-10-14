@@ -240,7 +240,6 @@ export function DiscoveryCard() {
           </li>
         ))}
       </ol>
-      <div className="pv-disc-foot"><Icon name="pen" size={16} /><span>Then a written plan, with prices, for what comes next</span></div>
     </div>
   );
 }

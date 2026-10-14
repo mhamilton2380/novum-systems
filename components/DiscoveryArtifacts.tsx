@@ -8,7 +8,6 @@ const TABS: { id: string; name: string; when: string; icon: IconName }[] = [
   { id: "map", name: "Workflow map", when: "Map", icon: "map" },
   { id: "tools", name: "Tool and cost report", when: "Audit", icon: "coin" },
   { id: "policy", name: "AI usage policy", when: "Policy", icon: "shield" },
-  { id: "plan", name: "Written plan with prices", when: "Plan", icon: "pen" },
 ];
 
 const FLOW = [
@@ -28,13 +27,6 @@ const TOOLS = [
 ];
 const OK = ["Drafting emails from your own notes", "Summarizing internal documents", "Company questions in your own assistant"];
 const NEVER = ["Client financials in public chatbots", "Passwords or account numbers", "Anything sent out before a person reviews it"];
-const PLAN = [
-  { t: "Intake assistant", d: "Live in about 3 weeks" },
-  { t: "CRM to accounting sync", d: "About 2 weeks" },
-  { t: "Scheduling tool replacement", d: "Three steps, each live on its own" },
-  { t: "Training every month", d: "On every plan" },
-];
-
 function Doc({ id }: { id: string }) {
   if (id === "map")
     return (
@@ -63,23 +55,10 @@ function Doc({ id }: { id: string }) {
         <div className="pv-doc-total">Flagged to cut or replace <strong>$14,400 a year</strong></div>
       </div>
     );
-  if (id === "policy")
-    return (
-      <div className="pv-doc-policy">
-        <div><div className="pv-doc-k ok">Fine to use AI for</div>{OK.map((x, i) => <p key={x} style={{ ["--i" as string]: i }}><b className="ok">✓</b>{x}</p>)}</div>
-        <div><div className="pv-doc-k no">Never</div>{NEVER.map((x, i) => <p key={x} style={{ ["--i" as string]: i + 3 }}><b className="no">✕</b>{x}</p>)}</div>
-      </div>
-    );
   return (
-    <div className="pv-doc-plan">
-      {PLAN.map((p, i) => (
-        <div className="pv-doc-line" key={p.t} style={{ ["--i" as string]: i }}>
-          <span className="pv-doc-n">{i + 1}</span>
-          <span><strong>{p.t}</strong><small>{p.d}</small></span>
-          <span className="pv-doc-price">Priced in writing</span>
-        </div>
-      ))}
-      <div className="pv-doc-total">Your discovery fee <strong>credited toward it</strong></div>
+    <div className="pv-doc-policy">
+      <div><div className="pv-doc-k ok">Fine to use AI for</div>{OK.map((x, i) => <p key={x} style={{ ["--i" as string]: i }}><b className="ok">✓</b>{x}</p>)}</div>
+      <div><div className="pv-doc-k no">Never</div>{NEVER.map((x, i) => <p key={x} style={{ ["--i" as string]: i + 3 }}><b className="no">✕</b>{x}</p>)}</div>
     </div>
   );
 }
