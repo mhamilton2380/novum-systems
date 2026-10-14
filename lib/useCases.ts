@@ -72,8 +72,8 @@ export const USE_CASES: UseCase[] = [
       { task: "Reconciled job cost entries against QuickBooks for 12 open jobs", saved: "2 hrs" },
       { task: "Compiled the weekly safety checklist status across 5 active sites", saved: "1 hr" },
     ],
-    tools: ["QuickBooks", "Buildertrend", "Outlook", "DocuSign", "Sage 300 CRE"],
-    replaces: ["Project add-ons that overlap the platform you keep", "Document storage tools", "Separate reporting software"],
+    tools: ["QuickBooks", "Sage 300 CRE", "Bluebeam", "Outlook", "DocuSign"],
+    replaces: ["A construction management platform your team works around", "Document storage tools", "Separate reporting software"],
     removes: ["Budget spreadsheets updated by hand", "Change orders tracked in email"],
   },
   {
