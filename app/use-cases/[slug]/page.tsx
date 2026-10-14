@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
-import { IndustryCards, Guarantee } from "@/components/PageVisuals";
+import { IndustryCards } from "@/components/PageVisuals";
 import { AgentDayCard, ProblemPanel, SystemPicker, KeepReplace } from "@/components/UseCaseVisuals";
 
 import { USE_CASES, getUseCase } from "@/lib/useCases";
@@ -56,7 +56,7 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
           <SectionHead eyebrow="What we build" title="The tools, built for how you run." sub="Shaped around your workflows, with your team trained on each piece. Pick one to see it work." />
           <SystemPicker u={u} />
           <p style={{ marginTop: 24, color: "var(--ink-3)", maxWidth: 760 }}>
-            Every build starts with a <Link href="/how-we-work" style={BODY_LINK}>discovery that puts your first build live in 30 days</Link>. Your team learns each piece in <Link href="/training" style={BODY_LINK}>hands-on AI training on its own work</Link>, and a <Link href="/ai-officer" style={BODY_LINK}>fractional Chief AI Officer</Link> keeps building from there.
+            Every build starts with a <Link href="/how-we-work" style={BODY_LINK}>discovery that maps your work and puts the first build to work</Link>. Your team learns each piece in <Link href="/training" style={BODY_LINK}>hands-on AI training on its own work</Link>, and a <Link href="/ai-officer" style={BODY_LINK}>fractional Chief AI Officer</Link> keeps building from there.
           </p>
         </div>
       </section>
@@ -65,7 +65,6 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
         <div className="h-wrap">
           <SectionHead eyebrow="Your software bill" title="Keep what works. Own the rest." sub="We don't rip out the tools your team relies on. We connect them, and replace the subscriptions that only cover part of the job." />
           <KeepReplace tools={u.tools} replaces={u.replaces} />
-          <div style={{ marginTop: 28 }}><Guarantee compact /></div>
         </div>
       </section>
 

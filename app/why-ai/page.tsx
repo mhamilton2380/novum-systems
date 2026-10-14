@@ -95,7 +95,7 @@ export default function WhyAiPage() {
 
       <ThreeChoices />
 
-      <CtaBand title="Find your number." body="The free AI Readiness Score gives you an estimate in two minutes. A discovery measures the real number on your own work, and ends with your first build live within 30 days." />
+      <CtaBand title="Find your number." body="The free AI Readiness Score gives you an estimate in two minutes. A discovery measures the real number on your own work, and ends with your first build live." />
     </div>
   );
 }

@@ -113,7 +113,7 @@ export default function AiImplementationPage() {
         </div>
       </section>
 
-      <CtaBand title="Put AI on the real work." body="In 30 days your workflow is mapped, your team has trained on its own work, and your first build is live on your data." />
+      <CtaBand title="Put AI on the real work." body="Your workflow mapped, your team trained on its own work, and your first build live on your data." />
     </div>
   );
 }

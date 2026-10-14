@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { AREAS, QUESTIONS, answerLabel, fmt, scoreFor, type Answers } from "@/lib/assessment";
-import { Guarantee } from "@/components/PageVisuals";
 
 // The AI Readiness Score: one question per screen, scored in the browser. Nothing is sent until the visitor
 // asks for the full write-up (then /api/assessment saves the lead and emails it).
@@ -171,9 +170,8 @@ function Results({ answers, onRestart }: { answers: Answers; onRestart: () => vo
         </div>
         <div className="as-cta">
           <strong>Want the real number?</strong>
-          <p>A discovery measures it on your own work, and ends with your first build live within 30 days.</p>
+          <p>A discovery measures it on your own work, and ends with your first build live.</p>
           <Link href="/contact" className="h-btn h-btn-primary">Book a discovery call</Link>
-          <Guarantee compact />
           <button className="as-restart" onClick={onRestart}>Retake the assessment</button>
         </div>
       </div>

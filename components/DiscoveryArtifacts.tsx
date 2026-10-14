@@ -5,10 +5,10 @@ import { Icon, type IconName } from "@/components/PageVisuals";
 
 // How We Work: what a discovery hands you, shown as the documents themselves. Example content; cycles until clicked.
 const TABS: { id: string; name: string; when: string; icon: IconName }[] = [
-  { id: "map", name: "Workflow map", when: "Week 1", icon: "map" },
-  { id: "tools", name: "Tool and cost report", when: "Day 7", icon: "coin" },
-  { id: "policy", name: "AI usage policy", when: "Week 2", icon: "shield" },
-  { id: "plan", name: "Written plan with prices", when: "Day 30", icon: "pen" },
+  { id: "map", name: "Workflow map", when: "Map", icon: "map" },
+  { id: "tools", name: "Tool and cost report", when: "Audit", icon: "coin" },
+  { id: "policy", name: "AI usage policy", when: "Policy", icon: "shield" },
+  { id: "plan", name: "Written plan with prices", when: "Plan", icon: "pen" },
 ];
 
 const FLOW = [

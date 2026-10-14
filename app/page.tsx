@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { HeroReel } from "../components/HeroReel";
 import { ExampleBuilds } from "../components/ExampleBuilds";
-import { PartArt, ThirtyDayCard, TrainingLibrary } from "../components/PageVisuals";
+import { PartArt, DiscoveryCard, TrainingLibrary } from "../components/PageVisuals";
 import { JsonLd } from "@/components/JsonLd";
 import { pageMetadata, faqJsonLd } from "@/lib/seo";
 
@@ -53,9 +53,9 @@ const COMPARE = [
 const STEPS = [
   {
     title: "Discovery",
-    tag: "First build live within 30 days",
-    body: "We sit with your team, map how the work actually moves, and list every tool you pay for. Then we put it to work: your team trained on its own work, an AI usage policy, and your first build live on your own data within 30 days. The fee is credited toward your plan or build.",
-    includes: "a map of how the work moves today; every tool you pay for, what it costs, and what to keep, connect, replace, or cut, within 7 days; a written AI usage policy; a hands-on training session on your own work, recorded as the first entry in your training library; the first build live on your own data within 30 days; and a written plan with prices for what comes next. All of it is yours either way",
+    tag: "First build live",
+    body: "We sit with your team, map how the work actually moves, and list every tool you pay for. Then we put it to work: your team trained on its own work, an AI usage policy, and your first build live on your own data. The fee is credited toward your plan or build.",
+    includes: "a map of how the work moves today; every tool you pay for, what it costs, and what to keep, connect, replace, or cut, within 7 days; a written AI usage policy; a hands-on training session on your own work, recorded as the first entry in your training library; the first build live on your own data; and a written plan with prices for what comes next. All of it is yours either way",
   },
   {
     title: "AI Officer, or a one-time project",
@@ -107,7 +107,7 @@ const AUDIT = [
 const FAQ = [
   {
     q: "What does it cost?",
-    a: "Everything starts with a discovery, quoted in writing by company size and tools. It ends with your first build live within 30 days, and the fee is credited toward what comes next. Then you choose an AI Officer plan (Growth or Pro, with every tool connected and unlimited agents and builds, six months minimum and then month to month) or a one-time project quoted in writing. Pro comes with a dedicated AI Officer. If you only want your team trained, request a 5-hour training day and we quote it by team size.",
+    a: "Everything starts with a discovery, quoted in writing by company size and tools. It ends with your first build live, and the fee is credited toward what comes next. Then you choose an AI Officer plan (Growth or Pro, with every tool connected and unlimited agents and builds, six months minimum and then month to month) or a one-time project quoted in writing. Pro comes with a dedicated AI Officer. If you only want your team trained, request a 5-hour training day and we quote it by team size.",
   },
   {
     q: "We already pay for AI tools. Why would we need you?",
@@ -322,7 +322,7 @@ export default function HomePage() {
               <div className="h-eyebrow">How it works</div>
               <h2>Four steps. Priced in writing first.</h2>
               <p>Nothing gets built until the scope and the price are agreed in writing.</p>
-              <div className="pv-howcard"><ThirtyDayCard /></div>
+              <div className="pv-howcard"><DiscoveryCard /></div>
             </div>
             <div className="h-vsteps">
               {STEPS.map((s, i) => (
@@ -408,7 +408,7 @@ export default function HomePage() {
         <div className="h-wrap">
           <div className="h-cta">
             <h2>Start with a discovery.</h2>
-            <p>We map how your work actually moves, audit every tool you pay for, train your team, and put your first build live on your own data within 30 days. You get a written plan and prices for what comes next, and the discovery fee is credited toward it.</p>
+            <p>We map how your work actually moves, audit every tool you pay for, train your team, and put your first build live on your own data. You get a written plan and prices for what comes next, and the discovery fee is credited toward it.</p>
             <Link href="/contact" className="h-btn h-btn-light">Book a conversation</Link>
             <p className="h-cta-meta">The first conversation is free. No sales deck.</p>
           </div>

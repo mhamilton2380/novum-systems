@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
-import { AboutHeroCard, Guarantee, type IconName } from "@/components/PageVisuals";
+import { AboutHeroCard, type IconName } from "@/components/PageVisuals";
 import { StoryTrack, FitPanel, Beliefs, HoldUsTo } from "@/components/AboutVisuals";
 import { JsonLd } from "@/components/JsonLd";
 import { pageMetadata, breadcrumbJsonLd } from "@/lib/seo";
@@ -56,7 +56,6 @@ export default function AboutPage() {
         <div className="h-wrap">
           <SectionHead eyebrow="Our word" title="What you can hold us to." />
           <HoldUsTo />
-          <div style={{ marginTop: 24 }}><Guarantee compact /></div>
         </div>
       </section>
 

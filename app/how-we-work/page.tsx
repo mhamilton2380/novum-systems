@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
 import { ProcessTimeline, type ProcessStep } from "@/components/ProcessTimeline";
-import { ThirtyDayCard, Guarantee, GUARANTEE, RulesBand, HandoffDoc, ScopeMeters, type IconName } from "@/components/PageVisuals";
+import { DiscoveryCard, RulesBand, HandoffDoc, ScopeMeters, type IconName } from "@/components/PageVisuals";
 import { DiscoveryArtifacts } from "@/components/DiscoveryArtifacts";
 import { JsonLd } from "@/components/JsonLd";
 import { pageMetadata, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
@@ -10,20 +10,20 @@ import { pageMetadata, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   path: "/how-we-work",
   title: "How AI Implementation Works: Discovery to Live · Novum AI",
-  description: "Discovery, build, train, run. Your workflow mapped, every tool audited, and your first build live on your own data within 30 days, all in your company's name.",
+  description: "Discovery, build, train, run. Your workflow mapped, every tool audited, and your first build live on your own data, all in your company's name.",
 });
 
 const STEPS: ProcessStep[] = [
   {
     title: "Discovery",
-    tag: "First build live within 30 days",
+    tag: "First build live",
     body: "We sit with your team, map how the work actually moves, and audit every tool you pay for. Then we put AI to work on your own data, so you see it running before you commit to anything bigger.",
     gets: [
       "A map of how the work moves today",
       "Every tool you pay for, what it costs, and what to keep, connect, replace, or cut, within 7 days",
       "A written AI usage policy for your team",
       "A hands-on training session on your own work, recorded as the first entry in your training library",
-      "The first build live on your own data, within 30 days",
+      "The first build live on your own data,",
       "A written plan with prices for what comes next",
     ],
     ask: "Access to the tools you use, and time with the people who do the work.",
@@ -81,12 +81,11 @@ const DRIVERS: { icon: IconName; title: string; body: string; lo: string; hi: st
 ];
 
 const FAQ = [
-  { q: "Is there a guarantee?", a: `Yes. ${GUARANTEE.text} The terms: ${GUARANTEE.terms.join(" ")}` },
   { q: "What does it cost?", a: "We start with a discovery, quoted in writing by company size and tools. It ends with your first build live, and the fee is credited toward what comes next. After that you pick an AI Officer plan (six months minimum, then month to month) or a one-time project quoted in writing. Training days are quoted by team size." },
   { q: "Can we just book training?", a: "Yes. A training day is five hours, tailored to your company type, and you can request one without a discovery. Many teams start there and add an AI Officer once they see what to build." },
   { q: "Do we have to replace our software?", a: "No. Most clients keep the tools that work. We connect them and put AI on top. We only rebuild a platform when owning it costs less than the subscription." },
   { q: "Do we pay per user?", a: "No. There are no seats and no revenue share. Adding people or growing the business adds no license fees." },
-  { q: "How long until we see something working?", a: "Your tool and cost report arrives within 7 days of kickoff, and your first build is live on your own data within 30 days. After that, work ships in phases, so your team is using each piece before the next starts." },
+  { q: "How long until we see something working?", a: "Your tool and cost report arrives within 7 days of kickoff, and your first build is live on your own data. After that, work ships in phases, so your team is using each piece before the next starts." },
   { q: "If you replace a platform, what happens to our data?", a: "We move it. Migration is part of the work, so your history comes with you." },
   { q: "What if we stop working with you?", a: "The hosting accounts are in your company's name, so the system keeps running and you keep paying the host directly. What stops is our support. Hire another developer, or bring us back." },
 ];
@@ -99,7 +98,7 @@ export default function HowWeWorkPage() {
         eyebrow="How we work"
         title={<>We learn how you work <span className="h-grad">first</span>.</>}
         sub="Every company runs differently. We start by learning how yours does and where AI fits, and nothing gets built until the scope and price are agreed in writing."
-        side={<ThirtyDayCard />}
+        side={<DiscoveryCard />}
         ctas={false}
       />
 
@@ -107,7 +106,6 @@ export default function HowWeWorkPage() {
         <div className="h-wrap">
           <SectionHead eyebrow="The process" title="Four steps, from first conversation to running." sub="Scroll through it. Each step lists exactly what you get." />
           <ProcessTimeline steps={STEPS} />
-          <div style={{ marginTop: 48 }}><Guarantee /></div>
         </div>
       </section>
 

@@ -75,9 +75,9 @@ export function IconCards({ items, cols = 3 }: { items: CardItem[]; cols?: 2 | 3
 }
 
 // ─── hero step list (same look as the AI Officer hero card) ─────────────────
-export function HeroSteps({ title, tag, items, label }: { title: string; tag: string; label: string; items: { t: string; d: string; s: string }[] }) {
+export function HeroSteps({ title, tag, items, label }: { title: string; tag: string; label: string; items: { t: string; d: string; s: string; icon?: IconName }[] }) {
   return (
-    <div className="h-phero-card oc-hero" aria-label={label}>
+    <div className={`h-phero-card oc-hero${items[0]?.icon ? " oc-hero-ic" : ""}`} aria-label={label}>
       <div className="oc-hero-h">
         <span className="oc-live" aria-hidden="true" />
         <strong>{title}</strong>
@@ -86,7 +86,7 @@ export function HeroSteps({ title, tag, items, label }: { title: string; tag: st
       <ul>
         {items.map((w, i) => (
           <li key={w.t} style={{ ["--i" as string]: i }}>
-            <b aria-hidden="true">✓</b>
+            {w.icon ? <span className="hx-ic"><Icon name={w.icon} size={18} /><b aria-hidden="true">✓</b></span> : <b aria-hidden="true">✓</b>}
             <span><strong>{w.t}</strong><small>{w.d}</small></span>
             <i>{w.s}</i>
           </li>
@@ -122,6 +122,10 @@ export function TrainingHeroCard() {
           <li key={p.t} style={{ ["--i" as string]: i }}><b aria-hidden="true">✓</b><span><strong>{p.t}</strong><small>{p.d}</small></span><i>{p.s}</i></li>
         ))}
       </ul>
+      <div className="hx-meter" aria-hidden="true">
+        <span>Team using AI on real work</span><b>12 of 14</b>
+        <div><i style={{ ["--w" as string]: "86%" }} /></div>
+      </div>
     </div>
   );
 }
@@ -213,31 +217,30 @@ export function AboutHeroCard() {
   );
 }
 
-// ─── How We Work hero: the first 30 days ────────────────────────────────────
-const DAYS = [
-  { d: "Day 1", t: "Kickoff", s: "Workflow mapped with your team" },
-  { d: "Day 7", t: "Tool and cost report", s: "Every subscription, what it costs" },
-  { d: "Day 30", t: "First build live", s: "On your own data, in use" },
+// ─── Discovery card: what a discovery hands you, step by step (How We Work hero, Home) ──
+const DISCOVERY: { icon: IconName; t: string; s: string }[] = [
+  { icon: "map", t: "Work mapped", s: "How it moves today, with your team" },
+  { icon: "coin", t: "Tool and cost report", s: "Every subscription: keep, connect, or cut" },
+  { icon: "users", t: "Team trained", s: "On its own work, recorded for the library" },
+  { icon: "bot", t: "First build live", s: "On your own data, in use" },
 ];
-export function ThirtyDayCard() {
+export function DiscoveryCard() {
   return (
-    <div className="h-phero-card pv-days" aria-label="The first 30 days of a discovery">
+    <div className="h-phero-card pv-disc" aria-label="What a discovery delivers">
       <div className="oc-hero-h">
         <span className="oc-live" aria-hidden="true" />
         <strong>Discovery</strong>
-        <em>First 30 days</em>
+        <em>What you get</em>
       </div>
-      <div className="pv-track" aria-hidden="true"><i /></div>
       <ol>
-        {DAYS.map((x, i) => (
-          <li key={x.d} style={{ ["--i" as string]: i }}>
-            <b>{x.d}</b>
-            <strong>{x.t}</strong>
-            <small>{x.s}</small>
+        {DISCOVERY.map((x, i) => (
+          <li key={x.t} style={{ ["--i" as string]: i }}>
+            <span className="hx-ic"><Icon name={x.icon} size={18} /><b aria-hidden="true">✓</b></span>
+            <span><strong>{x.t}</strong><small>{x.s}</small></span>
           </li>
         ))}
       </ol>
-      <div className="pv-days-foot"><span>Then</span> a written plan with prices for what comes next</div>
+      <div className="pv-disc-foot"><Icon name="pen" size={16} /><span>Then a written plan, with prices, for what comes next</span></div>
     </div>
   );
 }
@@ -433,50 +436,48 @@ export function EvidenceBand() {
   );
 }
 
-// ─── the discovery guarantee (approved by Michael 2026-10-08) ───────────────
-export const GUARANTEE = {
-  text: "Your first build is live on your own data within 30 days, and the discovery finds more than its fee in yearly savings, in hours back or software you can cut. If either one doesn't happen, you get the fee back, and you keep everything we delivered.",
-  terms: [
-    "You give us access, the tool list, and interview time on the schedule we agree at kickoff.",
-    "Savings are measured the way the discovery report measures them: documented software cuts, plus hours at the wage rates in the report.",
-    "Ask for the refund in writing within 14 days of the report.",
-  ],
-};
-export function GuaranteeSeal({ size = 120 }: { size?: number }) {
+// ─── AI Officer: how the plan keeps your systems current (research 2026-10-13) ─
+const PACE = [
+  { n: "~6 wks", d: "Average gap between Anthropic's model releases, May 2025 to April 2026", src: "Anthropic release history" },
+  { n: "10x", d: "Yearly drop in what AI costs at the same capability", src: "a16z, LLMflation" },
+  { n: "12% → 66%", d: "AI agents finishing real computer tasks, in one year", src: "Stanford AI Index 2026" },
+];
+const CADENCE: { when: string; icon: IconName; lead: string; items: string[] }[] = [
+  { when: "Every month", icon: "clock", lead: "Watch and maintain", items: ["What shipped in AI, and whether it touches your work", "Cost and error check on every live agent", "A new lesson in your training library"] },
+  { when: "Every quarter", icon: "tools", lead: "Tune and swap", items: ["Agents moved to cheaper or better models, after a test on your own work", "Prompts and agents tuned from what they got wrong", "Tool audit: what to keep, connect, or cut"] },
+  { when: "Twice a year", icon: "map", lead: "Reset the plan", items: ["Roadmap and workflows redesigned around what AI can now do", "AI usage policy and guardrails refreshed", "Team training refreshed for the new tools"] },
+];
+export function CadenceBand() {
   return (
-    <svg width={size} height={size} viewBox="0 0 120 120" aria-hidden="true" className="pv-seal">
-      <defs>
-        <linearGradient id="pv-seal-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#00b36e" /><stop offset="0.55" stopColor="#0891b2" /><stop offset="1" stopColor="#3b6fe0" /></linearGradient>
-        <path id="pv-seal-arc" d="M60 60 m-44 0 a44 44 0 1 1 88 0 a44 44 0 1 1 -88 0" />
-      </defs>
-      <circle cx="60" cy="60" r="57" fill="#0b1b2e" stroke="url(#pv-seal-g)" strokeWidth="3" />
-      <circle cx="60" cy="60" r="34" fill="none" stroke="rgba(255,255,255,0.14)" strokeWidth="1" />
-      <text fill="#7fe3c0" fontSize="9" fontWeight="700" letterSpacing="2.4"><textPath href="#pv-seal-arc">LIVE IN 30 DAYS · SAVINGS OVER THE FEE ·</textPath></text>
-      <path d="M48 61l8 8 16-17" fill="none" stroke="#34d399" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-export function Guarantee({ compact = false }: { compact?: boolean }) {
-  if (compact)
-    return (
-      <div className="pv-gline">
-        <GuaranteeSeal size={54} />
-        <p><strong>The discovery guarantee.</strong> First build live in 30 days and more than the fee in yearly savings found, or the fee comes back. <Link href="/how-we-work#guarantee">The terms →</Link></p>
+    <section className="h-sec h-dark cd-band">
+      <div className="h-wrap">
+        <div className="h-head">
+          <div className="h-eyebrow">Staying current</div>
+          <h2>AI changes every few weeks. Your systems keep up.</h2>
+          <p>A setup that was right in January is behind by summer. Most releases don&apos;t matter to your business, so we test the ones that do on your own work before anything changes.</p>
+        </div>
+        <Reveal>
+          <div className="cd-pace">
+            {PACE.map((p, i) => (
+              <div className="rv-item" key={p.n} style={{ ["--i" as string]: i }}>
+                <strong>{p.n}</strong><span>{p.d}</span><small>{p.src}</small>
+              </div>
+            ))}
+          </div>
+          <div className="cd-cols">
+            {CADENCE.map((c, i) => (
+              <div className="cd-col rv-item" key={c.when} style={{ ["--i" as string]: i + 3 }}>
+                <div className="cd-col-h">
+                  <span className="hx-ic"><Icon name={c.icon} size={18} /></span>
+                  <span><strong>{c.when}</strong><small>{c.lead}</small></span>
+                </div>
+                <ul>{c.items.map((t) => <li key={t}><Icon name="check" size={14} />{t}</li>)}</ul>
+              </div>
+            ))}
+          </div>
+        </Reveal>
       </div>
-    );
-  return (
-    <div className="pv-guar" id="guarantee">
-      <GuaranteeSeal />
-      <div>
-        <div className="h-eyebrow">The discovery guarantee</div>
-        <h3>Live in 30 days, and worth more than the fee, or your money back.</h3>
-        <p>{GUARANTEE.text}</p>
-        <details>
-          <summary>The terms</summary>
-          <ul>{GUARANTEE.terms.map((t) => <li key={t}>{t}</li>)}</ul>
-        </details>
-      </div>
-    </div>
+    </section>
   );
 }
 

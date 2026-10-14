@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { PageHero } from "@/components/PageBits";
-import { HeroSteps, Guarantee } from "@/components/PageVisuals";
+import { HeroSteps } from "@/components/PageVisuals";
 import { USE_CASE_NAV } from "@/lib/nav";
 
 export default function ContactPage() {
@@ -38,10 +38,10 @@ export default function ContactPage() {
             tag="From here"
             label="What happens after you send the form"
             items={[
-              { t: "You send the form", d: "The tools you pay for and where time goes", s: "2 min" },
-              { t: "We reply with a time", d: "One that fits what you told us", s: "1 day" },
-              { t: "A call about your operation", d: "How the work moves and where AI fits", s: "Free" },
-              { t: "If it fits, a discovery", d: "Scope and price in writing first", s: "Written" },
+              { t: "You send the form", d: "The tools you pay for and where time goes", s: "2 min", icon: "mail" },
+              { t: "We reply with a time", d: "One that fits what you told us", s: "1 day", icon: "clock" },
+              { t: "A call about your operation", d: "How the work moves and where AI fits", s: "Free", icon: "users" },
+              { t: "If it fits, a discovery", d: "Scope and price in writing first", s: "Written", icon: "pen" },
             ]}
           />
         }
@@ -54,7 +54,6 @@ export default function ContactPage() {
             <div><b>What happens next</b><p>We read what you send, then set up a call to walk through how your operation runs.</p></div>
             <div><b>What to bring</b><p>The tools you pay for, where your team loses the most time, and what you&apos;ve tried with AI so far.</p></div>
             <div><b>When you&apos;ll hear back</b><p>Usually within one business day, with a time that fits what you tell us below.</p></div>
-            <Guarantee compact />
           </div>
 
           <div className="h-formcard">

@@ -112,7 +112,7 @@ export default function TrainingPage() {
         </div>
       </section>
 
-      <CtaBand title="Ready to build on what they learned?" body="A discovery maps how your work moves and puts the first build live on your own data within 30 days. Your team will already know how to use it." />
+      <CtaBand title="Ready to build on what they learned?" body="A discovery maps how your work moves and puts the first build live on your own data. Your team will already know how to use it." />
     </div>
   );
 }

@@ -43,7 +43,7 @@ const STEPS = [
     key: "discovery",
     title: "Discovery",
     line: "Map the work. Audit the tools.",
-    tag: "First build live in 30 days",
+    tag: "Where everyone starts",
     body: "We map how your work moves, audit every tool and what it costs, write your AI usage policy, and put your first build live on your own data.",
   },
   {
@@ -87,8 +87,8 @@ function SceneDiscovery() {
         <div className="if-track"><i /></div>
         <div className="if-marks">
           <span>Kickoff</span>
-          <span>Day 7<small>Tool and cost report</small></span>
-          <span>Day 30<small>First build live</small></span>
+          <span>Audit<small>Tool and cost report</small></span>
+          <span>Build<small>First build live</small></span>
         </div>
       </div>
       <div className="if-chips">

@@ -2,7 +2,7 @@
 
 > Novum AI implements AI in operational businesses of 15 to 100 people: training, agents, custom software, and a fractional Chief AI Officer. We teach your team, build the tools, connect your systems, and you own all of it: the code, the data, the accounts, and the training library are in the client's company name.
 
-Every engagement starts with a paid discovery, quoted in writing by company size and tools. It maps how the work moves, audits every tool and its cost (report within 7 days), writes an AI usage policy, trains the team on its own work, and puts the first build live on the client's own data within 30 days. After discovery, clients choose a fractional Chief AI Officer plan (six-month minimum, then month to month) or a one-time project quoted in writing. Prices are quoted on a call, not published.
+Every engagement starts with a paid discovery, quoted in writing by company size and tools. It maps how the work moves, audits every tool and its cost (report within 7 days), writes an AI usage policy, trains the team on its own work, and puts the first build live on the client's own data. After discovery, clients choose a fractional Chief AI Officer plan (six-month minimum, then month to month) or a one-time project quoted in writing. Prices are quoted on a call, not published.
 
 Key facts:
 - No seats, no per-user licenses, no revenue share.
@@ -15,7 +15,7 @@ Key facts:
 - [AI Implementation](https://www.thenovumai.com/ai-implementation): training plus an AI Officer; your team using AI, and the tools built around your data.
 - [Fractional Chief AI Officer](https://www.thenovumai.com/ai-officer): every tool connected, unlimited agents and builds worked one or two at a time, team trained every month.
 - [AI Training](https://www.thenovumai.com/training): monthly training on your own tools, a library you keep, and a 5-hour on-site training day quoted by team size.
-- [How We Work](https://www.thenovumai.com/how-we-work): discovery, build, train, run; the discovery guarantee and its terms.
+- [How We Work](https://www.thenovumai.com/how-we-work): discovery, build, train, run.
 
 ## Industries
 

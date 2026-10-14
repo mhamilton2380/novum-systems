@@ -859,7 +859,7 @@ a.h-card2 .h-more { margin-top: 14px; font-weight: 700; color: var(--ink); font-
 .if-marks span { position: absolute; top: 0; white-space: nowrap; }
 .if-marks small { display: block; font-weight: 500; color: #94a3b8; margin-top: 2px; }
 .if-marks span:nth-child(1) { left: 0; }
-.if-marks span:nth-child(2) { left: 23.3%; transform: translateX(-50%); text-align: center; } /* day 7 of 30 */
+.if-marks span:nth-child(2) { left: 50%; transform: translateX(-50%); text-align: center; }
 .if-marks span:nth-child(3) { right: 0; text-align: right; }
 .if-chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .if-chips span { font-size: 0.8rem; font-weight: 600; color: #e2e8f0; padding: 6px 12px; border-radius: 100px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); }

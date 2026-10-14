@@ -1,18 +1,19 @@
 "use client";
 
 import { useState } from "react";
+import { Icon, type IconName } from "@/components/PageVisuals";
 
 // ─── hero card: a week with your AI Officer ─────────────────────────────────
-const WEEK = [
-  { t: "Training", d: "Sales team learns the new assistant on live deals", s: "Done" },
-  { t: "Agent live", d: "Renewal quote drafts, held for approval", s: "Live" },
-  { t: "New AI tested", d: "Meeting-notes tool, trialed on your data", s: "Kept" },
-  { t: "Tool audit", d: "Two unused subscriptions flagged to cut", s: "Saved" },
+const WEEK: { t: string; d: string; s: string; icon: IconName }[] = [
+  { t: "Agent live", d: "Renewal quote drafts, held for approval", s: "Live", icon: "bot" },
+  { t: "Training", d: "Sales team learns the new assistant on live deals", s: "Done", icon: "users" },
+  { t: "New AI tested", d: "Meeting-notes tool, trialed on your data", s: "Kept", icon: "ai" },
+  { t: "Tool audit", d: "Two unused subscriptions flagged to cut", s: "Saved", icon: "coin" },
 ];
 
 export function OfficerHeroCard() {
   return (
-    <div className="h-phero-card oc-hero" aria-label="Example week with an AI Officer">
+    <div className="h-phero-card oc-hero oc-hero-ic" aria-label="Example week with an AI Officer">
       <div className="oc-hero-h">
         <span className="oc-live" aria-hidden="true" />
         <strong>Your AI Officer</strong>
@@ -21,12 +22,16 @@ export function OfficerHeroCard() {
       <ul>
         {WEEK.map((w, i) => (
           <li key={w.t} style={{ ["--i" as string]: i }}>
-            <b aria-hidden="true">✓</b>
+            <span className="hx-ic"><Icon name={w.icon} size={18} /><b aria-hidden="true">✓</b></span>
             <span><strong>{w.t}</strong><small>{w.d}</small></span>
             <i>{w.s}</i>
           </li>
         ))}
       </ul>
+      <div className="hx-meter" aria-hidden="true">
+        <span>Building next: CRM to accounting sync</span><b>In progress</b>
+        <div><i style={{ ["--w" as string]: "64%" }} /></div>
+      </div>
     </div>
   );
 }

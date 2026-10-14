@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
-import { IconCards, CaseFlow, Guarantee, type IconName } from "@/components/PageVisuals";
+import { IconCards, CaseFlow, type IconName } from "@/components/PageVisuals";
 import { BillCard, RfiDraft, Ledger } from "@/components/UseCaseVisuals";
 import { JsonLd } from "@/components/JsonLd";
 import { pageMetadata, breadcrumbJsonLd } from "@/lib/seo";
@@ -73,7 +73,6 @@ export default function CaseStudyPage() {
         <div className="h-wrap">
           <SectionHead eyebrow="After" title="Lower cost, fewer hours, same process." />
           <Ledger rows={LEDGER} />
-          <div style={{ marginTop: 28 }}><Guarantee compact /></div>
         </div>
       </section>
 
