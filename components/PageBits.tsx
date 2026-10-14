@@ -26,7 +26,7 @@ export function PageHero({ eyebrow, title, sub, side, below, ctas = true }: {
   );
 }
 
-export function CtaBand({ title = "Start with a discovery.", body = "Your workflow mapped, every tool audited, and your first build live on your own data. The discovery fee counts toward whatever comes next." }: { title?: string; body?: string }) {
+export function CtaBand({ title = "Start with a discovery.", body = "Your workflow mapped, every tool audited, your AI policy written, and your first build live on your own data." }: { title?: string; body?: string }) {
   return (
     <section className="h-sec">
       <div className="h-wrap">
@@ -34,7 +34,7 @@ export function CtaBand({ title = "Start with a discovery.", body = "Your workfl
           <h2>{title}</h2>
           <p>{body}</p>
           <Link href="/contact" className="h-btn h-btn-light">Book a conversation</Link>
-          <p className="h-cta-meta">The first call is free. Discovery is quoted in writing before it starts.</p>
+          <p className="h-cta-meta">The first call is free.</p>
         </div>
       </div>
     </section>

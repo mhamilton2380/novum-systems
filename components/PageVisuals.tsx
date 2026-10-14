@@ -104,11 +104,11 @@ const PROGRAM = [
 ];
 export function TrainingHeroCard() {
   return (
-    <div className="h-phero-card pv-train" aria-label="Training on every plan: live sessions every month, a library you keep, and team challenges">
+    <div className="h-phero-card pv-train" aria-label="Training, built in: live sessions every month, a library you keep, and team challenges">
       <div className="oc-hero-h">
         <span className="oc-live" aria-hidden="true" />
         <strong>Your team</strong>
-        <em>On every plan</em>
+        <em>Built in</em>
       </div>
       <div className="pv-team" aria-hidden="true">
         {Array.from({ length: 14 }).map((_, i) => (
@@ -382,7 +382,7 @@ export function ShadowAI({ note }: { note?: string }) {
         <div>
           <div className="h-eyebrow">Shadow AI</div>
           <h2>Your team is probably already using AI on personal accounts.</h2>
-          <p className="pv-lead pv-lead-dark">The first fix is giving them a safe way to do it.{note ? ` ${note}` : ""} Every plan puts these in place first.</p>
+          <p className="pv-lead pv-lead-dark">The first fix is giving them a safe way to do it.{note ? ` ${note}` : ""} We put these in place first.</p>
         </div>
         <Reveal>
           <div className="pv-shadow">
@@ -528,30 +528,6 @@ export function HandoffDoc({ items }: { items: { icon: IconName; title: string; 
             <strong>Your company</strong>
             <span className="pv-stamp" aria-hidden="true">Signed over</span>
           </div>
-        </div>
-      </div>
-    </Reveal>
-  );
-}
-
-// ─── How We Work: what moves the price, as scope meters ─────────────────────
-export function ScopeMeters({ items }: { items: { icon: IconName; title: string; lo: string; hi: string; body: string; at: number }[] }) {
-  return (
-    <Reveal>
-      <div className="pv-scope">
-        {items.map((it, i) => (
-          <div key={it.title} className="pv-scope-row rv-item" style={{ ["--i" as string]: i, ["--at" as string]: `${it.at}%` }}>
-            <div className="pv-scope-l"><span className="oc-role-icon"><Icon name={it.icon} /></span><div><strong>{it.title}</strong><small>{it.body}</small></div></div>
-            <div className="pv-scope-m">
-              <div className="pv-scope-track"><i /><b /></div>
-              <div className="pv-scope-ends"><span>{it.lo}</span><span>{it.hi}</span></div>
-            </div>
-          </div>
-        ))}
-        <div className="pv-scope-foot">
-          <span className="pv-noseat">Per seat</span>
-          <span className="pv-noseat">Revenue share</span>
-          <p>Neither one is ever part of the price. Every discovery and project is quoted in writing first.</p>
         </div>
       </div>
     </Reveal>

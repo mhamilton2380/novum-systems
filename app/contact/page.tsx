@@ -41,7 +41,7 @@ export default function ContactPage() {
               { t: "You send the form", d: "The tools you pay for and where time goes", s: "2 min", icon: "mail" },
               { t: "We reply with a time", d: "One that fits what you told us", s: "1 day", icon: "clock" },
               { t: "A call about your operation", d: "How the work moves and where AI fits", s: "Free", icon: "users" },
-              { t: "If it fits, a discovery", d: "Scope and price in writing first", s: "Written", icon: "pen" },
+              { t: "If it fits, a discovery", d: "Work mapped, first build live", s: "Next", icon: "map" },
             ]}
           />
         }

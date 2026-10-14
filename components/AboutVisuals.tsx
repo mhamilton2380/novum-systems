@@ -89,7 +89,7 @@ export function Beliefs({ items }: { items: { icon: IconName; title: string; bod
 // ─── what you can hold us to ────────────────────────────────────────────────
 const HOLD: { icon: IconName; k: string; d: string }[] = [
   { icon: "users", k: "In person", d: "We train your team on site, on their own work." },
-  { icon: "doc", k: "In writing", d: "Scope and price before any build starts." },
+  { icon: "map", k: "Mapped first", d: "How the work moves, before any build starts." },
   { icon: "clock", k: "First build", d: "Live on your own data, in use by your team." },
   { icon: "key", k: "In your name", d: "Code, data, accounts, and the training library." },
 ];

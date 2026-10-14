@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
-import { PlanCards } from "@/components/PlanCards";
+import { IncludedList } from "@/components/PlanCards";
 import { AssistantChat } from "@/components/AssistantChat";
 import { Reveal } from "@/components/Reveal";
-import { MonthView, OfficerHeroCard, RoleCards } from "@/components/OfficerShowcase";
+import { OfficerHeroCard, RoleCards } from "@/components/OfficerShowcase";
 import { IconCards, TrainingLibrary, ShadowAI, CadenceBand, type IconName } from "@/components/PageVisuals";
 import { BuildQueue } from "@/components/BuildQueue";
 import { JsonLd } from "@/components/JsonLd";
@@ -19,9 +19,9 @@ export const metadata: Metadata = pageMetadata({
 const MONTHLY = [
   { icon: "train" as const, title: "Ongoing training", body: "Sessions and coaching for your team on their own work, as the tools change, so people keep using what you paid for." },
   { icon: "ai" as const, title: "New AI, tested for you", body: "AI tools change monthly. We test the ones that matter on your data and adopt the ones that pay off." },
-  { icon: "queue" as const, title: "Agents and builds, one after another", body: "Ask for as many agents, integrations, and tools as you want. We work through them in order, each one live before the next starts. Pro runs two at once." },
+  { icon: "queue" as const, title: "Agents and builds, one after another", body: "Ask for as many agents, integrations, and tools as you want. We work through them in order, each one live before the next starts." },
   { icon: "link" as const, title: "Every tool connected", body: "Your accounting, CRM, project, and document tools wired together, Microsoft 365 and Copilot included, so data entered once shows up everywhere and the AI can see all of it." },
-  { icon: "swap" as const, title: "Costly software, replaced", body: "When a SaaS tool costs more than it's worth, we build the version that fits through your build queue and hand you the code. Pro takes on full platforms." },
+  { icon: "swap" as const, title: "Costly software, replaced", body: "When a SaaS tool costs more than it's worth, we build the version that fits through your build queue and hand you the code." },
   { icon: "shield" as const, title: "Reporting, audits, and security", body: "A monthly report on hours saved and adoption, a list of every agent and who owns it, a quarterly audit of every tool and what it costs, plus monitoring, backups, and security updates." },
 ];
 
@@ -47,13 +47,12 @@ const OWN: { icon: IconName; title: string; body: string; foot: string }[] = [
 
 const FAQ = [
   { q: "What is a fractional Chief AI Officer?", a: "Most companies of 15 to 100 people can't justify a full-time technical executive. We fill the role part-time. We train your team, test new AI on your data, keep your systems running, and cut tools that don't earn their price." },
-  { q: "How does it start?", a: "With a paid discovery, quoted in writing by company size and tools. We map how your work moves, audit every tool you pay for (that report lands within 7 days), write your AI usage policy, train your team on its own work, and put your first build live on your data. The fee is credited toward your plan." },
-  { q: "Can we just buy one project?", a: "Yes. If you don't want a plan, we scope a single build after discovery and quote it in writing: an assistant, agents, integrations, or a platform replacement. You get the same training and you own the code, data, and accounts. Most clients end up on a plan, because the next project always shows up." },
-  { q: "What does 'one build at a time' mean?", a: "There's no limit on how many agents, integrations, or tools you ask for. We work on one until it's live, then start the next. Pro works on two at once. Bigger projects, like replacing a platform, are split into steps that go live one by one." },
+  { q: "How does it start?", a: "With a discovery. We map how your work moves, audit every tool you pay for (that report lands within 7 days), write your AI usage policy, train your team on its own work, and put your first build live on your data." },
+  { q: "Can we just buy one project?", a: "Yes. If you'd rather not keep us on, we scope a single build with you after discovery: an assistant, agents, integrations, or a platform replacement. You get the same training and you own the code, data, and accounts. Most clients end up on a plan, because the next project always shows up." },
+  { q: "What does 'one build at a time' mean?", a: "There's no limit on how many agents, integrations, or tools you ask for. We work on one until it's live and your team uses it, then start the next. Bigger projects, like replacing a platform, are split into steps that go live one by one." },
   { q: "Do we keep what you build if we leave?", a: "Yes. Replacements, agents, and integrations are built on accounts in your company's name. The code, data, and accounts stay yours." },
   { q: "Why keep an AI Officer after the first builds?", a: "Because AI keeps moving. New models ship every few weeks and prices drop fast. Every month we check what changed and keep your agents healthy. Every quarter we move them to better or cheaper models after testing on your work, and audit your tools. Twice a year we redesign the roadmap, refresh your AI policy, and retrain the team on what's new." },
-  { q: "How long is the commitment?", a: "Six months, then month to month. Your accounts, data, code, and training library stay in your company's name either way." },
-  { q: "What about marketing?", a: "SEO, social reels, and explainer videos are available as an add-on, priced separately. They aren't part of the AI Officer plans." },
+  { q: "What about marketing?", a: "SEO, social reels, and explainer videos are available as a separate add-on." },
 ];
 
 export default function AiOfficerPage() {
@@ -78,14 +77,14 @@ export default function AiOfficerPage() {
 
       <section className="h-sec h-soft">
         <div className="h-wrap">
-          <SectionHead eyebrow="The role" title="What an AI Officer does." sub="Six jobs, all of them yours to hand off. Your plan sets how much of each you get." />
+          <SectionHead eyebrow="The role" title="What an AI Officer does." sub="Six jobs, all of them yours to hand off, sized to your company in discovery." />
           <Reveal><RoleCards items={MONTHLY} /></Reveal>
         </div>
       </section>
 
       <section className="h-sec">
         <div className="h-wrap">
-          <SectionHead eyebrow="The build queue" title="Ask for anything. It ships one after another." sub="No cap on agents, integrations, or tools. We build one until it's live and your team is trained on it, then start the next. Pro runs two at once." />
+          <SectionHead eyebrow="The build queue" title="Ask for anything. It ships one after another." sub="No cap on agents, integrations, or tools. We build one until it's live and your team is trained on it, then start the next." />
           <BuildQueue />
           <div className="pv-qproof">
             <span><strong>Software replacements go through the same queue.</strong> One client replaced a $100,000-a-year platform with a system it owns.</span>
@@ -101,22 +100,15 @@ export default function AiOfficerPage() {
           <div>
             <div className="h-eyebrow">Training, every month</div>
             <h2>Your team learns each piece as it goes live.</h2>
-            <p className="pv-lead">A build nobody uses gets cancelled. So training comes with every plan, on your own tools and workflows, and every session lands in a library your team keeps.</p>
+            <p className="pv-lead">A build nobody uses gets cancelled. So training is built in, on your own tools and workflows, and every session lands in a library your team keeps.</p>
             <div className="pv-chips">
-              <span><b>Growth</b> 2 sessions a month</span>
-              <span><b>Pro</b> Weekly sessions and office hours</span>
-              <span><b>Every plan</b> A library you keep</span>
+              <span><b>Every month</b> Live sessions on your tools</span>
+              <span><b>Every week</b> Office hours</span>
+              <span><b>For good</b> A library you keep</span>
             </div>
             <p style={{ marginTop: 22 }}><Link href="/training" className="h-more" style={{ color: "var(--ink)", fontWeight: 700, textDecoration: "none" }}>How we train →</Link></p>
           </div>
           <TrainingLibrary />
-        </div>
-      </section>
-
-      <section className="h-sec">
-        <div className="h-wrap">
-          <SectionHead eyebrow="A month with us" title="See what each plan looks like in practice." sub="Switch between Growth and Pro. Same role, more of it on Pro, and a dedicated AI Officer." />
-          <Reveal><MonthView /></Reveal>
         </div>
       </section>
 
@@ -136,21 +128,21 @@ export default function AiOfficerPage() {
 
       <section className="h-sec">
         <div className="h-wrap">
-          <SectionHead eyebrow="Ownership" title="Everything we build is yours." sub="On a plan or after a project, it all sits in your company's name." />
+          <SectionHead eyebrow="Ownership" title="Everything we build is yours." sub="Whether you keep us on or stop after one project, it all sits in your company's name." />
           <IconCards items={OWN} cols={4} />
         </div>
       </section>
 
-      <section className="h-sec h-soft" id="pricing">
+      <section className="h-sec h-soft" id="included">
         <div className="h-wrap">
           <SectionHead
-            eyebrow="Plans"
-            title="Pick a plan. Start with a discovery."
-            sub="Every plan starts with a discovery that ends with your first build live, credited toward your plan. Then six months minimum, month to month after that."
+            eyebrow="What's included"
+            title="One role, sized to your company."
+            sub="It starts with a discovery that ends with your first build live. From there, this is what your AI Officer covers."
           />
-          <Reveal><PlanCards /></Reveal>
+          <Reveal><IncludedList /></Reveal>
           <p style={{ marginTop: 28, color: "var(--ink-2)", maxWidth: 720 }}>
-            Want one project without a plan? Start with a discovery and we&apos;ll scope it in writing. Want your team trained first? Book a{" "}
+            Want one project instead? Start with a discovery and we&apos;ll scope it with you. Want your team trained first? Book a{" "}
             <Link href="/training" style={{ color: "inherit", fontWeight: 700 }}>training day</Link>.
           </p>
         </div>
@@ -174,7 +166,7 @@ export default function AiOfficerPage() {
         </div>
       </section>
 
-      <CtaBand title="Your AI Officer starts with a discovery." body="Workflow mapped, tools audited, team trained, first build live. The fee is credited toward your plan." />
+      <CtaBand title="Your AI Officer starts with a discovery." body="Workflow mapped, tools audited, AI policy written, team trained, first build live." />
     </div>
   );
 }

@@ -54,13 +54,13 @@ const STEPS = [
   {
     title: "Discovery",
     tag: "First build live",
-    body: "We sit with your team, map how the work actually moves, cut the steps that shouldn't exist, and list every tool you pay for. Then we put it to work: your team trained on its own work, an AI usage policy, and your first build live on your own data. The fee is credited toward your plan or build.",
+    body: "We sit with your team, map how the work actually moves, cut the steps that shouldn't exist, and list every tool you pay for. Then we put it to work: your team trained on its own work, an AI usage policy, and your first build live on your own data.",
     includes: "a map of how the work moves today; every tool you pay for, what it costs, and what to keep, connect, replace, or cut, within 7 days; a written AI usage policy; a hands-on training session on your own work, recorded as the first entry in your training library; and the first build live on your own data. All of it is yours either way",
   },
   {
-    title: "AI Officer, or a one-time project",
+    title: "AI Officer, or a single project",
     tag: "Your choice after discovery",
-    body: "Most clients go onto a plan: every tool connected, and agents and builds shipping one after another, each live before the next starts. Or take one project at a fixed price.",
+    body: "Most clients keep us on as their AI Officer: every tool connected, and agents and builds shipping one after another, each live before the next starts. Or we take on a single project.",
     includes: "an AI assistant and agents on your data, integrations with the tools you keep, a custom system where it pays, and the code handed to you",
   },
   {
@@ -72,7 +72,7 @@ const STEPS = [
   {
     title: "Run",
     tag: "Your AI Officer",
-    body: "You pay for hosting, storage, and security. Nothing is priced on seats or revenue. Your AI Officer keeps the team trained and brings in new AI as it's worth using.",
+    body: "Your AI Officer keeps the team trained, checks how everything performs, and brings in new AI as it's worth using.",
     includes: "ongoing training, a monthly report on hours saved and adoption, new AI tested on your data, a quarterly tool audit, maintenance, and new agents, builds, and changes through your queue"
   },
 ];
@@ -106,8 +106,8 @@ const AUDIT = [
 
 const FAQ = [
   {
-    q: "What does it cost?",
-    a: "Everything starts with a discovery, quoted in writing by company size and tools. It ends with your first build live, and the fee is credited toward what comes next. Then you choose an AI Officer plan (Growth or Pro, with every tool connected and unlimited agents and builds, six months minimum and then month to month) or a one-time project quoted in writing. Pro comes with a dedicated AI Officer. If you only want your team trained, request a 5-hour training day and we quote it by team size.",
+    q: "How do we start?",
+    a: "With a discovery. We map how the work moves, report on every tool, write your AI policy, train your team, and put the first build live on your own data. From there, most clients keep us on as their AI Officer. If you only want your team trained, book a 5-hour training day.",
   },
   {
     q: "We already pay for AI tools. Why would we need you?",
@@ -151,9 +151,9 @@ export default function HomePage() {
               Generic software makes your team work its way. We sit down with your team, learn how the work actually moves, and build what fits: AI agents on the repeat work, your tools connected, and the platforms you overpay for replaced with software you own.
             </p>
             <ul className="h-proof">
-              <li>We learn your workflow first. Scope and price in writing before anything is built.</li>
+              <li>We learn your workflow first, then build around it.</li>
               <li>We train your team in person, on the work they do every day, and an AI Officer keeps it going.</li>
-              <li>No seats, no revenue share. You own all of it: the code, the data, the accounts, and the AI account itself.</li>
+              <li>You own all of it: the code, the data, the accounts, and the AI account itself.</li>
             </ul>
             <div className="h-ctas">
               <Link href="/contact" className="h-btn h-btn-primary">Start with a discovery</Link>
@@ -244,7 +244,7 @@ export default function HomePage() {
               <li><b>Agents drafting RFIs and submittals</b> for the project team to review and send, saving hours every week.</li>
             </ul>
             <div className="h-roi-foot">
-              <p>One build fee. Then storage, security, and hosting. No seats, no revenue share, no renewal.</p>
+              <p>Now the company owns the system, the code, and the data, and the platform subscription is gone.</p>
             </div>
           </div>
         </div>
@@ -285,7 +285,7 @@ export default function HomePage() {
             </Link>
             <Link href="/training" className="h-card2 pv-card">
               <PartArt kind="training" />
-              <span className="h-card2-tag">Training · every plan</span>
+              <span className="h-card2-tag">Training · built in</span>
               <h3>Training that makes it stick.</h3>
               <p>Live sessions every month on your own tools, a recorded library your team keeps for good, and an on-site training day when you want one.</p>
               <div className="h-more">See how we train →</div>
@@ -320,8 +320,8 @@ export default function HomePage() {
           <div className="h-howgrid">
             <div className="h-head">
               <div className="h-eyebrow">How it works</div>
-              <h2>Four steps. Priced in writing first.</h2>
-              <p>Nothing gets built until the scope and the price are agreed in writing.</p>
+              <h2>Four steps. Your work comes first.</h2>
+              <p>We learn how your team works before anything gets built.</p>
               <div className="pv-howcard"><DiscoveryCard /></div>
             </div>
             <div className="h-vsteps">
@@ -408,7 +408,7 @@ export default function HomePage() {
         <div className="h-wrap">
           <div className="h-cta">
             <h2>Start with a discovery.</h2>
-            <p>We map how your work actually moves, audit every tool you pay for, train your team, and put your first build live on your own data. The discovery fee is credited toward what comes next.</p>
+            <p>We map how your work actually moves, audit every tool you pay for, train your team, and put your first build live on your own data.</p>
             <Link href="/contact" className="h-btn h-btn-light">Book a conversation</Link>
             <p className="h-cta-meta">The first conversation is free. No sales deck.</p>
           </div>

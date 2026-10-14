@@ -1154,3 +1154,12 @@ a.h-card2 .h-more { margin-top: 14px; font-weight: 700; color: var(--ink); font-
   .pc-card, .pc-lane-bars i { opacity: 1; transform: none; transition: none; animation: none !important; }
   .pc-card.pro { transform: none; }
 }
+
+/* AI Officer: what's included */
+.inc-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.inc-card { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 24px 26px; }
+.inc-card h3 { font-size: 1.05rem; margin: 0 0 14px; color: var(--ink); }
+.inc-card ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.inc-card li { display: grid; grid-template-columns: 20px 1fr; gap: 8px; color: var(--ink-2); font-size: 0.95rem; line-height: 1.45; }
+.inc-card li b { color: #00b36e; }
+@media (max-width: 760px) { .inc-grid { grid-template-columns: 1fr; } .inc-card { padding: 20px; } }

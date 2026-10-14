@@ -57,7 +57,7 @@ export default function AiImplementationPage() {
 
       <section className="h-sec">
         <div className="h-wrap">
-          <SectionHead eyebrow="Two parts" title="We build it. Then we make sure it gets used." sub="An AI Officer builds the agents and tools. Training on every plan gets your team using them, every month." />
+          <SectionHead eyebrow="Two parts" title="We build it. Then we make sure it gets used." sub="An AI Officer builds the agents and tools. Training every month gets your team using them." />
           <div className="h-grid3" style={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
             {PARTS.map((p) => (
               <Link href={p.href} className="h-card2 pv-card" key={p.tag}>

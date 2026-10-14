@@ -5,7 +5,7 @@ import { COMPANY_TYPES, TRAINING_HOURS } from "@/lib/training";
 
 const STEPS = [
   { t: "Tell us about your team", d: "Company type and team size, so the day fits." },
-  { t: "We send a quote and dates", d: "Within one business day, in writing." },
+  { t: "We send a quote and dates", d: "Within one business day." },
   { t: "We come to your team", d: `${TRAINING_HOURS} hours, hands-on, on your own work.` },
 ];
 

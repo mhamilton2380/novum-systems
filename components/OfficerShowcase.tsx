@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { Icon, type IconName } from "@/components/PageVisuals";
 
 // ─── hero card: a week with your AI Officer ─────────────────────────────────
@@ -32,86 +31,6 @@ export function OfficerHeroCard() {
         <span>Building next: CRM to accounting sync</span><b>In progress</b>
         <div><i style={{ ["--w" as string]: "64%" }} /></div>
       </div>
-    </div>
-  );
-}
-
-// ─── a month on Growth or Pro ───────────────────────────────────────────────
-type Bar = { label: string; from: number; to: number; tone?: "blue" | "soft" };
-type Plan = { id: "growth" | "pro"; name: string; note: string; rows: { name: string; bars: Bar[] }[]; facts: string[] };
-
-const PLANS: Plan[] = [
-  {
-    id: "growth",
-    name: "Growth",
-    note: "One build in progress at a time.",
-    rows: [
-      { name: "Training", bars: [{ label: "Team session", from: 1, to: 1 }, { label: "Team session", from: 3, to: 3 }] },
-      { name: "Build lane", bars: [{ label: "Intake assistant", from: 1, to: 2, tone: "blue" }, { label: "CRM to accounting sync", from: 3, to: 4, tone: "blue" }] },
-      { name: "Support", bars: [{ label: "Answers within 1 business day", from: 1, to: 4, tone: "soft" }] },
-      { name: "Reviews", bars: [{ label: "Quarterly tool audit", from: 4, to: 4 }] },
-    ],
-    facts: ["2 training sessions a month", "1 build at a time", "Quarterly tool audit"],
-  },
-  {
-    id: "pro",
-    name: "Pro",
-    note: "A dedicated AI Officer, and two builds at once.",
-    rows: [
-      { name: "Training", bars: [1, 2, 3, 4].map((w) => ({ label: "Weekly session", from: w, to: w })) },
-      { name: "Build lane 1", bars: [{ label: "Intake assistant", from: 1, to: 2, tone: "blue" }, { label: "CRM to accounting sync", from: 3, to: 4, tone: "blue" }] },
-      { name: "Build lane 2", bars: [{ label: "Quote agent", from: 1, to: 2, tone: "blue" }, { label: "Reporting agent", from: 3, to: 4, tone: "blue" }] },
-      { name: "Support", bars: [{ label: "Office hours and same-day answers", from: 1, to: 4, tone: "soft" }] },
-      { name: "Reviews", bars: [{ label: "Roadmap call", from: 1, to: 1 }, { label: "Quarterly tool audit", from: 4, to: 4 }] },
-    ],
-    facts: ["Weekly sessions and office hours", "2 builds at a time", "Monthly roadmap call"],
-  },
-];
-
-export function MonthView() {
-  const [id, setId] = useState<"growth" | "pro">("growth");
-  const plan = PLANS.find((p) => p.id === id)!;
-  return (
-    <div className="oc-month">
-      <div className="oc-month-top">
-        <div className="oc-seg" role="tablist" aria-label="Compare a month on each plan">
-          {PLANS.map((p) => (
-            <button key={p.id} role="tab" aria-selected={id === p.id} className={id === p.id ? "on" : ""} onClick={() => setId(p.id)}>
-              {p.name}
-            </button>
-          ))}
-        </div>
-        <p className="oc-month-note" aria-live="polite">{plan.note}</p>
-        <span className="oc-month-ex">Example month</span>
-      </div>
-
-      <div className="oc-scroll"><div className="oc-grid" key={plan.id} role="table" aria-label={`A month on ${plan.name}`}>
-        <div className="oc-weeks" role="row">
-          <span />
-          {[1, 2, 3, 4].map((w) => <span key={w} role="columnheader">Week {w}</span>)}
-        </div>
-        {plan.rows.map((r, ri) => (
-          <div className="oc-row" key={r.name} role="row">
-            <span className="oc-rname" role="rowheader">{r.name}</span>
-            <div className="oc-lane">
-              {r.bars.map((b, bi) => (
-                <span
-                  key={b.label + b.from}
-                  role="cell"
-                  className={`oc-bar${b.tone ? ` ${b.tone}` : ""}`}
-                  style={{ gridColumn: `${b.from} / ${b.to + 1}`, ["--d" as string]: `${(ri * 3 + bi) * 0.12}s` }}
-                >
-                  {b.label}
-                </span>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div></div>
-
-      <ul className="oc-facts">
-        {plan.facts.map((f) => <li key={f}>{f}</li>)}
-      </ul>
     </div>
   );
 }

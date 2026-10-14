@@ -15,9 +15,9 @@ const BELIEFS: { icon: IconName; title: string; body: string; practice: string }
   { icon: "users", title: "Training is the job", body: "A tool nobody knows how to use saves nothing. We teach your team on their own work before anything goes live.", practice: "Monthly sessions, and a recorded library your team keeps" },
   { icon: "target", title: "AI should fit the work", body: "Your team shouldn't bend its workflow to a template. The tools should be built around how you already work.", practice: "We map how the work moves before we build anything" },
   { icon: "key", title: "You should own what you pay for", body: "The code, the data, the accounts, and the training library belong to your company, in its name.", practice: "Hosting and accounts set up under your company from day one" },
-  { icon: "flat", title: "Growth shouldn't raise your bill", body: "No seats, no revenue share. Hiring people and winning work adds nothing to your software cost.", practice: "A build, then hosting. No per-person pricing" },
+  { icon: "clock", title: "AI should keep getting better", body: "Models and tools change every few weeks. What we build gets tested against what ships, and upgraded when something better earns its place.", practice: "A monthly check on every agent and tool" },
   { icon: "db", title: "AI should work on your data", body: "An assistant and agents that know your business, see only what each role allows, and never train on your records.", practice: "Access limited by role, and a person approves what goes out" },
-  { icon: "map", title: "Map before you build", body: "We learn how the work moves before we write a line of code, and you get the scope and price in writing first.", practice: "The discovery fee is credited toward what comes next" },
+  { icon: "map", title: "Map before you build", body: "We learn how the work moves before we write a line of code.", practice: "Every engagement starts with a discovery" },
 ];
 
 export default function AboutPage() {
