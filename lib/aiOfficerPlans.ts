@@ -68,6 +68,7 @@ export const FEATURES: FeatureGroup[] = [
       { label: "Written guides for every tool and agent we set up", v: [true, true, true] },
       { label: "A recorded training library on your own tools, updated monthly, yours to keep", v: [true, true, true] },
       { label: "An AI usage policy: what data goes where", v: [true, true, true] },
+      { label: "A monthly report: hours saved, adoption, and what's next", v: [true, true, true] },
       { label: "New AI tools tested on your data", v: [true, true, true] },
       { label: "Tool and cost audit", v: ["Quarterly audit, cutting what you don't use", "Quarterly audit plus a monthly roadmap call", "Quarterly audit plus a monthly roadmap call"] },
       { label: "Response time", v: ["Answers within 1 business day", "Same-day answers", "Contractual response times"] },
@@ -79,6 +80,7 @@ export const FEATURES: FeatureGroup[] = [
     rows: [
       { label: "Every tool you use, connected", v: [true, true, true] },
       { label: "Two-way sync, so data entered once updates everywhere", v: [true, true, true] },
+      { label: "Built inside Microsoft 365 and Copilot if that's what you run", v: [true, true, true] },
       { label: "Every document encrypted, searchable by meaning, access by role", v: [true, true, true] },
       { label: "Hosted on SOC 2 Type 2 infrastructure, encrypted at rest and in transit", v: [true, true, true] },
       { label: "Your data in its own database, never shared with other clients", v: [true, true, true] },
@@ -94,6 +96,7 @@ export const FEATURES: FeatureGroup[] = [
       { label: "Bigger projects split into steps that go live one by one", v: [true, true, true] },
       { label: "Scheduling, outreach, and reporting agents, with drafts held for your approval", v: [true, true, true] },
       { label: "A person approves anything before it leaves the company", v: [true, true, true] },
+      { label: "A list of every agent, what it does, and who owns it", v: [true, true, true] },
     ],
   },
   {

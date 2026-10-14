@@ -20,9 +20,9 @@ const MONTHLY = [
   { icon: "train" as const, title: "Ongoing training", body: "Sessions and coaching for your team on their own work, as the tools change, so people keep using what you paid for." },
   { icon: "ai" as const, title: "New AI, tested for you", body: "AI tools change monthly. We test the ones that matter on your data and adopt the ones that pay off." },
   { icon: "queue" as const, title: "Agents and builds, one after another", body: "Ask for as many agents, integrations, and tools as you want. We work through them in order, each one live before the next starts. Pro runs two at once." },
-  { icon: "link" as const, title: "Every tool connected", body: "Your accounting, CRM, project, and document tools wired together, so data entered once shows up everywhere and the AI can see all of it." },
+  { icon: "link" as const, title: "Every tool connected", body: "Your accounting, CRM, project, and document tools wired together, Microsoft 365 and Copilot included, so data entered once shows up everywhere and the AI can see all of it." },
   { icon: "swap" as const, title: "Costly software, replaced", body: "When a SaaS tool costs more than it's worth, we build the version that fits through your build queue and hand you the code. Pro takes on full platforms." },
-  { icon: "shield" as const, title: "Audits and security", body: "A quarterly audit of every tool and what it costs, plus monitoring, backups, and security updates on everything we set up." },
+  { icon: "shield" as const, title: "Reporting, audits, and security", body: "A monthly report on hours saved and adoption, a list of every agent and who owns it, a quarterly audit of every tool and what it costs, plus monitoring, backups, and security updates." },
 ];
 
 const FIT: { icon: IconName; tag: string; title: string; body: string }[] = [

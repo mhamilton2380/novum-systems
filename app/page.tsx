@@ -44,7 +44,7 @@ const COMPARE = [
   ["Who sets it up", "Whoever has time that week.", "We do, around how your team works."],
   ["Training", "A login and a link to the help docs.", "Hands-on sessions on your own work and data."],
   ["Your data", "Pasted into chat windows.", "AI works inside your systems, limited by role."],
-  ["Your tools", "Another AI subscription per department.", "Connected to the tools you keep."],
+  ["Your tools", "Another AI subscription per department.", "Built inside the tools you keep, Microsoft 365 and Copilot included."],
   ["Who's in charge", "Nobody. Tools get bought one at a time.", "A Chief AI Officer on call who knows your whole stack."],
   ["What it costs", "A seat for every person, in every tool.", "No seats. A build, then hosting."],
   ["If you stop", "Access and history stay with the vendor.", "The code, data, and accounts are in your name."],
@@ -54,7 +54,7 @@ const STEPS = [
   {
     title: "Discovery",
     tag: "First build live",
-    body: "We sit with your team, map how the work actually moves, and list every tool you pay for. Then we put it to work: your team trained on its own work, an AI usage policy, and your first build live on your own data. The fee is credited toward your plan or build.",
+    body: "We sit with your team, map how the work actually moves, cut the steps that shouldn't exist, and list every tool you pay for. Then we put it to work: your team trained on its own work, an AI usage policy, and your first build live on your own data. The fee is credited toward your plan or build.",
     includes: "a map of how the work moves today; every tool you pay for, what it costs, and what to keep, connect, replace, or cut, within 7 days; a written AI usage policy; a hands-on training session on your own work, recorded as the first entry in your training library; the first build live on your own data; and a written plan with prices for what comes next. All of it is yours either way",
   },
   {
@@ -73,7 +73,7 @@ const STEPS = [
     title: "Run",
     tag: "Your AI Officer",
     body: "You pay for hosting, storage, and security. Nothing is priced on seats or revenue. Your AI Officer keeps the team trained and brings in new AI as it's worth using.",
-    includes: "ongoing training, new AI tested on your data, a quarterly tool audit, maintenance, and new agents, builds, and changes through your queue"
+    includes: "ongoing training, a monthly report on hours saved and adoption, new AI tested on your data, a quarterly tool audit, maintenance, and new agents, builds, and changes through your queue"
   },
 ];
 
@@ -111,7 +111,7 @@ const FAQ = [
   },
   {
     q: "We already pay for AI tools. Why would we need you?",
-    a: "Most companies do. The tools are fine. What's missing is someone to set them up around the work, connect them to your data, and teach your team to use them every day. That's the job.",
+    a: "Most companies do. The tools are fine. What's missing is someone to set them up around the work, connect them to your data, and teach your team to use them every day. That's the job. On Microsoft 365 and Copilot? We build inside it: Copilot agents, Power Automate flows, and SharePoint, connected to the rest of your tools.",
   },
   {
     q: "What does training look like?",
