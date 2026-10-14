@@ -68,7 +68,7 @@ export async function POST(request: Request) {
         method: "POST",
         headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
         body: JSON.stringify({
-          from: process.env.RESEND_FROM ?? "Novum AI <michael@thenovumai.com>",
+          from: process.env.RESEND_FROM ?? "Novum AI <hello@thenovumai.com>",
           to: [email],
           reply_to: process.env.LEADS_TO?.split(",")[0]?.trim() || undefined,
           subject: `Your AI Readiness Score: ${r.score} out of 100`,
