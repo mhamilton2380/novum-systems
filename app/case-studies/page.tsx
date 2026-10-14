@@ -7,14 +7,14 @@ import "./case-studies.css";
 
 export const metadata: Metadata = pageMetadata({
   path: "/case-studies",
-  title: "Results: A $100,000 Platform Bill, Replaced · Novum AI",
-  description: "How a construction company replaced a $100,000-a-year project management platform with a system it owns, and the measured per-task results from the agents.",
+  title: "Results: Two Engagements, Measured · Novum AI",
+  description: "A construction company replaced a $100,000-a-year platform with a system it owns. A real estate developer cut routine project paperwork by 85 to 94% per task.",
 });
 
 const BEFORE = [
   { title: "$100,000 a year, every year", body: "The company paid six figures annually for a project management platform, and the price only went up as the business grew." },
   { title: "Billing ran on its own system", body: "Their billing ran on a custom application and process the platform could not fit, so the same project data got entered twice." },
-  { title: "Routine paperwork by hand", body: "Project managers spent hours every week on bank draw applications, submittal reviews, owner reports and RFIs, assembled from drawings, specs and field notes." },
+  { title: "Routine paperwork by hand", body: "Project managers spent hours every week on PCOs, RFIs and submittal reviews, assembled from drawings, specs and field notes." },
 ];
 
 const RESULTS = [
@@ -27,7 +27,7 @@ const RESULTS = [
 const BUILT = [
   { tag: "Rebuilt", title: "The platform, rebuilt around how they run projects", body: "We rebuilt the platform they were paying for around how they run jobs: projects, schedules, RFIs, submittals and change orders." },
   { tag: "Connected", title: "Connected to their billing", body: "The new system talks to their custom billing application, so project and billing data stay in sync and their billing process did not have to change." },
-  { tag: "Agents", title: "Routine paperwork, drafted", body: "Agents draft PCOs, RFIs, submittal reviews, bank draw applications and owner reports from project documents and field notes. A project manager reviews each one." },
+  { tag: "Agents", title: "Routine paperwork, drafted", body: "Agents draft PCOs, RFIs, submittal reviews and billing from project documents and field notes. A project manager reviews each one." },
 ];
 
 const LEDGER = [
@@ -47,8 +47,8 @@ export default function ResultsPage() {
       <section className="phero">
         <div className="wrap">
           <div className="label">Results</div>
-          <h1>A construction company replaced a $100,000-a-year platform.</h1>
-          <p className="lead">The company was paying six figures a year for project management software that did not fit how it worked. We rebuilt it as a system the company owns, connected it to their custom billing application, and put agents to work drafting routine paperwork. It now pays for hosting, storage and security.</p>
+          <h1>Two engagements, measured.</h1>
+          <p className="lead">A construction company replaced a $100,000-a-year platform with a system it owns. A real estate developer put agents on its routine project paperwork and cut the time per task by 85 to 94%. Both clients are unnamed.</p>
           <div className="ctas">
             <Link className="btn" href="#contact">Start a conversation</Link>
             <Link className="btn ghost" href="/use-cases">See industries</Link>
@@ -58,8 +58,8 @@ export default function ResultsPage() {
 
       <section className="sec light">
         <div className="wrap">
-          <div className="label"><span className="ix">01</span>Before</div>
-          <h2 className="h2">Paying for software <span className="mute">that did not fit.</span></h2>
+          <div className="label"><span className="ix">01</span>Construction company: before</div>
+          <h2 className="h2">$100,000 a year for software <span className="mute">that did not fit.</span></h2>
           <div className="rs-three">
             {BEFORE.map((b) => (
               <div key={b.title}><h3>{b.title}</h3><p>{b.body}</p></div>
@@ -68,28 +68,9 @@ export default function ResultsPage() {
         </div>
       </section>
 
-      <section className="sec rule">
-        <div className="wrap">
-          <div className="label"><span className="ix">02</span>Measured results</div>
-          <h2 className="h2">Four tasks, timed <span className="mute">before and after.</span></h2>
-          <p className="lead">Each figure is the time one instance of the task takes a project manager, before the agent and after.</p>
-          <div className="rs-results">
-            {RESULTS.map((r) => (
-              <div className="rs-res" key={r.task}>
-                <h3>{r.task}</h3>
-                <div className="rs-n">{r.from}<span aria-label="to">to</span>{r.to}</div>
-                <div className="rs-cut">{r.cut}</div>
-                <p>{r.note}</p>
-              </div>
-            ))}
-          </div>
-          <p className="fine">Automated follow-ups on open submittals save about 10 minutes each. These are per-task times, not yearly totals: monthly volumes have not been measured yet, so no annual hours figure is claimed.</p>
-        </div>
-      </section>
-
       <section className="sec light">
         <div className="wrap">
-          <div className="label"><span className="ix">03</span>What we built</div>
+          <div className="label"><span className="ix">02</span>Construction company: what we built</div>
           <h2 className="h2">One system, built around <span className="mute">how they run projects.</span></h2>
           <div className="rs-split">
             <ul className="rs-built">
@@ -116,7 +97,7 @@ export default function ResultsPage() {
 
       <section className="sec rule">
         <div className="wrap">
-          <div className="label"><span className="ix">04</span>After</div>
+          <div className="label"><span className="ix">03</span>Construction company: after</div>
           <h2 className="h2">Lower cost, fewer hours, <span className="mute">same process.</span></h2>
           <table className="rs-ledger">
             <thead><tr><th scope="col">What changed</th><th scope="col">Before</th><th scope="col">After</th></tr></thead>
@@ -129,16 +110,35 @@ export default function ResultsPage() {
         </div>
       </section>
 
+      <section className="sec rule">
+        <div className="wrap">
+          <div className="label"><span className="ix">04</span>Real estate developer: measured results</div>
+          <h2 className="h2">Four tasks, timed <span className="mute">before and after.</span></h2>
+          <p className="lead">A real estate developer put agents on the paperwork its project managers rebuild for every project. Each figure is the time one instance of the task takes, before the agent and after. A project manager reviews every draft.</p>
+          <div className="rs-results">
+            {RESULTS.map((r) => (
+              <div className="rs-res" key={r.task}>
+                <h3>{r.task}</h3>
+                <div className="rs-n">{r.from}<span aria-label="to">to</span>{r.to}</div>
+                <div className="rs-cut">{r.cut}</div>
+                <p>{r.note}</p>
+              </div>
+            ))}
+          </div>
+          <p className="fine">Automated follow-ups on open submittals save about 10 minutes each. These are per-task times, not yearly totals: monthly volumes have not been measured yet, so no annual hours figure is claimed.</p>
+        </div>
+      </section>
+
       <section className="sec light">
         <div className="wrap">
           <div className="label"><span className="ix">05</span>Scope of this evidence</div>
           <h2 className="h2">What these results show, <span className="mute">and what they do not.</span></h2>
           <ul className="rs-scope" style={{ marginTop: 44 }}>
-            <li><b>One client</b><span>The results come from one engagement, with a construction company. More client results are being added here as they are measured. No other client is claimed.</span></li>
-            <li><b>Per-task times</b><span>The four figures are time per instance, before and after. Without monthly volumes there is no yearly hours or dollar total, and none is claimed.</span></li>
-            <li><b>The bill</b><span>The platform cost $100,000 a year. They now pay only hosting, storage and security. The exact current cost is not published.</span></li>
+            <li><b>Two clients</b><span>The results come from two engagements: the platform replacement for a construction company, and the paperwork agents for a real estate developer. More results are added here as they are measured.</span></li>
+            <li><b>Per-task times</b><span>The real estate developer figures are time per instance, before and after. Without monthly volumes there is no yearly hours or dollar total, and none is claimed.</span></li>
+            <li><b>The bill</b><span>The construction company's platform cost $100,000 a year. They now pay only hosting, storage and security. The exact current cost is not published.</span></li>
             <li><b>Human review</b><span>Every agent output is a draft. A project manager reviews, edits and sends, and nothing leaves the company without a person.</span></li>
-            <li><b>Ownership</b><span>Code, data and accounts are in the company&apos;s name. If it stopped working with Novum, nothing would break.</span></li>
+            <li><b>Ownership</b><span>In both engagements, code, data and accounts are in the client&apos;s name. If either stopped working with Novum, nothing would break.</span></li>
           </ul>
         </div>
       </section>
