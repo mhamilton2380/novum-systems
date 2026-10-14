@@ -71,6 +71,7 @@ function particleHeadline(h1: HTMLElement): () => void {
 
   function sample() {
     W = sec!.clientWidth; H = sec!.clientHeight; VW = innerWidth; VH = innerHeight;
+    if (!W || !H) { pts = []; return; }   // hidden or not laid out yet
     // the canvas covers the viewport so the dust can fall past the hero and off the screen
     canvas.width = VW * dpr; canvas.height = VH * dpr;
     canvas.style.width = VW + "px"; canvas.style.height = VH + "px";

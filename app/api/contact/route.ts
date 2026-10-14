@@ -29,13 +29,9 @@ export async function POST(request: Request) {
     return Response.json({ error: "Name, company, and a valid email are required." }, { status: 400 });
   }
 
-  if (!(await saveLead(lead))) {
-    return Response.json({ error: "Could not save your message." }, { status: 502 });
-  }
-
-  await notify(
-    lead,
-    plan ? `AI Officer sign-up, discovery requested, ${plan}: ${lead.company} (${lead.name})` : `New lead: ${lead.company} (${lead.name})`,
-  );
+  // If the database is down, the email below is the only copy, so the subject says so.
+  const saved = await saveLead(lead);
+  const subject = plan ? `AI Officer sign-up, discovery requested, ${plan}: ${lead.company} (${lead.name})` : `New lead: ${lead.company} (${lead.name})`;
+  await notify(lead, saved ? subject : `[NOT SAVED, only copy] ${subject}`);
   return Response.json({ ok: true });
 }

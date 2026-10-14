@@ -56,7 +56,14 @@ export async function saveLead(lead: Lead): Promise<boolean> {
       body: JSON.stringify(row),
     });
 
-  let res = await insert(lead);
+  // A network failure (database down or unreachable) must not throw: the caller still emails the lead.
+  let res: Response;
+  try {
+    res = await insert(lead);
+  } catch (err) {
+    console.error("LEAD NOT SAVED: Supabase unreachable. The lead is still emailed.", err);
+    return false;
+  }
 
   // The availability column arrives in a migration that may not be applied yet. Rather
   // than 502 every visitor until it is, fold the answer into the message and retry, so
@@ -67,7 +74,7 @@ export async function saveLead(lead: Lead): Promise<boolean> {
       ...rest,
       message: [rest.message, availability && `Free to talk: ${availability}`].filter(Boolean).join("\n\n").slice(0, 5000),
     };
-    res = await insert(merged);
+    try { res = await insert(merged); } catch { return false; }
     if (res.ok) console.warn("leads.availability column missing; folded into message. Apply the migration.");
   }
 

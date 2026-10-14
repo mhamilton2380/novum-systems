@@ -38,10 +38,10 @@ export async function POST(request: Request) {
   ].join("\n").slice(0, 5000);
 
   const lead: Lead = { name, email, company, industry: "", tools: "", availability: "", message };
-  if (!(await saveLead(lead))) return Response.json({ error: "Could not save your results." }, { status: 502 });
-
+  // If the database is down, the email below is the only copy, so the subject says so.
+  const saved = await saveLead(lead);
   const top = r.flags[0]?.title ?? r.band.name;
-  await notify(lead, `AI Readiness Score [${tier}]: ${company} scored ${r.score}, top flag: ${top}`);
+  await notify(lead, `${saved ? "" : "[NOT SAVED, only copy] "}AI Readiness Score [${tier}]: ${company} scored ${r.score}, top flag: ${top}`);
 
   // The visitor's write-up. Sends from thenovumai.com (verified in Resend 2026-10-09) unless RESEND_FROM overrides.
   const key = process.env.RESEND_API_KEY;
