@@ -212,7 +212,7 @@ export default function AiOfficerPage() {
             </div>
           </div>
           <div className="ao-proof">
-            <span><b>Software replacements go through the same queue.</b> A real estate developer replaced a $100,000-a-year project management platform with a system it owns, and now pays only hosting, storage and security.</span>
+            <span><b>Software replacements go through the same queue.</b> A construction company replaced a $100,000-a-year project management platform with a system it owns, and now pays only hosting, storage and security.</span>
             <Link className="link" href="/case-studies">Read the case study <span aria-hidden="true">→</span></Link>
           </div>
         </div>

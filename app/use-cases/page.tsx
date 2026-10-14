@@ -64,7 +64,7 @@ export default function UseCasesPage() {
           <div>
             <div className="label">Results</div>
             <h3 style={{ fontSize: "clamp(24px,2.2vw,32px)", letterSpacing: "-0.035em", fontWeight: 500, marginTop: 18 }}>A $100,000-a-year platform bill, replaced.</h3>
-            <p className="lead" style={{ marginTop: 14 }}>A real estate developer swapped its project management platform for a system it owns, connected to its billing, with agents drafting PCOs, RFIs, submittal reviews, bank draw applications and owner reports for a project manager to review. They now pay only hosting, storage and security.</p>
+            <p className="lead" style={{ marginTop: 14 }}>A construction company swapped its project management platform for a system it owns, connected to its billing, with agents drafting PCOs, RFIs, submittal reviews, bank draw applications and owner reports for a project manager to review. They now pay only hosting, storage and security.</p>
             <div className="uc-case-r" style={{ marginTop: 28 }}>
               <div><small>Before</small><strong>$100,000 a year for a project management platform</strong></div>
               <div><small>After</small><strong>A system they own, connected to their billing, with agents drafting paperwork a project manager reviews</strong></div>

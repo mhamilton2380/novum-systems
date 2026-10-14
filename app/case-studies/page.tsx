@@ -8,7 +8,7 @@ import "./case-studies.css";
 export const metadata: Metadata = pageMetadata({
   path: "/case-studies",
   title: "Results: A $100,000 Platform Bill, Replaced · Novum AI",
-  description: "How a real estate developer replaced a $100,000-a-year project management platform with a system it owns, and the measured per-task results from the agents.",
+  description: "How a construction company replaced a $100,000-a-year project management platform with a system it owns, and the measured per-task results from the agents.",
 });
 
 const BEFORE = [
@@ -47,7 +47,7 @@ export default function ResultsPage() {
       <section className="phero">
         <div className="wrap">
           <div className="label">Results</div>
-          <h1>A real estate developer replaced a $100,000-a-year platform.</h1>
+          <h1>A construction company replaced a $100,000-a-year platform.</h1>
           <p className="lead">The company was paying six figures a year for project management software that did not fit how it worked. We rebuilt it as a system the company owns, connected it to their custom billing application, and put agents to work drafting routine paperwork. It now pays for hosting, storage and security.</p>
           <div className="ctas">
             <Link className="btn" href="#contact">Start a conversation</Link>
@@ -134,7 +134,7 @@ export default function ResultsPage() {
           <div className="label"><span className="ix">05</span>Scope of this evidence</div>
           <h2 className="h2">What these results show, <span className="mute">and what they do not.</span></h2>
           <ul className="rs-scope" style={{ marginTop: 44 }}>
-            <li><b>One client</b><span>The results come from one engagement, with a real estate developer. More client results are being added here as they are measured. No other client is claimed.</span></li>
+            <li><b>One client</b><span>The results come from one engagement, with a construction company. More client results are being added here as they are measured. No other client is claimed.</span></li>
             <li><b>Per-task times</b><span>The four figures are time per instance, before and after. Without monthly volumes there is no yearly hours or dollar total, and none is claimed.</span></li>
             <li><b>The bill</b><span>The platform cost $100,000 a year. They now pay only hosting, storage and security. The exact current cost is not published.</span></li>
             <li><b>Human review</b><span>Every agent output is a draft. A project manager reviews, edits and sends, and nothing leaves the company without a person.</span></li>

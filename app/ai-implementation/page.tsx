@@ -254,7 +254,7 @@ export default function AiImplementationPage() {
               <span className="meta">One replacement</span>
               <div className="from">$100,000 a year</div>
               <div className="to">Now: hosting, storage and security.</div>
-              <p>A real estate developer paid $100,000 a year for a project management platform its team worked around. We rebuilt it around how they run projects and connected it to their custom billing application. Agents now draft PCOs, RFIs, submittal reviews, bank draw applications and owner reports, and a project manager reviews each one. They now pay only hosting, storage and security.</p>
+              <p>A construction company paid $100,000 a year for a project management platform its team worked around. We rebuilt it around how they run projects and connected it to their custom billing application. Agents now draft PCOs, RFIs, submittal reviews, bank draw applications and owner reports, and a project manager reviews each one. They now pay only hosting, storage and security.</p>
               <ul>
                 <li>Built around how they run projects</li>
                 <li>Code, data and accounts in their name</li>
