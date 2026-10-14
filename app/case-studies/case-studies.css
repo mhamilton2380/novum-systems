@@ -1,0 +1,70 @@
+/* Results page. Every class is prefixed rs-. */
+.rs-three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: clamp(48px, 5vw, 72px); border-top: 1px solid var(--line-2); border-bottom: 1px solid var(--line); }
+.rs-three > div { padding: 30px 28px 34px 0; display: grid; gap: 12px; align-content: start; }
+.rs-three > div + div { padding-left: 28px; border-left: 1px solid var(--line); }
+.rs-three h3 { font-size: clamp(20px, 1.7vw, 25px); letter-spacing: -0.03em; line-height: 1.12; font-weight: 500; }
+.rs-three p { color: var(--ink-2); font-size: 15.5px; }
+
+.rs-results { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: clamp(48px, 5vw, 72px); border-top: 1px solid var(--line-2); }
+.rs-res { padding: 34px 32px 34px 0; border-bottom: 1px solid var(--line); display: grid; gap: 14px; align-content: start; }
+.rs-res:nth-child(even) { padding-left: 32px; padding-right: 0; border-left: 1px solid var(--line); }
+.rs-res .rs-n { font-size: clamp(34px, 3.6vw, 56px); font-weight: 500; letter-spacing: -0.045em; line-height: 1; font-variant-numeric: tabular-nums; }
+.rs-res .rs-n span { color: var(--ink-3); font-weight: 400; padding-inline: .15em; }
+.rs-res h3 { font-size: 18px; font-weight: 500; letter-spacing: -0.02em; }
+.rs-res p { color: var(--ink-2); font-size: 15px; max-width: 26em; }
+.rs-res .rs-cut { font-size: 13px; color: var(--green-2); font-variant-numeric: tabular-nums; }
+
+.rs-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); margin-top: clamp(40px, 4vw, 60px); align-items: start; }
+.rs-built { margin-top: 0; border-top: 1px solid var(--line-2); }
+.rs-built li { padding: 22px 0; border-bottom: 1px solid var(--line); display: grid; gap: 6px; }
+.rs-built .meta { margin-bottom: 2px; }
+.rs-built h3 { font-size: 20px; font-weight: 500; letter-spacing: -0.025em; }
+.rs-built p { color: var(--ink-2); font-size: 15.5px; }
+
+.rs-rfi { margin-top: 0; }
+.rs-rfi .paper { min-height: 0; }
+.rs-rfi dl { margin: 18px 0 0; }
+.rs-rfi dl div { display: grid; grid-template-columns: 7.5em minmax(0, 1fr); gap: 16px; padding: 12px 0; border-top: 1px solid var(--line); font-size: 14.5px; }
+.rs-rfi dt { font-size: 11px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); padding-top: 3px; }
+.rs-rfi dd { margin: 0; color: var(--ink); }
+.rs-rfi .rs-by { margin-top: 16px; font-size: 13px; color: var(--ink-3); }
+.rs-rfi .rs-files { margin-top: 14px; font-size: 13px; color: var(--ink-2); }
+.rs-cap { margin-top: 14px; font-size: 12.5px; color: var(--ink-3); }
+
+.rs-ledger { width: 100%; border-collapse: collapse; margin-top: clamp(40px, 4vw, 60px); font-size: 15.5px; }
+.rs-ledger th { text-align: left; font-weight: 500; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); padding: 0 20px 12px 0; border-bottom: 1px solid var(--line-2); }
+.rs-ledger td { padding: 18px 20px 18px 0; border-bottom: 1px solid var(--line); vertical-align: top; color: var(--ink-2); }
+.rs-ledger td:first-child { color: var(--ink); font-weight: 500; width: 22%; }
+.rs-ledger td:last-child { color: var(--ink); padding-right: 0; }
+
+.rs-bill { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); margin-top: clamp(40px, 4vw, 60px); align-items: stretch; }
+.rs-scope { border-top: 1px solid var(--line-2); }
+.rs-scope li { display: grid; grid-template-columns: minmax(0, .7fr) minmax(0, 1.5fr); gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.rs-scope b { font-weight: 500; }
+.rs-scope span { color: var(--ink-2); font-size: 15.5px; }
+
+@media (max-width: 900px) {
+  .rs-three { grid-template-columns: 1fr; }
+  .rs-three > div, .rs-three > div + div { padding: 24px 0; border-left: 0; }
+  .rs-three > div + div { border-top: 1px solid var(--line); }
+  .rs-split, .rs-bill { grid-template-columns: 1fr; }
+  .rs-scope li { grid-template-columns: 1fr; gap: 4px; }
+  .rs-ledger thead { display: none; }
+  .rs-ledger tr { display: grid; gap: 4px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .rs-ledger td { border: 0; padding: 0; width: auto !important; }
+  .rs-ledger td:nth-child(2)::before { content: "Before: "; color: var(--ink-3); }
+  .rs-ledger td:nth-child(3)::before { content: "After: "; color: var(--ink-3); }
+}
+@media (max-width: 640px) {
+  .rs-results { grid-template-columns: 1fr; }
+  .rs-res, .rs-res:nth-child(even) { padding: 26px 0; border-left: 0; }
+  .rs-rfi dl div { grid-template-columns: 1fr; gap: 4px; }
+}
+
+/* ---- Motion: scorecards and the RFI document rise in order (shared pieces in app/nv.css, "Graphic motion") ---- */
+@media (prefers-reduced-motion: no-preference) {
+  .mo :is(.rs-three, .rs-results).rv { opacity: 1; transform: none; transition: none; }
+  .mo :is(.rs-three, .rs-results).in > div { transition: opacity .7s var(--gm-ease) calc(var(--k, 0) * 110ms), transform .7s var(--gm-ease) calc(var(--k, 0) * 110ms); }
+  .mo :is(.rs-three, .rs-results):not(.in) > div { opacity: 0; transform: translateY(12px); }
+  .mo :is(.rs-three, .rs-results) > div:nth-child(2) { --k: 1; } .mo :is(.rs-three, .rs-results) > div:nth-child(3) { --k: 2; } .mo :is(.rs-three, .rs-results) > div:nth-child(n+4) { --k: 3; }
+}

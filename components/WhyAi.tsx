@@ -91,7 +91,7 @@ export function WorkPicker() {
 const TASKS = [
   { t: "Key one invoice into the system", p: 1.89, pl: "4 minutes, about $1.89", a: 0.01, al: "About $0.01", n: "Spot-check a sample" },
   { t: "Draft a two-page memo", p: 24.5, pl: "45 minutes, about $24.50", a: 5.46, al: "About $0.02, plus 10 minutes of review (about $5.44)", n: "Review is most of the real cost" },
-  { t: "Handle a three-minute phone call", p: 1.54, pl: "About $1.54", a: 0.42, al: "About $0.33 to $0.42", n: "Answers at 2 a.m., many calls at once" },
+  { t: "Handle a three-minute phone call", p: 1.54, pl: "About $1.54", a: 0.42, al: "About $0.33 to $0.42", n: "Answers any hour, many calls at once" },
 ];
 export function CostBars() {
   return (

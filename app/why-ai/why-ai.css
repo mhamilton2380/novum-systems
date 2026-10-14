@@ -1,0 +1,245 @@
+/* Why AI page. Every class is prefixed .wy- (see NV-BRIEF: prefixes are mandatory). */
+.wy .wy-src { display: block; font-size: 12.5px; color: var(--ink-3); margin-top: 14px; line-height: 1.5; }
+.wy .wy-h3 { font-size: clamp(24px, 2.3vw, 32px); letter-spacing: -0.035em; font-weight: 500; line-height: 1.1; }
+.wy .wy-track { position: relative; height: 18px; background: var(--raise-2); border: 1px solid var(--line); border-radius: 3px; overflow: hidden; }
+.wy .wy-track i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 2px; }
+.wy .wy-k-ix { font-size: 12.5px; color: var(--ink-3); font-variant-numeric: tabular-nums; padding-top: 6px; }
+
+/* 01 summary */
+.wy-sum { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); margin-top: clamp(44px, 5vw, 72px); align-items: start; }
+.wy-three { margin: 0; background: var(--raise); border: 1px solid var(--line); border-radius: 16px; padding: clamp(22px, 3vw, 36px); box-shadow: 0 30px 60px -45px rgba(11,27,46,.35); }
+.wy-three-h { display: flex; justify-content: space-between; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid var(--line-2); }
+.wy-three-row { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr); gap: 20px; align-items: center; padding: 22px 0; border-bottom: 1px solid var(--line); }
+.wy-three-l b { display: block; font-weight: 500; font-size: 16px; }
+.wy-three-l small { color: var(--ink-3); font-size: 12.5px; }
+.wy-three-t { position: relative; height: 34px; background: repeating-linear-gradient(90deg, transparent 0 calc(25% - 1px), var(--line) calc(25% - 1px) 25%); }
+.wy-three-t i { position: absolute; left: 0; top: 7px; height: 20px; border-radius: 3px; }
+.wy-three-t i.base { background: #c9cdd2; }
+.wy-three-t i.flat { background: #9aa3ad; }
+.wy-three-t i.win { background: var(--grad); }
+.wy-three-t i.rng { border-radius: 0 3px 3px 0; background: repeating-linear-gradient(135deg, rgba(59,111,224,.35) 0 4px, rgba(59,111,224,.12) 4px 8px); }
+.wy-three-t em { position: absolute; right: 0; top: -14px; font-style: normal; font-size: 12.5px; font-weight: 500; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.wy-three-scale { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr); gap: 20px; padding-top: 6px; }
+.wy-three-scale > div { position: relative; height: 14px; }
+.wy-three-scale i { position: absolute; top: 0; transform: translateX(-50%); font-style: normal; font-size: 11px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.wy-three-scale i:first-child { transform: none; }
+.wy-three-scale i:last-child { transform: translateX(-100%); }
+.wy-three figcaption { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 14.5px; color: var(--ink-2); }
+.wy-keys ol { margin-top: 12px; border-top: 1px solid var(--line-2); }
+.wy-keys li { display: grid; grid-template-columns: 2.4em minmax(0, 1fr); gap: 8px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.wy-keys b { display: block; font-size: clamp(22px, 2vw, 28px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.wy-keys p { color: var(--ink-2); font-size: 15px; margin-top: 6px; }
+.wy-keys small { display: block; color: var(--ink-3); font-size: 12.5px; margin-top: 4px; }
+
+/* 02 work picker */
+.wy-pick { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.3fr); margin-top: clamp(44px, 5vw, 72px); background: var(--raise); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; box-shadow: 0 30px 60px -45px rgba(11,27,46,.35); }
+.wy-pick-list { display: grid; align-content: start; border-right: 1px solid var(--line); background: var(--raise-2); }
+.wy-pick-list button { all: unset; box-sizing: border-box; cursor: pointer; display: grid; grid-template-columns: 2.2em minmax(0, 1fr) auto; gap: 10px; align-items: baseline; padding: 15px 22px; border-bottom: 1px solid var(--line); font-size: 15.5px; color: var(--ink-2); position: relative; transition: background .2s, color .2s; }
+.wy-pick-list button:last-child { border-bottom: 0; }
+.wy-pick-list button:hover { color: var(--ink); background: var(--raise); }
+.wy-pick-list button.on { color: var(--ink); background: var(--raise); font-weight: 500; }
+.wy-pick-list button.on::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--grad); }
+.wy-pick-list button:focus-visible { outline: 2px solid var(--green); outline-offset: -2px; }
+.wy-pick-ix { font-size: 12px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.wy-pick-n { font-size: 13px; color: var(--ink-3); font-weight: 400; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.wy-pick-panel { padding: clamp(24px, 3.4vw, 44px); display: grid; gap: 14px; align-content: start; animation: wyIn .35s ease both; }
+@keyframes wyIn { from { opacity: 0; transform: translateY(6px); } }
+.wy-pick-top { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
+.wy .wy-tag { font-size: 11.5px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: #b9661f; }
+.wy-big { font-size: clamp(44px, 5vw, 76px); font-weight: 500; letter-spacing: -0.05em; line-height: .95; font-variant-numeric: tabular-nums; }
+.wy-desc { color: var(--ink-2); font-size: 17px; max-width: 30em; }
+.wy-hbar { margin: 14px 0 0; display: grid; gap: 12px; }
+.wy-hbar-axis, .wy-hbar-row { display: grid; grid-template-columns: 9.5em minmax(0, 1fr) 9.5em; gap: 14px; align-items: center; }
+.wy-hbar-axis > div { position: relative; height: 14px; }
+.wy-hbar-axis i { position: absolute; top: 0; transform: translateX(-50%); font-style: normal; font-size: 11px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.wy-hbar-axis i:first-child { transform: none; }
+.wy-hbar-axis i:last-child { transform: translateX(-100%); }
+.wy-hbar-row > span { font-size: 14px; color: var(--ink-2); }
+.wy-hbar-track { position: relative; height: 22px; background: repeating-linear-gradient(90deg, transparent 0 calc(25% - 1px), var(--line) calc(25% - 1px) 25%); border-left: 1px solid var(--line-2); }
+.wy-hbar-track b { position: absolute; left: 0; top: 2px; bottom: 2px; border-radius: 0 3px 3px 0; }
+.wy-hbar-row.base b { background: #9aa3ad; }
+.wy-hbar-row.ai b { background: var(--grad); }
+.wy-hbar-row em { font-style: normal; font-size: 13.5px; font-weight: 500; color: var(--ink); font-variant-numeric: tabular-nums; }
+.wy-hbar figcaption { font-size: 12px; color: var(--ink-3); padding-top: 8px; border-top: 1px solid var(--line); }
+.wy-statbox { display: grid; gap: 4px; margin-top: 10px; padding: 20px 0; border-top: 1px solid var(--line-2); border-bottom: 1px solid var(--line); }
+.wy-statbox strong { font-size: clamp(28px, 2.6vw, 38px); font-weight: 500; letter-spacing: -0.04em; }
+.wy-statbox span { color: var(--ink-2); }
+
+/* 03 cost per task */
+.wy-costs { margin-top: clamp(44px, 5vw, 72px); border-top: 1px solid var(--line-2); }
+.wy-cost { padding: 24px 0; border-bottom: 1px solid var(--line); display: grid; gap: 10px; }
+.wy-cost-h { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: baseline; margin-bottom: 4px; }
+.wy-cost-h b { font-weight: 500; font-size: 18px; letter-spacing: -0.02em; }
+.wy-cost-h span { font-size: 13.5px; color: var(--ink-3); }
+.wy-cost-bar { display: grid; grid-template-columns: 6.5em minmax(0, 1fr) minmax(0, 0.9fr); gap: 16px; align-items: center; }
+.wy-cost-bar > span { font-size: 14px; color: var(--ink-2); }
+.wy-cost-bar em { font-style: normal; font-size: 14px; color: var(--ink); font-variant-numeric: tabular-nums; }
+.wy-cost-bar.wy-person i { background: #9aa3ad; }
+.wy-cost-bar.wy-agent i { background: var(--grad); min-width: 3px; }
+.wy-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: clamp(32px, 6vw, 96px); margin-top: clamp(56px, 6vw, 88px); align-items: start; }
+.wy-split > div > p { color: var(--ink-2); margin-top: 16px; max-width: 34em; }
+.wy-split-c { align-items: center; margin-top: clamp(32px, 4vw, 56px); }
+.wy-split-c > .lead { margin-top: 0; }
+.wy-chart-h { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: baseline; padding-bottom: 14px; border-bottom: 1px solid var(--line-2); margin-bottom: 14px; }
+.wy-chart-h b { font-weight: 500; }
+.wy-wages { margin: 0; background: var(--raise); border: 1px solid var(--line); border-radius: 16px; padding: clamp(22px, 3vw, 32px); display: grid; gap: 10px; }
+.wy-wage, .wy-wage-axis { display: grid; grid-template-columns: 11em minmax(0, 1fr) 7.5em; gap: 14px; align-items: center; }
+.wy-wage > span { font-size: 14px; color: var(--ink-2); }
+.wy-wage i { background: var(--ink); opacity: .78; }
+.wy-wage em { font-style: normal; font-weight: 500; font-size: 14px; font-variant-numeric: tabular-nums; text-align: right; }
+.wy-wage em small { display: block; font-weight: 400; font-size: 11.5px; color: var(--ink-3); }
+.wy-wage-axis > div { position: relative; height: 14px; }
+.wy-wage-axis i { position: absolute; top: 0; transform: translateX(-50%); font-style: normal; font-size: 11px; color: var(--ink-3); }
+.wy-wage-axis i:first-child { transform: none; }
+.wy-wage-axis i:last-child { transform: translateX(-100%); }
+
+/* 04 calls (dark) */
+.wy-calls { margin: 0; background: var(--raise); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.wy-calls-h { display: flex; justify-content: space-between; gap: 12px; padding: 16px 22px; border-bottom: 1px solid var(--line); background: var(--raise-2); }
+.wy-calls-h b { font-weight: 500; }
+.wy-calls table { width: 100%; border-collapse: collapse; }
+.wy-calls td { padding: 14px 22px; border-bottom: 1px solid var(--line); vertical-align: baseline; font-size: 15px; }
+.wy-calls td b { display: block; font-weight: 500; }
+.wy-calls td small { display: block; color: var(--ink-2); font-size: 13.5px; }
+.wy-call-t { color: var(--ink-3); font-size: 13px !important; white-space: nowrap; font-variant-numeric: tabular-nums; width: 6em; }
+.wy-call-s { text-align: right; font-size: 12px !important; letter-spacing: .12em; text-transform: uppercase; color: var(--green-2); white-space: nowrap; }
+.wy-calls tr.human .wy-call-s { color: #e0893a; }
+.wy-calls figcaption { padding: 14px 22px; font-size: 14px; color: var(--ink-2); }
+.wy-voice { margin-top: clamp(56px, 6vw, 88px); }
+.wy-voice-h { padding-bottom: 14px; }
+.wy-tbl { width: 100%; border-collapse: collapse; font-size: 15px; }
+.wy-tbl th { text-align: left; font-weight: 500; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); padding: 0 16px 12px 0; border-bottom: 1px solid var(--line-2); }
+.wy-tbl td { padding: 16px 16px 16px 0; border-bottom: 1px solid var(--line); color: var(--ink-2); vertical-align: top; }
+.wy-tbl td:nth-child(3) { color: var(--ink); white-space: nowrap; }
+.wy-tbl-n { color: var(--ink) !important; font-weight: 500; font-size: 20px; letter-spacing: -0.02em; width: 22%; line-height: 1.2; }
+.wy-tbl-l { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3) !important; white-space: nowrap; }
+.wy-tbl tr.warn .wy-tbl-n { color: #e0893a !important; }
+.wy-rules { margin-top: clamp(56px, 6vw, 88px); }
+.wy-rules .wy-src { margin-top: 2px; }
+
+/* 05 longer work */
+.wy-split-long { margin-top: clamp(32px, 4vw, 56px); align-items: center; }
+.wy-split-long .lead { margin-top: 0; }
+.wy-mini { display: grid; margin-top: 32px; border-top: 1px solid var(--line-2); }
+.wy-mini div { display: grid; gap: 6px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+.wy-mini b { font-size: clamp(30px, 2.8vw, 42px); font-weight: 500; letter-spacing: -0.045em; line-height: 1; font-variant-numeric: tabular-nums; }
+.wy-mini span { color: var(--ink-2); font-size: 15px; }
+.wy-chart { margin: 0; background: var(--raise); border: 1px solid var(--line); border-radius: 16px; padding: clamp(22px, 3vw, 32px); box-shadow: 0 30px 60px -45px rgba(11,27,46,.35); }
+.wy-chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.wy-chart .wy-grid { stroke: var(--line); }
+.wy-chart .wy-axis { font-size: 12px; fill: var(--ink-3); font-family: var(--font); }
+.wy-chart .wy-area { fill: rgba(8,145,178,.10); }
+.wy-chart .wy-line { stroke: #0e7490; }
+.wy-chart .wy-dot { fill: #fff; stroke: #0e7490; }
+.wy-chart .wy-mark-l { font-size: 12.5px; font-weight: 500; fill: var(--ink); font-family: var(--font); }
+
+/* 06 where it goes wrong (dark) */
+.wy-wrong { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: clamp(44px, 5vw, 72px); border-top: 1px solid var(--line-2); }
+.wy-w { padding: 28px 28px 28px 0; display: grid; gap: 14px; align-content: start; }
+.wy-w + .wy-w { padding-left: 28px; border-left: 1px solid var(--line); }
+.wy-w-h { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+.wy-w-h b { font-weight: 500; font-size: 19px; letter-spacing: -0.02em; }
+.wy-meter { display: grid; gap: 6px; }
+.wy-meter > span { font-size: 14px; color: var(--ink-2); }
+.wy-meter .wy-track { height: 14px; background: rgba(238,240,234,.04); background-image: repeating-linear-gradient(90deg, transparent 0 calc(25% - 1px), var(--line) calc(25% - 1px) 25%); }
+.wy-meter i.red { background: #d0553a; }
+.wy-meter i.redr { background: repeating-linear-gradient(135deg, rgba(208,85,58,.7) 0 4px, rgba(208,85,58,.25) 4px 8px); }
+.wy-meter i.green { background: repeating-linear-gradient(135deg, rgba(52,211,153,.8) 0 4px, rgba(52,211,153,.35) 4px 8px); }
+.wy-meter i.base { background: #9aa3ad; }
+.wy-w .wy-src { margin-top: 0; }
+.wy-pair { display: grid; gap: 4px; padding: 14px 0; border-top: 1px solid var(--line); }
+.wy-pair span { font-size: 17px; color: var(--ink-2); }
+.wy-pair span b { color: var(--ink); font-weight: 500; font-size: 22px; letter-spacing: -0.03em; }
+.wy-pair small { color: var(--ink-3); font-size: 13px; }
+
+/* 07 three choices */
+.wy-choices { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: clamp(44px, 5vw, 72px); border-top: 1px solid var(--line-2); border-bottom: 1px solid var(--line); }
+.wy-choices li { padding: 30px 26px 34px; display: grid; gap: 12px; align-content: start; }
+.wy-choices li + li { border-left: 1px solid var(--line); }
+.wy-choices h3 { font-size: clamp(22px, 1.9vw, 28px); letter-spacing: -0.035em; line-height: 1.08; font-weight: 500; }
+.wy-choices p { color: var(--ink-2); font-size: 16px; }
+
+@media (max-width: 1020px) {
+  .wy-sum, .wy-split, .wy-pick { grid-template-columns: 1fr; }
+  .wy-pick-list { border-right: 0; border-bottom: 1px solid var(--line); }
+  .wy-wrong, .wy-choices { grid-template-columns: 1fr; }
+  .wy-w, .wy-w + .wy-w { padding: 26px 0; border-left: 0; }
+  .wy-w + .wy-w { border-top: 1px solid var(--line); }
+  .wy-choices li, .wy-choices li + li { padding: 26px 0; border-left: 0; }
+  .wy-choices li + li { border-top: 1px solid var(--line); }
+}
+@media (max-width: 700px) {
+  .wy-three-row { grid-template-columns: 1fr; gap: 12px; }
+  .wy-three-scale { grid-template-columns: 1fr; }
+  .wy-three-scale > span { display: none; }
+  .wy-pick-list button { padding: 13px 16px; font-size: 14.5px; }
+  .wy-hbar-axis, .wy-hbar-row { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .wy-hbar-axis > span { display: none; }
+  .wy-hbar-row { margin-bottom: 6px; }
+  .wy-cost-bar { grid-template-columns: 5.5em minmax(0, 1fr); gap: 4px 12px; }
+  .wy-cost-bar em { grid-column: 2; font-size: 13.5px; }
+  .wy-chart .wy-axis { font-size: 20px; }
+  .wy-chart .wy-mark-l { font-size: 21px; }
+  .wy-wage-axis { display: none; }
+  .wy-wage { grid-template-columns: minmax(0, 1fr) auto; gap: 6px 12px; padding-bottom: 6px; }
+  .wy-wage > span { grid-column: 1; grid-row: 1; align-self: end; }
+  .wy-wage em { grid-column: 2; grid-row: 1; }
+  .wy-wage em small { display: inline; margin-left: 6px; }
+  .wy-wage .wy-track { grid-column: 1 / -1; grid-row: 2; height: 12px; }
+  .wy-calls td { padding: 12px 14px; }
+  .wy-tbl thead { display: none; }
+  .wy-tbl tr { display: grid; gap: 4px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .wy-tbl td { border: 0; padding: 0; width: auto !important; white-space: normal !important; }
+}
+
+/* ---- Motion: bars grow from the left (scaleX), the METR curve draws, meters fill. Shared keyframes live in app/nv.css. ---- */
+@media (prefers-reduced-motion: no-preference) {
+  .wy-three-t i, .wy-hbar-track b, .wy .wy-track i { transform-origin: left center; }
+
+  /* three ways (summary) */
+  .mo .wy-three:not(.in) .wy-three-t i { transform: scaleX(0); }
+  .mo .wy-three.in .wy-three-t i { animation: gm-grow 1s var(--gm-ease) backwards; animation-delay: .2s; }
+  .mo .wy-three.in .wy-three-row:nth-of-type(3) .wy-three-t i { animation-delay: .35s; }
+  .mo .wy-three.in .wy-three-row:nth-of-type(4) .wy-three-t i { animation-delay: .5s; }
+  .mo .wy-three.in .wy-three-t i.rng { animation-delay: 1.1s; }
+
+  /* work picker: grows on first view, and again whenever a tab is picked (.sw is set by WorkPicker) */
+  .mo .wy-pick-panel:not(.sw) .wy-hbar:not(.in) .wy-hbar-track b { transform: scaleX(0); }
+  .mo .wy-hbar.in .wy-hbar-track b, .mo .wy-pick-panel.sw .wy-hbar .wy-hbar-track b { animation: gm-grow .9s var(--gm-ease) backwards; animation-delay: .15s; }
+  .mo .wy-hbar.in .wy-hbar-row:nth-of-type(3) .wy-hbar-track b, .mo .wy-pick-panel.sw .wy-hbar-row:nth-of-type(3) .wy-hbar-track b { animation-delay: .3s; }
+  .mo .wy-hbar.in .wy-hbar-row:nth-of-type(4) .wy-hbar-track b, .mo .wy-pick-panel.sw .wy-hbar-row:nth-of-type(4) .wy-hbar-track b { animation-delay: .45s; }
+
+  /* cost per task: each task row grows when it scrolls in (.in set per row by RowReveal) */
+  .mo .wy-cost:not(.in) .wy-track i { transform: scaleX(0); }
+  .mo .wy-cost.in .wy-track i { animation: gm-grow 1s var(--gm-ease) backwards; }
+  .mo .wy-cost.in .wy-agent .wy-track i { animation-delay: .25s; }
+
+  /* wages */
+  .mo .wy-wages:not(.in) .wy-wage .wy-track i { transform: scaleX(0); }
+  .mo .wy-wages.in .wy-wage .wy-track i { animation: gm-grow .9s var(--gm-ease) backwards; animation-delay: .1s; }
+  .mo .wy-wages.in .wy-wage:nth-child(4) .wy-track i { animation-delay: .2s; }
+  .mo .wy-wages.in .wy-wage:nth-child(5) .wy-track i { animation-delay: .3s; }
+  .mo .wy-wages.in .wy-wage:nth-child(6) .wy-track i { animation-delay: .4s; }
+  .mo .wy-wages.in .wy-wage:nth-child(n+7) .wy-track i { animation-delay: .5s; }
+
+  /* where it goes wrong: meters fill, column by column */
+  .mo .wy-meter:not(.in) .wy-track i { transform: scaleX(0); }
+  .mo .wy-meter.in .wy-track i { animation: gm-grow 1s var(--gm-ease) backwards; animation-delay: .1s; }
+  .mo .wy-meter.in + .wy-meter .wy-track i { animation-delay: .35s; }
+  .mo .wy-w + .wy-w .wy-meter.in .wy-track i { animation-delay: .25s; }
+  .mo .wy-w + .wy-w .wy-meter.in + .wy-meter .wy-track i { animation-delay: .5s; }
+  .mo .wy-w + .wy-w + .wy-w .wy-meter.in .wy-track i { animation-delay: .4s; }
+  .mo .wy-w + .wy-w + .wy-w .wy-meter.in + .wy-meter .wy-track i { animation-delay: .65s; }
+
+  /* METR curve: the line draws left to right (path has pathLength=1), then the area, then the four marks in order */
+  .mo .wy-chart .wy-line { stroke-dasharray: 1 1; }
+  .mo .wy-chart:not(.in) .wy-line { stroke-dashoffset: 1; }
+  .mo .wy-chart:not(.in) .wy-area, .mo .wy-chart:not(.in) svg > g:nth-last-child(-n+4) { opacity: 0; }
+  .mo .wy-chart.in .wy-line { animation: gm-dash 1.3s var(--gm-ease) .15s backwards; }
+  .mo .wy-chart.in .wy-area { animation: gm-fade .9s var(--gm-ease) .9s backwards; }
+  .mo .wy-chart.in svg > g:nth-last-child(-n+4) { animation: gm-fade .6s var(--gm-ease) backwards; }
+  .mo .wy-chart.in svg > g:nth-last-child(4) { animation-delay: .5s; }
+  .mo .wy-chart.in svg > g:nth-last-child(3) { animation-delay: .8s; }
+  .mo .wy-chart.in svg > g:nth-last-child(2) { animation-delay: 1.1s; }
+  .mo .wy-chart.in svg > g:nth-last-child(1) { animation-delay: 1.35s; }
+}

@@ -1,0 +1,12 @@
+/* Privacy and terms. Prefix lg-. */
+.lg-draft { display: inline-block; font-size: 12px; letter-spacing: .06em; color: var(--ink-3); border: 1px solid var(--line-2); padding: 4px 9px; border-radius: 3px; margin-top: 22px; }
+.lg-doc { max-width: 760px; margin-inline: auto; }
+.lg-meta { font-size: 13px; color: var(--ink-3); padding-bottom: 20px; border-bottom: 2px solid var(--ink); }
+.lg-doc section { padding-top: 34px; }
+.lg-doc h2 { font-size: clamp(21px, 2vw, 26px); letter-spacing: -0.025em; font-weight: 500; line-height: 1.15; }
+.lg-doc p, .lg-doc li { color: var(--ink-2); font-size: 16px; margin-top: 12px; max-width: 42em; }
+.lg-doc ul { margin-top: 6px; }
+.lg-doc li { position: relative; padding-left: 18px; margin-top: 8px; }
+.lg-doc li::before { content: ""; position: absolute; left: 0; top: .7em; width: 6px; height: 1px; background: var(--ink-3); }
+.lg-doc a { color: var(--ink); text-decoration: underline; }
+.lg-ph { background: rgba(217, 138, 74, .18); padding: 0 4px; border-radius: 2px; color: var(--ink); }

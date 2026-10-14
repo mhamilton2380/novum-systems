@@ -11,6 +11,7 @@ export type UseCase = {
   agents: { task: string; saved: string }[];
   tools: string[];
   replaces: string[];
+  removes: string[];
 };
 
 export const USE_CASES: UseCase[] = [
@@ -72,7 +73,8 @@ export const USE_CASES: UseCase[] = [
       { task: "Compiled the weekly safety checklist status across 5 active sites", saved: "1 hr" },
     ],
     tools: ["QuickBooks", "Buildertrend", "Outlook", "DocuSign", "Sage 300 CRE"],
-    replaces: ["Project management subscriptions", "Document storage tools", "Manual budget spreadsheets", "Separate reporting software"],
+    replaces: ["Project add-ons that overlap the platform you keep", "Document storage tools", "Separate reporting software"],
+    removes: ["Budget spreadsheets updated by hand", "Change orders tracked in email"],
   },
   {
     slug: "field-services",
@@ -132,7 +134,8 @@ export const USE_CASES: UseCase[] = [
       { task: "Compiled the weekly callback report by technician", saved: "45 min" },
     ],
     tools: ["QuickBooks", "ServiceTitan", "Housecall Pro", "Outlook", "Google Calendar", "Stripe"],
-    replaces: ["Dispatch software subscriptions", "Separate invoicing tools", "Paper service records", "Manual maintenance reminders"],
+    replaces: ["A second dispatch tool where two overlap", "Separate invoicing tools"],
+    removes: ["Paper service records", "Maintenance reminders sent by hand"],
   },
   {
     slug: "legal",
@@ -146,7 +149,7 @@ export const USE_CASES: UseCase[] = [
       },
       {
         title: "Deadlines get tracked in three calendars",
-        body: "Court dates, filing deadlines, and client follow ups are split across personal calendars, a docketing tool, and sticky notes.",
+        body: "Court dates, filing deadlines, and client follow-ups are split across personal calendars, a docketing tool, and sticky notes.",
       },
       {
         title: "Document versions get lost in email threads",
@@ -192,7 +195,8 @@ export const USE_CASES: UseCase[] = [
       { task: "Matched incoming discovery documents to the correct matter file", saved: "1 hr" },
     ],
     tools: ["Clio", "Outlook", "QuickBooks", "NetDocuments", "DocuSign", "LexisNexis"],
-    replaces: ["Practice management subscriptions", "Separate document storage", "Manual docketing spreadsheets", "Paper file rooms"],
+    replaces: ["Practice add-ons that duplicate what you keep", "Separate document storage"],
+    removes: ["Docketing spreadsheets", "Paper file rooms"],
   },
   {
     slug: "accounting",
@@ -252,7 +256,8 @@ export const USE_CASES: UseCase[] = [
       { task: "Compiled the weekly work in progress report by partner", saved: "1 hr" },
     ],
     tools: ["QuickBooks", "Intuit ProConnect", "Drake Tax", "Outlook", "Karbon", "Bill.com"],
-    replaces: ["Practice management subscriptions", "Separate document portals", "Manual deadline spreadsheets", "Email based document requests"],
+    replaces: ["Workflow add-ons that duplicate what you keep", "Separate document portals"],
+    removes: ["Deadline spreadsheets", "Document requests chased by email"],
   },
   {
     slug: "insurance",
@@ -269,8 +274,8 @@ export const USE_CASES: UseCase[] = [
         body: "A producer has to check the CRM, then log into three carrier portals, just to answer a basic question about a client's coverage.",
       },
       {
-        title: "Quote follow up depends on someone remembering",
-        body: "Quotes go out and follow up happens only if the producer remembers to check back, so warm leads go cold without anyone noticing.",
+        title: "Quote follow-up depends on someone remembering",
+        body: "Quotes go out and follow-up happens only if the producer remembers to check back, so warm leads go cold without anyone noticing.",
       },
     ],
     builds: [
@@ -303,16 +308,17 @@ export const USE_CASES: UseCase[] = [
     questions: [
       "Which policies are expiring in the next 30 days?",
       "What is this client's current coverage across all their policies?",
-      "Which quotes went out more than a week ago with no follow up?",
+      "Which quotes went out more than a week ago with no follow-up?",
     ],
     agents: [
       { task: "Drafted 23 renewal quotes for policies expiring in 30 days, held for approval", saved: "2 hrs" },
-      { task: "Drafted follow up emails for 17 quotes with no response after a week", saved: "1.5 hrs" },
+      { task: "Drafted follow-up emails for 17 quotes with no response after a week", saved: "1.5 hrs" },
       { task: "Flagged 6 policies with lapsed payment status", saved: "45 min" },
       { task: "Compiled the weekly book of business report by producer", saved: "1 hr" },
     ],
     tools: ["Salesforce", "AMS360", "QuickBooks", "Outlook", "EZLynx", "DocuSign"],
-    replaces: ["CRM subscriptions", "Separate policy management tools", "Manual renewal spreadsheets", "Paper client files"],
+    replaces: ["Separate policy management tools", "Standalone certificate tracking tools"],
+    removes: ["Renewal spreadsheets", "Paper client files"],
   },
   {
     slug: "healthcare",
@@ -352,27 +358,28 @@ export const USE_CASES: UseCase[] = [
       {
         system: "AI Assistant",
         title: "Ask about any patient or schedule in plain English",
-        body: "Ask which patients are due for a follow up or how many appointments are open this week, and get a direct answer from your own data.",
+        body: "Ask which patients are due for a follow-up or how many appointments are open this week, and get a direct answer from your own data.",
       },
       {
         system: "Agents",
         title: "Follow up and reminders handled in the background",
-        body: "An agent drafts appointment reminder messages and follow up outreach for overdue patients and holds them for staff approval before sending.",
+        body: "An agent drafts appointment reminder messages and follow-up outreach for overdue patients and holds them for staff approval before sending.",
       },
     ],
     questions: [
-      "Which patients are overdue for a follow up visit?",
+      "Which patients are overdue for a follow-up visit?",
       "How many appointment slots are open this week?",
       "Which claims from last month are still unpaid?",
     ],
     agents: [
       { task: "Drafted 58 appointment reminder texts for patients scheduled this week", saved: "1.5 hrs" },
       { task: "Flagged 14 claims from last month still showing unpaid", saved: "1 hr" },
-      { task: "Compiled the list of patients overdue for a follow up visit", saved: "1 hr" },
+      { task: "Compiled the list of patients overdue for a follow-up visit", saved: "1 hr" },
       { task: "Matched incoming referral documents to existing patient records", saved: "45 min" },
     ],
     tools: ["athenahealth", "Google Workspace", "QuickBooks", "Outlook", "DrChrono", "Availity"],
-    replaces: ["Separate scheduling software", "Manual prior authorization tracking", "Paper intake forms", "Standalone billing subscriptions"],
+    replaces: ["Separate scheduling software", "Standalone billing subscriptions"],
+    removes: ["Prior authorization tracked by hand", "Paper intake forms"],
   },
   {
     slug: "marketing-agencies",
@@ -432,7 +439,8 @@ export const USE_CASES: UseCase[] = [
       { task: "Matched incoming invoices to the correct client budget", saved: "1 hr" },
     ],
     tools: ["HubSpot", "Google Ads", "Meta Ads Manager", "QuickBooks", "Outlook", "Asana"],
-    replaces: ["Project management subscriptions", "Manual reporting spreadsheets", "Separate approval tools", "Scattered file storage"],
+    replaces: ["A second project tool where teams use two", "Separate approval tools", "Separate file storage subscriptions"],
+    removes: ["Reporting spreadsheets", "Approvals chased by email"],
   },
   {
     slug: "manufacturing",
@@ -492,7 +500,8 @@ export const USE_CASES: UseCase[] = [
       { task: "Matched incoming supplier invoices to open purchase orders", saved: "1 hr" },
     ],
     tools: ["NetSuite", "SAP", "QuickBooks", "Fishbowl", "Outlook", "Microsoft Dynamics"],
-    replaces: ["Separate inventory spreadsheets", "Manual production reports", "Standalone quality logs", "Disconnected purchasing tools"],
+    replaces: ["Standalone quality tracking software", "Disconnected purchasing tools"],
+    removes: ["Inventory spreadsheets", "Production reports compiled by hand"],
   },
   {
     slug: "wholesale-distribution",
@@ -552,7 +561,70 @@ export const USE_CASES: UseCase[] = [
       { task: "Matched 112 vendor invoices to receipts and purchase orders", saved: "2 hrs" },
     ],
     tools: ["NetSuite", "Epicor Prophet 21", "Business Central", "Infor", "QuickBooks", "Outlook"],
-    replaces: ["Manual order entry", "Order-status phone tag", "Price lists in spreadsheets", "Separate quoting tools"],
+    replaces: ["Separate quoting tools", "Standalone order portal add-ons"],
+    removes: ["Order entry typed by hand", "Order-status phone tag", "Price lists in spreadsheets"],
+  },
+  {
+    slug: "real-estate-brokerage",
+    name: "Real Estate Brokerage",
+    headline: "AI that runs the transaction file and works every lead",
+    sub: "We train your agents, transaction coordinators and office staff to use AI on real deals, build agents for the file work, follow-up and marketing, and connect your CRM, transaction platform and listing data.",
+    pains: [
+      {
+        title: "Every deadline lives in one coordinator's head",
+        body: "Inspection, appraisal, financing and closing dates come out of the purchase agreement by hand, into a calendar, a spreadsheet and a dozen emails. One missed contingency date costs a deal.",
+      },
+      {
+        title: "Leads go cold between the portal and the CRM",
+        body: "Inquiries arrive from portals, the website, signs and referrals. Most get one reply, and the follow-up that converts them over months never happens.",
+      },
+      {
+        title: "Marketing materials take days per listing",
+        body: "Listing copy, flyers, social posts, email blasts, and for commercial deals a full offering memorandum, are rebuilt from scratch for every property.",
+      },
+    ],
+    builds: [
+      {
+        system: "Your system",
+        title: "Every listing, deal and deadline in one view",
+        body: "Pipeline, pending deals, contingency dates, commissions and agent production in one place, built around how your brokerage runs transactions.",
+      },
+      {
+        system: "Connected tools",
+        title: "CRM, transaction platform and listing data, connected",
+        body: "New leads land in your CRM with source and history, deal documents sync from your transaction platform, and closed commissions post to accounting without re-keying.",
+      },
+      {
+        system: "Documents",
+        title: "A complete compliance file on every deal",
+        body: "Agreements, disclosures, addenda and leases are indexed and searchable, with missing signatures and documents flagged before the file goes to the broker for review.",
+      },
+      {
+        system: "AI Assistant",
+        title: "Ask about any deal, listing or lease",
+        body: "Ask which deals have contingencies expiring this week or which tenants have options to renew next year, and get the answer with the document it came from.",
+      },
+      {
+        system: "Agents",
+        title: "File work, follow-up and marketing drafted for you",
+        body: "Agents build deadline calendars from executed agreements, draft lead follow-ups and listing materials, and abstract leases. An agent or coordinator approves before anything goes out.",
+      },
+    ],
+    questions: [
+      "Which pending deals have a contingency deadline in the next 7 days?",
+      "Which compliance files are missing a signed disclosure before closing?",
+      "Which commercial tenants have a renewal option in the next 12 months?",
+    ],
+    agents: [
+      { task: "Built deadline calendars and task lists from 6 executed purchase agreements", saved: "2 hrs" },
+      { task: "Drafted 38 personalized follow-ups for leads with no reply in 14 days, pending agent review", saved: "2.5 hrs" },
+      { task: "Drafted listing copy, a flyer and 3 social posts for 4 new listings", saved: "3 hrs" },
+      { task: "Flagged 5 compliance files missing signatures or disclosures", saved: "1 hr" },
+      { task: "Abstracted 9 commercial leases into rent, term and option summaries", saved: "4 hrs" },
+    ],
+    tools: ["Follow Up Boss", "Dotloop", "SkySlope", "DocuSign", "MLS", "CoStar", "Buildout", "QuickBooks", "Outlook", "Canva"],
+    replaces: ["Separate email drip tools", "Standalone transaction checklist tools"],
+    removes: ["Deadline spreadsheets", "Listing marketing rebuilt from scratch", "Lease abstracts typed by hand"],
   },
 ];
 

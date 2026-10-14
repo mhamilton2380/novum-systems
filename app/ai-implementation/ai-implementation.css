@@ -1,0 +1,166 @@
+/* /ai-implementation: page-specific pieces. Every class is prefixed .ai- so nothing collides with app/nv.css. */
+
+/* section index under the hero */
+.ai-toc { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: clamp(48px, 5vw, 72px); border-top: 1px solid var(--line-2); }
+.ai-toc a { display: grid; gap: 8px; align-content: start; padding: 22px 24px 6px; text-decoration: none; color: var(--ink); }
+.ai-toc a + a { border-left: 1px solid var(--line); }
+.ai-toc .meta { color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.ai-toc b { font-weight: 500; font-size: 20px; letter-spacing: -0.02em; display: flex; justify-content: space-between; gap: 10px; }
+.ai-toc b i { font-style: normal; color: var(--ink-3); transition: transform .25s, color .25s; }
+.ai-toc a:hover b i { transform: translateY(3px); color: var(--green-2); }
+.ai-toc span:not(.meta) { color: var(--ink-2); font-size: 14.5px; }
+@media (max-width: 900px) {
+  .ai-toc { grid-template-columns: 1fr 1fr; }
+  .ai-toc a:nth-child(3) { border-left: 0; }
+  .ai-toc a:nth-child(n+3) { border-top: 1px solid var(--line); }
+}
+@media (max-width: 520px) {
+  .ai-toc { grid-template-columns: 1fr; }
+  .ai-toc a, .ai-toc a + a { border-left: 0; padding-inline: 0; padding-bottom: 18px; }
+  .ai-toc a + a { border-top: 1px solid var(--line); }
+}
+
+/* sections sit below the fixed nav when jumped to */
+.ai-sec { scroll-margin-top: 72px; }
+
+/* two-column split: argument on the left, document on the right */
+.ai-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); margin-top: clamp(48px, 5vw, 80px); align-items: start; }
+.ai-split > * { min-width: 0; }
+.ai-split .mlist { margin-top: 0; }
+@media (max-width: 900px) { .ai-split { grid-template-columns: 1fr; } }
+
+/* sub-heading inside a section */
+.ai-sub { margin-top: clamp(56px, 6vw, 96px); padding-top: clamp(28px, 3vw, 40px); border-top: 1px solid var(--line-2); display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr); gap: clamp(24px, 5vw, 80px); align-items: start; }
+.ai-sub > * { min-width: 0; }
+.ai-sub h3 { font-size: clamp(24px, 2.4vw, 34px); letter-spacing: -0.035em; font-weight: 500; line-height: 1.1; margin-top: 12px; }
+.ai-sub .intro p { color: var(--ink-2); margin-top: 14px; font-size: 16px; }
+.ai-sub .ptable { margin-top: 0; }
+.ai-sub .ptable td:first-child { color: var(--ink); font-weight: 500; white-space: nowrap; padding-right: 20px; }
+.ai-sub .ptable td ul { display: grid; gap: 4px; }
+.ai-sub .ptable td li { padding-left: 14px; position: relative; }
+.ai-sub .ptable td li::before { content: ""; position: absolute; left: 0; top: .68em; width: 5px; height: 5px; border-radius: 50%; background: var(--grad); }
+@media (max-width: 900px) { .ai-sub { grid-template-columns: 1fr; } }
+@media (max-width: 640px) {
+  .ai-sub .ptable thead { display: none; }
+  .ai-sub .ptable tr { display: grid; gap: 6px; padding: 14px 0; border-top: 1px solid var(--line); }
+  .ai-sub .ptable td { border: 0; padding: 0; white-space: normal !important; }
+}
+
+/* paper document on light sections: the training library */
+.ai-lib li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 14px; padding: 12px 0; border-top: 1px solid var(--line); font-size: 15px; color: var(--ink-2); }
+.ai-lib li:first-child { border-top: 0; }
+.ai-lib li b { font-weight: 500; color: var(--ink); }
+.ai-lib li em { font-style: normal; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--green-2); margin-left: 10px; }
+.ai-lib li small { color: var(--ink-3); font-size: 13px; font-variant-numeric: tabular-nums; }
+.ai-lib ul { margin-top: 14px; }
+.ai-lib .foot { margin-top: 10px; padding-top: 14px; border-top: 2px solid var(--ink); font-size: 14px; font-weight: 500; }
+.ai-sec .paper { min-height: 0; animation: none; }
+
+/* dark example figure: an agent connected to your tools */
+.ai-fig { margin: 0; background: var(--raise); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.ai-fig-h { display: flex; justify-content: space-between; gap: 12px; padding: 16px 22px; border-bottom: 1px solid var(--line); background: var(--raise-2); font-weight: 500; font-size: 15px; }
+.ai-tools { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.ai-tools span { padding: 16px 22px; border-bottom: 1px solid var(--line); font-size: 14.5px; color: var(--ink-2); }
+.ai-tools span:not(:nth-child(3n+1)) { border-left: 1px solid var(--line); }
+.ai-tools span.hub { color: var(--ink); font-weight: 500; background: linear-gradient(90deg, rgba(0,179,110,.10), rgba(59,111,224,.10)); }
+.ai-runlog { padding: 6px 22px 4px; }
+.ai-runlog li { display: grid; grid-template-columns: 5.5em minmax(0, 1fr); gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 14.5px; color: var(--ink-2); }
+.ai-runlog li:last-child { border-bottom: 0; }
+.ai-runlog li span { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); padding-top: 3px; }
+.ai-fig figcaption { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; padding: 16px 22px; border-top: 1px solid var(--line); font-size: 14px; color: var(--ink-2); }
+.ai-fig figcaption .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px rgba(0,179,110,.8); flex: none; }
+.ai-fig figcaption b { color: var(--ink); font-weight: 500; }
+.ai-fig figcaption i { font-style: normal; margin-left: auto; color: var(--green-2); font-size: 13px; }
+@media (max-width: 520px) {
+  .ai-tools { grid-template-columns: 1fr 1fr; }
+  .ai-tools span:not(:nth-child(3n+1)) { border-left: 0; }
+  .ai-tools span:nth-child(even) { border-left: 1px solid var(--line); }
+  .ai-fig figcaption i { margin-left: 0; }
+}
+
+/* connect or replace */
+.ai-two { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line-2); }
+.ai-two > div { padding: 24px 26px 24px 0; display: grid; gap: 10px; align-content: start; }
+.ai-two > div + div { padding-left: 26px; padding-right: 0; border-left: 1px solid var(--line); }
+.ai-two h4 { font-size: 20px; letter-spacing: -0.025em; font-weight: 500; }
+.ai-two p { color: var(--ink-2); font-size: 15px; }
+.ai-two .meta { color: var(--ink-3); }
+@media (max-width: 640px) {
+  .ai-two { grid-template-columns: 1fr; }
+  .ai-two > div, .ai-two > div + div { padding: 20px 0; border-left: 0; }
+  .ai-two > div + div { border-top: 1px solid var(--line); }
+}
+.ai-size { margin-top: 28px; }
+.ai-size .meta { display: block; margin-bottom: 4px; }
+.ai-size li { padding: 11px 0; border-top: 1px solid var(--line); color: var(--ink-2); font-size: 15px; }
+.ai-case .link { margin-top: 6px; justify-self: start; }
+
+/* four steps of an engagement */
+.ai-steps { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); margin-top: clamp(48px, 5vw, 80px); border-top: 1px solid var(--line-2); counter-reset: none; }
+.ai-steps li { padding: 28px 26px 30px; display: grid; gap: 12px; align-content: start; position: relative; }
+.ai-steps li + li { border-left: 1px solid var(--line); }
+.ai-steps li::before { content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 2px; background: var(--grad); transform: scaleX(.18); transform-origin: left; }
+.ai-steps .pn { font-size: 12px; font-weight: 500; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.ai-steps h3 { font-size: 22px; letter-spacing: -0.03em; font-weight: 500; line-height: 1.12; }
+.ai-steps .line { color: var(--ink); font-size: 15.5px; }
+.ai-steps p { color: var(--ink-2); font-size: 15px; }
+.ai-steps .meta { color: var(--ink-3); padding-top: 12px; border-top: 1px solid var(--line); }
+@media (max-width: 1020px) {
+  .ai-steps { grid-template-columns: 1fr 1fr; }
+  .ai-steps li:nth-child(3) { border-left: 0; }
+  .ai-steps li:nth-child(n+3) { border-top: 1px solid var(--line); }
+}
+@media (max-width: 600px) {
+  .ai-steps { grid-template-columns: 1fr; }
+  .ai-steps li, .ai-steps li + li { padding-inline: 0; border-left: 0; }
+  .ai-steps li + li { border-top: 1px solid var(--line); }
+}
+.ai-deliv { display: grid; grid-template-columns: 1fr 1fr; gap: 0 28px; margin-top: 18px; }
+.ai-deliv li { padding: 10px 0; border-top: 1px solid var(--line); font-size: 15px; color: var(--ink); }
+.ai-deliv li::before { content: "→"; color: var(--ink-3); margin-right: 10px; }
+.ai-first-p { display: grid; gap: 4px; }
+.ai-first-p > p + p { margin-top: 14px; }
+@media (max-width: 640px) { .ai-deliv { grid-template-columns: 1fr; } }
+
+/* where to start: three doors as index rows */
+.ai-doors { margin-top: 28px; border-top: 1px solid var(--line-2); }
+.ai-doors a { display: grid; grid-template-columns: minmax(0, 0.55fr) minmax(0, 1.45fr); gap: 10px clamp(16px, 3vw, 48px); align-items: baseline; padding-block: 24px; border-bottom: 1px solid var(--line); text-decoration: none; color: var(--ink); position: relative; }
+.ai-doors a::after { content: ""; position: absolute; left: 0; bottom: -1px; height: 1px; width: 100%; background: var(--grad); transform: scaleX(0); transform-origin: left; transition: transform .6s cubic-bezier(.3,.6,.2,1); }
+.ai-doors a:hover::after, .ai-doors a:focus-visible::after { transform: scaleX(1); }
+.ai-doors .need { color: var(--ink-3); font-size: 15px; }
+.ai-doors h4 { font-size: clamp(20px, 1.8vw, 26px); letter-spacing: -0.03em; font-weight: 500; }
+.ai-doors p { color: var(--ink-2); font-size: 15px; margin-top: 6px; }
+.ai-doors .go { grid-column: 2; font-size: 15px; font-weight: 500; white-space: nowrap; margin-top: 4px; }
+.ai-doors .go i { font-style: normal; display: inline-block; margin-left: 8px; transition: transform .25s; }
+.ai-doors a:hover .go i { transform: translateX(4px); }
+@media (max-width: 760px) { .ai-doors a { grid-template-columns: 1fr; gap: 6px; } .ai-doors .go { grid-column: auto; } }
+
+/* FAQ */
+.ai-faq { margin-top: clamp(40px, 5vw, 64px); border-top: 1px solid var(--line-2); max-width: 980px; }
+.ai-faq details { border-bottom: 1px solid var(--line); }
+.ai-faq summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 20px; padding: 22px 0; font-size: clamp(18px, 1.6vw, 22px); font-weight: 500; letter-spacing: -0.02em; }
+.ai-faq summary::-webkit-details-marker { display: none; }
+.ai-faq summary::after { content: "+"; color: var(--ink-3); font-weight: 400; transition: transform .25s; }
+.ai-faq details[open] summary::after { transform: rotate(45deg); }
+.ai-faq details p { color: var(--ink-2); padding: 0 0 24px; max-width: 46em; }
+.ai-faq summary:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+
+.ai-links { display: flex; flex-wrap: wrap; gap: 14px 32px; margin-top: 36px; }
+
+/* ---- Motion: connected-tools figure, steps and their top line (shared pieces in app/nv.css, "Graphic motion") ---- */
+@media (prefers-reduced-motion: no-preference) {
+  .mo .ai-fig:not(.in) :is(.ai-tools span, .ai-runlog li) { opacity: 0; }
+  .mo .ai-fig.in :is(.ai-tools span, .ai-runlog li) { animation: gm-rise .7s var(--gm-ease) backwards; animation-delay: calc(var(--k, 0) * 70ms + 150ms); }
+  .mo .ai-fig .ai-tools span:nth-child(2) { --k: 1; } .mo .ai-fig .ai-tools span:nth-child(3) { --k: 2; }
+  .mo .ai-fig .ai-tools span:nth-child(4) { --k: 3; } .mo .ai-fig .ai-tools span:nth-child(5) { --k: 4; } .mo .ai-fig .ai-tools span:nth-child(n+6) { --k: 5; }
+  .mo .ai-fig .ai-runlog li { --k: 6; }
+  .mo .ai-fig .ai-runlog li:nth-child(2) { --k: 7; } .mo .ai-fig .ai-runlog li:nth-child(3) { --k: 8; } .mo .ai-fig .ai-runlog li:nth-child(n+4) { --k: 9; }
+
+  /* four steps: container stays put, steps rise in order and each top line draws to its resting length */
+  .mo .ai-steps.rv { opacity: 1; transform: none; transition: none; }
+  .mo .ai-steps.in li { transition: opacity .7s var(--gm-ease) calc(var(--k, 0) * 100ms), transform .7s var(--gm-ease) calc(var(--k, 0) * 100ms); }
+  .mo .ai-steps.in li::before { transition: transform 1s var(--gm-ease) calc(var(--k, 0) * 100ms + 250ms); }
+  .mo .ai-steps:not(.in) li { opacity: 0; transform: translateY(10px); }
+  .mo .ai-steps:not(.in) li::before { transform: scaleX(0); }
+  .mo .ai-steps li:nth-child(2) { --k: 1; } .mo .ai-steps li:nth-child(3) { --k: 2; } .mo .ai-steps li:nth-child(4) { --k: 3; } .mo .ai-steps li:nth-child(5) { --k: 4; }
+}

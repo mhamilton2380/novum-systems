@@ -1,0 +1,71 @@
+/* Training page. Every class is prefixed .tr- (shared blocks live in app/nv.css). */
+
+/* evidence: four sourced numbers in hairline cells */
+.tr-ev { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: clamp(48px, 5vw, 72px); border-top: 1px solid var(--line-2); border-bottom: 1px solid var(--line); }
+.tr-ev > div { padding: 30px 24px 28px; display: grid; gap: 12px; align-content: start; }
+.tr-ev > div + div { border-left: 1px solid var(--line); }
+.tr-ev b { font-size: clamp(36px, 3.4vw, 54px); font-weight: 500; letter-spacing: -0.045em; line-height: 0.95; font-variant-numeric: tabular-nums; }
+.tr-ev p { color: var(--ink-2); font-size: 15.5px; }
+.tr-ev .src { font-size: 12.5px; color: var(--ink-3); }
+.tr-ev .tr-ev-low b { color: var(--ink-3); }
+.tr-ev .tr-ev-low { background: repeating-linear-gradient(135deg, transparent 0 10px, rgba(238,240,234,.025) 10px 11px); }
+@media (max-width: 1020px) {
+  .tr-ev { grid-template-columns: 1fr 1fr; }
+  .tr-ev > div:nth-child(3) { border-left: 0; }
+  .tr-ev > div:nth-child(n+3) { border-top: 1px solid var(--line); }
+}
+@media (max-width: 560px) {
+  .tr-ev { grid-template-columns: 1fr; }
+  .tr-ev > div, .tr-ev > div + div { padding-inline: 0; border-left: 0; }
+  .tr-ev > div + div { border-top: 1px solid var(--line); }
+}
+
+/* company types */
+.tr-types .cap { grid-template-rows: auto auto 1fr auto; }
+.tr-agent { display: grid; gap: 6px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 15px; font-weight: 500; color: var(--ink); }
+
+/* two-column text and document */
+.tr-split { margin-top: 0; align-items: center; }
+.tr-paper { min-height: 0; }
+.tr-r { text-align: right; white-space: nowrap; }
+.tr-paper th.tr-r { padding-right: 0; }
+.tr-new { margin-left: 10px; font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--green-2); }
+.tr-pfine { margin-top: 18px; }
+
+/* team challenge leaderboard */
+.tr-board { margin: 0; background: var(--raise); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.tr-board-h { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 16px 22px; border-bottom: 1px solid var(--line); font-weight: 500; font-size: 15px; background: var(--raise-2); }
+.tr-board table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.tr-board th { text-align: left; font-weight: 500; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); padding: 14px 22px 10px; }
+.tr-board td { padding: 14px 22px; border-top: 1px solid var(--line); font-size: 15px; color: var(--ink-2); vertical-align: baseline; }
+.tr-board td:first-child { color: var(--ink); font-weight: 500; }
+.tr-board td.tr-r { color: var(--ink); font-weight: 500; }
+.tr-first { margin-left: 10px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--green-2); }
+@media (max-width: 560px) { .tr-board th, .tr-board td { padding-inline: 12px; font-size: 14px; } }
+
+/* on-site day */
+.tr-panel { margin-top: clamp(44px, 5vw, 72px); }
+.tr-panel .gov { margin-top: 18px; }
+
+/* request form */
+.tr-book { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(32px, 7vw, 110px); margin-top: clamp(72px, 8vw, 120px); padding-top: clamp(40px, 5vw, 64px); border-top: 1px solid var(--line-2); scroll-margin-top: 90px; }
+.tr-steps { margin-top: 32px; border-top: 1px solid var(--line-2); }
+.tr-steps li { display: grid; grid-template-columns: 2.6em minmax(0, 1fr); gap: 12px; padding-block: 14px; border-bottom: 1px solid var(--line); }
+.tr-sn { font-size: 13px; color: var(--ink-3); font-variant-numeric: tabular-nums; padding-top: 3px; }
+.tr-steps b { display: block; font-weight: 500; }
+.tr-steps span:not(.tr-sn) { font-size: 14.5px; color: var(--ink-2); }
+@media (max-width: 860px) { .tr-book { grid-template-columns: 1fr; } }
+
+/* FAQ */
+.tr-faqwrap { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
+.tr-faq { border-top: 1px solid var(--line-2); }
+.tr-faq details { border-bottom: 1px solid var(--line); }
+.tr-faq summary { cursor: pointer; list-style: none; padding: 20px 36px 20px 0; position: relative; font-size: clamp(17px, 1.4vw, 20px); font-weight: 500; letter-spacing: -0.02em; }
+.tr-faq summary::-webkit-details-marker { display: none; }
+.tr-faq summary::after { content: "+"; position: absolute; right: 4px; top: 18px; font-size: 22px; font-weight: 300; color: var(--ink-3); transition: transform .25s; }
+.tr-faq details[open] summary::after { transform: rotate(45deg); }
+.tr-faq details p { color: var(--ink-2); padding: 0 36px 22px 0; max-width: 40em; }
+@media (max-width: 860px) { .tr-faqwrap { grid-template-columns: 1fr; } }
+
+/* closing callout */
+.tr-next { display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: center; margin-top: 22px; }

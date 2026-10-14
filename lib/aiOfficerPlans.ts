@@ -29,7 +29,7 @@ export const INCLUDED: IncludedGroup[] = [
     group: "AI at work",
     items: [
       "An AI assistant that answers across your company data, with sources",
-      "Agents and builds with no cap, worked through one after another",
+      "A prioritized roadmap of agents and builds, worked in order and reviewed monthly with your sponsor",
       "A person approves anything before it leaves the company",
       "A list of every agent, what it does, and who owns it",
       "New models and tools tested on your data as they ship",

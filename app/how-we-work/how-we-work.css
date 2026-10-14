@@ -1,0 +1,82 @@
+/* How We Work page. Every class is prefixed .hw- (shared blocks live in app/nv.css). */
+
+/* discovery deliverables inside the .first callout */
+.hw-disc { margin-top: 22px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line); }
+.hw-disc li { display: grid; gap: 2px; padding: 14px 18px 14px 0; border-bottom: 1px solid var(--line); }
+.hw-disc li:nth-child(2n) { padding-left: 18px; border-left: 1px solid var(--line); }
+.hw-disc b { font-weight: 500; }
+.hw-disc span { font-size: 14.5px; color: var(--ink-2); }
+@media (max-width: 600px) { .hw-disc { grid-template-columns: 1fr; } .hw-disc li:nth-child(2n) { padding-left: 0; border-left: 0; } }
+
+/* step-by-step detail */
+.hw-phase { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; margin-top: clamp(56px, 6vw, 88px); padding-bottom: 12px; border-bottom: 2px solid var(--green); color: var(--ink-2); font-size: 14.5px; }
+.hw-phase .meta { color: var(--ink); }
+.hw-phase.off { border-bottom-color: var(--blue); }
+.hw-step { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.25fr) minmax(0, 1.25fr); gap: clamp(20px, 3vw, 48px); padding-block: clamp(28px, 3vw, 40px); border-bottom: 1px solid var(--line); }
+.hw-step-h { display: grid; gap: 10px; align-content: start; }
+.hw-n { font-size: clamp(36px, 3.4vw, 52px); font-weight: 500; letter-spacing: -0.045em; line-height: 0.95; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.hw-step-h h3 { font-size: clamp(22px, 2vw, 28px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.1; }
+.hw-step-b p { color: var(--ink-2); }
+.hw-branch { margin-top: 20px; border-top: 1px solid var(--line); }
+.hw-branch li { display: grid; grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr); gap: 14px; padding-block: 12px; border-bottom: 1px solid var(--line); }
+.hw-branch b { font-weight: 500; font-size: 15px; }
+.hw-branch span { font-size: 14.5px; color: var(--ink-2); }
+.hw-steplink { margin-top: 20px; }
+.hw-dl { margin: 0; display: grid; gap: 0; border-top: 1px solid var(--line-2); align-content: start; }
+.hw-dl > div { padding-block: 12px; border-bottom: 1px solid var(--line); display: grid; gap: 6px; }
+.hw-dl dt { font-size: 11px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
+.hw-dl dd { margin: 0; font-size: 15px; color: var(--ink-2); }
+.hw-dl dd li { display: flex; gap: 8px; padding-block: 3px; color: var(--ink); font-weight: 500; font-size: 14.5px; }
+.hw-dl dd li::before { content: "→"; color: var(--ink-3); font-weight: 400; }
+@media (max-width: 1020px) {
+  .hw-step { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .hw-step-h { grid-column: 1 / -1; grid-template-columns: auto minmax(0, 1fr); align-items: baseline; column-gap: 18px; }
+  .hw-step-h .meta { grid-column: 2; }
+}
+@media (max-width: 700px) {
+  .hw-step { grid-template-columns: 1fr; }
+  .hw-branch li { grid-template-columns: 1fr; gap: 2px; }
+}
+
+/* documents viewer additions */
+.hw-docs { margin-top: clamp(44px, 5vw, 72px); }
+.hw-docs-note { color: var(--ink-2); font-size: 15.5px; margin-top: 14px; max-width: 26em; }
+.hw-tab-t { font-style: normal; display: flex; justify-content: space-between; gap: 12px; }
+.hw-tab-t small { font-size: 12px; color: var(--ink-3); font-weight: 400; padding-top: 3px; }
+.hw-pfine { margin-top: 18px; }
+.hw-key { font-weight: 500; }
+.hw-key.k { color: var(--green-2); }
+.hw-key.c { color: #b9661f; }
+@media (max-width: 560px) {
+  .hw-docs .paper { padding: 18px 14px; overflow-x: auto; }
+  .hw-docs .ptable { font-size: 13px; }
+  .hw-docs .ptable th, .hw-docs .ptable td { padding-right: 6px; }
+}
+
+/* handoff */
+.hw-own .lead + .lead { margin-top: 18px; }
+.hw-transfer { min-height: 0; }
+.hw-trows > div { display: grid; gap: 4px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.hw-trows b { font-weight: 500; }
+.hw-trows p { font-size: 14.5px; color: var(--ink-2); }
+.hw-trows code { font: 400 12.5px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--ink-3); overflow-wrap: anywhere; }
+.hw-transfer .ptotal { border-top: 0; margin-top: 0; gap: 16px; }
+.hw-transfer .ptotal span:last-child { white-space: nowrap; }
+
+/* FAQ */
+.hw-faqwrap { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
+.hw-faq { border-top: 1px solid var(--line-2); }
+.hw-faq details { border-bottom: 1px solid var(--line); }
+.hw-faq summary { cursor: pointer; list-style: none; padding: 20px 36px 20px 0; position: relative; font-size: clamp(17px, 1.4vw, 20px); font-weight: 500; letter-spacing: -0.02em; }
+.hw-faq summary::-webkit-details-marker { display: none; }
+.hw-faq summary::after { content: "+"; position: absolute; right: 4px; top: 18px; font-size: 22px; font-weight: 300; color: var(--ink-3); transition: transform .25s; }
+.hw-faq details[open] summary::after { transform: rotate(45deg); }
+.hw-faq details p { color: var(--ink-2); padding: 0 36px 22px 0; max-width: 40em; }
+@media (max-width: 860px) { .hw-faqwrap { grid-template-columns: 1fr; } }
+
+/* ---- Motion: the transfer document's rows rise in order (shared pieces in app/nv.css, "Graphic motion") ---- */
+@media (prefers-reduced-motion: no-preference) {
+  .mo .paper:not(.in):not(.sw) .hw-trows > div { opacity: 0; }
+  .mo .paper:is(.in, .sw) .hw-trows > div { animation: gm-rise .7s var(--gm-ease) backwards; animation-delay: calc(var(--k, 0) * 70ms + 150ms); }
+  .mo .hw-trows > div:nth-child(2) { --k: 1; } .mo .hw-trows > div:nth-child(3) { --k: 2; } .mo .hw-trows > div:nth-child(4) { --k: 3; } .mo .hw-trows > div:nth-child(n+5) { --k: 4; }
+}

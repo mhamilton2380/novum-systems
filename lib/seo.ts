@@ -97,4 +97,5 @@ export const USE_CASE_SEO: Record<string, { audience: string; title: string }> =
   "marketing-agencies": { audience: "marketing agencies", title: "AI for Marketing Agencies: Agents and Training" },
   manufacturing: { audience: "manufacturers", title: "AI for Manufacturers: Agents, Training, and Tools" },
   "wholesale-distribution": { audience: "wholesale distributors", title: "AI for Wholesale Distributors: Order Entry Agents" },
+  "real-estate-brokerage": { audience: "real estate brokerages", title: "AI for Real Estate Brokerages: Agents and Training" },
 };

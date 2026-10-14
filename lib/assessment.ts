@@ -12,7 +12,7 @@ export type Question = { id: QId; q: string; note?: string; area?: Area; options
 
 export const QUESTIONS: Question[] = [
   { id: "desk_staff", q: "How many of your people spend most of the day at a computer?", note: "Office, project, sales, and management staff. Leave out field crews.",
-    options: [{ label: "1 to 9", value: 5 }, { label: "10 to 24", value: 17 }, { label: "25 to 49", value: 37 }, { label: "50 to 99", value: 75 }, { label: "100 or more", value: 120 }] },
+    options: [{ label: "10 to 24", value: 17 }, { label: "25 to 49", value: 37 }, { label: "50 to 99", value: 75 }, { label: "100 or more", value: 120 }] },
   { id: "repeat_hours", q: "In a typical week, how many hours does one of those people spend on work that's the same every time?", note: "Entering the same data, chasing updates, building the same report, answering the same questions.",
     options: [{ label: "Under 2", value: 1 }, { label: "2 to 5", value: 3.5 }, { label: "5 to 10", value: 7.5 }, { label: "More than 10", value: 12 }] },
   { id: "weekly_use", area: "team", q: "How many of them use AI in their work every week?",
@@ -143,7 +143,7 @@ export function scoreFor(a: Answers): Result {
 export type Tier = "Call today" | "Nurture" | "Anonymous";
 export function tierFor(a: Answers, hasEmail: boolean, flags: Flag[]): Tier {
   if (!hasEmail) return "Anonymous";
-  const fit = idx(a, "desk_staff") >= 1 && idx(a, "desk_staff") <= 3; // 10 to 99 desk staff
+  const fit = idx(a, "desk_staff") >= 0 && idx(a, "desk_staff") <= 2; // 10 to 99 desk staff
   return fit && flags.some((f) => f.id === 2 || f.id === 3) ? "Call today" : "Nurture";
 }
 

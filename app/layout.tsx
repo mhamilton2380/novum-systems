@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
-import "./globals.css";
-import "./home.css";
-import "./visuals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import "./nv.css";
+import { NvNav } from "@/components/nv/NvNav";
+import { NvFooter } from "@/components/nv/NvFooter";
+import { NvMotion } from "@/components/nv/NvMotion";
 import { JsonLd } from "@/components/JsonLd";
 import { ORGANIZATION_JSONLD } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Novum AI · AI and software built around how you work",
-  description: "Generic software makes your team work its way. We learn how your business runs and build what fits: AI agents, connected tools, and software your company owns.",
+  title: "Novum AI · AI implementation across your company",
+  description: "Training, agents, custom software, and a fractional AI Officer, built around how your teams work. You own all of it.",
   metadataBase: new URL("https://www.thenovumai.com"),
 };
 
@@ -22,9 +21,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={dmSans.variable}>
       <body>
         <JsonLd data={ORGANIZATION_JSONLD} />
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <NvNav />
+        {children}
+        <NvFooter />
+        <NvMotion />
       </body>
     </html>
   );

@@ -7,7 +7,7 @@ import type { UseCase, SystemName } from "@/lib/useCases";
 import { ProblemArt, PROBLEM_PAIN } from "@/components/ProblemArt";
 import { BoardArt, DocsArt } from "@/components/SystemArt";
 
-// Use case pages (one template, nine industries) and the construction case study.
+// Use case pages (one template, ten industries) and the construction case study.
 // Everything is driven by lib/useCases.ts, so each industry gets its own tools, questions and agents.
 // Styles live in app/visuals.css (prefix uc-).
 
@@ -167,9 +167,9 @@ export function KeepReplace({ tools, replaces }: { tools: string[]; replaces: st
 export function BillCard() {
   return (
     <div className="h-phero-card uc-bill" aria-label="The $100,000 a year subscription, replaced">
-      <div className="oc-hero-h"><span className="oc-live" aria-hidden="true" /><strong>The software bill</strong><em>Construction</em></div>
+      <div className="oc-hero-h"><span className="oc-live" aria-hidden="true" /><strong>The software bill</strong><em>Real estate developer</em></div>
       <div className="uc-bill-old">
-        <small>Construction management platform</small>
+        <small>Project management platform</small>
         <div><strong>$100,000</strong><span>/ year, every year</span></div>
         <i aria-hidden="true" />
         <b className="uc-bill-stamp">Replaced</b>

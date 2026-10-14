@@ -13,11 +13,11 @@ const TYPES: { id: string; name: string; icon: IconName; tasks: string[]; agent:
     agent: "Intake agent: new matter emails turned into a conflict check",
   },
   {
-    id: "roofing",
-    name: "Roofing contractor",
+    id: "distributor",
+    name: "100-person distributor",
     icon: "construction",
-    tasks: ["Turn a site-walk voice memo into an estimate scope", "Write a homeowner update from the crew's photos", "Compare three supplier quotes line by line"],
-    agent: "Estimate agent: inspection notes drafted into a proposal",
+    tasks: ["Turn a customer PO email into an order entry draft", "Compare three supplier quotes line by line", "Write a backorder update from the inventory report"],
+    agent: "Order entry agent: purchase orders drafted into order entry",
   },
   {
     id: "accounting",

@@ -75,7 +75,7 @@ export default function Navbar() {
                   <hr />
                   <Link href="/ai-officer">AI Officer<small>A fractional Chief AI Officer, every month.</small></Link>
                   <Link href="/training">Training<small>Monthly training on your tools, and a library you keep.</small></Link>
-                  <Link href="/ai-implementation#software">Custom software<small>A $100,000-a-year platform, replaced with one the client owns.</small></Link>
+                  <Link href="/ai-implementation#software">Custom software<small>A real estate developer&apos;s $100,000-a-year platform, replaced with one it owns.</small></Link>
                 </div>
               </div>
             </div>

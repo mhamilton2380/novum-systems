@@ -1,82 +1,158 @@
 import type { Metadata } from "next";
-import { PageHero, CtaBand, SectionHead } from "@/components/PageBits";
-import { IconCards, CaseFlow, type IconName } from "@/components/PageVisuals";
-import { BillCard, RfiDraft, Ledger } from "@/components/UseCaseVisuals";
+import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
+import { ContactForm } from "@/components/nv/ContactForm";
 import { pageMetadata, breadcrumbJsonLd } from "@/lib/seo";
+import "./case-studies.css";
 
 export const metadata: Metadata = pageMetadata({
   path: "/case-studies",
-  title: "Case Study: A $100,000 Software Bill, Replaced · Novum AI",
-  description: "How a construction company replaced a $100,000-a-year construction management subscription with a system it owns, with agents drafting RFIs and submittals.",
+  title: "Results: A $100,000 Platform Bill, Replaced · Novum AI",
+  description: "How a real estate developer replaced a $100,000-a-year project management platform with a system it owns, and the measured per-task results from the agents.",
 });
 
-const BEFORE: { icon: IconName; title: string; body: string }[] = [
-  { icon: "coin", title: "$100,000 a year, every year", body: "The company paid six figures annually for a construction management platform, and the price only went up as the business grew." },
-  { icon: "move", title: "Billing ran on its own system", body: "Their billing ran on a custom application and process the platform couldn't fit, so the same project data got entered twice." },
-  { icon: "clock", title: "RFIs and submittals by hand", body: "Project managers spent hours every week writing RFIs and assembling submittals from drawings, specs, and field notes." },
+const BEFORE = [
+  { title: "$100,000 a year, every year", body: "The company paid six figures annually for a project management platform, and the price only went up as the business grew." },
+  { title: "Billing ran on its own system", body: "Their billing ran on a custom application and process the platform could not fit, so the same project data got entered twice." },
+  { title: "Routine paperwork by hand", body: "Project managers spent hours every week on bank draw applications, submittal reviews, owner reports and RFIs, assembled from drawings, specs and field notes." },
 ];
 
-const BUILT: { icon: IconName; tag: string; title: string; body: string }[] = [
-  { icon: "box", tag: "Rebuilt", title: "Construction management, rebuilt", body: "We rebuilt the platform they were paying for around how they run jobs: projects, schedules, RFIs, submittals, and change orders." },
-  { icon: "link", tag: "Connected", title: "Connected to their billing", body: "The new system talks to their custom billing application, so project and billing data stay in sync and their billing process didn't have to change." },
-  { icon: "bot", tag: "Agents", title: "RFIs and submittals, drafted", body: "Agents draft RFIs and submittal packages from field notes and project documents. A project manager reviews, edits, and sends." },
+const RESULTS = [
+  { task: "Bank draw applications", from: "10 hrs", to: "1.5 hrs", cut: "85% less time", note: "Per application." },
+  { task: "Submittal review against plan sets and owner specs", from: "4 hrs", to: "15 min", cut: "94% less time", note: "The agent drafts a summary and flags issues for the project manager." },
+  { task: "Deferred submittals", from: "3.5 hrs", to: "20 min", cut: "90% less time", note: "Now an automated review a person checks." },
+  { task: "Owner reports", from: "2 hrs", to: "15 min", cut: "88% less time", note: "Built from the project files and the daily management software." },
 ];
 
-const LEDGER: { icon: IconName; what: string; before: string; after: string }[] = [
-  { icon: "coin", what: "The software bill", before: "$100,000 a year, rising as they grew", after: "Hosting, storage, and security, a small fraction of the old bill" },
-  { icon: "link", what: "Project and billing data", before: "Typed into two systems by hand", after: "Entered once, synced to billing on its own" },
-  { icon: "clock", what: "RFIs and submittals", before: "Written from scratch, hours every week", after: "Start as agent drafts. The PM reviews and sends" },
-  { icon: "target", what: "How the software fits", before: "The team bent its process to the platform", after: "Built around how they already run jobs" },
-  { icon: "key", what: "Who owns it", before: "Rented seats, renewed every year", after: "Code, data, and accounts in the company's name" },
-  { icon: "flat", what: "Growing the business", before: "More people meant more license fees", after: "More projects and people add no license fees" },
+const BUILT = [
+  { tag: "Rebuilt", title: "The platform, rebuilt around how they run projects", body: "We rebuilt the platform they were paying for around how they run jobs: projects, schedules, RFIs, submittals and change orders." },
+  { tag: "Connected", title: "Connected to their billing", body: "The new system talks to their custom billing application, so project and billing data stay in sync and their billing process did not have to change." },
+  { tag: "Agents", title: "Routine paperwork, drafted", body: "Agents draft PCOs, RFIs, submittal reviews, bank draw applications and owner reports from project documents and field notes. A project manager reviews each one." },
 ];
 
-export default function CaseStudyPage() {
+const LEDGER = [
+  { what: "The software bill", before: "$100,000 a year, rising as they grew", after: "They now pay only hosting, storage and security" },
+  { what: "Project and billing data", before: "Typed into two systems by hand", after: "Entered once, synced to billing on its own" },
+  { what: "Routine paperwork", before: "Written from scratch, hours every week", after: "Starts as an agent draft. The project manager reviews and sends" },
+  { what: "How the software fits", before: "The team bent its process to the platform", after: "Built around how they already run jobs" },
+  { what: "Who owns it", before: "Rented seats, renewed every year", after: "Code, data and accounts in the company's name" },
+  { what: "Growing the business", before: "More people meant more license fees", after: "More projects and people add no license fees" },
+];
+
+export default function ResultsPage() {
   return (
-    <div className="home">
-      <JsonLd data={[breadcrumbJsonLd([{ name: "Case Study", path: "/case-studies" }])]} />
-      <PageHero
-        eyebrow="Case study · Construction"
-        title={<>A <span className="h-grad">$100,000-a-year</span> software bill, replaced.</>}
-        sub="A construction company was paying six figures a year for construction management software that didn't fit how it worked. We rebuilt it as a system they own, connected it to their custom billing application, and put agents to work drafting RFIs and submittals."
-        side={<BillCard />}
-      />
+    <main>
+      <JsonLd data={[breadcrumbJsonLd([{ name: "Results", path: "/case-studies" }])]} />
 
-      <section className="h-sec">
-        <div className="h-wrap">
-          <SectionHead eyebrow="Before" title="Paying top dollar for software that didn't fit." />
-          <IconCards items={BEFORE} />
-        </div>
-      </section>
-
-      <section className="h-sec h-soft">
-        <div className="h-wrap">
-          <SectionHead eyebrow="What we built" title="One system, built around how they run projects." />
-          <CaseFlow />
-          <div style={{ marginTop: 18 }}><IconCards items={BUILT} /></div>
-        </div>
-      </section>
-
-      <section className="h-sec">
-        <div className="h-wrap h-feature uc-feature">
-          <div>
-            <div className="h-eyebrow">The agents</div>
-            <h2>Every RFI starts as a draft.</h2>
-            <p className="h-feature-sub">The agent reads the field note, the photos, and the drawings it references, then drafts the RFI in the company&apos;s format. The project manager checks it, edits what needs editing, and sends it. Nothing leaves without a person.</p>
+      <section className="phero">
+        <div className="wrap">
+          <div className="label">Results</div>
+          <h1>A real estate developer replaced a $100,000-a-year platform.</h1>
+          <p className="lead">The company was paying six figures a year for project management software that did not fit how it worked. We rebuilt it as a system the company owns, connected it to their custom billing application, and put agents to work drafting routine paperwork. It now pays for hosting, storage and security.</p>
+          <div className="ctas">
+            <Link className="btn" href="#contact">Start a conversation</Link>
+            <Link className="btn ghost" href="/use-cases">See industries</Link>
           </div>
-          <RfiDraft />
         </div>
       </section>
 
-      <section className="h-sec h-soft">
-        <div className="h-wrap">
-          <SectionHead eyebrow="After" title="Lower cost, fewer hours, same process." />
-          <Ledger rows={LEDGER} />
+      <section className="sec light">
+        <div className="wrap">
+          <div className="label"><span className="ix">01</span>Before</div>
+          <h2 className="h2">Paying for software <span className="mute">that did not fit.</span></h2>
+          <div className="rs-three">
+            {BEFORE.map((b) => (
+              <div key={b.title}><h3>{b.title}</h3><p>{b.body}</p></div>
+            ))}
+          </div>
         </div>
       </section>
 
-      <CtaBand title="What is your software bill buying you?" body="Bring the bill. We'll map what each tool does for you, what it costs, and what owning the important ones would take." />
-    </div>
+      <section className="sec rule">
+        <div className="wrap">
+          <div className="label"><span className="ix">02</span>Measured results</div>
+          <h2 className="h2">Four tasks, timed <span className="mute">before and after.</span></h2>
+          <p className="lead">Each figure is the time one instance of the task takes a project manager, before the agent and after.</p>
+          <div className="rs-results">
+            {RESULTS.map((r) => (
+              <div className="rs-res" key={r.task}>
+                <h3>{r.task}</h3>
+                <div className="rs-n">{r.from}<span aria-label="to">to</span>{r.to}</div>
+                <div className="rs-cut">{r.cut}</div>
+                <p>{r.note}</p>
+              </div>
+            ))}
+          </div>
+          <p className="fine">Automated follow-ups on open submittals save about 10 minutes each. These are per-task times, not yearly totals: monthly volumes have not been measured yet, so no annual hours figure is claimed.</p>
+        </div>
+      </section>
+
+      <section className="sec light">
+        <div className="wrap">
+          <div className="label"><span className="ix">03</span>What we built</div>
+          <h2 className="h2">One system, built around <span className="mute">how they run projects.</span></h2>
+          <div className="rs-split">
+            <ul className="rs-built">
+              {BUILT.map((b) => (
+                <li key={b.title}><span className="meta">{b.tag}</span><h3>{b.title}</h3><p>{b.body}</p></li>
+              ))}
+            </ul>
+            <div className="rs-rfi">
+              <div className="paper">
+                <div className="paper-h"><b>RFI, draft</b><span>Example</span></div>
+                <dl>
+                  <div><dt>Subject</dt><dd>Beam size at grid line C does not match the architectural set</dd></div>
+                  <div><dt>References</dt><dd>Structural sheet S-201, architectural sheet A-301</dd></div>
+                  <div><dt>Question</dt><dd>Please confirm which beam size governs at grid C, levels 2 and 3, before steel is ordered.</dd></div>
+                </dl>
+                <p className="rs-files">Attached: field note, photos 1 to 3, sheet S-201</p>
+                <p className="rs-by">Drafted by the RFI agent from a field note, 3 photos and the spec. The project manager reviews, edits and sends.</p>
+              </div>
+              <p className="rs-cap">The agent reads the field note, the photos and the drawings it references, then drafts in the company&apos;s format. Nothing leaves without a person. The example above is illustrative.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="sec rule">
+        <div className="wrap">
+          <div className="label"><span className="ix">04</span>After</div>
+          <h2 className="h2">Lower cost, fewer hours, <span className="mute">same process.</span></h2>
+          <table className="rs-ledger">
+            <thead><tr><th scope="col">What changed</th><th scope="col">Before</th><th scope="col">After</th></tr></thead>
+            <tbody>
+              {LEDGER.map((r) => (
+                <tr key={r.what}><td>{r.what}</td><td>{r.before}</td><td>{r.after}</td></tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section className="sec light">
+        <div className="wrap">
+          <div className="label"><span className="ix">05</span>Scope of this evidence</div>
+          <h2 className="h2">What these results show, <span className="mute">and what they do not.</span></h2>
+          <ul className="rs-scope" style={{ marginTop: 44 }}>
+            <li><b>One client</b><span>The results come from one engagement, with a real estate developer. More client results are being added here as they are measured. No other client is claimed.</span></li>
+            <li><b>Per-task times</b><span>The four figures are time per instance, before and after. Without monthly volumes there is no yearly hours or dollar total, and none is claimed.</span></li>
+            <li><b>The bill</b><span>The platform cost $100,000 a year. They now pay only hosting, storage and security. The exact current cost is not published.</span></li>
+            <li><b>Human review</b><span>Every agent output is a draft. A project manager reviews, edits and sends, and nothing leaves the company without a person.</span></li>
+            <li><b>Ownership</b><span>Code, data and accounts are in the company&apos;s name. If it stopped working with Novum, nothing would break.</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <section className="sec light contact" id="contact" aria-labelledby="contact-h">
+        <div className="wrap grid">
+          <div>
+            <div className="label">Start a conversation</div>
+            <h2 className="h2" id="contact-h">What is your software bill buying you?</h2>
+            <p className="lead">Bring the bill. We map what each tool does for you, what it costs, and what owning the important ones would take. We reply the same business day.</p>
+          </div>
+          <ContactForm source="Results" />
+        </div>
+      </section>
+    </main>
   );
 }

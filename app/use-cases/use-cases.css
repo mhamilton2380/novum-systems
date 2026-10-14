@@ -1,0 +1,113 @@
+/* Industries index and industry pages. Every class is prefixed uc-. */
+
+/* index: hairline rows */
+.uc-index { margin-top: clamp(48px, 5vw, 72px); border-top: 1px solid var(--line-2); }
+.uc-head, .uc-row { display: grid; grid-template-columns: 56px minmax(0, 1.25fr) minmax(0, 1.2fr) 110px 28px; gap: 0 28px; align-items: start; }
+.uc-head { padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 11px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
+.uc-row { padding: 30px 0; border-bottom: 1px solid var(--line); text-decoration: none; color: var(--ink); transition: background .2s, padding .2s; }
+.uc-row:hover, .uc-row:focus-visible { background: rgba(11, 27, 46, .035); padding-inline: 14px; margin-inline: -14px; }
+.uc-row .uc-no { color: var(--ink-3); font-variant-numeric: tabular-nums; font-size: 14px; padding-top: 6px; }
+.uc-row h3 { font-size: clamp(22px, 2vw, 30px); letter-spacing: -0.035em; line-height: 1.1; font-weight: 500; }
+.uc-row .uc-sub { display: block; color: var(--ink-2); font-size: 15px; margin-top: 8px; max-width: 28em; }
+.uc-row .uc-work { color: var(--ink-2); font-size: 15px; padding-top: 4px; }
+.uc-row .uc-hrs { font-variant-numeric: tabular-nums; font-weight: 500; padding-top: 4px; }
+.uc-row .uc-hrs small { display: block; font-weight: 400; color: var(--ink-3); font-size: 12px; }
+.uc-row .uc-go { color: var(--ink-3); padding-top: 4px; transition: transform .25s, color .25s; }
+.uc-row:hover .uc-go { transform: translateX(4px); color: var(--ink); }
+.uc-note { margin-top: 26px; max-width: 46em; color: var(--ink-2); font-size: 15px; }
+
+.uc-others { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
+.uc-case-l { display: grid; gap: 14px; align-content: start; }
+.uc-case-r { display: grid; gap: 0; border-top: 1px solid var(--line-2); }
+.uc-case-r div { padding: 18px 0; border-bottom: 1px solid var(--line); display: grid; gap: 4px; }
+.uc-case-r small { font-size: 11px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
+.uc-case-r strong { font-weight: 500; font-size: 17px; }
+
+/* industry page */
+.uc-cols3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: clamp(48px, 5vw, 72px); border-top: 1px solid var(--line-2); border-bottom: 1px solid var(--line); }
+.uc-cols3 > div { padding: 30px 28px 34px 0; display: grid; gap: 12px; align-content: start; }
+.uc-cols3 > div + div { padding-left: 28px; border-left: 1px solid var(--line); }
+.uc-cols3 .uc-no { font-size: 11.5px; letter-spacing: .16em; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.uc-cols3 h3 { font-size: clamp(20px, 1.7vw, 25px); letter-spacing: -0.03em; line-height: 1.12; font-weight: 500; }
+.uc-cols3 p { color: var(--ink-2); font-size: 15.5px; }
+
+.uc-day { margin-top: clamp(40px, 4vw, 60px); display: grid; grid-template-columns: minmax(0, .5fr) minmax(0, 1.5fr); gap: clamp(20px, 4vw, 64px); padding-top: 28px; }
+.uc-day p { font-size: clamp(18px, 1.6vw, 22px); line-height: 1.5; letter-spacing: -0.015em; max-width: 38em; }
+
+.uc-two { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); margin-top: clamp(40px, 4vw, 60px); align-items: start; }
+.uc-ag { width: 100%; border-collapse: collapse; font-size: 15.5px; font-variant-numeric: tabular-nums; }
+.uc-ag th { text-align: left; font-weight: 500; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); padding: 0 12px 12px 0; border-bottom: 1px solid var(--line-2); }
+.uc-ag td { padding: 16px 12px 16px 0; border-bottom: 1px solid var(--line); color: var(--ink); vertical-align: top; }
+.uc-ag td:last-child, .uc-ag th:last-child { text-align: right; white-space: nowrap; padding-right: 0; }
+.uc-ag tfoot td { color: var(--ink-2); border-bottom: 0; font-weight: 500; }
+.uc-ag tfoot td:last-child { color: var(--ink); }
+.uc-qs h3 { font-size: 11px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); padding-bottom: 12px; border-bottom: 1px solid var(--line-2); }
+.uc-qs li { padding: 16px 0; border-bottom: 1px solid var(--line); font-size: 17px; letter-spacing: -0.01em; color: var(--ink); }
+.uc-qs p { margin-top: 16px; color: var(--ink-2); font-size: 14.5px; }
+
+.uc-builds { margin-top: clamp(40px, 4vw, 60px); border-top: 1px solid var(--line-2); }
+.uc-builds li { display: grid; grid-template-columns: 170px minmax(0, 1fr) minmax(0, 1.3fr); gap: 0 28px; padding: 26px 0; border-bottom: 1px solid var(--line); }
+.uc-builds .meta { padding-top: 4px; }
+.uc-builds h3 { font-size: 20px; letter-spacing: -0.025em; font-weight: 500; line-height: 1.2; }
+.uc-builds p { color: var(--ink-2); font-size: 15.5px; }
+
+.uc-docs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(20px, 3vw, 36px); margin-top: clamp(40px, 4vw, 60px); align-items: start; }
+.uc-docs .paper { min-height: 0; }
+.uc-docs .ptable td.uc-flag { color: #b23a1d; font-weight: 500; }
+.uc-docs .ptable td:last-child, .uc-docs .ptable th:last-child { text-align: right; padding-right: 0; }
+.uc-search { margin-top: 18px; padding: 10px 12px; border: 1px solid var(--line-2); border-radius: 6px; font-size: 14px; color: var(--ink-3); }
+.uc-cap { margin-top: 14px; font-size: 12.5px; color: var(--ink-3); }
+
+.uc-kr { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 5vw, 72px); margin-top: clamp(40px, 4vw, 60px); }
+.uc-kr h3 { font-size: 11px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); padding-bottom: 12px; border-bottom: 1px solid var(--line-2); }
+.uc-kr li { padding: 15px 0; border-bottom: 1px solid var(--line); font-size: 17px; }
+.uc-kr p { margin-top: 16px; color: var(--ink-2); font-size: 15px; max-width: 30em; }
+
+.uc-steps { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); margin-top: clamp(40px, 4vw, 60px); border-top: 1px solid var(--line-2); border-bottom: 1px solid var(--line); }
+.uc-steps > div { padding: 26px 22px 30px 0; display: grid; gap: 10px; align-content: start; }
+.uc-steps > div + div { padding-left: 22px; border-left: 1px solid var(--line); }
+.uc-steps h3 { font-size: 18px; font-weight: 500; letter-spacing: -0.02em; }
+.uc-steps p { color: var(--ink-2); font-size: 14.5px; }
+.uc-links { display: flex; flex-wrap: wrap; gap: 14px 32px; margin-top: 34px; }
+
+.uc-more { margin-top: clamp(32px, 3vw, 48px); border-top: 1px solid var(--line-2); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 clamp(24px, 5vw, 72px); }
+.uc-more a { display: flex; justify-content: space-between; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); text-decoration: none; color: var(--ink); font-size: 17px; }
+.uc-more a span { color: var(--ink-3); transition: transform .25s; }
+.uc-more a:hover span { transform: translateX(4px); color: var(--ink); }
+.uc-score { margin-top: 34px; color: var(--ink-2); max-width: 40em; }
+.uc-score .link { margin-left: 6px; }
+
+@media (max-width: 1020px) {
+  .uc-steps { grid-template-columns: 1fr 1fr; }
+  .uc-steps > div, .uc-steps > div + div { padding: 24px 20px 24px 0; border-left: 0; border-bottom: 1px solid var(--line); }
+  .uc-steps > div:nth-child(even) { padding-left: 20px; border-left: 1px solid var(--line); }
+  .uc-builds li { grid-template-columns: 130px minmax(0, 1fr); }
+  .uc-builds p { grid-column: 2; margin-top: 8px; }
+}
+@media (max-width: 900px) {
+  .uc-head { display: none; }
+  .uc-row { grid-template-columns: 40px minmax(0, 1fr) 24px; gap: 0 14px; }
+  .uc-row .uc-work, .uc-row .uc-hrs { grid-column: 2; padding-top: 10px; }
+  .uc-row .uc-go { grid-column: 3; grid-row: 1; }
+  .uc-others, .uc-two, .uc-docs, .uc-kr, .uc-day { grid-template-columns: 1fr; }
+  .uc-cols3 { grid-template-columns: 1fr; }
+  .uc-cols3 > div, .uc-cols3 > div + div { padding: 24px 0; border-left: 0; }
+  .uc-cols3 > div + div { border-top: 1px solid var(--line); }
+  .uc-more { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .uc-steps { grid-template-columns: 1fr; }
+  .uc-steps > div:nth-child(even) { padding-left: 0; border-left: 0; }
+  .uc-builds li { grid-template-columns: 1fr; gap: 8px; }
+  .uc-builds p { grid-column: auto; margin-top: 0; }
+  .uc-row:hover { padding-inline: 0; margin-inline: 0; }
+}
+
+/* ---- Motion: step rows and build rows rise in order (shared pieces in app/nv.css, "Graphic motion") ---- */
+@media (prefers-reduced-motion: no-preference) {
+  .mo :is(.uc-steps, .uc-builds, .uc-index).rv { opacity: 1; transform: none; transition: none; }
+  .mo :is(.uc-steps, .uc-builds, .uc-index).in > :is(div, li, a) { transition: opacity .7s var(--gm-ease) calc(var(--k, 0) * 90ms), transform .7s var(--gm-ease) calc(var(--k, 0) * 90ms), background .2s, padding .2s; }
+  .mo :is(.uc-steps, .uc-builds, .uc-index):not(.in) > :is(div, li, a) { opacity: 0; transform: translateY(12px); }
+  .mo :is(.uc-steps, .uc-builds, .uc-index) > :nth-child(2) { --k: 1; } .mo :is(.uc-steps, .uc-builds, .uc-index) > :nth-child(3) { --k: 2; } .mo :is(.uc-steps, .uc-builds, .uc-index) > :nth-child(4) { --k: 3; }
+  .mo :is(.uc-steps, .uc-builds, .uc-index) > :nth-child(5) { --k: 4; } .mo :is(.uc-steps, .uc-builds, .uc-index) > :nth-child(n+6) { --k: 5; }
+}

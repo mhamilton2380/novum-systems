@@ -300,7 +300,7 @@ export function CaseFlow() {
         <div className="pv-flow-panel pv-before rv-item" style={{ ["--i" as string]: 0 }}>
           <div className="pv-flow-h"><span>Before</span>Two systems, typed twice</div>
           <div className="pv-flow-row">
-            <div className="pv-node"><Icon name="box" size={18} /><strong>Construction platform</strong><em className="pv-cost">$100,000/yr</em></div>
+            <div className="pv-node"><Icon name="box" size={18} /><strong>Project management platform</strong><em className="pv-cost">$100,000/yr</em></div>
             <div className="pv-link pv-link-bad" aria-hidden="true"><i /></div>
             <div className="pv-node pv-node-person"><Icon name="users" size={18} /><strong>Re-typed by hand</strong><em>Same project data</em></div>
             <div className="pv-link pv-link-bad" aria-hidden="true"><i /></div>
@@ -357,16 +357,16 @@ export function PartArt({ kind }: { kind: "training" | "officer" | "software" })
 export function CaseProof() {
   return (
     <Link href="/case-studies" className="pv-proof" aria-label="Case study: a $100,000-a-year platform replaced">
-      <div className="pv-proof-h"><span className="oc-live" aria-hidden="true" />Case study · Construction</div>
+      <div className="pv-proof-h"><span className="oc-live" aria-hidden="true" />Case study · Real estate developer</div>
       <div className="pv-proof-row">
         <div><small>Before</small><strong className="pv-proof-cost">$100,000 a year</strong><em>for a platform the team worked around</em></div>
         <span className="pv-proof-arrow" aria-hidden="true">→</span>
-        <div><small>After</small><strong>A system they own</strong><em>connected to billing, agents drafting RFIs</em></div>
+        <div><small>After</small><strong>A system they own</strong><em>connected to billing, agents drafting PCOs and RFIs</em></div>
       </div>
       <ul>
         <li><Icon name="check" size={15} />Built around how they run projects</li>
         <li><Icon name="check" size={15} />Code, data, and accounts in their name</li>
-        <li><Icon name="check" size={15} />Hosting only after the build</li>
+        <li><Icon name="check" size={15} />They now pay only hosting, storage and security</li>
       </ul>
       <span className="pv-proof-more">Read the case study →</span>
     </Link>
@@ -537,7 +537,7 @@ export function HandoffDoc({ items }: { items: { icon: IconName; title: string; 
 // ─── Why AI: three choices (the rest of that page lives in components/WhyAi.tsx) ─
 const CHOICES: { icon: IconName; title: string; body: string }[] = [
   { icon: "target", title: "Pick the tasks", body: "Drafting, compiling reports, data entry and routine admin sit well inside what AI does. Judgment calls on unfamiliar problems sit outside it, and that's where results got worse." },
-  { icon: "db", title: "Put it on your own data", body: "A chatbot that can't see your files and systems saves minutes. An assistant and agents connected to them take over whole tasks." },
+  { icon: "db", title: "Put it on your own data", body: "A chatbot that can't see your files and systems saves minutes. An assistant and agents connected to them take over the routine steps, and a person approves the result." },
   { icon: "users", title: "Train people, keep a reviewer", body: "The least experienced staff gain the most, once they know where AI is wrong. The time spent reviewing drafts sets the real speedup." },
 ];
 export function ThreeChoices() {

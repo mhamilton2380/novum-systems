@@ -1,96 +1,61 @@
-"use client";
-import { useState } from "react";
-import { PageHero } from "@/components/PageBits";
-import { HeroSteps } from "@/components/PageVisuals";
-import { USE_CASE_NAV } from "@/lib/nav";
+import { ContactForm } from "@/components/nv/ContactForm";
+import "./contact.css";
+
+const STEPS = [
+  { t: "You send the form", d: "The teams involved and where the time goes.", s: "2 min" },
+  { t: "We reply with a time", d: "One that fits what you told us.", s: "1 day" },
+  { t: "A call about your operation", d: "How the work moves and where AI fits.", s: "30 min" },
+  { t: "If it fits, a discovery", d: "Work mapped, first build live.", s: "Next" },
+];
+
+const FIRST_CALL = [
+  "We ask how the work moves today, team by team, and where it slows down.",
+  "We ask which tools you pay for, and which ones your team works around.",
+  "We ask what you have tried with AI, and what happened.",
+  "We tell you where AI fits and where it does not, including when the answer is not yet.",
+  "You leave knowing whether a discovery makes sense. No deck, no pressure.",
+];
 
 export default function ContactPage() {
-  const [form, setForm] = useState({ name: "", email: "", company: "", industry: "", tools: "", availability: "", message: "", website: "" });
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
-
-  const set = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
-    setForm({ ...form, [e.target.name]: e.target.value });
-
-  const submit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("sending");
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      setStatus(res.ok ? "sent" : "error");
-    } catch {
-      setStatus("error");
-    }
-  };
-
   return (
-    <div className="home">
-      <PageHero
-        eyebrow="Contact"
-        title={<>Tell us what you&apos;re <span className="h-grad">running</span>.</>}
-        sub="Every project starts with a conversation about how your business works and where AI could take work off your team. No slide deck, no sales process."
-        side={
-          <HeroSteps
-            title="What happens next"
-            tag="From here"
-            label="What happens after you send the form"
-            items={[
-              { t: "You send the form", d: "The tools you pay for and where time goes", s: "2 min", icon: "mail" },
-              { t: "We reply with a time", d: "One that fits what you told us", s: "1 day", icon: "clock" },
-              { t: "A call about your operation", d: "How the work moves and where AI fits", s: "Free", icon: "users" },
-              { t: "If it fits, a discovery", d: "Work mapped, first build live", s: "Next", icon: "map" },
-            ]}
-          />
-        }
-        ctas={false}
-      />
+    <main>
+      <section className="phero">
+        <div className="wrap">
+          <div className="label">Contact</div>
+          <h1>Tell us what you&apos;re running.</h1>
+          <p className="lead">Every project starts with a conversation about how your business works and where AI could take work off your team. No slide deck, no sales process.</p>
+        </div>
+      </section>
 
-      <section className="h-sec h-soft">
-        <div className="h-wrap h-feature" style={{ alignItems: "start" }}>
-          <div className="h-contact-side">
-            <div><b>What happens next</b><p>We read what you send, then set up a call to walk through how your operation runs.</p></div>
-            <div><b>What to bring</b><p>The tools you pay for, where your team loses the most time, and what you&apos;ve tried with AI so far.</p></div>
-            <div><b>When you&apos;ll hear back</b><p>Usually within one business day, with a time that fits what you tell us below.</p></div>
+      <section className="sec light contact" aria-labelledby="ct-h">
+        <div className="wrap ct-grid">
+          <div className="ct-side">
+            <h3>What happens after you send the form</h3>
+            <ol className="ct-steps">
+              {STEPS.map((s) => (
+                <li key={s.t}><div><b>{s.t}</b><span>{s.d}</span></div><em>{s.s}</em></li>
+              ))}
+            </ol>
+
+            <h3>What happens next</h3>
+            <p>We read what you send, then set up a call to walk through how your operation runs.</p>
+
+            <h3>What to bring</h3>
+            <p>The tools you pay for, where your team loses the most time, and what you&apos;ve tried with AI so far.</p>
+
+            <h3>When you&apos;ll hear back</h3>
+            <p>We reply the same business day, with a time that fits what you tell us in the form.</p>
+
+            <h3>What to expect on the first call</h3>
+            <ul className="ct-list">{FIRST_CALL.map((f) => <li key={f}>{f}</li>)}</ul>
           </div>
 
-          <div className="h-formcard">
-            {status === "sent" ? (
-              <div style={{ textAlign: "center", padding: "40px 0" }}>
-                <h2 style={{ fontSize: "1.8rem", marginBottom: 12 }}>Got it. Thank you.</h2>
-                <p style={{ color: "#64748b" }}>We&apos;ll read what you sent and come back with a time that works, usually within one business day.</p>
-              </div>
-            ) : (
-              <form className="h-form" onSubmit={submit}>
-                <div className="h-2col">
-                  <label>Name *<input name="name" required value={form.name} onChange={set} /></label>
-                  <label>Work email *<input name="email" type="email" required value={form.email} onChange={set} /></label>
-                </div>
-                <div className="h-2col">
-                  <label>Company *<input name="company" required value={form.company} onChange={set} /></label>
-                  <label>Industry
-                    <select name="industry" value={form.industry} onChange={set}>
-                      <option value="">Select one</option>
-                      {USE_CASE_NAV.map((u) => <option key={u.slug}>{u.label}</option>)}
-                      <option>Other</option>
-                    </select>
-                  </label>
-                </div>
-                <label>What software do you pay for today?<input name="tools" placeholder="e.g. project management, CRM, accounting" value={form.tools} onChange={set} /></label>
-                <label>When are you free to talk?<input name="availability" placeholder="e.g. weekday mornings Pacific, or Tues/Thurs afternoons" value={form.availability} onChange={set} /></label>
-                <label>Anything else we should know?<textarea name="message" value={form.message} onChange={set} /></label>
-                <input name="website" value={form.website} onChange={set} tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: "absolute", left: -9999, width: 1, height: 1, opacity: 0 }} />
-                {status === "error" && (
-                  <p style={{ color: "#b42318", fontSize: "0.9rem" }}>Something went wrong sending that. Please try again in a moment.</p>
-                )}
-                <button type="submit" className="h-btn h-btn-primary" disabled={status === "sending"}>{status === "sending" ? "Sending..." : "Send"}</button>
-              </form>
-            )}
+          <div className="ct-form">
+            <h2 id="ct-h">Start a conversation</h2>
+            <ContactForm source="Contact page" />
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 }

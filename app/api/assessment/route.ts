@@ -47,22 +47,23 @@ export async function POST(request: Request) {
   const key = process.env.RESEND_API_KEY;
   if (key) {
     const origin = new URL(request.url).origin;
-    const bars = r.areas.map((a) => `<tr><td style="padding:6px 16px 6px 0;color:#334155">${a.name}</td><td style="padding:6px 0"><div style="width:200px;height:8px;border-radius:4px;background:#e2e8f0"><div style="width:${a.score * 10}px;height:8px;border-radius:4px;background:#00b36e"></div></div></td><td style="padding:6px 0 6px 12px;color:#0b1b2e;font-weight:700">${a.score}/20</td></tr>`).join("");
+    const bars = r.areas.map((a) => `<tr><td style="padding:6px 16px 6px 0;color:#334155">${a.name}</td><td style="padding:6px 0"><div style="width:200px;height:8px;border-radius:4px;background:#e2e8f0"><div style="width:${a.score * 10}px;height:8px;border-radius:4px;background:#00b36e"></div></div></td><td style="padding:6px 0 6px 12px;color:#050d18;font-weight:700">${a.score}/20</td></tr>`).join("");
     const flags = r.flags.length
-      ? r.flags.map((f) => `<h3 style="margin:24px 0 6px;font-size:16px;color:#0b1b2e">${escape(f.title)}</h3><p style="margin:0 0 6px;color:#334155">${escape(f.text)}</p><p style="margin:0;color:#64748b">${escape(f.writeup)}</p>`).join("")
+      ? r.flags.map((f) => `<h3 style="margin:24px 0 6px;font-size:16px;color:#050d18">${escape(f.title)}</h3><p style="margin:0 0 6px;color:#334155">${escape(f.text)}</p><p style="margin:0;color:#64748b">${escape(f.writeup)}</p>`).join("")
       : AREAS.filter((a) => (r.areas.find((x) => x.id === a.id)?.score ?? 20) <= 10).map((a) => `<p style="color:#334155">${escape(a.headline)}</p>`).join("");
     const estHtml = r.estimate.skip
       ? `<p style="color:#334155">Your team doesn't report much repeat work. The bigger gains may be in connecting your tools or replacing one you've outgrown.</p>`
-      : `<p style="color:#334155;font-size:16px"><strong>About ${fmt(r.estimate.hoursLow)} to ${fmt(r.estimate.hoursHigh)} hours a year</strong>, worth roughly $${fmt(r.estimate.dollarsLow)} to $${fmt(r.estimate.dollarsHigh)} in wages and benefits.</p><p style="color:#94a3b8;font-size:13px">Based on published studies of AI on routine office work. Your discovery measures your real number.</p>`;
-    const html = `<div style="font-family:Helvetica,Arial,sans-serif;max-width:600px;margin:0 auto;color:#0b1b2e">
+      : `<p style="color:#334155;font-size:16px"><strong>About ${fmt(r.estimate.hoursLow)} to ${fmt(r.estimate.hoursHigh)} hours a year</strong>, worth about $${fmt(r.estimate.dollarsLow)} to $${fmt(r.estimate.dollarsHigh)} a year in staff time.</p><p style="color:#94a3b8;font-size:13px">Based on published studies of AI on routine office work. Your discovery measures your real number.</p>`;
+    const html = `<div style="font-family:Helvetica,Arial,sans-serif;max-width:600px;margin:0 auto;color:#050d18">
+      <img src="${origin}/novum-logo.png" alt="Novum AI" width="168" height="48" style="display:block;margin:0 0 24px">
       <p style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#067a4d;font-weight:700">Your AI Readiness Score</p>
       <h1 style="margin:0;font-size:44px">${r.score}<span style="font-size:20px;color:#94a3b8"> / 100</span></h1>
       <p style="font-size:18px;margin:6px 0 24px"><strong>${r.band.name}.</strong> ${escape(r.band.headline)}</p>
       <table style="border-collapse:collapse;font-size:14px">${bars}</table>
       <h2 style="margin:32px 0 0;font-size:20px">What's holding you back</h2>${flags}
       <h2 style="margin:32px 0 8px;font-size:20px">Hours on the table</h2>${estHtml}
-      <p style="margin:32px 0"><a href="${origin}/contact" style="display:inline-block;background:#0b1b2e;color:#fff;text-decoration:none;font-weight:700;padding:14px 24px;border-radius:999px">Book a discovery call</a></p>
-      <p style="color:#94a3b8;font-size:12px">Novum AI · We train your team in person, build the tools, connect your systems, and you own all of it.</p></div>`;
+      <p style="margin:32px 0"><a href="${origin}/contact" style="display:inline-block;background:#050d18;color:#fff;text-decoration:none;font-weight:700;padding:14px 24px;border-radius:999px">Start a conversation</a></p>
+      <p style="color:#94a3b8;font-size:12px">Novum AI · AI implementation across your company. Training, agents, custom software and a fractional AI Officer. You own all of it.</p></div>`;
     try {
       const res = await fetch("https://api.resend.com/emails", {
         method: "POST",
