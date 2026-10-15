@@ -896,4 +896,4 @@ footer { border-top: 1px solid var(--line); padding-block: 64px calc(40px + env(
 
 /* Two paper sections in a row: one shared gap instead of double padding, split by a hairline. */
 .sec.light + .sec.light { padding-top: 0; }
-.sec.light + .sec.light > .wrap { border-top: 1px solid var(--line); padding-top: clamp(64px, 8vw, 120px); }
+.sec.light + .sec.light > .wrap::before { content: ""; display: block; height: 1px; background: var(--line); margin-bottom: clamp(64px, 8vw, 120px); }
