@@ -1,6 +1,6 @@
 "use client";
 // Qualifying contact form. Posts to /api/contact (saved to Supabase, emailed via Resend).
-// Team size, project size and teams travel in the message so the API contract stays the same.
+// Team size, first need and teams travel in the message so the API contract stays the same.
 import { useState } from "react";
 
 const TEAMS = ["Finance", "Accounting", "Underwriting", "Operations", "Admin", "Sales", "HR"];
@@ -15,7 +15,7 @@ export function ContactForm({ source = "Website" }: { source?: string }) {
     const teams = TEAMS.filter((t) => f.get(`team-${t}`));
     const message = [
       `Team size: ${f.get("size") || "not given"}`,
-      `Project size: ${f.get("budget") || "not given"}`,
+      `Needs first: ${f.get("need") || "not given"}`,
       `Teams: ${teams.join(", ") || "not given"}`,
       `Source: ${source}`,
       "",
@@ -48,8 +48,8 @@ export function ContactForm({ source = "Website" }: { source?: string }) {
       <label>Team size
         <select name="size" id="f-size" defaultValue=""><option value="" disabled>Select</option><option>Under 50</option><option>50 to 100</option><option>100 to 250</option><option>250 or more</option></select>
       </label>
-      <label>Project size
-        <select name="budget" id="f-budget" defaultValue=""><option value="" disabled>Select</option><option>Under $25k</option><option>$25k to $50k</option><option>$50k to $150k</option><option>$150k or more</option></select>
+      <label>What do you need first?
+        <select name="need" id="f-need" defaultValue=""><option value="" disabled>Select</option><option>Train our team on AI</option><option>Agents on repeat work</option><option>Custom software or replacing a tool</option><option>An ongoing AI Officer</option><option>Not sure yet</option></select>
       </label>
       <fieldset className="full"><legend>Which teams</legend>
         <div className="chips">{TEAMS.map((t) => <label key={t}><input type="checkbox" name={`team-${t}`} id={`t-${t}`} /><span>{t}</span></label>)}</div>
