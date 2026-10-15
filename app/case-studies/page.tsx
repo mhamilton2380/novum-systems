@@ -146,11 +146,12 @@ export default function ResultsPage() {
         <div className="wrap">
           <div className="label"><span className="ix">06</span>Bookkeeping firm</div>
           <h2 className="h2" id="rs-bk-h">Data entry down 95%. <span className="mute">A monthly report built for every client.</span></h2>
-          <p className="lead">A 15-person bookkeeping firm keyed client data and assembled each client&apos;s monthly package by hand. Agents now do the entry and draft each client&apos;s report and cover email. A bookkeeper approves every one before it goes out.</p>
+          <p className="lead">A 15-person bookkeeping firm keyed client data and assembled each client&apos;s monthly package by hand. Agents now do the entry, sort the inbox and draft replies, and draft each client&apos;s report and cover email. A bookkeeper approves every one before it goes out.</p>
           <div className="rs-split">
             <ul className="rs-built">
               <li><span className="meta">Data entry</span><h3>95% less data entry</h3><p>The entry staff used to key by hand is done by agents. Staff review only what the agent flags.</p></li>
               <li><span className="meta">Reporting</span><h3>A report customized per client</h3><p>Each client&apos;s monthly financials are generated in the format and detail that client needs, then approved by their bookkeeper.</p></li>
+              <li><span className="meta">Inbox</span><h3>An inbox agent</h3><p>It reads the inbox each morning, builds a list of priority items, and drafts the replies. A bookkeeper reviews and sends.</p></li>
               <li><span className="meta">Client email</span><h3>The email drafts itself</h3><p>Once the report is approved, the agent drafts the email to the client with the financials attached and a list of items that need the client&apos;s attention.</p></li>
             </ul>
             <div className="rs-rfi">
