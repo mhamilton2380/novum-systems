@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { USE_CASES } from "@/lib/useCases";
-import { REPEAT_WORK, dayHours } from "@/lib/nv/useCaseExtras";
+import { REPEAT_WORK, firmHours } from "@/lib/nv/useCaseExtras";
 import { JsonLd } from "@/components/JsonLd";
 import { ContactForm } from "@/components/nv/ContactForm";
 import { pageMetadata, breadcrumbJsonLd } from "@/lib/seo";
@@ -44,7 +44,7 @@ export default function UseCasesPage() {
                   <span className="uc-sub">{u.headline}.</span>
                 </div>
                 <span className="uc-work">{REPEAT_WORK[u.slug]}</span>
-                <span className="uc-hrs">{dayHours(u.agents)}<small>back to the team</small></span>
+                <span className="uc-hrs">{firmHours(u.departments)} hrs a week<small>for a firm of about 120</small></span>
                 <span className="uc-go" aria-hidden="true">→</span>
               </Link>
             ))}

@@ -7,7 +7,7 @@ import "./security.css";
 export const metadata: Metadata = pageMetadata({
   path: "/security",
   title: "Security and Data · Novum AI",
-  description: "Hosted on SOC 2 Type 2 infrastructure. Encrypted data, access by role, an audit log, human approval before anything leaves the company, and code, data and accounts in your name.",
+  description: "Hosted on SOC 2 Type 2 infrastructure. Encrypted data, access by role, an audit log, human approval before anything is sent, filed or paid, and code, data and accounts in your name.",
 });
 
 const CONTROLS = [
@@ -15,7 +15,7 @@ const CONTROLS = [
   { b: "Encryption", p: "Data is encrypted at rest in the database and in transit between your people, your systems and ours. Documents are stored encrypted and indexed so they can be searched by meaning." },
   { b: "Access by role", p: "Every person sees what their role allows and nothing else. The AI assistant answers from the same limits: it cannot show someone a record they could not open themselves." },
   { b: "Audit log", p: "Every view and edit is recorded, with who did it and when. Agents are logged the same way, so you can see what each one read and what it produced." },
-  { b: "Human approval", p: "A person approves anything before it leaves the company. Agents draft, flag and prepare. They do not send, file or pay on their own." },
+  { b: "Human approval", p: "A person approves anything before it is sent, filed or paid. Agents draft, flag and prepare. They do not send, file or pay on their own. Live calls, such as a phone agent answering after hours, follow rules you set." },
   { b: "Your data never trains a model", p: "We do not use client data to train models. The AI account is opened in your company's name, so the provider relationship, billing and settings are yours." },
   { b: "Single-tenant data", p: "Each client has its own database. Your records are not stored beside another client's, and nothing is pooled across clients." },
   { b: "Accounts and code in your name", p: "The code lives in a repository your company owns. Hosting, database and AI accounts are set up under your company, with your team as owners and Novum as an administrator." },
@@ -32,7 +32,7 @@ const IT_REVIEW = [
 const TESTS = [
   { b: "A test set from your real work", s: "We collect real examples of the task, with the answers your best person would give." },
   { b: "A score before launch", s: "The agent runs on the test set. We record accuracy and the kinds of mistakes it makes." },
-  { b: "Approval step in place", s: "The agent goes live with a person approving every output before it leaves the company." },
+  { b: "Approval step in place", s: "The agent goes live with a person approving every draft, filing and payment. Live calls follow rules you set." },
   { b: "Re-tested on every change", s: "A new model or prompt must beat the current score on your test set before it replaces what runs today." },
 ];
 
@@ -68,7 +68,7 @@ export default function SecurityPage() {
         <div className="wrap">
           <div className="label">Security and data</div>
           <h1>Your data stays yours, in accounts in your name.</h1>
-          <p className="lead">Hosted on SOC 2 Type 2 infrastructure. Encrypted, limited by role, logged, and approved by a person before anything leaves the company.</p>
+          <p className="lead">Hosted on SOC 2 Type 2 infrastructure. Encrypted, limited by role, logged, and approved by a person before anything is sent, filed or paid.</p>
           <div className="ctas">
             <Link className="btn" href="/contact">Ask us a security question <span aria-hidden="true">→</span></Link>
           </div>

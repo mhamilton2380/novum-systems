@@ -296,9 +296,10 @@ export default function WhyAiPage() {
               <small className="wy-src">Harvard and BCG, 2023</small>
             </div>
             <div className="wy-w wy-ours">
-              <div className="wy-w-h"><b>Operating work</b><span className="meta">Not a study</span></div>
-              <div className="wy-pair"><span><b>8 hours</b> to <b>15 minutes</b></span><small>A multi-step analysis and write-up</small></div>
-              <div className="wy-pair"><span><b>7 to 10 days</b> to <b>1 day</b></span><small>A presentation deck</small></div>
+              <div className="wy-w-h"><b>Operating work</b><span className="meta">Client results</span></div>
+              <div className="wy-pair"><span><b>10 hours</b> to <b>1.5 hours</b></span><small>Bank draw applications, per application (a real estate developer)</small></div>
+              <div className="wy-pair"><span><b>4 hours</b> to <b>15 minutes</b></span><small>Submittal review, per submittal (a real estate developer)</small></div>
+              <small className="wy-src">From our client work. Per-task times, not a study.</small>
             </div>
           </div>
           <p className="fine">Meters run from 0 to 100%. The striped segment marks the range a study reported.</p>

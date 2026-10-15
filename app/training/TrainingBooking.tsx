@@ -68,7 +68,12 @@ export function TrainingBooking() {
               {COMPANY_TYPES.map((c) => <option key={c}>{c}</option>)}
             </select>
           </label>
-          <label>How many people? *<input name="headcount" type="number" min={1} required inputMode="numeric" placeholder="e.g. 40" value={form.headcount} onChange={set} /></label>
+          <label>Team size *
+            <select name="headcount" required value={form.headcount} onChange={set}>
+              <option value="">Select one</option>
+              {["Under 50", "50 to 99", "100 to 249", "250 or more"].map((c) => <option key={c}>{c}</option>)}
+            </select>
+          </label>
           <label>Name *<input name="name" required autoComplete="name" value={form.name} onChange={set} /></label>
           <label>Work email *<input name="email" type="email" required autoComplete="email" value={form.email} onChange={set} /></label>
           <label className="full">Company *<input name="company" required autoComplete="organization" value={form.company} onChange={set} /></label>

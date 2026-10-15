@@ -51,7 +51,7 @@ const COMPANY_TYPES = [
 const AGENT_RULES = [
   { b: "Where they run", s: "Inside the tools you keep: accounting, CRM, email, documents, payments, Microsoft 365 and Copilot." },
   { b: "What they do", s: "Drafting, matching, checking and follow-up, on a schedule or when work arrives, following your rules." },
-  { b: "Who signs off", s: "A person approves anything before it leaves the company." },
+  { b: "Who signs off", s: "A person approves anything before it is sent, filed or paid. Live calls follow rules you set." },
   { b: "How they are judged", s: "Tested on your own cases and scored before launch. An upgrade replaces the old version only if it scores higher." },
   { b: "The assistant over all of it", s: "Plain-English questions answered across every connected system, citing the records it used, limited to what each role may see." },
   { b: "What you can see", s: "A list of every agent, what it does, and who owns it." },
@@ -62,14 +62,14 @@ const OFFICER_JOBS = [
   { h: "Tests new AI on your data", p: "New models and tools tried on your own work as they ship. You adopt the ones that pay off." },
   { h: "Audits your tools each quarter", p: "Every tool and what it costs, with a call on each: keep, connect, or cut." },
   { h: "Keeps training going", p: "Monthly sessions on your tools, office hours, and a new lesson in your library." },
-  { h: "Works the build queue", p: "A prioritized roadmap of agents, integrations and tools, reviewed monthly with your sponsor, each live before the next starts." },
+  { h: "Works the build queue", p: "A prioritized roadmap of agents, integrations and tools, reviewed monthly with your sponsor. Builds run in priority order. How many run at once is set in discovery, by the size of your team." },
   { h: "Reports every month", p: "Hours saved, adoption, and what comes next." },
 ];
 
 const STEPS = [
   { n: "01", title: "Map the work", line: "How the work actually moves.", body: "We sit with the people who do the work and map each step. Steps that shouldn't exist get cut before anything is automated.", tag: "Where everyone starts" },
   { n: "02", title: "Tool report and AI policy", line: "Every tool, every rule.", body: "Every tool you pay for and what it costs, with a call on each one, plus a written AI usage policy.", tag: "Keep, connect, replace, or cut" },
-  { n: "03", title: "Build", line: "Agents and tools, wired together.", body: "Agents, an AI assistant, and integrations with the tools you keep. A person approves anything before it leaves the company.", tag: "One live before the next starts" },
+  { n: "03", title: "Build", line: "Agents and tools, wired together.", body: "Agents, an AI assistant, and integrations with the tools you keep. A person approves anything before it is sent, filed or paid. Live calls follow rules you set.", tag: "One live before the next starts" },
   { n: "04", title: "Train the team", line: "Your team learns on its own work.", body: "Your team practices on the tasks they do every week, so what gets built gets used. Written guides stay with them afterward.", tag: "Hands-on, on your data" },
   { n: "05", title: "Keep it current", line: "An AI Officer keeps it current.", body: "Your AI Officer maintains everything we build, tests new AI on your data, audits your tools each quarter, and keeps training going.", tag: "Ongoing" },
 ];
@@ -105,7 +105,7 @@ export default function AiImplementationPage() {
         <div className="wrap">
           <div className="label">AI implementation</div>
           <h1 id="ai-h1">Every company has AI. We help yours use it on the real work.</h1>
-          <p className="lead">We train your teams in person, build agents on your data, connect your systems, replace software that no longer fits, and an AI Officer keeps all of it current. You own all of it.</p>
+          <p className="lead">We train your teams in person, build agents on your data, connect your systems, replace software that no longer fits, and an AI Officer keeps everything current. You own all of it.</p>
           <div className="ctas">
             <Link className="btn" href="#contact">Start a conversation</Link>
             <Link className="btn ghost" href="#how">How an engagement runs</Link>
@@ -174,7 +174,7 @@ export default function AiImplementationPage() {
         <div className="wrap">
           <div className="label"><span className="ix">02</span>Agents</div>
           <h2 className="h2" id="ag-h">Agents do the repeat work inside your systems.</h2>
-          <p className="lead">AI working on a schedule or when work arrives, following your rules, connected to the tools you already keep. Agents draft. A person signs off before anything leaves the company.</p>
+          <p className="lead">AI working on a schedule or when work arrives, following your rules, connected to the tools you already keep. Agents draft. A person signs off before anything is sent, filed or paid. Live calls follow rules you set.</p>
           <div className="ai-split">
             <ul className="mlist">
               {AGENT_RULES.map((r) => <li key={r.b}><b>{r.b}</b><span>{r.s}</span></li>)}

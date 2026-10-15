@@ -48,7 +48,7 @@ export function ContactForm({ source = "Website" }: { source?: string }) {
       <label>Company<input name="company" id="f-co" autoComplete="organization" required /></label>
       <label className="full">Work email<input name="email" id="f-email" type="email" autoComplete="email" required /></label>
       <label>Team size
-        <select name="size" id="f-size" defaultValue=""><option value="" disabled>Select</option><option>Under 50</option><option>50 to 100</option><option>100 to 250</option><option>250 or more</option></select>
+        <select name="size" id="f-size" defaultValue=""><option value="" disabled>Select</option><option>Under 50</option><option>50 to 99</option><option>100 to 249</option><option>250 or more</option></select>
       </label>
       <label>What do you need first?
         <select name="need" id="f-need" defaultValue=""><option value="" disabled>Select</option><option>Train our team on AI</option><option>Agents on repeat work</option><option>Custom software or replacing a tool</option><option>An ongoing AI Officer</option><option>Not sure yet</option></select>

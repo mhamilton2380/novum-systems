@@ -9,4 +9,5 @@ export const USE_CASE_NAV = [
   { slug: "marketing-agencies", label: "Marketing Agencies" },
   { slug: "manufacturing", label: "Manufacturing" },
   { slug: "wholesale-distribution", label: "Wholesale Distribution" },
+  { slug: "real-estate-brokerage", label: "Real Estate Brokerage" },
 ];

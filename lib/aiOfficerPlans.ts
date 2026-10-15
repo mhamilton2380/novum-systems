@@ -30,7 +30,7 @@ export const INCLUDED: IncludedGroup[] = [
     items: [
       "An AI assistant that answers across your company data, with sources",
       "A prioritized roadmap of agents and builds, worked in order and reviewed monthly with your sponsor",
-      "A person approves anything before it leaves the company",
+      "A person approves anything before it is sent, filed or paid",
       "A list of every agent, what it does, and who owns it",
       "New models and tools tested on your data as they ship",
     ],

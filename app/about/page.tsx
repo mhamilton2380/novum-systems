@@ -43,7 +43,7 @@ const HOLD = [
 const WILL = [
   "Map how your work moves before we propose anything.",
   "Train your team on their own tasks and your own data.",
-  "Put a person's approval in front of anything that leaves the company.",
+  "Put a person's approval in front of anything sent, filed or paid.",
   "Set up the code, data and accounts in your company's name.",
   "Test new models on your work, and move only when one beats what runs today.",
 ];

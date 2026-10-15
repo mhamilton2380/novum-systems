@@ -25,12 +25,12 @@ const FIT = [
   { tag: "Built, then stuck", title: "Systems nobody keeps current", body: "Something got built once, and now no one maintains it or adds to it as the business grows." },
 ];
 
-const GUARDS = ["Company AI accounts, in your name", "A written AI usage policy", "Training on what stays private", "Access limited by role", "An audit log of every view and edit", "A person approves before anything leaves"];
+const GUARDS = ["Company AI accounts, in your name", "A written AI usage policy", "Training on what stays private", "Access limited by role", "An audit log of every view and edit", "A person approves before anything is sent, filed or paid"];
 
 const JOBS = [
   { title: "Ongoing training", body: "Sessions and coaching for your team on their own work, as the tools change, so people keep using what you paid for." },
   { title: "New AI, tested for you", body: "AI tools change monthly. We test the ones that matter on your data and adopt the ones that pay off." },
-  { title: "A prioritized roadmap, worked in order", body: "Agents, integrations, and tools are ranked by value, built one at a time, and reviewed monthly with your sponsor. Each is live before the next starts." },
+  { title: "A prioritized roadmap, worked in order", body: "Agents, integrations, and tools are ranked by value and reviewed monthly with your sponsor. Builds run in priority order. How many run at once is set in discovery, by the size of your team." },
   { title: "Every tool connected", body: "Your accounting, CRM, project, and document tools wired together, Microsoft 365 and Copilot included, so data entered once shows up everywhere and the AI can see all of it." },
   { title: "Costly software, replaced", body: "When a SaaS tool costs more than it's worth, we build the version that fits through your build queue and hand you the code." },
   { title: "Reporting, audits, and security", body: "A monthly report on hours saved and adoption, a list of every agent and who owns it, a quarterly audit of every tool and what it costs, plus monitoring, backups, and security updates." },
@@ -114,9 +114,9 @@ const HONEST = [
 const FAQ = [
   { q: "What is a fractional Chief AI Officer?", a: "Most companies can't justify a full-time technical executive for AI. We fill the role part-time. We train your team, test new AI on your data, keep your systems running, and cut tools that don't earn their price." },
   { q: "How does it start?", a: "With a discovery. We map how your work moves, audit every tool you pay for, write your AI usage policy, train your team on its own work, and put your first build live on your data." },
-  { q: "How is the engagement sized?", a: "In discovery, to your company: how many people, how many tools, and how much is in the build queue. It is one engagement covering everything on this page, not a menu of tiers." },
+  { q: "How is the engagement sized?", a: "In discovery, to your company: how many people, how many tools, and how much is in the build queue. Builds run in priority order. How many run at once is set in discovery, by the size of your team. It is one engagement covering everything on this page, not a menu of tiers." },
   { q: "Can we just buy one project?", a: "Yes. If you'd rather not keep us on, we scope a single build with you after discovery: an assistant, agents, integrations, or a platform replacement. You get the same training and you own the code, data, and accounts. Most clients keep us on for the upkeep and the builds that come after the first." },
-  { q: "What does 'one after another' mean?", a: "Agents, integrations and tools all go in one queue. We work on one until it's live and your team uses it, then start the next. Bigger projects, like replacing a platform, are split into steps that go live one by one." },
+  { q: "How does the queue work?", a: "Agents, integrations and tools all go in one queue. Each build is live and your team is trained on it before it counts as done. Builds run in priority order. How many run at once is set in discovery, by the size of your team. Bigger projects, like replacing a platform, are split into steps that go live one by one." },
   { q: "How do we know an agent is working?", a: "Before launch, the person who owns the work defines what correct looks like and grades a set of your real cases. The agent is scored against them, and the score is checked every month. A new model or prompt replaces the current one only if it scores higher on the same cases." },
   { q: "Do we keep what you build if we leave?", a: "Yes. Replacements, agents, and integrations are built on accounts in your company's name. The code, data, and accounts stay yours." },
   { q: "Why keep an AI Officer after the first builds?", a: "Because AI keeps moving. New models ship every few weeks and prices drop fast. Every month we check what changed and keep your agents healthy. Every quarter we move them to better or cheaper models after testing on your work, and audit your tools. Twice a year we redesign the roadmap, refresh your AI policy, and retrain the team on what's new." },
@@ -132,7 +132,7 @@ export default function AiOfficerPage() {
           <div>
             <div className="label">Fractional Chief AI Officer</div>
             <h1 id="ao-h1">A Chief AI Officer, without the hire.</h1>
-            <p className="lead">Most companies have no one whose job is AI. We take the role: agents and tools built one after another, every system connected, each agent tested on your own work, and your team trained every month. You own all of it.</p>
+            <p className="lead">Most companies have no one whose job is AI. We take the role: agents and tools built in priority order, every system connected, each agent tested on your own work, and your team trained every month. You own all of it.</p>
             <div className="ctas">
               <Link className="btn" href="#contact">Start with a discovery</Link>
               <Link className="btn ghost" href="#included">What&apos;s included</Link>
@@ -199,13 +199,13 @@ export default function AiOfficerPage() {
         <div className="wrap">
           <div className="label"><span className="ix">04</span>The build queue</div>
           <h2 className="h2" id="q-h">Every request goes in one queue.</h2>
-          <p className="lead">Agents, integrations and tools all run through one queue, one build at a time. Each one is live and your team is trained on it before the next starts.</p>
+          <p className="lead">Agents, integrations and tools all run through one queue. Builds run in priority order. How many run at once is set in discovery, by the size of your team.</p>
           <div className="ao-queue">
             <div className="paper" aria-label="Example build queue">
               <div className="paper-h"><b>Your build queue</b><span>Example month</span></div>
               <div className="ao-qcols">
                 <div className="live"><h4>Live<em>In use</em></h4><ul>{QUEUE.live.map((x) => <li key={x.t}><small>{x.k}</small>{x.t}</li>)}</ul></div>
-                <div className="work"><h4>In progress<em>One at a time</em></h4><ul>{QUEUE.work.map((x) => <li key={x.t}><small>{x.k}</small>{x.t}</li>)}</ul></div>
+                <div className="work"><h4>In progress<em>Priority order</em></h4><ul>{QUEUE.work.map((x) => <li key={x.t}><small>{x.k}</small>{x.t}</li>)}</ul></div>
                 <div><h4>Queue<em>Prioritized</em></h4><ul>{QUEUE.next.map((x) => <li key={x.t}><small>{x.k}</small>{x.t}</li>)}</ul></div>
               </div>
               <p className="ao-qnote">Each build is live and your team is trained on it before the next one starts. Bigger projects, like replacing a platform, go live in steps. The roadmap is reviewed monthly with your sponsor.</p>

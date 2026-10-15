@@ -239,13 +239,16 @@ export function initHomeSections() {
       <tr><td>Invoice typed into accounting</td><td>Admin</td><td>15 min, typed twice</td><td class="v cut">Cut the double entry</td></tr></tbody></table>
       <p class="fine" style="margin-top:18px">Built in interviews with the people who do the work, before anything is automated.</p>` },
     { t: "Tool and cost report", h: () => `<div class="paper-h"><b>Tool and cost report</b><span>Example</span></div>
-      <table class="ptable"><thead><tr><th>Tool</th><th>Seats</th><th>Per year</th><th>Call</th></tr></thead><tbody>
-      <tr><td>Project management</td><td>24</td><td>$14,400</td><td class="v keep">Keep, connect</td></tr>
-      <tr><td>Scheduling add-on</td><td>18</td><td>$6,480</td><td class="v swap">Replace</td></tr>
-      <tr><td>Document tool</td><td>24</td><td>$5,760</td><td class="v cut">Cut, overlaps</td></tr>
-      <tr><td>Reporting plugin</td><td>6</td><td>$2,160</td><td class="v cut">Cut, unused</td></tr>
-      <tr><td>Accounting</td><td>5</td><td>$3,000</td><td class="v keep">Keep, connect</td></tr></tbody></table>
-      <div class="ptotal"><span>Flagged to cut or replace</span><span>$14,400 a year</span></div>` },
+      <table class="ptable"><thead><tr><th>Tool</th><th>Users</th><th>Per year</th><th>Call</th></tr></thead><tbody>
+      <tr><td>Project management</td><td>104</td><td>$46,800</td><td class="v keep">Keep, connect</td></tr>
+      <tr><td>CRM</td><td>38</td><td>$31,200</td><td class="v keep">Keep, connect</td></tr>
+      <tr><td>Accounting</td><td>12</td><td>$24,000</td><td class="v keep">Keep, connect</td></tr>
+      <tr><td>Field scheduling platform</td><td>62</td><td>$38,000</td><td class="v swap">Replace</td></tr>
+      <tr><td>Document tool</td><td>104</td><td>$18,720</td><td class="v cut">Cut, overlaps</td></tr>
+      <tr><td>E-signature add-on</td><td>11</td><td>$17,000</td><td class="v cut">Cut, overlaps</td></tr>
+      <tr><td>Reporting plugin</td><td>2</td><td>$11,280</td><td class="v cut">Cut, unused</td></tr>
+      <tr><td>Other tools (7)</td><td>Varies</td><td>$23,000</td><td class="v keep">Keep</td></tr></tbody></table>
+      <div class="ptotal"><span>Flagged to cut or replace, of $210,000 total</span><span>$85,000 a year</span></div>` },
     { t: "AI usage policy", h: () => `<div class="paper-h"><b>AI usage policy</b><span>Example</span></div>
       <div class="pol"><div class="ok"><h4>Fine to use AI for</h4><ul><li>Drafting emails from your own notes</li><li>Summarizing internal documents</li><li>Company questions in your own assistant</li></ul></div>
       <div class="no"><h4>Never</h4><ul><li>Client financials in public chatbots</li><li>Passwords or account numbers</li><li>Anything sent out before a person reviews it</li></ul></div></div>` },
@@ -264,10 +267,13 @@ export function initHomeSections() {
       <p class="fine" style="margin-top:18px">Recorded on your own tools, with written guides. Your company keeps it for good.</p>` },
     { t: "Monthly report", h: () => `<div class="paper-h"><b>Monthly report: October</b><span>Example</span></div>
       <div class="launch">
-        <div><span>Agents live</span><b>4, each with an owner on your team</b></div>
+        <div><span>Hours saved</span><b>410 this month: finance 170, operations 150, admin 90</b></div>
+        <div><span>Adoption</span><b>86 of 104 desk staff used AI weekly, up from 71 last month</b></div>
+        <div><span>Cost</span><b>Agent run costs $2,340 for the month across 6 agents</b></div>
+        <div><span>Agents live</span><b>6, each with an owner on your team</b></div>
         <div><span>Accuracy</span><b>98.6% across all agents; 3 misses, each added as a new test</b></div>
         <div><span>Model update</span><b>New model tested on 240 of your cases: +1.2 points, switched</b></div>
-        <div><span>Tool audit</span><b>1 unused subscription cut, $2,160 a year</b></div>
+        <div><span>Tool audit</span><b>1 overlapping tool cut, about $1,800 a month</b></div>
         <div><span>Next up</span><b>Renewal reminders agent, starting the 14th</b></div></div>` }
   ];
   const dt = $("docsTabs"), paper = $("paper");
@@ -326,7 +332,7 @@ export function initHomeSections() {
   const job = (txt, p, extra = "") => `<i class="x-job" style="${p}" ${extra}>${txt}</i>`;
   const phone = () => `<div class="x-2col">
     <div class="x-card">${head(live("Incoming call · 9:14 PM"), "After hours")}<div class="x-call">${CALL.map((s, i) => `<div class="x-said${s[0] === "Agent" ? " agent" : ""}" ${S(i)}><small>${s[0]}</small>${s[1]}</div>`).join("")}</div></div>
-    <div class="x-stack"><div class="x-card">${head("<b>Tomorrow's board</b>", "Wed, Oct 8")}<div class="x-board">
+    <div class="x-stack"><div class="x-card">${head("<b>Tomorrow's board</b>", "Thu, Oct 8")}<div class="x-board">
       <div class="x-hours"><span></span>${["7", "8", "9", "10", "11", "12"].map(h => `<span>${h}</span>`).join("")}</div>
       <div class="x-lane"><b>Marco</b><div class="x-track">${job("Tune-up · Patel", pos(7, 1), S(0, 10) + " " + C("warn:6-10"))}${job("Tune-up · Patel", pos(9.5, 1), S(10))}${job("No heat · Whitfield", pos(7.5, 1), S(6) + ' ' + C("new:6-;warn:6-11;ok:11-"))}${job("Install · Greene", pos(11, 2))}</div></div>
       <div class="x-lane"><b>Jen</b><div class="x-track">${job("Repair · Ortiz", pos(8, 2))}${job("Tune-up · Lam", pos(11, 1))}</div></div>
@@ -381,12 +387,12 @@ export function initHomeSections() {
       ${done([[11, "21 renewal packets held for producer sign-off"], [12, "Coastal Cafe flagged for remarketing"], [13, "Nothing sent to a client yet"]])}</div></div>`; };
 
   const TABS = [
-    { tab: "Order entry agent", small: "Wholesale distribution", title: "Order entry agent", sub: "Email and fax in · draft sales order out · a rep approves", ex: "Wholesale distributor", end: 27, html: order, note: "The agent drafts. A person approves before anything is released.", link: "See wholesale distribution" },
-    { tab: "Phone agent", small: "Field services", title: "After-hours phone agent", sub: "Answers the call · books the job on your board · dispatch confirms", ex: "HVAC company", end: 19, html: phone, note: "Connected to the dispatch board you already use. Emergencies go straight to a person.", link: "See field services" },
-    { tab: "Shipment agent", small: "Logistics", title: "Late-load agent", sub: "Watches every load · catches a delay · drafts the update · a dispatcher approves", ex: "Freight brokerage", end: 20, html: shipment, note: "The agent catches the delay before the customer calls. A dispatcher approves every message and every change.", link: "See logistics" },
-    { tab: "Research agent", small: "Law firm", title: "Matter research assistant", sub: "Ask in plain English · answers from the firm's own files · cites every source", ex: "Law firm", end: 24, html: research, note: "Searches only what the person asking is allowed to see, and shows where every answer came from.", link: "See legal" },
-    { tab: "Invoice agent", small: "Accounting", title: "Vendor bill matching agent", sub: "Bills in · matched to the PO and receiving · exceptions held for a person", ex: "Accounting team", end: 21, html: invoice, note: "Clean bills move on their own. Anything that doesn't match waits for a person.", link: "See accounting" },
-    { tab: "Renewal agent", small: "Insurance", title: "Renewal packet agent", sub: "Finds renewals · assembles each packet · flags the risky ones for a producer", ex: "Insurance agency", end: 21, html: renewal, note: "Drafts a month of renewals in minutes. Producers review before anything reaches a client.", link: "See insurance" }
+    { tab: "Order entry agent", small: "Wholesale distribution", title: "Order entry agent", sub: "Email and fax in · draft sales order out · a rep approves", ex: "Wholesale distributor", end: 27, html: order, note: "The agent drafts. A person approves before anything is released.", link: "See wholesale distribution", href: "/use-cases/wholesale-distribution" },
+    { tab: "Phone agent", small: "Field services", title: "After-hours phone agent", sub: "Answers the call · books the job on your board · dispatch confirms", ex: "HVAC company", end: 19, html: phone, note: "Connected to the dispatch board you already use. Emergencies go straight to a person.", link: "See field services", href: "/use-cases/field-services" },
+    { tab: "Late-load agent", small: "Logistics", title: "Late-load agent", sub: "Watches every load · catches a delay · drafts the update · a dispatcher approves", ex: "Freight brokerage", end: 20, html: shipment, note: "The agent catches the delay before the customer calls. A dispatcher approves every message and every change.", link: "See wholesale distribution", href: "/use-cases/wholesale-distribution" },
+    { tab: "Research agent", small: "Law firm", title: "Matter research assistant", sub: "Ask in plain English · answers from the firm's own files · cites every source", ex: "Law firm", end: 24, html: research, note: "Searches only what the person asking is allowed to see, and shows where every answer came from.", link: "See legal", href: "/use-cases/legal" },
+    { tab: "Invoice agent", small: "Accounting", title: "Vendor bill matching agent", sub: "Bills in · matched to the PO and receiving · exceptions held for a person", ex: "Accounting team", end: 21, html: invoice, note: "Clean bills move on their own. Anything that doesn't match waits for a person.", link: "See accounting", href: "/use-cases/accounting" },
+    { tab: "Renewal agent", small: "Insurance", title: "Renewal packet agent", sub: "Finds renewals · assembles each packet · flags the risky ones for a producer", ex: "Insurance agency", end: 21, html: renewal, note: "Drafts a month of renewals in minutes. Producers review before anything reaches a client.", link: "See insurance", href: "/use-cases/insurance" }
   ];
 
   const root = document.getElementById("xdemo");
@@ -409,7 +415,7 @@ export function initHomeSections() {
     idx = i; const x = TABS[i];
     tabBtns.forEach((b, k) => { b.classList.toggle("on", k === i); b.setAttribute("aria-selected", k === i); b.querySelector(".x-prog").style.width = "0"; });
     root.querySelector(".x-title").textContent = x.title; root.querySelector(".x-sub").textContent = x.sub; root.querySelector(".x-ex").textContent = "Example: " + x.ex;
-    root.querySelector(".x-note").textContent = x.note; root.querySelector(".x-link").firstChild.textContent = x.link + " ";
+    root.querySelector(".x-note").textContent = x.note; root.querySelector(".x-link").firstChild.textContent = x.link + " "; root.querySelector(".x-link").setAttribute("href", x.href || "/use-cases");
     stage.innerHTML = x.html(); stage.classList.remove("swap"); void stage.offsetWidth; stage.classList.add("swap");
     update();
   }

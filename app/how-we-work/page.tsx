@@ -56,7 +56,7 @@ const DISCOVERY: Step[] = [
     branches: [
       { b: "Custom software", s: "Where a platform no longer fits. Your data migrated, so your history comes with you." },
       { b: "Connect your tools", s: "The tools you keep, wired together so data entered once shows up everywhere." },
-      { b: "Deploy automation", s: "Agents and automations on the repeat work, with a person approving before anything leaves the company." },
+      { b: "Deploy automation", s: "Agents and automations on the repeat work, with a person approving before anything is sent, filed or paid." },
     ],
     who: "A named owner for each build, such as your controller or operations manager, plus the people who will use it.",
     ask: "A written definition of correct from each owner, a set of real past cases to test against, and sign-off before anything goes live.",
@@ -99,7 +99,7 @@ const OFFICER: Step[] = [
 
 const RULES = [
   { title: "Process before technology", body: "We fix how the work moves before we automate any of it." },
-  { title: "A person approves", body: "Agents draft. Someone on your team reviews and signs off before anything leaves the company." },
+  { title: "A person approves", body: "Agents draft. Someone on your team reviews and signs off before anything is sent, filed or paid. Live calls follow rules you set." },
   { title: "You own all of it", body: "The code, the data, the accounts, and the AI account, in your company's name." },
   { title: "Your data stays yours", body: "AI works on your data, sees only what each role allows, and never trains on your records." },
 ];
@@ -167,17 +167,17 @@ export default function HowWeWorkPage() {
         <div className="wrap">
           <div className="label"><span className="ix">01</span>The process</div>
           <h2 className="h2" id="hw-proc-h">Five steps, from first conversation to running.</h2>
-          <p className="lead">Discovery covers steps 01 to 03 and the first training session, and ends with your first build live. Steps 04 and 05 are the ongoing AI Officer, and every new build loops back through step 03.</p>
+          <p className="lead">Discovery covers steps 01 to 03 and a first training session, and ends with your first build live. Training continues in step 04 and the monthly upkeep in step 05, both part of the ongoing AI Officer. Every new build loops back through step 03.</p>
           <div className="proc">
             <div className="brackets" aria-hidden="true">
-              <span className="br disc">Discovery<em>ends with the first build live</em></span>
+              <span className="br disc">Discovery<em>ends with the first build live and a first training session</em></span>
               <span className="br off">AI Officer<em>ongoing, for as long as you keep us on</em></span>
             </div>
             <div className="pgrid">
               <div className="pst" style={{ ["--i" as string]: 0 }}><span className="pn">01</span><h3>Map the work</h3><p>Interviews with the people who do it, step by step. We cut what shouldn&apos;t exist before anything is automated.</p><div className="pout"><span>Workflow map</span></div></div>
               <div className="pst" style={{ ["--i" as string]: 1 }}><span className="pn">02</span><h3>Tool report and AI policy</h3><p>Every tool you pay for, what it costs and a call on each. Then the rules for what data goes where.</p><div className="pout"><span>Tool and cost report</span><span>AI usage policy</span></div></div>
               <div className="pst build" style={{ ["--i" as string]: 2 }}><span className="pn">03</span><h3>Build</h3><div className="pbranch"><div><b>Custom software</b><small>Where a platform no longer fits</small></div><div><b>Connect your tools</b><small>Data entered once, everywhere</small></div><div><b>Deploy automation</b><small>Agents on the repeat work</small></div></div><div className="pout"><span>First build live</span></div></div>
-              <div className="pst" style={{ ["--i" as string]: 3 }}><span className="pn">04</span><h3>Train the team</h3><p>On their own work and data, before each piece goes live, and every month after.</p><div className="pout"><span>Training library you keep</span></div></div>
+              <div className="pst" style={{ ["--i" as string]: 3 }}><span className="pn">04</span><h3>Train the team</h3><p>A first session in discovery, then on their own work before each piece goes live, and every month after.</p><div className="pout"><span>Training library you keep</span></div></div>
               <div className="pst loop" style={{ ["--i" as string]: 4 }}><span className="pn">05</span><h3>Keep it current</h3><p>Monthly performance audits on every agent and tool. New models and tools tested on your data as they ship.</p><div className="pout"><span>Monthly report</span></div></div>
             </div>
             <svg className="ploop" viewBox="0 0 1000 70" preserveAspectRatio="none" aria-hidden="true">

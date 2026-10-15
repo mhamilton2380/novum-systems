@@ -12,6 +12,13 @@ export type UseCase = {
   tools: string[];
   replaces: string[];
   removes: string[];
+  /** Two or three sentences on a 50 to 250 person firm in this industry. */
+  situation: string;
+  /** Weekly repeat work by department for a firm of about 120 people. hrs = staff hours a week, our estimate. */
+  departments: { dept: string; work: string; ai: string; person: string; hrs: number }[];
+  firstAgent: { name: string; why: string; scored: string };
+  /** Who approves what before anything leaves the company. */
+  approval: string;
 };
 
 export const USE_CASES: UseCase[] = [
@@ -38,7 +45,7 @@ export const USE_CASES: UseCase[] = [
       {
         system: "Your system",
         title: "Every job, budget, and schedule in one view",
-        body: "Track projects, phases, budgets versus actuals, and crew schedules from a single dashboard built around how your company actually runs jobs.",
+        body: "Track projects, phases, budgets versus actuals, and crew schedules in one place, built around how your company actually runs jobs.",
       },
       {
         system: "Connected tools",
@@ -72,6 +79,20 @@ export const USE_CASES: UseCase[] = [
       { task: "Reconciled job cost entries against QuickBooks for 12 open jobs", saved: "2 hrs" },
       { task: "Compiled the weekly safety checklist status across 5 active sites", saved: "1 hr" },
     ],
+    situation: "A general contractor with 120 people runs 12 to 20 jobs at once, and most of the office's week goes to paper that moves between project management, accounting and the field. Submittals wait in a project manager's queue, pay applications are assembled by hand from Sage 300 reports, and estimators level subcontractor bids in spreadsheets during the busiest bid weeks.",
+    departments: [
+      { dept: "Project management", work: "Submittal review, RFI drafting, weekly owner reports across 15 active jobs", ai: "Checks each submittal against the spec section and drafts the review comments; drafts RFIs and owner reports from job data", person: "The project manager edits and sends every review, RFI and report", hrs: 40 },
+      { dept: "Accounting", work: "Subcontractor invoice coding, pay application backup, lien waiver tracking", ai: "Codes invoices to job and cost code in Sage 300, assembles pay application backup, tracks missing lien waivers", person: "The controller approves coding and every pay application", hrs: 32 },
+      { dept: "Estimating", work: "Bid invitations, scope review, leveling subcontractor bids", ai: "Reads the bid set, builds a scope checklist by trade, levels sub bids into one comparison with exclusions called out", person: "The estimator sets the number and signs the bid", hrs: 24 },
+      { dept: "Field operations", work: "Daily reports, safety checklists, photo logs", ai: "Turns superintendent voice notes and photos into the daily report; compiles safety status across sites each week", person: "The superintendent confirms each report", hrs: 22 },
+      { dept: "Contracts and risk", work: "Subcontract drafting, insurance certificate tracking, change order logs", ai: "Drafts subcontracts from your templates, flags expiring certificates, posts approved change orders to the job budget", person: "The contracts manager approves every subcontract; the PM approves change orders", hrs: 18 },
+    ],
+    firstAgent: {
+      name: "Submittal review against the specs",
+      why: "Each submittal takes a project manager hours of reading against the plan set and owner specifications, and a late review holds up procurement. The right answer is written in the spec section, so the agent's work can be checked line by line.",
+      scored: "Before launch it runs on 30 past submittals your PMs already reviewed. We compare its flagged issues with what the PMs actually caught, and it goes live only when it matches the score your team sets.",
+    },
+    approval: "Project managers approve every submittal review, RFI and owner report. The controller approves invoice coding and pay applications. Nothing reaches an owner, architect or subcontractor without a named person's approval.",
     tools: ["QuickBooks", "Sage 300 CRE", "Bluebeam", "Outlook", "DocuSign"],
     replaces: ["A construction management platform your team works around", "Document storage tools", "Separate reporting software"],
     removes: ["Budget spreadsheets updated by hand", "Change orders tracked in email"],
@@ -99,7 +120,7 @@ export const USE_CASES: UseCase[] = [
       {
         system: "Your system",
         title: "Jobs, techs, and schedules in one board",
-        body: "See every scheduled call, technician location, and job status on one dashboard, with revenue and callback rates tracked automatically.",
+        body: "See every scheduled call, technician location, and job status in one place, with revenue and callback rates tracked automatically.",
       },
       {
         system: "Connected tools",
@@ -133,7 +154,21 @@ export const USE_CASES: UseCase[] = [
       { task: "Matched 15 equipment warranties to open service calls", saved: "1.5 hrs" },
       { task: "Compiled the weekly callback report by technician", saved: "45 min" },
     ],
-    tools: ["QuickBooks", "ServiceTitan", "Housecall Pro", "Outlook", "Google Calendar", "Stripe"],
+    situation: "A 120-person service company runs 60 to 80 technicians on trucks, and the office behind them carries the load: dispatch and customer service field status calls all day, billing chases closed jobs with missing paperwork, and service agreement renewals depend on someone working a list. Hours lost in the office show up as late invoices and lapsed agreements.",
+    departments: [
+      { dept: "Dispatch and customer service", work: "Booking calls, arrival-time questions, reschedules, confirmations", ai: "Drafts confirmations and arrival texts and answers status questions from the dispatch board", person: "A CSR handles anything off script and every complaint", hrs: 34 },
+      { dept: "Technicians", work: "Equipment history lookups, job notes, repair quote write-ups", ai: "Pulls the unit's service history before arrival and turns photos and notes into a quote draft", person: "The technician confirms the quote; the customer approves it", hrs: 30 },
+      { dept: "Billing", work: "Closing invoices, missing job paperwork, manufacturer warranty claims", ai: "Flags jobs closed without an invoice, drafts invoices from tech notes, prepares warranty claims with serial numbers", person: "The billing lead approves larger invoices and every claim", hrs: 28 },
+      { dept: "Service agreements", work: "Maintenance reminders and agreement renewals", ai: "Drafts reminder and renewal messages for customers coming due", person: "The office approves each batch before it sends", hrs: 18 },
+      { dept: "Operations management", work: "Callback and first-time-fix reporting by technician", ai: "Compiles the weekly callback report with the likely cause of each repeat visit", person: "The operations manager reviews and acts on it", hrs: 8 },
+    ],
+    firstAgent: {
+      name: "Closed-job invoice drafter",
+      why: "Every closed job without an invoice is revenue already earned and not yet billed. The tech's notes, parts used and price book hold everything the invoice needs, so the agent's draft can be checked against what billing would have written.",
+      scored: "Before launch it drafts invoices for last month's closed jobs. We compare each line with the invoice billing actually sent, and it goes live only when it meets the accuracy your billing lead sets.",
+    },
+    approval: "Customer service approves every customer message. The billing lead approves invoices above a set amount and every warranty claim. Technicians confirm every quote before a customer sees it.",
+    tools: ["ServiceTitan", "QuickBooks", "Outlook", "Google Calendar", "Stripe"],
     replaces: ["A second dispatch tool where two overlap", "Separate invoicing tools"],
     removes: ["Paper service records", "Maintenance reminders sent by hand"],
   },
@@ -160,7 +195,7 @@ export const USE_CASES: UseCase[] = [
       {
         system: "Your system",
         title: "Every matter, deadline, and hour in one view",
-        body: "Track matters, court dates, billable time, and client budgets from a single dashboard built around how your firm actually works.",
+        body: "Track matters, court dates, billable time, and client budgets in one place, built around how your firm actually works.",
       },
       {
         system: "Connected tools",
@@ -194,6 +229,20 @@ export const USE_CASES: UseCase[] = [
       { task: "Compiled unbilled time entries across 22 active matters", saved: "1.5 hrs" },
       { task: "Matched incoming discovery documents to the correct matter file", saved: "1 hr" },
     ],
+    situation: "A firm of about 120 people, with 40 to 50 attorneys, spends much of its non-billable time on work that repeats matter after matter. Litigation teams summarize depositions and sort productions, transactional teams build first drafts from precedent, and billing partners mark up pre-bills against client guidelines at month end.",
+    departments: [
+      { dept: "Litigation", work: "Deposition summaries, sorting document productions, docketing from court notices", ai: "Summarizes transcripts by issue, sorts produced documents by issue and custodian, reads court notices and drafts docket entries", person: "An attorney reviews every summary; the docketing clerk confirms each date", hrs: 48 },
+      { dept: "Transactional", work: "First drafts from precedent, closing checklists, redline summaries", ai: "Drafts from the firm's own precedents, builds closing checklists, summarizes the other side's changes", person: "The responsible attorney edits and signs off", hrs: 30 },
+      { dept: "Billing", work: "Pre-bill review, time entry narratives, unbilled time", ai: "Flags entries that break a client's billing guidelines before the pre-bill goes out", person: "The billing partner approves every bill", hrs: 22 },
+      { dept: "Client service", work: "Matter status letters", ai: "Drafts status letters from matter activity", person: "The responsible attorney approves each letter", hrs: 12 },
+      { dept: "Intake and conflicts", work: "Conflict checks and engagement letters", ai: "Runs new parties against the client and matter records and drafts the engagement letter", person: "The conflicts attorney clears every match", hrs: 10 },
+    ],
+    firstAgent: {
+      name: "Pre-bill review against client guidelines",
+      why: "Write-downs at billing come straight out of realization, and partners spend evenings marking up pre-bills by hand. The client's billing guidelines are written rules, and nothing leaves the firm until a partner approves the bill.",
+      scored: "Before launch it reviews last quarter's pre-bills. We compare its flags with the write-downs and client rejections that actually happened, and it goes live only when it catches them at the rate your billing partner sets.",
+    },
+    approval: "Attorneys approve every draft, summary and letter. Docketing staff confirm every date before it enters the calendar. Nothing reaches a client, court or opposing counsel without an attorney's approval.",
     tools: ["Clio", "Outlook", "QuickBooks", "NetDocuments", "DocuSign", "LexisNexis"],
     replaces: ["Practice add-ons that duplicate what you keep", "Separate document storage"],
     removes: ["Docketing spreadsheets", "Paper file rooms"],
@@ -221,7 +270,7 @@ export const USE_CASES: UseCase[] = [
       {
         system: "Your system",
         title: "Every client engagement and deadline in one view",
-        body: "Track engagements, filing deadlines, staff assignments, and billing from a single dashboard built around how your firm runs tax season.",
+        body: "Track engagements, filing deadlines, staff assignments, and billing in one place, built around how your firm runs tax season.",
       },
       {
         system: "Connected tools",
@@ -255,7 +304,21 @@ export const USE_CASES: UseCase[] = [
       { task: "Reconciled staff time entries against engagement budgets", saved: "1.5 hrs" },
       { task: "Compiled the weekly work in progress report by partner", saved: "1 hr" },
     ],
-    tools: ["QuickBooks", "Intuit ProConnect", "Drake Tax", "Outlook", "Karbon", "Bill.com"],
+    situation: "A CPA firm of about 120 people runs out of capacity every tax season, and most of the strain sits outside the actual tax work. Preparers chase missing documents, reviewers become the bottleneck in March and April, and audit and client accounting teams tie out schedules by hand while partners wait on work in progress reports.",
+    departments: [
+      { dept: "Tax", work: "Chasing client documents, organizer intake, keying source documents", ai: "Drafts each client's document request from last year's return, reads uploaded documents and pre-fills workpapers", person: "The preparer checks every input; the partner signs the return", hrs: 52 },
+      { dept: "Client accounting services", work: "Monthly close, bank reconciliations, transaction coding", ai: "Codes transactions, prepares reconciliations and writes variance notes for the close", person: "The accountant approves the close", hrs: 30 },
+      { dept: "Review", work: "First-pass review of returns", ai: "Compares each return with the prior year and the source documents and flags variances with notes", person: "The reviewer decides every flag", hrs: 26 },
+      { dept: "Audit and assurance", work: "Tie-outs, request lists, confirmation letters", ai: "Ties schedules to the trial balance and drafts request lists and confirmations", person: "The senior and manager sign off", hrs: 24 },
+      { dept: "Firm administration", work: "Work in progress reports, engagement letters", ai: "Compiles weekly work in progress by partner and drafts engagement letters", person: "Partners approve", hrs: 10 },
+    ],
+    firstAgent: {
+      name: "Missing-document requests from the prior-year return",
+      why: "Document chasing eats preparer hours in the weeks the firm has the least of them. Last year's return already says which forms each client should send, so the request list can be built before anyone asks.",
+      scored: "Before launch it builds request lists for 50 clients from last season. We compare them with what preparers actually had to request, and it goes live only when it meets the accuracy your tax partner sets.",
+    },
+    approval: "Preparers approve every document request before it reaches a client. Reviewers and partners decide every flag on a return. Nothing reaches a client or taxing authority without a CPA's approval.",
+    tools: ["CCH Axcess", "UltraTax CS", "Karbon", "QuickBooks Online", "Outlook", "Bill.com"],
     replaces: ["Workflow add-ons that duplicate what you keep", "Separate document portals"],
     removes: ["Deadline spreadsheets", "Document requests chased by email"],
   },
@@ -282,7 +345,7 @@ export const USE_CASES: UseCase[] = [
       {
         system: "Your system",
         title: "Every client, policy, and renewal in one view",
-        body: "Track clients, policies, renewal dates, and producer pipelines from a single dashboard built around how your agency actually sells and services.",
+        body: "Track clients, policies, renewal dates, and producer pipelines in one place, built around how your agency actually sells and services.",
       },
       {
         system: "Connected tools",
@@ -316,6 +379,20 @@ export const USE_CASES: UseCase[] = [
       { task: "Flagged 6 policies with lapsed payment status", saved: "45 min" },
       { task: "Compiled the weekly book of business report by producer", saved: "1 hr" },
     ],
+    situation: "An agency of about 120 people carries thousands of commercial and personal policies, and account managers spend most of the week on remarketing and service. Renewal submissions are rebuilt from the management system and loss runs, certificate requests arrive all day, and commission statements are reconciled carrier by carrier.",
+    departments: [
+      { dept: "Commercial lines", work: "Renewal remarketing, carrier submissions, quote comparisons", ai: "Builds submissions from the management system and loss runs and drafts the proposal comparing carrier quotes", person: "The account manager checks coverage; the producer presents", hrs: 44 },
+      { dept: "Service", work: "Certificates of insurance, endorsements, ID cards", ai: "Drafts certificates from policy data and checks them against the contract's insurance requirements", person: "A CSR issues every certificate", hrs: 30 },
+      { dept: "Personal lines", work: "Renewal reviews and rate increase outreach", ai: "Flags renewals with large increases and drafts re-quote outreach", person: "An agent approves each message", hrs: 18 },
+      { dept: "Accounting", work: "Direct bill commission reconciliation", ai: "Matches carrier commission statements to expected commission by policy", person: "Accounting approves the exceptions", hrs: 14 },
+      { dept: "Producers", work: "Prospect research, follow-up on open quotes", ai: "Prepares an account brief before each meeting and drafts follow-ups on open quotes", person: "The producer sends", hrs: 12 },
+    ],
+    firstAgent: {
+      name: "Certificate of insurance drafter",
+      why: "Certificates are the highest-volume request a service team handles, and each one must match both the policy and the contract asking for it. The rules are written down, so every draft can be checked.",
+      scored: "Before launch it drafts the last 200 certificates your CSRs issued. We compare each with what was actually sent, and it goes live only when it meets the accuracy your service manager sets.",
+    },
+    approval: "CSRs approve every certificate. Account managers and producers approve every submission, proposal and client message. Nothing reaches a client or carrier without a licensed person's approval.",
     tools: ["Salesforce", "AMS360", "QuickBooks", "Outlook", "EZLynx", "DocuSign"],
     replaces: ["Separate policy management tools", "Standalone certificate tracking tools"],
     removes: ["Renewal spreadsheets", "Paper client files"],
@@ -343,7 +420,7 @@ export const USE_CASES: UseCase[] = [
       {
         system: "Your system",
         title: "Scheduling, visits, and billing in one view",
-        body: "Track appointments, visit status, and billing from a single dashboard built around how your practice actually runs a patient day.",
+        body: "Track appointments, visit status, and billing in one place, built around how your practice actually runs a patient day.",
       },
       {
         system: "Connected tools",
@@ -377,7 +454,21 @@ export const USE_CASES: UseCase[] = [
       { task: "Compiled the list of patients overdue for a follow-up visit", saved: "1 hr" },
       { task: "Matched incoming referral documents to existing patient records", saved: "45 min" },
     ],
-    tools: ["athenahealth", "Google Workspace", "QuickBooks", "Outlook", "DrChrono", "Availity"],
+    situation: "A multi-site practice of about 120 people loses clinical time to administration on both sides of the visit. The front desk verifies coverage and works the reminder list, prior authorizations pull staff into payer portals one patient at a time, and the billing team works denials that a complete claim would have avoided.",
+    departments: [
+      { dept: "Prior authorization", work: "Gathering clinical records, portal submissions, status checks", ai: "Assembles the packet from the chart against the payer's criteria and tracks status", person: "Staff submit each request; a clinician signs where required", hrs: 36 },
+      { dept: "Billing and revenue cycle", work: "Denials, unpaid claim follow-up", ai: "Sorts denials by reason and drafts appeals that cite the chart", person: "A biller approves every appeal", hrs: 32 },
+      { dept: "Front desk and scheduling", work: "Reminders, reschedules, eligibility checks", ai: "Drafts reminders and checks eligibility before the visit, flagging gaps", person: "Front desk staff confirm", hrs: 30 },
+      { dept: "Clinical support", work: "Referral intake, faxed records, refill requests", ai: "Reads incoming faxes, matches them to the patient and routes them", person: "A nurse reviews each item", hrs: 22 },
+      { dept: "Practice management", work: "Provider productivity and no-show reports", ai: "Compiles the weekly report by provider and site", person: "The practice manager reviews", hrs: 6 },
+    ],
+    firstAgent: {
+      name: "Prior authorization packet builder",
+      why: "Each authorization takes staff time in a payer portal, and an incomplete packet means a delay or a denial. Payer criteria are published, so the agent's packet can be checked against them.",
+      scored: "Before launch it builds packets for recent authorizations. We compare each with what the payer approved or denied, and it goes live only when it meets the completeness your billing lead sets.",
+    },
+    approval: "Staff approve every patient message and every authorization request, and clinicians sign where a payer requires it. Billers approve every appeal. Nothing reaches a patient or payer without a staff member's approval.",
+    tools: ["athenahealth", "Availity", "Outlook", "Google Workspace", "QuickBooks"],
     replaces: ["Separate scheduling software", "Standalone billing subscriptions"],
     removes: ["Prior authorization tracked by hand", "Paper intake forms"],
   },
@@ -404,7 +495,7 @@ export const USE_CASES: UseCase[] = [
       {
         system: "Your system",
         title: "Every client, campaign, and deadline in one view",
-        body: "Track clients, campaigns, deliverables, and budgets from a single dashboard built around how your agency actually runs projects.",
+        body: "Track clients, campaigns, deliverables, and budgets in one place, built around how your agency actually runs projects.",
       },
       {
         system: "Connected tools",
@@ -438,6 +529,20 @@ export const USE_CASES: UseCase[] = [
       { task: "Compiled the list of deliverables pending client approval past 3 days", saved: "45 min" },
       { task: "Matched incoming invoices to the correct client budget", saved: "1 hr" },
     ],
+    situation: "An agency of about 120 people serves 40 to 60 retainer clients, and account teams lose the first week of every month to reporting. Media buyers check pacing across platforms by hand, creative teams resize and proof the same assets for every channel, and finance matches media invoices to insertion orders.",
+    departments: [
+      { dept: "Account management", work: "Monthly client reports, status updates, meeting notes", ai: "Pulls platform data and drafts each report's narrative and recommendations", person: "The account manager edits and sends", hrs: 40 },
+      { dept: "Creative", work: "Ad copy variations, asset resizing, proofing against brand guides", ai: "Drafts variations within each client's brand guide and checks specs by channel", person: "The creative director approves", hrs: 30 },
+      { dept: "Media", work: "Pacing checks, search term reviews, reallocation notes", ai: "Flags pacing and drafts negative keyword and budget changes", person: "A media buyer approves every change", hrs: 28 },
+      { dept: "Finance", work: "Media invoice reconciliation, time against retainer", ai: "Matches vendor invoices to insertion orders and flags scope overruns", person: "Finance approves", hrs: 14 },
+      { dept: "Strategy", work: "Competitor scans, research summaries", ai: "Writes weekly summaries of competitor ads and content", person: "The strategist decides what matters", hrs: 12 },
+    ],
+    firstAgent: {
+      name: "Monthly client report drafter",
+      why: "Reporting repeats for every client every month and is mostly data assembly. Last month's reports show exactly what good looks like for each client.",
+      scored: "Before launch it drafts the last three months of reports for 10 clients. Account managers grade each against what they sent, and it goes live only when it meets the score they set.",
+    },
+    approval: "Account managers approve every client report and message. Media buyers approve every budget or bid change. Creative directors approve every asset before it runs.",
     tools: ["HubSpot", "Google Ads", "Meta Ads Manager", "QuickBooks", "Outlook", "Asana"],
     replaces: ["A second project tool where teams use two", "Separate approval tools", "Separate file storage subscriptions"],
     removes: ["Reporting spreadsheets", "Approvals chased by email"],
@@ -465,7 +570,7 @@ export const USE_CASES: UseCase[] = [
       {
         system: "Your system",
         title: "Orders, inventory, and production status in one view",
-        body: "Track orders, inventory levels, and production stage from a single dashboard built around how your shop actually runs a work order.",
+        body: "Track orders, inventory levels, and production stage in one place, built around how your shop actually runs a work order.",
       },
       {
         system: "Connected tools",
@@ -499,7 +604,21 @@ export const USE_CASES: UseCase[] = [
       { task: "Compiled the weekly production and scrap rate report by line", saved: "1.5 hrs" },
       { task: "Matched incoming supplier invoices to open purchase orders", saved: "1 hr" },
     ],
-    tools: ["NetSuite", "SAP", "QuickBooks", "Fishbowl", "Outlook", "Microsoft Dynamics"],
+    situation: "A manufacturer of about 120 people, most of them on the floor, runs its office lean, and the office sets how much work the shop can take. Estimators turn around a fraction of incoming RFQs, customer service walks the floor to answer ship-date questions, and quality writes certificates and nonconformance reports by hand.",
+    departments: [
+      { dept: "Quoting and estimating", work: "RFQ review, reading drawings, building quotes", ai: "Reads the RFQ and drawings, pulls similar past jobs and their actual costs, drafts the quote", person: "The estimator sets the price", hrs: 36 },
+      { dept: "Customer service", work: "Order entry, order status, ship-date questions", ai: "Drafts sales orders from customer POs and answers status from shop data", person: "A CSR approves each order and reply", hrs: 26 },
+      { dept: "Purchasing", work: "Reorder POs, supplier expedites, invoice matching", ai: "Drafts POs for material below reorder point and matches invoices to receipts", person: "A buyer approves every PO", hrs: 24 },
+      { dept: "Quality", work: "Inspection reports, nonconformance reports, certificates of conformance", ai: "Drafts NCRs and certificates from inspection data", person: "The quality manager signs", hrs: 18 },
+      { dept: "Production planning", work: "Late order lists, scrap reports", ai: "Compiles the daily late list and scrap by line", person: "The planner decides the schedule", hrs: 12 },
+    ],
+    firstAgent: {
+      name: "RFQ to draft quote",
+      why: "Quoting capacity caps how much work the shop can win. Your past quotes and job costs already hold the answer for most parts, so the agent's draft can be checked against real outcomes.",
+      scored: "Before launch it quotes 50 past RFQs. We compare its drafts with what you quoted and what the jobs actually cost, and it goes live only when it meets the accuracy your estimator sets.",
+    },
+    approval: "Estimators approve every quote. Buyers approve every purchase order before it reaches a supplier. The quality manager signs every certificate and NCR.",
+    tools: ["Epicor Kinetic", "NetSuite", "Microsoft Dynamics 365", "SolidWorks", "QuickBooks", "Outlook"],
     replaces: ["Standalone quality tracking software", "Disconnected purchasing tools"],
     removes: ["Inventory spreadsheets", "Production reports compiled by hand"],
   },
@@ -560,6 +679,20 @@ export const USE_CASES: UseCase[] = [
       { task: "Drafted expedite requests to 3 vendors for late inbound purchase orders", saved: "40 min" },
       { task: "Matched 112 vendor invoices to receipts and purchase orders", saved: "2 hrs" },
     ],
+    situation: "A distributor of about 120 people takes hundreds of orders a day, and most arrive by email in whatever format the customer prefers. Inside sales re-types every line into the ERP, customer service answers the same status questions all afternoon, and purchasing and AP match paperwork across vendors.",
+    departments: [
+      { dept: "Inside sales", work: "Order entry from emailed POs, PDFs and spreadsheets", ai: "Reads each PO, maps customer part numbers to your SKUs and drafts the sales order, flagging lines it is unsure of", person: "A rep releases every order", hrs: 48 },
+      { dept: "Customer service", work: "Order status emails, returns", ai: "Drafts answers from ERP and carrier tracking data", person: "A CSR sends each reply", hrs: 30 },
+      { dept: "Accounts payable", work: "Vendor invoice matching", ai: "Matches invoices to receipts and purchase orders and lists exceptions", person: "An AP clerk approves the exceptions", hrs: 22 },
+      { dept: "Purchasing", work: "Expedites, vendor acknowledgments, cost changes", ai: "Drafts expedites and compares vendor acknowledgments with the PO", person: "A buyer approves", hrs: 20 },
+      { dept: "Sales management", work: "Accounts buying less", ai: "Lists customers ordering less than last quarter, by product line", person: "The sales manager assigns follow-up", hrs: 6 },
+    ],
+    firstAgent: {
+      name: "Order entry from the inbox",
+      why: "Order entry is the largest block of repeat work in the building, and every error ships. Your own order history shows how each customer's part numbers map to your SKUs, so accuracy can be measured line by line.",
+      scored: "Before launch it enters 200 past emailed POs. We compare every line with the orders your reps actually entered, and it goes live only when it meets the line accuracy your sales manager sets.",
+    },
+    approval: "Reps release every sales order. CSRs approve every customer reply. Buyers approve every message to a vendor, and AP approves every exception.",
     tools: ["NetSuite", "Epicor Prophet 21", "Business Central", "Infor", "QuickBooks", "Outlook"],
     replaces: ["Separate quoting tools", "Standalone order portal add-ons"],
     removes: ["Order entry typed by hand", "Order-status phone tag", "Price lists in spreadsheets"],
@@ -622,6 +755,20 @@ export const USE_CASES: UseCase[] = [
       { task: "Flagged 5 compliance files missing signatures or disclosures", saved: "1 hr" },
       { task: "Abstracted 9 commercial leases into rent, term and option summaries", saved: "4 hrs" },
     ],
+    situation: "A brokerage of about 120 people, agents and staff, closes hundreds of transactions a year, and the office carries every deadline and compliance file. Transaction coordinators key contingency dates by hand, agents lose portal leads after the first reply, and marketing rebuilds materials for every listing.",
+    departments: [
+      { dept: "Transaction coordination", work: "Deadline calendars from agreements, compliance file checks", ai: "Reads each executed agreement, builds the deadline calendar and flags missing signatures and disclosures", person: "The coordinator confirms dates; the managing broker approves the file", hrs: 36 },
+      { dept: "Agents", work: "Lead replies and long-term follow-up", ai: "Drafts personal follow-ups for portal, web and referral leads", person: "The agent sends each one", hrs: 34 },
+      { dept: "Marketing", work: "Listing copy, flyers, social posts, offering memoranda", ai: "Drafts materials from listing data and photos and checks fair housing language", person: "The listing agent approves", hrs: 26 },
+      { dept: "Commercial leasing", work: "Lease abstracts, renewal option tracking", ai: "Abstracts leases into rent, term and option summaries", person: "The broker checks each abstract", hrs: 18 },
+      { dept: "Accounting", work: "Commission disbursements", ai: "Builds the disbursement from the settlement statement and agent splits", person: "The broker approves", hrs: 8 },
+    ],
+    firstAgent: {
+      name: "Deadline calendar from the executed agreement",
+      why: "One missed contingency date can cost a deal. Every date is written in the purchase agreement and its addenda, so the agent's calendar can be checked date by date.",
+      scored: "Before launch it builds calendars for 50 closed transactions. We compare every date with the file, and it goes live only when it gets them right at the rate your managing broker sets.",
+    },
+    approval: "Coordinators confirm every date and the managing broker approves every compliance file. Agents approve every follow-up and every piece of listing marketing before it goes out.",
     tools: ["Follow Up Boss", "Dotloop", "SkySlope", "DocuSign", "MLS", "CoStar", "Buildout", "QuickBooks", "Outlook", "Canva"],
     replaces: ["Separate email drip tools", "Standalone transaction checklist tools"],
     removes: ["Deadline spreadsheets", "Listing marketing rebuilt from scratch", "Lease abstracts typed by hand"],

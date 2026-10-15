@@ -36,14 +36,17 @@ const DOCS: Doc[] = [
         <table className="ptable">
           <thead><tr><th>Tool</th><th>Users</th><th>Per year</th><th>Call</th></tr></thead>
           <tbody>
-            <tr><td>Project management</td><td>24</td><td>$14,400</td><td className="v keep">Keep, connect</td></tr>
-            <tr><td>Scheduling add-on</td><td>18</td><td>$6,480</td><td className="v swap">Replace</td></tr>
-            <tr><td>Document tool</td><td>24</td><td>$5,760</td><td className="v cut">Cut, overlaps</td></tr>
-            <tr><td>Reporting plugin</td><td>6</td><td>$2,160</td><td className="v cut">Cut, unused</td></tr>
-            <tr><td>Accounting</td><td>5</td><td>$3,000</td><td className="v keep">Keep, connect</td></tr>
+            <tr><td>Project management</td><td>104</td><td>$46,800</td><td className="v keep">Keep, connect</td></tr>
+            <tr><td>CRM</td><td>38</td><td>$31,200</td><td className="v keep">Keep, connect</td></tr>
+            <tr><td>Accounting</td><td>12</td><td>$24,000</td><td className="v keep">Keep, connect</td></tr>
+            <tr><td>Field scheduling platform</td><td>62</td><td>$38,000</td><td className="v swap">Replace</td></tr>
+            <tr><td>Document tool</td><td>104</td><td>$18,720</td><td className="v cut">Cut, overlaps</td></tr>
+            <tr><td>E-signature add-on</td><td>11</td><td>$17,000</td><td className="v cut">Cut, overlaps</td></tr>
+            <tr><td>Reporting plugin</td><td>2</td><td>$11,280</td><td className="v cut">Cut, unused</td></tr>
+            <tr><td>Other tools (7)</td><td>Varies</td><td>$23,000</td><td className="v keep">Keep</td></tr>
           </tbody>
         </table>
-        <div className="ptotal"><span>Flagged to cut or replace</span><span>$14,400 a year</span></div>
+        <div className="ptotal"><span>Flagged to cut or replace, of $210,000 total</span><span>$85,000 a year</span></div>
       </>
     ),
   },
@@ -102,10 +105,13 @@ const DOCS: Doc[] = [
       <>
         <div className="paper-h"><b>Monthly report: October</b><span>Example</span></div>
         <div className="launch">
-          <div><span>Agents live</span><b>4, each with an owner on your team</b></div>
+          <div><span>Hours saved</span><b>410 this month: finance 170, operations 150, admin 90</b></div>
+          <div><span>Adoption</span><b>86 of 104 desk staff used AI weekly, up from 71 last month</b></div>
+          <div><span>Cost</span><b>Agent run costs $2,340 for the month across 6 agents</b></div>
+          <div><span>Agents live</span><b>6, each with an owner on your team</b></div>
           <div><span>Accuracy</span><b>98.6% across all agents; 3 misses, each added as a new test</b></div>
           <div><span>Model update</span><b>New model tested on 240 of your cases: +1.2 points, switched</b></div>
-          <div><span>Tool audit</span><b>1 unused subscription cut, $2,160 a year</b></div>
+          <div><span>Tool audit</span><b>1 overlapping tool cut, about $1,800 a month</b></div>
           <div><span>Next up</span><b>Renewal reminders agent, starting the 14th</b></div>
         </div>
       </>

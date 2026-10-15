@@ -7,7 +7,7 @@ import { AREAS, QUESTIONS, answerLabel, fmt, scoreFor, type Answers } from "@/li
 import "./as.css";
 
 const AREA_NAME = Object.fromEntries(AREAS.map((a) => [a.id, a.name]));
-const SIZES = ["10 to 14", "15 to 49", "50 to 99", "100 to 249", "250 or more"];
+const SIZES = ["Under 50", "50 to 99", "100 to 249", "250 or more"];
 
 export function Assessment() {
   const [answers, setAnswers] = useState<Answers>({});
