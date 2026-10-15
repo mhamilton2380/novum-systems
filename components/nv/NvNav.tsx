@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { Brand } from "./Mark";
 
 export const NAV = [
-  { href: "/ai-implementation", label: "What we do" },
+  { href: "/ai-implementation", label: "AI implementation" },
   { href: "/how-we-work", label: "How we work" },
   { href: "/use-cases", label: "Industries" },
   { href: "/case-studies", label: "Results" },

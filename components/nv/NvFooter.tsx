@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Brand } from "./Mark";
 
 const COLS: { h: string; links: [string, string][] }[] = [
-  { h: "What we do", links: [["/training", "Training"], ["/ai-implementation#agents", "Agents"], ["/ai-implementation#software", "Custom software"], ["/ai-officer", "AI Officer"]] },
+  { h: "AI implementation", links: [["/training", "Training"], ["/ai-implementation#agents", "Agents"], ["/ai-implementation#software", "Custom software"], ["/ai-officer", "AI Officer"]] },
   { h: "Company", links: [["/how-we-work", "How we work"], ["/case-studies", "Results"], ["/about", "About"], ["/contact", "Contact"]] },
   { h: "Industries", links: [["/use-cases/accounting", "Accounting"], ["/use-cases/insurance", "Insurance"], ["/use-cases/wholesale-distribution", "Wholesale distribution"], ["/use-cases/manufacturing", "Manufacturing"], ["/use-cases", "All industries"]] },
   { h: "Resources", links: [["/why-ai", "Why AI"], ["/assessment", "AI Readiness Score"]] },
