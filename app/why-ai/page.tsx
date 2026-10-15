@@ -297,8 +297,8 @@ export default function WhyAiPage() {
             </div>
             <div className="wy-w wy-ours">
               <div className="wy-w-h"><b>Operating work</b><span className="meta">Client results</span></div>
-              <div className="wy-pair"><span><b>10 hours</b> to <b>1.5 hours</b></span><small>Bank draw applications, per application (a real estate developer)</small></div>
-              <div className="wy-pair"><span><b>4 hours</b> to <b>15 minutes</b></span><small>Submittal review, per submittal (a real estate developer)</small></div>
+              <div className="wy-pair"><span><b>10 hours</b> to <b>1.5 hours</b></span><small>Bank draw applications, per application (a construction company)</small></div>
+              <div className="wy-pair"><span><b>4 hours</b> to <b>15 minutes</b></span><small>Submittal review, per submittal (a construction company)</small></div>
               <small className="wy-src">From our client work. Per-task times, not a study.</small>
             </div>
           </div>

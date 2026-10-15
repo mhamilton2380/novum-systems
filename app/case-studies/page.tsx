@@ -8,13 +8,13 @@ import "./case-studies.css";
 export const metadata: Metadata = pageMetadata({
   path: "/case-studies",
   title: "Results: Three Engagements, Measured · Novum AI",
-  description: "A construction company replaced a $100,000-a-year platform with a system it owns. A real estate developer cut routine project paperwork by 85 to 94% per task. A bookkeeping firm cut data entry by 95%.",
+  description: "A construction company replaced a $100,000-a-year platform with a system it owns and cut routine project paperwork by 85 to 94% per task. A real estate developer replaced a $60,000-a-year investor platform. A bookkeeping firm cut data entry by 95%.",
 });
 
 const BEFORE = [
   { title: "$100,000 a year, every year", body: "The company paid six figures annually for a project management platform, and the price only went up as the business grew." },
   { title: "Billing ran on its own system", body: "Their billing ran on a custom application and process the platform could not fit, so the same project data got entered twice." },
-  { title: "Routine paperwork by hand", body: "Project managers spent hours every week on PCOs, RFIs and submittal reviews, assembled from drawings, specs and field notes." },
+  { title: "Routine paperwork by hand", body: "Project managers spent hours every week on PCOs, RFIs, submittal reviews, bank draw applications and owner reports, assembled from drawings, specs and field notes." },
 ];
 
 const RESULTS = [
@@ -27,7 +27,7 @@ const RESULTS = [
 const BUILT = [
   { tag: "Rebuilt", title: "The platform, rebuilt around how they run projects", body: "We rebuilt the platform they were paying for around how they run jobs: projects, schedules, RFIs, submittals and change orders." },
   { tag: "Connected", title: "Connected to their billing", body: "The new system talks to their custom billing application, so project and billing data stay in sync and their billing process did not have to change." },
-  { tag: "Agents", title: "Routine paperwork, drafted", body: "Agents draft PCOs, RFIs, submittal reviews and billing from project documents and field notes. A project manager reviews each one." },
+  { tag: "Agents", title: "Routine paperwork, drafted", body: "Agents draft PCOs, RFIs, submittal reviews, bank draw applications, owner reports and billing from project documents and field notes. A project manager reviews each one." },
 ];
 
 const LEDGER = [
@@ -48,7 +48,7 @@ export default function ResultsPage() {
         <div className="wrap">
           <div className="label">Results</div>
           <h1>Three engagements, measured.</h1>
-          <p className="lead">A construction company replaced a $100,000-a-year platform with a system it owns. A real estate developer put agents on its routine project paperwork and cut the time per task by 85 to 94%. A bookkeeping firm cut its data entry by 95% and now sends every client a monthly report built for them.</p>
+          <p className="lead">A construction company replaced a $100,000-a-year platform with a system it owns and cut the time on routine project paperwork by 85 to 94% per task. A real estate developer replaced a $60,000-a-year investor platform with its own, with a portal for every investor. A bookkeeping firm cut its data entry by 95% and now sends every client a monthly report built for them.</p>
           <div className="ctas">
             <Link className="btn" href="#contact">Start a conversation</Link>
             <Link className="btn ghost" href="/use-cases">See industries</Link>
@@ -112,9 +112,9 @@ export default function ResultsPage() {
 
       <section className="sec rule">
         <div className="wrap">
-          <div className="label"><span className="ix">04</span>Real estate developer: measured results</div>
+          <div className="label"><span className="ix">04</span>Construction company: measured results</div>
           <h2 className="h2">Four tasks, timed <span className="mute">before and after.</span></h2>
-          <p className="lead">A real estate developer put agents on the paperwork its project managers rebuild for every project. Each figure is the time one instance of the task takes, before the agent and after. A project manager reviews every draft.</p>
+          <p className="lead">The agents took on the paperwork the project managers rebuild for every project. Each figure is the time one instance of the task takes, before the agent and after. A project manager reviews every draft.</p>
           <div className="rs-results">
             {RESULTS.map((r) => (
               <div className="rs-res" key={r.task}>
@@ -129,9 +129,22 @@ export default function ResultsPage() {
         </div>
       </section>
 
+      <section className="sec rule" aria-labelledby="rs-dev-h">
+        <div className="wrap">
+          <div className="label"><span className="ix">05</span>Real estate developer</div>
+          <h2 className="h2" id="rs-dev-h">A $60,000-a-year investor platform, <span className="mute">replaced with its own.</span></h2>
+          <p className="lead">A real estate developer paid $60,000 a year for an investor platform. We built its own, with a portal for each investor and agents that keep it updated. There is no annual renewal, and the developer owns the code.</p>
+          <ul className="rs-built" style={{ marginTop: "clamp(40px, 5vw, 64px)", maxWidth: 820 }}>
+            <li><span className="meta">Replaced</span><h3>The investor platform</h3><p>The subscription is gone. The new system is built around how the developer reports to its investors.</p></li>
+            <li><span className="meta">Investors</span><h3>A portal for every investor</h3><p>Each investor sees their own projects, documents and updates in one place.</p></li>
+            <li><span className="meta">Agents</span><h3>Kept up to date by agents</h3><p>Agents keep each portal current, and the team reviews what goes out.</p></li>
+          </ul>
+        </div>
+      </section>
+
       <section className="sec light" aria-labelledby="rs-bk-h">
         <div className="wrap">
-          <div className="label"><span className="ix">05</span>Bookkeeping firm</div>
+          <div className="label"><span className="ix">06</span>Bookkeeping firm</div>
           <h2 className="h2" id="rs-bk-h">Data entry down 95%. <span className="mute">A monthly report built for every client.</span></h2>
           <p className="lead">A 15-person bookkeeping firm keyed client data and assembled each client&apos;s monthly package by hand. Agents now do the entry and draft each client&apos;s report and cover email. A bookkeeper approves every one before it goes out.</p>
           <div className="rs-split">
@@ -158,11 +171,11 @@ export default function ResultsPage() {
 
       <section className="sec light">
         <div className="wrap">
-          <div className="label"><span className="ix">06</span>Scope of this evidence</div>
+          <div className="label"><span className="ix">07</span>Scope of this evidence</div>
           <h2 className="h2">What these results show, <span className="mute">and what they do not.</span></h2>
           <ul className="rs-scope" style={{ marginTop: 44 }}>
-            <li><b>Three clients</b><span>The results come from three engagements: the platform replacement for a construction company, the paperwork agents for a real estate developer, and the data entry and client reporting agents for a bookkeeping firm. More results are added here as they are measured.</span></li>
-            <li><b>Per-task times</b><span>The real estate developer figures are time per instance, before and after. Without monthly volumes there is no yearly hours or dollar total, and none is claimed.</span></li>
+            <li><b>Three clients</b><span>The results come from three engagements: the platform replacement and paperwork agents for a construction company, the investor platform for a real estate developer, and the data entry and client reporting agents for a bookkeeping firm. More results are added here as they are measured.</span></li>
+            <li><b>Per-task times</b><span>The construction company&apos;s task figures are time per instance, before and after. Without monthly volumes there is no yearly hours or dollar total, and none is claimed.</span></li>
             <li><b>The bill</b><span>The construction company&apos;s platform cost $100,000 a year. They now pay only hosting, storage and security. The exact current cost is not published.</span></li>
             <li><b>Human review</b><span>Every agent output is a draft. A project manager reviews, edits and sends, and nothing leaves the company without a person.</span></li>
             <li><b>Ownership</b><span>In every engagement, code, data and accounts are in the client&apos;s name. If a client stopped working with Novum, nothing would break.</span></li>
