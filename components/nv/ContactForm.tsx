@@ -3,16 +3,18 @@
 // Team size, first need and teams travel in the message so the API contract stays the same.
 import { useState } from "react";
 
-const TEAMS = ["Finance", "Accounting", "Underwriting", "Operations", "Admin", "Sales", "HR"];
+const TEAMS = ["Leadership", "Finance", "Accounting", "Operations", "Sales", "Marketing", "Customer service", "HR", "Admin", "Underwriting", "Other"];
 
 export function ContactForm({ source = "Website" }: { source?: string }) {
   const [state, setState] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [error, setError] = useState("");
+  const [other, setOther] = useState(false);
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const f = new FormData(e.currentTarget);
-    const teams = TEAMS.filter((t) => f.get(`team-${t}`));
+    const otherTeam = String(f.get("team-other-name") || "").trim();
+    const teams = TEAMS.filter((t) => f.get(`team-${t}`)).map((t) => (t === "Other" && otherTeam ? `Other: ${otherTeam}` : t));
     const message = [
       `Team size: ${f.get("size") || "not given"}`,
       `Needs first: ${f.get("need") || "not given"}`,
@@ -52,7 +54,8 @@ export function ContactForm({ source = "Website" }: { source?: string }) {
         <select name="need" id="f-need" defaultValue=""><option value="" disabled>Select</option><option>Train our team on AI</option><option>Agents on repeat work</option><option>Custom software or replacing a tool</option><option>An ongoing AI Officer</option><option>Not sure yet</option></select>
       </label>
       <fieldset className="full"><legend>Which teams</legend>
-        <div className="chips">{TEAMS.map((t) => <label key={t}><input type="checkbox" name={`team-${t}`} id={`t-${t}`} /><span>{t}</span></label>)}</div>
+        <div className="chips">{TEAMS.map((t) => <label key={t}><input type="checkbox" name={`team-${t}`} id={`t-${t.replace(/\s+/g, "-")}`} onChange={t === "Other" ? (ev) => setOther(ev.target.checked) : undefined} /><span>{t}</span></label>)}</div>
+        {other && <input name="team-other-name" id="f-other-team" className="other-team" placeholder="Which team?" aria-label="Which other team" />}
       </fieldset>
       <label className="full">Where does your team lose the most time?<textarea name="message" id="f-msg" placeholder="For example: month-end close takes our finance team most of a week." /></label>
       <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hp" aria-hidden="true" />
