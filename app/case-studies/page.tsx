@@ -48,7 +48,7 @@ export default function ResultsPage() {
         <div className="wrap">
           <div className="label">Results</div>
           <h1>Two engagements, measured.</h1>
-          <p className="lead">A construction company replaced a $100,000-a-year platform with a system it owns. A real estate developer put agents on its routine project paperwork and cut the time per task by 85 to 94%. Both clients are unnamed.</p>
+          <p className="lead">A construction company replaced a $100,000-a-year platform with a system it owns. A real estate developer put agents on its routine project paperwork and cut the time per task by 85 to 94%.</p>
           <div className="ctas">
             <Link className="btn" href="#contact">Start a conversation</Link>
             <Link className="btn ghost" href="/use-cases">See industries</Link>
