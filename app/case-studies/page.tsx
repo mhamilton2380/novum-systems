@@ -133,7 +133,7 @@ export default function ResultsPage() {
         <div className="wrap">
           <div className="label"><span className="ix">05</span>Bookkeeping firm</div>
           <h2 className="h2" id="rs-bk-h">Data entry down 95%. <span className="mute">A monthly report built for every client.</span></h2>
-          <p className="lead">A bookkeeping firm keyed client data and assembled each client&apos;s monthly package by hand. Agents now do the entry and draft each client&apos;s report and cover email. A bookkeeper approves every one before it goes out.</p>
+          <p className="lead">A 15-person bookkeeping firm keyed client data and assembled each client&apos;s monthly package by hand. Agents now do the entry and draft each client&apos;s report and cover email. A bookkeeper approves every one before it goes out.</p>
           <div className="rs-split">
             <ul className="rs-built">
               <li><span className="meta">Data entry</span><h3>95% less data entry</h3><p>The entry staff used to key by hand is done by agents. Staff review only what the agent flags.</p></li>

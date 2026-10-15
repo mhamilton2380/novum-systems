@@ -133,6 +133,7 @@ export default function AiImplementationPage() {
               <div key={e.n}><b>{e.n}</b><span>{e.t}</span><small>{e.s}</small></div>
             ))}
           </div>
+          <p style={{ marginTop: 24 }}><Link className="link" href="/why-ai">Read the research behind these numbers <span aria-hidden="true">→</span></Link></p>
           <div className="ai-split">
             <ul className="mlist">
               {FORMATS.map((f) => <li key={f.b}><b>{f.b}</b><span>{f.s}</span></li>)}
