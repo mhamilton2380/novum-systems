@@ -7,8 +7,8 @@ import "./case-studies.css";
 
 export const metadata: Metadata = pageMetadata({
   path: "/case-studies",
-  title: "Results: Two Engagements, Measured · Novum AI",
-  description: "A construction company replaced a $100,000-a-year platform with a system it owns. A real estate developer cut routine project paperwork by 85 to 94% per task.",
+  title: "Results: Three Engagements, Measured · Novum AI",
+  description: "A construction company replaced a $100,000-a-year platform with a system it owns. A real estate developer cut routine project paperwork by 85 to 94% per task. A bookkeeping firm cut data entry by 95%.",
 });
 
 const BEFORE = [
@@ -47,8 +47,8 @@ export default function ResultsPage() {
       <section className="phero">
         <div className="wrap">
           <div className="label">Results</div>
-          <h1>Two engagements, measured.</h1>
-          <p className="lead">A construction company replaced a $100,000-a-year platform with a system it owns. A real estate developer put agents on its routine project paperwork and cut the time per task by 85 to 94%.</p>
+          <h1>Three engagements, measured.</h1>
+          <p className="lead">A construction company replaced a $100,000-a-year platform with a system it owns. A real estate developer put agents on its routine project paperwork and cut the time per task by 85 to 94%. A bookkeeping firm cut its data entry by 95% and now sends every client a monthly report built for them.</p>
           <div className="ctas">
             <Link className="btn" href="#contact">Start a conversation</Link>
             <Link className="btn ghost" href="/use-cases">See industries</Link>
@@ -129,16 +129,43 @@ export default function ResultsPage() {
         </div>
       </section>
 
+      <section className="sec light" aria-labelledby="rs-bk-h">
+        <div className="wrap">
+          <div className="label"><span className="ix">05</span>Bookkeeping firm</div>
+          <h2 className="h2" id="rs-bk-h">Data entry down 95%. <span className="mute">A monthly report built for every client.</span></h2>
+          <p className="lead">A bookkeeping firm keyed client data and assembled each client&apos;s monthly package by hand. Agents now do the entry and draft each client&apos;s report and cover email. A bookkeeper approves every one before it goes out.</p>
+          <div className="rs-split">
+            <ul className="rs-built">
+              <li><span className="meta">Data entry</span><h3>95% less data entry</h3><p>The entry staff used to key by hand is done by agents. Staff review only what the agent flags.</p></li>
+              <li><span className="meta">Reporting</span><h3>A report customized per client</h3><p>Each client&apos;s monthly financials are generated in the format and detail that client needs, then approved by their bookkeeper.</p></li>
+              <li><span className="meta">Client email</span><h3>The email drafts itself</h3><p>Once the report is approved, the agent drafts the email to the client with the financials attached and a list of items that need the client&apos;s attention.</p></li>
+            </ul>
+            <div className="rs-rfi">
+              <div className="paper">
+                <div className="paper-h"><b>Monthly financials, draft email</b><span>Example</span></div>
+                <dl>
+                  <div><dt>To</dt><dd>Owner, client 214</dd></div>
+                  <div><dt>Attached</dt><dd>September financials: P&amp;L, balance sheet, cash flow</dd></div>
+                  <div><dt>Needs your attention</dt><dd>Two receipts missing for card charges over $500. One vendor bill with no matching purchase order. Sales tax due October 31.</dd></div>
+                </dl>
+                <p className="rs-by">Drafted by the reporting agent after the bookkeeper approved the financials. The bookkeeper reviews and sends.</p>
+              </div>
+              <p className="rs-cap">The example above is illustrative.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="sec light">
         <div className="wrap">
-          <div className="label"><span className="ix">05</span>Scope of this evidence</div>
+          <div className="label"><span className="ix">06</span>Scope of this evidence</div>
           <h2 className="h2">What these results show, <span className="mute">and what they do not.</span></h2>
           <ul className="rs-scope" style={{ marginTop: 44 }}>
-            <li><b>Two clients</b><span>The results come from two engagements: the platform replacement for a construction company, and the paperwork agents for a real estate developer. More results are added here as they are measured.</span></li>
+            <li><b>Three clients</b><span>The results come from three engagements: the platform replacement for a construction company, the paperwork agents for a real estate developer, and the data entry and client reporting agents for a bookkeeping firm. More results are added here as they are measured.</span></li>
             <li><b>Per-task times</b><span>The real estate developer figures are time per instance, before and after. Without monthly volumes there is no yearly hours or dollar total, and none is claimed.</span></li>
-            <li><b>The bill</b><span>The construction company's platform cost $100,000 a year. They now pay only hosting, storage and security. The exact current cost is not published.</span></li>
+            <li><b>The bill</b><span>The construction company&apos;s platform cost $100,000 a year. They now pay only hosting, storage and security. The exact current cost is not published.</span></li>
             <li><b>Human review</b><span>Every agent output is a draft. A project manager reviews, edits and sends, and nothing leaves the company without a person.</span></li>
-            <li><b>Ownership</b><span>In both engagements, code, data and accounts are in the client&apos;s name. If either stopped working with Novum, nothing would break.</span></li>
+            <li><b>Ownership</b><span>In every engagement, code, data and accounts are in the client&apos;s name. If a client stopped working with Novum, nothing would break.</span></li>
           </ul>
         </div>
       </section>
