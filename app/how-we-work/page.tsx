@@ -183,7 +183,7 @@ export default function HowWeWorkPage() {
             <svg className="ploop" viewBox="0 0 1000 70" preserveAspectRatio="none" aria-hidden="true">
               <defs><linearGradient id="hwlpg" x1="1" x2="0"><stop offset="0" stopColor="#00b36e" /><stop offset="1" stopColor="#3b6fe0" /></linearGradient></defs>
               <path d="M900 4 V34 Q900 54 880 54 H520 Q500 54 500 34 V8" fill="none" stroke="url(#hwlpg)" strokeWidth="2" vectorEffect="non-scaling-stroke" />
-              <path d="M493 16 L500 6 L507 16" fill="none" stroke="#3b6fe0" strokeWidth="2" vectorEffect="non-scaling-stroke" />
+              <path d="M493 16 L500 6 L507 16" fill="none" stroke="#00b36e" strokeWidth="2" vectorEffect="non-scaling-stroke" />
             </svg>
             <p className="plooptxt">New builds and upgrades go back through step 03, tested on your data before they replace anything.</p>
           </div>
