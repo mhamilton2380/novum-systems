@@ -35,7 +35,7 @@ const LEDGER = [
   { what: "Project and billing data", before: "Typed into two systems by hand", after: "Entered once, synced to billing on its own" },
   { what: "Routine paperwork", before: "Written from scratch, hours every week", after: "Starts as an agent draft. The project manager reviews and sends" },
   { what: "How the software fits", before: "The team bent its process to the platform", after: "Built around how they already run jobs" },
-  { what: "Who owns it", before: "Rented seats, renewed every year", after: "Code, data and accounts in the company's name" },
+  { what: "Who owns it", before: "Per-seat licenses, renewed every year", after: "Code, data and accounts in the company's name" },
   { what: "Growing the business", before: "More people meant more license fees", after: "More projects and people add no license fees" },
 ];
 

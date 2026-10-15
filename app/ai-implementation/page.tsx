@@ -219,7 +219,7 @@ export default function AiImplementationPage() {
       <section className="sec rule ai-sec" id="software" aria-labelledby="sw-h">
         <div className="wrap">
           <div className="label"><span className="ix">03</span>Custom software</div>
-          <h2 className="h2" id="sw-h">We build the software too. <span className="mute">When owning it costs less than renting it.</span></h2>
+          <h2 className="h2" id="sw-h">We build the software too. <span className="mute">When owning it costs less than typical SaaS.</span></h2>
           <p className="lead">When a platform costs more than it&apos;s worth, or your team spends the day working around it, we build the version that fits how you work, connected to the tools you keep. The code, data, and accounts are in your company&apos;s name.</p>
           <div className="finds">
             <div><b>Built</b><span>Around your workflow: clients, jobs, projects, schedules, budgets and reporting, shaped to how you run.</span></div>
@@ -237,7 +237,7 @@ export default function AiImplementationPage() {
                 <div>
                   <span className="meta">When it pays</span>
                   <h4>Replace a platform</h4>
-                  <p>When owning costs less than renting, we rebuild it around how you work, migrate your data from the old tool, and train the team before launch. The tool report in discovery shows the math first.</p>
+                  <p>When owning costs less than the SaaS you pay for, we rebuild it around how you work, migrate your data from the old tool, and train the team before launch. The tool report in discovery shows the math first.</p>
                 </div>
               </div>
               <div className="ai-size">
