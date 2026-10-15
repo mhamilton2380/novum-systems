@@ -62,7 +62,7 @@
 .ai-tools { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .ai-tools span { padding: 16px 22px; border-bottom: 1px solid var(--line); font-size: 14.5px; color: var(--ink-2); }
 .ai-tools span:not(:nth-child(3n+1)) { border-left: 1px solid var(--line); }
-.ai-tools span.hub { color: var(--ink); font-weight: 500; background: linear-gradient(90deg, rgba(0,179,110,.10), rgba(59,111,224,.10)); }
+.ai-tools span.hub { color: var(--ink); font-weight: 500; background: rgba(0,179,110,.10); }
 .ai-runlog { padding: 6px 22px 4px; }
 .ai-runlog li { display: grid; grid-template-columns: 5.5em minmax(0, 1fr); gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 14.5px; color: var(--ink-2); }
 .ai-runlog li:last-child { border-bottom: 0; }
