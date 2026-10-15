@@ -174,10 +174,9 @@ export default function ResultsPage() {
           <div className="label"><span className="ix">07</span>Scope of this evidence</div>
           <h2 className="h2">What these results show, <span className="mute">and what they do not.</span></h2>
           <ul className="rs-scope" style={{ marginTop: 44 }}>
-            <li><b>Three clients</b><span>The results come from three engagements: the platform replacement and paperwork agents for a construction company, the investor platform for a real estate developer, and the data entry and client reporting agents for a bookkeeping firm. More results are added here as they are measured.</span></li>
             <li><b>Per-task times</b><span>The construction company&apos;s task figures are time per instance, before and after. Without monthly volumes there is no yearly hours or dollar total, and none is claimed.</span></li>
             <li><b>The bill</b><span>The construction company&apos;s platform cost $100,000 a year. They now pay only hosting, storage and security. The exact current cost is not published.</span></li>
-            <li><b>Human review</b><span>Every agent output is a draft. A project manager reviews, edits and sends, and nothing leaves the company without a person.</span></li>
+            <li><b>Human review</b><span>Every agent output is a draft. A person reviews and sends it: the project manager, the developer&apos;s team, or the bookkeeper. Nothing goes out without them.</span></li>
             <li><b>Ownership</b><span>In every engagement, code, data and accounts are in the client&apos;s name. If a client stopped working with Novum, nothing would break.</span></li>
           </ul>
         </div>
