@@ -1,6 +1,6 @@
 // What a fractional Chief AI Officer engagement covers. One engagement, sized to the company in
-// discovery; no named tiers on the site (decided 2026-10-13). The internal quoting ladder
-// (Growth / Pro / Enterprise) and prices live in novum-vault/CONTEXT.md.
+// discovery; no tiers anywhere (decided 2026-10-13, retired internally 2026-10-16). Each
+// client's fee comes from the pricing logic in novum-vault/CONTEXT.md.
 export type IncludedGroup = { group: string; items: string[] };
 
 export const INCLUDED: IncludedGroup[] = [

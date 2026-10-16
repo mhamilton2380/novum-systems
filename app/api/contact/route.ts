@@ -1,8 +1,6 @@
 // Contact form: store the lead in Supabase, then email a notification through Resend.
 import { clean, notify, saveLead, type Lead } from "@/lib/leads";
 
-const PLAN_NAMES: Record<string, string> = { growth: "Growth", pro: "Pro" };
-
 export async function POST(request: Request) {
   let body: Record<string, unknown>;
   try {
@@ -23,15 +21,13 @@ export async function POST(request: Request) {
     availability: clean(body.availability, 500),
     message: clean(body.message, 5000),
   };
-  const plan = PLAN_NAMES[clean(body.plan, 20)];
-  if (plan) lead.message = `AI OFFICER START: ${plan}, wants a discovery quote. 6-month minimum.\n\n${lead.message}`.slice(0, 5000);
   if (!lead.name || !lead.company || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(lead.email)) {
     return Response.json({ error: "Name, company, and a valid email are required." }, { status: 400 });
   }
 
   // If the database is down, the email below is the only copy, so the subject says so.
   const saved = await saveLead(lead);
-  const subject = plan ? `AI Officer sign-up, discovery requested, ${plan}: ${lead.company} (${lead.name})` : `New lead: ${lead.company} (${lead.name})`;
+  const subject = `New lead: ${lead.company} (${lead.name})`;
   await notify(lead, saved ? subject : `[NOT SAVED, only copy] ${subject}`);
   return Response.json({ ok: true });
 }
