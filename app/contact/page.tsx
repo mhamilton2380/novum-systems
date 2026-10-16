@@ -46,6 +46,9 @@ export default function ContactPage() {
             <h3>When you&apos;ll hear back</h3>
             <p>We reply the same business day, with a time that fits what you tell us in the form.</p>
 
+            <h3>Prefer email?</h3>
+            <p>Write to <a href="mailto:hello@thenovumai.com">hello@thenovumai.com</a>. Same reply, same day.</p>
+
             <h3>What to expect on the first call</h3>
             <ul className="ct-list">{FIRST_CALL.map((f) => <li key={f}>{f}</li>)}</ul>
           </div>
