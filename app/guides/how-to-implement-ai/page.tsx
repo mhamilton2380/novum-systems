@@ -39,6 +39,17 @@ const STEPS: { t: string; p: string; list?: string[] }[] = [
   },
 ];
 
+// Hero example: a work map for a sample 40-person distributor. Hours a week = times a week x minutes / 60.
+const MAP = [
+  { t: "Key emailed orders into the ERP", n: 220, m: 6, tag: "First build", k: "go", hit: true },
+  { t: "Match supplier invoices to POs", n: 180, m: 5, tag: "Next" },
+  { t: "Answer \"where's my order?\" calls", n: 150, m: 4, tag: "Next" },
+  { t: "Quote custom pricing", n: 25, m: 30, tag: "Assist only", k: "warn" },
+  { t: "Chase overdue invoices", n: 60, m: 5, tag: "Queue" },
+  { t: "Build the Monday sales report", n: 1, m: 180, tag: "Training" },
+];
+const hrs = (n: number, m: number) => { const h = (n * m) / 60; return Number.isInteger(h) ? `${h}` : h.toFixed(1); };
+
 const MISTAKES = [
   { h: "Tools with no training", p: "Seats get bought, a few people try them, and the time saved rounds to zero." },
   { h: "The wrong first task", p: "On work outside AI's strengths, one study found right answers fell from 84.5% to 60% to 70%, and the wrong ones read as more polished." },
@@ -62,11 +73,30 @@ export default function HowToImplementAiPage() {
       <JsonLd data={[breadcrumbJsonLd([{ name: "How to implement AI", path: PATH }]), articleJsonLd({ headline: TITLE, description: DESC, path: PATH, published: "2026-10-17" }), faqJsonLd(FAQ)]} />
 
       <section className="phero" aria-labelledby="gd-h1">
-        <div className="wrap">
+        <div className="wrap gd-hgrid">
+          <div>
           <div className="label">Guide</div>
           <h1 id="gd-h1">How to implement AI in a small business.</h1>
           <p className="lead">Five steps: map the work, set the rules, pick one first build, train the team on its own work, and keep every build measured. The order matters more than the tools. Teams handed AI with no training saved about 3% of their time; trained teams on the right tasks saved 25% to 56%.</p>
           <p className="gd-meta">Novum AI · Updated October 17, 2026</p>
+          </div>
+          <figure className="gd-doc" aria-label="Example work map for a sample 40-person distributor">
+            <div className="gd-doc-h"><span>Work map</span><span className="meta">Example · 40-person distributor</span></div>
+            <table>
+              <thead><tr><th scope="col">Repeat task</th><th scope="col" className="r hide-s">A week</th><th scope="col" className="r">Hours</th><th scope="col">Call</th></tr></thead>
+              <tbody>
+                {MAP.map((r) => (
+                  <tr key={r.t} className={r.hit ? "hit" : undefined}>
+                    <td>{r.t}<small>{r.m} min each</small></td>
+                    <td className="r hide-s">{r.n}</td>
+                    <td className="r">{hrs(r.n, r.m)}</td>
+                    <td><i className={`gd-tag${r.k ? ` ${r.k}` : ""}`}>{r.tag}</i></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <figcaption><span className="dot" /><span>First build: <b>order entry</b>. 22 hours a week, the same steps every time, quick to check.</span></figcaption>
+          </figure>
         </div>
       </section>
 

@@ -20,6 +20,14 @@ const DATA = [
   { d: "Restricted", e: "Health records, Social Security numbers, card numbers, anything a contract forbids", co: "Only where an approved agent is built for it", any: "Never" },
 ];
 
+// Hero example: an AI activity log for a sample company, the "sign-off log" a full policy adds.
+const LOG = [
+  { w: "Mon 9:12", a: "Agent drafted 14 renewal letters", d: "Client records, CRM", tag: "Approved", k: "go", by: "Sent by the account manager" },
+  { w: "Mon 11:40", a: "Assistant summarized a vendor contract", d: "Confidential, approved tool", tag: "Logged", by: "Internal only" },
+  { w: "Tue 8:05", a: "New tool requested: meeting notes app", d: "Vendor review", tag: "In review", by: "Policy owner" },
+  { w: "Tue 2:30", a: "Question: paste payroll data into a chatbot?", d: "Restricted", tag: "Answered", k: "warn", by: "No. Use the payroll system" },
+];
+
 const RULES = [
   "A person reviews anything AI drafts before it goes to a client, vendor, regulator or the public.",
   "Check facts, numbers and names. AI can be confidently wrong.",
@@ -62,11 +70,29 @@ export default function AiUsagePolicyPage() {
       <JsonLd data={[breadcrumbJsonLd([{ name: "AI usage policy template", path: PATH }]), articleJsonLd({ headline: TITLE, description: DESC, path: PATH, published: "2026-10-17" }), faqJsonLd(FAQ)]} />
 
       <section className="phero" aria-labelledby="gp-h1">
-        <div className="wrap">
+        <div className="wrap gd-hgrid">
+          <div>
           <div className="label">Guide · Free starter template</div>
           <h1 id="gp-h1">An AI usage policy your team will actually read.</h1>
           <p className="lead">An AI usage policy tells staff which AI tools to use, what company data can go into them, and who checks the output before it leaves the company. Below is a one-page starter you can copy. It is where every policy we write begins; the full version is built from your team, your systems and your industry&apos;s rules.</p>
           <p className="gd-meta">Novum AI · Updated October 17, 2026 · Not legal advice: have your counsel review it before you issue it.</p>
+          </div>
+          <figure className="gd-doc" aria-label="Example AI activity log for a sample company">
+            <div className="gd-doc-h"><span>AI activity log</span><span className="meta">Example week</span></div>
+            <table>
+              <thead><tr><th scope="col" className="hide-s">When</th><th scope="col">What the AI did</th><th scope="col">Status</th></tr></thead>
+              <tbody>
+                {LOG.map((r) => (
+                  <tr key={r.w}>
+                    <td className="hide-s nw">{r.w}</td>
+                    <td className="lead-cell">{r.a}<small>{r.d} · {r.by}</small></td>
+                    <td><i className={`gd-tag${r.k ? ` ${r.k}` : ""}`}>{r.tag}</i></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <figcaption><span className="dot" /><span>Every use logged: <b>the tool, the data, and who approved it.</b></span></figcaption>
+          </figure>
         </div>
       </section>
 
@@ -74,7 +100,8 @@ export default function AiUsagePolicyPage() {
         <div className="wrap">
           <div className="label"><span className="ix">01</span>The template</div>
           <h2 className="h2" id="gp-tpl-h">[Your company] AI use policy. <span className="mute">A starter: copy it, then fill in the brackets.</span></h2>
-          <article className="gp-doc" aria-label="AI usage policy template">
+          <article className="paper gp-doc" aria-label="AI usage policy template">
+            <div className="paper-h"><b>[Your company] AI use policy</b><span>Starter template · one page</span></div>
             <h3>Why we use AI</h3>
             <p>To take repetitive work off your plate so you can spend time on the work that needs you. AI helps you; you are still responsible for what goes out.</p>
             <h3>Approved tools</h3>

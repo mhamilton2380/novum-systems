@@ -39,11 +39,42 @@
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .gd-k { display: block; color: var(--ink-3); font-weight: 400; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; margin-top: 4px; }
 
-/* AI usage policy template: a paper document block. */
-.gp-doc { margin-top: clamp(40px, 5vw, 64px); max-width: 860px; border: 1px solid var(--line-2); border-radius: 6px; padding: clamp(24px, 4vw, 48px); background: rgba(255, 255, 255, 0.35); }
-.gp-doc h3 { font-size: clamp(18px, 1.5vw, 21px); font-weight: 500; letter-spacing: -0.02em; margin-top: 32px; }
-.gp-doc h3:first-child { margin-top: 0; }
+/* AI usage policy template: the site's paper document (.paper in nv.css) with room for long text. */
+.gp-doc { margin-top: clamp(40px, 5vw, 64px); max-width: 880px; min-height: 0; }
+.gp-doc h3 { font-size: clamp(18px, 1.5vw, 21px); font-weight: 500; letter-spacing: -0.02em; margin-top: 30px; }
+.gp-doc .paper-h + h3 { margin-top: 22px; }
 .gp-doc p, .gp-doc li { color: var(--ink-2); max-width: 44em; }
 .gp-doc p { margin-top: 8px; }
 .gp-doc ol { margin-top: 10px; padding-left: 22px; list-style: decimal; }
 .gp-doc ol li { padding-block: 4px; }
+
+/* Guide heroes: text left, one example document right (same panel as the AI Officer "Example week"). */
+.gd-hgrid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: end; }
+.gd-hgrid > * { min-width: 0; }
+.gd-hgrid h1 { max-width: 12em; }
+@media (max-width: 1020px) { .gd-hgrid { grid-template-columns: 1fr; } }
+.gd-doc { margin: 0; background: var(--raise); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.gd-doc-h { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; padding: 16px 22px; border-bottom: 1px solid var(--line); background: var(--raise-2); font-weight: 500; font-size: 15px; }
+.gd-doc table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.gd-doc th { text-align: left; font-weight: 500; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); padding: 12px 12px 8px 22px; }
+.gd-doc th.r, .gd-doc td.r { text-align: right; }
+.gd-doc td { padding: 12px 12px 12px 22px; border-top: 1px solid var(--line); font-size: 14px; color: var(--ink-2); vertical-align: top; }
+.gd-doc td:first-child { color: var(--ink); }
+.gd-doc td:last-child, .gd-doc th:last-child { padding-right: 22px; }
+.gd-doc td small { display: block; color: var(--ink-3); font-size: 12.5px; margin-top: 2px; }
+.gd-doc tr.hit td { background: rgba(0, 179, 110, .08); }
+.gd-doc tr.tot td { color: var(--ink); font-weight: 500; }
+.gd-tag { font-style: normal; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; color: var(--ink-3); }
+.gd-tag.go { color: var(--green-2); }
+.gd-tag.warn { color: #e0893a; }
+.gd-doc figcaption { display: flex; gap: 10px; align-items: center; padding: 14px 22px; font-size: 14px; color: var(--ink-2); border-top: 1px solid var(--line); }
+.gd-doc figcaption .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 10px rgba(59,111,224,.8); flex: none; }
+.gd-doc figcaption b { color: var(--ink); font-weight: 500; }
+@media (max-width: 560px) {
+  .gd-doc th, .gd-doc td { padding-left: 14px; padding-right: 8px; font-size: 13px; }
+  .gd-doc .hide-s { display: none; }
+}
+.gd-doc td.lead-cell { color: var(--ink); }
+.gd-doc td.nw, .gd-doc th.r { white-space: nowrap; }
+.gd-doc-h > span:first-child { white-space: nowrap; }
+@media (max-width: 560px) { .gd-doc-h { flex-wrap: wrap; gap: 4px 12px; padding: 14px 16px; } }

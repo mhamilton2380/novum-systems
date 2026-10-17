@@ -13,6 +13,17 @@ const DESC = "What AI implementation costs a small business: the six cost lines,
 
 export const metadata: Metadata = pageMetadata({ path: PATH, title: "What AI Implementation Costs, Line by Line · Novum AI", description: DESC });
 
+// Hero example: a tool and cost report for a sample 40-person company. Fictional monthly costs; no Novum prices.
+const TOOLS = [
+  { t: "Project management platform", d: "40 seats, price up every renewal", c: 3400, tag: "Replace", k: "go" },
+  { t: "AI add-ons in 3 programs", d: "9 of 40 seats used", c: 1800, tag: "Cut", k: "warn" },
+  { t: "CRM", d: "12 seats, retyped into accounting", c: 1080, tag: "Connect", k: "go" },
+  { t: "Document storage", d: "No search across files", c: 480, tag: "Connect", k: "go" },
+  { t: "Accounting software", d: "Works well", c: 290, tag: "Keep" },
+  { t: "Scheduling app", d: "Works well", c: 160, tag: "Keep" },
+];
+const usd = (n: number) => `$${n.toLocaleString("en-US")}`;
+
 const LINES = [
   { t: "Discovery and plan", b: "Mapping the work, auditing your tools, and writing the AI policy. Scales with team size, number of sites and number of programs.", k: "One time" },
   { t: "Training", b: "Sessions on the team's own tools and tasks. Scales with headcount and how many departments go live.", k: "Ongoing" },
@@ -67,11 +78,30 @@ export default function AiImplementationCostPage() {
       <JsonLd data={[breadcrumbJsonLd([{ name: "What AI implementation costs", path: PATH }]), articleJsonLd({ headline: TITLE, description: DESC, path: PATH, published: "2026-10-17" }), faqJsonLd(FAQ)]} />
 
       <section className="phero" aria-labelledby="gc-h1">
-        <div className="wrap">
+        <div className="wrap gd-hgrid">
+          <div>
           <div className="label">Guide</div>
           <h1 id="gc-h1">What AI implementation costs.</h1>
           <p className="lead">AI implementation cost comes down to six lines: the plan, training, builds, AI usage, upkeep and any software you replace. The AI itself is usually the smallest. An agent keys an invoice for about a cent. Most of the cost is the work around it: training, connecting systems and upkeep.</p>
           <p className="gd-meta">Novum AI · Updated October 17, 2026</p>
+          </div>
+          <figure className="gd-doc" aria-label="Example tool and cost report for a sample 40-person company">
+            <div className="gd-doc-h"><span>Tool and cost report</span><span className="meta">Example · 40 people</span></div>
+            <table>
+              <thead><tr><th scope="col">Tool</th><th scope="col" className="r">A month</th><th scope="col">Call</th></tr></thead>
+              <tbody>
+                {TOOLS.map((r) => (
+                  <tr key={r.t}>
+                    <td>{r.t}<small>{r.d}</small></td>
+                    <td className="r">{usd(r.c)}</td>
+                    <td><i className={`gd-tag${r.k ? ` ${r.k}` : ""}`}>{r.tag}</i></td>
+                  </tr>
+                ))}
+                <tr className="tot"><td>Total</td><td className="r">{usd(TOOLS.reduce((a, r) => a + r.c, 0))}</td><td /></tr>
+              </tbody>
+            </table>
+            <figcaption><span className="dot" /><span>Found: <b>$1,800 a month</b> in AI seats, 9 of 40 used.</span></figcaption>
+          </figure>
         </div>
       </section>
 
