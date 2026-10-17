@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { Brand } from "./Mark";
+import { USE_CASE_NAV } from "@/lib/nav";
 
 const COLS: { h: string; links: [string, string][] }[] = [
   { h: "AI implementation", links: [["/training", "Training"], ["/ai-implementation#agents", "Agents"], ["/ai-implementation#software", "Custom software"], ["/ai-officer", "AI Officer"]] },
   { h: "Company", links: [["/how-we-work", "How we work"], ["/case-studies", "Results"], ["/about", "About"], ["/contact", "Contact"]] },
-  { h: "Industries", links: [["/use-cases/accounting", "Accounting"], ["/use-cases/insurance", "Insurance"], ["/use-cases/wholesale-distribution", "Wholesale distribution"], ["/use-cases/manufacturing", "Manufacturing"], ["/use-cases", "All industries"]] },
-  { h: "Resources", links: [["/why-ai", "Why AI"], ["/assessment", "AI Readiness Score"]] },
+  { h: "Industries", links: [...USE_CASE_NAV.map((u): [string, string] => [`/use-cases/${u.slug}`, u.label]), ["/use-cases", "All industries"]] },
+  { h: "Resources", links: [["/guides/how-to-implement-ai", "How to implement AI"], ["/guides/ai-implementation-cost", "What AI implementation costs"], ["/why-ai", "Why AI"], ["/assessment", "AI Readiness Score"]] },
   { h: "Trust", links: [["/security", "Security and data"], ["/privacy", "Privacy"], ["/terms", "Terms"]] },
 ];
 

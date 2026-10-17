@@ -187,6 +187,7 @@ export default function HowWeWorkPage() {
             </svg>
             <p className="plooptxt">New builds and upgrades go back through step 03, tested on your data before they replace anything.</p>
           </div>
+          <p style={{ marginTop: 32 }}><Link className="link" href="/guides/how-to-implement-ai">Running it in-house? Read the 5-step plan <span aria-hidden="true">→</span></Link></p>
           <div className="first">
             <div><span className="meta">The first engagement</span><h3>Discovery</h3></div>
             <div>

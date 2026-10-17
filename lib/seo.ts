@@ -38,6 +38,8 @@ export const ORGANIZATION_JSONLD = {
       disambiguatingDescription: "Novum AI at thenovumai.com is an AI implementation firm for operational businesses. It is not affiliated with the AI receptionist, sales-coaching or Telegram bot products of the same name.",
       email: "hello@thenovumai.com",
       contactPoint: { "@type": "ContactPoint", contactType: "sales", email: "hello@thenovumai.com", url: `${SITE_URL}/contact` },
+      // Company profiles only. Never a person's profile (CONTEXT.md: Michael stays in the background).
+      sameAs: ["https://www.linkedin.com/company/thenovumai"],
       slogan: "You own all of it.",
       knowsAbout: [
         "AI implementation",
@@ -77,6 +79,22 @@ export function serviceJsonLd({ name, description, path, serviceType, audience }
     url: `${SITE_URL}${path}`,
     provider: { "@id": ORG_ID },
     ...(audience ? { audience: { "@type": "BusinessAudience", name: audience } } : {}),
+  };
+}
+
+// Guides: the company is the author until the CEO co-founder is named. No Person schema.
+export function articleJsonLd({ headline, description, path, published, modified }: { headline: string; description: string; path: string; published: string; modified?: string }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline,
+    description,
+    url: `${SITE_URL}${path}`,
+    mainEntityOfPage: `${SITE_URL}${path}`,
+    datePublished: published,
+    dateModified: modified ?? published,
+    author: { "@id": ORG_ID },
+    publisher: { "@id": ORG_ID },
   };
 }
 

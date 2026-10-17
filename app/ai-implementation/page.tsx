@@ -133,7 +133,11 @@ export default function AiImplementationPage() {
               <div key={e.n}><b>{e.n}</b><span>{e.t}</span><small>{e.s}</small></div>
             ))}
           </div>
-          <p style={{ marginTop: 24 }}><Link className="link" href="/why-ai">Read the research behind these numbers <span aria-hidden="true">→</span></Link></p>
+          <p style={{ marginTop: 24, display: "flex", flexWrap: "wrap", gap: "14px 32px" }}>
+            <Link className="link" href="/why-ai">Read the research behind these numbers <span aria-hidden="true">→</span></Link>
+            <Link className="link" href="/guides/how-to-implement-ai">How to implement AI: a 5-step plan <span aria-hidden="true">→</span></Link>
+            <Link className="link" href="/guides/ai-implementation-cost">What AI implementation costs <span aria-hidden="true">→</span></Link>
+          </p>
           <div className="ai-split">
             <ul className="mlist">
               {FORMATS.map((f) => <li key={f.b}><b>{f.b}</b><span>{f.s}</span></li>)}

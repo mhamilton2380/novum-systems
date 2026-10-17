@@ -5,6 +5,7 @@ import { ContactForm } from "@/components/nv/ContactForm";
 import { INCLUDED } from "@/lib/aiOfficerPlans";
 import { pageMetadata, breadcrumbJsonLd, serviceJsonLd, faqJsonLd } from "@/lib/seo";
 import "./ai-officer.css";
+import "../compare.css";
 
 export const metadata: Metadata = pageMetadata({
   path: "/ai-officer",
@@ -98,6 +99,17 @@ const LATE = [
 ];
 const WINDOWS = ["J. Ortiz · 2:00 to 4:00 PM", "R. Coleman · 3:00 to 5:00 PM", "B. Walsh · 3:30 to 5:30 PM", "M. Greene · 4:00 to 6:00 PM"];
 
+// Fair comparison: where each option wins is stated in its "Best when" row (TEAM-RULES: never trash an alternative).
+const OPTIONS_COLS = ["A Novum AI Officer", "A full-time hire", "A consultancy project", "Do it in-house"];
+const OPTIONS: { row: string; cells: string[] }[] = [
+  { row: "Best when", cells: ["Nobody's job is AI, and you want it run, built and trained", "You can keep a senior AI leader busy full time and can recruit one", "You need a strategy or one defined project", "Someone on staff has the time and skill to own it"] },
+  { row: "Who builds", cells: ["We do, in priority order, one live before the next starts", "The hire, or a team they recruit", "The consultancy, within the project scope", "Whoever has time that week"] },
+  { row: "Training", cells: ["Every month, on your own tools, in a library you keep", "Depends on the person", "Usually a handoff session at the end", "Help docs and trial and error"] },
+  { row: "Staying current", cells: ["New models tested on your work every month", "Yes, if it stays in their job", "Ends when the project ends", "Rarely anyone's job"] },
+  { row: "What it costs", cells: ["One engagement, sized in discovery", "An executive salary, benefits and a search", "Project fees, then nothing ongoing", "Staff time, plus a seat in every tool"] },
+  { row: "If it ends", cells: ["Code, data and accounts stay in your name", "Much of the know-how leaves with the person", "You keep the deliverables", "What was built stays where it was built"] },
+];
+
 const OWN = [
   { t: "The code", b: "Every agent, integration, and replacement, in a repository your company owns." },
   { t: "The data", b: "Every record, on accounts in your company's name, never used to train anyone's AI." },
@@ -113,6 +125,7 @@ const HONEST = [
 
 const FAQ = [
   { q: "What is a fractional Chief AI Officer?", a: "Most companies can't justify a full-time technical executive for AI. We fill the role part-time. We train your team, test new AI on your data, keep your systems running, and cut tools that don't earn their price." },
+  { q: "Should we hire a full-time Chief AI Officer or go fractional?", a: "Hire full time when you can keep a senior AI leader busy every week and can recruit one. Most companies without a technical team can't yet, so a fractional AI Officer runs the role part time: the roadmap, the builds, the training and the upkeep, with everything in your company's name." },
   { q: "How does it start?", a: "With a discovery. We map how your work moves, audit every tool you pay for, write your AI usage policy, train your team on its own work, and put your first build live on your data." },
   { q: "How is the engagement sized?", a: "In discovery, to your company: how many people, how many tools, and how much is in the build queue. Builds run in priority order. How many run at once is set in discovery, by the size of your team. It is one engagement covering everything on this page, not a menu of tiers." },
   { q: "Can we just buy one project?", a: "Yes. If you'd rather not keep us on, we scope a single build with you after discovery: an assistant, agents, integrations, or a platform replacement. You get the same training and you own the code, data, and accounts. Most clients keep us on for the upkeep and the builds that come after the first." },
@@ -164,11 +177,33 @@ export default function AiOfficerPage() {
         </div>
       </section>
 
-      {/* 02 Shadow AI */}
+      {/* 02 Your options */}
+      <section className="sec light" aria-labelledby="op-h">
+        <div className="wrap">
+          <div className="label"><span className="ix">02</span>Your options</div>
+          <h2 className="h2" id="op-h">Fractional, full-time, or a consultant? <span className="mute">What each one gets you.</span></h2>
+          <p className="lead">A fractional Chief AI Officer fits companies that need AI run, built and trained, but can&apos;t keep a full-time AI executive busy. Each option wins somewhere. Here is where.</p>
+          <div className="cmp-wrap">
+            <table className="cmp">
+              <thead><tr><th scope="col"><span className="sr-only">Compare</span></th>{OPTIONS_COLS.map((c, i) => <th scope="col" key={c} className={i === 0 ? "us" : undefined}>{c}</th>)}</tr></thead>
+              <tbody>
+                {OPTIONS.map((o) => (
+                  <tr key={o.row}>
+                    <td>{o.row}</td>
+                    {o.cells.map((c, i) => <td key={i} data-l={OPTIONS_COLS[i]} className={i === 0 ? "us" : undefined}>{c}</td>)}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* 03 Shadow AI */}
       <section className="sec light" aria-labelledby="sh-h">
         <div className="wrap ao-shadow">
           <div>
-            <div className="label"><span className="ix">02</span>Shadow AI</div>
+            <div className="label"><span className="ix">03</span>Shadow AI</div>
             <h2 className="h2" id="sh-h">Your team is probably already using AI on personal accounts.</h2>
             <p className="lead">The first fix is giving them a safe way to do it. We put these in place first, before any agent goes live.</p>
           </div>
@@ -182,10 +217,10 @@ export default function AiOfficerPage() {
         </div>
       </section>
 
-      {/* 03 The role */}
+      {/* 04 The role */}
       <section className="sec ao-sec" id="role" aria-labelledby="ro-h">
         <div className="wrap">
-          <div className="label"><span className="ix">03</span>The role</div>
+          <div className="label"><span className="ix">04</span>The role</div>
           <h2 className="h2" id="ro-h">What an AI Officer does. <span className="mute">Six jobs, all of them yours to hand off.</span></h2>
           <p className="lead">Sized to your company in discovery, run by one accountable lead.</p>
           <div className="gov">
@@ -194,10 +229,10 @@ export default function AiOfficerPage() {
         </div>
       </section>
 
-      {/* 04 The build queue */}
+      {/* 05 The build queue */}
       <section className="sec light ao-sec" id="queue" aria-labelledby="q-h">
         <div className="wrap">
-          <div className="label"><span className="ix">04</span>The build queue</div>
+          <div className="label"><span className="ix">05</span>The build queue</div>
           <h2 className="h2" id="q-h">Every request goes in one queue.</h2>
           <p className="lead">Agents, integrations and tools all run through one queue. Builds run in priority order. How many run at once is set in discovery, by the size of your team.</p>
           <div className="ao-queue">
@@ -218,11 +253,11 @@ export default function AiOfficerPage() {
         </div>
       </section>
 
-      {/* 05 Measured */}
+      {/* 06 Measured */}
       <section className="sec ao-sec" id="measured" aria-labelledby="me-h">
         <div className="wrap measured">
           <div>
-            <div className="label"><span className="ix">05</span>Measured</div>
+            <div className="label"><span className="ix">06</span>Measured</div>
             <h2 className="h2" id="me-h">Every agent is scored on your own cases.</h2>
             <p className="lead">Before launch, your experts define what a correct answer is and grade a set of real cases. The agent is scored against them. After that, nothing changes unless it scores better.</p>
             <ul className="mlist">
@@ -249,10 +284,10 @@ export default function AiOfficerPage() {
         </div>
       </section>
 
-      {/* 06 Staying current */}
+      {/* 07 Staying current */}
       <section className="sec rule ao-sec" id="current" aria-labelledby="cu-h">
         <div className="wrap">
-          <div className="label"><span className="ix">06</span>Staying current</div>
+          <div className="label"><span className="ix">07</span>Staying current</div>
           <h2 className="h2" id="cu-h">AI changes every few weeks. <span className="mute">Every month we test the new releases on your work.</span></h2>
           <p className="lead">A setup that was right in January is behind by summer. Most releases don&apos;t matter to your business, so we test the ones that do on your own work before anything changes.</p>
           <div className="pace">
@@ -266,10 +301,10 @@ export default function AiOfficerPage() {
         </div>
       </section>
 
-      {/* 07 Training */}
+      {/* 08 Training */}
       <section className="sec light ao-sec" id="training" aria-labelledby="tr-h">
         <div className="wrap">
-          <div className="label"><span className="ix">07</span>Training, every month</div>
+          <div className="label"><span className="ix">08</span>Training, every month</div>
           <h2 className="h2" id="tr-h">Your team learns each piece as it goes live.</h2>
           <p className="lead">A build nobody uses gets cancelled. So training is built in, on your own tools and workflows, and every session lands in a library your team keeps.</p>
           <div className="ao-split">
@@ -291,11 +326,11 @@ export default function AiOfficerPage() {
         </div>
       </section>
 
-      {/* 08 The assistant */}
+      {/* 09 The assistant */}
       <section className="sec ao-sec" id="assistant" aria-labelledby="as-h">
         <div className="wrap ao-split" style={{ marginTop: 0, alignItems: "center" }}>
           <div>
-            <div className="label"><span className="ix">08</span>The assistant</div>
+            <div className="label"><span className="ix">09</span>The assistant</div>
             <h2 className="h2" id="as-h">Ask a question the way your team would.</h2>
             <p className="lead">This exchange runs on a sample field service company. Yours answers from your own systems, cites the records it used, and only shows each person what their role allows.</p>
           </div>
@@ -324,10 +359,10 @@ export default function AiOfficerPage() {
         </div>
       </section>
 
-      {/* 09 What's included */}
+      {/* 10 What's included */}
       <section className="sec light ao-sec" id="included" aria-labelledby="in-h">
         <div className="wrap">
-          <div className="label"><span className="ix">09</span>What&apos;s included</div>
+          <div className="label"><span className="ix">10</span>What&apos;s included</div>
           <h2 className="h2" id="in-h">One role, sized to your company.</h2>
           <p className="lead">It starts with a discovery that ends with your first build live. From there, this is what your AI Officer covers.</p>
           <div className="ao-inc">
@@ -345,10 +380,10 @@ export default function AiOfficerPage() {
         </div>
       </section>
 
-      {/* 10 Ownership */}
+      {/* 11 Ownership */}
       <section className="sec" aria-labelledby="own-h">
         <div className="wrap">
-          <div className="label"><span className="ix">10</span>Ownership</div>
+          <div className="label"><span className="ix">11</span>Ownership</div>
           <h2 className="h2" id="own-h">Everything we build is yours.</h2>
           <p className="lead">Whether you keep us on or stop after one project, it all sits in your company&apos;s name.</p>
           <div className="caps4 sw4">
@@ -360,10 +395,10 @@ export default function AiOfficerPage() {
         </div>
       </section>
 
-      {/* 11 The honest part */}
+      {/* 12 The honest part */}
       <section className="sec rule" aria-labelledby="ho-h">
         <div className="wrap">
-          <div className="label"><span className="ix">11</span>The honest part</div>
+          <div className="label"><span className="ix">12</span>The honest part</div>
           <h2 className="h2" id="ho-h">What it asks of your team.</h2>
           <p className="lead">AI takes some effort from your people too. Here&apos;s how much.</p>
           <div className="finds" style={{ marginTop: "clamp(48px, 5vw, 72px)" }}>
@@ -372,10 +407,10 @@ export default function AiOfficerPage() {
         </div>
       </section>
 
-      {/* 12 Questions */}
+      {/* 13 Questions */}
       <section className="sec light" aria-labelledby="faq-h">
         <div className="wrap">
-          <div className="label"><span className="ix">12</span>Questions</div>
+          <div className="label"><span className="ix">13</span>Questions</div>
           <h2 className="h2" id="faq-h">What people ask first.</h2>
           <div className="ao-faq">
             {FAQ.map((f) => (

@@ -32,6 +32,8 @@ Key facts:
 
 ## Evidence and tools
 
+- [How to implement AI in a small business](https://www.thenovumai.com/guides/how-to-implement-ai): a 5-step plan: map the work, set the rules, pick one first build, train the team on its own work, keep it measured.
+- [What AI implementation costs](https://www.thenovumai.com/guides/ai-implementation-cost): the six cost lines, what moves the price, hidden costs, and how to compare quotes.
 - [Why AI](https://www.thenovumai.com/why-ai): what controlled studies and real companies measured about AI and the time work takes.
 - [Results](https://www.thenovumai.com/case-studies): three engagements, measured. A construction company replaced a $100,000-a-year platform with a system it owns. A real estate developer replaced a $60,000-a-year investor platform. A bookkeeping firm cut data entry by 95%.
 - [Free AI Readiness Score](https://www.thenovumai.com/assessment): 12 questions, a score out of 100, and an estimate of the hours on the table.
