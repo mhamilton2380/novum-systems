@@ -107,6 +107,7 @@ export default function HowToImplementAiPage() {
           <div className="gd-next">
             <Link className="link" href="/assessment">Score your company in 2 minutes <span aria-hidden="true">→</span></Link>
             <Link className="link" href="/guides/ai-implementation-cost">What AI implementation costs <span aria-hidden="true">→</span></Link>
+            <Link className="link" href="/guides/ai-usage-policy-template">Free AI usage policy template <span aria-hidden="true">→</span></Link>
             <Link className="link" href="/ai-implementation">How we implement AI <span aria-hidden="true">→</span></Link>
           </div>
         </div>

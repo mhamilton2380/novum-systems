@@ -38,3 +38,12 @@
 .gd-next { display: flex; flex-wrap: wrap; gap: 14px 32px; margin-top: 36px; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .gd-k { display: block; color: var(--ink-3); font-weight: 400; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; margin-top: 4px; }
+
+/* AI usage policy template: a paper document block. */
+.gp-doc { margin-top: clamp(40px, 5vw, 64px); max-width: 860px; border: 1px solid var(--line-2); border-radius: 6px; padding: clamp(24px, 4vw, 48px); background: rgba(255, 255, 255, 0.35); }
+.gp-doc h3 { font-size: clamp(18px, 1.5vw, 21px); font-weight: 500; letter-spacing: -0.02em; margin-top: 32px; }
+.gp-doc h3:first-child { margin-top: 0; }
+.gp-doc p, .gp-doc li { color: var(--ink-2); max-width: 44em; }
+.gp-doc p { margin-top: 8px; }
+.gp-doc ol { margin-top: 10px; padding-left: 22px; list-style: decimal; }
+.gp-doc ol li { padding-block: 4px; }
