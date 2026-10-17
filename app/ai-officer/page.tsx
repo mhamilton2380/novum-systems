@@ -8,8 +8,8 @@ import "./ai-officer.css";
 
 export const metadata: Metadata = pageMetadata({
   path: "/ai-officer",
-  title: "Fractional Chief AI Officer, Without the Hire · Novum AI",
-  description: "A part-time Chief AI Officer for companies with no one whose job is AI: every tool connected, a prioritized roadmap of agents and builds, each agent tested on your own work, and your team trained every month.",
+  title: "Fractional Chief AI Officer for Small Business · Novum AI",
+  description: "A fractional Chief AI Officer for companies with no one whose job is AI: every tool connected, agents tested on your work, your team trained every month.",
 });
 
 const WEEK = [

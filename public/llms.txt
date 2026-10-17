@@ -1,8 +1,8 @@
 # Novum AI
 
-> Novum AI implements AI in operational businesses of 15 to 100 people: training, agents, custom software, and a fractional Chief AI Officer. We teach your team, build the tools, connect your systems, and you own all of it: the code, the data, the accounts, and the training library are in the client's company name.
+> Novum AI implements AI in operational businesses with no one whose job is AI: training, agents, custom software, and a fractional Chief AI Officer. We teach your team, build the tools, connect your systems, and you own all of it: the code, the data, the accounts, and the training library are in the client's company name.
 
-Every engagement starts with a paid discovery, quoted in writing by company size and tools. It maps how the work moves, audits every tool and its cost (report within 7 days), writes an AI usage policy, trains the team on its own work, and puts the first build live on the client's own data. After discovery, clients choose a fractional Chief AI Officer plan (six-month minimum, then month to month) or a one-time project quoted in writing. Prices are quoted on a call, not published.
+Every engagement starts with a paid discovery, sized by company and tools. It maps how the work moves, audits every tool and its cost, writes an AI usage policy, trains the team on its own work, and puts the first build live on the client's own data. After discovery, most clients keep Novum as their fractional Chief AI Officer, one engagement sized in discovery; others choose a one-time project.
 
 Key facts:
 - No seats, no per-user licenses, no revenue share.
@@ -28,14 +28,16 @@ Key facts:
 - [AI for marketing agencies](https://www.thenovumai.com/use-cases/marketing-agencies)
 - [AI for manufacturers](https://www.thenovumai.com/use-cases/manufacturing)
 - [AI for wholesale distributors](https://www.thenovumai.com/use-cases/wholesale-distribution)
+- [AI for real estate brokerages](https://www.thenovumai.com/use-cases/real-estate-brokerage)
 
 ## Evidence and tools
 
 - [Why AI](https://www.thenovumai.com/why-ai): what controlled studies and real companies measured about AI and the time work takes.
-- [Case study](https://www.thenovumai.com/case-studies): a construction company replaced a $100,000-a-year software subscription with a system it owns.
+- [Results](https://www.thenovumai.com/case-studies): three engagements, measured. A construction company replaced a $100,000-a-year platform with a system it owns. A real estate developer replaced a $60,000-a-year investor platform. A bookkeeping firm cut data entry by 95%.
 - [Free AI Readiness Score](https://www.thenovumai.com/assessment): 12 questions, a score out of 100, and an estimate of the hours on the table.
 
 ## Company
 
-- [About](https://www.thenovumai.com/about): business owners and operators who put AI to work in their own company first.
+- [About](https://www.thenovumai.com/about): AI implementation, run by operators: map the work, build what pays, train the people.
+- [Security](https://www.thenovumai.com/security): hosted on SOC 2 Type 2 infrastructure, access by role, an audit log, and code, data and accounts in the client's name.
 - [Contact](https://www.thenovumai.com/contact): book a conversation.

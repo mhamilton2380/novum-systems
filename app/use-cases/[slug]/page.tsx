@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const u = getUseCase(slug);
   if (!u) return {};
   const seo = USE_CASE_SEO[u.slug];
-  return pageMetadata({ path: `/use-cases/${u.slug}`, title: `${seo ? seo.title : u.name} · Novum AI`, description: u.sub });
+  return pageMetadata({ path: `/use-cases/${u.slug}`, title: `${seo ? seo.title : u.name} · Novum AI`, description: seo?.description ?? u.sub });
 }
 
 export default async function UseCasePage({ params }: { params: Promise<{ slug: string }> }) {

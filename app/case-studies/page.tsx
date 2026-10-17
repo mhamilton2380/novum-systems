@@ -8,7 +8,7 @@ import "./case-studies.css";
 export const metadata: Metadata = pageMetadata({
   path: "/case-studies",
   title: "Results: Three Engagements, Measured · Novum AI",
-  description: "A construction company replaced a $100,000-a-year platform with a system it owns and cut routine project paperwork by 85 to 94% per task. A real estate developer replaced a $60,000-a-year investor platform. A bookkeeping firm cut data entry by 95%.",
+  description: "A construction company replaced a $100,000-a-year platform. A real estate developer replaced a $60,000 one. A bookkeeping firm cut data entry by 95%.",
 });
 
 const BEFORE = [

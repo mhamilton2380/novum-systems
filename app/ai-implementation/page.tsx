@@ -7,8 +7,8 @@ import "./ai-implementation.css";
 
 export const metadata: Metadata = pageMetadata({
   path: "/ai-implementation",
-  title: "AI Implementation Services: Training, Agents, Software · Novum AI",
-  description: "AI implementation across your company: your team trained in person, agents built on your data, software connected or replaced, and an AI Officer who keeps it current. You own all of it.",
+  title: "AI Implementation Services for Small Business · Novum AI",
+  description: "AI implementation consultants for small business: your team trained in person, agents built on your data, software connected or replaced. You own all of it.",
 });
 
 const TOC = [
@@ -105,7 +105,7 @@ export default function AiImplementationPage() {
         <div className="wrap">
           <div className="label">AI implementation</div>
           <h1 id="ai-h1">Every company has AI. We help yours use it on the real work.</h1>
-          <p className="lead">We train your teams in person, build agents on your data, connect your systems, replace software that no longer fits, and an AI Officer keeps everything current. You own all of it.</p>
+          <p className="lead">AI implementation means putting AI into the daily work: training the team on its own tools, building agents on the company&apos;s data, and connecting the systems it already runs. Novum does all of it for companies with no one whose job is AI. We also replace software that no longer fits, and an AI Officer keeps it current. You own all of it.</p>
           <div className="ctas">
             <Link className="btn" href="#contact">Start a conversation</Link>
             <Link className="btn ghost" href="#how">How an engagement runs</Link>

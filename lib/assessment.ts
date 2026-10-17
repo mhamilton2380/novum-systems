@@ -92,7 +92,7 @@ export function flagsFor(a: Answers): Flag[] {
   if (idx(a, "ai_owner") === 0)
     out.push({ id: 6, title: "Nobody owns AI", fix: "A fractional Chief AI Officer",
       text: "Nobody's job is to make AI work here, so it doesn't happen.",
-      writeup: "AI improves where it's someone's job. Most companies of 15 to 100 people can't justify a full-time hire for it, so they use a fractional Chief AI Officer: someone who owns the plan, builds the tools, and keeps the team trained." });
+      writeup: "AI improves where it's someone's job. Most companies without a technical team can't justify a full-time hire for it, so they use a fractional Chief AI Officer: someone who owns the plan, builds the tools, and keeps the team trained." });
   if (idx(a, "software_spend") === 0 || (idx(a, "unused_seats") >= 0 && idx(a, "unused_seats") <= 1))
     out.push({ id: 7, title: "Unknown software spend", fix: "A tool and cost audit",
       text: "You're likely paying for software nobody uses. Most companies can't say what their stack costs.",

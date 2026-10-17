@@ -7,7 +7,7 @@ import { Legal, PH, type LegalSection } from "@/components/nv/lg/Legal";
 export const metadata: Metadata = pageMetadata({
   path: "/terms",
   title: "Terms · Novum AI",
-  description: "Terms for using the Novum AI website and the AI Readiness Score. Draft pending legal review.",
+  description: "Terms for using the Novum AI website and the free AI Readiness Score, including what the score is and is not. Draft pending legal review.",
 });
 
 const SECTIONS: LegalSection[] = [

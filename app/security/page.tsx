@@ -7,7 +7,7 @@ import "./security.css";
 export const metadata: Metadata = pageMetadata({
   path: "/security",
   title: "Security and Data · Novum AI",
-  description: "Hosted on SOC 2 Type 2 infrastructure. Encrypted data, access by role, an audit log, human approval before anything is sent, filed or paid, and code, data and accounts in your name.",
+  description: "Hosted on SOC 2 Type 2 infrastructure. Encrypted data, access by role, an audit log, a person approving what goes out, and everything in your name.",
 });
 
 const CONTROLS = [

@@ -46,7 +46,7 @@ export function FitPanel() {
           <div className="ab-fit-dots" aria-hidden="true">
             {Array.from({ length: 100 }).map((_, i) => <span key={i} className={i < 15 ? "core" : ""} style={{ ["--i" as string]: i }} />)}
           </div>
-          <strong>15 to 100 people</strong>
+          <strong>15 people and up</strong>
           <p>Operational businesses that know AI matters and don&apos;t know how to put it to work day to day. Usually no CTO, and nobody whose job is AI.</p>
         </div>
         <div className="ab-fit-right">

@@ -7,7 +7,7 @@ import "./training.css";
 
 export const metadata: Metadata = pageMetadata({
   path: "/training",
-  title: "AI Training for Teams, On Your Own Work · Novum AI",
+  title: "AI Training for Employees, On Your Own Work · Novum AI",
   description: "Hands-on AI training on your team's own tools and data: live sessions every month, a recorded library you keep, and an on-site training day when you want one.",
 });
 

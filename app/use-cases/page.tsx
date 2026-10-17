@@ -10,7 +10,7 @@ import "./use-cases.css";
 export const metadata: Metadata = pageMetadata({
   path: "/use-cases",
   title: "AI Use Cases by Industry: Agents and Training · Novum AI",
-  description: "How Novum puts AI to work in construction, field services, legal, accounting, insurance, healthcare, agencies, manufacturing, wholesale distribution, and real estate brokerage.",
+  description: "AI agents, training and custom software for ten industries, from construction, legal and accounting to insurance, manufacturing and distribution.",
 });
 
 export default function UseCasesPage() {
