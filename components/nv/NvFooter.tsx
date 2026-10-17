@@ -6,7 +6,7 @@ const COLS: { h: string; links: [string, string][] }[] = [
   { h: "AI implementation", links: [["/training", "Training"], ["/ai-implementation#agents", "Agents"], ["/ai-implementation#software", "Custom software"], ["/ai-officer", "AI Officer"]] },
   { h: "Company", links: [["/how-we-work", "How we work"], ["/case-studies", "Results"], ["/about", "About"], ["/contact", "Contact"]] },
   { h: "Industries", links: [...USE_CASE_NAV.map((u): [string, string] => [`/use-cases/${u.slug}`, u.label]), ["/use-cases", "All industries"]] },
-  { h: "Resources", links: [["/guides/how-to-implement-ai", "How to implement AI"], ["/guides/ai-implementation-cost", "What AI implementation costs"], ["/guides/ai-usage-policy-template", "AI usage policy template"], ["/why-ai", "Why AI"], ["/assessment", "AI Readiness Score"]] },
+  { h: "Resources", links: [["/guides/how-to-implement-ai", "How to implement AI"], ["/guides/ai-implementation-cost", "What AI implementation costs"], ["/guides/ai-usage-policy-template", "AI usage policy starter"], ["/why-ai", "Why AI"], ["/assessment", "AI Readiness Score"]] },
   { h: "Trust", links: [["/security", "Security and data"], ["/privacy", "Privacy"], ["/terms", "Terms"]] },
 ];
 

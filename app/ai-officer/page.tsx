@@ -206,7 +206,7 @@ export default function AiOfficerPage() {
             <div className="label"><span className="ix">03</span>Shadow AI</div>
             <h2 className="h2" id="sh-h">Your team is probably already using AI on personal accounts.</h2>
             <p className="lead">The first fix is giving them a safe way to do it. We put these in place first, before any agent goes live.</p>
-            <p style={{ marginTop: 24 }}><Link className="link" href="/guides/ai-usage-policy-template">Free AI usage policy template <span aria-hidden="true">→</span></Link></p>
+            <p style={{ marginTop: 24 }}><Link className="link" href="/guides/ai-usage-policy-template">Free AI usage policy starter <span aria-hidden="true">→</span></Link></p>
           </div>
           <div className="paper" aria-label="Before and after: AI use without and with guardrails">
             <div className="paper-h"><b>AI use at your company</b><span>Before and after</span></div>
