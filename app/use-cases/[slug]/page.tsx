@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { USE_CASES, getUseCase } from "@/lib/useCases";
 import { NORMAL_DAY, GOV_NOTE, firmHours } from "@/lib/nv/useCaseExtras";
+import { SCENARIOS } from "@/lib/nv/useCaseScenarios";
 import { JsonLd } from "@/components/JsonLd";
 import { ContactForm } from "@/components/nv/ContactForm";
 import { pageMetadata, breadcrumbJsonLd, serviceJsonLd, USE_CASE_SEO } from "@/lib/seo";
@@ -28,6 +29,9 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
   const audience = USE_CASE_SEO[u.slug]?.audience ?? u.name.toLowerCase();
   const gov = GOV_NOTE[u.slug];
   const total = firmHours(u.departments);
+  const scenarios = SCENARIOS[u.slug] ?? [];
+  const n = (i: number) => String(i).padStart(2, "0");
+  let ix = 2;
 
   return (
     <main>
@@ -90,9 +94,33 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
         </div>
       </section>
 
+      {scenarios.length > 0 && (
+        <section className="sec light">
+          <div className="wrap">
+            <div className="label"><span className="ix">{n(++ix)}</span>What it catches</div>
+            <h2 className="h2">Ten jobs, ten catches. <span className="mute">The kind that cost real money when missed.</span></h2>
+            <ol className="uc-sc">
+              {scenarios.map((sc, i) => (
+                <li key={sc.title}>
+                  <div className="uc-sc-h">
+                    <span className="uc-sc-no">{n(i + 1)}</span>
+                    <span className="meta">{sc.dept}</span>
+                  </div>
+                  <h3>{sc.title}</h3>
+                  <p>{sc.ai}</p>
+                  <div className="uc-sc-catch"><div className="meta">What it catches</div><p>{sc.catch}</p></div>
+                  <div className="uc-sc-who"><div className="meta">Who approves</div><p>{sc.person}</p></div>
+                </li>
+              ))}
+            </ol>
+            <p className="fine">Illustrations of typical work in this industry, not client records. Results are measured in discovery.</p>
+          </div>
+        </section>
+      )}
+
       <section className="sec rule">
         <div className="wrap">
-          <div className="label"><span className="ix">03</span>The first build</div>
+          <div className="label"><span className="ix">{n(++ix)}</span>The first build</div>
           <h2 className="h2">The first build worth making.</h2>
           <div className="first">
             <div>
@@ -109,7 +137,7 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
 
       <section className="sec light">
         <div className="wrap">
-          <div className="label"><span className="ix">04</span>Your systems</div>
+          <div className="label"><span className="ix">{n(++ix)}</span>Your systems</div>
           <h2 className="h2">What it connects to.</h2>
           <p className="lead">Agents work inside the tools your team already runs. Tools named here are common in {audience}; yours may differ.</p>
           <ul className="uc-tools">{u.tools.map((t) => <li key={t}>{t}</li>)}</ul>
@@ -129,7 +157,7 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
 
       <section className="sec rule">
         <div className="wrap">
-          <div className="label"><span className="ix">05</span>Governance</div>
+          <div className="label"><span className="ix">{n(++ix)}</span>Governance</div>
           <h2 className="h2">Controls for {audience}, <span className="mute">in place before launch.</span></h2>
           <div className="gov">
             {gov && <div><h4>{gov.h}</h4><p>{gov.p}</p></div>}
@@ -141,7 +169,7 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
 
       <section className="sec light">
         <div className="wrap">
-          <div className="label"><span className="ix">06</span>How an engagement starts</div>
+          <div className="label"><span className="ix">{n(++ix)}</span>How an engagement starts</div>
           <div className="uc-start">
             <div>
               <h2 className="h2">Map before we build.</h2>

@@ -41,6 +41,25 @@
 .uc-total b { font-weight: 500; color: var(--ink); }
 .uc-total .fine { margin-top: 8px; }
 
+/* what it catches: ten scenarios in a hairline grid, two across */
+.uc-sc { margin-top: clamp(40px, 4vw, 60px); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line-2); list-style: none; padding: 0; }
+.uc-sc li { padding: 30px clamp(20px, 3vw, 44px) 32px 0; border-bottom: 1px solid var(--line); display: grid; grid-template-rows: subgrid; grid-row: span 5; row-gap: 12px; align-content: start; }
+.uc-sc li:nth-child(2n) { padding-left: clamp(20px, 3vw, 44px); padding-right: 0; border-left: 1px solid var(--line); }
+.uc-sc-h { display: flex; align-self: start; gap: 14px; align-items: baseline; }
+.uc-sc-no { color: var(--ink-3); font-size: 14px; font-variant-numeric: tabular-nums; }
+.uc-sc h3 { align-self: start; font-size: clamp(20px, 1.8vw, 25px); letter-spacing: -0.03em; line-height: 1.15; font-weight: 500; }
+.uc-sc li > p { align-self: start; color: var(--ink-2); font-size: 15px; line-height: 1.55; max-width: 36em; }
+.uc-sc-catch { margin-top: 4px; padding-top: 14px; align-self: start; border-top: 1px solid var(--line); display: grid; gap: 6px; }
+.uc-sc-catch .meta { color: var(--green-2); }
+.uc-sc-catch p { color: var(--ink); font-size: 17px; line-height: 1.45; letter-spacing: -0.01em; font-weight: 500; max-width: 32em; }
+.uc-sc-who { align-self: end; display: grid; gap: 4px; }
+.uc-sc-who p { font-size: 14px; color: var(--ink-2); }
+.uc-sc + .fine { margin-top: 24px; }
+@media (max-width: 900px) {
+  .uc-sc { grid-template-columns: 1fr; }
+  .uc-sc li, .uc-sc li:nth-child(2n) { padding: 26px 0 28px; border-left: 0; }
+}
+
 /* first build */
 .uc-fa { display: grid; gap: 22px; }
 .uc-fa .meta { margin-bottom: 8px; }
