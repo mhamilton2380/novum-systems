@@ -201,11 +201,11 @@ export default function AiImplementationPage() {
           <div className="ai-sub">
             <div className="intro">
               <span className="meta">Where to start</span>
-              <h3>The first agent worth building.</h3>
-              <p>Discovery finds the high-volume, repeatable work where AI is proven. Typical first agents:</p>
+              <h3>The first build worth making.</h3>
+              <p>Discovery finds the high-volume, repeatable work where AI is proven. Typical first builds:</p>
             </div>
             <table className="ptable">
-              <thead><tr><th>Company</th><th>First agent</th><th>What it does</th></tr></thead>
+              <thead><tr><th>Company</th><th>First build</th><th>What it does</th></tr></thead>
               <tbody>
                 {COMPANY_TYPES.map((c) => (
                   <tr key={c.name}><td>{c.name}</td><td>{c.agent}</td><td>{c.does}</td></tr>

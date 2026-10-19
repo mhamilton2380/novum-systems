@@ -123,14 +123,14 @@ export default function TrainingPage() {
         <div className="wrap">
           <div className="label"><span className="ix">03</span>Built from your work</div>
           <h2 className="h2" id="tr-types-h">Your tools. Your workflows.</h2>
-          <p className="lead">Every session uses the work your team already does, so a law firm and a distributor practice on different things. Four examples of what a team practices on, and the first agent worth building.</p>
+          <p className="lead">Every session uses the work your team already does, so a law firm and a distributor practice on different things. Four examples of what a team practices on, and the first build worth making.</p>
           <div className="caps4 tr-types">
             {TYPES.map((t) => (
               <div className="cap" key={t.name}>
                 <span className="meta">Your team practices on</span>
                 <h3>{t.name}</h3>
                 <ul>{t.tasks.map((x) => <li key={x}>{x}</li>)}</ul>
-                <p className="tr-agent"><span className="meta">First agent worth building</span>{t.agent}</p>
+                <p className="tr-agent"><span className="meta">First build worth building</span>{t.agent}</p>
               </div>
             ))}
           </div>

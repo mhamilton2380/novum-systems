@@ -92,8 +92,8 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
 
       <section className="sec rule">
         <div className="wrap">
-          <div className="label"><span className="ix">03</span>The first agent</div>
-          <h2 className="h2">The first agent worth building.</h2>
+          <div className="label"><span className="ix">03</span>The first build</div>
+          <h2 className="h2">The first build worth making.</h2>
           <div className="first">
             <div>
               <div className="meta">Start here</div>
@@ -145,7 +145,7 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
           <div className="uc-start">
             <div>
               <h2 className="h2">Map before we build.</h2>
-              <p className="lead">Every engagement starts with a discovery: we map how the work moves, report on every tool and what it costs, write the AI usage policy, train the team and put the first agent to work.</p>
+              <p className="lead">Every engagement starts with a discovery: we map how the work moves, report on every tool and what it costs, write the AI usage policy, train the team and put the first build to work.</p>
               <div className="uc-links">
                 <Link className="link" href="/how-we-work">How we work <span aria-hidden="true">→</span></Link>
                 <Link className="link" href="/training">AI training on your own work <span aria-hidden="true">→</span></Link>

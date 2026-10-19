@@ -64,7 +64,7 @@ export function CompanyTypes() {
         </ul>
         <div className="pv-types-agent" style={{ ["--i" as string]: 3 }}>
           <span className="oc-role-icon"><Icon name="bot" size={18} /></span>
-          <div><small>First agent worth building</small><strong>{t.agent}</strong></div>
+          <div><small>First build worth building</small><strong>{t.agent}</strong></div>
         </div>
       </div>
     </div>

@@ -41,7 +41,7 @@
 .uc-total b { font-weight: 500; color: var(--ink); }
 .uc-total .fine { margin-top: 8px; }
 
-/* first agent */
+/* first build */
 .uc-fa { display: grid; gap: 22px; }
 .uc-fa .meta { margin-bottom: 8px; }
 
