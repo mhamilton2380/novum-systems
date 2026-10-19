@@ -57,7 +57,7 @@ const STEPS = [
     key: "build",
     title: "Build and connect",
     line: "Agents and tools, wired together.",
-    tag: "One live before the next starts",
+    tag: "In parallel, each on its own clock",
     body: "Agents, an AI assistant, and integrations with the tools you keep. A person approves anything before it leaves the company.",
   },
   {

@@ -62,14 +62,14 @@ const OFFICER_JOBS = [
   { h: "Tests new AI on your data", p: "New models and tools tried on your own work as they ship. You adopt the ones that pay off." },
   { h: "Audits your tools each quarter", p: "Every tool and what it costs, with a call on each: keep, connect, or cut." },
   { h: "Keeps training going", p: "Monthly sessions on your tools, office hours, and a new lesson in your library." },
-  { h: "Works the build queue", p: "A prioritized roadmap of agents, integrations and tools, reviewed monthly with your sponsor. Builds run in priority order. How many run at once is set in discovery, by the size of your team." },
+  { h: "Works the build queue", p: "A prioritized roadmap of agents, integrations and tools, reviewed monthly with your sponsor. Builds run in parallel, each on its own clock, and your proposal sets the dates." },
   { h: "Reports every month", p: "Hours saved, adoption, and what comes next." },
 ];
 
 const STEPS = [
   { n: "01", title: "Map the work", line: "How the work actually moves.", body: "We sit with the people who do the work and map each step. Steps that shouldn't exist get cut before anything is automated.", tag: "Where everyone starts" },
   { n: "02", title: "Tool report and AI policy", line: "Every tool, every rule.", body: "Every tool you pay for and what it costs, with a call on each one, plus a written AI usage policy.", tag: "Keep, connect, replace, or cut" },
-  { n: "03", title: "Build", line: "Agents and tools, wired together.", body: "Agents, an AI assistant, and integrations with the tools you keep. A person approves anything before it is sent, filed or paid. Live calls follow rules you set.", tag: "One live before the next starts" },
+  { n: "03", title: "Build", line: "Agents and tools, wired together.", body: "Agents, an AI assistant, and integrations with the tools you keep. A person approves anything before it is sent, filed or paid. Live calls follow rules you set.", tag: "In parallel, each on its own clock" },
   { n: "04", title: "Train the team", line: "Your team learns on its own work.", body: "Your team practices on the tasks they do every week, so what gets built gets used. Written guides stay with them afterward.", tag: "Hands-on, on your data" },
   { n: "05", title: "Keep it current", line: "An AI Officer keeps it current.", body: "Your AI Officer maintains everything we build, tests new AI on your data, audits your tools each quarter, and keeps training going.", tag: "Ongoing" },
 ];

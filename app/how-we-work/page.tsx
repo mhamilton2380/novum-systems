@@ -51,8 +51,8 @@ const DISCOVERY: Step[] = [
   {
     n: "03",
     title: "Build",
-    tag: "One live before the next starts",
-    body: "We build what the map calls for, highest impact first. Each piece is live and in use before the next starts. Before any agent launches, the person who owns that work defines what a correct answer is, and the agent is scored on your real cases.",
+    tag: "In parallel, each on its own clock",
+    body: "We build what the map calls for, highest impact first, with several pieces in progress at once. Connecting tools usually takes days to a few weeks, an agent a few weeks, and custom software goes live module by module over a few months. Before any agent launches, the person who owns that work defines what a correct answer is, and the agent is scored on your real cases.",
     branches: [
       { b: "Custom software", s: "Where a platform no longer fits. Your data migrated, so your history comes with you." },
       { b: "Connect your tools", s: "The tools you keep, wired together so data entered once shows up everywhere." },
@@ -114,7 +114,7 @@ const HANDOFF = [
 const FAQ = [
   { q: "Can we just book training?", a: "Yes. A training day is five hours, tailored to your company type, and you can request one without a discovery. Many teams start there and add an AI Officer once they see what to build." },
   { q: "Do we have to replace our software?", a: "No. Most clients keep the tools that work. We connect them and put AI on top. We only rebuild a platform when owning it costs less than the subscription." },
-  { q: "How long until we see something working?", a: "Discovery ends with your first build live on your own data. After that, work ships in phases, so your team is using each piece before the next starts." },
+  { q: "How long until we see something working?", a: "Discovery ends with your first build live on your own data. After that, work runs in parallel, each on its own clock: connecting the tools you keep usually takes days to a few weeks, an agent on repeat work a few weeks, and custom software goes live module by module over a few months. Your proposal sets the dates." },
   { q: "Who from our side needs to be involved?", a: "A sponsor who sets priorities, the people who do the work in each team in scope, a named owner for each build, and whoever runs your systems. A senior lead from our side runs the engagement from the first conversation on." },
   { q: "If you replace a platform, what happens to our data?", a: "We move it. Migration is part of the work, so your history comes with you." },
   { q: "What if we stop working with you?", a: "The hosting accounts are in your company's name, so the system keeps running and you keep paying the host directly. What stops is our support. Hire another developer, or bring us back." },

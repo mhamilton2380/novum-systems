@@ -46,7 +46,7 @@ export function BuildQueue() {
           {!queue.length && <div className="pv-q-empty">Add the next one anytime</div>}
         </div>
         <div className="pv-q-col pv-q-work">
-          <div className="pv-q-h">In progress<em>One at a time</em></div>
+          <div className="pv-q-h">In progress<em>In parallel</em></div>
           {working.map((it) => (
             <div className="pv-q-item on" key={it.t}>
               <span className="pv-q-ic"><Icon name={it.icon} size={16} /></span>
@@ -62,7 +62,7 @@ export function BuildQueue() {
           ))}
         </div>
       </div>
-      <p className="pv-q-foot">Each build is live and your team is trained on it before the next one starts. Bigger projects, like replacing a platform, go live in steps.</p>
+      <p className="pv-q-foot">Builds run in parallel, each on its own clock. Custom software goes live module by module.</p>
     </div>
   );
 }
