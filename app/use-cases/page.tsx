@@ -36,7 +36,7 @@ export default function UseCasesPage() {
           <h2 className="h2">Ten industries, <span className="mute">one method.</span></h2>
           <p className="lead">Each page is a sector brief: the situation, the work AI takes on, what gets connected and what gets replaced and what manual work goes away, and how an engagement starts.</p>
           <div className="uc-index" role="list">
-            <div className="uc-head" aria-hidden="true"><span>No.</span><span>Industry and where AI helps</span><span>Repeat work it carries</span><span>Hours back a week</span><span /></div>
+            <div className="uc-head" aria-hidden="true"><span>No.</span><span>Industry and where AI helps</span><span>Repeat work it carries</span><span>Repeat work a week</span><span /></div>
             {USE_CASES.map((u, i) => (
               <Link key={u.slug} href={`/use-cases/${u.slug}`} className="uc-row" role="listitem">
                 <span className="uc-no">{String(i + 1).padStart(2, "0")}</span>
@@ -45,12 +45,12 @@ export default function UseCasesPage() {
                   <span className="uc-sub">{u.headline}.</span>
                 </div>
                 <span className="uc-work">{REPEAT_WORK[u.slug]}</span>
-                {(() => { const h = industryHours(u.slug); return <span className="uc-hrs">{h ? `${h.total} hrs` : ""}<small>{h ? `${h.perOffice.toFixed(1)} per ${u.slug === "real-estate-brokerage" ? "person" : "office employee"}` : ""}</small><small>firm of about 120, after training</small></span>; })()}
+                {(() => { const h = industryHours(u.slug); const t = h ? Math.round((h.agents.today + h.catches.today) / 10) * 10 : 0; return <span className="uc-hrs">{h ? `${t} hrs` : ""}<small>{h ? `of repeat work a week, about ${Math.round(t / h.week)} full-time people` : ""}</small><small>firm of about 120</small></span>; })()}
                 <span className="uc-go" aria-hidden="true">→</span>
               </Link>
             ))}
           </div>
-          <p className="uc-note">Hours back for a firm of about 120 people, counted on office staff only (BLS staffing patterns, May 2025; real estate counts agents too). Each page shows the method: agents on department work, the checks they run, and the team&apos;s own use of AI after training, with time-saved rates from studies of people using AI on similar work (Noy and Zhang 2023; Harvard and BCG 2023; Brynjolfsson, Li and Raymond 2023; St. Louis Fed 2025) and our own estimate for data entry. Your own figures are measured in discovery.</p>
+          <p className="uc-note">Hours a week of repeat work agents can take the first pass on, for a firm of about 120 people, counted on office staff only (BLS staffing patterns, May 2025; real estate counts agents too). On work we build, our clients cut the time 85 to 95%. Each page shows the work by department, and the most cautious math from published studies. Your own figures are measured in discovery.</p>
         </div>
       </section>
 

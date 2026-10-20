@@ -78,7 +78,7 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
           <h2 className="h2">Where AI takes the hours back. <span className="mute">A person still decides.</span></h2>
           <table className="uc-dt">
             <thead>
-              <tr><th scope="col">Department</th><th scope="col">Repeat work</th><th scope="col">What AI does</th><th scope="col">A person still</th><th scope="col">Hours back a week</th></tr>
+              <tr><th scope="col">Department</th><th scope="col">Repeat work</th><th scope="col">What AI does</th><th scope="col">A person still</th><th scope="col">Hours a week today</th></tr>
             </thead>
             <tbody>
               {u.departments.map((d) => (
@@ -89,7 +89,7 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
                   <td data-l="A person still">{d.person}</td>
                   {(() => {
                     const h = hrs?.depts.find((x) => x.dept === d.dept);
-                    return <td data-l="Hours back a week" className="n">{h ? Math.round(h.back) : ""}{h && <small>of {Math.round(h.today)} today</small>}</td>;
+                    return <td data-l="Hours a week today" className="n">{h ? Math.round(h.today) : ""}</td>;
                   })()}
                 </tr>
               ))}
@@ -97,25 +97,36 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
           </table>
           {hrs && (
             <div className="uc-total">
-              <p><b>About {hrs.total} hours a week across the firm</b>, or {hrs.perOffice.toFixed(1)} per {unit}, once everyone uses AI after training. Agents alone return about {Math.round((hrs.agents.back + hrs.catches.back) / 10) * 10}.</p>
-              <div className="uc-how">
-                <div className="meta">How we count it</div>
+              <div className="uc-two">
+                <div>
+                  <div className="meta">Repeat work in a {FIRM}-person firm</div>
+                  <p className="uc-big">{Math.round((hrs.agents.today + hrs.catches.today) / 10) * 10} hours <span>every week, on the work in the table above</span></p>
+                  <p>That is about {Math.round((hrs.agents.today + hrs.catches.today) / hrs.week)} full-time people reading, keying, checking and chasing the same kinds of work every week. Agents take the first pass on all of it, and a person approves.</p>
+                </div>
+                <div>
+                  <div className="meta">What our clients cut</div>
+                  <p className="uc-big">85 to 95% <span>less time on the work we build</span></p>
+                  <p>A construction company: bank draw applications went from 10 hours to 1.5, submittal reviews from 4 hours to 15 minutes. A 15-person bookkeeping firm: data entry down 95%. Your numbers are measured in discovery, on your own work.</p>
+                </div>
+              </div>
+              <details className="uc-how">
+                <summary>The most cautious version, and how we count it</summary>
                 <table className="uc-lay">
-                  <thead><tr><th scope="col">Where the hours come from</th><th scope="col">Hours today</th><th scope="col">Hours back</th></tr></thead>
+                  <thead><tr><th scope="col">Where the hours come from</th><th scope="col">Hours spent now</th><th scope="col">Hours saved</th></tr></thead>
                   <tbody>
-                    <tr><th scope="row">Agents on the department work above</th><td>{Math.round(hrs.agents.today)}</td><td>{Math.round(hrs.agents.back)}</td></tr>
-                    <tr><th scope="row">The checks in &ldquo;What it catches&rdquo; below, {hrs.catches.counted} of ten counted (the rest sit inside a department row)</th><td>{Math.round(hrs.catches.today)}</td><td>{Math.round(hrs.catches.back)}</td></tr>
-                    <tr><th scope="row">Your team&apos;s own use of AI after training, if everyone uses it: {hrs.office} {u.slug === "real-estate-brokerage" ? "agents and staff" : "office staff"} at {hrs.week} hours a week, less the hours above, times {(OWN_USE_RATE * 100).toFixed(1)}%</th><td>{Math.round(hrs.ownUse.base)}</td><td>{Math.round(hrs.ownUse.back)}</td></tr>
-                    <tr className="uc-lay-t"><th scope="row">Total, rounded to the nearest 10</th><td /><td>{hrs.total}</td></tr>
+                    <tr><th scope="row">Agents on the department work in the table above</th><td>{Math.round(hrs.agents.today)}</td><td>{Math.round(hrs.agents.back)}</td></tr>
+                    <tr><th scope="row">The checks in &ldquo;What it catches&rdquo; below ({hrs.catches.counted} of ten; the rest are already inside a department row)</th><td>{Math.round(hrs.catches.today)}</td><td>{Math.round(hrs.catches.back)}</td></tr>
+                    <tr><th scope="row">Everyday AI use by the whole team after training: {hrs.office} {u.slug === "real-estate-brokerage" ? "agents and staff" : "office staff"} at {hrs.week} hours a week, minus the work above, saving {(OWN_USE_RATE * 100).toFixed(1)}% (the average measured across workers who use AI)</th><td>{Math.round(hrs.ownUse.base)}</td><td>{Math.round(hrs.ownUse.back)}</td></tr>
+                    <tr className="uc-lay-t"><th scope="row">Total hours saved a week, rounded</th><td /><td>{hrs.total}</td></tr>
                   </tbody>
                 </table>
-                <p className="fine">That is about {Math.round((hrs.perOffice / hrs.week) * 100)}% of each {unit}&apos;s week. Professionals surveyed by Thomson Reuters expect about 5 hours a week (<a href={SOURCES.tr.url} target="_blank" rel="noopener noreferrer">2025</a>).</p>
+                <p className="fine">The most cautious math: published study averages, spread across everyone in the firm, including people who barely use AI. Even at those rates the firm gets back about {hrs.total} hours a week. Work rebuilt around an agent saves far more, as the client results above show. Professionals surveyed by Thomson Reuters expect about 5 hours a week (<a href={SOURCES.tr.url} target="_blank" rel="noopener noreferrer">2025</a>).</p>
                 <p className="fine">{u.slug === "real-estate-brokerage" ? `${OFFICE[u.slug].basis}.` : `Office staff: ${hrs.office} of ${FIRM}. ${OFFICE[u.slug].basis} (BLS staffing patterns, May 2025). Field crews, clinicians and floor staff are not counted.`}</p>
                 <ul className="uc-rates">
                   {(Object.keys(RATES) as (keyof typeof RATES)[]).map((k) => (
                     <li key={k}><b>{pct(RATES[k].rate)}</b> {RATES[k].what}. <a href={SOURCES[RATES[k].src].url} target="_blank" rel="noopener noreferrer">{SOURCES[RATES[k].src].label}</a></li>
                   ))}
-                  <li><b>{(OWN_USE_RATE * 100).toFixed(1)}%</b> Workers who use AI save this share of their hours. <a href={SOURCES.stlfed.url} target="_blank" rel="noopener noreferrer">{SOURCES.stlfed.label}</a>. In a UK government trial, 20,000 staff given Copilot reported 26 minutes a day, about the same (<a href={SOURCES.ukgov.url} target="_blank" rel="noopener noreferrer">2025</a>). A study of 25,000 Danish workers found 2.8% (<a href={SOURCES.humlum.url} target="_blank" rel="noopener noreferrer">Humlum and Vestergaard, 2025</a>), so this line is the one most likely to run lower.</li>
+                  <li><b>{(OWN_USE_RATE * 100).toFixed(1)}%</b> Workers who use AI save this share of their hours. <a href={SOURCES.stlfed.url} target="_blank" rel="noopener noreferrer">{SOURCES.stlfed.label}</a>. In a UK government trial, 20,000 staff given Copilot reported 26 minutes a day, about the same (<a href={SOURCES.ukgov.url} target="_blank" rel="noopener noreferrer">2025</a>). A study of 25,000 Danish workers found 2.8% (<a href={SOURCES.humlum.url} target="_blank" rel="noopener noreferrer">Humlum and Vestergaard, 2025</a>).</li>
                 </ul>
                 <details className="uc-inputs">
                   <summary>Inputs by department and check</summary>
@@ -128,8 +139,8 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
                     ))}
                   </ul>
                 </details>
-                <p className="fine">The writing, review and customer service rates come from studies of people using AI on similar work; the data entry rate is our estimate. Vendors report larger savings; we count the study rates. AI also does worse on some work (in the Harvard and BCG study, accuracy fell 19 points on tasks outside its range), which is why a person reviews everything. Hours today are our estimate, measured in discovery on your own work. Hours are the value of staff time, counted before the cost of the agents.</p>
-              </div>
+                <p className="fine">AI also does worse on some work (in the Harvard and BCG study, accuracy fell 19 points on tasks outside its range), which is why a person reviews everything. Hours are the value of staff time, counted before the cost of the agents.</p>
+              </details>
             </div>
           )}
         </div>
