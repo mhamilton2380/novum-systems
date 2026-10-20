@@ -45,7 +45,7 @@ export default function UseCasesPage() {
                   <span className="uc-sub">{u.headline}.</span>
                 </div>
                 <span className="uc-work">{REPEAT_WORK[u.slug]}</span>
-                {(() => { const h = industryHours(u.slug); const t = h ? Math.round((h.agents.today + h.catches.today) / 10) * 10 : 0; return <span className="uc-hrs">{h ? `${t} hrs` : ""}<small>{h ? `of repeat work a week, about ${Math.round(t / h.week)} full-time people` : ""}</small><small>firm of about 120</small></span>; })()}
+                {(() => { const h = industryHours(u.slug); const t = h ? Math.round((h.agents.today + h.catches.today) / 10) * 10 : 0; return <span className="uc-hrs">{h ? `${t} hrs a week` : ""}<small>{h ? `repeat work, about ${Math.round(t / h.week)} people` : ""}</small><small>firm of about 120</small></span>; })()}
                 <span className="uc-go" aria-hidden="true">→</span>
               </Link>
             ))}
