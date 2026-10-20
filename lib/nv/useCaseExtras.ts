@@ -52,11 +52,6 @@ export const GOV_NOTE: Record<string, { h: string; p: string }> = {
   "field-services": { h: "Customer and equipment records", p: "Equipment history is searchable by address, so a technician can read it before a callback. Agreements and payment records are limited to the office." },
 };
 
-/** Firm-level weekly hours from the department rows, rounded to the nearest 10. */
-export function firmHours(rows: { hrs: number }[]) {
-  return Math.round(rows.reduce((t, r) => t + r.hrs, 0) / 10) * 10;
-}
-
 function minutes(s: string) {
   const n = parseFloat(s);
   return /hr/.test(s) ? n * 60 : n;

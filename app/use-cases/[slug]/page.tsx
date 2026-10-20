@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { USE_CASES, getUseCase } from "@/lib/useCases";
-import { NORMAL_DAY, GOV_NOTE, firmHours } from "@/lib/nv/useCaseExtras";
+import { NORMAL_DAY, GOV_NOTE } from "@/lib/nv/useCaseExtras";
+import { industryHours, RATES, SOURCES, OWN_USE_RATE, OFFICE, FIRM } from "@/lib/nv/hoursModel";
 import { SCENARIOS } from "@/lib/nv/useCaseScenarios";
 import { JsonLd } from "@/components/JsonLd";
 import { ContactForm } from "@/components/nv/ContactForm";
@@ -28,7 +29,11 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
   const others = USE_CASES.filter((o) => o.slug !== u.slug);
   const audience = USE_CASE_SEO[u.slug]?.audience ?? u.name.toLowerCase();
   const gov = GOV_NOTE[u.slug];
-  const total = firmHours(u.departments);
+  const hrs = industryHours(u.slug);
+  const pct = (x: number) => `${Math.round(x * 100)}%`;
+  const srcLabel = (k: string | null) =>
+    k && SOURCES[k] ? <>Our estimate, using <a href={SOURCES[k].url} target="_blank" rel="noopener noreferrer">{SOURCES[k].label}</a></> : "Our estimate, measured in discovery";
+  const unit = OFFICE[u.slug]?.unit ?? "office employee";
   const scenarios = SCENARIOS[u.slug] ?? [];
   const n = (i: number) => String(i).padStart(2, "0");
   let ix = 2;
@@ -73,7 +78,7 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
           <h2 className="h2">Where AI takes the hours back. <span className="mute">A person still decides.</span></h2>
           <table className="uc-dt">
             <thead>
-              <tr><th scope="col">Department</th><th scope="col">Repeat work</th><th scope="col">What AI does</th><th scope="col">A person still</th><th scope="col">Hours a week</th></tr>
+              <tr><th scope="col">Department</th><th scope="col">Repeat work</th><th scope="col">What AI does</th><th scope="col">A person still</th><th scope="col">Hours back a week</th></tr>
             </thead>
             <tbody>
               {u.departments.map((d) => (
@@ -82,15 +87,51 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
                   <td data-l="Repeat work">{d.work}</td>
                   <td data-l="What AI does">{d.ai}</td>
                   <td data-l="A person still">{d.person}</td>
-                  <td data-l="Hours a week" className="n">{d.hrs}</td>
+                  {(() => {
+                    const h = hrs?.depts.find((x) => x.dept === d.dept);
+                    return <td data-l="Hours back a week" className="n">{h ? Math.round(h.back) : ""}{h && <small>of {Math.round(h.today)} today</small>}</td>;
+                  })()}
                 </tr>
               ))}
             </tbody>
           </table>
-          <div className="uc-total">
-            <p><b>About {total} hours a week across the firm</b> go back to work that needs a person.</p>
-            <p className="fine">Our estimate for a firm of about 120 people, measured in discovery. Hours are the value of staff time, counted before the cost of the agents.</p>
-          </div>
+          {hrs && (
+            <div className="uc-total">
+              <p><b>About {hrs.total} hours a week across the firm</b>, or {hrs.perOffice.toFixed(1)} per {unit}, once everyone uses AI after training. Agents alone return about {Math.round((hrs.agents.back + hrs.catches.back) / 10) * 10}.</p>
+              <div className="uc-how">
+                <div className="meta">How we count it</div>
+                <table className="uc-lay">
+                  <thead><tr><th scope="col">Where the hours come from</th><th scope="col">Hours today</th><th scope="col">Hours back</th></tr></thead>
+                  <tbody>
+                    <tr><th scope="row">Agents on the department work above</th><td>{Math.round(hrs.agents.today)}</td><td>{Math.round(hrs.agents.back)}</td></tr>
+                    <tr><th scope="row">The checks in &ldquo;What it catches&rdquo; below, {hrs.catches.counted} of ten counted (the rest sit inside a department row)</th><td>{Math.round(hrs.catches.today)}</td><td>{Math.round(hrs.catches.back)}</td></tr>
+                    <tr><th scope="row">Your team&apos;s own use of AI after training, if everyone uses it: {hrs.office} {u.slug === "real-estate-brokerage" ? "agents and staff" : "office staff"} at {hrs.week} hours a week, less the hours above, times {(OWN_USE_RATE * 100).toFixed(1)}%</th><td>{Math.round(hrs.ownUse.base)}</td><td>{Math.round(hrs.ownUse.back)}</td></tr>
+                    <tr className="uc-lay-t"><th scope="row">Total, rounded to the nearest 10</th><td /><td>{hrs.total}</td></tr>
+                  </tbody>
+                </table>
+                <p className="fine">That is about {Math.round((hrs.perOffice / hrs.week) * 100)}% of each {unit}&apos;s week. Professionals surveyed by Thomson Reuters expect about 5 hours a week (<a href={SOURCES.tr.url} target="_blank" rel="noopener noreferrer">2025</a>).</p>
+                <p className="fine">{u.slug === "real-estate-brokerage" ? `${OFFICE[u.slug].basis}.` : `Office staff: ${hrs.office} of ${FIRM}. ${OFFICE[u.slug].basis} (BLS staffing patterns, May 2025). Field crews, clinicians and floor staff are not counted.`}</p>
+                <ul className="uc-rates">
+                  {(Object.keys(RATES) as (keyof typeof RATES)[]).map((k) => (
+                    <li key={k}><b>{pct(RATES[k].rate)}</b> {RATES[k].what}. <a href={SOURCES[RATES[k].src].url} target="_blank" rel="noopener noreferrer">{SOURCES[RATES[k].src].label}</a></li>
+                  ))}
+                  <li><b>{(OWN_USE_RATE * 100).toFixed(1)}%</b> Workers who use AI save this share of their hours. <a href={SOURCES.stlfed.url} target="_blank" rel="noopener noreferrer">{SOURCES.stlfed.label}</a>. In a UK government trial, 20,000 staff given Copilot reported 26 minutes a day, about the same (<a href={SOURCES.ukgov.url} target="_blank" rel="noopener noreferrer">2025</a>). A study of 25,000 Danish workers found 2.8% (<a href={SOURCES.humlum.url} target="_blank" rel="noopener noreferrer">Humlum and Vestergaard, 2025</a>), so this line is the one most likely to run lower.</li>
+                </ul>
+                <details className="uc-inputs">
+                  <summary>Inputs by department and check</summary>
+                  <ul>
+                    {hrs.depts.map((d) => (
+                      <li key={d.dept}><b>{d.dept}:</b> {d.people} people, {d.hrsEach} hours a week each. {d.basis} <span className="mute">{srcLabel(d.src)}.</span></li>
+                    ))}
+                    {hrs.catches.items.map((c) => (
+                      <li key={c.title}><b>{c.title}:</b> {c.overlap ? `counted in ${c.overlap} above.` : `${c.hrsToday} hours a week today. ${c.basis}`} {!c.overlap && <span className="mute">{srcLabel(c.src)}.</span>}</li>
+                    ))}
+                  </ul>
+                </details>
+                <p className="fine">The writing, review and customer service rates come from studies of people using AI on similar work; the data entry rate is our estimate. Vendors report larger savings; we count the study rates. AI also does worse on some work (in the Harvard and BCG study, accuracy fell 19 points on tasks outside its range), which is why a person reviews everything. Hours today are our estimate, measured in discovery on your own work. Hours are the value of staff time, counted before the cost of the agents.</p>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 

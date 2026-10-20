@@ -1,0 +1,1262 @@
+{
+ "construction": {
+  "departments": [
+   {
+    "dept": "Project management",
+    "people": 12,
+    "hrsEach": 6.5,
+    "kind": "review",
+    "basis": "12 project managers and assistants: 30 submittals a week at 1.5 hours, 15 owner reports at 1 hour, 12 RFI drafts at 1.5 hours",
+    "src": null
+   },
+   {
+    "dept": "Accounting",
+    "people": 8,
+    "hrsEach": 10,
+    "kind": "entry",
+    "basis": "8 accounting staff: 150 subcontractor invoices at 12 minutes, 15 pay application packages at 1.5 hours, 100 lien waivers at 17 minutes a week",
+    "src": "payapps"
+   },
+   {
+    "dept": "Estimating",
+    "people": 6,
+    "hrsEach": 12,
+    "kind": "review",
+    "basis": "6 estimators: 8 bids a week, about 4 hours of scope review and 5 hours of leveling per bid",
+    "src": null
+   },
+   {
+    "dept": "Field operations",
+    "people": 8,
+    "hrsEach": 6,
+    "kind": "draft",
+    "basis": "8 superintendents and field coordinators: 15 jobs, daily reports at 20 minutes, 15 safety checklists at 1 hour, 8 hours of photo logs a week",
+    "src": null
+   },
+   {
+    "dept": "Contracts and risk",
+    "people": 5,
+    "hrsEach": 7.7,
+    "kind": "draft",
+    "basis": "5 contracts and risk staff: 6 subcontracts at 2 hours, 100 insurance certificate checks at 10 minutes, 40 change order log entries at 15 minutes a week",
+    "src": null
+   }
+  ],
+  "scenarios": [
+   {
+    "title": "Takeoff, model and estimate from the bid set",
+    "hrsToday": 18,
+    "kind": "review",
+    "overlap": null,
+    "basis": "6 takeoffs a week at about 3 hours each",
+    "src": null
+   },
+   {
+    "title": "Bid leveling sub quotes line by line",
+    "hrsToday": 0,
+    "kind": "review",
+    "overlap": "Estimating",
+    "basis": "Already counted in the Estimating department row.",
+    "src": null
+   },
+   {
+    "title": "Scope gaps between sub bids and the spec book",
+    "hrsToday": 0,
+    "kind": "review",
+    "overlap": "Estimating",
+    "basis": "Already counted in the Estimating department row.",
+    "src": null
+   },
+   {
+    "title": "Closeout checked against Division 01",
+    "hrsToday": 6,
+    "kind": "review",
+    "overlap": null,
+    "basis": "3 closeout checks a week at 2 hours each",
+    "src": null
+   },
+   {
+    "title": "Bid packages built from drawings and specs",
+    "hrsToday": 8,
+    "kind": "draft",
+    "overlap": null,
+    "basis": "8 bid packages a week at 1 hour each",
+    "src": null
+   },
+   {
+    "title": "Drawings, model and spec book disagree",
+    "hrsToday": 0,
+    "kind": "review",
+    "overlap": "Estimating",
+    "basis": "Already counted in the Estimating department row.",
+    "src": null
+   },
+   {
+    "title": "Submittal review against the spec section",
+    "hrsToday": 0,
+    "kind": "review",
+    "overlap": "Project management",
+    "basis": "Already counted in the Project management department row.",
+    "src": null
+   },
+   {
+    "title": "RFIs and change orders tied to the contract",
+    "hrsToday": 0,
+    "kind": "draft",
+    "overlap": "Project management",
+    "basis": "Already counted in the Project management department row.",
+    "src": null
+   },
+   {
+    "title": "Pay apps, lien waivers and retainage",
+    "hrsToday": 0,
+    "kind": "review",
+    "overlap": "Accounting",
+    "basis": "Already counted in the Accounting department row.",
+    "src": null
+   },
+   {
+    "title": "Sub insurance read before they mobilize",
+    "hrsToday": 0,
+    "kind": "review",
+    "overlap": "Contracts and risk",
+    "basis": "Already counted in the Contracts and risk department row.",
+    "src": null
+   }
+  ]
+ },
+ "field-services": {
+  "departments": [
+   {
+    "dept": "Dispatch and customer service",
+    "people": 8,
+    "hrsEach": 17.5,
+    "kind": "service",
+    "basis": "8 dispatchers and customer service reps: 120 jobs a day, about 3.5 contacts per job (book, confirm, arrival or status) at 4 minutes each, 5 days",
+    "src": null
+   },
+   {
+    "dept": "Technicians",
+    "people": 5,
+    "hrsEach": 9,
+    "kind": "draft",
+    "basis": "5 comfort advisors and service managers: 60 repair quotes a week at 25 minutes, 120 service history lookups at 10 minutes",
+    "src": null
+   },
+   {
+    "dept": "Billing",
+    "people": 5,
+    "hrsEach": 10,
+    "kind": "entry",
+    "basis": "5 billing staff: 400 job invoices a week at 5 minutes, 25 warranty claims at 40 minutes",
+    "src": null
+   },
+   {
+    "dept": "Service agreements",
+    "people": 2,
+    "hrsEach": 8.3,
+    "kind": "draft",
+    "basis": "2 service agreement staff: 200 reminder and renewal messages a week at 5 minutes each",
+    "src": null
+   },
+   {
+    "dept": "Operations management",
+    "people": 2,
+    "hrsEach": 6,
+    "kind": "review",
+    "basis": "2 operations managers: weekly callback and first-time-fix report, about 6 hours each",
+    "src": null
+   }
+  ],
+  "scenarios": [
+   {
+    "title": "Maintenance contracts checked against the work done",
+    "hrsToday": 4,
+    "kind": "review",
+    "overlap": null,
+    "basis": "40 commercial agreements checked a week at 6 minutes each",
+    "src": null
+   },
+   {
+    "title": "Unsold estimates followed up",
+    "hrsToday": 8,
+    "kind": "draft",
+    "overlap": null,
+    "basis": "60 open estimates a week followed up at 8 minutes each",
+    "src": null
+   },
+   {
+    "title": "Tech notes into complete invoices",
+    "hrsToday": 0,
+    "kind": "draft",
+    "overlap": "Billing",
+    "basis": "Already counted in the Billing department row.",
+    "src": null
+   },
+   {
+    "title": "Install permits closed out",
+    "hrsToday": 2.5,
+    "kind": "review",
+    "overlap": null,
+    "basis": "15 installs a week, 10 minutes each to confirm permit status",
+    "src": null
+   },
+   {
+    "title": "Replacement quotes with rebate paperwork",
+    "hrsToday": 5,
+    "kind": "entry",
+    "overlap": null,
+    "basis": "10 sold installs a week at 30 minutes of rebate paperwork each",
+    "src": null
+   },
+   {
+    "title": "Warranty registrations and parts claims filed on time",
+    "hrsToday": 0,
+    "kind": "entry",
+    "overlap": "Billing",
+    "basis": "Already counted in the Billing department row.",
+    "src": null
+   },
+   {
+    "title": "Supplier invoices matched to job POs",
+    "hrsToday": 8,
+    "kind": "entry",
+    "overlap": null,
+    "basis": "80 supplier invoices a week at 6 minutes each",
+    "src": null
+   },
+   {
+    "title": "Property manager work orders become jobs",
+    "hrsToday": 5,
+    "kind": "entry",
+    "overlap": null,
+    "basis": "60 property manager work orders a week at 5 minutes each",
+    "src": null
+   },
+   {
+    "title": "Tech licenses and certifications tracked",
+    "hrsToday": 1.5,
+    "kind": "review",
+    "overlap": null,
+    "basis": "30 technicians, license and certification dates checked at about 3 minutes each a week",
+    "src": null
+   },
+   {
+    "title": "Callbacks traced to the cause",
+    "hrsToday": 0,
+    "kind": "review",
+    "overlap": "Operations management",
+    "basis": "Already counted in the Operations management department row.",
+    "src": null
+   }
+  ]
+ },
+ "legal": {
+  "departments": [
+   {
+    "dept": "Litigation",
+    "people": 35,
+    "hrsEach": 8,
+    "kind": "review",
+    "basis": "35 litigators and paralegals: 25 transcripts at 3 hours, 10 document productions at 15 hours, 250 court notices docketed at 13 minutes a week",
+    "src": null
+   },
+   {
+    "dept": "Transactional",
+    "people": 25,
+    "hrsEach": 7,
+    "kind": "draft",
+    "basis": "25 transactional lawyers and paralegals: 36 first drafts at 2 hours, 16 closing checklists at 2.5 hours, 90 redline summaries at 42 minutes a week",
+    "src": null
+   },
+   {
+    "dept": "Billing",
+    "people": 22,
+    "hrsEach": 4,
+    "kind": "review",
+    "basis": "22 billing staff and billing partners: 130 pre-bills at 20 minutes, 135 unbilled-time follow-ups at 20 minutes a week",
+    "src": null
+   },
+   {
+    "dept": "Client service",
+    "people": 12,
+    "hrsEach": 5,
+    "kind": "draft",
+    "basis": "12 client service staff: 180 matter status letters a week at 20 minutes each",
+    "src": null
+   },
+   {
+    "dept": "Intake and conflicts",
+    "people": 6,
+    "hrsEach": 8,
+    "kind": "review",
+    "basis": "6 intake staff: 45 new matters at 30 minutes of conflict checking, 45 engagement letters at 34 minutes a week",
+    "src": null
+   }
+  ],
+  "scenarios": [
+   {
+    "title": "Conflicts check across every name in the file",
+    "hrsToday": 0,
+    "kind": "review",
+    "overlap": "Intake and conflicts",
+    "basis": "Already counted in the Intake and conflicts department row.",
+    "src": null
+   },
+   {
+    "title": "Discovery documents coded and a privilege log drafted",
+    "hrsToday": 0,
+    "kind": "review",
+    "overlap": "Litigation",
+    "basis": "Already counted in the Litigation department row.",
+    "src": null
+   },
+   {
+    "title": "Deadlines calculated from every new filing",
+    "hrsToday": 0,
+    "kind": "review",
+    "overlap": "Litigation",
+    "basis": "Already counted in the Litigation department row.",
+    "src": null
+   },
+   {
+    "title": "Redlines compared turn by turn",
+    "hrsToday": 0,
+    "kind": "review",
+    "overlap": "Transactional",
+    "basis": "Already counted in the Transactional department row.",
+    "src": null
+   },
+   {
+    "title": "Due diligence across the data room",
+    "hrsToday": 16,
+    "kind": "review",
+    "overlap": null,
+    "basis": "2 data room reviews a week at 8 hours each",
+    "src": null
+   },
+   {
+    "title": "Research memo drafted with checked citations",
+    "hrsToday": 24,
+    "kind": "draft",
+    "overlap": null,
+    "basis": "8 research memos a week at 3 hours each",
+    "src": null
+   },
+   {
+    "title": "Pre-bills checked against OCG billing guidelines",
+    "hrsToday": 0,
+    "kind": "review",
+    "overlap": "Billing",
+    "basis": "Already counted in the Billing department row.",
+    "src": null
+   },
+   {
+    "title": "Matter status updates drafted weekly",
+    "hrsToday": 0,
+    "kind": "draft",
+    "overlap": "Client service",
+    "basis": "Already counted in the Client service department row.",
+    "src": null
+   },
+   {
+    "title": "Trust account and retainer reconciliation",
+    "hrsToday": 5,
+    "kind": "review",
+    "overlap": null,
+    "basis": "6 trust accounts, about 5 hours a week of reconciliation",
+    "src": null
+   },
+   {
+    "title": "Litigation hold tracking per custodian",
+    "hrsToday": 6,
+    "kind": "review",
+    "overlap": null,
+    "basis": "40 open holds, about 9 minutes a week each",
+    "src": null
+   }
+  ]
+ },
+ "accounting": {
+  "departments": [
+   {
+    "dept": "Tax",
+    "people": 24,
+    "hrsEach": 6.1,
+    "kind": "entry",
+    "basis": "24 tax staff: 69 returns a week at 90 minutes of keying, 514 document follow-ups at 5 minutes (90 minutes per return comes from one CPA firm's case study)",
+    "src": "brief-accounting"
+   },
+   {
+    "dept": "Client accounting services",
+    "people": 35,
+    "hrsEach": 8.1,
+    "kind": "entry",
+    "basis": "35 bookkeepers: 9,600 transactions at 34 seconds, 1,371 bills at 4 minutes, 34 month-end closes at 3 hours a week",
+    "src": null
+   },
+   {
+    "dept": "Review",
+    "people": 20,
+    "hrsEach": 7,
+    "kind": "review",
+    "basis": "20 reviewers: about 140 hours a week of first-pass return review, roughly 55 returns at 2.5 hours in season-average terms",
+    "src": null
+   },
+   {
+    "dept": "Audit and assurance",
+    "people": 16,
+    "hrsEach": 7.5,
+    "kind": "review",
+    "basis": "16 audit and assurance staff: tie-outs, request lists and confirmations, about 120 hours a week",
+    "src": null
+   },
+   {
+    "dept": "Firm administration",
+    "people": 8,
+    "hrsEach": 5.6,
+    "kind": "draft",
+    "basis": "8 administrators: weekly work in progress reports for 10 partners at 2 hours each, and 25 engagement letters at 1 hour",
+    "src": null
+   }
+  ],
+  "scenarios": [
+   {
+    "title": "Engagement letter matched to the actual scope",
+    "hrsToday": 4,
+    "kind": "review",
+    "overlap": null,
+    "basis": "60 clients, engagement letters spot-checked against work logged at about 4 minutes a week each",
+    "src": null
+   },
+   {
+    "title": "K-1s and 1099s keyed straight from the PDF",
+    "hrsToday": 0,
+    "kind": "entry",
+    "overlap": "Tax",
+    "basis": "Already counted in the Tax department row.",
+    "src": null
+   },
+   {
+    "title": "Organizer compared to last year's return",
+    "hrsToday": 0,
+    "kind": "review",
+    "overlap": "Tax",
+    "basis": "Already counted in the Tax department row.",
+    "src": null
+   },
+   {
+    "title": "PBC list chased until it is complete",
+    "hrsToday": 0,
+    "kind": "review",
+    "overlap": "Audit and assurance",
+    "basis": "Already counted in the Audit and assurance department row.",
+    "src": null
+   },
+   {
+    "title": "Bank feed coded with a reason on every line",
+    "hrsToday": 0,
+    "kind": "entry",
+    "overlap": "Client accounting services",
+    "basis": "Already counted in the Client accounting services department row.",
+    "src": null
+   },
+   {
+    "title": "Trial balance analytics before the partner sees it",
+    "hrsToday": 10,
+    "kind": "review",
+    "overlap": null,
+    "basis": "40 bookkeeping clients, about 15 minutes each of trial balance analytics a week",
+    "src": null
+   },
+   {
+    "title": "Return diagnostics and tie-out before signing",
+    "hrsToday": 0,
+    "kind": "review",
+    "overlap": "Review",
+    "basis": "Already counted in the Review department row.",
+    "src": null
+   },
+   {
+    "title": "Deadline and extension tracker across every entity",
+    "hrsToday": 12,
+    "kind": "review",
+    "overlap": null,
+    "basis": "150 entities, about 5 minutes each a week keeping deadlines and extensions straight",
+    "src": null
+   },
+   {
+    "title": "IRS and state notices triaged the day they land",
+    "hrsToday": 6,
+    "kind": "draft",
+    "overlap": null,
+    "basis": "12 notices a week at 30 minutes each to triage and outline a response",
+    "src": null
+   },
+   {
+    "title": "Economic nexus monitor across states",
+    "hrsToday": 4,
+    "kind": "review",
+    "overlap": null,
+    "basis": "40 sales tax clients, about 6 minutes each a week checking state thresholds",
+    "src": null
+   }
+  ]
+ },
+ "insurance": {
+  "departments": [
+   {
+    "dept": "Commercial lines",
+    "people": 22,
+    "hrsEach": 8,
+    "kind": "draft",
+    "basis": "22 commercial lines staff: 69 renewal submissions at 90 minutes, 21 proposals at 3.5 hours a week",
+    "src": null
+   },
+   {
+    "dept": "Service",
+    "people": 24,
+    "hrsEach": 7.9,
+    "kind": "draft",
+    "basis": "24 service staff: 257 endorsements at 20 minutes, 343 certificates at 6 minutes, 1,029 routine service emails at 4 minutes a week",
+    "src": null
+   },
+   {
+    "dept": "Personal lines",
+    "people": 25,
+    "hrsEach": 6,
+    "kind": "draft",
+    "basis": "25 personal lines reps: 450 renewal reviews at 8 minutes, 300 rate-increase outreach contacts at 12 minutes, 120 re-quotes at 15 minutes a week",
+    "src": null
+   },
+   {
+    "dept": "Accounting",
+    "people": 8,
+    "hrsEach": 8,
+    "kind": "entry",
+    "basis": "8 accounting staff: 40 carrier commission statements a week at about 1.6 hours each",
+    "src": null
+   },
+   {
+    "dept": "Producers",
+    "people": 14,
+    "hrsEach": 5,
+    "kind": "draft",
+    "basis": "14 producers: 28 meeting briefs at 1 hour, 140 open-quote follow-ups at 18 minutes a week",
+    "src": null
+   }
+  ],
+  "scenarios": [
+   {
+    "title": "Policy checked against the binder and quote",
+    "hrsToday": 137,
+    "kind": "review",
+    "overlap": null,
+    "basis": "137 policies a week checked against the quote and binder at 60 minutes each",
+    "src": "brief-insurance"
+   },
+   {
+    "title": "Contract insurance requirements matched to coverage",
+    "hrsToday": 10,
+    "kind": "review",
+    "overlap": null,
+    "basis": "20 contracts and leases a week, 30 minutes each reading the insurance section against current policies",
+    "src": null
+   },
+   {
+    "title": "Certificates checked before they go out",
+    "hrsToday": 0,
+    "kind": "review",
+    "overlap": "Service",
+    "basis": "Already counted in the Service department row.",
+    "src": null
+   },
+   {
+    "title": "Renewal submission built from the file",
+    "hrsToday": 0,
+    "kind": "draft",
+    "overlap": "Commercial lines",
+    "basis": "Already counted in the Commercial lines department row.",
+    "src": null
+   },
+   {
+    "title": "Loss runs read and summarized for underwriters",
+    "hrsToday": 0,
+    "kind": "review",
+    "overlap": "Commercial lines",
+    "basis": "Already counted in the Commercial lines department row.",
+    "src": null
+   },
+   {
+    "title": "Quote comparison and proposal drafted",
+    "hrsToday": 0,
+    "kind": "draft",
+    "overlap": "Commercial lines",
+    "basis": "Already counted in the Commercial lines department row.",
+    "src": null
+   },
+   {
+    "title": "Endorsement requests processed end to end",
+    "hrsToday": 0,
+    "kind": "draft",
+    "overlap": "Service",
+    "basis": "Already counted in the Service department row.",
+    "src": null
+   },
+   {
+    "title": "IVANS downloads reconciled with the AMS",
+    "hrsToday": 8,
+    "kind": "review",
+    "overlap": null,
+    "basis": "about 100 carrier download items a week reconciled at 5 minutes each",
+    "src": null
+   },
+   {
+    "title": "Commission statements matched to policies",
+    "hrsToday": 0,
+    "kind": "entry",
+    "overlap": "Accounting",
+    "basis": "Already counted in the Accounting department row.",
+    "src": null
+   },
+   {
+    "title": "Workers comp audit prep",
+    "hrsToday": 6,
+    "kind": "review",
+    "overlap": null,
+    "basis": "6 audits a week at 1 hour of payroll and subcontractor certificate matching",
+    "src": null
+   }
+  ]
+ },
+ "healthcare": {
+  "departments": [
+   {
+    "dept": "Prior authorization",
+    "people": 7,
+    "hrsEach": 22.3,
+    "kind": "entry",
+    "basis": "7 prior authorization staff: about 20 physicians at 39 requests each a week (AMA, survey late 2024), about half handled by staff at 24 minutes each (CAQH 2024)",
+    "src": "ama-pa"
+   },
+   {
+    "dept": "Billing and revenue cycle",
+    "people": 10,
+    "hrsEach": 9,
+    "kind": "review",
+    "basis": "10 billing staff: 180 denials at 20 minutes, 120 unpaid claim follow-ups at 15 minutes a week",
+    "src": null
+   },
+   {
+    "dept": "Front desk and scheduling",
+    "people": 12,
+    "hrsEach": 10,
+    "kind": "service",
+    "basis": "12 front desk staff: 800 eligibility checks at 5 minutes, 640 reminder and reschedule contacts at 5 minutes a week",
+    "src": null
+   },
+   {
+    "dept": "Clinical support",
+    "people": 6,
+    "hrsEach": 8.9,
+    "kind": "entry",
+    "basis": "6 clinical support staff: 150 faxes and referrals at 8 minutes, 200 refill requests at 6 minutes, 40 referral intakes at 20 minutes a week",
+    "src": null
+   },
+   {
+    "dept": "Practice management",
+    "people": 2,
+    "hrsEach": 5,
+    "kind": "review",
+    "basis": "2 practice managers: weekly provider productivity and no-show reports, about 5 hours each",
+    "src": null
+   }
+  ],
+  "scenarios": [
+   {
+    "title": "Eligibility checked against tomorrow's schedule",
+    "hrsToday": 0,
+    "kind": "entry",
+    "overlap": "Front desk and scheduling",
+    "basis": "Already counted in the Front desk and scheduling department row.",
+    "src": null
+   },
+   {
+    "title": "Referral loop closure",
+    "hrsToday": 6,
+    "kind": "review",
+    "overlap": null,
+    "basis": "60 open referrals checked a week at 6 minutes each",
+    "src": null
+   },
+   {
+    "title": "Prior auth packet built from the chart",
+    "hrsToday": 0,
+    "kind": "entry",
+    "overlap": "Prior authorization",
+    "basis": "Already counted in the Prior authorization department row.",
+    "src": null
+   },
+   {
+    "title": "Auth dates matched to the schedule",
+    "hrsToday": 0,
+    "kind": "review",
+    "overlap": "Prior authorization",
+    "basis": "Already counted in the Prior authorization department row.",
+    "src": null
+   },
+   {
+    "title": "Charges checked against the note before submission",
+    "hrsToday": 12,
+    "kind": "review",
+    "overlap": null,
+    "basis": "240 claims a week checked against the visit note at 3 minutes each",
+    "src": null
+   },
+   {
+    "title": "ERA posting reconciled to the contract",
+    "hrsToday": 8,
+    "kind": "review",
+    "overlap": null,
+    "basis": "100 remittance files a week checked against contract rates at about 5 minutes each",
+    "src": null
+   },
+   {
+    "title": "Denials matched to the payer's actual rule",
+    "hrsToday": 0,
+    "kind": "review",
+    "overlap": "Billing and revenue cycle",
+    "basis": "Already counted in the Billing and revenue cycle department row.",
+    "src": null
+   },
+   {
+    "title": "Timely filing deadlines tracked per payer",
+    "hrsToday": 4,
+    "kind": "review",
+    "overlap": null,
+    "basis": "open A/R checked against payer filing windows, about 4 hours a week",
+    "src": null
+   },
+   {
+    "title": "Credentialing packets and expirations tracked",
+    "hrsToday": 5,
+    "kind": "entry",
+    "overlap": null,
+    "basis": "25 provider and payer files kept current, about 12 minutes each a week",
+    "src": null
+   },
+   {
+    "title": "Patient messages checked before they're sent",
+    "hrsToday": 3,
+    "kind": "review",
+    "overlap": null,
+    "basis": "60 release requests a week at 3 minutes each",
+    "src": null
+   }
+  ]
+ },
+ "marketing-agencies": {
+  "departments": [
+   {
+    "dept": "Account management",
+    "people": 28,
+    "hrsEach": 9,
+    "kind": "draft",
+    "basis": "28 account staff: 60 clients; monthly reports at 3 hours (42 a week averaged), weekly status updates at 1.5 hours each, 240 meetings a week at 30 minutes of notes",
+    "src": null
+   },
+   {
+    "dept": "Creative",
+    "people": 30,
+    "hrsEach": 7.6,
+    "kind": "review",
+    "basis": "30 creatives: 200 copy variation sets at 30 minutes, 600 asset resizes at 8 minutes, 400 pieces proofed at 7 minutes a week",
+    "src": null
+   },
+   {
+    "dept": "Media",
+    "people": 15,
+    "hrsEach": 8,
+    "kind": "review",
+    "basis": "15 media buyers: 60 accounts, pacing 30 minutes, search term review 45 minutes, reallocation notes 45 minutes each a week",
+    "src": null
+   },
+   {
+    "dept": "Finance",
+    "people": 8,
+    "hrsEach": 7.8,
+    "kind": "entry",
+    "basis": "8 finance staff: 160 media invoices at 12 minutes, 60 retainers reconciled at 30 minutes a week",
+    "src": null
+   },
+   {
+    "dept": "Strategy",
+    "people": 8,
+    "hrsEach": 7,
+    "kind": "draft",
+    "basis": "8 strategists: 40 client competitor scans at 45 minutes, 13 research summaries at 2 hours a week",
+    "src": null
+   }
+  ],
+  "scenarios": [
+   {
+    "title": "RFP response built from past work",
+    "hrsToday": 6,
+    "kind": "draft",
+    "overlap": null,
+    "basis": "2 RFP responses a week at about 3 hours of assembly each",
+    "src": null
+   },
+   {
+    "title": "Scope priced from real Harvest hours",
+    "hrsToday": 3,
+    "kind": "review",
+    "overlap": null,
+    "basis": "6 draft SOWs a week at 30 minutes of comparison each",
+    "src": null
+   },
+   {
+    "title": "Scope creep caught in the inbox",
+    "hrsToday": 10,
+    "kind": "review",
+    "overlap": null,
+    "basis": "40 client requests a week checked against scope at 15 minutes each",
+    "src": null
+   },
+   {
+    "title": "Monthly client report drafted from source",
+    "hrsToday": 0,
+    "kind": "draft",
+    "overlap": "Account management",
+    "basis": "Already counted in the Account management department row.",
+    "src": null
+   },
+   {
+    "title": "Tracking breaks found before the report",
+    "hrsToday": 8,
+    "kind": "review",
+    "overlap": null,
+    "basis": "60 accounts checked a week at about 8 minutes each",
+    "src": null
+   },
+   {
+    "title": "Media spend matched to what the client was billed",
+    "hrsToday": 0,
+    "kind": "entry",
+    "overlap": "Finance",
+    "basis": "Already counted in the Finance department row.",
+    "src": null
+   },
+   {
+    "title": "Client approvals matched to what goes live",
+    "hrsToday": 10,
+    "kind": "review",
+    "overlap": null,
+    "basis": "100 deliverables a week at 6 minutes to match the approved version",
+    "src": null
+   },
+   {
+    "title": "Creative checked against brand and specs",
+    "hrsToday": 0,
+    "kind": "review",
+    "overlap": "Creative",
+    "basis": "Already counted in the Creative department row.",
+    "src": null
+   },
+   {
+    "title": "Retainer burn tracked weekly",
+    "hrsToday": 0,
+    "kind": "review",
+    "overlap": "Finance",
+    "basis": "Already counted in the Finance department row.",
+    "src": null
+   },
+   {
+    "title": "Usage rights tracker for licensed assets",
+    "hrsToday": 2.5,
+    "kind": "review",
+    "overlap": null,
+    "basis": "about 150 licensed assets tracked, 1 minute each a week",
+    "src": null
+   }
+  ]
+ },
+ "manufacturing": {
+  "departments": [
+   {
+    "dept": "Quoting and estimating",
+    "people": 6,
+    "hrsEach": 5,
+    "kind": "review",
+    "basis": "6 estimators: 30 RFQs a week at 60 minutes each",
+    "src": "brief-metals-machinery"
+   },
+   {
+    "dept": "Customer service",
+    "people": 5,
+    "hrsEach": 3.8,
+    "kind": "service",
+    "basis": "5 customer service reps: 45 customer POs at 15 minutes, 75 where's-my-order emails at 6 minutes a week",
+    "src": null
+   },
+   {
+    "dept": "Purchasing",
+    "people": 4,
+    "hrsEach": 7.5,
+    "kind": "entry",
+    "basis": "4 purchasing staff: 120 supplier invoices at 5 minutes, 30 reorder POs at 20 minutes, 40 expedites and acknowledgments at 15 minutes",
+    "src": null
+   },
+   {
+    "dept": "Quality",
+    "people": 6,
+    "hrsEach": 8.5,
+    "kind": "draft",
+    "basis": "6 quality staff: 9 first article reports at 2 hours and 60 certificate packets at 10 minutes, plus 25 nonconformance and inspection reports at 48 minutes",
+    "src": null
+   },
+   {
+    "dept": "Production planning",
+    "people": 4,
+    "hrsEach": 3.9,
+    "kind": "draft",
+    "basis": "4 production planners: daily late list at 1.5 hours (7.5 hours a week) and a weekly scrap report for 8 lines at 1 hour each",
+    "src": null
+   }
+  ],
+  "scenarios": [
+   {
+    "title": "RFQ package read before quoting",
+    "hrsToday": 0,
+    "kind": "review",
+    "overlap": "Quoting and estimating",
+    "basis": "Already counted in the Quoting and estimating department row.",
+    "src": null
+   },
+   {
+    "title": "Outside processing and material pricing",
+    "hrsToday": 0,
+    "kind": "draft",
+    "overlap": "Quoting and estimating",
+    "basis": "Already counted in the Quoting and estimating department row.",
+    "src": null
+   },
+   {
+    "title": "Customer PO checked against the quote",
+    "hrsToday": 0,
+    "kind": "review",
+    "overlap": "Customer service",
+    "basis": "Already counted in the Customer service department row.",
+    "src": null
+   },
+   {
+    "title": "Drawing revision compare",
+    "hrsToday": 4,
+    "kind": "review",
+    "overlap": null,
+    "basis": "20 drawing revisions a week at 12 minutes to compare",
+    "src": null
+   },
+   {
+    "title": "Certificate packet per shipment",
+    "hrsToday": 0,
+    "kind": "review",
+    "overlap": "Quality",
+    "basis": "Already counted in the Quality department row.",
+    "src": null
+   },
+   {
+    "title": "First article and PPAP paperwork",
+    "hrsToday": 0,
+    "kind": "draft",
+    "overlap": "Quality",
+    "basis": "Already counted in the Quality department row.",
+    "src": null
+   },
+   {
+    "title": "Customer flowdowns carried to supplier POs",
+    "hrsToday": 3,
+    "kind": "review",
+    "overlap": null,
+    "basis": "30 POs a week, 6 minutes each checking quality clauses flow to supplier POs",
+    "src": null
+   },
+   {
+    "title": "Late job early warning",
+    "hrsToday": 0,
+    "kind": "review",
+    "overlap": "Production planning",
+    "basis": "Already counted in the Production planning department row.",
+    "src": null
+   },
+   {
+    "title": "Heat-lot traceability from a bad lot",
+    "hrsToday": 1.5,
+    "kind": "review",
+    "overlap": null,
+    "basis": "2 lot traceability searches a week, about 45 minutes each",
+    "src": null
+   },
+   {
+    "title": "Quoted versus actual hours by job",
+    "hrsToday": 6,
+    "kind": "review",
+    "overlap": null,
+    "basis": "weekly review of quoted versus actual hours on closed jobs, about 6 hours",
+    "src": null
+   }
+  ]
+ },
+ "wholesale-distribution": {
+  "departments": [
+   {
+    "dept": "Inside sales",
+    "people": 15,
+    "hrsEach": 11,
+    "kind": "entry",
+    "basis": "15 order entry reps: 660 emailed POs a week at 15 minutes each",
+    "src": null
+   },
+   {
+    "dept": "Customer service",
+    "people": 10,
+    "hrsEach": 12,
+    "kind": "service",
+    "basis": "10 customer service reps: 600 status emails at 6 minutes, 180 returns at 20 minutes a week",
+    "src": null
+   },
+   {
+    "dept": "Accounts payable",
+    "people": 4,
+    "hrsEach": 16.7,
+    "kind": "entry",
+    "basis": "4 AP clerks: about 800 vendor invoices a week at 5 minutes each to match against receipts and purchase orders",
+    "src": null
+   },
+   {
+    "dept": "Purchasing",
+    "people": 8,
+    "hrsEach": 8.1,
+    "kind": "draft",
+    "basis": "8 buyers: 100 expedites at 15 minutes, 200 vendor acknowledgments at 8 minutes, 40 cost changes at 20 minutes a week",
+    "src": null
+   },
+   {
+    "dept": "Sales management",
+    "people": 5,
+    "hrsEach": 5,
+    "kind": "review",
+    "basis": "5 sales managers: weekly review of accounts buying less, about 5 hours each",
+    "src": null
+   }
+  ],
+  "scenarios": [
+   {
+    "title": "Emailed POs keyed into orders",
+    "hrsToday": 0,
+    "kind": "entry",
+    "overlap": "Inside sales",
+    "basis": "Already counted in the Inside sales department row.",
+    "src": null
+   },
+   {
+    "title": "Quote from a contractor's material list",
+    "hrsToday": 13.3,
+    "kind": "draft",
+    "overlap": null,
+    "basis": "40 contractor material lists a week at 20 minutes each",
+    "src": null
+   },
+   {
+    "title": "Vendor acknowledgement check",
+    "hrsToday": 0,
+    "kind": "review",
+    "overlap": "Purchasing",
+    "basis": "Already counted in the Purchasing department row.",
+    "src": null
+   },
+   {
+    "title": "Vendor price file updates",
+    "hrsToday": 8,
+    "kind": "review",
+    "overlap": null,
+    "basis": "4 vendor price files a week at 2 hours each",
+    "src": null
+   },
+   {
+    "title": "ASN and receiving mismatches",
+    "hrsToday": 6,
+    "kind": "review",
+    "overlap": null,
+    "basis": "60 receiving mismatches a week at 6 minutes each",
+    "src": null
+   },
+   {
+    "title": "Vendor rebates and ship-and-debit claims",
+    "hrsToday": 5,
+    "kind": "review",
+    "overlap": null,
+    "basis": "10 rebate and ship-and-debit claims a week at 30 minutes each",
+    "src": null
+   },
+   {
+    "title": "Returns and RMA requests",
+    "hrsToday": 0,
+    "kind": "draft",
+    "overlap": "Customer service",
+    "basis": "Already counted in the Customer service department row.",
+    "src": null
+   },
+   {
+    "title": "Three-way match on vendor invoices",
+    "hrsToday": 0,
+    "kind": "entry",
+    "overlap": "Accounts payable",
+    "basis": "Already counted in the Accounts payable department row.",
+    "src": null
+   },
+   {
+    "title": "Deductions and short pays",
+    "hrsToday": 10,
+    "kind": "entry",
+    "overlap": null,
+    "basis": "60 deductions and short pays a week at 10 minutes each",
+    "src": null
+   },
+   {
+    "title": "Customers quietly buying less",
+    "hrsToday": 0,
+    "kind": "review",
+    "overlap": "Sales management",
+    "basis": "Already counted in the Sales management department row.",
+    "src": null
+   }
+  ]
+ },
+ "real-estate-brokerage": {
+  "departments": [
+   {
+    "dept": "Transaction coordination",
+    "people": 8,
+    "hrsEach": 13.8,
+    "kind": "review",
+    "basis": "8 coordinators: about 140 open files at 40 minutes a week of calendar and compliance upkeep, plus 17 new deals at 1 hour (90 agents at about 10 transactions a year, NAR 2025)",
+    "src": "nar-hours"
+   },
+   {
+    "dept": "Agents",
+    "people": 90,
+    "hrsEach": 6,
+    "kind": "draft",
+    "basis": "90 agents (35-hour week, NAR 2025): 8 new leads at 15 minutes and 40 follow-up touches at 6 minutes each a week",
+    "src": "nar-hours"
+   },
+   {
+    "dept": "Marketing",
+    "people": 6,
+    "hrsEach": 9,
+    "kind": "draft",
+    "basis": "6 marketing staff: 20 new listings a week at 2.5 hours of copy, flyers and social posts",
+    "src": null
+   },
+   {
+    "dept": "Commercial leasing",
+    "people": 5,
+    "hrsEach": 6,
+    "kind": "entry",
+    "basis": "5 commercial leasing staff: 15 lease abstracts at 1.5 hours plus renewal option tracking, about 8 hours a week",
+    "src": null
+   },
+   {
+    "dept": "Accounting",
+    "people": 4,
+    "hrsEach": 5.3,
+    "kind": "entry",
+    "basis": "4 accounting staff: about 17 commission disbursements a week at 1.25 hours each",
+    "src": null
+   }
+  ],
+  "scenarios": [
+   {
+    "title": "Listing prep disclosures checked per file",
+    "hrsToday": 5,
+    "kind": "review",
+    "overlap": null,
+    "basis": "20 listings a week at 15 minutes each to check required forms",
+    "src": null
+   },
+   {
+    "title": "CMAs drafted from MLS comps",
+    "hrsToday": 19,
+    "kind": "draft",
+    "overlap": null,
+    "basis": "25 CMAs a week at 45 minutes each",
+    "src": null
+   },
+   {
+    "title": "Listing details checked against public records",
+    "hrsToday": 3.3,
+    "kind": "review",
+    "overlap": null,
+    "basis": "20 new listings a week at 10 minutes of record comparison each",
+    "src": null
+   },
+   {
+    "title": "Missing signatures and dates in deal files",
+    "hrsToday": 0,
+    "kind": "review",
+    "overlap": "Transaction coordination",
+    "basis": "Already counted in the Transaction coordination department row.",
+    "src": null
+   },
+   {
+    "title": "Contingency deadlines across every open deal",
+    "hrsToday": 0,
+    "kind": "review",
+    "overlap": "Transaction coordination",
+    "basis": "Already counted in the Transaction coordination department row.",
+    "src": null
+   },
+   {
+    "title": "Earnest money tracked to the escrow receipt",
+    "hrsToday": 4.2,
+    "kind": "review",
+    "overlap": null,
+    "basis": "17 deals a week at 15 minutes each tracking earnest money to escrow",
+    "src": null
+   },
+   {
+    "title": "Wire instructions checked before money moves",
+    "hrsToday": 2.8,
+    "kind": "review",
+    "overlap": null,
+    "basis": "17 deals a week at 10 minutes each of wire instruction checking",
+    "src": null
+   },
+   {
+    "title": "Commission splits checked before disbursement",
+    "hrsToday": 0,
+    "kind": "review",
+    "overlap": "Accounting",
+    "basis": "Already counted in the Accounting department row.",
+    "src": null
+   },
+   {
+    "title": "Offering memorandums from rent roll and CoStar",
+    "hrsToday": 0,
+    "kind": "draft",
+    "overlap": "Marketing",
+    "basis": "Already counted in the Marketing department row.",
+    "src": null
+   },
+   {
+    "title": "Option and renewal windows across the book",
+    "hrsToday": 0,
+    "kind": "review",
+    "overlap": "Commercial leasing",
+    "basis": "Already counted in the Commercial leasing department row.",
+    "src": null
+   }
+  ]
+ }
+}

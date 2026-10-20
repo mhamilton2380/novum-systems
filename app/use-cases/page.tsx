@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { USE_CASES } from "@/lib/useCases";
-import { REPEAT_WORK, firmHours } from "@/lib/nv/useCaseExtras";
+import { REPEAT_WORK } from "@/lib/nv/useCaseExtras";
+import { industryHours } from "@/lib/nv/hoursModel";
 import { JsonLd } from "@/components/JsonLd";
 import { ContactForm } from "@/components/nv/ContactForm";
 import { pageMetadata, breadcrumbJsonLd } from "@/lib/seo";
@@ -35,7 +36,7 @@ export default function UseCasesPage() {
           <h2 className="h2">Ten industries, <span className="mute">one method.</span></h2>
           <p className="lead">Each page is a sector brief: the situation, the work AI takes on, what gets connected and what gets replaced and what manual work goes away, and how an engagement starts.</p>
           <div className="uc-index" role="list">
-            <div className="uc-head" aria-hidden="true"><span>No.</span><span>Industry and where AI helps</span><span>Repeat work it carries</span><span>Example day</span><span /></div>
+            <div className="uc-head" aria-hidden="true"><span>No.</span><span>Industry and where AI helps</span><span>Repeat work it carries</span><span>Hours back a week</span><span /></div>
             {USE_CASES.map((u, i) => (
               <Link key={u.slug} href={`/use-cases/${u.slug}`} className="uc-row" role="listitem">
                 <span className="uc-no">{String(i + 1).padStart(2, "0")}</span>
@@ -44,12 +45,12 @@ export default function UseCasesPage() {
                   <span className="uc-sub">{u.headline}.</span>
                 </div>
                 <span className="uc-work">{REPEAT_WORK[u.slug]}</span>
-                <span className="uc-hrs">{firmHours(u.departments)} hrs a week<small>for a firm of about 120</small></span>
+                {(() => { const h = industryHours(u.slug); return <span className="uc-hrs">{h ? `${h.total} hrs` : ""}<small>{h ? `${h.perOffice.toFixed(1)} per ${u.slug === "real-estate-brokerage" ? "person" : "office employee"}` : ""}</small><small>firm of about 120, after training</small></span>; })()}
                 <span className="uc-go" aria-hidden="true">→</span>
               </Link>
             ))}
           </div>
-          <p className="uc-note">The example day on each page is illustrative: four agent tasks with the time each returns, drawn from the work that industry repeats. Real figures are measured in discovery on your own data.</p>
+          <p className="uc-note">Hours back for a firm of about 120 people, counted on office staff only (BLS staffing patterns, May 2025; real estate counts agents too). Each page shows the method: agents on department work, the checks they run, and the team&apos;s own use of AI after training, with time-saved rates from studies of people using AI on similar work (Noy and Zhang 2023; Harvard and BCG 2023; Brynjolfsson, Li and Raymond 2023; St. Louis Fed 2025) and our own estimate for data entry. Your own figures are measured in discovery.</p>
         </div>
       </section>
 

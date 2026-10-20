@@ -14,8 +14,8 @@ export type UseCase = {
   removes: string[];
   /** Two or three sentences on a 50 to 250 person firm in this industry. */
   situation: string;
-  /** Weekly repeat work by department for a firm of about 120 people. hrs = staff hours a week, our estimate. */
-  departments: { dept: string; work: string; ai: string; person: string; hrs: number }[];
+  /** Weekly repeat work by department for a firm of about 120 people. Hours back come from lib/nv/hoursModel.ts. */
+  departments: { dept: string; work: string; ai: string; person: string }[];
   firstAgent: { name: string; why: string; scored: string };
   /** Who approves what before anything leaves the company. */
   approval: string;
@@ -81,11 +81,11 @@ export const USE_CASES: UseCase[] = [
     ],
     situation: "A general contractor with 120 people runs 12 to 20 jobs at once, and most of the office's week goes to paper that moves between project management, accounting and the field. Submittals wait in a project manager's queue, pay applications are assembled by hand from Sage 300 reports, and estimators level subcontractor bids in spreadsheets during the busiest bid weeks.",
     departments: [
-      { dept: "Project management", work: "Submittal review, RFI drafting, weekly owner reports across 15 active jobs", ai: "Checks each submittal against the spec section and drafts the review comments; drafts RFIs and owner reports from job data", person: "The project manager edits and sends every review, RFI and report", hrs: 40 },
-      { dept: "Accounting", work: "Subcontractor invoice coding, pay application backup, lien waiver tracking", ai: "Codes invoices to job and cost code in Sage 300, assembles pay application backup, tracks missing lien waivers", person: "The controller approves coding and every pay application", hrs: 32 },
-      { dept: "Estimating", work: "Bid invitations, scope review, leveling subcontractor bids", ai: "Reads the bid set, builds a scope checklist by trade, levels sub bids into one comparison with exclusions called out", person: "The estimator sets the number and signs the bid", hrs: 24 },
-      { dept: "Field operations", work: "Daily reports, safety checklists, photo logs", ai: "Turns superintendent voice notes and photos into the daily report; compiles safety status across sites each week", person: "The superintendent confirms each report", hrs: 22 },
-      { dept: "Contracts and risk", work: "Subcontract drafting, insurance certificate tracking, change order logs", ai: "Drafts subcontracts from your templates, flags expiring certificates, posts approved change orders to the job budget", person: "The contracts manager approves every subcontract; the PM approves change orders", hrs: 18 },
+      { dept: "Project management", work: "Submittal review, RFI drafting, weekly owner reports across 15 active jobs", ai: "Checks each submittal against the spec section and drafts the review comments; drafts RFIs and owner reports from job data", person: "The project manager edits and sends every review, RFI and report" },
+      { dept: "Accounting", work: "Subcontractor invoice coding, pay application backup, lien waiver tracking", ai: "Codes invoices to job and cost code in Sage 300, assembles pay application backup, tracks missing lien waivers", person: "The controller approves coding and every pay application" },
+      { dept: "Estimating", work: "Bid invitations, scope review, leveling subcontractor bids", ai: "Reads the bid set, builds a scope checklist by trade, levels sub bids into one comparison with exclusions called out", person: "The estimator sets the number and signs the bid" },
+      { dept: "Field operations", work: "Daily reports, safety checklists, photo logs", ai: "Turns superintendent voice notes and photos into the daily report; compiles safety status across sites each week", person: "The superintendent confirms each report" },
+      { dept: "Contracts and risk", work: "Subcontract drafting, insurance certificate tracking, change order logs", ai: "Drafts subcontracts from your templates, flags expiring certificates, posts approved change orders to the job budget", person: "The contracts manager approves every subcontract; the PM approves change orders" },
     ],
     firstAgent: {
       name: "Submittal review against the specs",
@@ -156,11 +156,11 @@ export const USE_CASES: UseCase[] = [
     ],
     situation: "A 120-person service company runs 60 to 80 technicians on trucks, and the office behind them carries the load: dispatch and customer service field status calls all day, billing chases closed jobs with missing paperwork, and service agreement renewals depend on someone working a list. Hours lost in the office show up as late invoices and lapsed agreements.",
     departments: [
-      { dept: "Dispatch and customer service", work: "Booking calls, arrival-time questions, reschedules, confirmations", ai: "Drafts confirmations and arrival texts and answers status questions from the dispatch board", person: "A CSR handles anything off script and every complaint", hrs: 34 },
-      { dept: "Technicians", work: "Equipment history lookups, job notes, repair quote write-ups", ai: "Pulls the unit's service history before arrival and turns photos and notes into a quote draft", person: "The technician confirms the quote; the customer approves it", hrs: 30 },
-      { dept: "Billing", work: "Closing invoices, missing job paperwork, manufacturer warranty claims", ai: "Flags jobs closed without an invoice, drafts invoices from tech notes, prepares warranty claims with serial numbers", person: "The billing lead approves larger invoices and every claim", hrs: 28 },
-      { dept: "Service agreements", work: "Maintenance reminders and agreement renewals", ai: "Drafts reminder and renewal messages for customers coming due", person: "The office approves each batch before it sends", hrs: 18 },
-      { dept: "Operations management", work: "Callback and first-time-fix reporting by technician", ai: "Compiles the weekly callback report with the likely cause of each repeat visit", person: "The operations manager reviews and acts on it", hrs: 8 },
+      { dept: "Dispatch and customer service", work: "Booking calls, arrival-time questions, reschedules, confirmations", ai: "Drafts confirmations and arrival texts and answers status questions from the dispatch board", person: "A CSR handles anything off script and every complaint" },
+      { dept: "Technicians", work: "Equipment history lookups, job notes, repair quote write-ups", ai: "Pulls the unit's service history before arrival and turns photos and notes into a quote draft", person: "The technician confirms the quote; the customer approves it" },
+      { dept: "Billing", work: "Closing invoices, missing job paperwork, manufacturer warranty claims", ai: "Flags jobs closed without an invoice, drafts invoices from tech notes, prepares warranty claims with serial numbers", person: "The billing lead approves larger invoices and every claim" },
+      { dept: "Service agreements", work: "Maintenance reminders and agreement renewals", ai: "Drafts reminder and renewal messages for customers coming due", person: "The office approves each batch before it sends" },
+      { dept: "Operations management", work: "Callback and first-time-fix reporting by technician", ai: "Compiles the weekly callback report with the likely cause of each repeat visit", person: "The operations manager reviews and acts on it" },
     ],
     firstAgent: {
       name: "Closed-job invoice drafter",
@@ -231,11 +231,11 @@ export const USE_CASES: UseCase[] = [
     ],
     situation: "A firm of about 120 people, with 40 to 50 attorneys, spends much of its non-billable time on work that repeats matter after matter. Litigation teams summarize depositions and sort productions, transactional teams build first drafts from precedent, and billing partners mark up pre-bills against client guidelines at month end.",
     departments: [
-      { dept: "Litigation", work: "Deposition summaries, sorting document productions, docketing from court notices", ai: "Summarizes transcripts by issue, sorts produced documents by issue and custodian, reads court notices and drafts docket entries", person: "An attorney reviews every summary; the docketing clerk confirms each date", hrs: 48 },
-      { dept: "Transactional", work: "First drafts from precedent, closing checklists, redline summaries", ai: "Drafts from the firm's own precedents, builds closing checklists, summarizes the other side's changes", person: "The responsible attorney edits and signs off", hrs: 30 },
-      { dept: "Billing", work: "Pre-bill review, time entry narratives, unbilled time", ai: "Flags entries that break a client's billing guidelines before the pre-bill goes out", person: "The billing partner approves every bill", hrs: 22 },
-      { dept: "Client service", work: "Matter status letters", ai: "Drafts status letters from matter activity", person: "The responsible attorney approves each letter", hrs: 12 },
-      { dept: "Intake and conflicts", work: "Conflict checks and engagement letters", ai: "Runs new parties against the client and matter records and drafts the engagement letter", person: "The conflicts attorney clears every match", hrs: 10 },
+      { dept: "Litigation", work: "Deposition summaries, sorting document productions, docketing from court notices", ai: "Summarizes transcripts by issue, sorts produced documents by issue and custodian, reads court notices and drafts docket entries", person: "An attorney reviews every summary; the docketing clerk confirms each date" },
+      { dept: "Transactional", work: "First drafts from precedent, closing checklists, redline summaries", ai: "Drafts from the firm's own precedents, builds closing checklists, summarizes the other side's changes", person: "The responsible attorney edits and signs off" },
+      { dept: "Billing", work: "Pre-bill review, time entry narratives, unbilled time", ai: "Flags entries that break a client's billing guidelines before the pre-bill goes out", person: "The billing partner approves every bill" },
+      { dept: "Client service", work: "Matter status letters", ai: "Drafts status letters from matter activity", person: "The responsible attorney approves each letter" },
+      { dept: "Intake and conflicts", work: "Conflict checks and engagement letters", ai: "Runs new parties against the client and matter records and drafts the engagement letter", person: "The conflicts attorney clears every match" },
     ],
     firstAgent: {
       name: "Pre-bill review against client guidelines",
@@ -306,11 +306,11 @@ export const USE_CASES: UseCase[] = [
     ],
     situation: "A CPA firm of about 120 people runs out of capacity every tax season, and most of the strain sits outside the actual tax work. Preparers chase missing documents, reviewers become the bottleneck in March and April, and audit and client accounting teams tie out schedules by hand while partners wait on work in progress reports.",
     departments: [
-      { dept: "Tax", work: "Chasing client documents, organizer intake, keying source documents", ai: "Drafts each client's document request from last year's return, reads uploaded documents and pre-fills workpapers", person: "The preparer checks every input; the partner signs the return", hrs: 52 },
-      { dept: "Client accounting services", work: "Monthly close, bank reconciliations, transaction coding", ai: "Codes transactions, prepares reconciliations and writes variance notes for the close", person: "The accountant approves the close", hrs: 30 },
-      { dept: "Review", work: "First-pass review of returns", ai: "Compares each return with the prior year and the source documents and flags variances with notes", person: "The reviewer decides every flag", hrs: 26 },
-      { dept: "Audit and assurance", work: "Tie-outs, request lists, confirmation letters", ai: "Ties schedules to the trial balance and drafts request lists and confirmations", person: "The senior and manager sign off", hrs: 24 },
-      { dept: "Firm administration", work: "Work in progress reports, engagement letters", ai: "Compiles weekly work in progress by partner and drafts engagement letters", person: "Partners approve", hrs: 10 },
+      { dept: "Tax", work: "Chasing client documents, organizer intake, keying source documents", ai: "Drafts each client's document request from last year's return, reads uploaded documents and pre-fills workpapers", person: "The preparer checks every input; the partner signs the return" },
+      { dept: "Client accounting services", work: "Monthly close, bank reconciliations, transaction coding", ai: "Codes transactions, prepares reconciliations and writes variance notes for the close", person: "The accountant approves the close" },
+      { dept: "Review", work: "First-pass review of returns", ai: "Compares each return with the prior year and the source documents and flags variances with notes", person: "The reviewer decides every flag" },
+      { dept: "Audit and assurance", work: "Tie-outs, request lists, confirmation letters", ai: "Ties schedules to the trial balance and drafts request lists and confirmations", person: "The senior and manager sign off" },
+      { dept: "Firm administration", work: "Work in progress reports, engagement letters", ai: "Compiles weekly work in progress by partner and drafts engagement letters", person: "Partners approve" },
     ],
     firstAgent: {
       name: "Missing-document requests from the prior-year return",
@@ -381,11 +381,11 @@ export const USE_CASES: UseCase[] = [
     ],
     situation: "An agency of about 120 people carries thousands of commercial and personal policies, and account managers spend most of the week on remarketing and service. Renewal submissions are rebuilt from the management system and loss runs, certificate requests arrive all day, and commission statements are reconciled carrier by carrier.",
     departments: [
-      { dept: "Commercial lines", work: "Renewal remarketing, carrier submissions, quote comparisons", ai: "Builds submissions from the management system and loss runs and drafts the proposal comparing carrier quotes", person: "The account manager checks coverage; the producer presents", hrs: 44 },
-      { dept: "Service", work: "Certificates of insurance, endorsements, ID cards", ai: "Drafts certificates from policy data and checks them against the contract's insurance requirements", person: "A CSR issues every certificate", hrs: 30 },
-      { dept: "Personal lines", work: "Renewal reviews and rate increase outreach", ai: "Flags renewals with large increases and drafts re-quote outreach", person: "An agent approves each message", hrs: 18 },
-      { dept: "Accounting", work: "Direct bill commission reconciliation", ai: "Matches carrier commission statements to expected commission by policy", person: "Accounting approves the exceptions", hrs: 14 },
-      { dept: "Producers", work: "Prospect research, follow-up on open quotes", ai: "Prepares an account brief before each meeting and drafts follow-ups on open quotes", person: "The producer sends", hrs: 12 },
+      { dept: "Commercial lines", work: "Renewal remarketing, carrier submissions, quote comparisons", ai: "Builds submissions from the management system and loss runs and drafts the proposal comparing carrier quotes", person: "The account manager checks coverage; the producer presents" },
+      { dept: "Service", work: "Certificates of insurance, endorsements, ID cards", ai: "Drafts certificates from policy data and checks them against the contract's insurance requirements", person: "A CSR issues every certificate" },
+      { dept: "Personal lines", work: "Renewal reviews and rate increase outreach", ai: "Flags renewals with large increases and drafts re-quote outreach", person: "An agent approves each message" },
+      { dept: "Accounting", work: "Direct bill commission reconciliation", ai: "Matches carrier commission statements to expected commission by policy", person: "Accounting approves the exceptions" },
+      { dept: "Producers", work: "Prospect research, follow-up on open quotes", ai: "Prepares an account brief before each meeting and drafts follow-ups on open quotes", person: "The producer sends" },
     ],
     firstAgent: {
       name: "Certificate of insurance drafter",
@@ -456,11 +456,11 @@ export const USE_CASES: UseCase[] = [
     ],
     situation: "A multi-site practice of about 120 people loses clinical time to administration on both sides of the visit. The front desk verifies coverage and works the reminder list, prior authorizations pull staff into payer portals one patient at a time, and the billing team works denials that a complete claim would have avoided.",
     departments: [
-      { dept: "Prior authorization", work: "Gathering clinical records, portal submissions, status checks", ai: "Assembles the packet from the chart against the payer's criteria and tracks status", person: "Staff submit each request; a clinician signs where required", hrs: 36 },
-      { dept: "Billing and revenue cycle", work: "Denials, unpaid claim follow-up", ai: "Sorts denials by reason and drafts appeals that cite the chart", person: "A biller approves every appeal", hrs: 32 },
-      { dept: "Front desk and scheduling", work: "Reminders, reschedules, eligibility checks", ai: "Drafts reminders and checks eligibility before the visit, flagging gaps", person: "Front desk staff confirm", hrs: 30 },
-      { dept: "Clinical support", work: "Referral intake, faxed records, refill requests", ai: "Reads incoming faxes, matches them to the patient and routes them", person: "A nurse reviews each item", hrs: 22 },
-      { dept: "Practice management", work: "Provider productivity and no-show reports", ai: "Compiles the weekly report by provider and site", person: "The practice manager reviews", hrs: 6 },
+      { dept: "Prior authorization", work: "Gathering clinical records, portal submissions, status checks", ai: "Assembles the packet from the chart against the payer's criteria and tracks status", person: "Staff submit each request; a clinician signs where required" },
+      { dept: "Billing and revenue cycle", work: "Denials, unpaid claim follow-up", ai: "Sorts denials by reason and drafts appeals that cite the chart", person: "A biller approves every appeal" },
+      { dept: "Front desk and scheduling", work: "Reminders, reschedules, eligibility checks", ai: "Drafts reminders and checks eligibility before the visit, flagging gaps", person: "Front desk staff confirm" },
+      { dept: "Clinical support", work: "Referral intake, faxed records, refill requests", ai: "Reads incoming faxes, matches them to the patient and routes them", person: "A nurse reviews each item" },
+      { dept: "Practice management", work: "Provider productivity and no-show reports", ai: "Compiles the weekly report by provider and site", person: "The practice manager reviews" },
     ],
     firstAgent: {
       name: "Prior authorization packet builder",
@@ -531,11 +531,11 @@ export const USE_CASES: UseCase[] = [
     ],
     situation: "An agency of about 120 people serves 40 to 60 retainer clients, and account teams lose the first week of every month to reporting. Media buyers check pacing across platforms by hand, creative teams resize and proof the same assets for every channel, and finance matches media invoices to insertion orders.",
     departments: [
-      { dept: "Account management", work: "Monthly client reports, status updates, meeting notes", ai: "Pulls platform data and drafts each report's narrative and recommendations", person: "The account manager edits and sends", hrs: 40 },
-      { dept: "Creative", work: "Ad copy variations, asset resizing, proofing against brand guides", ai: "Drafts variations within each client's brand guide and checks specs by channel", person: "The creative director approves", hrs: 30 },
-      { dept: "Media", work: "Pacing checks, search term reviews, reallocation notes", ai: "Flags pacing and drafts negative keyword and budget changes", person: "A media buyer approves every change", hrs: 28 },
-      { dept: "Finance", work: "Media invoice reconciliation, time against retainer", ai: "Matches vendor invoices to insertion orders and flags scope overruns", person: "Finance approves", hrs: 14 },
-      { dept: "Strategy", work: "Competitor scans, research summaries", ai: "Writes weekly summaries of competitor ads and content", person: "The strategist decides what matters", hrs: 12 },
+      { dept: "Account management", work: "Monthly client reports, status updates, meeting notes", ai: "Pulls platform data and drafts each report's narrative and recommendations", person: "The account manager edits and sends" },
+      { dept: "Creative", work: "Ad copy variations, asset resizing, proofing against brand guides", ai: "Drafts variations within each client's brand guide and checks specs by channel", person: "The creative director approves" },
+      { dept: "Media", work: "Pacing checks, search term reviews, reallocation notes", ai: "Flags pacing and drafts negative keyword and budget changes", person: "A media buyer approves every change" },
+      { dept: "Finance", work: "Media invoice reconciliation, time against retainer", ai: "Matches vendor invoices to insertion orders and flags scope overruns", person: "Finance approves" },
+      { dept: "Strategy", work: "Competitor scans, research summaries", ai: "Writes weekly summaries of competitor ads and content", person: "The strategist decides what matters" },
     ],
     firstAgent: {
       name: "Monthly client report drafter",
@@ -606,11 +606,11 @@ export const USE_CASES: UseCase[] = [
     ],
     situation: "A manufacturer of about 120 people, most of them on the floor, runs its office lean, and the office sets how much work the shop can take. Estimators turn around a fraction of incoming RFQs, customer service walks the floor to answer ship-date questions, and quality writes certificates and nonconformance reports by hand.",
     departments: [
-      { dept: "Quoting and estimating", work: "RFQ review, reading drawings, building quotes", ai: "Reads the RFQ and drawings, pulls similar past jobs and their actual costs, drafts the quote", person: "The estimator sets the price", hrs: 36 },
-      { dept: "Customer service", work: "Order entry, order status, ship-date questions", ai: "Drafts sales orders from customer POs and answers status from shop data", person: "A CSR approves each order and reply", hrs: 26 },
-      { dept: "Purchasing", work: "Reorder POs, supplier expedites, invoice matching", ai: "Drafts POs for material below reorder point and matches invoices to receipts", person: "A buyer approves every PO", hrs: 24 },
-      { dept: "Quality", work: "Inspection reports, nonconformance reports, certificates of conformance", ai: "Drafts NCRs and certificates from inspection data", person: "The quality manager signs", hrs: 18 },
-      { dept: "Production planning", work: "Late order lists, scrap reports", ai: "Compiles the daily late list and scrap by line", person: "The planner decides the schedule", hrs: 12 },
+      { dept: "Quoting and estimating", work: "RFQ review, reading drawings, building quotes", ai: "Reads the RFQ and drawings, pulls similar past jobs and their actual costs, drafts the quote", person: "The estimator sets the price" },
+      { dept: "Customer service", work: "Order entry, order status, ship-date questions", ai: "Drafts sales orders from customer POs and answers status from shop data", person: "A CSR approves each order and reply" },
+      { dept: "Purchasing", work: "Reorder POs, supplier expedites, invoice matching", ai: "Drafts POs for material below reorder point and matches invoices to receipts", person: "A buyer approves every PO" },
+      { dept: "Quality", work: "Inspection reports, nonconformance reports, certificates of conformance", ai: "Drafts NCRs and certificates from inspection data", person: "The quality manager signs" },
+      { dept: "Production planning", work: "Late order lists, scrap reports", ai: "Compiles the daily late list and scrap by line", person: "The planner decides the schedule" },
     ],
     firstAgent: {
       name: "RFQ to draft quote",
@@ -681,11 +681,11 @@ export const USE_CASES: UseCase[] = [
     ],
     situation: "A distributor of about 120 people takes hundreds of orders a day, and most arrive by email in whatever format the customer prefers. Inside sales re-types every line into the ERP, customer service answers the same status questions all afternoon, and purchasing and AP match paperwork across vendors.",
     departments: [
-      { dept: "Inside sales", work: "Order entry from emailed POs, PDFs and spreadsheets", ai: "Reads each PO, maps customer part numbers to your SKUs and drafts the sales order, flagging lines it is unsure of", person: "A rep releases every order", hrs: 48 },
-      { dept: "Customer service", work: "Order status emails, returns", ai: "Drafts answers from ERP and carrier tracking data", person: "A CSR sends each reply", hrs: 30 },
-      { dept: "Accounts payable", work: "Vendor invoice matching", ai: "Matches invoices to receipts and purchase orders and lists exceptions", person: "An AP clerk approves the exceptions", hrs: 22 },
-      { dept: "Purchasing", work: "Expedites, vendor acknowledgments, cost changes", ai: "Drafts expedites and compares vendor acknowledgments with the PO", person: "A buyer approves", hrs: 20 },
-      { dept: "Sales management", work: "Accounts buying less", ai: "Lists customers ordering less than last quarter, by product line", person: "The sales manager assigns follow-up", hrs: 6 },
+      { dept: "Inside sales", work: "Order entry from emailed POs, PDFs and spreadsheets", ai: "Reads each PO, maps customer part numbers to your SKUs and drafts the sales order, flagging lines it is unsure of", person: "A rep releases every order" },
+      { dept: "Customer service", work: "Order status emails, returns", ai: "Drafts answers from ERP and carrier tracking data", person: "A CSR sends each reply" },
+      { dept: "Accounts payable", work: "Vendor invoice matching", ai: "Matches invoices to receipts and purchase orders and lists exceptions", person: "An AP clerk approves the exceptions" },
+      { dept: "Purchasing", work: "Expedites, vendor acknowledgments, cost changes", ai: "Drafts expedites and compares vendor acknowledgments with the PO", person: "A buyer approves" },
+      { dept: "Sales management", work: "Accounts buying less", ai: "Lists customers ordering less than last quarter, by product line", person: "The sales manager assigns follow-up" },
     ],
     firstAgent: {
       name: "Order entry from the inbox",
@@ -757,11 +757,11 @@ export const USE_CASES: UseCase[] = [
     ],
     situation: "A brokerage of about 120 people, agents and staff, closes hundreds of transactions a year, and the office carries every deadline and compliance file. Transaction coordinators key contingency dates by hand, agents lose portal leads after the first reply, and marketing rebuilds materials for every listing.",
     departments: [
-      { dept: "Transaction coordination", work: "Deadline calendars from agreements, compliance file checks", ai: "Reads each executed agreement, builds the deadline calendar and flags missing signatures and disclosures", person: "The coordinator confirms dates; the managing broker approves the file", hrs: 36 },
-      { dept: "Agents", work: "Lead replies and long-term follow-up", ai: "Drafts personal follow-ups for portal, web and referral leads", person: "The agent sends each one", hrs: 34 },
-      { dept: "Marketing", work: "Listing copy, flyers, social posts, offering memoranda", ai: "Drafts materials from listing data and photos and checks fair housing language", person: "The listing agent approves", hrs: 26 },
-      { dept: "Commercial leasing", work: "Lease abstracts, renewal option tracking", ai: "Abstracts leases into rent, term and option summaries", person: "The broker checks each abstract", hrs: 18 },
-      { dept: "Accounting", work: "Commission disbursements", ai: "Builds the disbursement from the settlement statement and agent splits", person: "The broker approves", hrs: 8 },
+      { dept: "Transaction coordination", work: "Deadline calendars from agreements, compliance file checks", ai: "Reads each executed agreement, builds the deadline calendar and flags missing signatures and disclosures", person: "The coordinator confirms dates; the managing broker approves the file" },
+      { dept: "Agents", work: "Lead replies and long-term follow-up", ai: "Drafts personal follow-ups for portal, web and referral leads", person: "The agent sends each one" },
+      { dept: "Marketing", work: "Listing copy, flyers, social posts, offering memoranda", ai: "Drafts materials from listing data and photos and checks fair housing language", person: "The listing agent approves" },
+      { dept: "Commercial leasing", work: "Lease abstracts, renewal option tracking", ai: "Abstracts leases into rent, term and option summaries", person: "The broker checks each abstract" },
+      { dept: "Accounting", work: "Commission disbursements", ai: "Builds the disbursement from the settlement statement and agent splits", person: "The broker approves" },
     ],
     firstAgent: {
       name: "Deadline calendar from the executed agreement",

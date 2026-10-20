@@ -2,7 +2,7 @@
 
 /* index: hairline rows */
 .uc-index { margin-top: clamp(48px, 5vw, 72px); border-top: 1px solid var(--line-2); }
-.uc-head, .uc-row { display: grid; grid-template-columns: 56px minmax(0, 1.25fr) minmax(0, 1.2fr) 110px 28px; gap: 0 28px; align-items: start; }
+.uc-head, .uc-row { display: grid; grid-template-columns: 56px minmax(0, 1.25fr) minmax(0, 1.2fr) 150px 28px; gap: 0 28px; align-items: start; }
 .uc-head { padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 11px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
 .uc-row { padding: 30px 0; border-bottom: 1px solid var(--line); text-decoration: none; color: var(--ink); transition: background .2s, padding .2s; }
 .uc-row:hover, .uc-row:focus-visible { background: rgba(11, 27, 46, .035); padding-inline: 14px; margin-inline: -14px; }
@@ -10,7 +10,7 @@
 .uc-row h3 { font-size: clamp(22px, 2vw, 30px); letter-spacing: -0.035em; line-height: 1.1; font-weight: 500; }
 .uc-row .uc-sub { display: block; color: var(--ink-2); font-size: 15px; margin-top: 8px; max-width: 28em; }
 .uc-row .uc-work { color: var(--ink-2); font-size: 15px; padding-top: 4px; }
-.uc-row .uc-hrs { font-variant-numeric: tabular-nums; font-weight: 500; padding-top: 4px; }
+.uc-row .uc-hrs { font-variant-numeric: tabular-nums; font-weight: 500; padding-top: 4px; white-space: nowrap; }
 .uc-row .uc-hrs small { display: block; font-weight: 400; color: var(--ink-3); font-size: 12px; }
 .uc-row .uc-go { color: var(--ink-3); padding-top: 4px; transition: transform .25s, color .25s; }
 .uc-row:hover .uc-go { transform: translateX(4px); color: var(--ink); }
@@ -40,6 +40,27 @@
 .uc-total > p:first-child { font-size: clamp(19px, 1.7vw, 24px); letter-spacing: -0.02em; color: var(--ink-2); max-width: 36em; }
 .uc-total b { font-weight: 500; color: var(--ink); }
 .uc-total .fine { margin-top: 8px; }
+.uc-dt td.n small { display: block; font-weight: 400; font-size: 12px; color: var(--ink-3); white-space: nowrap; }
+.uc-how { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--line); display: grid; gap: 14px; max-width: 980px; }
+.uc-lay { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 1.45; }
+.uc-lay th, .uc-lay td { padding: 12px 16px 12px 0; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+.uc-lay thead th { font-size: 11px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
+.uc-lay tbody th { font-weight: 400; color: var(--ink-2); }
+.uc-lay td, .uc-lay thead th + th { text-align: right; padding-right: 0; width: 7.5em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.uc-lay tbody td:last-child { color: var(--ink); font-weight: 500; }
+@media (max-width: 600px) {
+  .uc-lay { font-size: 14px; }
+  .uc-lay td, .uc-lay thead th + th { width: 3.6em; white-space: normal; }
+  .uc-lay thead th { font-size: 10px; letter-spacing: .08em; }
+}
+.uc-lay .uc-lay-t th { color: var(--ink); font-weight: 500; }
+.uc-rates { list-style: none; padding: 0; display: grid; gap: 8px; font-size: 14px; line-height: 1.5; color: var(--ink-2); }
+.uc-rates b { display: inline-block; min-width: 3.4em; color: var(--ink); font-weight: 500; font-variant-numeric: tabular-nums; }
+.uc-rates a, .uc-inputs a { color: inherit; text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 3px; }
+.uc-inputs summary { cursor: pointer; font-size: 14px; font-weight: 500; color: var(--ink); }
+.uc-inputs ul { list-style: none; padding: 12px 0 0; display: grid; gap: 8px; font-size: 14px; line-height: 1.5; color: var(--ink-2); }
+.uc-inputs b { font-weight: 500; color: var(--ink); }
+.uc-inputs .mute { color: var(--ink-3); }
 
 /* what it catches: ten scenarios in a hairline grid, two across */
 .uc-sc { margin-top: clamp(40px, 4vw, 60px); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line-2); list-style: none; padding: 0; }
