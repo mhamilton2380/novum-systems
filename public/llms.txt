@@ -2,6 +2,8 @@
 
 > Novum AI implements AI in operational businesses with no one whose job is AI: training, agents, custom software, and a fractional Chief AI Officer. We teach your team, build the tools, connect your systems, and you own all of it: the code, the data, the accounts, and the training library are in the client's company name.
 
+Based in Portland, Oregon; works with teams on site and remotely.
+
 Every engagement starts with a paid discovery, sized by company and tools. It maps how the work moves, audits every tool and its cost, writes an AI usage policy, trains the team on its own work, and puts the first build live on the client's own data. After discovery, most clients keep Novum as their fractional Chief AI Officer, one engagement sized in discovery; others choose a one-time project.
 
 Key facts:

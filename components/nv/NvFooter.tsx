@@ -18,7 +18,7 @@ export function NvFooter() {
           <div>
             <Link className="brand" href="/" aria-label="Novum AI home"><Brand /></Link>
             <p>AI implementation across your company. You own all of it.</p>
-            <p><a href="mailto:hello@thenovumai.com">hello@thenovumai.com</a></p>
+            <p><a href="mailto:hello@thenovumai.com">hello@thenovumai.com</a><br />Portland, Oregon</p>
           </div>
           {COLS.map((c) => (
             <div key={c.h}>

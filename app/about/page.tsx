@@ -8,7 +8,7 @@ import "./about.css";
 export const metadata: Metadata = pageMetadata({
   path: "/about",
   title: "About Novum AI · AI Implementation, Run by Operators",
-  description: "Novum AI implements AI in operational businesses: training, agents, custom software, and a fractional AI Officer. Operators first. You own all of it.",
+  description: "Portland-based Novum AI implements AI in operational businesses: training, agents, custom software, and a fractional AI Officer. You own all of it.",
 });
 
 const STORY = [
@@ -64,7 +64,7 @@ export default function AboutPage() {
         <div className="wrap">
           <div className="label">About Novum</div>
           <h1>AI implementation, run by operators.</h1>
-          <p className="lead">We implement AI across companies the way an operator would: map the work, build what pays, train the people, and stay accountable for the results.</p>
+          <p className="lead">We implement AI across companies the way an operator would: map the work, build what pays, train the people, and stay accountable for the results. Based in Portland, Oregon, working with teams on site and remotely.</p>
           <div className="ctas">
             <Link className="btn" href="/contact">Start a conversation <span aria-hidden="true">→</span></Link>
             <Link className="btn ghost" href="/how-we-work">How we work</Link>

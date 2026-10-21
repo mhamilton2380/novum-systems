@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 // SEO helpers: per-page metadata (canonical, Open Graph, Twitter) and schema.org JSON-LD.
-// Rules (from novum-vault/CONTEXT.md): no prices, "Novum AI" only, no Portland line on the site,
+// Rules (from novum-vault/CONTEXT.md): no prices, "Novum AI" only, Portland as the home city (city only, no street address; 2026-10-20),
 // no address or contact details the site doesn't already show.
 export const SITE_URL = "https://www.thenovumai.com";
 export const SITE_NAME = "Novum AI";
@@ -37,6 +37,8 @@ export const ORGANIZATION_JSONLD = {
       description: ENTITY_DESCRIPTION,
       disambiguatingDescription: "Novum AI at thenovumai.com is an AI implementation firm for operational businesses. It is not affiliated with the AI receptionist, sales-coaching or Telegram bot products of the same name.",
       email: "hello@thenovumai.com",
+      address: { "@type": "PostalAddress", addressLocality: "Portland", addressRegion: "OR", addressCountry: "US" },
+      areaServed: [{ "@type": "City", name: "Portland, Oregon" }, { "@type": "Country", name: "United States" }],
       contactPoint: { "@type": "ContactPoint", contactType: "sales", email: "hello@thenovumai.com", url: `${SITE_URL}/contact` },
       // Company profiles only. Never a person's profile (CONTEXT.md: Michael stays in the background).
       sameAs: ["https://www.linkedin.com/company/thenovumai"],

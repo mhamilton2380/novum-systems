@@ -7,8 +7,8 @@ import { ContactForm } from "@/components/nv/ContactForm";
 
 export const metadata: Metadata = pageMetadata({
   path: "/",
-  title: "Novum AI · AI Implementation for Small Businesses",
-  description: "AI implementation for companies with no one whose job is AI. We train your team, build agents and custom software, connect your systems. You own all of it.",
+  title: "Novum AI · AI Implementation and Consulting, Portland",
+  description: "AI implementation and consulting for companies with no one whose job is AI, based in Portland, Oregon. Training, agents, custom software. You own all of it.",
 });
 
 export default function Home() {
