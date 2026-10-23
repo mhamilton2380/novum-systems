@@ -4,7 +4,7 @@ import { USE_CASES } from "@/lib/useCases";
 const BASE = "https://www.thenovumai.com";
 
 // Bump when page copy or metadata changes, so search engines re-crawl.
-const LAST_MODIFIED = new Date("2026-10-17");
+const LAST_MODIFIED = new Date("2026-10-20");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = ["", "/use-cases", "/case-studies", "/ai-implementation", "/ai-implementation/portland", "/ai-officer", "/training", "/how-we-work", "/why-ai", "/guides/how-to-implement-ai", "/guides/ai-implementation-cost", "/guides/ai-usage-policy-template", "/assessment", "/about", "/contact", "/security", "/privacy", "/terms"];
