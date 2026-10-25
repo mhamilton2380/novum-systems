@@ -220,7 +220,7 @@ export default function TrainingPage() {
           <div className="first">
             <div><span className="meta">After the training</span><h3 id="tr-next-h">Ready to build on what they learned?</h3></div>
             <div>
-              <p>A discovery maps how your work moves and puts the first build live on your own data. Your team will already know how to use it.</p>
+              <p>A discovery maps how your work moves and puts a working tool on your own data. Your team will already know how to use it.</p>
               <div className="tr-next">
                 <Link className="btn" href="/contact">Start a conversation <span aria-hidden="true">→</span></Link>
                 <Link className="link" href="/how-we-work">How we work <span aria-hidden="true">→</span></Link>

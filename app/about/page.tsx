@@ -36,7 +36,7 @@ const SIGNALS = [
 const HOLD = [
   { k: "In person", d: "We train your team on site, on their own work." },
   { k: "Mapped first", d: "How the work moves, before any build starts." },
-  { k: "First build", d: "Live on your own data, in use by your team." },
+  { k: "A working tool", d: "Live on your own data, in use by your team." },
   { k: "In your name", d: "Code, data, accounts, and the training library." },
 ];
 

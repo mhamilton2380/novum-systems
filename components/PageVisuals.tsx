@@ -222,7 +222,7 @@ const DISCOVERY: { icon: IconName; t: string; s: string }[] = [
   { icon: "map", t: "Work mapped", s: "How it moves today, with your team" },
   { icon: "coin", t: "Tool and cost report", s: "Every subscription: keep, connect, or cut" },
   { icon: "users", t: "Team trained", s: "On its own work, recorded for the library" },
-  { icon: "bot", t: "First build live", s: "On your own data, in use" },
+  { icon: "bot", t: "A working tool", s: "On your own data, in use" },
 ];
 export function DiscoveryCard() {
   return (

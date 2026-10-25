@@ -38,7 +38,7 @@ export const ORGANIZATION_JSONLD = {
       disambiguatingDescription: "Novum AI at thenovumai.com is an AI implementation firm for operational businesses. It is not affiliated with the AI receptionist, sales-coaching or Telegram bot products of the same name.",
       email: "hello@thenovumai.com",
       address: { "@type": "PostalAddress", addressLocality: "Portland", addressRegion: "OR", addressCountry: "US" },
-      areaServed: [{ "@type": "City", name: "Portland, Oregon" }, { "@type": "Country", name: "United States" }],
+      areaServed: [{ "@type": "City", name: "Portland, Oregon" }, { "@type": "City", name: "Seattle, Washington" }, { "@type": "Country", name: "United States" }],
       contactPoint: { "@type": "ContactPoint", contactType: "sales", email: "hello@thenovumai.com", url: `${SITE_URL}/contact` },
       // Company profiles only. Never a person's profile (CONTEXT.md: Michael stays in the background).
       sameAs: ["https://www.linkedin.com/company/thenovumai"],

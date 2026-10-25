@@ -65,7 +65,7 @@ const DISCOVERY: Step[] = [
       "The tools you keep, connected",
       "Agents and automations, with a person approving",
       "Your data migrated where a platform gets replaced",
-      "The first build live on your own data",
+      "A working tool on your own data",
     ],
   },
 ];
@@ -114,7 +114,7 @@ const HANDOFF = [
 const FAQ = [
   { q: "Can we just book training?", a: "Yes. A training day is five hours, tailored to your company type, and you can request one without a discovery. Many teams start there and add an AI Officer once they see what to build." },
   { q: "Do we have to replace our software?", a: "No. Most clients keep the tools that work. We connect them and put AI on top. We only rebuild a platform when owning it costs less than the subscription." },
-  { q: "How long until we see something working?", a: "Discovery ends with your first build live on your own data. After that, work runs in parallel, each on its own clock: connecting the tools you keep usually takes days to a few weeks, an agent on repeat work a few weeks, and custom software goes live module by module over a few months. Your proposal sets the dates." },
+  { q: "How long until we see something working?", a: "Discovery ends with a working tool on your own data. After that, work runs in parallel, each on its own clock: connecting the tools you keep usually takes days to a few weeks, an agent on repeat work a few weeks, and custom software goes live module by module over a few months. Your proposal sets the dates." },
   { q: "Who from our side needs to be involved?", a: "A sponsor who sets priorities, the people who do the work in each team in scope, a named owner for each build, and whoever runs your systems. A senior lead from our side runs the engagement from the first conversation on." },
   { q: "If you replace a platform, what happens to our data?", a: "We move it. Migration is part of the work, so your history comes with you." },
   { q: "What if we stop working with you?", a: "The hosting accounts are in your company's name, so the system keeps running and you keep paying the host directly. What stops is our support. Hire another developer, or bring us back." },
@@ -167,16 +167,16 @@ export default function HowWeWorkPage() {
         <div className="wrap">
           <div className="label"><span className="ix">01</span>The process</div>
           <h2 className="h2" id="hw-proc-h">Five steps, from first conversation to running.</h2>
-          <p className="lead">Discovery covers steps 01 to 03 and a first training session, and ends with your first build live. Training continues in step 04 and the monthly upkeep in step 05, both part of the ongoing AI Officer. Every new build loops back through step 03.</p>
+          <p className="lead">Discovery covers steps 01 to 03 and a first training session, and ends with a working tool on your own data. Training continues in step 04 and the monthly upkeep in step 05, both part of the ongoing AI Officer. Every new build loops back through step 03.</p>
           <div className="proc">
             <div className="brackets" aria-hidden="true">
-              <span className="br disc">Discovery<em>ends with the first build live and a first training session</em></span>
+              <span className="br disc">Discovery<em>ends with a working tool on your data and a first training session</em></span>
               <span className="br off">AI Officer<em>ongoing, for as long as you keep us on</em></span>
             </div>
             <div className="pgrid">
               <div className="pst" style={{ ["--i" as string]: 0 }}><span className="pn">01</span><h3>Map the work</h3><p>Interviews with the people who do it, step by step. We cut what shouldn&apos;t exist before anything is automated.</p><div className="pout"><span>Workflow map</span></div></div>
               <div className="pst" style={{ ["--i" as string]: 1 }}><span className="pn">02</span><h3>Tool report and AI policy</h3><p>Every tool you pay for, what it costs and a call on each. Then the rules for what data goes where.</p><div className="pout"><span>Tool and cost report</span><span>AI usage policy</span></div></div>
-              <div className="pst build" style={{ ["--i" as string]: 2 }}><span className="pn">03</span><h3>Build</h3><div className="pbranch"><div><b>Custom software</b><small>Where a platform no longer fits</small></div><div><b>Connect your tools</b><small>Data entered once, everywhere</small></div><div><b>Deploy automation</b><small>Agents on the repeat work</small></div></div><div className="pout"><span>First build live</span></div></div>
+              <div className="pst build" style={{ ["--i" as string]: 2 }}><span className="pn">03</span><h3>Build</h3><div className="pbranch"><div><b>Custom software</b><small>Where a platform no longer fits</small></div><div><b>Connect your tools</b><small>Data entered once, everywhere</small></div><div><b>Deploy automation</b><small>Agents on the repeat work</small></div></div><div className="pout"><span>A working tool on your data</span></div></div>
               <div className="pst" style={{ ["--i" as string]: 3 }}><span className="pn">04</span><h3>Train the team</h3><p>A first session in discovery, then on their own work before each piece goes live, and every month after.</p><div className="pout"><span>Training library you keep</span></div></div>
               <div className="pst loop" style={{ ["--i" as string]: 4 }}><span className="pn">05</span><h3>Keep it current</h3><p>Monthly performance audits on every agent and tool. New models and tools tested on your data as they ship.</p><div className="pout"><span>Monthly report</span></div></div>
             </div>
@@ -191,12 +191,12 @@ export default function HowWeWorkPage() {
           <div className="first">
             <div><span className="meta">The first engagement</span><h3>Discovery</h3></div>
             <div>
-              <p>We map how the work moves, report on every tool you pay for, write your AI usage policy, train your team on its own work, and put the first build live on your data. You keep everything we deliver, whatever you decide next. Most clients then keep us on as their AI Officer.</p>
+              <p>We map how the work moves, report on every tool you pay for, write your AI usage policy, train your team on its own work, and put a working tool on your own data. You keep everything we deliver, whatever you decide next. Most clients then keep us on as their AI Officer.</p>
               <ul className="hw-disc">
                 <li><b>Work mapped</b><span>How it moves today, with your team</span></li>
                 <li><b>Tool and cost report</b><span>Every subscription: keep, connect, or cut</span></li>
                 <li><b>Team trained</b><span>On its own work, recorded for the library</span></li>
-                <li><b>First build live</b><span>On your own data, in use</span></li>
+                <li><b>A working tool</b><span>On your own data, in use</span></li>
               </ul>
             </div>
           </div>
@@ -210,7 +210,7 @@ export default function HowWeWorkPage() {
           <p className="lead">A senior lead runs every engagement, from the first conversation on. Here is who we need from your company, what we ask of them, and what you receive.</p>
           <div className="hw-phase">
             <span className="meta">Discovery · steps 01 to 03 and the first training session</span>
-            <span>Ends with the first build live on your own data</span>
+            <span>Ends with a working tool on your own data</span>
           </div>
           {DISCOVERY.map((s) => <StepRow key={s.n} s={s} />)}
           <div className="hw-phase off">

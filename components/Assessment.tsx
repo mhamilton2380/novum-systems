@@ -170,7 +170,7 @@ function Results({ answers, onRestart }: { answers: Answers; onRestart: () => vo
         </div>
         <div className="as-cta">
           <strong>Want the real number?</strong>
-          <p>A discovery measures it on your own work, and ends with your first build live.</p>
+          <p>A discovery measures it on your own work, and ends with a working tool on your own data.</p>
           <Link href="/contact" className="h-btn h-btn-primary">Book a discovery call</Link>
           <button className="as-restart" onClick={onRestart}>Retake the assessment</button>
         </div>

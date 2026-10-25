@@ -4,7 +4,7 @@
 
 Based in Portland, Oregon; works with teams on site and remotely.
 
-Every engagement starts with a paid discovery, sized by company and tools. It maps how the work moves, audits every tool and its cost, writes an AI usage policy, trains the team on its own work, and puts the first build live on the client's own data. After discovery, most clients keep Novum as their fractional Chief AI Officer, one engagement sized in discovery; others choose a one-time project.
+Every engagement starts with a paid discovery, sized by company and tools. It maps how the work moves, audits every tool and its cost, writes an AI usage policy, trains the team on its own work, and puts a working tool on the client's own data. After discovery, most clients keep Novum as their fractional Chief AI Officer, one engagement sized in discovery; others choose a one-time project.
 
 Key facts:
 - No seats, no per-user licenses, no revenue share.
@@ -18,6 +18,7 @@ Key facts:
 - [Fractional Chief AI Officer](https://www.thenovumai.com/ai-officer): every tool connected, unlimited agents and builds worked one or two at a time, team trained every month.
 - [AI Training](https://www.thenovumai.com/training): monthly training on your own tools, a library you keep, and a 5-hour on-site training day quoted by team size.
 - [AI implementation in Portland](https://www.thenovumai.com/ai-implementation/portland): Portland metro industries, on-site training days, and how an engagement starts.
+- [AI implementation in Seattle](https://www.thenovumai.com/ai-implementation/seattle): Seattle metro industries, Microsoft 365 and Copilot, on-site training days, and how an engagement starts.
 - [How We Work](https://www.thenovumai.com/how-we-work): discovery, build, train, run.
 
 ## Industries

@@ -14,7 +14,7 @@ const DESC = "AI implementation and consulting for Portland companies: we train 
 export const metadata: Metadata = pageMetadata({ path: PATH, title: "AI Implementation and Consulting in Portland · Novum AI", description: DESC });
 
 // Census County Business Patterns 2023, Portland metro, establishments with 20 to 99 employees.
-// First builds come from each industry page (lib/useCases.ts). Trucking has no industry page yet.
+// Starting points come from each industry page (lib/useCases.ts). Trucking has no industry page yet.
 const INDUSTRIES = [
   { n: "335", t: "Wholesale distribution", b: "Order entry from the inbox, tested on 200 past emailed POs", href: "/use-cases/wholesale-distribution" },
   { n: "187+", t: "Metals and machinery", b: "RFQ to a draft quote, tested on 50 past RFQs", href: "/use-cases/manufacturing" },
@@ -28,7 +28,7 @@ const START = [
   { b: "Tool and cost report", s: "Every program you pay for: keep it, connect it, replace it, or cut it" },
   { b: "AI usage policy", s: "Which data goes where, and who approves what goes out" },
   { b: "Team trained", s: "A session on your own work, recorded for a library you keep" },
-  { b: "First build live", s: "An agent, a connected tool, or the first piece of custom software, on your own data" },
+  { b: "A working tool", s: "An agent, a connected tool, or the first piece of custom software, on your own data" },
 ];
 
 const PROOF = [
@@ -38,7 +38,7 @@ const PROOF = [
 ];
 
 const FAQ = [
-  { q: "What does an AI consultant in Portland actually do?", a: "We map how your work moves, audit every tool you pay for, write your AI usage policy, train your team on its own work, and put a first build live on your data. Then you get a written plan for what comes next. Everything we deliver is yours." },
+  { q: "What does an AI consultant in Portland actually do?", a: "We map how your work moves, audit every tool you pay for, write your AI usage policy, train your team on its own work, and put a working tool on your own data. Then you get a written plan for what comes next. Everything we deliver is yours." },
   { q: "Do you offer AI classes or training in Portland?", a: "Yes. A five-hour training day at your office, on your team's own work: how AI works, which tools fit your company, which agents to build first, and what data stays private. Request a quote through the training page. Ongoing clients also get live training every month." },
   { q: "How is Novum different from an AI automation agency?", a: "We train your team on your own systems and data, so what gets built gets used. A person approves anything before it is sent, filed or paid. And the code, data and accounts are in your company's name, so nothing breaks if you stop working with us." },
   { q: "Which Portland companies are a fit?", a: "Operational businesses of 15 people and up with no one whose job is AI: distributors, manufacturers, freight and logistics firms, accounting firms, insurance agencies, construction, legal, healthcare and more. The strongest fit has repeat paperwork or phone volume and tools that don't talk to each other." },
@@ -95,29 +95,29 @@ export default function PortlandPage() {
         <div className="wrap">
           <div className="label"><span className="ix">02</span>Portland industries</div>
           <h2 className="h2" id="pdx-ind-h">Where the repeat work is in Portland.</h2>
-          <p className="lead">More than 750 Portland-area firms in these five industries have 20 to 99 people, and most run on repeat paperwork and tools that don&apos;t talk. Each has a clear first build.</p>
+          <p className="lead">More than 750 Portland-area firms in these five industries have 20 to 99 people, and most run on repeat paperwork and tools that don&apos;t talk. Each has a clear place to start.</p>
           <div className="cmp-wrap">
             <table className="cmp">
-              <thead><tr><th scope="col">Industry</th><th scope="col">Portland firms</th><th scope="col" className="us">A typical first build</th></tr></thead>
+              <thead><tr><th scope="col">Industry</th><th scope="col">Portland firms</th><th scope="col" className="us">A typical place to start</th></tr></thead>
               <tbody>
                 {INDUSTRIES.map((r) => (
                   <tr key={r.t}>
                     <td><Link href={r.href}>{r.t}</Link></td>
                     <td data-l="Portland firms">{r.n}</td>
-                    <td data-l="A typical first build" className="us">{r.b}</td>
+                    <td data-l="A typical place to start" className="us">{r.b}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-          <p className="cmp-note">Establishments with 20 to 99 employees, Portland metro (Clackamas, Columbia, Multnomah, Washington, Yamhill, Clark and Skamania counties). U.S. Census Bureau, County Business Patterns 2023. Counts marked + are lower bounds because Census withholds small cells. First builds are examples from our industry pages.</p>
+          <p className="cmp-note">Establishments with 20 to 99 employees, Portland metro (Clackamas, Columbia, Multnomah, Washington, Yamhill, Clark and Skamania counties). U.S. Census Bureau, County Business Patterns 2023. Counts marked + are lower bounds because Census withholds small cells. Starting points are examples from our industry pages.</p>
         </div>
       </section>
 
       <section className="sec light" aria-labelledby="pdx-start-h">
         <div className="wrap">
           <div className="label"><span className="ix">03</span>How it starts</div>
-          <h2 className="h2" id="pdx-start-h">Every engagement starts with a discovery. <span className="mute">It ends with your first build live.</span></h2>
+          <h2 className="h2" id="pdx-start-h">Every engagement starts with a discovery. <span className="mute">It ends with a working tool on your own data.</span></h2>
           <ul className="mlist">
             {START.map((x) => <li key={x.b}><b>{x.b}</b><span>{x.s}</span></li>)}
           </ul>

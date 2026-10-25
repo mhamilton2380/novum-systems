@@ -183,7 +183,7 @@ export default function AiImplementationCostPage() {
           <div>
             <div className="label">Start a conversation</div>
             <h2 className="h2" id="gc-cta-h">Get a number for your company.</h2>
-            <p className="lead">A discovery measures the work, audits every tool you pay for, and ends with your first build live and a written plan with prices for what comes next.</p>
+            <p className="lead">A discovery measures the work, audits every tool you pay for, and ends with a working tool on your own data and a written plan with prices for what comes next.</p>
           </div>
           <ContactForm source="Guide: AI implementation cost" />
         </div>

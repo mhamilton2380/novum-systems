@@ -129,7 +129,7 @@ const HONEST = [
 const FAQ = [
   { q: "What is a fractional Chief AI Officer?", a: "Most companies can't justify a full-time technical executive for AI. We fill the role part-time. We train your team, test new AI on your data, keep your systems running, and cut tools that don't earn their price." },
   { q: "Should we hire a full-time Chief AI Officer or go fractional?", a: "Hire full time when you can keep a senior AI leader busy every week and can recruit one. Most companies without a technical team can't yet, so a fractional AI Officer runs the role part time: the roadmap, the builds, the training and the upkeep, with everything in your company's name." },
-  { q: "How does it start?", a: "With a discovery. We map how your work moves, audit every tool you pay for, write your AI usage policy, train your team on its own work, and put your first build live on your data." },
+  { q: "How does it start?", a: "With a discovery. We map how your work moves, audit every tool you pay for, write your AI usage policy, train your team on its own work, and put a working tool on your own data." },
   { q: "How is the engagement sized?", a: "In discovery, to your company: how many people, how many tools, and how much is in the build queue. Builds run in parallel, and your proposal sets the dates. It is one engagement covering everything on this page, not a menu of tiers." },
   { q: "Can we just buy one project?", a: "Yes. If you'd rather not keep us on, we scope a single build with you after discovery: an assistant, agents, integrations, or a platform replacement. You get the same training and you own the code, data, and accounts. Most clients keep us on for the upkeep and the builds that come after the first." },
   { q: "How does the queue work?", a: "Agents, integrations and tools all go in one queue. Each build is live and your team is trained on it before it counts as done. Builds run in parallel, each on its own clock. Connecting the tools you keep usually takes days to a few weeks, an agent on repeat work a few weeks, and custom software goes live module by module over a few months. Your proposal sets the dates." },
@@ -368,7 +368,7 @@ export default function AiOfficerPage() {
         <div className="wrap">
           <div className="label"><span className="ix">10</span>What&apos;s included</div>
           <h2 className="h2" id="in-h">One role, sized to your company.</h2>
-          <p className="lead">It starts with a discovery that ends with your first build live. From there, this is what your AI Officer covers.</p>
+          <p className="lead">It starts with a discovery that ends with a working tool on your own data. From there, this is what your AI Officer covers.</p>
           <div className="ao-inc">
             {INCLUDED.map((g) => (
               <div className="flip" key={g.group}>
@@ -429,7 +429,7 @@ export default function AiOfficerPage() {
           <div>
             <div className="label">Start a conversation</div>
             <h2 className="h2" id="contact-h">Your AI Officer starts with a discovery.</h2>
-            <p className="lead">Workflow mapped, tools audited, AI policy written, team trained, first build live. We reply the same business day.</p>
+            <p className="lead">Workflow mapped, tools audited, AI policy written, team trained, a working tool on your data. We reply the same business day.</p>
             <div className="alt"><Link className="btn ghost" href="/contact">More ways to reach us</Link></div>
           </div>
           <ContactForm source="AI Officer page" />

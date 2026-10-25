@@ -163,7 +163,7 @@ export default function AiUsagePolicyPage() {
           <div>
             <div className="label">Start a conversation</div>
             <h2 className="h2" id="gp-cta-h">Want the policy written on your company?</h2>
-            <p className="lead">Every discovery includes an AI usage policy built from your team&apos;s survey and interviews, plus a training session on it, and ends with your first build live.</p>
+            <p className="lead">Every discovery includes an AI usage policy built from your team&apos;s survey and interviews, plus a training session on it, and ends with a working tool on your own data.</p>
           </div>
           <ContactForm source="Guide: AI usage policy template" />
         </div>

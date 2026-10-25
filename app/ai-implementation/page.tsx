@@ -76,7 +76,7 @@ const STEPS = [
 
 const DOORS = [
   { need: "My team needs to learn AI", title: "Start with a training day", body: "Your team gets up to speed in five hours, with a short list of tools and a clear sense of what AI can do for them.", href: "/training", cta: "Book a training day" },
-  { need: "I know what I want built", title: "Start with a discovery", body: "We map the work, audit your tools, write your AI policy, and put your first build live.", href: "#contact", cta: "Book a conversation" },
+  { need: "I know what I want built", title: "Start with a discovery", body: "We map the work, audit your tools, write your AI policy, and put a working tool on your own data.", href: "#contact", cta: "Book a conversation" },
   { need: "I want someone to own AI for us", title: "Start with an AI Officer", body: "Someone who owns AI for your company: building, training, and keeping it current. It starts with a discovery.", href: "/ai-officer", cta: "See the AI Officer role" },
 ];
 
@@ -90,7 +90,7 @@ const OWN = [
 const FAQ = [
   { q: "What does AI implementation mean here?", a: "Getting AI into the daily work of your business. That takes two things: your people knowing how to use it, and someone building and maintaining the tools around your data. Training covers the first. Agents, custom software and an AI Officer cover the second." },
   { q: "Do we need all four?", a: "No. Some teams book a training day and stop there. Most that go further find the training shows them what to build, and the AI Officer builds it. We start where your teams lose the most hours and add the rest as each piece earns its place." },
-  { q: "How does it start?", a: "With a discovery. We map how your work moves, audit every tool you pay for, write your AI usage policy, train your team on its own work, and put your first build live on your data. You keep everything we deliver." },
+  { q: "How does it start?", a: "With a discovery. We map how your work moves, audit every tool you pay for, write your AI usage policy, train your team on its own work, and put a working tool on your own data. You keep everything we deliver." },
   { q: "Can we buy one project instead of an ongoing engagement?", a: "Yes. After discovery we scope a single build with you: an assistant, agents, integrations, or a platform replacement. You get the same training and you own the code, data and accounts. Most clients keep us on as their AI Officer for the upkeep and the builds that come after the first." },
   { q: "Who owns what you build?", a: "You do. The code, the data, and the accounts are in your company's name, and your team keeps the know-how." },
   { q: "Do we have to replace our software?", a: "No. We connect the tools that work and put AI on top. We only rebuild a platform when owning it costs less than the subscription." },
@@ -307,13 +307,13 @@ export default function AiImplementationPage() {
           <div className="first">
             <div><span className="meta">The first engagement</span><h3>Discovery</h3></div>
             <div className="ai-first-p">
-              <p>Everyone starts here, and it ends with your first build live on your own data. You keep everything we deliver, whatever you decide next.</p>
+              <p>Everyone starts here, and it ends with a working tool on your own data. You keep everything we deliver, whatever you decide next.</p>
               <ul className="ai-deliv">
                 <li>Workflow map</li>
                 <li>Tool and cost report</li>
                 <li>AI usage policy</li>
                 <li>A training session on your own work</li>
-                <li>Your first build live</li>
+                <li>A working tool on your own data</li>
                 <li>A written plan for what comes next</li>
               </ul>
             </div>
@@ -388,7 +388,7 @@ export default function AiImplementationPage() {
           <div>
             <div className="label">Start a conversation</div>
             <h2 className="h2" id="contact-h">Put AI on the real work.</h2>
-            <p className="lead">Your workflow mapped, your team trained on its own work, and your first build live on your data. We reply the same business day.</p>
+            <p className="lead">Your workflow mapped, your team trained on its own work, and a working tool on your own data. We reply the same business day.</p>
             <div className="alt"><Link className="btn ghost" href="/contact">More ways to reach us</Link></div>
           </div>
           <ContactForm source="AI implementation page" />

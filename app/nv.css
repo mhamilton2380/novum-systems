@@ -897,3 +897,6 @@ footer { border-top: 1px solid var(--line); padding-block: 64px calc(40px + env(
 /* Two paper sections in a row: one shared gap instead of double padding, split by a hairline. */
 .sec.light + .sec.light { padding-top: 0; }
 .sec.light + .sec.light > .wrap::before { content: ""; display: block; height: 1px; background: var(--line); margin-bottom: clamp(64px, 8vw, 120px); }
+
+.demo-steps { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 48px; list-style: none; padding: 0; }
+@media (max-width: 860px) { .demo-steps { grid-template-columns: 1fr; } }

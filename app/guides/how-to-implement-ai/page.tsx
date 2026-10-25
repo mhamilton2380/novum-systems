@@ -158,7 +158,7 @@ export default function HowToImplementAiPage() {
           <div>
             <div className="label">Start a conversation</div>
             <h2 className="h2" id="gd-cta-h">Want this plan run on your company?</h2>
-            <p className="lead">A discovery maps your work, audits your tools, writes your AI policy, trains your team, and ends with your first build live.</p>
+            <p className="lead">A discovery maps your work, audits your tools, writes your AI policy, trains your team, and ends with a working tool on your own data.</p>
           </div>
           <ContactForm source="Guide: how to implement AI" />
         </div>

@@ -330,7 +330,7 @@ export default function WhyAiPage() {
           <div>
             <div className="label">Start a conversation</div>
             <h2 className="h2" id="wy-cta-h">Find your number.</h2>
-            <p className="lead">The free AI Readiness Score gives you an estimate in two minutes. A discovery measures the real number on your own work, and ends with your first build live.</p>
+            <p className="lead">The free AI Readiness Score gives you an estimate in two minutes. A discovery measures the real number on your own work, and ends with a working tool on your own data.</p>
             <div className="alt">
               <Link className="btn" href="/assessment">Take the AI Readiness Score <span aria-hidden="true">→</span></Link>
             </div>
