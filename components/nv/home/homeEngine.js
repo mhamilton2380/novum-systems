@@ -97,8 +97,9 @@ export function initHomeHero() {
     let S, cx, cy;
     if (mobile) { S = Math.min(Wd * 0.72, hero.height * 0.4); cx = Wd * 0.5; cy = hero.top + hero.height * 0.29; }
     else { S = Math.min(hero.height * 0.8, Wd * 0.46); cx = Wd * 0.7; cy = hero.top + hero.height * 0.5; }
-    // scroll: N -> horizon line
-    const s0 = 0, s1 = hz.top + scrollY - Ht * 0.46;
+    // scroll: N -> horizon line, paced like the inner-page headlines (NvMotion): the fall runs
+    // across most of the hero's height, so it plays out as you read
+    const s0 = 0, s1 = Math.max(420, hero.height * 0.85);
     let p = clamp((scrollY - s0) / Math.max(1, s1 - s0), 0, 1);
     if (reduce) p = p > 0.5 ? 1 : 0;
     body.classList.toggle("landed", p > 0.97);
@@ -157,7 +158,7 @@ export function initHomeHero() {
 
         // the fall: burst out of the N, seven fine ribbons peel off in turn and settle on the horizon
         const cc = rb[i];
-        const pp = ease(clamp((p - (cc * 0.02 + sd[i] * 0.04)) / 0.6, 0, 1));
+        const pp = ease(clamp((p - (cc * 0.05 + sd[i] * 0.1)) / 0.6, 0, 1));
         if (pp <= 0) { x = nx; y = ny; c = nc; a = na; s = ns; }
         else if (pp >= 1) { x = hx; y = hy; c = hc; a = ha; s = hs; }
         else {

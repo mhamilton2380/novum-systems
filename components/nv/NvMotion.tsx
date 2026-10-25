@@ -131,7 +131,7 @@ function particleHeadline(h1: HTMLElement): () => void {
     const t = (now - t0) / 1000;
     const oy = sec!.getBoundingClientRect().top;          // section to viewport offset
     // same fall as the home N: progress runs from the first scroll until the hero's bottom line sits mid-screen
-    // slower than the home N: the fall runs across most of the hero's height, so it plays out as you read
+    // the home N uses the same pace: the fall runs across most of the hero's height, so it plays out as you read
     const p = clamp(scrollY / Math.max(420, H * 0.85));
     const built = clamp((t - 1.5) / 0.35);              // real text fades in after assembly
     h1.style.setProperty("--pt-o", String(built * (1 - clamp(p * 18))));
