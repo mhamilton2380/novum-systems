@@ -443,116 +443,177 @@ document.querySelectorAll(".caps4 .cap, .gov > div, .cad, .pace > div, .finds > 
 
 export function initLayers() {
 
-// 01: a 60-person company gains training, connections, agents, its own system and an AI Officer as the steps scroll past
+// 01: one example company gains training, connections, agents, its own system and an AI Officer.
+// Desktop: one sticky diagram changes as the steps scroll past. Phones: each step carries its own small diagram.
 (() => {
-  const svg = document.getElementById("dg");
-  if (!svg) return;
+  const root = document.getElementById("layers");
+  if (!root) return;
   const NS = "http://www.w3.org/2000/svg";
-  const DEPTS = ["Accounting", "Operations", "Sales", "Front office", "HR", "Leadership"];
-  const SYS = ["QuickBooks", "Project platform", "CRM", "Phones", "Microsoft 365"];
-  const WIRES = [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 4]];
-  const AGENTS = [{ w: 0, l: "Invoices", c: "600" }, { w: 3, l: "Calls", c: "150" }, { w: 1, l: "POs matched", c: "250" }, { w: 2, l: "Follow-ups", c: "80" }, { w: 4, l: "HR drafts", c: "3 waiting", wait: 1 }];
-  const LINKS = [[0, 1], [1, 2], [2, 3], [3, 4]];
-  const CHIPS = [["Chat seat", 2, .42], ["AI add-on", 0, .58], ["AI tier", 1, .36], ["Free tool", 3, .62]];
+  const TEAMS = ["Accounting", "Operations", "Sales", "Front office", "HR", "Leadership"];
+  const SYS = ["QuickBooks", "Project platform", "CRM", "Phones", "Microsoft 365"]; // team i works in system min(i, 4)
+  const AGENTS = { 0: ["600", "Invoices"], 1: ["250", "POs matched"], 2: ["80", "Follow-ups"], 3: ["150", "Calls"], 4: ["3", "HR drafts", 1] };
+  const SUBS = { 0: "AI add-on", 1: "AI tier", 2: "Chat seat", 3: "Free tool" };
   const CAPS = ["Four AI subscriptions. None connected, nobody trained, nobody in charge.", "Accounting class, recorded: coding invoices with AI on your own vendors.", "Address changed in the CRM. QuickBooks and Microsoft 365 updated.", "INV-20431 keyed and matched to PO-7781. Three HR drafts wait for a person.", "Project history moved to your own system. Code and accounts in your name.", "New model tested on 200 of your past invoices before anything switched."];
-  const el = (t, a, p) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); (p || svg).appendChild(e); return e; };
-  const steps = [...document.querySelectorAll("#layers .st")], col = document.querySelector("#layers .steps-col");
-  const lyr = document.getElementById("lyr"), capt = document.getElementById("capt"), capF = document.querySelector("#layers .cap-f"), rail = document.getElementById("railp");
-  let cur = -1, counted = false;
-  // wide: teams in a row over the systems; narrow: teams in a column beside them
-  function build() {
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const phone = () => innerWidth <= 900;
+  const cls = n => "dg" + [1, 2, 3, 4, 5].filter(k => k <= n).map(k => " s" + k).join("");
+  let uid = 0;
+  const el = (t, a, p) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); p.appendChild(e); return e; };
+  const txt = (t, a, p) => { const e = el("text", a, p); e.textContent = t; return e; };
+
+  // draws the company into svg; wide = teams in a row over the systems, otherwise teams in rows beside them
+  function draw(svg, wide) {
     svg.innerHTML = "";
-    const wide = svg.parentNode.clientWidth > 560;
-    let W, H, dp, sp, sw, sh;
-    if (wide) { W = 660; H = 520; dp = DEPTS.map((_, i) => [60 + i * 108, 84]); sp = SYS.map((_, i) => [66 + i * 132, 438]); sw = 116; sh = 40; }
-    else { W = 360; H = 470; dp = DEPTS.map((_, i) => [100, 44 + i * 74]); sp = SYS.map((_, i) => [290, 58 + i * 88]); sw = 104; sh = 38; }
+    const id = "ly" + (uid++);
+    let W, H, team, sys, wire, mid, bus, stub, tw, th;
+    if (wide) {
+      W = 680; H = 446; tw = 94; th = 62;
+      const cx = i => 72 + i * 107;
+      team = i => [cx(i), 65];
+      sys = i => i < 4 ? [cx(i), 344, 100, 44] : [(cx(4) + cx(5)) / 2, 344, cx(5) - cx(4) + 100, 44];
+      wire = i => `M${cx(i)},96 V322`;
+      mid = i => [cx(i), 209];
+      bus = `M${cx(0)},398 H${(cx(4) + cx(5)) / 2}`;
+      stub = i => { const [x] = sys(i); return `M${x},366 V398`; };
+    } else {
+      W = 360; H = 340; tw = 120; th = 40;
+      const ry = i => 40 + i * 52;
+      team = i => [68, ry(i)];
+      sys = i => i < 4 ? [281, ry(i), 106, 36] : [281, (ry(4) + ry(5)) / 2, 106, ry(5) - ry(4) + 36];
+      wire = i => `M128,${ry(i)} H228`;
+      mid = i => [178, ry(i)];
+      bus = `M348,${ry(0)} V${(ry(4) + ry(5)) / 2}`;
+      stub = i => { const [, y] = sys(i); return `M334,${y} H348`; };
+    }
     svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
-    const gW = el("g", {}), gL = el("g", {}), gC = el("g", {}), gS = el("g", {}), gA = el("g", {}), gD = el("g", {});
-    const paths = WIRES.map(([d, s]) => {
-      const [dx, dy] = dp[d], [sx, sy] = sp[s]; let p;
-      if (wide) { const a = dy + 26, b = sy - sh / 2, m = (a + b) / 2; p = `M${dx},${a} C${dx},${m} ${sx},${m} ${sx},${b}`; }
-      else { const a = dx + 22, b = sx - sw / 2, m = (a + b) / 2; p = `M${a},${dy} C${m},${dy} ${m},${sy} ${b},${sy}`; }
-      return el("path", { d: p, class: "wire" }, gW);
+    const defs = el("defs", {}, svg);
+    const pat = el("pattern", { id: id + "d", width: 16, height: 16, patternUnits: "userSpaceOnUse" }, defs);
+    el("circle", { cx: 8, cy: 8, r: .8, fill: "rgba(238,240,234,.07)" }, pat);
+    const gr = el("linearGradient", wide ? { id: id + "g", gradientUnits: "userSpaceOnUse", x1: 0, y1: 96, x2: 0, y2: 322 } : { id: id + "g", gradientUnits: "userSpaceOnUse", x1: 128, y1: 0, x2: 228, y2: 0 }, defs);
+    el("stop", { offset: 0, "stop-color": "#34d399" }, gr); el("stop", { offset: 1, "stop-color": "#3b6fe0" }, gr);
+    const fl = el("filter", { id: id + "f", x: "-60%", y: "-60%", width: "220%", height: "220%" }, defs);
+    el("feGaussianBlur", { stdDeviation: 2.4, result: "b" }, fl);
+    const fm = el("feMerge", {}, fl); el("feMergeNode", { in: "b" }, fm); el("feMergeNode", { in: "SourceGraphic" }, fm);
+    const glow = `url(#${id}f)`;
+    el("rect", { width: W, height: H, fill: `url(#${id}d)` }, svg);
+    const g = {}; ["wires", "bus", "subs", "sys", "agents", "teams", "top"].forEach(k => g[k] = el("g", {}, svg));
+
+    // wires: dashed until the agents arrive, then a drawn gradient line with work moving along it
+    TEAMS.forEach((_, i) => {
+      el("path", { d: wire(i), class: "wire" }, g.wires);
+      el("path", { d: wire(i), class: "wire-on", stroke: `url(#${id}g)`, pathLength: 1 }, g.wires).style.transitionDelay = (i * .08) + "s";
+      if (AGENTS[i] && !AGENTS[i][2]) for (let k = 0; k < 2; k++) el("animateMotion", { dur: (2.6 + i * .25) + "s", begin: (-k * 1.3 - i * .3 - .01) + "s", repeatCount: "indefinite", path: wire(i) }, el("circle", { r: 2.6, class: "spark", filter: glow }, g.wires));
     });
-    LINKS.forEach(([a, b], i) => {
-      const [ax, ay] = sp[a], [bx, by] = sp[b]; let d;
-      if (wide) { const y = ay + sh / 2; d = `M${ax},${y} C${ax},${y + 40} ${bx},${y + 40} ${bx},${y}`; }
-      else { const x = ax + sw / 2; d = `M${x},${ay} C${x + 14},${ay} ${x + 14},${by} ${x},${by}`; }
-      el("path", { d, class: "link", pathLength: 1 }, gL).style.transitionDelay = (i * .25) + "s";
-      el("animateMotion", { dur: (2.2 + i * .3) + "s", begin: (-i * .4 - .01) + "s", repeatCount: "indefinite", path: d }, el("circle", { r: 2.6, class: "pulse" }, gL));
+    // two-way sync under the systems
+    el("path", { d: bus, class: "bus", pathLength: 1 }, g.bus);
+    [0, 1, 2, 3, 4].forEach(i => el("path", { d: stub(i), class: "bus stub", pathLength: 1 }, g.bus));
+    [["0;1", 3.2], ["1;0", 3.8]].forEach(([kp, d], k) => el("animateMotion", { dur: d + "s", begin: (-k * 1.6 - .01) + "s", repeatCount: "indefinite", path: bus, keyPoints: kp, keyTimes: "0;1", calcMode: "linear" }, el("circle", { r: 2.4, class: "pulse", filter: glow }, g.bus)));
+    if (wide) txt("TWO-WAY SYNC", { x: (72 + (72 + 4 * 107 + 72 + 5 * 107) / 2) / 2, y: 424, "text-anchor": "middle", class: "synct" }, g.bus);
+    // today: scattered AI subscriptions on four of the teams
+    Object.entries(SUBS).forEach(([i, t], k) => {
+      const [x, y] = mid(+i), w = wide ? 80 : 76, h = wide ? 24 : 22, c = el("g", { class: "sub" }, g.subs);
+      c.style.transitionDelay = (k * .06) + "s";
+      el("rect", { x: x - w / 2, y: y - h / 2, width: w, height: h, rx: h / 2 }, c);
+      txt(t, { x, y: y + 4, "text-anchor": "middle" }, c);
     });
-    CHIPS.forEach(([t, x, y], i) => {
-      const g = el("g", { class: "chip" }, gC); g.style.transitionDelay = (i * .08) + "s";
-      const pp = paths[x], pt = pp.getPointAtLength(pp.getTotalLength() * (wide ? y : .5)), w = t.length * (wide ? 6.6 : 5.8) + 22;
-      el("rect", { x: pt.x - w / 2, y: pt.y - 12, width: w, height: 24, rx: 12 }, g);
-      el("text", { x: pt.x, y: pt.y + 4, "text-anchor": "middle" }, g).textContent = t;
-    });
+    // systems; the project platform gets replaced by the company's own system
     SYS.forEach((t, i) => {
-      const [x, y] = sp[i], isOld = i === 1, g = el("g", { class: "sys" + (isOld ? " old" : "") }, gS);
-      el("rect", { x: x - sw / 2, y: y - sh / 2, width: sw, height: sh, rx: 9 }, g);
-      el("text", { x, y: y + 4.5, "text-anchor": "middle" }, g).textContent = t;
-      if (!isOld) return;
-      el("line", { x1: x - sw / 2 + 10, y1: y, x2: x + sw / 2 - 10, y2: y, pathLength: 1 }, g);
-      const n = el("g", { class: "new" }, gS);
-      el("rect", { x: x - sw / 2 - 4, y: y - sh / 2 - 6, width: sw + 8, height: sh + 12, rx: 11 }, n);
-      el("text", { x, y: y - 1, "text-anchor": "middle" }, n).textContent = "Your own system";
-      el("text", { x, y: y + 13, "text-anchor": "middle", class: "sm" }, n).textContent = "IN YOUR NAME";
+      const [x, y, w, h] = sys(i), c = el("g", { class: "sys" + (i === 1 ? " old" : "") }, g.sys);
+      el("rect", { x: x - w / 2, y: y - h / 2, width: w, height: h, rx: 10 }, c);
+      txt(t, { x, y: y + 4.5, "text-anchor": "middle" }, c);
+      if (i !== 1) return;
+      el("line", { x1: x - w / 2 + 12, y1: y, x2: x + w / 2 - 12, y2: y, pathLength: 1 }, c);
+      const n = el("g", { class: "new" }, g.sys);
+      el("rect", { x: x - w / 2 - 3, y: y - h / 2 - 5, width: w + 6, height: h + 10, rx: 12, filter: glow }, n);
+      txt("Your own system", { x, y: y - (wide ? 1 : 2), "text-anchor": "middle" }, n);
+      txt("IN YOUR NAME", { x, y: y + (wide ? 13 : 11), "text-anchor": "middle", class: "sm" }, n);
     });
-    // ten people per team
-    DEPTS.forEach((t, i) => {
-      const [x, y] = dp[i];
-      if (wide) el("text", { x, y: y - 34, "text-anchor": "middle", class: "dl" }, gD).textContent = t;
-      else el("text", { x: x - 30, y: y + 4.5, "text-anchor": "end", class: "dl" }, gD).textContent = t;
-      for (let r = 0; r < 2; r++) for (let c = 0; c < 5; c++) el("circle", { cx: x - 20 + c * 10, cy: y - 5 + r * 10, r: 3, class: "dot" }, gD).style.setProperty("--d", (i * .12 + (r * 5 + c) * .015) + "s");
-      el("circle", { cx: x, cy: y, r: 26, class: "ring" }, gD).style.setProperty("--d", (i * .12) + "s");
+    // agents: a counter and a label on each wire
+    Object.entries(AGENTS).forEach(([i, [c, l, wait]], k) => {
+      const [x, y] = mid(+i), w = wide ? 86 : 84, h = wide ? 46 : 38, a = el("g", { class: "agt" + (wait ? " wait" : "") }, g.agents);
+      a.style.setProperty("--d", (k * .12) + "s");
+      el("rect", { x: x - w / 2, y: y - h / 2, width: w, height: h, rx: 11 }, a);
+      const ct = txt(c, { x, y: y + (wide ? -3 : -2), "text-anchor": "middle", class: "cnt" }, a);
+      if (!wait) ct.dataset.to = c;
+      txt(l, { x, y: y + (wide ? 14 : 12), "text-anchor": "middle", class: "lbl" }, a);
     });
-    AGENTS.forEach((a, i) => {
-      const p = paths[a.w], pt = p.getPointAtLength(p.getTotalLength() * .5);
-      if (!a.wait) for (let k = 0; k < 2; k++) el("animateMotion", { dur: (2.4 + i * .3) + "s", begin: (-k * 1.2 - i * .2 - .01) + "s", repeatCount: "indefinite", path: p.getAttribute("d") }, el("circle", { r: 3.4, class: "spark" }, gA));
-      const g = el("g", { class: "agt" + (a.wait ? " wait" : "") }, gA); g.style.setProperty("--d", (i * .15) + "s");
-      const w = (a.l.length + a.c.length) * (wide ? 6.4 : 6.1) + (wide ? 34 : 28);
-      el("rect", { x: pt.x - w / 2, y: pt.y - 13, width: w, height: 26, rx: 13 }, g);
-      el("text", { x: pt.x - w / 2 + (wide ? 13 : 10), y: pt.y + 4 }, g).textContent = a.l;
-      el("text", { x: pt.x + w / 2 - (wide ? 13 : 10), y: pt.y + 4, "text-anchor": "end", class: "ct" }, g).textContent = a.c;
+    // teams of ten people
+    TEAMS.forEach((t, i) => {
+      const [x, y] = team(i), c = el("g", { class: "team" }, g.teams);
+      c.style.setProperty("--d", (i * .1) + "s");
+      el("rect", { x: x - tw / 2, y: y - th / 2, width: tw, height: th, rx: 12, class: "ripple" }, c);
+      el("rect", { x: x - tw / 2, y: y - th / 2, width: tw, height: th, rx: 12, class: "card" }, c);
+      if (wide) {
+        txt(t, { x, y: y - 8, "text-anchor": "middle", class: "nm" }, c);
+        for (let r = 0; r < 2; r++) for (let q = 0; q < 5; q++) el("circle", { cx: x - 18 + q * 9, cy: y + 9 + r * 9, r: 2.5, class: "dot" }, c).style.setProperty("--d", (i * .1 + (r * 5 + q) * .02) + "s");
+      } else {
+        txt(t, { x: x - tw / 2 + 11, y: y - 4, class: "nm" }, c);
+        for (let q = 0; q < 10; q++) el("circle", { cx: x - tw / 2 + 13 + q * 9, cy: y + 9, r: 2.4, class: "dot" }, c).style.setProperty("--d", (i * .1 + q * .02) + "s");
+      }
     });
-    // the AI Officer frame wraps everything drawn, so long team names stay inside it
-    const bb = svg.getBBox(), fx = Math.min(6, bb.x - 10), fw = Math.max(W - 6, bb.x + bb.width + 10) - fx;
-    svg.setAttribute("viewBox", `${fx - 4} 0 ${fw + 8} ${H}`);
-    el("rect", { x: fx, y: 6, width: fw, height: H - 12, rx: 16, class: "frame", pathLength: 1 });
-    const ft = el("g", { class: "ftag" });
-    el("rect", { x: fx + 14, y: -1, width: 96, height: 16, rx: 8 }, ft);
-    el("text", { x: fx + 62, y: 11, "text-anchor": "middle" }, ft).textContent = "AI OFFICER";
-    apply(cur);
+    // the AI Officer frame around all of it
+    el("rect", { x: 5, y: 7, width: W - 10, height: H - 12, rx: 18, class: "frame", pathLength: 1 }, g.top);
+    const ft = el("g", { class: "ftag" }, g.top);
+    el("rect", { x: 20, y: 0, width: 96, height: 16, rx: 8 }, ft);
+    txt("AI OFFICER", { x: 68, y: 11.5, "text-anchor": "middle" }, ft);
   }
-  function count() {
-    if (counted) return; counted = true;
-    document.querySelectorAll("#layers b[data-to]").forEach(b => {
-      const to = +b.dataset.to, t0 = performance.now();
-      (function f(t) { const k = Math.min(1, (t - t0) / 1400); b.textContent = Math.round(to * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(f); })(t0);
-    });
-  }
+
+  const tween = els => els.forEach(b => {
+    const to = +b.dataset.to, t0 = performance.now();
+    (function f(t) { const k = Math.min(1, (t - t0) / 1400); b.textContent = Math.round(to * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(f); })(t0);
+  });
+  let counted = false;
+  const countTable = () => { if (counted) return; counted = true; tween([...root.querySelectorAll(".tick b[data-to], .hrs b[data-to]")]); };
+  if (reduce) { root.querySelectorAll("b[data-to]").forEach(b => b.textContent = b.dataset.to); counted = true; }
+
+  // desktop: one sticky diagram
+  const steps = [...root.querySelectorAll(".st")], col = root.querySelector(".steps-col"), stage = document.getElementById("dg");
+  const lyr = document.getElementById("lyr"), capt = document.getElementById("capt"), capF = root.querySelector(".cap-f"), rail = document.getElementById("railp");
+  let cur = -1, built = false, agentsCounted = false;
   function apply(n) {
-    svg.setAttribute("class", "dg " + [1, 2, 3, 4, 5].filter(k => k <= n).map(k => "s" + k).join(" "));
+    stage.setAttribute("class", cls(n));
     steps.forEach(s => s.classList.toggle("on", +s.dataset.s === n));
-    capt.textContent = CAPS[Math.max(n, 0)];
+    capt.textContent = CAPS[n];
     capF.classList.toggle("on", n >= 3);
-    lyr.innerHTML = `Layer <b>${Math.max(n, 0)}</b> of 5`;
-    if (n >= 3) count();
+    lyr.innerHTML = n ? `Step <b>${n}</b> of 5` : "Today";
+    if (n >= 3) { countTable(); if (!agentsCounted && !reduce) { agentsCounted = true; tween([...stage.querySelectorAll("text[data-to]")]); } }
   }
-  // the active step is the last headline above the reading line
   function onScroll() {
-    const line = innerHeight * (innerWidth > 900 ? .5 : .78);
+    if (phone() || !built) return;
+    const line = innerHeight * .5;
     let n = 0;
     steps.forEach(s => { if (s.querySelector("h3").getBoundingClientRect().top < line) n = +s.dataset.s; });
+    if (reduce) n = 5;
     if (n !== cur) { cur = n; apply(n); }
     const r = col.getBoundingClientRect();
     rail.style.setProperty("--p", Math.max(0, Math.min(100, (line - r.top) / r.height * 100)) + "%");
   }
-  build();
-  if (matchMedia("(prefers-reduced-motion: reduce)").matches) { cur = 5; apply(5); document.querySelectorAll("#layers b[data-to]").forEach(b => b.textContent = b.dataset.to); counted = true; }
-  else { addEventListener("scroll", () => requestAnimationFrame(onScroll), { passive: true }); onScroll(); }
+  function buildStage() { draw(stage, stage.parentNode.clientWidth > 560); built = true; const n = cur; cur = -1; if (n >= 0) { cur = n; apply(n); } onScroll(); }
+
+  // phones: a small diagram inside each step, which moves from the previous state to its own when it scrolls in
+  let minis = false;
+  function buildMinis() {
+    minis = true;
+    steps.forEach(s => {
+      const n = +s.dataset.s, box = document.createElement("div");
+      box.className = "mini";
+      box.innerHTML = `<svg class="dg" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg><div class="mcap"><span class="live"></span><span>${CAPS[n]}</span>${n >= 3 ? '<span class="hrs"><b>72</b> hrs back a week</span>' : ""}</div>`;
+      s.querySelector("p").after(box);
+      const svg = box.querySelector("svg");
+      draw(svg, false);
+      svg.setAttribute("class", cls(reduce ? n : Math.max(0, n - 1)));
+      if (reduce) return;
+      const go = () => { svg.setAttribute("class", cls(n)); if (n === 3) { countTable(); tween([...svg.querySelectorAll("text[data-to]")]); } };
+      if ("IntersectionObserver" in window) new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { go(); o.disconnect(); } }, { threshold: .5 }).observe(box);
+      else go();
+    });
+  }
+
+  function layout() { if (phone()) { if (!minis) buildMinis(); } else buildStage(); }
+  layout();
+  addEventListener("scroll", () => requestAnimationFrame(onScroll), { passive: true });
   let rw = innerWidth;
-  addEventListener("resize", () => { if (Math.abs(innerWidth - rw) > 40) { rw = innerWidth; build(); } });
+  addEventListener("resize", () => { if (Math.abs(innerWidth - rw) > 40) { rw = innerWidth; layout(); } });
 })();
 
 }
