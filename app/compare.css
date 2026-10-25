@@ -78,3 +78,77 @@
 .gd-doc td.nw, .gd-doc th.r { white-space: nowrap; }
 .gd-doc-h > span:first-child { white-space: nowrap; }
 @media (max-width: 560px) { .gd-doc-h { flex-wrap: wrap; gap: 4px 12px; padding: 14px 16px; } }
+
+/* ---- Partner guide (/guides/choose-an-ai-partner): hero clause card and the scrolling redline ----
+   Final state is the default (everything redlined). RedlineSync adds .rl-js and walks the clauses as
+   each question passes the middle of the screen; NvMotion's .mo gates the transitions. */
+.cl-grid { display: grid; grid-template-columns: 1fr 1fr; }
+.cl { padding: 20px 22px 24px; }
+.cl + .cl { border-left: 1px solid var(--line); }
+.cl p { margin-top: 12px; font-size: 15px; line-height: 1.6; color: var(--ink-2); }
+.cl mark { color: var(--ink); background-color: transparent; background-repeat: no-repeat; background-size: 100% 100%; padding: 0 1px; border-radius: 2px; }
+.cl.rent mark { background-image: linear-gradient(rgba(224, 137, 58, .24), rgba(224, 137, 58, .24)); }
+.cl.own mark { background-image: linear-gradient(rgba(0, 179, 110, .26), rgba(0, 179, 110, .26)); }
+@media (max-width: 640px) { .cl-grid { grid-template-columns: 1fr; } .cl + .cl { border-left: 0; border-top: 1px solid var(--line); } }
+
+
+.rl-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(32px, 5vw, 80px); margin-top: clamp(40px, 5vw, 64px); }
+.rl-steps { list-style: none; padding: 0; margin: 0; }
+.rl-step { min-height: 72vh; padding-block: 8px 48px; display: flex; flex-direction: column; justify-content: center; }
+.rl-step:first-child { min-height: 56vh; justify-content: flex-start; }
+.rl-n { display: flex; gap: 12px; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
+.rl-n span { color: var(--green-2); }
+.rl-step .rl-n { transition: color .4s; }
+.rl-step.on .rl-n { color: var(--ink); }
+.rl-step h3 { margin-top: 14px; font-size: clamp(26px, 2.6vw, 38px); line-height: 1.1; letter-spacing: -0.035em; font-weight: 600; }
+.rl-mute { margin-top: 8px; font-size: clamp(20px, 1.9vw, 26px); line-height: 1.2; letter-spacing: -0.025em; color: var(--ink-3); }
+.rl-lead { margin-top: 14px; color: var(--ink-2); max-width: 32em; }
+.rl-ans { margin: 24px 0 0; border-top: 1px solid var(--line-2); }
+.rl-ans > div { display: grid; grid-template-columns: 7.5em minmax(0, 1fr); gap: 16px; padding-block: 14px; border-bottom: 1px solid var(--line); }
+.rl-ans dt { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; padding-top: 4px; }
+.rl-ans .bad dt { color: #a35416; }
+.rl-ans .good dt { color: var(--green-2); }
+.rl-ans dd { margin: 0; font-size: 17px; line-height: 1.45; }
+.rl-ans .bad q span { color: var(--ink-2); background: linear-gradient(#e0893a, #e0893a) no-repeat 0 58% / 100% 2px; }
+.rl-note { margin-top: 14px; font-size: 14px; color: var(--ink-3); max-width: 34em; }
+
+.rl-side { position: relative; }
+.rl-doc { position: sticky; top: 110px; min-height: 0; max-height: calc(100vh - 130px); overflow: hidden; animation: none; }
+.rl-doc { --pad: clamp(22px, 3vw, 40px); }
+.rl-doc .paper-h { position: sticky; top: calc(-1 * var(--pad)); z-index: 1; margin-top: calc(-1 * var(--pad)); padding-top: var(--pad); background: #fff; }
+.rl-doc .paper-h em, .rl-doc .paper-h em span { font-style: normal; color: var(--ink); margin-left: 6px; font-variant-numeric: tabular-nums; }
+.rl-clause { position: relative; padding: 16px 0 16px 16px; border-bottom: 1px solid var(--line); transition: background-color .4s; }
+.rl-clause::before { content: ""; position: absolute; left: 0; top: 16px; bottom: 16px; width: 2px; background: var(--line-2); transition: background-color .4s; }
+.rl-clause b { display: block; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; font-weight: 500; color: var(--ink-3); }
+.rl-clause p { margin-top: 6px; font-size: 14.5px; line-height: 1.55; color: var(--ink); }
+.rl-clause del { color: #b4232c; text-decoration: line-through; text-decoration-thickness: 1.5px; }
+.rl-clause ins { color: #067a4d; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+.rl-clause.on { background: rgba(0, 179, 110, .06); }
+.rl-clause.on::before, .rl-clause.rl-done::before { background: var(--green); }
+.rl-fine { margin-top: 14px; font-size: 12px; color: var(--ink-3); }
+.rl-inline { display: none; }
+
+/* before a clause is reached: the vendor's wording stands, the owner's wording isn't written yet */
+.rl-js .rl-doc .rl-clause:not(.rl-done) del { color: var(--ink); text-decoration-color: transparent; }
+.rl-js .rl-doc .rl-clause:not(.rl-done) ins { opacity: 0; }
+
+@media (max-width: 1020px) {
+  .rl-grid { grid-template-columns: 1fr; }
+  .rl-side { display: none; }
+  .rl-step, .rl-step:first-child { min-height: 0; padding-block: 0 56px; }
+  .rl-inline { display: block; margin-top: 22px; padding: 16px 18px; border: 1px solid var(--line); border-radius: 6px; background: #fff; }
+  .rl-inline::before { display: none; }
+  .rl-ans > div { grid-template-columns: 1fr; gap: 4px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .mo .cl-card:not(.in) mark { background-size: 0% 100%; }
+  .mo .cl-card.in mark { transition: background-size .8s var(--gm-ease) calc(.5s + var(--m, 0) * .35s); }
+  .mo .cl-card:not(.in) figcaption { opacity: 0; }
+  .mo .cl-card.in figcaption { transition: opacity .7s var(--gm-ease) 2s; }
+
+  .mo .rl-doc .rl-clause del { transition: color .5s var(--gm-ease), text-decoration-color .5s var(--gm-ease); }
+  .mo .rl-doc .rl-clause ins { transition: opacity .7s var(--gm-ease) .35s; }
+  .mo .rl-js .rl-step:not(.seen) .bad q span { background-size: 0% 2px; }
+  .mo .rl-step .bad q span { transition: background-size .7s var(--gm-ease) .2s; }
+}

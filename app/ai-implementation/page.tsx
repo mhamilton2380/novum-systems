@@ -137,6 +137,7 @@ export default function AiImplementationPage() {
             <Link className="link" href="/why-ai">Read the research behind these numbers <span aria-hidden="true">→</span></Link>
             <Link className="link" href="/guides/how-to-implement-ai">How to implement AI: a 5-step plan <span aria-hidden="true">→</span></Link>
             <Link className="link" href="/guides/ai-implementation-cost">What AI implementation costs <span aria-hidden="true">→</span></Link>
+            <Link className="link" href="/guides/choose-an-ai-partner">How to choose an AI partner <span aria-hidden="true">→</span></Link>
             <Link className="link" href="/ai-implementation/portland">AI implementation in Portland <span aria-hidden="true">→</span></Link>
           </p>
           <div className="ai-split">

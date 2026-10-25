@@ -162,6 +162,7 @@ export default function AiImplementationCostPage() {
           <div className="gd-next">
             <Link className="link" href="/guides/how-to-implement-ai">How to implement AI: a 5-step plan <span aria-hidden="true">→</span></Link>
             <Link className="link" href="/case-studies">Three engagements, measured <span aria-hidden="true">→</span></Link>
+            <Link className="link" href="/guides/choose-an-ai-partner">How to choose an AI partner: 5 questions <span aria-hidden="true">→</span></Link>
             <Link className="link" href="/assessment">Score your company in 2 minutes <span aria-hidden="true">→</span></Link>
           </div>
         </div>
