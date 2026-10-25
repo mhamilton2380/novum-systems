@@ -451,7 +451,7 @@ export function initLayers() {
   const NS = "http://www.w3.org/2000/svg";
   const TEAMS = ["Accounting", "Operations", "Sales", "Front office", "HR", "Leadership"];
   const SYS = ["QuickBooks", "Project platform", "CRM", "Phones", "Microsoft 365"]; // team i works in system min(i, 4)
-  const AGENTS = { 0: ["600", "Invoices"], 1: ["250", "POs matched"], 2: ["80", "Follow-ups"], 3: ["150", "Calls"], 4: ["3", "HR drafts", 1] };
+  const AGENTS = { 0: ["600", "invoices", "keyed"], 1: ["250", "POs", "matched"], 2: ["80", "follow-ups", "drafted"], 3: ["150", "calls", "answered"], 4: ["3", "drafts to", "review", 1] };
   const SUBS = { 0: "AI add-on", 1: "AI tier", 2: "Chat seat", 3: "Free tool" };
   const CAPS = ["Four AI subscriptions. None connected, nobody trained, nobody in charge.", "Accounting class, recorded: coding invoices with AI on your own vendors.", "Address changed in the CRM. QuickBooks and Microsoft 365 updated.", "INV-20431 keyed and matched to PO-7781. Three HR drafts wait for a person.", "Project history moved to your own system. Code and accounts in your name.", "New model tested on 200 of your past invoices before anything switched."];
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -461,134 +461,144 @@ export function initLayers() {
   const el = (t, a, p) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); p.appendChild(e); return e; };
   const txt = (t, a, p) => { const e = el("text", a, p); e.textContent = t; return e; };
 
-  // draws the company into svg; wide = teams in a row over the systems, otherwise teams in rows beside them
+  // draws the company as a hairline grid: teams, the work between them and their systems, the sync line beneath.
+  // wide = teams as columns; otherwise teams as rows with the work and systems beside them
   function draw(svg, wide) {
     svg.innerHTML = "";
-    const id = "ly" + (uid++);
-    let W, H, team, sys, wire, mid, bus, stub, tw, th;
-    if (wide) {
-      W = 680; H = 446; tw = 94; th = 62;
-      const cx = i => 72 + i * 107;
-      team = i => [cx(i), 65];
-      sys = i => i < 4 ? [cx(i), 344, 100, 44] : [(cx(4) + cx(5)) / 2, 344, cx(5) - cx(4) + 100, 44];
-      wire = i => `M${cx(i)},96 V322`;
-      mid = i => [cx(i), 209];
-      bus = `M${cx(0)},398 H${(cx(4) + cx(5)) / 2}`;
-      stub = i => { const [x] = sys(i); return `M${x},366 V398`; };
-    } else {
-      W = 360; H = 340; tw = 120; th = 40;
-      const ry = i => 40 + i * 52;
-      team = i => [68, ry(i)];
-      sys = i => i < 4 ? [281, ry(i), 106, 36] : [281, (ry(4) + ry(5)) / 2, 106, ry(5) - ry(4) + 36];
-      wire = i => `M128,${ry(i)} H228`;
-      mid = i => [178, ry(i)];
-      bus = `M348,${ry(0)} V${(ry(4) + ry(5)) / 2}`;
-      stub = i => { const [, y] = sys(i); return `M334,${y} H348`; };
-    }
+    const id = "ly" + (uid++), sx = [];
+    const W = wide ? 680 : 360, H = wide ? 416 : 352;
     svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
     const defs = el("defs", {}, svg);
-    const pat = el("pattern", { id: id + "d", width: 16, height: 16, patternUnits: "userSpaceOnUse" }, defs);
-    el("circle", { cx: 8, cy: 8, r: .8, fill: "rgba(238,240,234,.07)" }, pat);
-    const gr = el("linearGradient", wide ? { id: id + "g", gradientUnits: "userSpaceOnUse", x1: 0, y1: 96, x2: 0, y2: 322 } : { id: id + "g", gradientUnits: "userSpaceOnUse", x1: 128, y1: 0, x2: 228, y2: 0 }, defs);
-    el("stop", { offset: 0, "stop-color": "#34d399" }, gr); el("stop", { offset: 1, "stop-color": "#3b6fe0" }, gr);
+    const grad = (gid, a) => { const g = el("linearGradient", Object.assign({ id: id + gid, gradientUnits: "userSpaceOnUse" }, a), defs); [[0, 0], [.1, 1], [.9, 1], [1, 0]].forEach(([o, op], k) => el("stop", { offset: o, "stop-color": k < 2 ? "#34d399" : "#3b6fe0", "stop-opacity": op }, g)); };
     const fl = el("filter", { id: id + "f", x: "-60%", y: "-60%", width: "220%", height: "220%" }, defs);
-    el("feGaussianBlur", { stdDeviation: 2.4, result: "b" }, fl);
+    el("feGaussianBlur", { stdDeviation: 2.2, result: "b" }, fl);
     const fm = el("feMerge", {}, fl); el("feMergeNode", { in: "b" }, fm); el("feMergeNode", { in: "SourceGraphic" }, fm);
     const glow = `url(#${id}f)`;
-    el("rect", { width: W, height: H, fill: `url(#${id}d)` }, svg);
-    const g = {}; ["wires", "bus", "subs", "sys", "agents", "teams", "top"].forEach(k => g[k] = el("g", {}, svg));
-
-    // wires: dashed until the agents arrive, then a drawn gradient line with work moving along it
-    TEAMS.forEach((_, i) => {
-      el("path", { d: wire(i), class: "wire" }, g.wires);
-      el("path", { d: wire(i), class: "wire-on", stroke: `url(#${id}g)`, pathLength: 1 }, g.wires).style.transitionDelay = (i * .08) + "s";
-      if (AGENTS[i] && !AGENTS[i][2]) for (let k = 0; k < 2; k++) el("animateMotion", { dur: (2.6 + i * .25) + "s", begin: (-k * 1.3 - i * .3 - .01) + "s", repeatCount: "indefinite", path: wire(i) }, el("circle", { r: 2.6, class: "spark", filter: glow }, g.wires));
-    });
-    // two-way sync under the systems
-    el("path", { d: bus, class: "bus", pathLength: 1 }, g.bus);
-    [0, 1, 2, 3, 4].forEach(i => el("path", { d: stub(i), class: "bus stub", pathLength: 1 }, g.bus));
-    [["0;1", 3.2], ["1;0", 3.8]].forEach(([kp, d], k) => el("animateMotion", { dur: d + "s", begin: (-k * 1.6 - .01) + "s", repeatCount: "indefinite", path: bus, keyPoints: kp, keyTimes: "0;1", calcMode: "linear" }, el("circle", { r: 2.4, class: "pulse", filter: glow }, g.bus)));
-    if (wide) txt("TWO-WAY SYNC", { x: (72 + (72 + 4 * 107 + 72 + 5 * 107) / 2) / 2, y: 424, "text-anchor": "middle", class: "synct" }, g.bus);
-    // today: scattered AI subscriptions on four of the teams
-    Object.entries(SUBS).forEach(([i, t], k) => {
-      const [x, y] = mid(+i), w = wide ? 80 : 76, h = wide ? 24 : 22, c = el("g", { class: "sub" }, g.subs);
-      c.style.transitionDelay = (k * .06) + "s";
-      el("rect", { x: x - w / 2, y: y - h / 2, width: w, height: h, rx: h / 2 }, c);
-      txt(t, { x, y: y + 4, "text-anchor": "middle" }, c);
-    });
-    // systems; the project platform gets replaced by the company's own system
-    SYS.forEach((t, i) => {
-      const [x, y, w, h] = sys(i), c = el("g", { class: "sys" + (i === 1 ? " old" : "") }, g.sys);
-      el("rect", { x: x - w / 2, y: y - h / 2, width: w, height: h, rx: 10 }, c);
-      txt(t, { x, y: y + 4.5, "text-anchor": "middle" }, c);
-      if (i !== 1) return;
-      el("line", { x1: x - w / 2 + 12, y1: y, x2: x + w / 2 - 12, y2: y, pathLength: 1 }, c);
-      const n = el("g", { class: "new" }, g.sys);
-      el("rect", { x: x - w / 2 - 3, y: y - h / 2 - 5, width: w + 6, height: h + 10, rx: 12, filter: glow }, n);
-      txt("Your own system", { x, y: y - (wide ? 1 : 2), "text-anchor": "middle" }, n);
-      txt("IN YOUR NAME", { x, y: y + (wide ? 13 : 11), "text-anchor": "middle", class: "sm" }, n);
-    });
-    // agents: a counter and a label on each wire
-    Object.entries(AGENTS).forEach(([i, [c, l, wait]], k) => {
-      const [x, y] = mid(+i), w = wide ? 86 : 84, h = wide ? 46 : 38, a = el("g", { class: "agt" + (wait ? " wait" : "") }, g.agents);
-      a.style.setProperty("--d", (k * .12) + "s");
-      el("rect", { x: x - w / 2, y: y - h / 2, width: w, height: h, rx: 11 }, a);
-      const ct = txt(c, { x, y: y + (wide ? -3 : -2), "text-anchor": "middle", class: "cnt" }, a);
-      if (!wait) ct.dataset.to = c;
-      txt(l, { x, y: y + (wide ? 14 : 12), "text-anchor": "middle", class: "lbl" }, a);
-    });
-    // teams of ten people
-    TEAMS.forEach((t, i) => {
-      const [x, y] = team(i), c = el("g", { class: "team" }, g.teams);
-      c.style.setProperty("--d", (i * .1) + "s");
-      el("rect", { x: x - tw / 2, y: y - th / 2, width: tw, height: th, rx: 12, class: "ripple" }, c);
-      el("rect", { x: x - tw / 2, y: y - th / 2, width: tw, height: th, rx: 12, class: "card" }, c);
-      if (wide) {
-        txt(t, { x, y: y - 8, "text-anchor": "middle", class: "nm" }, c);
-        for (let r = 0; r < 2; r++) for (let q = 0; q < 5; q++) el("circle", { cx: x - 18 + q * 9, cy: y + 9 + r * 9, r: 2.5, class: "dot" }, c).style.setProperty("--d", (i * .1 + (r * 5 + q) * .02) + "s");
-      } else {
-        txt(t, { x: x - tw / 2 + 11, y: y - 4, class: "nm" }, c);
-        for (let q = 0; q < 10; q++) el("circle", { cx: x - tw / 2 + 13 + q * 9, cy: y + 9, r: 2.4, class: "dot" }, c).style.setProperty("--d", (i * .1 + q * .02) + "s");
-      }
-    });
-    // the AI Officer frame around all of it
-    el("rect", { x: 5, y: 7, width: W - 10, height: H - 12, rx: 18, class: "frame", pathLength: 1 }, g.top);
-    const ft = el("g", { class: "ftag" }, g.top);
-    el("rect", { x: 20, y: 0, width: 96, height: 16, rx: 8 }, ft);
-    txt("AI OFFICER", { x: 68, y: 11.5, "text-anchor": "middle" }, ft);
+    const G = {}; ["grid", "lanes", "work", "sys", "sync", "top"].forEach(k => G[k] = el("g", {}, svg));
+    const line = (x1, y1, x2, y2, c, p = G.grid) => el("line", { x1, y1, x2, y2, class: c }, p);
+    const ticks = (x, y, i, h) => { for (let q = 0; q < 10; q++) el("rect", { x: x + q * 5, y, width: 2, height: h, rx: 1, class: "tk" }, G.grid).style.setProperty("--d", (i * .09 + q * .018) + "s"); };
+    let T, B;
+    if (wide) {
+      const L = 20, R = 660, cw = (R - L) / 6, x = i => L + i * cw;
+      T = 44; B = 356; const H1 = 116, H2 = 300;
+      grad("s", { x1: L, y1: 0, x2: R, y2: 0 }); grad("l", { x1: 0, y1: H1, x2: 0, y2: H2 });
+      // the grid
+      [T, H1, H2, B].forEach(y => line(L, y, R, y, "hl"));
+      for (let i = 1; i < 6; i++) line(x(i), T, x(i), i === 5 ? H2 : B, "hl");
+      TEAMS.forEach((t, i) => {
+        const lx = x(i) + 14;
+        txt(t, { x: lx, y: T + 26, class: "tm" }, G.grid);
+        txt("10 people", { x: lx, y: T + 44, class: "pp" }, G.grid);
+        txt("10 trained", { x: lx, y: T + 44, class: "pp on" }, G.grid).style.setProperty("--d", (i * .09 + .2) + "s");
+        ticks(lx, T + 54, i, 8);
+        // the lane from team to system: dotted until an agent runs on it
+        line(lx, H1, lx, H2, "lane", G.lanes);
+        if (AGENTS[i]) {
+          const on = line(lx, H1, lx, H2, "lane-on", G.lanes); on.setAttribute("stroke", `url(#${id}l)`); on.setAttribute("pathLength", 1);
+          on.style.transitionDelay = (i * .08) + "s";
+          if (!AGENTS[i][3]) runOnce(el("circle", { r: 2.4, class: "spark", filter: glow, opacity: 0 }, G.lanes), `M${lx},${H1} V${H2}`, 1.1, 3, .7 + i * .1);
+        }
+        if (SUBS[i]) { const g = el("g", { class: "sub" }, G.work); g.style.setProperty("--d", (i * .05) + "s"); txt(SUBS[i], { x: lx + 12, y: 198, class: "st1" }, g); txt("on its own", { x: lx + 12, y: 214, class: "st2" }, g); }
+        if (AGENTS[i]) {
+          const [n, l1, l2, wait] = AGENTS[i], g = el("g", { class: "agt" + (wait ? " wait" : "") }, G.work);
+          g.style.setProperty("--d", (i * .09) + "s");
+          txt(n, { x: lx + 12, y: 204, class: "num" }, g); txt(l1, { x: lx + 12, y: 226, class: "al" }, g); txt(l2, { x: lx + 12, y: 241, class: "al" }, g);
+        }
+      });
+      // systems; the last one spans HR and Leadership
+      SYS.forEach((t, i) => {
+        const lx = x(i) + 14, y = H2 + 33; sx.push([lx, B]);
+        if (i !== 1) { txt(t, { x: lx, y, class: "sy" }, G.sys); return; }
+        const o = el("g", { class: "old" }, G.sys);
+        [["Project", y - 8, 46], ["platform", y + 7, 52]].forEach(([w, yy, len]) => { txt(w, { x: lx, y: yy, class: "sy" }, o); el("line", { x1: lx - 2, y1: yy - 4.5, x2: lx + len, y2: yy - 4.5, pathLength: 1, class: "strike" }, o); });
+        const n = el("g", { class: "new" }, G.sys); txt("Your own", { x: lx, y: y - 14, class: "sy" }, n); txt("system", { x: lx, y: y + 1, class: "sy" }, n); txt("IN YOUR NAME", { x: lx, y: y + 16, class: "sm" }, n);
+      });
+      // two-way sync: the luminous line under the systems
+      sx.forEach(([px, py], k) => el("line", { x1: px, y1: py, x2: px, y2: 384, pathLength: 1, class: "stub" }, G.sync).style.transitionDelay = (.5 + k * .08) + "s");
+      el("line", { x1: L, y1: 384, x2: R, y2: 384, stroke: `url(#${id}s)`, pathLength: 1, class: "syncl" }, G.sync);
+      sx.forEach(([px], k) => el("circle", { cx: px, cy: 384, r: 2.6, class: "node" }, G.sync).style.transitionDelay = (.7 + k * .08) + "s");
+      runOnce(el("circle", { r: 2.6, class: "pulse", filter: glow, opacity: 0 }, G.sync), `M${L},384 H${R}`, 1.6, 2, .9);
+      txt("TWO-WAY SYNC", { x: R, y: 406, "text-anchor": "end", class: "synct" }, G.sync);
+      // the AI Officer: crop marks around the whole company and a line of what they run
+      const o = el("g", { class: "ofc" }, G.top);
+      txt("AI OFFICER", { x: L, y: 22, class: "ol" }, o); txt("Monthly audit of every agent, new models tested first, one report", { x: L + 84, y: 22, class: "od" }, o);
+      [[L - 8, T - 8, 1, 1], [R + 8, T - 8, -1, 1], [L - 8, B + 8, 1, -1], [R + 8, B + 8, -1, -1]].forEach(([cx, cy, dx, dy]) => el("path", { d: `M${cx},${cy + dy * 16} V${cy} H${cx + dx * 16}`, pathLength: 1, class: "crop" }, o));
+    } else {
+      const L = 10, C1 = 122, C2 = 240, R = 334, rh = 50, row = i => T + i * rh;
+      T = 34; B = T + 6 * rh;
+      grad("s", { x1: 0, y1: T, x2: 0, y2: B });
+      for (let i = 0; i <= 6; i++) line(L, row(i), i === 5 ? C2 : R, row(i), "hl");
+      line(C1, T, C1, B, "hl"); line(C2, T, C2, B, "hl");
+      TEAMS.forEach((t, i) => {
+        const y = row(i);
+        txt(t, { x: L + 8, y: y + 21, class: "tm" }, G.grid);
+        ticks(L + 8, y + 30, i, 7);
+        if (SUBS[i]) { const g = el("g", { class: "sub" }, G.work); txt(SUBS[i], { x: C1 + 12, y: y + 22, class: "st1" }, g); txt("on its own", { x: C1 + 12, y: y + 37, class: "st2" }, g); }
+        if (AGENTS[i]) {
+          const [n, l1, l2, wait] = AGENTS[i], g = el("g", { class: "agt" + (wait ? " wait" : "") }, G.work);
+          g.style.setProperty("--d", (i * .09) + "s");
+          line(C1, y + 10, C1, y + 40, "acc", g);
+          txt(n, { x: C1 + 12, y: y + 25, class: "num" }, g); txt(l1 + " " + l2, { x: C1 + 12, y: y + 40, class: "al" }, g);
+        }
+      });
+      SYS.forEach((t, i) => {
+        const y = i < 4 ? row(i) + 29 : row(4) + rh + 4; sx.push([R, y - 4]);
+        if (i !== 1) { txt(t, { x: C2 + 12, y, class: "sy" }, G.sys); return; }
+        const o = el("g", { class: "old" }, G.sys);
+        [["Project", y - 8, 44], ["platform", y + 6, 50]].forEach(([w, yy, len]) => { txt(w, { x: C2 + 12, y: yy, class: "sy" }, o); el("line", { x1: C2 + 10, y1: yy - 4.5, x2: C2 + 12 + len, y2: yy - 4.5, pathLength: 1, class: "strike" }, o); });
+        const n = el("g", { class: "new" }, G.sys); txt("Your own", { x: C2 + 12, y: y - 12, class: "sy" }, n); txt("system", { x: C2 + 12, y: y + 1, class: "sy" }, n); txt("IN YOUR NAME", { x: C2 + 12, y: y + 13, class: "sm" }, n);
+      });
+      sx.forEach(([px, py], k) => el("line", { x1: px, y1: py, x2: 348, y2: py, pathLength: 1, class: "stub" }, G.sync).style.transitionDelay = (.5 + k * .08) + "s");
+      el("line", { x1: 348, y1: T, x2: 348, y2: B, stroke: `url(#${id}s)`, pathLength: 1, class: "syncl" }, G.sync);
+      sx.forEach(([, py], k) => el("circle", { cx: 348, cy: py, r: 2.4, class: "node" }, G.sync).style.transitionDelay = (.7 + k * .08) + "s");
+      runOnce(el("circle", { r: 2.4, class: "pulse", filter: glow, opacity: 0 }, G.sync), `M348,${T} V${B}`, 1.6, 2, .9);
+      const o = el("g", { class: "ofc" }, G.top);
+      txt("AI OFFICER", { x: L, y: 20, class: "ol" }, o); txt("Audits, model tests, one report", { x: L + 80, y: 20, class: "od" }, o);
+      [[L - 6, T - 6, 1, 1], [354, T - 6, -1, 1], [L - 6, B + 8, 1, -1], [354, B + 8, -1, -1]].forEach(([cx, cy, dx, dy]) => el("path", { d: `M${cx},${cy + dy * 14} V${cy} H${cx + dx * 14}`, pathLength: 1, class: "crop" }, o));
+    }
   }
 
-  const tween = els => els.forEach(b => {
-    const to = +b.dataset.to, t0 = performance.now();
-    (function f(t) { const k = Math.min(1, (t - t0) / 1400); b.textContent = Math.round(to * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(f); })(t0);
-  });
-  let counted = false;
-  const countTable = () => { if (counted) return; counted = true; tween([...root.querySelectorAll(".tick b[data-to], .hrs b[data-to]")]); };
-  if (reduce) { root.querySelectorAll("b[data-to]").forEach(b => b.textContent = b.dataset.to); counted = true; }
+  // a light runs along a line once, when its layer arrives (started by run)
+  function runOnce(dot, path, dur, layer, delay, keyPoints) {
+    dot.dataset.layer = layer; dot.dataset.delay = delay;
+    const kp = keyPoints ? { keyPoints, keyTimes: "0;1", calcMode: "linear" } : {};
+    el("animateMotion", Object.assign({ dur: dur + "s", begin: "indefinite", fill: "freeze", path }, kp), dot);
+    el("animate", { attributeName: "opacity", values: "0;1;1;0", keyTimes: "0;.15;.8;1", dur: dur + "s", begin: "indefinite", fill: "freeze" }, dot);
+  }
+  const run = (svg, from, to) => {
+    if (reduce) return;
+    svg.querySelectorAll("[data-layer]").forEach(d => {
+      const L = +d.dataset.layer;
+      if (L > from && L <= to) setTimeout(() => d.querySelectorAll("animateMotion, animate").forEach(a => a.beginElement && a.beginElement()), d.dataset.delay * 1000);
+    });
+  };
 
   // desktop: one sticky diagram
   const steps = [...root.querySelectorAll(".st")], col = root.querySelector(".steps-col"), stage = document.getElementById("dg");
-  const lyr = document.getElementById("lyr"), capt = document.getElementById("capt"), capF = root.querySelector(".cap-f"), rail = document.getElementById("railp");
-  let cur = -1, built = false, agentsCounted = false;
+  const lyr = document.getElementById("lyr"), capt = document.getElementById("capt"), rail = document.getElementById("railp");
+  const card = root.querySelector(".stage");
+  let cur = -1, built = false, reached = -1;
   function apply(n) {
-    stage.setAttribute("class", cls(n));
+    card.classList.toggle("in", n >= 0);
+    const k = Math.max(n, 0);
+    stage.setAttribute("class", cls(k));
     steps.forEach(s => s.classList.toggle("on", +s.dataset.s === n));
-    capt.textContent = CAPS[n];
-    capF.classList.toggle("on", n >= 3);
-    lyr.innerHTML = n ? `Step <b>${n}</b> of 5` : "Today";
-    if (n >= 3) { countTable(); if (!agentsCounted && !reduce) { agentsCounted = true; tween([...stage.querySelectorAll("text[data-to]")]); } }
+    capt.textContent = CAPS[k];
+    lyr.innerHTML = k ? `Step <b>${k}</b> of 5` : "Today";
+    if (k > reached) { run(stage, reached, k); reached = k; }
   }
+  // a step turns on when the green rail reaches its numbered circle; nothing shows before 00
   function onScroll() {
     if (phone() || !built) return;
     const line = innerHeight * .5;
-    let n = 0;
-    steps.forEach(s => { if (s.querySelector("h3").getBoundingClientRect().top < line) n = +s.dataset.s; });
+    let n = -1;
+    steps.forEach(s => { const c = s.querySelector(".n").getBoundingClientRect(); if (c.top + c.height / 2 < line) n = +s.dataset.s; });
     if (reduce) n = 5;
     if (n !== cur) { cur = n; apply(n); }
     const r = col.getBoundingClientRect();
     rail.style.setProperty("--p", Math.max(0, Math.min(100, (line - r.top) / r.height * 100)) + "%");
   }
-  function buildStage() { draw(stage, stage.parentNode.clientWidth > 560); built = true; const n = cur; cur = -1; if (n >= 0) { cur = n; apply(n); } onScroll(); }
+  function buildStage() { draw(stage, stage.parentNode.clientWidth > 560); built = true; reached = -1; cur = -2; onScroll(); }
 
   // phones: a small diagram inside each step, which moves from the previous state to its own when it scrolls in
   let minis = false;
@@ -597,17 +607,21 @@ export function initLayers() {
     steps.forEach(s => {
       const n = +s.dataset.s, box = document.createElement("div");
       box.className = "mini";
-      box.innerHTML = `<svg class="dg" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg><div class="mcap"><span class="live"></span><span>${CAPS[n]}</span>${n >= 3 ? '<span class="hrs"><b>72</b> hrs back a week</span>' : ""}</div>`;
+      box.innerHTML = `<svg class="dg" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg><div class="mcap"><span class="live"></span><span>${CAPS[n]}</span></div>`;
       s.querySelector("p").after(box);
       const svg = box.querySelector("svg");
       draw(svg, false);
       svg.setAttribute("class", cls(reduce ? n : Math.max(0, n - 1)));
       if (reduce) return;
-      const go = () => { svg.setAttribute("class", cls(n)); if (n === 3) { countTable(); tween([...svg.querySelectorAll("text[data-to]")]); } };
+      const go = () => { svg.setAttribute("class", cls(n)); run(svg, n - 1, n); };
       if ("IntersectionObserver" in window) new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { go(); o.disconnect(); } }, { threshold: .5 }).observe(box);
       else go();
     });
   }
+
+  // the report's bars grow once it is on screen
+  const rep = root.querySelector(".rep");
+  if (rep) { if (reduce || !("IntersectionObserver" in window)) rep.classList.add("in"); else new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { rep.classList.add("in"); o.disconnect(); } }, { threshold: .4 }).observe(rep); }
 
   function layout() { if (phone()) { if (!minis) buildMinis(); } else buildStage(); }
   layout();
