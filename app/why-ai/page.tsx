@@ -125,23 +125,19 @@ export default function WhyAiPage() {
       <section className="sec light" aria-labelledby="wy-sum-h">
         <div className="wrap">
           <div className="label"><span className="ix">01</span>Summary</div>
-          <h2 className="h2" id="wy-sum-h">The same tool, three results. <span className="mute">The task and the training decide which one you get.</span></h2>
+          <h2 className="h2" id="wy-sum-h">The same tool, two results. <span className="mute">The task and the training decide which one you get.</span></h2>
           <div className="wy-sum">
-            <figure className="wy-three" aria-label="Time to do the same task: no AI, AI tools with no training, or trained on the right task">
-              <div className="wy-three-h"><span className="meta">Same task, three ways</span><span className="meta">Time it takes</span></div>
+            <figure className="wy-three" aria-label="Share of time saved on the same task: AI tools with no training about 3 percent; trained on the right task 25 to 56 percent">
+              <div className="wy-three-h"><span className="meta">Same task, two ways</span><span className="meta">Time saved</span></div>
               <div className="wy-three-row">
-                <div className="wy-three-l"><b>No AI</b><small>The baseline</small></div>
-                <div className="wy-three-t"><i className="base" style={{ width: "100%" }} /><em>100%</em></div>
+                <div className="wy-three-l"><b>AI tools, no training</b><small>University of Chicago, 2025</small></div>
+                <div className="wy-three-t"><i className="flat" style={{ width: "5%" }} /><em>About 3%</em></div>
               </div>
               <div className="wy-three-row">
-                <div className="wy-three-l"><b>AI tools, no training</b><small>About 3% saved · University of Chicago</small></div>
-                <div className="wy-three-t"><i className="flat" style={{ width: "97%" }} /><em>About 97%</em></div>
+                <div className="wy-three-l"><b>Trained, on the right task</b><small>Controlled studies</small></div>
+                <div className="wy-three-t"><i className="win" style={{ width: "41.7%" }} /><i className="rng" style={{ left: "41.7%", width: "51.6%" }} /><em>25% to 56%</em></div>
               </div>
-              <div className="wy-three-row">
-                <div className="wy-three-l"><b>Trained, on the right task</b><small>25% to 56% saved · controlled studies</small></div>
-                <div className="wy-three-t"><i className="win" style={{ width: "44%" }} /><i className="rng" style={{ left: "44%", width: "31%" }} /><em>44% to 75%</em></div>
-              </div>
-              <div className="wy-three-scale" aria-hidden="true"><span /><div>{[0, 25, 50, 75, 100].map((t) => <i key={t} style={{ left: `${t}%` }}>{t}%</i>)}</div></div>
+              <div className="wy-three-scale" aria-hidden="true"><span /><div>{[0, 15, 30, 45, 60].map((t, k) => <i key={t} style={{ left: `${k * 25}%` }}>{t}%</i>)}</div></div>
               <figcaption>The difference is the task you pick and whether the team was trained.</figcaption>
             </figure>
             <div className="wy-keys">

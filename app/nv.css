@@ -421,6 +421,11 @@ footer { border-top: 1px solid var(--line); padding-block: 64px calc(40px + env(
 .gc-b.win { background: var(--grad); transition-delay: .45s; }
 .gc-r { position: absolute; left: var(--l); top: 7px; height: 20px; width: 0; border-radius: 0 3px 3px 0; background: repeating-linear-gradient(135deg, rgba(59,111,224,.35) 0 4px, rgba(59,111,224,.12) 4px 8px); transition: width 1s ease 1.3s; }
 .gc-t em { position: absolute; right: 0; top: -14px; font-style: normal; font-size: 12.5px; font-weight: 500; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.gc-scale { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr); gap: 20px; padding-top: 8px; }
+.gc-scale > div { position: relative; height: 14px; }
+.gc-scale i { position: absolute; top: 0; transform: translateX(-50%); font-style: normal; font-size: 11px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.gc-scale i:first-child { transform: none; }
+.gc-scale i:last-child { transform: translateX(-100%); }
 .gapchart.in .gc-b { width: var(--w); }
 .gapchart.in .gc-r { width: var(--w); }
 .closes { display: grid; gap: 0; border-top: 1px solid var(--line-2); padding-top: 14px; }
@@ -428,7 +433,7 @@ footer { border-top: 1px solid var(--line); padding-block: 64px calc(40px + env(
 .closes h3 { font-size: 19px; letter-spacing: -0.02em; font-weight: 500; }
 .closes p { color: var(--ink-2); font-size: 15px; margin-top: 6px; }
 .light .finds { margin-top: clamp(40px, 5vw, 64px); border-top-color: var(--line-2); }
-@media (max-width: 900px) { .gapgrid { grid-template-columns: 1fr; } .gc-row { grid-template-columns: 1fr; gap: 10px; } }
+@media (max-width: 900px) { .gapgrid { grid-template-columns: 1fr; } .gc-row, .gc-scale { grid-template-columns: 1fr; gap: 10px; } .gc-scale > span { display: none; } }
 
 /* cost per task */
 .cost { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.3fr); gap: clamp(28px, 5vw, 80px); margin-top: clamp(56px, 6vw, 96px); padding-top: clamp(32px, 4vw, 48px); border-top: 1px solid var(--line-2); align-items: start; }
