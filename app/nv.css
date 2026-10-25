@@ -905,3 +905,116 @@ footer { border-top: 1px solid var(--line); padding-block: 64px calc(40px + env(
 
 .demo-steps { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 48px; list-style: none; padding: 0; }
 @media (max-width: 860px) { .demo-steps { grid-template-columns: 1fr; } }
+
+/* Home 01: a company gaining each layer, a sticky diagram beside scroll steps (2026-10-25). Behavior in initLayers. */
+.lay { padding-block: clamp(90px, 10vw, 150px) clamp(60px, 8vw, 120px); }
+.lay .h2 { max-width: 15em; }
+.lay-grid { display: grid; grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); gap: clamp(32px, 5vw, 80px); margin-top: clamp(40px, 5vw, 72px); }
+.lay .steps-col { position: relative; }
+.lay .st { min-height: 82vh; display: flex; flex-direction: column; justify-content: center; padding-left: 56px; position: relative; opacity: .28; transition: opacity .5s; }
+.lay .st.on { opacity: 1; }
+.lay .st .n { position: absolute; left: -56px; top: 50%; translate: 0 -50%; font: 500 12px/1 var(--font); letter-spacing: .14em; color: var(--ink-3); width: 34px; height: 34px; border: 1px solid var(--line-2); border-radius: 50%; display: grid; place-items: center; transition: all .4s; font-variant-numeric: tabular-nums; background: var(--night); }
+.lay .st.on .n { color: var(--night); background: var(--green-2); border-color: var(--green-2); box-shadow: 0 0 0 6px rgba(52,211,153,.12); }
+.lay .st .k { position: relative; font: 500 11px/1 var(--font); letter-spacing: .16em; text-transform: uppercase; color: var(--green-2); }
+.lay .st.today .k { color: var(--ink-3); }
+.lay .st h3 { font-size: clamp(26px, 2.4vw, 36px); line-height: 1.08; letter-spacing: -.035em; font-weight: 500; margin-top: 16px; max-width: 13em; }
+.lay .st p { color: var(--ink-2); margin-top: 16px; max-width: 27em; font-size: 17px; }
+.lay .rail { position: absolute; left: 17px; top: 0; bottom: 0; width: 1px; background: var(--line); }
+.lay .rail i { position: absolute; left: 0; top: 0; width: 1px; height: var(--p, 0%); background: var(--green-2); box-shadow: 0 0 10px rgba(52,211,153,.6); transition: height .3s linear; }
+.lay .stage { position: sticky; top: max(96px, calc(50vh - 330px)); display: grid; border: 1px solid var(--line); border-radius: 18px; background: radial-gradient(120% 80% at 50% 0%, rgba(52,211,153,.06), transparent 60%), var(--raise); overflow: hidden; }
+.lay .stage-h { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 16px 22px; border-bottom: 1px solid var(--line); }
+.lay .stage-h .co { font-size: 14px; font-weight: 500; }
+.lay .stage-h .co small { color: var(--ink-3); font-weight: 400; margin-left: 8px; font-size: 14px; }
+.lay .stage-h .lyr { font: 500 11px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.lay .stage-h .lyr b { color: var(--green-2); font-weight: 500; }
+.lay .cap-f { display: flex; align-items: center; gap: 12px; padding: 14px 22px; border-top: 1px solid var(--line); font-size: 14px; color: var(--ink-2); min-height: 52px; }
+.lay .cap-f .hrs { margin-left: auto; white-space: nowrap; color: var(--ink-3); opacity: 0; transition: opacity .5s; }
+.lay .cap-f .hrs b { color: var(--green-2); font-weight: 500; font-size: 18px; font-variant-numeric: tabular-nums; }
+.lay .cap-f.on .hrs { opacity: 1; }
+.lay .cap-f .live { width: 7px; height: 7px; border-radius: 50%; background: var(--green-2); box-shadow: 0 0 10px rgba(52,211,153,.8); animation: pulse 1.6s ease-in-out infinite; flex: none; }
+/* the diagram: cumulative classes s1 to s5 on the svg turn on each layer */
+.lay .dg { width: 100%; height: auto; max-height: calc(100vh - 250px); display: block; padding: 6px 10px; }
+.lay .dg text { font-family: var(--font); fill: var(--ink-2); font-size: 13px; }
+.lay .dg .dl { fill: var(--ink); font-weight: 500; }
+.lay .dg .dot { fill: #2a3644; transition: fill .5s var(--d, 0s); }
+.lay .s1 .dot { fill: var(--green-2); }
+.lay .dg .ring { fill: none; stroke: var(--green-2); stroke-width: 1.2; opacity: 0; transform-box: fill-box; transform-origin: center; }
+.lay .s1:not(.s2) .ring { animation: layRing 1.6s ease-out var(--d, 0s) 2; }
+@keyframes layRing { 0% { opacity: .8; transform: scale(.6); } 100% { opacity: 0; transform: scale(1.6); } }
+.lay .dg .sys rect { fill: var(--raise-2); stroke: var(--line-2); transition: all .6s; }
+.lay .dg .sys text { font-size: 12.5px; fill: var(--ink); }
+.lay .dg .wire { fill: none; stroke: var(--line-2); stroke-width: 1; stroke-dasharray: 3 5; transition: stroke .6s, opacity .6s; opacity: .5; }
+.lay .s3 .wire { stroke: rgba(52,211,153,.55); stroke-dasharray: none; opacity: 1; }
+.lay .dg .link { opacity: 0; fill: none; stroke: var(--blue); stroke-width: 1.6; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.2s cubic-bezier(.3,.6,.2,1); }
+.lay .s2 .link { stroke-dashoffset: 0; opacity: 1; }
+.lay .dg .pulse { fill: var(--blue); opacity: 0; transition: opacity .4s; }
+.lay .s2 .pulse { opacity: 1; }
+.lay .dg .chip rect { fill: none; stroke: var(--ink-3); stroke-dasharray: 3 3; }
+.lay .dg .chip text { fill: var(--ink-3); font-size: 11.5px; }
+.lay .dg .chip { transition: opacity .6s, transform .8s; transform-box: fill-box; }
+.lay .s1 .chip { opacity: 0; transform: translateY(-12px) scale(.9); }
+.lay .dg .agt { opacity: 0; transform: scale(.4); transform-box: fill-box; transform-origin: center; transition: opacity .4s var(--d, 0s), transform .5s cubic-bezier(.3,1.5,.5,1) var(--d, 0s); }
+.lay .s3 .agt { opacity: 1; transform: none; }
+.lay .dg .agt rect { fill: var(--night); stroke: var(--green-2); stroke-width: 1.4; }
+.lay .dg .agt text { fill: var(--ink); font-size: 11.5px; }
+.lay .dg .agt .ct { fill: var(--green-2); font-weight: 500; font-variant-numeric: tabular-nums; }
+.lay .dg .agt.wait rect { stroke: #e0893a; }
+.lay .dg .agt.wait .ct { fill: #e0893a; }
+.lay .dg .spark { fill: var(--green-2); opacity: 0; transition: opacity .4s; filter: drop-shadow(0 0 4px rgba(52,211,153,.9)); }
+.lay .s3 .spark { opacity: 1; }
+.lay .dg .old { transition: opacity .8s, transform .8s; transform-box: fill-box; transform-origin: center; }
+.lay .s4 .old { opacity: 0; transform: scale(.8); }
+.lay .dg .old line { stroke: #d0553a; stroke-width: 1.6; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset .5s; }
+.lay .s4 .old line { stroke-dashoffset: 0; }
+.lay .dg .new { opacity: 0; transform: scale(1.15); transform-box: fill-box; transform-origin: center; transition: opacity .7s .5s, transform .7s .5s; }
+.lay .s4 .new { opacity: 1; transform: none; }
+.lay .dg .new rect { fill: rgba(52,211,153,.1); stroke: var(--green-2); stroke-width: 1.6; }
+.lay .dg .new text { fill: var(--ink); font-weight: 500; }
+.lay .dg .new .sm { fill: var(--green-2); font-size: 10.5px; font-weight: 400; letter-spacing: .08em; }
+.lay .dg .frame { fill: none; stroke: var(--green-2); stroke-width: 1.4; stroke-dasharray: 1; stroke-dashoffset: 1; opacity: 0; transition: stroke-dashoffset 1.6s cubic-bezier(.3,.6,.2,1); }
+.lay .s5 .frame { stroke-dashoffset: 0; opacity: 1; }
+.lay .dg .ftag { opacity: 0; transition: opacity .5s 1s; }
+.lay .s5 .ftag { opacity: 1; }
+.lay .dg .ftag rect { fill: var(--green-2); }
+.lay .dg .ftag text { fill: #050d18; font-size: 11px; font-weight: 500; letter-spacing: .12em; }
+/* product moments inside the steps */
+.lay .tick { margin-top: 26px; border: 1px solid var(--line); border-radius: 14px; background: var(--raise); max-width: 30em; overflow: hidden; }
+.lay .tick > div { display: grid; grid-template-columns: minmax(0, 1fr) 4em 5.5em; align-items: baseline; gap: 14px; padding: 13px 18px; border-bottom: 1px solid var(--line); font-size: 15px; color: var(--ink-2); }
+.lay .tick > div:last-child { border-bottom: 0; }
+.lay .tick b { color: var(--ink); font-weight: 500; font-variant-numeric: tabular-nums; text-align: right; }
+.lay .tick .th { font: 500 11px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); padding: 12px 18px; }
+.lay .tick .th span + span { text-align: right; }
+.lay .tick em { font-style: normal; text-align: right; color: var(--green-2); font-variant-numeric: tabular-nums; }
+.lay .tick .tt { background: rgba(52,211,153,.06); }
+.lay .tick .tt span { color: var(--ink); font-weight: 500; }
+.lay .tick .tt em { font-size: 18px; font-weight: 500; }
+.lay .tick small { display: block; color: var(--ink-3); font-size: 12.5px; }
+.lay .tick .w { grid-template-columns: minmax(0, 1fr) auto; align-items: center; background: rgba(224,137,58,.07); }
+.lay .tick .ap { font: 500 13px/1 var(--font); color: #050d18; background: var(--ink); padding: 9px 14px; border-radius: 999px; animation: glowBtn 2s ease-in-out infinite; white-space: nowrap; }
+.lay .rep { margin-top: 26px; border: 1px solid var(--line); border-radius: 14px; background: #f4f2ec; color: #0b1b2e; max-width: 30em; padding: 20px 22px; box-shadow: 0 30px 60px -40px rgba(0,0,0,.6); }
+.lay .rep .rh { display: flex; justify-content: space-between; font: 500 11px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; color: #78828d; padding-bottom: 12px; border-bottom: 1px solid rgba(11,27,46,.2); }
+.lay .rep dl { margin: 0; display: grid; grid-template-columns: 1fr 1fr; }
+.lay .rep dl div { padding: 13px 0; border-bottom: 1px solid rgba(11,27,46,.11); }
+.lay .rep dt { font-size: 12.5px; color: #78828d; }
+.lay .rep dd { margin: 4px 0 0; font-size: 22px; font-weight: 500; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+.lay .rep .nx { padding-top: 13px; font-size: 14px; color: #445162; margin: 0; max-width: none; }
+.lay .rep .nx b { color: #0b1b2e; font-weight: 500; }
+.lay .fine { margin-top: 40px; }
+/* phones: the diagram sits on top and sticks under the header while the steps scroll past */
+@media (max-width: 900px) {
+  .lay-grid { display: flex; flex-direction: column; }
+  .lay-grid > div:last-child { display: contents; }
+  .lay .stage { order: -1; top: calc(72px + env(safe-area-inset-top, 0px)); z-index: 3; border-radius: 14px; box-shadow: 0 18px 30px -10px #050d18; }
+  .lay .dg { height: min(33vh, 280px); max-height: none; }
+  .lay .dg .agt text { font-size: 10.5px; }
+  .lay .cap-f { display: grid; grid-template-columns: auto 1fr; column-gap: 12px; row-gap: 4px; font-size: 13px; padding: 10px 16px; min-height: 0; }
+  .lay .cap-f .hrs { display: none; grid-column: 2; margin-left: 0; }
+  .lay .cap-f.on .hrs { display: block; }
+  .lay .stage-h { padding: 12px 16px; }
+  .lay .stage-h .co small { display: none; }
+  .lay .st { min-height: 80vh; justify-content: flex-end; padding: 0 0 8vh 0; }
+  .lay .st h3 { font-size: 26px; }
+  .lay .st p { font-size: 16px; }
+  .lay .st .n, .lay .rail { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .lay .st { opacity: 1; } }

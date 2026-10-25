@@ -440,3 +440,119 @@ export function initFlip() {
 document.querySelectorAll(".caps4 .cap, .gov > div, .cad, .pace > div, .finds > div, .closes > div, .pst, .mlist li").forEach(el => el.classList.add("flip"));
 
 }
+
+export function initLayers() {
+
+// 01: a 60-person company gains training, connections, agents, its own system and an AI Officer as the steps scroll past
+(() => {
+  const svg = document.getElementById("dg");
+  if (!svg) return;
+  const NS = "http://www.w3.org/2000/svg";
+  const DEPTS = ["Accounting", "Operations", "Sales", "Front office", "HR", "Leadership"];
+  const SYS = ["QuickBooks", "Project platform", "CRM", "Phones", "Microsoft 365"];
+  const WIRES = [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 4]];
+  const AGENTS = [{ w: 0, l: "Invoices", c: "600" }, { w: 3, l: "Calls", c: "150" }, { w: 1, l: "POs matched", c: "250" }, { w: 2, l: "Follow-ups", c: "80" }, { w: 4, l: "HR drafts", c: "3 waiting", wait: 1 }];
+  const LINKS = [[0, 1], [1, 2], [2, 3], [3, 4]];
+  const CHIPS = [["Chat seat", 2, .42], ["AI add-on", 0, .58], ["AI tier", 1, .36], ["Free tool", 3, .62]];
+  const CAPS = ["Four AI subscriptions. None connected, nobody trained, nobody in charge.", "Accounting class, recorded: coding invoices with AI on your own vendors.", "Address changed in the CRM. QuickBooks and Microsoft 365 updated.", "INV-20431 keyed and matched to PO-7781. Three HR drafts wait for a person.", "Project history moved to your own system. Code and accounts in your name.", "New model tested on 200 of your past invoices before anything switched."];
+  const el = (t, a, p) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); (p || svg).appendChild(e); return e; };
+  const steps = [...document.querySelectorAll("#layers .st")], col = document.querySelector("#layers .steps-col");
+  const lyr = document.getElementById("lyr"), capt = document.getElementById("capt"), capF = document.querySelector("#layers .cap-f"), rail = document.getElementById("railp");
+  let cur = -1, counted = false;
+  // wide: teams in a row over the systems; narrow: teams in a column beside them
+  function build() {
+    svg.innerHTML = "";
+    const wide = svg.parentNode.clientWidth > 560;
+    let W, H, dp, sp, sw, sh;
+    if (wide) { W = 660; H = 520; dp = DEPTS.map((_, i) => [60 + i * 108, 84]); sp = SYS.map((_, i) => [66 + i * 132, 438]); sw = 116; sh = 40; }
+    else { W = 360; H = 470; dp = DEPTS.map((_, i) => [100, 44 + i * 74]); sp = SYS.map((_, i) => [290, 58 + i * 88]); sw = 104; sh = 38; }
+    svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+    const gW = el("g", {}), gL = el("g", {}), gC = el("g", {}), gS = el("g", {}), gA = el("g", {}), gD = el("g", {});
+    const paths = WIRES.map(([d, s]) => {
+      const [dx, dy] = dp[d], [sx, sy] = sp[s]; let p;
+      if (wide) { const a = dy + 26, b = sy - sh / 2, m = (a + b) / 2; p = `M${dx},${a} C${dx},${m} ${sx},${m} ${sx},${b}`; }
+      else { const a = dx + 22, b = sx - sw / 2, m = (a + b) / 2; p = `M${a},${dy} C${m},${dy} ${m},${sy} ${b},${sy}`; }
+      return el("path", { d: p, class: "wire" }, gW);
+    });
+    LINKS.forEach(([a, b], i) => {
+      const [ax, ay] = sp[a], [bx, by] = sp[b]; let d;
+      if (wide) { const y = ay + sh / 2; d = `M${ax},${y} C${ax},${y + 40} ${bx},${y + 40} ${bx},${y}`; }
+      else { const x = ax + sw / 2; d = `M${x},${ay} C${x + 14},${ay} ${x + 14},${by} ${x},${by}`; }
+      el("path", { d, class: "link", pathLength: 1 }, gL).style.transitionDelay = (i * .25) + "s";
+      el("animateMotion", { dur: (2.2 + i * .3) + "s", begin: (-i * .4 - .01) + "s", repeatCount: "indefinite", path: d }, el("circle", { r: 2.6, class: "pulse" }, gL));
+    });
+    CHIPS.forEach(([t, x, y], i) => {
+      const g = el("g", { class: "chip" }, gC); g.style.transitionDelay = (i * .08) + "s";
+      const pp = paths[x], pt = pp.getPointAtLength(pp.getTotalLength() * (wide ? y : .5)), w = t.length * (wide ? 6.6 : 5.8) + 22;
+      el("rect", { x: pt.x - w / 2, y: pt.y - 12, width: w, height: 24, rx: 12 }, g);
+      el("text", { x: pt.x, y: pt.y + 4, "text-anchor": "middle" }, g).textContent = t;
+    });
+    SYS.forEach((t, i) => {
+      const [x, y] = sp[i], isOld = i === 1, g = el("g", { class: "sys" + (isOld ? " old" : "") }, gS);
+      el("rect", { x: x - sw / 2, y: y - sh / 2, width: sw, height: sh, rx: 9 }, g);
+      el("text", { x, y: y + 4.5, "text-anchor": "middle" }, g).textContent = t;
+      if (!isOld) return;
+      el("line", { x1: x - sw / 2 + 10, y1: y, x2: x + sw / 2 - 10, y2: y, pathLength: 1 }, g);
+      const n = el("g", { class: "new" }, gS);
+      el("rect", { x: x - sw / 2 - 4, y: y - sh / 2 - 6, width: sw + 8, height: sh + 12, rx: 11 }, n);
+      el("text", { x, y: y - 1, "text-anchor": "middle" }, n).textContent = "Your own system";
+      el("text", { x, y: y + 13, "text-anchor": "middle", class: "sm" }, n).textContent = "IN YOUR NAME";
+    });
+    // ten people per team
+    DEPTS.forEach((t, i) => {
+      const [x, y] = dp[i];
+      if (wide) el("text", { x, y: y - 34, "text-anchor": "middle", class: "dl" }, gD).textContent = t;
+      else el("text", { x: x - 30, y: y + 4.5, "text-anchor": "end", class: "dl" }, gD).textContent = t;
+      for (let r = 0; r < 2; r++) for (let c = 0; c < 5; c++) el("circle", { cx: x - 20 + c * 10, cy: y - 5 + r * 10, r: 3, class: "dot" }, gD).style.setProperty("--d", (i * .12 + (r * 5 + c) * .015) + "s");
+      el("circle", { cx: x, cy: y, r: 26, class: "ring" }, gD).style.setProperty("--d", (i * .12) + "s");
+    });
+    AGENTS.forEach((a, i) => {
+      const p = paths[a.w], pt = p.getPointAtLength(p.getTotalLength() * .5);
+      if (!a.wait) for (let k = 0; k < 2; k++) el("animateMotion", { dur: (2.4 + i * .3) + "s", begin: (-k * 1.2 - i * .2 - .01) + "s", repeatCount: "indefinite", path: p.getAttribute("d") }, el("circle", { r: 3.4, class: "spark" }, gA));
+      const g = el("g", { class: "agt" + (a.wait ? " wait" : "") }, gA); g.style.setProperty("--d", (i * .15) + "s");
+      const w = (a.l.length + a.c.length) * (wide ? 6.4 : 6.1) + (wide ? 34 : 28);
+      el("rect", { x: pt.x - w / 2, y: pt.y - 13, width: w, height: 26, rx: 13 }, g);
+      el("text", { x: pt.x - w / 2 + (wide ? 13 : 10), y: pt.y + 4 }, g).textContent = a.l;
+      el("text", { x: pt.x + w / 2 - (wide ? 13 : 10), y: pt.y + 4, "text-anchor": "end", class: "ct" }, g).textContent = a.c;
+    });
+    // the AI Officer frame wraps everything drawn, so long team names stay inside it
+    const bb = svg.getBBox(), fx = Math.min(6, bb.x - 10), fw = Math.max(W - 6, bb.x + bb.width + 10) - fx;
+    svg.setAttribute("viewBox", `${fx - 4} 0 ${fw + 8} ${H}`);
+    el("rect", { x: fx, y: 6, width: fw, height: H - 12, rx: 16, class: "frame", pathLength: 1 });
+    const ft = el("g", { class: "ftag" });
+    el("rect", { x: fx + 14, y: -1, width: 96, height: 16, rx: 8 }, ft);
+    el("text", { x: fx + 62, y: 11, "text-anchor": "middle" }, ft).textContent = "AI OFFICER";
+    apply(cur);
+  }
+  function count() {
+    if (counted) return; counted = true;
+    document.querySelectorAll("#layers b[data-to]").forEach(b => {
+      const to = +b.dataset.to, t0 = performance.now();
+      (function f(t) { const k = Math.min(1, (t - t0) / 1400); b.textContent = Math.round(to * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(f); })(t0);
+    });
+  }
+  function apply(n) {
+    svg.setAttribute("class", "dg " + [1, 2, 3, 4, 5].filter(k => k <= n).map(k => "s" + k).join(" "));
+    steps.forEach(s => s.classList.toggle("on", +s.dataset.s === n));
+    capt.textContent = CAPS[Math.max(n, 0)];
+    capF.classList.toggle("on", n >= 3);
+    lyr.innerHTML = `Layer <b>${Math.max(n, 0)}</b> of 5`;
+    if (n >= 3) count();
+  }
+  // the active step is the last headline above the reading line
+  function onScroll() {
+    const line = innerHeight * (innerWidth > 900 ? .5 : .78);
+    let n = 0;
+    steps.forEach(s => { if (s.querySelector("h3").getBoundingClientRect().top < line) n = +s.dataset.s; });
+    if (n !== cur) { cur = n; apply(n); }
+    const r = col.getBoundingClientRect();
+    rail.style.setProperty("--p", Math.max(0, Math.min(100, (line - r.top) / r.height * 100)) + "%");
+  }
+  build();
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) { cur = 5; apply(5); document.querySelectorAll("#layers b[data-to]").forEach(b => b.textContent = b.dataset.to); counted = true; }
+  else { addEventListener("scroll", () => requestAnimationFrame(onScroll), { passive: true }); onScroll(); }
+  let rw = innerWidth;
+  addEventListener("resize", () => { if (Math.abs(innerWidth - rw) > 40) { rw = innerWidth; build(); } });
+})();
+
+}
