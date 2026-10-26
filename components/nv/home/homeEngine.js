@@ -453,20 +453,22 @@ export function initLayers() {
   const SYS = ["QuickBooks", "Project platform", "CRM", "Phones", "Microsoft 365"]; // team i works in system min(i, 4)
   const AGENTS = { 0: ["600", "invoices", "keyed"], 1: ["250", "POs", "matched"], 2: ["80", "follow-ups", "drafted"], 3: ["150", "calls", "answered"], 4: ["3", "drafts to", "review", 1] };
   const SUBS = { 0: "AI add-on", 1: "AI tier", 2: "Chat seat", 3: "Free tool" };
-  const CAPS = ["Four AI subscriptions. None connected, nobody trained, nobody in charge.", "Accounting class, recorded: coding invoices with AI on your own vendors.", "Address changed in the CRM. QuickBooks and Microsoft 365 updated.", "INV-20431 keyed and matched to PO-7781. Three HR drafts wait for a person.", "Project history moved to your own system. Code and accounts in your name.", "New model tested on 200 of your past invoices before anything switched."];
+  const CAPS = ["Four AI subscriptions. None connected, nobody trained, nobody in charge.", "Every team trained on its own work. Trained people cut 25 to 56% of the time on tasks that suit AI.", "Address changed in the CRM. QuickBooks and Microsoft 365 updated.", "INV-20431 keyed and matched to PO-7781. Three HR drafts wait for a person.", "Project history moved to your own system. Code and accounts in your name.", "New model tested on 200 of your past invoices before anything switched."];
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const phone = () => innerWidth <= 900;
-  const cls = n => "dg" + [1, 2, 3, 4, 5].filter(k => k <= n).map(k => " s" + k).join("");
+  // s1..s5 = what has been added so far; fN = the step in focus, which stays lit while the rest dims
+  const cls = n => "dg f" + n + [1, 2, 3, 4, 5].filter(k => k <= n).map(k => " s" + k).join("");
   let uid = 0;
   const el = (t, a, p) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); p.appendChild(e); return e; };
   const txt = (t, a, p) => { const e = el("text", a, p); e.textContent = t; return e; };
 
   // draws the company as a hairline grid: teams, the work between them and their systems, the sync line beneath.
+  // Each part sits in a zone (z0 to z4) so the step in focus can stay lit while the rest dims.
   // wide = teams as columns; otherwise teams as rows with the work and systems beside them
   function draw(svg, wide) {
     svg.innerHTML = "";
     const id = "ly" + (uid++), sx = [];
-    const W = wide ? 680 : 360, H = wide ? 416 : 352;
+    const W = wide ? 680 : 360, H = wide ? 350 : 344;
     svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
     const defs = el("defs", {}, svg);
     const grad = (gid, a) => { const g = el("linearGradient", Object.assign({ id: id + gid, gradientUnits: "userSpaceOnUse" }, a), defs); [[0, 0], [.1, 1], [.9, 1], [1, 0]].forEach(([o, op], k) => el("stop", { offset: o, "stop-color": k < 2 ? "#34d399" : "#3b6fe0", "stop-opacity": op }, g)); };
@@ -474,86 +476,92 @@ export function initLayers() {
     el("feGaussianBlur", { stdDeviation: 2.2, result: "b" }, fl);
     const fm = el("feMerge", {}, fl); el("feMergeNode", { in: "b" }, fm); el("feMergeNode", { in: "SourceGraphic" }, fm);
     const glow = `url(#${id}f)`;
-    const G = {}; ["grid", "lanes", "work", "sys", "sync", "top"].forEach(k => G[k] = el("g", {}, svg));
+    const G = {}; ["bands", "grid", "z1", "z0", "z3", "z2", "z4", "z5"].forEach(k => G[k] = el("g", { class: k === "bands" || k === "grid" ? k : "zone " + k }, svg));
+    const band = (k, x, y, w, h) => el("rect", { x, y, width: w, height: h, class: "band b" + k }, G.bands);
     const line = (x1, y1, x2, y2, c, p = G.grid) => el("line", { x1, y1, x2, y2, class: c }, p);
-    const ticks = (x, y, i, h) => { for (let q = 0; q < 10; q++) el("rect", { x: x + q * 5, y, width: 2, height: h, rx: 1, class: "tk" }, G.grid).style.setProperty("--d", (i * .09 + q * .018) + "s"); };
-    let T, B;
+    const ticks = (x, y, i, h) => { for (let q = 0; q < 10; q++) el("rect", { x: x + q * 5, y, width: 2, height: h, rx: 1, class: "tk" }, G.z1).style.setProperty("--d", (i * .09 + q * .018) + "s"); };
+    const newSys = (x, y, lines) => { const n = el("g", { class: "new" }, G.z4); lines.forEach(([t, dy, c]) => txt(t, { x, y: y + dy, class: c }, n)); };
+    const oldSys = (x, y, lines) => { const o = el("g", { class: "old" }, G.z4); lines.forEach(([w, dy, len]) => { txt(w, { x, y: y + dy, class: "sy" }, o); el("line", { x1: x - 2, y1: y + dy - 4.5, x2: x + len, y2: y + dy - 4.5, pathLength: 1, class: "strike" }, o); }); };
     if (wide) {
-      const L = 20, R = 660, cw = (R - L) / 6, x = i => L + i * cw;
-      T = 44; B = 356; const H1 = 116, H2 = 300;
+      const L = 20, R = 660, cw = (R - L) / 6, x = i => L + i * cw, T = 34, H1 = 106, H2 = 238, B = 292, SY = 316;
       grad("s", { x1: L, y1: 0, x2: R, y2: 0 }); grad("l", { x1: 0, y1: H1, x2: 0, y2: H2 });
-      // the grid
+      // spotlight bands, one per step
+      band(0, L, H1, cw * 4, H2 - H1); band(1, L, T, R - L, H1 - T + 28); band(2, L, H2, R - L, SY + 16 - H2); band(3, L, H1, R - L, H2 - H1); band(4, x(1), H2, cw, B - H2);
       [T, H1, H2, B].forEach(y => line(L, y, R, y, "hl"));
       for (let i = 1; i < 6; i++) line(x(i), T, x(i), i === 5 ? H2 : B, "hl");
       TEAMS.forEach((t, i) => {
         const lx = x(i) + 14;
-        txt(t, { x: lx, y: T + 26, class: "tm" }, G.grid);
-        txt("10 people", { x: lx, y: T + 44, class: "pp" }, G.grid);
-        txt("10 trained", { x: lx, y: T + 44, class: "pp on" }, G.grid).style.setProperty("--d", (i * .09 + .2) + "s");
-        ticks(lx, T + 54, i, 8);
-        // the lane from team to system: dotted until an agent runs on it
-        line(lx, H1, lx, H2, "lane", G.lanes);
+        txt(t, { x: lx, y: T + 25, class: "tm" }, G.z1);
+        txt("10 people", { x: lx, y: T + 42, class: "pp" }, G.z1);
+        txt("10 trained", { x: lx, y: T + 42, class: "pp on" }, G.z1).style.setProperty("--d", (i * .09 + .2) + "s");
+        ticks(lx, T + 52, i, 8);
+        line(lx, H1, lx, H2, "lane", G.grid);
         if (AGENTS[i]) {
-          const on = line(lx, H1, lx, H2, "lane-on", G.lanes); on.setAttribute("stroke", `url(#${id}l)`); on.setAttribute("pathLength", 1);
+          const on = line(lx, H1 + 27, lx, H2, "lane-on", G.z3); on.setAttribute("stroke", `url(#${id}l)`); on.setAttribute("pathLength", 1);
           on.style.transitionDelay = (i * .08) + "s";
-          if (!AGENTS[i][3]) runOnce(el("circle", { r: 2.4, class: "spark", filter: glow, opacity: 0 }, G.lanes), `M${lx},${H1} V${H2}`, 1.1, 3, .7 + i * .1);
+          if (!AGENTS[i][3]) runOnce(el("circle", { r: 2.4, class: "spark", filter: glow, opacity: 0 }, G.z3), `M${lx},${H1 + 27} V${H2}`, 1.1, 3, .7 + i * .1);
         }
-        if (SUBS[i]) { const g = el("g", { class: "sub" }, G.work); g.style.setProperty("--d", (i * .05) + "s"); txt(SUBS[i], { x: lx + 12, y: 198, class: "st1" }, g); txt("on its own", { x: lx + 12, y: 214, class: "st2" }, g); }
+        if (SUBS[i]) { const g = el("g", { class: "sub" }, G.z0); txt(SUBS[i], { x: lx + 12, y: 168, class: "st1" }, g); txt("on its own", { x: lx + 12, y: 184, class: "st2" }, g); }
         if (AGENTS[i]) {
-          const [n, l1, l2, wait] = AGENTS[i], g = el("g", { class: "agt" + (wait ? " wait" : "") }, G.work);
+          const [n, l1, l2, wait] = AGENTS[i], g = el("g", { class: "agt" + (wait ? " wait" : "") }, G.z3);
           g.style.setProperty("--d", (i * .09) + "s");
-          txt(n, { x: lx + 12, y: 204, class: "num" }, g); txt(l1, { x: lx + 12, y: 226, class: "al" }, g); txt(l2, { x: lx + 12, y: 241, class: "al" }, g);
+          txt(n, { x: lx + 12, y: 176, class: "num" }, g); txt(l1, { x: lx + 12, y: 197, class: "al" }, g); txt(l2, { x: lx + 12, y: 211, class: "al" }, g);
         }
       });
-      // systems; the last one spans HR and Leadership
+      // the training result, across the top of the work
+      const tr = el("g", { class: "trn" }, G.z1);
+      el("rect", { x: L + 1, y: H1 + 1, width: R - L - 2, height: 26, class: "trn-bg" }, tr);
+      txt("25 to 56%", { x: L + 14, y: H1 + 18, class: "trn-n" }, tr);
+      txt("less time on tasks that suit AI, once trained", { x: L + 78, y: H1 + 18, class: "trn-t" }, tr);
+      // the report reaches Leadership once the AI Officer runs it
+      const rp = el("g", { class: "rpt" }, G.z5);
+      txt("Monthly", { x: x(5) + 26, y: 176, class: "rpt-n" }, rp); txt("report, from", { x: x(5) + 26, y: 197, class: "al" }, rp); txt("the AI Officer", { x: x(5) + 26, y: 211, class: "al" }, rp);
       SYS.forEach((t, i) => {
-        const lx = x(i) + 14, y = H2 + 33; sx.push([lx, B]);
-        if (i !== 1) { txt(t, { x: lx, y, class: "sy" }, G.sys); return; }
-        const o = el("g", { class: "old" }, G.sys);
-        [["Project", y - 8, 46], ["platform", y + 7, 52]].forEach(([w, yy, len]) => { txt(w, { x: lx, y: yy, class: "sy" }, o); el("line", { x1: lx - 2, y1: yy - 4.5, x2: lx + len, y2: yy - 4.5, pathLength: 1, class: "strike" }, o); });
-        const n = el("g", { class: "new" }, G.sys); txt("Your own", { x: lx, y: y - 14, class: "sy" }, n); txt("system", { x: lx, y: y + 1, class: "sy" }, n); txt("IN YOUR NAME", { x: lx, y: y + 16, class: "sm" }, n);
+        const lx = x(i) + 14, y = H2 + 31; sx.push([lx, B]);
+        if (i !== 1) { txt(t, { x: lx, y, class: "sy" }, G.z2); return; }
+        oldSys(lx, y, [["Project", -7, 46], ["platform", 8, 52]]);
+        newSys(lx, y, [["Your own", -13, "sy"], ["system", 2, "sy"], ["IN YOUR NAME", 17, "sm"]]);
       });
-      // two-way sync: the luminous line under the systems
-      sx.forEach(([px, py], k) => el("line", { x1: px, y1: py, x2: px, y2: 384, pathLength: 1, class: "stub" }, G.sync).style.transitionDelay = (.5 + k * .08) + "s");
-      el("line", { x1: L, y1: 384, x2: R, y2: 384, stroke: `url(#${id}s)`, pathLength: 1, class: "syncl" }, G.sync);
-      sx.forEach(([px], k) => el("circle", { cx: px, cy: 384, r: 2.6, class: "node" }, G.sync).style.transitionDelay = (.7 + k * .08) + "s");
-      runOnce(el("circle", { r: 2.6, class: "pulse", filter: glow, opacity: 0 }, G.sync), `M${L},384 H${R}`, 1.6, 2, .9);
-      txt("TWO-WAY SYNC", { x: R, y: 406, "text-anchor": "end", class: "synct" }, G.sync);
-      // the AI Officer: crop marks around the whole company and a line of what they run
-      const o = el("g", { class: "ofc" }, G.top);
-      txt("AI OFFICER", { x: L, y: 22, class: "ol" }, o); txt("Monthly audit of every agent, new models tested first, one report", { x: L + 84, y: 22, class: "od" }, o);
-      [[L - 8, T - 8, 1, 1], [R + 8, T - 8, -1, 1], [L - 8, B + 8, 1, -1], [R + 8, B + 8, -1, -1]].forEach(([cx, cy, dx, dy]) => el("path", { d: `M${cx},${cy + dy * 16} V${cy} H${cx + dx * 16}`, pathLength: 1, class: "crop" }, o));
+      sx.forEach(([px, py], k) => el("line", { x1: px, y1: py, x2: px, y2: SY, pathLength: 1, class: "stub" }, G.z2).style.transitionDelay = (.5 + k * .08) + "s");
+      el("line", { x1: L, y1: SY, x2: R, y2: SY, stroke: `url(#${id}s)`, pathLength: 1, class: "syncl" }, G.z2);
+      sx.forEach(([px], k) => el("circle", { cx: px, cy: SY, r: 2.6, class: "node" }, G.z2).style.transitionDelay = (.7 + k * .08) + "s");
+      runOnce(el("circle", { r: 2.6, class: "pulse", filter: glow, opacity: 0 }, G.z2), `M${L},${SY} H${R}`, 1.6, 2, .9);
+      txt("TWO-WAY SYNC", { x: R, y: SY + 22, "text-anchor": "end", class: "synct" }, G.z2);
+      const o = el("g", { class: "ofc" }, G.z5);
+      txt("AI OFFICER", { x: L, y: 16, class: "ol" }, o); txt("Monthly audit of every agent, new models tested first, one report", { x: L + 84, y: 16, class: "od" }, o);
+      [[L - 8, T - 6, 1, 1], [R + 8, T - 6, -1, 1], [L - 8, B + 6, 1, -1], [R + 8, B + 6, -1, -1]].forEach(([cx, cy, dx, dy]) => el("path", { d: `M${cx},${cy + dy * 16} V${cy} H${cx + dx * 16}`, pathLength: 1, class: "crop" }, o));
     } else {
-      const L = 10, C1 = 122, C2 = 240, R = 334, rh = 50, row = i => T + i * rh;
-      T = 34; B = T + 6 * rh;
+      const L = 10, C1 = 122, C2 = 240, R = 334, rh = 48, T = 30, row = i => T + i * rh, B = T + 6 * rh;
       grad("s", { x1: 0, y1: T, x2: 0, y2: B });
+      band(0, C1, T, C2 - C1, rh * 4); band(1, L, T, C1 - L, B - T); band(2, C2, T, 356 - C2, B - T); band(3, C1, T, C2 - C1, B - T); band(4, C2, row(1), R - C2, rh);
       for (let i = 0; i <= 6; i++) line(L, row(i), i === 5 ? C2 : R, row(i), "hl");
       line(C1, T, C1, B, "hl"); line(C2, T, C2, B, "hl");
       TEAMS.forEach((t, i) => {
         const y = row(i);
-        txt(t, { x: L + 8, y: y + 21, class: "tm" }, G.grid);
-        ticks(L + 8, y + 30, i, 7);
-        if (SUBS[i]) { const g = el("g", { class: "sub" }, G.work); txt(SUBS[i], { x: C1 + 12, y: y + 22, class: "st1" }, g); txt("on its own", { x: C1 + 12, y: y + 37, class: "st2" }, g); }
+        txt(t, { x: L + 8, y: y + 20, class: "tm" }, G.z1);
+        ticks(L + 8, y + 29, i, 7);
+        if (SUBS[i]) { const g = el("g", { class: "sub" }, G.z0); txt(SUBS[i], { x: C1 + 12, y: y + 21, class: "st1" }, g); txt("on its own", { x: C1 + 12, y: y + 36, class: "st2" }, g); }
         if (AGENTS[i]) {
-          const [n, l1, l2, wait] = AGENTS[i], g = el("g", { class: "agt" + (wait ? " wait" : "") }, G.work);
+          const [n, l1, l2, wait] = AGENTS[i], g = el("g", { class: "agt" + (wait ? " wait" : "") }, G.z3);
           g.style.setProperty("--d", (i * .09) + "s");
-          line(C1, y + 10, C1, y + 40, "acc", g);
-          txt(n, { x: C1 + 12, y: y + 25, class: "num" }, g); txt(l1 + " " + l2, { x: C1 + 12, y: y + 40, class: "al" }, g);
+          line(C1, y + 9, C1, y + 39, "acc", g);
+          txt(n, { x: C1 + 12, y: y + 24, class: "num" }, g); txt(l1 + " " + l2, { x: C1 + 12, y: y + 39, class: "al" }, g);
         }
       });
+      const rp = el("g", { class: "rpt" }, G.z5);
+      txt("Monthly report", { x: C1 + 12, y: row(5) + 21, class: "rpt-s" }, rp); txt("from the AI Officer", { x: C1 + 12, y: row(5) + 36, class: "al" }, rp);
       SYS.forEach((t, i) => {
-        const y = i < 4 ? row(i) + 29 : row(4) + rh + 4; sx.push([R, y - 4]);
-        if (i !== 1) { txt(t, { x: C2 + 12, y, class: "sy" }, G.sys); return; }
-        const o = el("g", { class: "old" }, G.sys);
-        [["Project", y - 8, 44], ["platform", y + 6, 50]].forEach(([w, yy, len]) => { txt(w, { x: C2 + 12, y: yy, class: "sy" }, o); el("line", { x1: C2 + 10, y1: yy - 4.5, x2: C2 + 12 + len, y2: yy - 4.5, pathLength: 1, class: "strike" }, o); });
-        const n = el("g", { class: "new" }, G.sys); txt("Your own", { x: C2 + 12, y: y - 12, class: "sy" }, n); txt("system", { x: C2 + 12, y: y + 1, class: "sy" }, n); txt("IN YOUR NAME", { x: C2 + 12, y: y + 13, class: "sm" }, n);
+        const y = i < 4 ? row(i) + 28 : row(4) + rh + 4; sx.push([R, y - 4]);
+        if (i !== 1) { txt(t, { x: C2 + 12, y, class: "sy" }, G.z2); return; }
+        oldSys(C2 + 12, y, [["Project", -7, 44], ["platform", 7, 50]]);
+        newSys(C2 + 12, y, [["Your own", -12, "sy"], ["system", 1, "sy"], ["IN YOUR NAME", 13, "sm"]]);
       });
-      sx.forEach(([px, py], k) => el("line", { x1: px, y1: py, x2: 348, y2: py, pathLength: 1, class: "stub" }, G.sync).style.transitionDelay = (.5 + k * .08) + "s");
-      el("line", { x1: 348, y1: T, x2: 348, y2: B, stroke: `url(#${id}s)`, pathLength: 1, class: "syncl" }, G.sync);
-      sx.forEach(([, py], k) => el("circle", { cx: 348, cy: py, r: 2.4, class: "node" }, G.sync).style.transitionDelay = (.7 + k * .08) + "s");
-      runOnce(el("circle", { r: 2.4, class: "pulse", filter: glow, opacity: 0 }, G.sync), `M348,${T} V${B}`, 1.6, 2, .9);
-      const o = el("g", { class: "ofc" }, G.top);
-      txt("AI OFFICER", { x: L, y: 20, class: "ol" }, o); txt("Audits, model tests, one report", { x: L + 80, y: 20, class: "od" }, o);
+      sx.forEach(([px, py], k) => el("line", { x1: px, y1: py, x2: 348, y2: py, pathLength: 1, class: "stub" }, G.z2).style.transitionDelay = (.5 + k * .08) + "s");
+      el("line", { x1: 348, y1: T, x2: 348, y2: B, stroke: `url(#${id}s)`, pathLength: 1, class: "syncl" }, G.z2);
+      sx.forEach(([, py], k) => el("circle", { cx: 348, cy: py, r: 2.4, class: "node" }, G.z2).style.transitionDelay = (.7 + k * .08) + "s");
+      runOnce(el("circle", { r: 2.4, class: "pulse", filter: glow, opacity: 0 }, G.z2), `M348,${T} V${B}`, 1.6, 2, .9);
+      const o = el("g", { class: "ofc" }, G.z5);
+      txt("AI OFFICER", { x: L, y: 16, class: "ol" }, o); txt("Audits, model tests, one report", { x: L + 80, y: 16, class: "od" }, o);
       [[L - 6, T - 6, 1, 1], [354, T - 6, -1, 1], [L - 6, B + 8, 1, -1], [354, B + 8, -1, -1]].forEach(([cx, cy, dx, dy]) => el("path", { d: `M${cx},${cy + dy * 14} V${cy} H${cx + dx * 14}`, pathLength: 1, class: "crop" }, o));
     }
   }
