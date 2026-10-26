@@ -909,8 +909,32 @@ footer { border-top: 1px solid var(--line); padding-block: 64px calc(40px + env(
 /* Home 01: one example company gaining training, connections, agents, its own system and an AI Officer (2026-10-25).
    Desktop: a sticky diagram beside the steps. Phones: a small diagram inside each step. Behavior in initLayers. */
 .lay { padding-block: clamp(90px, 10vw, 150px) clamp(60px, 8vw, 120px); }
-.lay .h2 { max-width: 15em; }
+.lay .h2 { max-width: 19em; }
 .lay .lead { max-width: 40em; }
+/* the four pieces, ported from the /ai-implementation index (ai-implementation.css .ai-toc); here each links to its section there */
+.lay .ai-toc { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: clamp(40px, 4.5vw, 64px); border-top: 1px solid var(--line-2); }
+.lay .ai-toc a { display: grid; gap: 8px; align-content: start; padding: 22px 24px 6px; text-decoration: none; color: var(--ink); }
+.lay .ai-toc a + a { border-left: 1px solid var(--line); }
+.lay .ai-toc .meta { color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.lay .ai-toc b { font-weight: 500; font-size: 20px; letter-spacing: -0.02em; display: flex; justify-content: space-between; gap: 10px; }
+.lay .ai-toc b i { font-style: normal; color: var(--ink-3); transition: transform .25s, color .25s; }
+.lay .ai-toc a:hover b i { transform: translateX(4px); color: var(--green-2); }
+.lay .ai-toc span:not(.meta) { color: var(--ink-2); font-size: 14.5px; }
+.lay .lay-ex { margin-top: clamp(64px, 7vw, 104px); display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 20px; }
+.lay .lay-ex p { color: var(--ink-2); font-size: 17px; }
+.lay .lay-end { margin-top: clamp(48px, 5vw, 72px); padding-top: clamp(28px, 3vw, 40px); border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px 40px; }
+.lay .lay-end p { color: var(--ink-2); font-size: 17px; max-width: 34em; }
+.lay .lay-ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; }
+@media (max-width: 900px) {
+  .lay .ai-toc { grid-template-columns: 1fr 1fr; }
+  .lay .ai-toc a:nth-child(3) { border-left: 0; }
+  .lay .ai-toc a:nth-child(n+3) { border-top: 1px solid var(--line); }
+}
+@media (max-width: 520px) {
+  .lay .ai-toc { grid-template-columns: 1fr; }
+  .lay .ai-toc a, .lay .ai-toc a + a { border-left: 0; padding-inline: 0; padding-bottom: 18px; }
+  .lay .ai-toc a + a { border-top: 1px solid var(--line); }
+}
 .lay-grid { display: grid; grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); gap: clamp(32px, 5vw, 80px); margin-top: clamp(24px, 3vw, 40px); }
 .lay .steps-col { position: relative; }
 .lay .st { min-height: 58vh; display: flex; flex-direction: column; justify-content: center; padding-left: 56px; position: relative; opacity: .28; transition: opacity .5s; }
