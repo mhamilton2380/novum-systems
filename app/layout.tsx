@@ -6,6 +6,7 @@ import { NvFooter } from "@/components/nv/NvFooter";
 import { NvMotion } from "@/components/nv/NvMotion";
 import { JsonLd } from "@/components/JsonLd";
 import { ORGANIZATION_JSONLD } from "@/lib/seo";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "Novum AI · AI Implementation and Consulting, Portland",
@@ -25,6 +26,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <NvFooter />
         <NvMotion />
+        {/* Vercel Web Analytics: cookieless page-view counts. Shows data only once Web Analytics is enabled on the Vercel project. */}
+        <Analytics />
       </body>
     </html>
   );
