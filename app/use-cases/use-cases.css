@@ -487,3 +487,14 @@
 .uc-dv-track.two { height: 58px; }
 .uc-dv-track.two i.l0 { bottom: 50%; margin-bottom: 1px; }
 .uc-dv-track.two i.l1 { top: 50%; margin-top: 1px; }
+
+/* ---- Phone fixes (2026-11-11). Everything below applies at 760px and under; desktop and laptop are untouched. ---- */
+@media (max-width: 760px) {
+  /* Department names take the full width (the 15% column width outranked the stacked layout) */
+  .uc-dt tbody th { width: auto; }
+  /* Tap targets: 44px minimum */
+  .uc-how > summary, .uc-inputs summary, .uc-dept > summary { padding-block: 11px; }
+  .uc-jw-btn { padding: 12px 14px; }
+  .uc-jw-tab { min-height: 44px; }
+  .uc-jw-next { padding-block: 12px; }
+}
