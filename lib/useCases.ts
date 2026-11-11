@@ -757,7 +757,7 @@ export const USE_CASES: UseCase[] = [
     ],
     situation: "A brokerage of about 120 people, agents and staff, closes hundreds of transactions a year, and the office carries every deadline and compliance file. Transaction coordinators key contingency dates by hand, agents lose portal leads after the first reply, and marketing rebuilds materials for every listing.",
     departments: [
-      { dept: "Transaction coordination", work: "Deadline calendars from agreements, compliance file checks", ai: "Reads each executed agreement, builds the deadline calendar and flags missing signatures and disclosures", person: "The coordinator confirms dates; the managing broker approves the file" },
+      { dept: "Transaction coordination", work: "Deadline calendars from agreements, compliance file checks", ai: "Reads each executed agreement, builds the deadline calendar and flags missing signatures and disclosures", person: "The coordinator confirms dates; the principal broker approves the file" },
       { dept: "Agents", work: "Lead replies and long-term follow-up", ai: "Drafts personal follow-ups for portal, web and referral leads", person: "The agent sends each one" },
       { dept: "Marketing", work: "Listing copy, flyers, social posts, offering memoranda", ai: "Drafts materials from listing data and photos and checks fair housing language", person: "The listing agent approves" },
       { dept: "Commercial leasing", work: "Lease abstracts, renewal option tracking", ai: "Abstracts leases into rent, term and option summaries", person: "The broker checks each abstract" },
@@ -766,9 +766,9 @@ export const USE_CASES: UseCase[] = [
     firstAgent: {
       name: "Deadline calendar from the executed agreement",
       why: "One missed contingency date can cost a deal. Every date is written in the purchase agreement and its addenda, so the agent's calendar can be checked date by date.",
-      scored: "Before launch it builds calendars for 50 closed transactions. We compare every date with the file, and it goes live only when it gets them right at the rate your managing broker sets.",
+      scored: "Before launch it builds calendars for 50 closed transactions. We compare every date with the file, and it goes live only when it gets them right at the rate your principal broker sets.",
     },
-    approval: "Coordinators confirm every date and the managing broker approves every compliance file. Agents approve every follow-up and every piece of listing marketing before it goes out.",
+    approval: "Coordinators confirm every date and the principal broker approves every compliance file. Agents approve every follow-up and every piece of listing marketing before it goes out.",
     tools: ["Follow Up Boss", "Dotloop", "SkySlope", "DocuSign", "MLS", "CoStar", "Buildout", "QuickBooks", "Outlook", "Canva"],
     replaces: ["Separate email drip tools", "Standalone transaction checklist tools"],
     removes: ["Deadline spreadsheets", "Listing marketing rebuilt from scratch", "Lease abstracts typed by hand"],

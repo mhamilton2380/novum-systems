@@ -6,6 +6,7 @@
 import { useCallback, useEffect, useRef, useState, type KeyboardEvent } from "react";
 import type { Scenario } from "@/lib/nv/useCaseScenarios";
 import type { Walk } from "@/lib/nv/walks";
+import { DocView, viewSteps } from "./DocView";
 
 const TICK = 700;
 
@@ -29,7 +30,7 @@ export function JobWalk({ scenarios, walk }: { scenarios: Scenario[]; walk: Walk
   const Ai = ai === "agent" ? "Agent" : ai;
   const theAi = ai === "agent" ? "the agent" : `the ${ai}`;
   // tick at which each part of a stage appears
-  const timing = (k: number) => { const n = steps[k] ? steps[k].checks.length : 0; return { flag: n + 1, review: n + 2, approve: n + 4, done: n + 5, next: n + 12 }; };
+  const timing = (k: number) => { const st = steps[k]; const n = !st ? 0 : st.view ? viewSteps(st.view) : st.checks.length; return { flag: n + 1, review: n + 2, approve: n + 4, done: n + 5, next: n + 12 }; };
   const at = timing(idx);
   const shown = reduced || !auto ? 99 : t;
   const playing = auto && !reduced;
@@ -97,7 +98,7 @@ export function JobWalk({ scenarios, walk }: { scenarios: Scenario[]; walk: Walk
   const cls = (on: boolean) => (on ? " in" : "");
 
   return (
-    <div className="xdemo uc-jw" ref={root}>
+    <div className={`xdemo uc-jw${steps.some((x) => x.view) ? " has-views" : ""}`} ref={root}>
       <div className="x-head">
         <div className="x-mark" />
         <div>
@@ -108,7 +109,7 @@ export function JobWalk({ scenarios, walk }: { scenarios: Scenario[]; walk: Walk
       </div>
 
       <div className="uc-jw-body">
-        <div className="uc-jw-rail" role="tablist" aria-orientation="vertical" aria-label={walk.railLabel} onKeyDown={onKey}>
+        <div className="uc-jw-rail" role="tablist" aria-orientation={steps.some((x) => x.view) ? "horizontal" : "vertical"} aria-label={walk.railLabel} onKeyDown={onKey}>
           {steps.map((s, i) => (
             <div key={s.title} className="uc-jw-stop">
               <button
@@ -138,15 +139,27 @@ export function JobWalk({ scenarios, walk }: { scenarios: Scenario[]; walk: Walk
             <h3>{step.sc.title}</h3>
           </div>
 
-          <div className="x-2col wide-left uc-jw-grid">
+          <div className={`x-2col wide-left uc-jw-grid${step.view ? " has-view" : ""}`}>
             <div className="x-card">
               <div className="x-cardhead">
-                <span className="uc-jw-doc"><span className="uc-jw-tag">{step.tag}</span><b>{step.doc}</b></span>
+                {step.view
+                  ? <span className="uc-jw-doc uc-jw-doc2"><span className="uc-jw-tag">{step.tag}</span><span><b>{step.view.title}{step.view.stamp && <span className="uc-dv-stamp">{step.view.stamp}</span>}</b><small>{step.view.meta}<span className="uc-jw-sr"> · {step.doc}</span></small></span></span>
+                  : <span className="uc-jw-doc"><span className="uc-jw-tag">{step.tag}</span><b>{step.doc}</b></span>}
                 {shown < at.flag
                   ? <small className="x-live uc-jw-reading"><i />{Ai} reading</small>
-                  : <small>{step.checks.length} checked · 1 flagged</small>}
+                  : <small>{step.view ? "1 flagged" : `${step.checks.length} checked · 1 flagged`}</small>}
               </div>
-              <ul className="uc-jw-lines" aria-label={`What ${theAi} checked`}>
+{step.view ? (
+                <>
+                  <ul className="uc-jw-sr">{step.checks.map((c) => <li key={c}>{c}</li>)}</ul>
+                  <DocView view={step.view} shown={shown} lit={shown >= at.flag} resolved={approved} head={false} />
+                  <div className={`uc-jw-line uc-jw-flag uc-jw-callout${cls(shown >= at.flag)}${approved ? " fixed" : ""}`}>
+                    <span className={`x-dot${approved ? "" : " warn"}`} aria-hidden="true" />
+                    <span><small className="uc-jw-flagq">Flagged</small>{step.sc.catch}</span>
+                  </div>
+                </>
+              ) : (
+                            <ul className="uc-jw-lines" aria-label={`What ${theAi} checked`}>
                 {step.checks.map((c, i) => (
                   <li className={`uc-jw-line${cls(shown > i)}`} key={c}>
                     <span className="x-dot" aria-hidden="true" />
@@ -159,6 +172,7 @@ export function JobWalk({ scenarios, walk }: { scenarios: Scenario[]; walk: Walk
                   <span><small className="uc-jw-flagq">Flagged</small>{step.sc.catch}</span>
                 </li>
               </ul>
+              )}
             </div>
 
             <div className="x-stack">

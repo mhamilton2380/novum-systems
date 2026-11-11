@@ -66,7 +66,7 @@ export const SCENARIOS: Record<string, Scenario[]> = {
       "dept": "Accounting",
       "title": "Pay apps, lien waivers and retainage",
       "ai": "Reads each sub's pay app against its commitment and approved COs in Sage 300 CRE, checks percent complete against the schedule of values, confirms the right lien waiver is attached for the period, and drafts the owner's G702 and G703.",
-      "catch": "Catches a sub billing retainage at 5% when the subcontract holds 10% until the job is 50% complete, and a conditional waiver whose amount doesn't match the check.",
+      "catch": "Catches a sub pay app billed with no retainage held when the subcontract holds 5%, and a conditional waiver whose amount doesn't match the payment.",
       "person": "Controller, before anything is submitted or paid"
     },
     {
@@ -97,14 +97,14 @@ export const SCENARIOS: Record<string, Scenario[]> = {
       "title": "Listing details checked against public records",
       "ai": "Compares each new listing's MLS input against county assessor records, permit history and the prior listing, and lists every number that doesn't match with the source for each.",
       "catch": "Finds a listing advertising 4 bedrooms on a house the county records as 3, with no permit for the basement conversion.",
-      "person": "Listing agent, with the managing broker on any mismatch"
+      "person": "Listing agent, with the principal broker on any mismatch"
     },
     {
       "dept": "Brokerage: transaction coordination",
       "title": "Missing signatures and dates in deal files",
       "ai": "Reads every document in the transaction file, checks it against the brokerage's compliance checklist and the state's required forms, and lists missing signatures, initials, dates and disclosures.",
       "catch": "Finds the counteroffer initialed by the buyer but not the seller, and an inspection response signed a day after its own deadline.",
-      "person": "Transaction coordinator, then the managing broker approves the file"
+      "person": "Transaction coordinator, then the principal broker approves the file"
     },
     {
       "dept": "Brokerage: transaction coordination",
@@ -132,7 +132,7 @@ export const SCENARIOS: Record<string, Scenario[]> = {
       "title": "Commission splits checked before disbursement",
       "ai": "Reads the settlement statement, the agent's commission plan and cap progress, and any referral agreements, works out what each party is owed, and compares it to the disbursement authorization before it goes to escrow.",
       "catch": "Catches an agent still split at 80/20 after hitting their cap, and a 25% referral fee owed to an out-of-state broker that never made the disbursement.",
-      "person": "Managing broker approves each disbursement"
+      "person": "Principal broker approves each disbursement"
     },
     {
       "dept": "Brokerage: commercial",
