@@ -746,7 +746,7 @@
     "src": null
    },
    {
-    "title": "Patient messages checked before they're sent",
+    "title": "Record releases checked against the authorization",
     "hrsToday": 3,
     "kind": "review",
     "overlap": null,

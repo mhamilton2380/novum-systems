@@ -1,49 +1,16 @@
 "use client";
-// Construction page: follow one job from the bid set to closeout and final payment.
-// Every stage is one scenario from SCENARIOS.construction (lib/nv/useCaseScenarios.ts).
-// The checked lines below are the items each scenario's own "ai" text names; the flagged
-// line is the scenario's "catch"; the approver is its "person". Nothing here adds facts.
+// Industry pages: follow one piece of work from start to finish (one job, one close, one renewal).
+// Every stage is one scenario from SCENARIOS[slug] (lib/nv/useCaseScenarios.ts); the stage order, short
+// labels, document names and checked lines live in lib/nv/walks/<slug>.ts. The flagged line is the
+// scenario's "catch"; the approver is its "person". Nothing here adds facts.
 import { useCallback, useEffect, useRef, useState, type KeyboardEvent } from "react";
 import type { Scenario } from "@/lib/nv/useCaseScenarios";
-
-type Stage = {
-  title: string; // matches Scenario.title
-  phase: "Bid" | "Buyout" | "Build" | "Bill" | "Close";
-  label: string; // short name for the rail
-  doc: string; // the document or screen the agent works in
-  tag: "PDF" | "XLS" | "LOG";
-  checks: string[]; // taken from the scenario's own "ai" text
-  approver: string; // short form of the scenario's "person"
-};
-
-// Order follows the life of a job.
-const STAGES: Stage[] = [
-  { title: "Takeoff, model and estimate from the bid set", phase: "Bid", label: "Takeoff and estimate", doc: "Bid set · drawings, specs and addenda", tag: "PDF",
-    checks: ["Quantities taken off by CSI division", "Model built from the plans", "Estimate priced from your costs on past jobs", "Architectural checked against structural and MEP", "Schedules checked against plans", "Bid set checked against every addendum"], approver: "Chief estimator" },
-  { title: "Bid packages built from drawings and specs", phase: "Bid", label: "Bid packages", doc: "Bid package · one per trade", tag: "PDF",
-    checks: ["Drawing sheets for the trade", "Spec sections and addenda", "Written scope of work, from your past scope sheets", "Bid form"], approver: "Preconstruction manager" },
-  { title: "Bid leveling sub quotes line by line", phase: "Bid", label: "Bid leveling", doc: "Leveling sheet · quotes from Outlook and the bid folder", tag: "XLS",
-    checks: ["Inclusions and exclusions", "Alternates and allowances", "Qualifications", "Normalized by CSI division, like for like"], approver: "Chief estimator" },
-  { title: "Scope gaps between sub bids and the spec book", phase: "Bid", label: "Scope gaps", doc: "Gap list · sub scopes against the spec book", tag: "XLS",
-    checks: ["Each sub's written scope and exclusions", "The spec book", "General notes on the drawings", "Your scope sheets"], approver: "Project executive" },
-  { title: "Sub insurance read before they mobilize", phase: "Buyout", label: "Sub insurance", doc: "Sub file · COIs and endorsements", tag: "PDF",
-    checks: ["Limits against the subcontract", "Policy dates", "Additional insured wording", "Waiver of subrogation wording", "Request to the sub's agent drafted"], approver: "Project administrator" },
-  { title: "Drawings, model and spec book disagree", phase: "Build", label: "Drawing conflicts", doc: "Conflict list · drawings, model and spec book", tag: "LOG",
-    checks: ["Sheet notes, schedules and details across disciplines", "Quantities and schedules exported from the model", "Navisworks clashes turned into an RFI log with sheet references"], approver: "Project manager" },
-  { title: "Submittal review against the spec section", phase: "Build", label: "Submittals", doc: "Submittal package · against the spec section", tag: "PDF",
-    checks: ["Spec section, line by line", "Approved substitutions", "The drawings", "Review summary drafted for the PM"], approver: "Project manager" },
-  { title: "RFIs and change orders tied to the contract", phase: "Build", label: "RFIs and change orders", doc: "RFI responses, ASIs and the architect's email", tag: "LOG",
-    checks: ["Each answer compared to the contract documents", "Affected sub scopes listed", "PCO drafted with a request for sub pricing"], approver: "Project manager, then the owner's rep" },
-  { title: "Pay apps, lien waivers and retainage", phase: "Bill", label: "Pay apps", doc: "Sub pay app · Sage 300 CRE", tag: "XLS",
-    checks: ["Commitment and approved COs", "Percent complete against the schedule of values", "Lien waiver for the period", "Owner's G702 and G703 drafted"], approver: "Controller" },
-  { title: "Closeout checked against Division 01", phase: "Close", label: "Closeout", doc: "Closeout log · Division 01, by sub", tag: "LOG",
-    checks: ["Warranties", "O&M manuals", "Attic stock", "As-builts", "Training records"], approver: "Project manager" },
-];
+import type { Walk } from "@/lib/nv/walks";
 
 const TICK = 700;
 
-export function JobWalk({ scenarios }: { scenarios: Scenario[] }) {
-  const steps = STAGES.flatMap((s) => {
+export function JobWalk({ scenarios, walk }: { scenarios: Scenario[]; walk: Walk }) {
+  const steps = walk.stages.flatMap((s) => {
     const sc = scenarios.find((x) => x.title === s.title);
     return sc ? [{ ...s, sc }] : [];
   });
@@ -57,6 +24,10 @@ export function JobWalk({ scenarios }: { scenarios: Scenario[] }) {
   const [signed, setSigned] = useState<Set<number>>(() => new Set());
 
   const step = steps[idx];
+  // In real estate and insurance "agent" means a person, so those walks call the software "AI".
+  const ai = walk.aiName ?? "agent";
+  const Ai = ai === "agent" ? "Agent" : ai;
+  const theAi = ai === "agent" ? "the agent" : `the ${ai}`;
   // tick at which each part of a stage appears
   const timing = (k: number) => { const n = steps[k] ? steps[k].checks.length : 0; return { flag: n + 1, review: n + 2, approve: n + 4, done: n + 5, next: n + 12 }; };
   const at = timing(idx);
@@ -130,14 +101,14 @@ export function JobWalk({ scenarios }: { scenarios: Scenario[] }) {
       <div className="x-head">
         <div className="x-mark" />
         <div>
-          <div className="x-title">One job, bid set to final payment</div>
-          <div className="x-sub">Ten points where an agent reads the paperwork and a person signs off</div>
+          <div className="x-title">{walk.demoTitle}</div>
+          <div className="x-sub">{walk.demoSub}</div>
         </div>
-        <button type="button" className="replay uc-jw-replay" onClick={replay}>Replay from the bid set</button>
+        <button type="button" className="replay uc-jw-replay" onClick={replay}>{walk.replay}</button>
       </div>
 
       <div className="uc-jw-body">
-        <div className="uc-jw-rail" role="tablist" aria-orientation="vertical" aria-label="Stages of the job" onKeyDown={onKey}>
+        <div className="uc-jw-rail" role="tablist" aria-orientation="vertical" aria-label={walk.railLabel} onKeyDown={onKey}>
           {steps.map((s, i) => (
             <div key={s.title} className="uc-jw-stop">
               <button
@@ -172,10 +143,10 @@ export function JobWalk({ scenarios }: { scenarios: Scenario[] }) {
               <div className="x-cardhead">
                 <span className="uc-jw-doc"><span className="uc-jw-tag">{step.tag}</span><b>{step.doc}</b></span>
                 {shown < at.flag
-                  ? <small className="x-live uc-jw-reading"><i />Agent reading</small>
+                  ? <small className="x-live uc-jw-reading"><i />{Ai} reading</small>
                   : <small>{step.checks.length} checked · 1 flagged</small>}
               </div>
-              <ul className="uc-jw-lines" aria-label="What the agent checked">
+              <ul className="uc-jw-lines" aria-label={`What ${theAi} checked`}>
                 {step.checks.map((c, i) => (
                   <li className={`uc-jw-line${cls(shown > i)}`} key={c}>
                     <span className="x-dot" aria-hidden="true" />
@@ -191,20 +162,23 @@ export function JobWalk({ scenarios }: { scenarios: Scenario[] }) {
             </div>
 
             <div className="x-stack">
-              <div className="uc-jw-how"><span className="meta">What the agent does</span><p>{step.sc.ai}</p></div>
+              <div className="uc-jw-how"><span className="meta">What {theAi} does</span><p>{step.sc.ai}</p></div>
               <div className={`x-review uc-jw-review${cls(shown >= at.review)}`}>
                 <div className="x-q">{approved ? `Signed off by the ${step.approver.toLowerCase()}` : `Waiting on the ${step.approver.toLowerCase()}`}</div>
                 <p>Nothing goes out until a person approves it. Who approves here: {step.sc.person}.</p>
                 <div className="x-btns">
                   <button type="button" className={`uc-jw-btn${approved ? " sel" : ""}`} onClick={approve} aria-pressed={approved}>
-                    {approved ? `Approved by the ${step.approver.toLowerCase()}` : `Approve as ${step.approver.toLowerCase()}`}
+                    {/* long roles would wrap the button; the line above already names who is approving */}
+                    {step.approver.length > 28
+                      ? (approved ? "Approved" : "Approve")
+                      : (approved ? `Approved by the ${step.approver.toLowerCase()}` : `Approve as ${step.approver.toLowerCase()}`)}
                   </button>
                 </div>
               </div>
               <div className={`x-done uc-jw-done${cls(signed.has(idx) || (approved && t >= at.done))}`} aria-live="polite">
-                {approved && <div><em>✓</em>Signed off. The agent did the reading; the {step.approver.toLowerCase()} made the call.</div>}
+                {approved && <div><em>✓</em>Signed off. {ai === "agent" ? "The agent" : `The ${ai}`} did the reading; the {step.approver.toLowerCase()} made the call.</div>}
                 {approved && next && <button type="button" className="uc-jw-next" onClick={() => go(idx + 1, true)}>Next: {next.label} <span aria-hidden="true">→</span></button>}
-                {approved && !next && <div><em>✓</em>Job closed out. {steps.length} stages, {steps.length} sign-offs.</div>}
+                {approved && !next && <div><em>✓</em>{walk.closed} {steps.length} stages, {steps.length} sign-offs.</div>}
               </div>
             </div>
           </div>

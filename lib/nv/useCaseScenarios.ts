@@ -88,7 +88,7 @@ export const SCENARIOS: Record<string, Scenario[]> = {
     {
       "dept": "Brokerage: listings",
       "title": "CMAs drafted from MLS comps",
-      "ai": "Pulls sold, pending and active comps from the MLS, adjusts for size, beds, baths, condition notes and DOM, and drafts the CMA with a suggested price range and the reasoning behind each comp.",
+      "ai": "Pulls sold, pending and active comps from the MLS, adjusts for size, beds, baths and condition, notes days on market, and drafts the CMA with a suggested price range and the reasoning behind each comp.",
       "catch": "Drops the comp whose deed shows a related-party transfer in public records, and flags a pending listing the agent missed.",
       "person": "Listing agent"
     },
@@ -131,7 +131,7 @@ export const SCENARIOS: Record<string, Scenario[]> = {
       "dept": "Brokerage: accounting",
       "title": "Commission splits checked before disbursement",
       "ai": "Reads the settlement statement, the agent's commission plan and cap progress, and any referral agreements, works out what each party is owed, and compares it to the disbursement authorization before it goes to escrow.",
-      "catch": "Catches an agent paid at 80/20 after hitting their cap, and a 25% referral fee owed to an out-of-state broker that never made the disbursement.",
+      "catch": "Catches an agent still split at 80/20 after hitting their cap, and a 25% referral fee owed to an out-of-state broker that never made the disbursement.",
       "person": "Managing broker approves each disbursement"
     },
     {
@@ -226,7 +226,7 @@ export const SCENARIOS: Record<string, Scenario[]> = {
       "dept": "Customer service",
       "title": "Emailed POs keyed into orders",
       "ai": "Reads the customer's PO email and attachment, maps their part numbers to your item numbers, builds the sales order in NetSuite, Prophet 21, Business Central or Infor, and flags any line where price, unit of measure or ship-to differs from the contract.",
-      "catch": "Catches a PO for 40 cases priced as 40 each against the customer's contract.",
+      "catch": "Catches a PO for 40 cases priced at the each price, against the customer's contract.",
       "person": "Inside sales rep releases the order"
     },
     {
@@ -340,7 +340,7 @@ export const SCENARIOS: Record<string, Scenario[]> = {
       "dept": "Purchasing and quality",
       "title": "Customer flowdowns carried to supplier POs",
       "ai": "Reads the customer PO terms and quality clauses, then checks every material and outside-process PO tied to the job, and lists each clause that was not flowed down before the order is placed.",
-      "catch": "Flags the PO for 17-4 PH bar on a defense job with no DFARS specialty metals clause, which would make every part from it non-conforming.",
+      "catch": "Flags the PO for 17-4 PH bar on a defense job with no DFARS specialty metals clause, so nothing requires the mill to supply compliant metal.",
       "person": "Purchasing manager, with quality signing off"
     },
     {
@@ -419,14 +419,14 @@ export const SCENARIOS: Record<string, Scenario[]> = {
       "dept": "Compliance",
       "title": "Deadline and extension tracker across every entity",
       "ai": "Reads entity records, prior filings and IRS and state notices from Outlook, builds one calendar of every return, extension and estimate by client, and flags anything without an owner or a filed extension.",
-      "catch": "Catches the S corp that switched to a June 30 fiscal year, whose 1120-S was due September 15 with no 7004 on file.",
+      "catch": "Catches the S corp whose 1120-S is due March 15 with no 7004 on file.",
       "person": "Tax manager"
     },
     {
       "dept": "Client service",
       "title": "IRS and state notices triaged the day they land",
       "ai": "Reads the notice, identifies the type, tax year and response deadline, pulls the matching return and workpapers, and drafts a summary for the client and a response outline for the CPA.",
-      "catch": "Shows that the CP2000 is for a 1099-B already reported on the return, and the response is due in 30 days, not 60.",
+      "catch": "Shows that the CP2000 is for a 1099-B already reported on the return, with the response due 30 days from the notice date.",
       "person": "CPA decides the position and signs the response"
     },
     {
@@ -520,7 +520,7 @@ export const SCENARIOS: Record<string, Scenario[]> = {
     {
       "dept": "Litigation",
       "title": "Discovery documents coded and a privilege log drafted",
-      "ai": "Reads the collected email and documents from NetDocuments or iManage, codes them for responsiveness and issues, flags likely privileged items with the attorneys on each thread, and drafts privilege log entries.",
+      "ai": "Reads the collected email and documents in the review platform (Relativity or Everlaw), codes them for responsiveness and issues, flags likely privileged items with the attorneys on each thread, and drafts privilege log entries.",
       "catch": "Flags an email chain forwarded to outside counsel midway, so the earlier messages need a separate privilege decision.",
       "person": "Reviewing attorney makes every privilege call"
     },
@@ -535,7 +535,7 @@ export const SCENARIOS: Record<string, Scenario[]> = {
       "dept": "Transactional",
       "title": "Redlines compared turn by turn",
       "ai": "Runs a compare tool (Litera or Word compare) on each turn so unmarked edits surface, then reads every change against the client's term sheet or the firm's playbook and flags each departure from the agreed position.",
-      "catch": "The indemnity cap is untouched, yet 'Losses' now excludes the damages the cap covers.",
+      "catch": "The indemnity cap is untouched, yet the definition of 'Losses' now excludes consequential damages and diminution in value.",
       "person": "Responsible attorney"
     },
     {
@@ -647,7 +647,7 @@ export const SCENARIOS: Record<string, Scenario[]> = {
     },
     {
       "dept": "Compliance",
-      "title": "Patient messages checked before they're sent",
+      "title": "Record releases checked against the authorization",
       "ai": "It reads incoming record requests and outgoing patient messages, and checks each release against the signed authorization's scope, recipient and expiry, or a valid right-of-access request. Minimum necessary applies to payment and operations disclosures. Every release is logged. Runs under a BAA in the practice's own accounts.",
       "catch": "Stops the record release going to an ex-spouse whose authorization was revoked last year.",
       "person": "Privacy officer or practice manager"
@@ -679,7 +679,7 @@ export const SCENARIOS: Record<string, Scenario[]> = {
       "dept": "Reporting",
       "title": "Monthly client report drafted from source",
       "ai": "It pulls spend, conversions and revenue from Google Ads, Meta Ads Manager and GA4, reconciles platform-reported conversions against GA4, and drafts the report and commentary explaining what moved and why, with each number tied to its source.",
-      "catch": "Shows Meta claiming three times the purchases GA4 recorded for the same campaign and dates.",
+      "catch": "Shows Meta reporting three times the purchases GA4 recorded for the same campaign and dates, a gap the report explains before the client asks.",
       "person": "Account manager"
     },
     {
