@@ -178,7 +178,8 @@ function particleHeadline(h1: HTMLElement): () => void {
     raf = requestAnimationFrame(frame);
   }
 
-  const start = () => { sample(); t0 = performance.now(); raf = requestAnimationFrame(frame); };
+  // phones skip the assembly: the headline is on screen from the first paint, and still breaks apart on scroll
+  const start = () => { sample(); t0 = performance.now() - (innerWidth <= 760 ? 3000 : 0); raf = requestAnimationFrame(frame); };
   if (document.fonts?.ready) document.fonts.ready.then(() => !dead && start()); else start();
   let rt = 0;
   const onResize = () => { clearTimeout(rt); rt = window.setTimeout(() => { if (!dead) { sample(); t0 = performance.now() - 3000; } }, 200); };

@@ -80,3 +80,9 @@
   .mo .paper:is(.in, .sw) .hw-trows > div { animation: gm-rise .7s var(--gm-ease) backwards; animation-delay: calc(var(--k, 0) * 70ms + 150ms); }
   .mo .hw-trows > div:nth-child(2) { --k: 1; } .mo .hw-trows > div:nth-child(3) { --k: 2; } .mo .hw-trows > div:nth-child(4) { --k: 3; } .mo .hw-trows > div:nth-child(n+5) { --k: 4; }
 }
+
+/* Phone (2026-11-11): the document tabs sit two across, so the step number drops under the name */
+@media (max-width: 760px) {
+  .hw-tab-t { display: block; }
+  .hw-tab-t small { display: block; padding-top: 1px; }
+}

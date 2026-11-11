@@ -944,3 +944,55 @@ footer { border-top: 1px solid var(--line); padding-block: 64px calc(40px + env(
   .rs-results { grid-template-columns: 1fr; }
   .rs-res, .rs-res:nth-child(even) { padding: 26px 0; border-left: 0; }
 }
+
+
+/* ---- Phone fixes (2026-11-11). Everything below applies at 760px and under; desktop and laptop are untouched. ---- */
+@media (max-width: 760px) {
+  /* Home hero: the headline, sub and buttons stay on screen while the N assembles above them */
+  body.home-intro:not(.ready) .top { opacity: 1; }
+  .hero h1 .w { opacity: 1; transform: none; filter: none; transition: none; }
+  .hero .sub, .hero .ctas, .hero .strip { opacity: 1; transform: none; transition: none; }
+  /* Inner pages: the headline is readable from the first paint (NvMotion skips the assembly on phones) */
+  .mo .pt-h1 { opacity: var(--pt-o, 1); }
+
+  /* Tap targets: 44px minimum */
+  .brand { min-height: 44px; }
+  .burger { width: 44px; height: 44px; }
+  .link, .x-link { position: relative; }
+  .x-link { display: inline-block; }
+  .link::after, .x-link::after { content: ""; position: absolute; inset: -10px 0 -9px; }
+  .x-link::after { inset: -12px 0; }
+  main :is(.gd-next, .ai-links, .ao-links, .tr-next, .uc-links) { row-gap: 20px; }
+  main p > .link { margin-block: 3px; }
+  form input, form select, form textarea { padding-block: 11px; }
+  .fcols li { padding-block: 0; }
+  .fcols li a { display: block; padding-block: 11px; }
+  .replay { padding: 12px 16px; }
+
+  /* Small tracked labels: 12px floor */
+  .meta, .label, .fcols h4, form label, .x-colhead { font-size: 12px; }
+
+  /* Document tabs: two columns, so the example stays in view right under the name you tap */
+  .docs-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 18px; }
+  .docs-tabs button { font-size: 14.5px; grid-template-columns: 1.9em minmax(0, 1fr); align-items: start; }
+  .paper { padding: 20px 18px; }
+
+  /* Four-column example tables: the first cell takes the full width, the other three share the next line */
+  .ptable:has(th:nth-child(4)), .ptable:has(th:nth-child(4)) :is(thead, tbody) { display: block; }
+  .ptable:has(th:nth-child(4)) tr { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, .9fr) minmax(0, 1.3fr); column-gap: 12px; padding: 12px 0; border-top: 1px solid var(--line); }
+  .ptable:has(th:nth-child(4)) thead tr { border-top: 0; padding: 0 0 10px; }
+  .ptable:has(th:nth-child(4)) :is(th, td) { padding: 0; border: 0; }
+  .ptable:has(th:nth-child(4)) :is(th, td):first-child { grid-column: 1 / -1; margin-bottom: 4px; }
+  .ptable:has(th:nth-child(4)) td:first-child { color: var(--ink); }
+  .ptable th { font-size: 12px; }
+
+  /* Rent versus own: the row name sits above the two answers, which get half the width each */
+  .rvo, .rvo thead, .rvo tbody { display: block; height: auto; }
+  .rvo tr { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 18px; }
+  .rvo th:first-child { display: none; }
+  .rvo th { font-size: 12px; padding-right: 0; }
+  .rvo tbody tr { padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .rvo tbody tr:last-child { border-bottom: 0; padding-bottom: 0; }
+  .rvo td { padding: 0; border-bottom: 0; }
+  .rvo td:first-child { grid-column: 1 / -1; width: auto; margin-bottom: 6px; }
+}

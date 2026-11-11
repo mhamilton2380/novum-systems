@@ -420,7 +420,9 @@ export function initHomeSections() {
     stage.innerHTML = x.html(); stage.classList.remove("swap"); void stage.offsetWidth; stage.classList.add("swap");
     update();
   }
-  function tick() { if (!root.isConnected) { clearInterval(timer); return; } if (t < TABS[idx].end) { t++; update(); } else { t = 0; show((idx + 1) % TABS.length); } }
+  // phones: the example plays once and holds its finished state (the stacked demo is taller than the screen,
+  // so rotating to the next example would swap the content while someone is reading it); a tap on a tab switches
+  function tick() { if (!root.isConnected) { clearInterval(timer); return; } if (t < TABS[idx].end) { t++; update(); } else if (innerWidth > 760) { t = 0; show((idx + 1) % TABS.length); } }
   function setRunning(v) { if (v === running) return; running = v; clearInterval(timer); if (running && !reduce) timer = setInterval(tick, TICK); update(); }
   tabBtns.forEach((b, i) => b.addEventListener("click", () => { t = running && !reduce ? 0 : 99; show(i); }));
   t = reduce ? 99 : 0; show(0);
