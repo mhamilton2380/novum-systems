@@ -5,6 +5,7 @@ import { USE_CASES, getUseCase } from "@/lib/useCases";
 import { NORMAL_DAY, GOV_NOTE } from "@/lib/nv/useCaseExtras";
 import { industryHours, RATES, SOURCES, OWN_USE_RATE, OFFICE, FIRM } from "@/lib/nv/hoursModel";
 import { SCENARIOS } from "@/lib/nv/useCaseScenarios";
+import { JobWalk } from "@/components/nv/uc/JobWalk";
 import { JsonLd } from "@/components/JsonLd";
 import { ContactForm } from "@/components/nv/ContactForm";
 import { pageMetadata, breadcrumbJsonLd, serviceJsonLd, USE_CASE_SEO } from "@/lib/seo";
@@ -37,6 +38,30 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
   const scenarios = SCENARIOS[u.slug] ?? [];
   const n = (i: number) => String(i).padStart(2, "0");
   let ix = 2;
+  // Construction: one interactive job walk replaces the department table and the ten-catches list.
+  const walk = u.slug === "construction" && scenarios.length > 0;
+
+  const deptTable = (
+    <table className="uc-dt">
+      <thead>
+        <tr><th scope="col">Department</th><th scope="col">Repeat work</th><th scope="col">What AI does</th><th scope="col">A person still</th><th scope="col">Hours a week today</th></tr>
+      </thead>
+      <tbody>
+        {u.departments.map((d) => (
+          <tr key={d.dept}>
+            <th scope="row">{d.dept}</th>
+            <td data-l="Repeat work">{d.work}</td>
+            <td data-l="What AI does">{d.ai}</td>
+            <td data-l="A person still">{d.person}</td>
+            {(() => {
+              const h = hrs?.depts.find((x) => x.dept === d.dept);
+              return <td data-l="Hours a week today" className="n">{h ? Math.round(h.today) : ""}</td>;
+            })()}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
 
   return (
     <main>
@@ -74,33 +99,26 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
 
       <section className="sec light">
         <div className="wrap">
-          <div className="label"><span className="ix">02</span>By department</div>
-          <h2 className="h2">Where AI takes the hours back. <span className="mute">A person still decides.</span></h2>
-          <table className="uc-dt">
-            <thead>
-              <tr><th scope="col">Department</th><th scope="col">Repeat work</th><th scope="col">What AI does</th><th scope="col">A person still</th><th scope="col">Hours a week today</th></tr>
-            </thead>
-            <tbody>
-              {u.departments.map((d) => (
-                <tr key={d.dept}>
-                  <th scope="row">{d.dept}</th>
-                  <td data-l="Repeat work">{d.work}</td>
-                  <td data-l="What AI does">{d.ai}</td>
-                  <td data-l="A person still">{d.person}</td>
-                  {(() => {
-                    const h = hrs?.depts.find((x) => x.dept === d.dept);
-                    return <td data-l="Hours a week today" className="n">{h ? Math.round(h.today) : ""}</td>;
-                  })()}
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          {walk ? (
+            <>
+              <div className="label"><span className="ix">02</span>Follow one job</div>
+              <h2 className="h2">From the bid set to final payment. <span className="mute">The agent reads, a person signs off.</span></h2>
+              <JobWalk scenarios={scenarios} />
+              <p className="fine">Illustrations of typical work in this industry, not client records. Results are measured in discovery.</p>
+            </>
+          ) : (
+            <>
+              <div className="label"><span className="ix">02</span>By department</div>
+              <h2 className="h2">Where AI takes the hours back. <span className="mute">A person still decides.</span></h2>
+              {deptTable}
+            </>
+          )}
           {hrs && (
             <div className="uc-total">
               <div className="uc-two">
                 <div>
                   <div className="meta">Repeat work in a {FIRM}-person firm</div>
-                  <p className="uc-big">{Math.round((hrs.agents.today + hrs.catches.today) / 10) * 10} hours <span>every week, on the work in the table above</span></p>
+                  <p className="uc-big">{Math.round((hrs.agents.today + hrs.catches.today) / 10) * 10} hours <span>every week, on {walk ? "the department work and the checks above" : "the work in the table above"}</span></p>
                   <p>That is about {Math.round((hrs.agents.today + hrs.catches.today) / hrs.week)} full-time people reading, keying, checking and chasing the same kinds of work every week. Agents take the first pass on all of it, and a person approves.</p>
                 </div>
                 <div>
@@ -114,8 +132,8 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
                 <table className="uc-lay">
                   <thead><tr><th scope="col">Where the hours come from</th><th scope="col">Hours spent now</th><th scope="col">Hours saved</th></tr></thead>
                   <tbody>
-                    <tr><th scope="row">Agents on the department work in the table above</th><td>{Math.round(hrs.agents.today)}</td><td>{Math.round(hrs.agents.back)}</td></tr>
-                    <tr><th scope="row">The checks in &ldquo;What it catches&rdquo; below ({hrs.catches.counted} of ten; the rest are already inside a department row)</th><td>{Math.round(hrs.catches.today)}</td><td>{Math.round(hrs.catches.back)}</td></tr>
+                    <tr><th scope="row">{walk ? "Agents on the department work (see it by department, below)" : "Agents on the department work in the table above"}</th><td>{Math.round(hrs.agents.today)}</td><td>{Math.round(hrs.agents.back)}</td></tr>
+                    <tr><th scope="row">{walk ? <>The checks in the job above</> : <>The checks in &ldquo;What it catches&rdquo; below</>} ({hrs.catches.counted} of ten; the rest are already inside a department row)</th><td>{Math.round(hrs.catches.today)}</td><td>{Math.round(hrs.catches.back)}</td></tr>
                     <tr><th scope="row">Everyday AI use by the whole team after training: {hrs.office} {u.slug === "real-estate-brokerage" ? "agents and staff" : "office staff"} at {hrs.week} hours a week, minus the work above, saving {(OWN_USE_RATE * 100).toFixed(1)}% (the average measured across workers who use AI)</th><td>{Math.round(hrs.ownUse.base)}</td><td>{Math.round(hrs.ownUse.back)}</td></tr>
                     <tr className="uc-lay-t"><th scope="row">Total hours saved a week, rounded</th><td /><td>{hrs.total}</td></tr>
                   </tbody>
@@ -141,12 +159,18 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
                 </details>
                 <p className="fine">AI also does worse on some work (in the Harvard and BCG study, accuracy fell 19 points on tasks outside its range), which is why a person reviews everything. Hours are the value of staff time, counted before the cost of the agents.</p>
               </details>
+              {walk && (
+                <details className="uc-dept">
+                  <summary>See it by department</summary>
+                  {deptTable}
+                </details>
+              )}
             </div>
           )}
         </div>
       </section>
 
-      {scenarios.length > 0 && (
+      {scenarios.length > 0 && !walk && (
         <section className="sec light">
           <div className="wrap">
             <div className="label"><span className="ix">{n(++ix)}</span>What it catches</div>

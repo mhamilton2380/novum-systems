@@ -21,7 +21,7 @@ export async function notify(lead: Lead, subject: string) {
     return;
   }
 
-  const rows = FIELDS.map((f) => `<tr><td style="padding:4px 12px 4px 0;color:#64748b">${f}</td><td>${escape(lead[f] || "-")}</td></tr>`).join("");
+  const rows = FIELDS.filter((f) => lead[f]).map((f) => `<tr><td style="padding:4px 12px 4px 0;color:#64748b">${f}</td><td>${escape(lead[f])}</td></tr>`).join("");
   try {
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",

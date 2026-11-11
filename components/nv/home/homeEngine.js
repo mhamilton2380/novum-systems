@@ -227,7 +227,7 @@ export function initHomeSections() {
 
   // ---------- 2. the gap chart ----------
   const gap = $("gapchart");
-  if (reduce) gap.classList.add("in"); else onView(gap, () => gap.classList.add("in"), 0.4);
+  if (gap) { if (reduce) gap.classList.add("in"); else onView(gap, () => gap.classList.add("in"), 0.4); }
 
   // ---------- 4. what discovery hands you ----------
   const DOCS = [

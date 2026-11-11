@@ -189,9 +189,9 @@ export default function HowWeWorkPage() {
           </div>
           <p style={{ marginTop: 32 }}><Link className="link" href="/guides/how-to-implement-ai">Running it in-house? Read the 5-step plan <span aria-hidden="true">→</span></Link></p>
           <div className="first">
-            <div><span className="meta">The first engagement</span><h3>Discovery</h3></div>
+            <div><span className="meta">Where it starts</span><h3>Start with one workflow.</h3></div>
             <div>
-              <p>We map how the work moves, report on every tool you pay for, write your AI usage policy, train your team on its own work, and put a working tool on your own data. You keep everything we deliver, whatever you decide next. Most clients then keep us on as their AI Officer.</p>
+              <p>Pick the work that eats the most hours. In discovery we map how your teams work, put a working tool on that workflow using your own data, and train the team on it. You also get a report on every tool you pay for and your AI usage policy. You keep everything we deliver, whatever you decide next. Most clients then keep us on as their AI Officer.</p>
               <ul className="hw-disc">
                 <li><b>Work mapped</b><span>How it moves today, with your team</span></li>
                 <li><b>Tool and cost report</b><span>Every subscription: keep, connect, or cut</span></li>
