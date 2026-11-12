@@ -27,7 +27,7 @@ export function NvFooter() {
             </div>
           ))}
         </div>
-        <div className="fbase"><span>© 2026 Novum AI</span><span>Hosted on SOC 2 Type 2 infrastructure</span></div>
+        <div className="fbase"><span>© 2026 Novum AI</span><span>Hosted on SOC 2 Type 2, ISO 27001 and HIPAA-ready infrastructure</span></div>
       </div>
     </footer>
   );
