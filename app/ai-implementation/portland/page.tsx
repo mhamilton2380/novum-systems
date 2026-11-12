@@ -149,7 +149,7 @@ export default function PortlandPage() {
         <div className="wrap">
           <div className="label"><span className="ix">06</span>What you own</div>
           <h2 className="h2" id="pdx-own-h">Code, data and accounts in your company&apos;s name.</h2>
-          <p className="lead">Every agent, integration and piece of software sits in a repository and on accounts your company owns, including the AI account, which you pay at cost. If you stop working with us, nothing breaks. Hosted on SOC 2 Type 2 infrastructure.</p>
+          <p className="lead">Every agent, integration and piece of software sits in a repository and on accounts your company owns, including the AI account, which you pay at cost. If you stop working with us, nothing breaks. Hosted on SOC 2 Type 2, ISO 27001 and HIPAA-ready infrastructure.</p>
           <p style={{ marginTop: 32 }}><Link className="link" href="/security">Security and data <span aria-hidden="true">→</span></Link></p>
         </div>
       </section>

@@ -7,7 +7,7 @@ import "./security.css";
 export const metadata: Metadata = pageMetadata({
   path: "/security",
   title: "Security and Data · Novum AI",
-  description: "Hosted on SOC 2 Type 2 infrastructure. Encrypted data, access by role, an audit log, a person approving what goes out, and everything in your name.",
+  description: "Hosted on SOC 2 Type 2, ISO 27001 and HIPAA-ready infrastructure. Encrypted data, access by role, an audit log, a person approving what goes out, and everything in your name.",
 });
 
 // What the platform your data runs on holds. Source: supabase.com/security. These are the provider's, never Novum's own.
@@ -18,7 +18,7 @@ const COMPLIANCE = [
 ];
 
 const CONTROLS = [
-  { b: "Hosting", p: "Hosted on SOC 2 Type 2 infrastructure. The audit covers the hosting provider's infrastructure that runs your system. Novum itself is not audited to that standard." },
+  { b: "Hosting", p: "Hosted on SOC 2 Type 2, ISO 27001 and HIPAA-ready infrastructure. The audit, certificate and HIPAA terms cover the hosting provider's infrastructure that runs your system. Novum itself is not audited to those standards." },
   { b: "Encryption", p: "Data is encrypted at rest in the database and in transit between your people, your systems and ours. Documents are stored encrypted and indexed so they can be searched by meaning." },
   { b: "Access by role", p: "Every person sees what their role allows and nothing else. The AI assistant answers from the same limits: it cannot show someone a record they could not open themselves." },
   { b: "Audit log", p: "Every view and edit is recorded, with who did it and when. Agents are logged the same way, so you can see what each one read and what it produced." },

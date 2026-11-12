@@ -366,7 +366,7 @@ export default function AiImplementationPage() {
               <div className="cap flip" key={o.t}><h3>{o.t}</h3><p>{o.b}</p></div>
             ))}
           </div>
-          <p className="fine">Hosted on SOC 2 Type 2 infrastructure. Your data is never used to train anyone&apos;s model and never shared across clients.</p>
+          <p className="fine">Hosted on SOC 2 Type 2, ISO 27001 and HIPAA-ready infrastructure. Your data is never used to train anyone&apos;s model and never shared across clients.</p>
         </div>
       </section>
 

@@ -240,7 +240,7 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
           <div className="gov">
             {gov && <div><h4>{gov.h}</h4><p>{gov.p}</p></div>}
             <div><h4>Who approves what</h4><p>{u.approval}</p></div>
-            <div><h4>Access, hosting and ownership</h4><p>Access is set by role, every view and change is logged, and AI never trains on your records. Hosted on SOC 2 Type 2 infrastructure, with the code, data and accounts in your company&apos;s name.</p></div>
+            <div><h4>Access, hosting and ownership</h4><p>Access is set by role, every view and change is logged, and AI never trains on your records. Hosted on SOC 2 Type 2, ISO 27001 and HIPAA-ready infrastructure, with the code, data and accounts in your company&apos;s name.</p></div>
           </div>
         </div>
       </section>

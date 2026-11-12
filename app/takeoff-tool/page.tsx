@@ -45,7 +45,7 @@ export default function TakeoffToolPage() {
               </li>
             ))}
           </ol>
-          <p className="tk-note">Your estimators check it, send the RFIs and price it. Nothing goes out without them. Everything we build is yours, hosted on SOC 2 Type II infrastructure.</p>
+          <p className="tk-note">Your estimators check it, send the RFIs and price it. Nothing goes out without them. Everything we build is yours, hosted on SOC 2 Type 2, ISO 27001 and HIPAA-ready infrastructure.</p>
         </div>
       </section>
 

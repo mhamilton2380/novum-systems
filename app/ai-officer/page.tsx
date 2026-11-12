@@ -395,7 +395,7 @@ export default function AiOfficerPage() {
               <div className="cap flip" key={o.t}><h3>{o.t}</h3><p>{o.b}</p></div>
             ))}
           </div>
-          <p className="fine">Owner of each: your company. Hosted on SOC 2 Type 2 infrastructure.</p>
+          <p className="fine">Owner of each: your company. Hosted on SOC 2 Type 2, ISO 27001 and HIPAA-ready infrastructure.</p>
         </div>
       </section>
 
