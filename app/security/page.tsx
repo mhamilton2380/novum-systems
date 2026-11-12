@@ -10,6 +10,13 @@ export const metadata: Metadata = pageMetadata({
   description: "Hosted on SOC 2 Type 2 infrastructure. Encrypted data, access by role, an audit log, a person approving what goes out, and everything in your name.",
 });
 
+// What the platform your data runs on holds. Source: supabase.com/security. These are the provider's, never Novum's own.
+const COMPLIANCE = [
+  { b: "SOC 2 Type 2", s: "Compliant" },
+  { b: "HIPAA", s: "Compliant" },
+  { b: "ISO 27001", s: "Certified" },
+];
+
 const CONTROLS = [
   { b: "Hosting", p: "Hosted on SOC 2 Type 2 infrastructure. The audit covers the hosting provider's infrastructure that runs your system. Novum itself is not audited to that standard." },
   { b: "Encryption", p: "Data is encrypted at rest in the database and in transit between your people, your systems and ours. Documents are stored encrypted and indexed so they can be searched by meaning." },
@@ -23,7 +30,7 @@ const CONTROLS = [
 ];
 
 const IT_REVIEW = [
-  { b: "Where your data lives", p: "In accounts in your company's name. Hosting runs on Vercel and the database on Supabase, both SOC 2 Type 2. AI models are reached through Anthropic's API under your own organization. The data region is the United States by default." },
+  { b: "Where your data lives", p: "In accounts in your company's name. Hosting runs on Vercel and the database on Supabase, both SOC 2 Type 2. Supabase is also ISO 27001 certified and signs a business associate agreement for HIPAA work. AI models are reached through Anthropic's API under your own organization. The data region is the United States by default." },
   { b: "Data processing agreement", p: "Available on request." },
   { b: "Incident notification", p: "We notify you without undue delay, and within 72 hours of confirming an incident that affects your data." },
   { b: "Subprocessor list", p: "Available on request." },
@@ -72,6 +79,10 @@ export default function SecurityPage() {
           <div className="ctas">
             <Link className="btn" href="/contact">Ask us a security question <span aria-hidden="true">→</span></Link>
           </div>
+          <ul className="sc-certs" aria-label="What the platform your data runs on holds">
+            {COMPLIANCE.map((c) => <li key={c.b}><b>{c.b}</b><span>{c.s}</span></li>)}
+          </ul>
+          <p className="fine sc-certs-note">Held by the platform your data runs on. HIPAA applies under a business associate agreement, put in place when your work calls for it. The audit report and certificate are available for your review.</p>
         </div>
       </section>
 
@@ -84,7 +95,7 @@ export default function SecurityPage() {
               <div key={c.b}><span className="sc-n">0{i + 1}</span><b>{c.b}</b><p>{c.p}</p></div>
             ))}
           </div>
-          <p className="fine">SOC 2 Type 2 is an independent audit of a provider&apos;s security controls over a period of time. It describes the infrastructure we host on. It is not a certification of Novum.</p>
+          <p className="fine">SOC 2 Type 2 is an independent audit of a provider&apos;s security controls over a period of time. It describes the infrastructure we host on, as do HIPAA compliance and the ISO 27001 certificate. None of them is a certification of Novum.</p>
         </div>
       </section>
 
