@@ -21,7 +21,7 @@ export const INCLUDED: IncludedGroup[] = [
       "Every tool you use, connected, with two-way sync",
       "Built inside Microsoft 365 and Copilot if that's what you run",
       "Every document encrypted, searchable by meaning, access by role",
-      "Hosted on SOC 2 Type 2 infrastructure, your data in its own database",
+      "Hosted on SOC 2 Type 2, ISO 27001 and HIPAA-ready infrastructure, your data in its own database",
       "An audit log of every view and edit",
     ],
   },
