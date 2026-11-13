@@ -7,7 +7,7 @@ import "./security.css";
 export const metadata: Metadata = pageMetadata({
   path: "/security",
   title: "Security and Data · Novum AI",
-  description: "Hosted on SOC 2 Type 2, ISO 27001 and HIPAA-ready infrastructure. Encrypted data, access by role, an audit log, a person approving what goes out, and everything in your name.",
+  description: "Hosted on SOC 2 Type 2, ISO 27001 and HIPAA-ready infrastructure. Encrypted data, access by role, an audit log, and a person approving what goes out.",
 });
 
 // What the platform your data runs on holds. Source: supabase.com/security. These are the provider's, never Novum's own.

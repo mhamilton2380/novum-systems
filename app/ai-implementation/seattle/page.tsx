@@ -9,7 +9,7 @@ import "../../compare.css";
 // "AI consulting Seattle". No Seattle office or local clients claimed (Novum is Portland-based), no prices, case studies
 // anonymous and never blended. Counts from Census cbp23co, King, Pierce and Snohomish counties, pulled 2026-10-24.
 const PATH = "/ai-implementation/seattle";
-const DESC = "AI implementation and consulting for Seattle-area companies: we train your team on its own work, build agents and custom software inside the tools you run, and you own all of it.";
+const DESC = "AI implementation and consulting for Seattle-area companies: your team trained on its own work, agents and software built in your tools. You own all of it.";
 
 export const metadata: Metadata = pageMetadata({ path: PATH, title: "AI Implementation and Consulting in Seattle · Novum AI", description: DESC });
 

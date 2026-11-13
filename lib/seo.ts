@@ -41,7 +41,7 @@ export const ORGANIZATION_JSONLD = {
       areaServed: [{ "@type": "City", name: "Portland, Oregon" }, { "@type": "City", name: "Seattle, Washington" }, { "@type": "Country", name: "United States" }],
       contactPoint: { "@type": "ContactPoint", contactType: "sales", email: "hello@thenovumai.com", url: `${SITE_URL}/contact` },
       // Company profiles only. Never a person's profile (CONTEXT.md: Michael stays in the background).
-      sameAs: ["https://www.linkedin.com/company/thenovumai"],
+      sameAs: ["https://www.linkedin.com/company/thenovumai", "https://clutch.co/profile/novum-ai", "https://www.goodfirms.co/company/novum-ai"],
       slogan: "You own all of it.",
       knowsAbout: [
         "AI implementation",

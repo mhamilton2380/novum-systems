@@ -11,7 +11,7 @@ import "../../compare.css";
 // Gartner: 70% figure from its 2026-09-29 release; fee estimate as reported by Channel Dive. Microsoft figure from July 2026 coverage.
 const PATH = "/guides/choose-an-ai-partner";
 const TITLE = "How to Choose an AI Implementation Partner: 5 Questions";
-const DESC = "Five questions that decide whether you own your AI or rent it: whose accounts it runs in, who keeps the prompts, what happens when you stop paying, who runs it, and how it is tested.";
+const DESC = "Five questions that decide whether you own your AI or rent it, from whose accounts it runs in to what happens when you stop paying and how it is tested.";
 const GARTNER = "https://www.gartner.com/en/newsroom/press-releases/2026-09-29-gartner-predicts-70-percent-of-enterprises-will-abandon-agentic-ai-built-by-vendor-forward-deployed-engineering-by-2028";
 const MSFT = "https://finance.yahoo.com/technology/ai/articles/microsoft-pours-2-5b-push-134256094.html";
 const FEES = "https://www.channeldive.com/news/can-forward-deployed-engineers-fdes-fix-ai-gartner/831816/";
