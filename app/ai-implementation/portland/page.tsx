@@ -8,10 +8,14 @@ import "../../compare.css";
 // Portland page (brief: novum-vault/docs/portland-page-brief-2026-10-20.md). Targets "AI implementation Portland",
 // "AI consulting Portland". Real local facts only: Census firm counts and on-site training. No street address,
 // no local clients claimed, no prices, case studies anonymous and never blended.
+// 2026-11-13: Search Console showed people search "AI automation agency/services" plus Portland, Beaverton and
+// Gresham, so the title, description, section 01, section 04 and two FAQs now say "AI automation" and name the metro cities.
 const PATH = "/ai-implementation/portland";
-const DESC = "AI implementation and consulting for Portland companies: we train your team on its own work, build agents and custom software, and you own all of it.";
+const DESC = "AI automation, implementation and consulting for Portland-area companies: we train your team, build agents and custom software, and you own all of it.";
+// Cities inside the Census metro counties named in the table note (Multnomah, Washington, Clackamas, Clark).
+const METRO_CITIES = ["Beaverton", "Hillsboro", "Tigard", "Tualatin", "Lake Oswego", "Gresham", "Oregon City"];
 
-export const metadata: Metadata = pageMetadata({ path: PATH, title: "AI Implementation and Consulting in Portland · Novum AI", description: DESC });
+export const metadata: Metadata = pageMetadata({ path: PATH, title: "AI Automation and Implementation in Portland · Novum AI", description: DESC });
 
 // Census County Business Patterns 2023, Portland metro, establishments with 20 to 99 employees.
 // Starting points come from each industry page (lib/useCases.ts). Trucking has no industry page yet.
@@ -40,6 +44,8 @@ const PROOF = [
 const FAQ = [
   { q: "What does an AI consultant in Portland actually do?", a: "We map how your work moves, audit every tool you pay for, write your AI usage policy, train your team on its own work, and put a working tool on your own data. Then you get a written plan for what comes next. Everything we deliver is yours." },
   { q: "Do you offer AI classes or training in Portland?", a: "Yes. A five-hour training day at your office, on your team's own work: how AI works, which tools fit your company, which agents to build first, and what data stays private. Request a quote through the training page. Ongoing clients also get live training every month." },
+  { q: "Is AI automation the same as AI implementation?", a: "AI automation is one part of it: agents doing repeat work such as order entry, document requests and draft quotes, with a person approving each one before it goes out. AI implementation also covers training your team, connecting the tools you keep, and replacing software that no longer fits. We do all of it." },
+  { q: "Do you work with companies in Beaverton, Hillsboro and Gresham?", a: "Yes. We work on site across the Portland metro, including Beaverton, Hillsboro, Tigard, Tualatin, Lake Oswego, Gresham, Oregon City and Vancouver, Washington. Discovery interviews and training days happen at your office. Builds and monthly training run in person or remotely." },
   { q: "How is Novum different from an AI automation agency?", a: "We train your team on your own systems and data, so what gets built gets used. A person approves anything before it is sent, filed or paid. And the code, data and accounts are in your company's name, so nothing breaks if you stop working with us." },
   { q: "Which Portland companies are a fit?", a: "Operational businesses of 15 people and up with no one whose job is AI: distributors, manufacturers, freight and logistics firms, accounting firms, insurance agencies, construction, legal, healthcare and more. The strongest fit has repeat paperwork or phone volume and tools that don't talk to each other." },
   { q: "What does AI implementation cost?", a: "It depends on team size, how many systems connect, how many builds run at once, and whether you replace software. Every engagement starts with a discovery, sized to your company, that ends with a written plan and prices for what comes next." },
@@ -50,7 +56,7 @@ export default function PortlandPage() {
     <main>
       <JsonLd data={[
         breadcrumbJsonLd([{ name: "AI Implementation", path: "/ai-implementation" }, { name: "Portland", path: PATH }]),
-        { ...serviceJsonLd({ name: "AI implementation in Portland, Oregon", serviceType: "AI implementation", path: PATH, description: DESC }), areaServed: [{ "@type": "City", name: "Portland, Oregon" }, { "@type": "AdministrativeArea", name: "Portland metro area" }] },
+        { ...serviceJsonLd({ name: "AI implementation in Portland, Oregon", serviceType: "AI implementation", path: PATH, description: DESC }), areaServed: [{ "@type": "City", name: "Portland, Oregon" }, ...METRO_CITIES.map((c) => ({ "@type": "City", name: `${c}, Oregon` })), { "@type": "City", name: "Vancouver, Washington" }, { "@type": "AdministrativeArea", name: "Portland metro area" }] },
         faqJsonLd(FAQ),
       ]} />
 
@@ -83,6 +89,7 @@ export default function PortlandPage() {
           <div className="label"><span className="ix">01</span>What we do</div>
           <h2 className="h2" id="pdx-what-h">AI implementation across your company. <span className="mute">You own all of it.</span></h2>
           <p className="lead">Training, agents, custom software, and a fractional Chief AI Officer. We teach your team on its own work, build the tools, connect the systems you keep, and replace software that no longer fits. A person approves anything before it is sent, filed or paid.</p>
+          <p className="lead">Looking for AI automation? That is the agents piece: AI doing the repeat work, such as order entry, document requests and draft quotes, on your own data. We build it and train the team that uses it, so what gets built gets used.</p>
           <div className="gd-next">
             <Link className="link" href="/training">Training <span aria-hidden="true">→</span></Link>
             <Link className="link" href="/ai-implementation">AI implementation <span aria-hidden="true">→</span></Link>
@@ -130,6 +137,7 @@ export default function PortlandPage() {
           <div className="label"><span className="ix">04</span>On-site training</div>
           <h2 className="h2" id="pdx-train-h">A training day at your Portland office.</h2>
           <p className="lead">Five hours in the room with your team, on their own work: how AI works, which tools fit your company, hands-on practice on tasks from their week, which agents to build first, and what data stays private. Written guides stay with the team.</p>
+          <p className="lead">We come to you anywhere in the metro: {METRO_CITIES.join(", ")} or Vancouver, Washington.</p>
           <p style={{ marginTop: 32 }}><Link className="link" href="/training">Request a training day <span aria-hidden="true">→</span></Link></p>
         </div>
       </section>
