@@ -109,7 +109,7 @@ const OPTIONS: { row: string; cells: string[] }[] = [
   { row: "Who builds", cells: ["We do, in parallel, each on its own timeline", "The hire, or a team they recruit", "The consultancy, within the project scope", "Whoever has time that week"] },
   { row: "Training", cells: ["Every month, on your own tools, in a library you keep", "Depends on the person", "Usually a handoff session at the end", "Help docs and trial and error"] },
   { row: "Staying current", cells: ["New models tested on your work every month", "Yes, if it stays in their job", "Ends when the project ends", "Rarely anyone's job"] },
-  { row: "What it costs", cells: ["One engagement, sized in discovery", "An executive salary, benefits and a search", "Project fees, then nothing ongoing", "Staff time, plus a seat in every tool"] },
+  { row: "What it costs", cells: ["From $7,750 a month, sized to your company", "An executive salary, benefits and a search", "Project fees, then nothing ongoing", "Staff time, plus a seat in every tool"] },
   { row: "If it ends", cells: ["Code, data and accounts stay in your name", "Much of the know-how leaves with the person", "You keep the deliverables", "What was built stays where it was built"] },
 ];
 
@@ -123,15 +123,15 @@ const OWN = [
 const HONEST = [
   { n: "1 to 2 hours", t: "Training time a month for each person, in sessions built around the work they already do.", s: "Per person, per month" },
   { n: "A short dip", t: "For the first few weeks after something new goes live, work slows a little while people check its output against the old way. That's normal, and it's short.", s: "After each launch" },
-  { n: "A straight answer", t: "If AI isn't the right tool for a task, we'll tell you, and the discovery report says so in writing.", s: "When AI isn't it" },
+  { n: "A straight answer", t: "If AI isn't the right tool for a task, we'll tell you, and we say so in writing.", s: "When AI isn't it" },
 ];
 
 const FAQ = [
   { q: "What is a fractional Chief AI Officer?", a: "Most companies can't justify a full-time technical executive for AI. We fill the role part-time. We train your team, test new AI on your data, keep your systems running, and cut tools that don't earn their price." },
   { q: "Should we hire a full-time Chief AI Officer or go fractional?", a: "Hire full time when you can keep a senior AI leader busy every week and can recruit one. Most companies without a technical team can't yet, so a fractional AI Officer runs the role part time: the roadmap, the builds, the training and the upkeep, with everything in your company's name." },
-  { q: "How does it start?", a: "With a discovery. We map how your work moves, audit every tool you pay for, write your AI usage policy, train your team on its own work, and put a working tool on your own data." },
-  { q: "How is the engagement sized?", a: "In discovery, to your company: how many people, how many tools, and how much is in the build queue. Builds run in parallel, and your proposal sets the dates. It is one engagement covering everything on this page, not a menu of tiers." },
-  { q: "Can we just buy one project?", a: "Yes. If you'd rather not keep us on, we scope a single build with you after discovery: an assistant, agents, integrations, or a platform replacement. You get the same training and you own the code, data, and accounts. Most clients keep us on for the upkeep and the builds that come after the first." },
+  { q: "How does it start?", a: "With a free build: a working tool on your own work in two weeks, at no cost. Once you keep us on, the first month adds a report on every tool you pay for and your AI usage policy." },
+  { q: "How is the engagement sized?", a: "Before you start, to your company: how many people, how many tools, and how much is in the build queue. Builds run in parallel, and your proposal sets the dates. It is one engagement covering everything on this page, not a menu of tiers." },
+  { q: "Can we just buy one project?", a: "Yes. If you'd rather not keep us on, we scope a single build with you after the free build, with a fixed price in writing: an assistant, agents, integrations, or a platform replacement. You get the same training and you own the code, data, and accounts. Most clients keep us on for the upkeep and the builds that come after the first." },
   { q: "How does the queue work?", a: "Agents, integrations and tools all go in one queue. Each build is live and your team is trained on it before it counts as done. Builds run in parallel, each on its own clock. Connecting the tools you keep usually takes days to a few weeks, an agent on repeat work a few weeks, and custom software goes live module by module over a few months. Your proposal sets the dates." },
   { q: "How do we know an agent is working?", a: "Before launch, the person who owns the work defines what correct looks like and grades a set of your real cases. The agent is scored against them, and the score is checked every month. A new model or prompt replaces the current one only if it scores higher on the same cases." },
   { q: "Do we keep what you build if we leave?", a: "Yes. Replacements, agents, and integrations are built on accounts in your company's name. The code, data, and accounts stay yours." },
@@ -150,7 +150,7 @@ export default function AiOfficerPage() {
             <h1 id="ao-h1">A Chief AI Officer, without the hire.</h1>
             <p className="lead">Most companies have no one whose job is AI. We take the role: agents and tools built in parallel, every system connected, each agent tested on your own work, and your team trained every month. You own all of it.</p>
             <div className="ctas">
-              <Link className="btn" href="#contact">Start with a discovery</Link>
+              <Link className="btn" href="#contact">Start with a free build</Link>
               <Link className="btn ghost" href="#included">What&apos;s included</Link>
             </div>
           </div>
@@ -226,7 +226,7 @@ export default function AiOfficerPage() {
         <div className="wrap">
           <div className="label"><span className="ix">04</span>The role</div>
           <h2 className="h2" id="ro-h">What an AI Officer does. <span className="mute">Six jobs, all of them yours to hand off.</span></h2>
-          <p className="lead">Sized to your company in discovery, run by one accountable lead.</p>
+          <p className="lead">From $7,750 a month, sized to your company, run by one accountable lead.</p>
           <div className="gov">
             {JOBS.map((j) => <div className="flip" key={j.title}><h4>{j.title}</h4><p>{j.body}</p></div>)}
           </div>
@@ -368,7 +368,7 @@ export default function AiOfficerPage() {
         <div className="wrap">
           <div className="label"><span className="ix">10</span>What&apos;s included</div>
           <h2 className="h2" id="in-h">One role, sized to your company.</h2>
-          <p className="lead">It starts with a discovery that ends with a working tool on your own data. From there, this is what your AI Officer covers.</p>
+          <p className="lead">It starts with a free build: a working tool on your own work in two weeks. From there, this is what your AI Officer covers.</p>
           <div className="ao-inc">
             {INCLUDED.map((g) => (
               <div className="flip" key={g.group}>
@@ -378,7 +378,7 @@ export default function AiOfficerPage() {
             ))}
           </div>
           <p className="ao-after">
-            Want one project instead? Start with a discovery and we&apos;ll scope it with you. Want your team trained first? Book a{" "}
+            Want one project instead? Start with a free build and we&apos;ll scope it with you. Want your team trained first? Book a{" "}
             <Link href="/training">training day</Link>.
           </p>
         </div>
@@ -428,7 +428,7 @@ export default function AiOfficerPage() {
         <div className="wrap grid">
           <div>
             <div className="label">Start a conversation</div>
-            <h2 className="h2" id="contact-h">Your AI Officer starts with a discovery.</h2>
+            <h2 className="h2" id="contact-h">Your AI Officer starts with a free build.</h2>
             <p className="lead">Workflow mapped, tools audited, AI policy written, team trained, a working tool on your data. We reply the same business day.</p>
             <div className="alt"><Link className="btn ghost" href="/contact">More ways to reach us</Link></div>
           </div>

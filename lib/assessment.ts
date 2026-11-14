@@ -76,7 +76,7 @@ export function flagsFor(a: Answers): Flag[] {
       text: bigSpend
         ? "Your team works around its main system. At your software spend, owning one core system can cost less within a few years."
         : "Your team works around its main system. When owning software costs less than the subscription, replacing it pays for itself.",
-      writeup: "When a team works around its main system, the workarounds usually cost more than anyone tracks: spreadsheets, double entry, the one person who knows the trick. Companies that fix it map the real workflow first, then decide whether to connect, reconfigure, or replace. Replacing only makes sense when owning the software costs less over a few years, and a discovery does that math." });
+      writeup: "When a team works around its main system, the workarounds usually cost more than anyone tracks: spreadsheets, double entry, the one person who knows the trick. Companies that fix it map the real workflow first, then decide whether to connect, reconfigure, or replace. Replacing only makes sense when owning the software costs less over a few years, and the tool and cost report does that math." });
   if (idx(a, "repeat_hours") >= 2) // 5 to 10, More than 10
     out.push({ id: 3, title: "Hours of repeat work", fix: "Agents on the repeat work, with a person approving",
       text: `Each person spends ${label(a, "repeat_hours").toLowerCase()} hours a week on work that looks the same every time. That's the work to hand off first.`,

@@ -46,7 +46,7 @@ const HOW = [
   { h: "Log what the AI does", p: "Company accounts with an audit log show who used what, on which data, and who approved the result." },
 ];
 
-// What the discovery version adds. Shows the gap between a starter and the full policy.
+// What the client version adds. Shows the gap between a starter and the full policy.
 const FULL = [
   { h: "Data rules for each system", p: "Which records in your accounting, CRM, document and email systems each AI tool may read, by role." },
   { h: "Vendor and model review", p: "Where each AI provider stores data, whether it trains on it, and the terms that apply, checked before a tool is approved." },
@@ -124,12 +124,12 @@ export default function AiUsagePolicyPage() {
       <section className="sec light" aria-labelledby="gp-full-h">
         <div className="wrap">
           <div className="label"><span className="ix">02</span>The full policy</div>
-          <h2 className="h2" id="gp-full-h">What the full policy covers. <span className="mute">Written in discovery, on your company.</span></h2>
-          <p className="lead">The starter covers what every team needs on day one. The policy we write in a discovery adds six parts that depend on your systems, your data and the rules your industry follows.</p>
+          <h2 className="h2" id="gp-full-h">What the full policy covers. <span className="mute">Written for clients, on your company.</span></h2>
+          <p className="lead">The starter covers what every team needs on day one. The policy we write for clients adds six parts that depend on your systems, your data and the rules your industry follows.</p>
           <div className="gov">
             {FULL.map((f) => <div key={f.h}><h4>{f.h}</h4><p>{f.p}</p></div>)}
           </div>
-          <p style={{ marginTop: 36 }}><Link className="link" href="/how-we-work">How a discovery works <span aria-hidden="true">→</span></Link></p>
+          <p style={{ marginTop: 36 }}><Link className="link" href="/how-we-work">How we work <span aria-hidden="true">→</span></Link></p>
         </div>
       </section>
 
@@ -163,7 +163,7 @@ export default function AiUsagePolicyPage() {
           <div>
             <div className="label">Start a conversation</div>
             <h2 className="h2" id="gp-cta-h">Want the policy written on your company?</h2>
-            <p className="lead">Every discovery includes an AI usage policy built from your team&apos;s survey and interviews, plus a training session on it, and ends with a working tool on your own data.</p>
+            <p className="lead">Every AI Officer engagement includes an AI usage policy built from your team&apos;s survey and interviews, plus a training session on it. It starts with a free build: a working tool on your own data.</p>
           </div>
           <ContactForm source="Guide: AI usage policy template" />
         </div>

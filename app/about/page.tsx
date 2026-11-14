@@ -24,7 +24,7 @@ const BELIEFS = [
   { title: "You should own what you pay for", body: "The code, the data, the accounts, and the training library belong to your company, in its name.", practice: "Hosting and accounts set up under your company from day one" },
   { title: "AI should keep getting better", body: "Models and tools change every few weeks. What we build gets tested against what ships, and upgraded when something better earns its place.", practice: "A monthly check on every agent and tool" },
   { title: "AI should work on your data", body: "An assistant and agents that know your business, see only what each role allows, and never train on your records.", practice: "Access limited by role, and a person approves what goes out" },
-  { title: "Map before you build", body: "We learn how the work moves before we write a line of code.", practice: "Every engagement starts with a discovery" },
+  { title: "Map before you build", body: "We learn how the work moves before we write a line of code.", practice: "Every engagement starts with a free build" },
 ];
 
 const SIGNALS = [

@@ -69,7 +69,7 @@ const FAQ = [
   { q: "Why is the AI the cheapest part?", a: "Model prices are low and keep falling. An agent keys an invoice for about a cent, against about $1.89 of a person's time. The fixed work is building the agent, connecting it to your systems, monitoring it and keeping it current." },
   { q: "Is it cheaper to buy AI add-ons for the software we already have?", a: "Sometimes, for one department. Add-ons are priced per seat in each program, don't connect to each other, and rarely include training on your own work. Compare the total across departments over three years." },
   { q: "When does replacing software with a custom system pay off?", a: "When the subscription is large, rising, and your team works around it. One construction company replaced a $100,000-a-year platform with a system it owns, connected to its billing. For small tools, keeping and connecting them usually costs less." },
-  { q: "What does Novum charge?", a: "Every engagement starts with a discovery, sized to your company. It ends with a written plan and prices for what comes next. You pay the AI provider directly, at cost, on an account in your company's name." },
+  { q: "What does Novum charge?", a: "Every engagement starts with a free build: a working tool on your own work in two weeks, at no cost. After that: AI workspace setup from $3,500, builds from $7,500, platform replacement from $25,000, upkeep from $1,500 a month, and an AI Officer from $7,750 a month. You pay the AI provider directly, at cost, on an account in your company's name." },
 ];
 
 export default function AiImplementationCostPage() {
@@ -183,7 +183,7 @@ export default function AiImplementationCostPage() {
           <div>
             <div className="label">Start a conversation</div>
             <h2 className="h2" id="gc-cta-h">Get a number for your company.</h2>
-            <p className="lead">A discovery measures the work, audits every tool you pay for, and ends with a working tool on your own data and a written plan with prices for what comes next.</p>
+            <p className="lead">A free build puts a working tool on your own work in two weeks, at no cost. Every price after that is fixed and in writing before work starts.</p>
           </div>
           <ContactForm source="Guide: AI implementation cost" />
         </div>

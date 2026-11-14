@@ -5,7 +5,7 @@ const STEPS = [
   { t: "You send the form", d: "The teams involved and where the time goes.", s: "2 min" },
   { t: "We reply with a time", d: "One that fits what you told us.", s: "1 day" },
   { t: "A call about your operation", d: "How the work moves and where AI fits.", s: "30 min" },
-  { t: "If it fits, a discovery", d: "Work mapped, a working tool on your data.", s: "Next" },
+  { t: "If it fits, a free build", d: "One workflow mapped, a working tool on your data in two weeks.", s: "Next" },
 ];
 
 const FIRST_CALL = [
@@ -13,7 +13,7 @@ const FIRST_CALL = [
   "We ask which tools you pay for, and which ones your team works around.",
   "We ask what you have tried with AI, and what happened.",
   "We tell you where AI fits and where it does not, including when the answer is not yet.",
-  "You leave knowing whether a discovery makes sense. No deck, no pressure.",
+  "You leave knowing whether a free build makes sense. No deck, no pressure.",
 ];
 
 export default function ContactPage() {

@@ -50,7 +50,7 @@ export default function UseCasesPage() {
               </Link>
             ))}
           </div>
-          <p className="uc-note">Hours a week of repeat work agents can take the first pass on, for a firm of about 120 people, counted on office staff only (BLS staffing patterns, May 2025; real estate counts agents too). On work we build, our clients cut the time 85 to 95%. Each page shows the work by department, and the most cautious math from published studies. Your own figures are measured in discovery.</p>
+          <p className="uc-note">Hours a week of repeat work agents can take the first pass on, for a firm of about 120 people, counted on office staff only (BLS staffing patterns, May 2025; real estate counts agents too). On work we build, our clients cut the time 85 to 95%. Each page shows the work by department, and the most cautious math from published studies. Your own figures are measured on your own work.</p>
         </div>
       </section>
 

@@ -134,7 +134,7 @@ function Results({ answers, onRestart }: { answers: Answers; onRestart: () => vo
           ) : (
             <>
               <p className="as-est-big">About <strong>{fmt(r.estimate.hoursLow)} to {fmt(r.estimate.hoursHigh)} hours</strong> a year, worth roughly <strong>${fmt(r.estimate.dollarsLow)} to ${fmt(r.estimate.dollarsHigh)}</strong> in wages and benefits.</p>
-              <small>Based on published studies of AI on routine office work. Your discovery measures your real number.</small>
+              <small>Based on published studies of AI on routine office work. A free build measures your real number.</small>
             </>
           )}
         </div>
@@ -170,8 +170,8 @@ function Results({ answers, onRestart }: { answers: Answers; onRestart: () => vo
         </div>
         <div className="as-cta">
           <strong>Want the real number?</strong>
-          <p>A discovery measures it on your own work, and ends with a working tool on your own data.</p>
-          <Link href="/contact" className="h-btn h-btn-primary">Book a discovery call</Link>
+          <p>A free build measures it on your own work, and ends with a working tool on your own data.</p>
+          <Link href="/contact" className="h-btn h-btn-primary">Start a free build</Link>
           <button className="as-restart" onClick={onRestart}>Retake the assessment</button>
         </div>
       </div>

@@ -137,7 +137,7 @@ export default function SecurityPage() {
         <div className="wrap">
           <div className="label"><span className="ix">05</span>Additional security</div>
           <h2 className="h2" id="sc-add-h">Stricter requirements, <span className="mute">added to the engagement.</span></h2>
-          <p className="lead">Every engagement includes the controls above. Where your industry, insurer or IT policy asks for more, these levels are available as additions, scoped in discovery.</p>
+          <p className="lead">Every engagement includes the controls above. Where your industry, insurer or IT policy asks for more, these levels are available as additions, scoped and priced before work starts.</p>
           <div className="sc-controls">
             {ADDITIONAL.map((c, i) => (
               <div key={c.b}><span className="sc-n">0{i + 1}</span><b>{c.b}</b><p>{c.p}</p></div>

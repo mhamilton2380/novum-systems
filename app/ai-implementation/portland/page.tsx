@@ -45,10 +45,10 @@ const FAQ = [
   { q: "What does an AI consultant in Portland actually do?", a: "We map how your work moves, audit every tool you pay for, write your AI usage policy, train your team on its own work, and put a working tool on your own data. Then you get a written plan for what comes next. Everything we deliver is yours." },
   { q: "Do you offer AI classes or training in Portland?", a: "Yes. A five-hour training day at your office, on your team's own work: how AI works, which tools fit your company, which agents to build first, and what data stays private. Request a quote through the training page. Ongoing clients also get live training every month." },
   { q: "Is AI automation the same as AI implementation?", a: "AI automation is one part of it: agents doing repeat work such as order entry, document requests and draft quotes, with a person approving each one before it goes out. AI implementation also covers training your team, connecting the tools you keep, and replacing software that no longer fits. We do all of it." },
-  { q: "Do you work with companies in Beaverton, Hillsboro and Gresham?", a: "Yes. We work on site across the Portland metro, including Beaverton, Hillsboro, Tigard, Tualatin, Lake Oswego, Gresham, Oregon City and Vancouver, Washington. Discovery interviews and training days happen at your office. Builds and monthly training run in person or remotely." },
+  { q: "Do you work with companies in Beaverton, Hillsboro and Gresham?", a: "Yes. We work on site across the Portland metro, including Beaverton, Hillsboro, Tigard, Tualatin, Lake Oswego, Gresham, Oregon City and Vancouver, Washington. Free builds and training days happen at your office. Builds and monthly training run in person or remotely." },
   { q: "How is Novum different from an AI automation agency?", a: "We train your team on your own systems and data, so what gets built gets used. A person approves anything before it is sent, filed or paid. And the code, data and accounts are in your company's name, so nothing breaks if you stop working with us." },
   { q: "Which Portland companies are a fit?", a: "Operational businesses of 15 people and up with no one whose job is AI: distributors, manufacturers, freight and logistics firms, accounting firms, insurance agencies, construction, legal, healthcare and more. The strongest fit has repeat paperwork or phone volume and tools that don't talk to each other." },
-  { q: "What does AI implementation cost?", a: "It depends on team size, how many systems connect, how many builds run at once, and whether you replace software. Every engagement starts with a discovery, sized to your company, that ends with a written plan and prices for what comes next." },
+  { q: "What does AI implementation cost?", a: "It depends on team size, how many systems connect, how many builds run at once, and whether you replace software. Every engagement starts with a free build: a working tool on your own work in two weeks, at no cost. After that, fixed prices: builds from $7,500 and an AI Officer from $7,750 a month." },
 ];
 
 export default function PortlandPage() {
@@ -124,7 +124,7 @@ export default function PortlandPage() {
       <section className="sec light" aria-labelledby="pdx-start-h">
         <div className="wrap">
           <div className="label"><span className="ix">03</span>How it starts</div>
-          <h2 className="h2" id="pdx-start-h">Every engagement starts with a discovery. <span className="mute">It ends with a working tool on your own data.</span></h2>
+          <h2 className="h2" id="pdx-start-h">Every engagement starts with a free build. <span className="mute">It ends with a working tool on your own data.</span></h2>
           <ul className="mlist">
             {START.map((x) => <li key={x.b}><b>{x.b}</b><span>{x.s}</span></li>)}
           </ul>

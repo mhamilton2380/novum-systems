@@ -219,18 +219,18 @@ export function AboutHeroCard() {
 
 // ─── Discovery card: what a discovery hands you, step by step (How We Work hero, Home) ──
 const DISCOVERY: { icon: IconName; t: string; s: string }[] = [
-  { icon: "map", t: "Work mapped", s: "How it moves today, with your team" },
-  { icon: "coin", t: "Tool and cost report", s: "Every subscription: keep, connect, or cut" },
+  { icon: "map", t: "Work mapped", s: "One workflow, with your team" },
   { icon: "users", t: "Team trained", s: "On its own work, recorded for the library" },
   { icon: "bot", t: "A working tool", s: "On your own data, in use" },
+  { icon: "coin", t: "Your call", s: "Keep it at a fixed price, or stop there" },
 ];
 export function DiscoveryCard() {
   return (
-    <div className="h-phero-card pv-disc" aria-label="What a discovery delivers">
+    <div className="h-phero-card pv-disc" aria-label="What a free build delivers">
       <div className="oc-hero-h">
         <span className="oc-live" aria-hidden="true" />
-        <strong>Discovery</strong>
-        <em>What you get</em>
+        <strong>Free build</strong>
+        <em>Two weeks, no cost</em>
       </div>
       <ol>
         {DISCOVERY.map((x, i) => (

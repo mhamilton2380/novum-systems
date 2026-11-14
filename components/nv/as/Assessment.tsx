@@ -109,7 +109,7 @@ function Results({ answers, onRestart }: { answers: Answers; onRestart: () => vo
           ) : (
             <>
               <p className="as-est-big">About <strong>{fmt(r.estimate.hoursLow)} to {fmt(r.estimate.hoursHigh)} hours</strong> a year, a value of roughly <strong>${fmt(r.estimate.dollarsLow)} to ${fmt(r.estimate.dollarsHigh)}</strong> in staff time (wages and benefits).</p>
-              <small>Based on published studies of AI on routine office work. This is the value of staff time, not cash. It becomes cash only when it replaces a hire or fills with new work. A discovery measures your real number.</small>
+              <small>Based on published studies of AI on routine office work. This is the value of staff time, not cash. It becomes cash only when it replaces a hire or fills with new work. A free build measures your real number.</small>
             </>
           )}
         </div>
@@ -146,7 +146,7 @@ function Results({ answers, onRestart }: { answers: Answers; onRestart: () => vo
         </div>
         <div className="as-cta">
           <strong>Want the real number?</strong>
-          <p>A discovery measures it on your own work, and ends with a working tool on your own data.</p>
+          <p>A free build measures it on your own work, and ends with a working tool on your own data.</p>
           <Link href="/contact" className="btn">Talk to us <span aria-hidden="true">→</span></Link>
           <button type="button" className="as-restart" onClick={onRestart}>Retake the assessment</button>
         </div>

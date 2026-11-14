@@ -70,7 +70,7 @@ export function faqJsonLd(faq: { q: string; a: string }[]) {
   };
 }
 
-// No offers or prices: the site says "start with discovery".
+// Prices live on /pricing (2026-11-14); the site says "start with a free build".
 export function serviceJsonLd({ name, description, path, serviceType, audience }: { name: string; description: string; path: string; serviceType: string; audience?: string }) {
   return {
     "@context": "https://schema.org",

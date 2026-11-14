@@ -41,10 +41,10 @@ function useReducedMotion() {
 const STEPS = [
   {
     key: "discovery",
-    title: "Discovery",
-    line: "Map the work. Audit the tools.",
+    title: "Free build",
+    line: "One workflow. Two weeks.",
     tag: "Where everyone starts",
-    body: "We map how your work moves, audit every tool and what it costs, write your AI usage policy, and put a working tool on your own data.",
+    body: "We map one workflow and put a working tool on it, on your own data, in two weeks at no cost. Keep it at a fixed price, or stop there.",
   },
   {
     key: "train",
@@ -286,8 +286,8 @@ const DOORS = [
   {
     id: "discovery",
     need: "I know what I want built",
-    title: "Start with a discovery",
-    body: "We map the work, audit your tools, write your AI policy, and put a working tool on your own data.",
+    title: "Start with a free build",
+    body: "We map one workflow and put a working tool on it, on your own data, in two weeks at no cost.",
     href: "/contact",
     cta: "Book a conversation",
     icon: "M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM21 21l-5-5",
@@ -296,7 +296,7 @@ const DOORS = [
     id: "officer",
     need: "I want someone to own AI for us",
     title: "Start with an AI Officer",
-    body: "Someone who owns AI for your company: building, training, and keeping it current. It starts with a discovery.",
+    body: "Someone who owns AI for your company: building, training, and keeping it current. It starts with a free build.",
     href: "/ai-officer",
     cta: "See the AI Officer role",
     icon: "M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7zM9 12l2 2 4-4",
@@ -344,7 +344,7 @@ export function StartChooser() {
         ))}
       </div>
       <p className="if-pickhint" aria-live="polite">
-        {chosen ? `${chosen.title} fits best. Every route can lead to the others.` : "Not sure? Start with a discovery. It points to the right next step."}
+        {chosen ? `${chosen.title} fits best. Every route can lead to the others.` : "Not sure? Start with a free build. It points to the right next step."}
       </p>
     </div>
   );

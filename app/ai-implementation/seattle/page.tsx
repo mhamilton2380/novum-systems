@@ -42,7 +42,7 @@ const FAQ = [
   { q: "We already pay for Microsoft 365 and Copilot. Do we need more?", a: "Often not more software, just better use of what you have. We build inside Microsoft 365 and Copilot where you run them, connect them to the systems Copilot can't see, and train your team on its own work so the licenses get used." },
   { q: "Are you based in Seattle?", a: "We're based in Portland, Oregon, and work with Seattle-area teams on site and remotely. Training days happen at your office. Builds, check-ins and monthly training run remotely between visits." },
   { q: "Which Seattle-area companies are a fit?", a: "Operational businesses of 15 people and up with no one whose job is AI: distributors, freight and logistics firms around the ports, manufacturers, accounting firms, insurance agencies, construction, legal, healthcare and more. The strongest fit has repeat paperwork or phone volume and tools that don't talk to each other." },
-  { q: "What does AI implementation cost?", a: "It depends on team size, how many systems connect, how many builds run at once, and whether you replace software. Every engagement starts with a discovery, sized to your company, that ends with a written plan and prices for what comes next." },
+  { q: "What does AI implementation cost?", a: "It depends on team size, how many systems connect, how many builds run at once, and whether you replace software. Every engagement starts with a free build: a working tool on your own work in two weeks, at no cost. After that, fixed prices: builds from $7,500 and an AI Officer from $7,750 a month." },
 ];
 
 export default function SeattlePage() {
@@ -125,7 +125,7 @@ export default function SeattlePage() {
       <section className="sec light" aria-labelledby="sea-start-h">
         <div className="wrap">
           <div className="label"><span className="ix">04</span>How it starts</div>
-          <h2 className="h2" id="sea-start-h">Every engagement starts with a discovery. <span className="mute">It ends with a working tool on your own data.</span></h2>
+          <h2 className="h2" id="sea-start-h">Every engagement starts with a free build. <span className="mute">It ends with a working tool on your own data.</span></h2>
           <ul className="mlist">
             {START.map((x) => <li key={x.b}><b>{x.b}</b><span>{x.s}</span></li>)}
           </ul>

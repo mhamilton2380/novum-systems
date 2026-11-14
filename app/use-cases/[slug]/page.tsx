@@ -34,7 +34,7 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
   const hrs = industryHours(u.slug);
   const pct = (x: number) => `${Math.round(x * 100)}%`;
   const srcLabel = (k: string | null) =>
-    k && SOURCES[k] ? <>Our estimate, using <a href={SOURCES[k].url} target="_blank" rel="noopener noreferrer">{SOURCES[k].label}</a></> : "Our estimate, measured in discovery";
+    k && SOURCES[k] ? <>Our estimate, using <a href={SOURCES[k].url} target="_blank" rel="noopener noreferrer">{SOURCES[k].label}</a></> : "Our estimate, measured on your own work";
   const unit = OFFICE[u.slug]?.unit ?? "office employee";
   const scenarios = SCENARIOS[u.slug] ?? [];
   const n = (i: number) => String(i).padStart(2, "0");
@@ -106,7 +106,7 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
               <div className="label"><span className="ix">02</span>{walkData.sectionLabel}</div>
               <h2 className="h2">{walkData.h2[0]} <span className="mute">{walkData.h2[1]}</span></h2>
               <JobWalk scenarios={scenarios} walk={walkData} />
-              <p className="fine">Illustrations of typical work in this industry, not client records. Results are measured in discovery.</p>
+              <p className="fine">Illustrations of typical work in this industry, not client records. Results are measured on your own work.</p>
             </>
           ) : (
             <>
@@ -126,7 +126,7 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
                 <div>
                   <div className="meta">What our clients cut</div>
                   <p className="uc-big">85 to 95% <span>less time on the work we build</span></p>
-                  <p>A construction company: bank draw applications went from 10 hours to 1.5, submittal reviews from 4 hours to 15 minutes. A 15-person bookkeeping firm: data entry down 95%. Your numbers are measured in discovery, on your own work.</p>
+                  <p>A construction company: bank draw applications went from 10 hours to 1.5, submittal reviews from 4 hours to 15 minutes. A 15-person bookkeeping firm: data entry down 95%. Your numbers are measured on your own work.</p>
                 </div>
               </div>
               <details className="uc-how">
@@ -191,7 +191,7 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
                 </li>
               ))}
             </ol>
-            <p className="fine">Illustrations of typical work in this industry, not client records. Results are measured in discovery.</p>
+            <p className="fine">Illustrations of typical work in this industry, not client records. Results are measured on your own work.</p>
           </div>
         </section>
       )}
@@ -229,7 +229,7 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
               <ul>{u.removes.map((t) => <li key={t}>{t}</li>)}</ul>
             </div>
           </div>
-          <p className="uc-rule">We recommend replacing a tool only when owning the software costs less than what you spend on it today. The tool report in discovery decides line by line.</p>
+          <p className="uc-rule">We recommend replacing a tool only when owning the software costs less than what you spend on it today. The tool and cost report decides line by line.</p>
         </div>
       </section>
 
@@ -251,7 +251,7 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
           <div className="uc-start">
             <div>
               <h2 className="h2">Map before we build.</h2>
-              <p className="lead">Every engagement starts with a discovery: we map how the work moves, report on every tool and what it costs, write the AI usage policy, train the team and put the first build to work.</p>
+              <p className="lead">Every engagement starts with a free build: we map one workflow, put a working tool on it with your own data and train the people who use it, in two weeks at no cost.</p>
               <div className="uc-links">
                 <Link className="link" href="/how-we-work">How we work <span aria-hidden="true">→</span></Link>
                 <Link className="link" href="/training">AI training on your own work <span aria-hidden="true">→</span></Link>

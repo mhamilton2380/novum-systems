@@ -76,8 +76,8 @@ const STEPS = [
 
 const DOORS = [
   { need: "My team needs to learn AI", title: "Start with a training day", body: "Your team gets up to speed in five hours, with a short list of tools and a clear sense of what AI can do for them.", href: "/training", cta: "Book a training day" },
-  { need: "I know what I want built", title: "Start with a discovery", body: "We map the work, audit your tools, write your AI policy, and put a working tool on your own data.", href: "#contact", cta: "Book a conversation" },
-  { need: "I want someone to own AI for us", title: "Start with an AI Officer", body: "Someone who owns AI for your company: building, training, and keeping it current. It starts with a discovery.", href: "/ai-officer", cta: "See the AI Officer role" },
+  { need: "I know what I want built", title: "Start with a free build", body: "We map one workflow and put a working tool on it, on your own data, in two weeks at no cost.", href: "#contact", cta: "Book a conversation" },
+  { need: "I want someone to own AI for us", title: "Start with an AI Officer", body: "Someone who owns AI for your company: building, training, and keeping it current. It starts with a free build.", href: "/ai-officer", cta: "See the AI Officer role" },
 ];
 
 const OWN = [
@@ -90,8 +90,8 @@ const OWN = [
 const FAQ = [
   { q: "What does AI implementation mean here?", a: "Getting AI into the daily work of your business. That takes two things: your people knowing how to use it, and someone building and maintaining the tools around your data. Training covers the first. Agents, custom software and an AI Officer cover the second." },
   { q: "Do we need all four?", a: "No. Some teams book a training day and stop there. Most that go further find the training shows them what to build, and the AI Officer builds it. We start where your teams lose the most hours and add the rest as each piece earns its place." },
-  { q: "How does it start?", a: "With a discovery. We map how your work moves, audit every tool you pay for, write your AI usage policy, train your team on its own work, and put a working tool on your own data. You keep everything we deliver." },
-  { q: "Can we buy one project instead of an ongoing engagement?", a: "Yes. After discovery we scope a single build with you: an assistant, agents, integrations, or a platform replacement. You get the same training and you own the code, data and accounts. Most clients keep us on as their AI Officer for the upkeep and the builds that come after the first." },
+  { q: "How does it start?", a: "With a free build. We map one workflow, build a working tool on it with your own data, and train the people who use it, in two weeks at no cost. If you keep it, you pay the fixed price we agreed before we started, or it becomes the start of your engagement." },
+  { q: "Can we buy one project instead of an ongoing engagement?", a: "Yes. After the free build we scope a single build with you, with a fixed price in writing: an assistant, agents, integrations, or a platform replacement. You get the same training and you own the code, data and accounts. Most clients keep us on as their AI Officer for the upkeep and the builds that come after the first." },
   { q: "Who owns what you build?", a: "You do. The code, the data, and the accounts are in your company's name, and your team keeps the know-how." },
   { q: "Do we have to replace our software?", a: "No. We connect the tools that work and put AI on top. We only rebuild a platform when owning it costs less than the subscription." },
 ];
@@ -204,7 +204,7 @@ export default function AiImplementationPage() {
             <div className="intro">
               <span className="meta">Where to start</span>
               <h3>The first build worth making.</h3>
-              <p>Discovery finds the high-volume, repeatable work where AI is proven. Typical first builds:</p>
+              <p>The free build starts on high-volume, repeatable work where AI is proven. Typical first builds:</p>
             </div>
             <table className="ptable">
               <thead><tr><th>Company</th><th>First build</th><th>What it does</th></tr></thead>
@@ -244,7 +244,7 @@ export default function AiImplementationPage() {
                 <div>
                   <span className="meta">When it pays</span>
                   <h4>Replace a platform</h4>
-                  <p>When owning costs less than the SaaS you pay for, we rebuild it around how you work, migrate your data from the old tool, and train the team before launch. The tool report in discovery shows the math first.</p>
+                  <p>When owning costs less than the SaaS you pay for, we rebuild it around how you work, migrate your data from the old tool, and train the team before launch. The tool and cost report shows the math first.</p>
                 </div>
               </div>
               <div className="ai-size">
@@ -305,34 +305,32 @@ export default function AiImplementationPage() {
             ))}
           </ol>
           <div className="first">
-            <div><span className="meta">The first engagement</span><h3>Discovery</h3></div>
+            <div><span className="meta">Where everyone starts</span><h3>A free build</h3></div>
             <div className="ai-first-p">
-              <p>Everyone starts here, and it ends with a working tool on your own data. You keep everything we deliver, whatever you decide next.</p>
+              <p>A working tool on your own work in two weeks, at no cost. Keep it and pay a fixed price, or stop there. <Link className="link" href="/pricing">See pricing <span aria-hidden="true">→</span></Link></p>
               <ul className="ai-deliv">
-                <li>Workflow map</li>
-                <li>Tool and cost report</li>
-                <li>AI usage policy</li>
-                <li>A training session on your own work</li>
+                <li>One workflow mapped</li>
                 <li>A working tool on your own data</li>
-                <li>A written plan for what comes next</li>
+                <li>A training session for the people who use it</li>
+                <li>A fixed price in writing to keep it</li>
               </ul>
             </div>
           </div>
           <div className="ai-sub">
             <div className="intro">
-              <span className="meta">After discovery</span>
+              <span className="meta">After the free build</span>
               <h3>Two ways to continue.</h3>
             </div>
             <div className="ai-two">
               <div>
                 <span className="meta">Most clients</span>
                 <h4>Keep us on as your AI Officer</h4>
-                <p>Agents, integrations and tools built one after another, every system connected, and your team trained every month. Sized to your company in discovery.</p>
+                <p>Agents, integrations and tools built one after another, every system connected, and your team trained every month. From $7,750 a month, sized to your company.</p>
               </div>
               <div>
                 <span className="meta">One project</span>
                 <h4>A single build</h4>
-                <p>Scoped with you after discovery: an assistant, agents, integrations, or a platform replacement. The same training, and you own the code, data and accounts.</p>
+                <p>Scoped and priced in writing after the free build: an assistant, agents, integrations, or a platform replacement. The same training, and you own the code, data and accounts.</p>
               </div>
             </div>
           </div>
@@ -340,7 +338,7 @@ export default function AiImplementationPage() {
             <div className="intro">
               <span className="meta">Where to start</span>
               <h3>Pick the door that fits.</h3>
-              <p>Not sure? Start with a discovery. It points to the right next step, and every route can lead to the others.</p>
+              <p>Not sure? Start with a free build. It points to the right next step, and every route can lead to the others.</p>
             </div>
             <div className="ai-doors" style={{ marginTop: 0 }}>
               {DOORS.map((d) => (
