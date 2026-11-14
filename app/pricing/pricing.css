@@ -1,26 +1,22 @@
 /* Pricing page. Every class is prefixed .pr- (shared blocks live in app/nv.css). */
 
-/* hero: copy left, printed schedule of fees right */
+/* hero: copy left, fee schedule right, set in the site's own dark panel */
 .pr-hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
-.pr-sched { margin: 0; position: relative; background: #f7f5ef; color: #0b1b2e; border-radius: 4px; padding: clamp(22px, 2.6vw, 34px); box-shadow: 0 40px 80px -40px rgba(0,0,0,.7); transform: rotate(-0.6deg); }
-.pr-sched-h { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding-bottom: 14px; border-bottom: 2px solid #0b1b2e; }
-.pr-sched-h b { font-size: clamp(20px, 1.8vw, 24px); font-weight: 600; letter-spacing: -0.03em; }
-.pr-sched-h span { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #5b6676; }
+.pr-sched { margin: 0; position: relative; background: var(--raise); border: 1px solid var(--line-2); border-radius: 14px; padding: clamp(22px, 2.4vw, 32px); }
+.pr-sched-h { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding-bottom: 16px; border-bottom: 1px solid var(--line-2); }
+.pr-sched-h b { font-size: 11.5px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-3); }
 .pr-sched ul { list-style: none; margin: 0; padding: 0; }
-.pr-sched li { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 13px 0; border-bottom: 1px solid rgba(11,27,46,.14); }
-.pr-sched li div { display: grid; gap: 2px; min-width: 0; }
-.pr-sched li b { font-weight: 600; font-size: 15.5px; }
-.pr-sched li span { font-size: 13px; color: #5b6676; }
-.pr-sched li em { font-style: normal; font-weight: 600; font-size: 15px; white-space: nowrap; font-variant-numeric: tabular-nums; }
-.pr-sched li:first-child em { color: #067a4d; }
-.pr-sched-f { margin: 14px 0 0; font-size: 12.5px; color: #5b6676; max-width: 26em; }
-.pr-stamp { position: absolute; right: -22px; top: -34px; width: 92px; height: 92px; border-radius: 50%; border: 2px solid #067a4d; display: grid; place-items: center; transform: rotate(-14deg); background: rgba(247,245,239,.85); }
-.pr-stamp span { font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #067a4d; text-align: center; line-height: 1.3; width: 60px; }
+.pr-sched li { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.pr-sched li div { display: grid; gap: 3px; min-width: 0; }
+.pr-sched li b { font-weight: 500; font-size: 16px; color: var(--ink); letter-spacing: -0.01em; }
+.pr-sched li span { font-size: 13.5px; color: var(--ink-3); }
+.pr-sched li em { font-style: normal; font-weight: 500; font-size: clamp(17px, 1.5vw, 20px); letter-spacing: -0.02em; white-space: nowrap; font-variant-numeric: tabular-nums; color: var(--ink); }
+.pr-sched li:first-child em { color: var(--green-2); }
+.pr-sched-f { margin: 16px 0 0; font-size: 13px; color: var(--ink-3); max-width: 30em; }
+.pr-stamp { display: none; }
 @media (max-width: 900px) {
   .pr-hero { grid-template-columns: 1fr; }
-  .pr-sched { transform: none; margin-top: 12px; }
-  .pr-stamp { right: 6px; top: -30px; width: 74px; height: 74px; }
-  .pr-sched-h span { display: none; }
+  .pr-sched { margin-top: 12px; }
 }
 
 /* the menu */
