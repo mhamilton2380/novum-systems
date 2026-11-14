@@ -3,7 +3,7 @@ import { Brand } from "./Mark";
 import { USE_CASE_NAV } from "@/lib/nav";
 
 const COLS: { h: string; links: [string, string][] }[] = [
-  { h: "AI implementation", links: [["/training", "Training"], ["/ai-implementation#agents", "Agents"], ["/ai-implementation#software", "Custom software"], ["/ai-officer", "AI Officer"]] },
+  { h: "AI implementation", links: [["/training", "Training"], ["/ai-implementation#agents", "Agents"], ["/ai-implementation#software", "Custom software"], ["/ai-officer", "AI Officer"], ["/free-build", "Free build"], ["/pricing", "Pricing"]] },
   { h: "Company", links: [["/how-we-work", "How we work"], ["/case-studies", "Results"], ["/about", "About"], ["/contact", "Contact"], ["/ai-implementation/portland", "Portland"], ["/ai-implementation/seattle", "Seattle"]] },
   { h: "Industries", links: [...USE_CASE_NAV.map((u): [string, string] => [`/use-cases/${u.slug}`, u.label]), ["/use-cases", "All industries"]] },
   { h: "Resources", links: [["/guides/how-to-implement-ai", "How to implement AI"], ["/guides/ai-implementation-cost", "What AI implementation costs"], ["/guides/ai-usage-policy-template", "AI usage policy starter"], ["/guides/choose-an-ai-partner", "How to choose an AI partner"], ["/why-ai", "Why AI"], ["/assessment", "AI Readiness Score"]] },

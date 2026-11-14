@@ -82,8 +82,8 @@ export default function PricingPage() {
             <h1>Every price, in writing, before any work starts.</h1>
             <p className="lead">Start with a free build: a working tool on your own work in two weeks. Keep it and pay a fixed price, or stop there. Everything we build is yours.</p>
             <div className="ctas">
-              <Link className="btn" href="/contact">Book a call <span aria-hidden="true">→</span></Link>
-              <Link className="btn ghost" href="/contact">Get a written plan, no call</Link>
+              <Link className="btn" href="/free-build">How the free build works <span aria-hidden="true">→</span></Link>
+              <Link className="btn ghost" href="/contact">Book a call</Link>
             </div>
           </div>
           <figure className="pr-sched" aria-label="Schedule of fees">
