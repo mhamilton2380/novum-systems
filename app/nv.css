@@ -45,7 +45,7 @@ main, header, footer { position: relative; z-index: 1; }
 .h2 .mute, .manifesto .mute { color: var(--ink-3); }
 .label .ix { color: var(--ink-3); font-variant-numeric: tabular-nums; }
 .lead { color: var(--ink-2); font-size: clamp(17px, 1.35vw, 19.5px); line-height: 1.6; max-width: 36em; margin-top: 24px; }
-.sec { padding-block: clamp(100px, 12vw, 176px); }
+.sec { padding-block: clamp(64px, 7vw, 100px); }
 .rule { border-top: 1px solid var(--line); }
 .link { display: inline-flex; align-items: center; gap: 10px; font-weight: 500; font-size: 15px; text-decoration: none; color: var(--ink); background: linear-gradient(var(--ink), var(--ink)) no-repeat 0 100% / 0 1px; padding-bottom: 3px; transition: background-size .35s ease; }
 .link:hover { background-size: 100% 1px; }
@@ -139,6 +139,7 @@ body.home-intro:not(.ready) .top { opacity: 0; }
 .cell .n { font-size: clamp(44px, 4.6vw, 72px); font-weight: 500; letter-spacing: -0.045em; line-height: 0.95; font-variant-numeric: tabular-nums; }
 .cell p { color: var(--ink-2); max-width: 22em; }
 .finds { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); }
+* + .finds { margin-top: clamp(32px, 4vw, 56px); }
 .finds div { padding: 22px 26px 4px 0; display: grid; gap: 4px; align-content: start; }
 .finds div + div { padding-left: 26px; border-left: 1px solid var(--line); }
 .finds b { font-weight: 500; font-size: 20px; letter-spacing: -0.02em; }
@@ -901,13 +902,15 @@ footer { border-top: 1px solid var(--line); padding-block: 64px calc(40px + env(
 
 /* Two paper sections in a row: one shared gap instead of double padding, split by a hairline. */
 .sec.light + .sec.light { padding-top: 0; }
-.sec.light + .sec.light > .wrap::before { content: ""; display: block; height: 1px; background: var(--line); margin-bottom: clamp(64px, 8vw, 120px); }
+.sec > .wrap.own2, .sec > .wrap.gapgrid { margin-top: 0; }
+.sec.light + .sec.light > .wrap { position: relative; padding-top: clamp(48px, 5vw, 72px); }
+.sec.light + .sec.light > .wrap::before { content: ""; position: absolute; top: 0; left: var(--gutter); right: var(--gutter); height: 1px; background: var(--line); }
 
 .demo-steps { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 48px; list-style: none; padding: 0; }
 @media (max-width: 860px) { .demo-steps { grid-template-columns: 1fr; } }
 
 /* Home 01: what we do, in one screen: the /ai-implementation definition and its four-piece index (2026-10-26) */
-.lay { padding-block: clamp(90px, 10vw, 150px) clamp(60px, 8vw, 120px); }
+.lay { padding-block: clamp(72px, 8vw, 120px); }
 .lay .h2 { max-width: 19em; }
 .lay .lead { max-width: 40em; }
 /* the four pieces, ported from the /ai-implementation index (ai-implementation.css .ai-toc); here each links to its section there */
