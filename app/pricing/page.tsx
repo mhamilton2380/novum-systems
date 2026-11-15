@@ -118,7 +118,7 @@ export default function PricingPage() {
               </div>
             ))}
           </div>
-          <p className="fine">Want your team in a room first? An on-site <Link className="link" href="/training">training day</Link> starts at $2,500. AI usage is billed by the AI provider directly to your company, at cost. No seats, no per-user licenses, no revenue share.</p>
+          <p className="fine">Want your team in a room first? An on-site <Link className="link" href="/training">training day</Link> starts at $2,500. AI usage is billed by the AI provider directly to your company, at cost. Custom software we build has no seats or per-user licenses, and we take no revenue share. AI tools your team signs into, like Claude or Copilot, are billed per seat by the vendor at their list price, with no markup from us.</p>
         </div>
       </section>
 
