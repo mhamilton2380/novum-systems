@@ -10,7 +10,7 @@ import "./fb.css";
 export const metadata: Metadata = pageMetadata({
   path: "/free-build",
   title: "Free Build: One AI Tool on Your Own Work in Two Weeks · Novum AI",
-  description: "One agent or tool built on your own work and data in two weeks, at no cost. Keep it at a fixed price stated up front, or stop there. One page signed, and you own what we build.",
+  description: "One agent or tool built on your own work and data in two weeks, at no cost. It is yours to keep, free. One page signed, and you own what we build.",
 });
 
 const FACTS = [
@@ -25,7 +25,7 @@ const INCLUDED = [
   { t: "What it costs you today", d: "Hours a week on that workflow times your loaded wage, so you see what the staff time is worth before you decide anything." },
   { t: "A working tool on your own work", d: "Built on your own documents, systems and data, in accounts your company owns. Not a demo on sample data." },
   { t: "Your people trained on it", d: "A hands-on session for the people who will use it, on their own work." },
-  { t: "The keep-it price, in writing", d: "Before we start, you get the fixed price to keep the tool. No number shows up after the work is done." },
+  { t: "Yours to keep", d: "The tool, the code and the data stay with you whether or not you hire us again. There is no fee to keep it." },
   { t: "A written handover", d: "What the tool does, where it runs, what it costs to run each month, and what we would build next if you kept going." },
 ];
 
@@ -33,7 +33,7 @@ const STEPS = [
   { t: "A 30-minute call", d: "We pick the one workflow that costs your team the most time. Someone who can say yes is on the call.", s: "Day 0" },
   { t: "One page, then access", d: "You sign the data agreement and give us read access to the tools involved, plus a few past examples to test on.", s: "Day 1" },
   { t: "We build, you check in", d: "Two short check-ins while we build. You see it working on your own work before the end.", s: "Days 2 to 10" },
-  { t: "You decide", d: "Keep it at the price agreed up front, make it the start of an AI Officer engagement, or stop. Nothing is owed if you stop.", s: "Day 14" },
+  { t: "You decide what is next", d: "The tool is yours, free. When your team wants the next one, that becomes the start of your engagement. Nothing is owed either way.", s: "Day 14" },
 ];
 
 const TOOLS = [
@@ -62,10 +62,10 @@ const CMP = [
 ];
 
 const FAQ = [
-  { q: "Why is it free?", a: "Because a working tool on your own work is the best way to show what we do. Most teams who keep the first tool go on to build more, and that is where we make our money." },
+  { q: "Why is it free?", a: "Because a working tool on your own work shows what we do better than any pitch. We expect you to want the next one, and that is where we make our money." },
   { q: "What do we sign?", a: "One page that covers your data: we use it only for the build, it stays in accounts your company owns, and nothing trains on it. No contract and no commitment to buy." },
-  { q: "What does it cost to keep the tool?", a: "A fixed price we give you in writing before we start, based on the size of the build. Fixed-scope builds start at $7,500. Or it becomes the start of an AI Officer engagement." },
-  { q: "What if we stop after two weeks?", a: "You owe nothing. We remove our access, and the workflow map and cost analysis are yours to keep." },
+  { q: "What does it cost to keep the tool?", a: "Nothing. It is yours. Further builds are priced in writing before any work starts (from $7,500), or they run through an AI Officer engagement." },
+  { q: "What if we don't hire you again after two weeks?", a: "You owe nothing. The tool, the workflow map and the cost analysis stay with you, and we remove our access to your systems." },
   { q: "We're not technical. Is that a problem?", a: "No. You need someone who knows the workflow and about an hour a week. We handle the setup, the accounts and the build." },
   { q: "Which workflow should we pick?", a: "The one your team complains about most and repeats every week: intake, invoices, reports, document review, follow-ups. If you are not sure, we suggest one on the call." },
 ];
@@ -79,7 +79,7 @@ export default function FreeBuildPage() {
         <div className="wrap">
           <div className="label">Free build</div>
           <h1>One tool on your own work, in two weeks. Free.</h1>
-          <p className="lead">Pick the workflow your team is tired of. We build a working agent or tool on it, on your own documents and systems. Keep it at a price you saw before we started, or stop there.</p>
+          <p className="lead">Pick the workflow your team is tired of. We build a working agent or tool on it, on your own documents and systems. It is yours to keep, free. When your team wants the next one, that becomes the start of your engagement.</p>
           <div className="ctas">
             <Link className="btn" href="#apply">Apply for a free build <span aria-hidden="true">→</span></Link>
             <Link className="btn ghost" href="/pricing">See all prices</Link>
@@ -91,7 +91,7 @@ export default function FreeBuildPage() {
       <section className="sec light" aria-labelledby="fb-inc-h">
         <div className="wrap">
           <div className="label"><span className="ix">01</span>What&apos;s included</div>
-          <h2 className="h2" id="fb-inc-h">Six things you get, whether you keep it or not.</h2>
+          <h2 className="h2" id="fb-inc-h">Six things you get, at no cost.</h2>
           <ol className="fb-inc">{INCLUDED.map((i) => <li key={i.t}><b>{i.t}</b><p>{i.d}</p></li>)}</ol>
         </div>
       </section>
@@ -146,7 +146,7 @@ export default function FreeBuildPage() {
           <div className="ct-side">
             <div className="label"><span className="ix">06</span>Apply</div>
             <h2 className="h2">Tell us which workflow hurts.</h2>
-            <p>Or say &quot;not sure&quot; and we will suggest one on the call. Nothing is signed until you see the scope and the keep-it price in writing.</p>
+            <p>Or say &quot;not sure&quot; and we will suggest one on the call. Nothing is signed until you see the scope in writing.</p>
             <h3>When you&apos;ll hear back</h3>
             <p>The same business day, with a time for the call.</p>
           </div>

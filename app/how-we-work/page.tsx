@@ -191,7 +191,7 @@ export default function HowWeWorkPage() {
           <div className="first">
             <div><span className="meta">Where it starts</span><h3>Start with one workflow.</h3></div>
             <div>
-              <p>Pick the work that eats the most hours. In the free build we map how that workflow runs, put a working tool on it using your own data, and train the team on it, in two weeks at no cost. Keep the tool and pay a fixed price, or stop there. Most clients then keep us on as their AI Officer, which starts with a report on every tool you pay for and your AI usage policy.</p>
+              <p>Pick the work that eats the most hours. In the free build we map how that workflow runs, put a working tool on it using your own data, and train the team on it, in two weeks at no cost. The tool is yours to keep, free. Most clients then keep us on as their AI Officer, which starts with a report on every tool you pay for and your AI usage policy.</p>
               <ul className="hw-disc">
                 <li><b>Work mapped</b><span>How it moves today, with your team</span></li>
                 <li><b>Two weeks</b><span>At no cost, start to finish</span></li>

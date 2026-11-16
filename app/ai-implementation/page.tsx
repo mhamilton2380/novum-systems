@@ -90,7 +90,7 @@ const OWN = [
 const FAQ = [
   { q: "What does AI implementation mean here?", a: "Getting AI into the daily work of your business. That takes two things: your people knowing how to use it, and someone building and maintaining the tools around your data. Training covers the first. Agents, custom software and an AI Officer cover the second." },
   { q: "Do we need all four?", a: "No. Some teams book a training day and stop there. Most that go further find the training shows them what to build, and the AI Officer builds it. We start where your teams lose the most hours and add the rest as each piece earns its place." },
-  { q: "How does it start?", a: "With a free build. We map one workflow, build a working tool on it with your own data, and train the people who use it, in two weeks at no cost. If you keep it, you pay the fixed price we agreed before we started, or it becomes the start of your engagement." },
+  { q: "How does it start?", a: "With a free build. We map one workflow, build a working tool on it with your own data, and train the people who use it, in two weeks at no cost. It is yours to keep, free. When your team wants the next one, that becomes the start of your engagement." },
   { q: "Can we buy one project instead of an ongoing engagement?", a: "Yes. After the free build we scope a single build with you, with a fixed price in writing: an assistant, agents, integrations, or a platform replacement. You get the same training and you own the code, data and accounts. Most clients keep us on as their AI Officer for the upkeep and the builds that come after the first." },
   { q: "Who owns what you build?", a: "You do. The code, the data, and the accounts are in your company's name, and your team keeps the know-how." },
   { q: "Do we have to replace our software?", a: "No. We connect the tools that work and put AI on top. We only rebuild a platform when owning it costs less than the subscription." },
@@ -307,12 +307,12 @@ export default function AiImplementationPage() {
           <div className="first">
             <div><span className="meta">Where everyone starts</span><h3>A free build</h3></div>
             <div className="ai-first-p">
-              <p>A working tool on your own work in two weeks, at no cost. Keep it and pay a fixed price, or stop there. <Link className="link" href="/pricing">See pricing <span aria-hidden="true">→</span></Link></p>
+              <p>A working tool on your own work in two weeks, at no cost. It is yours to keep, free. <Link className="link" href="/pricing">See pricing <span aria-hidden="true">→</span></Link></p>
               <ul className="ai-deliv">
                 <li>One workflow mapped</li>
                 <li>A working tool on your own data</li>
                 <li>A training session for the people who use it</li>
-                <li>A fixed price in writing to keep it</li>
+                <li>The tool, code and data are yours to keep</li>
               </ul>
             </div>
           </div>

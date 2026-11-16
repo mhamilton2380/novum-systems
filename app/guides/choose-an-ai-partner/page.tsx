@@ -147,7 +147,7 @@ export default function ChooseAiPartnerPage() {
           <div>
             <div className="label">Start a conversation</div>
             <h2 className="h2" id="gp-cta-h">Ask us all five.</h2>
-            <p className="lead">A free build ends with a working tool on your own data in two weeks, at no cost, and a fixed price in writing to keep it. The code, data and accounts are yours from day one.</p>
+            <p className="lead">A free build ends with a working tool on your own data in two weeks, at no cost. It is yours to keep, free. The code, data and accounts are yours from day one.</p>
           </div>
           <ContactForm source="Guide: choose an AI partner" />
         </div>

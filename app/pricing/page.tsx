@@ -7,13 +7,13 @@ import "./pricing.css";
 export const metadata: Metadata = pageMetadata({
   path: "/pricing",
   title: "AI Implementation Pricing: Every Price in Writing · Novum AI",
-  description: "A free build on your own work in two weeks, then fixed prices agreed in writing: AI workspace setup, builds, platform replacement, upkeep and a fractional AI Officer. You own all of it.",
+  description: "A free build on your own work in two weeks, then fixed prices agreed in writing for what comes next: AI workspace setup, builds, platform replacement, upkeep and a fractional AI Officer. You own all of it.",
 });
 
 // Published menu (Michael, 2026-11-14), priced from the cost model in novum-vault/CONTEXT.md:
 // $167 per delivery hour, 50% margin. Reverses the 2026-10-16 no-prices rule.
 const MENU = [
-  { tag: "Start here", name: "Free build", price: "Free", unit: "", time: "Two weeks", body: "One agent or tool, built on your own work and data. Keep it and pay a fixed price for it, or it becomes the start of your engagement. The only thing you sign is a one-page agreement that protects your data." },
+  { tag: "Start here", name: "Free build", price: "Free", unit: "", time: "Two weeks", body: "One agent or tool, built on your own work and data. It is yours to keep, free. When your team wants the next one, that becomes the start of your engagement. The only thing you sign is a one-page agreement that protects your data." },
   { tag: "Setup", name: "AI workspace setup", price: "from $3,500", unit: "", time: "Days", body: "One team workspace on Claude, ChatGPT or Microsoft Copilot, connected to the tools you use, loaded with your templates and house rules, and your team trained on it." },
   { tag: "Build", name: "Fixed-scope build", price: "from $7,500", unit: "", time: "Weeks", body: "One agent, integration or tool on your data, with training for the people who use it and a support window after launch." },
   { tag: "Replace", name: "Replace a rented platform", price: "from $25,000", unit: "", time: "Module by module", body: "Custom software built around how you work, with your data moved over, replacing a platform you rent. Scoped first, then a fixed price in writing." },
@@ -63,7 +63,7 @@ const CUSTODY = [
 ];
 
 const FAQ = [
-  { q: "What does the free build cost us?", a: "Nothing but some of your team's time: a kickoff, access to the tools involved, and a review at the end. You sign one page that protects your data. If you keep the tool, you pay the fixed price we agreed before we started, or it becomes the start of your engagement." },
+  { q: "What does the free build cost us?", a: "Nothing but some of your team's time: a kickoff, access to the tools involved, and a review at the end. You sign one page that protects your data. The tool is yours to keep, free. When your team wants the next one, that becomes the start of your engagement." },
   { q: "How is a fixed price set?", a: "We estimate the hours the work takes from what we learn about your workflow, and you get one number in writing before any work starts. The prices on this page are where each item starts." },
   { q: "What does the AI itself cost?", a: "The AI provider bills your company directly, at cost, in your company's name. No markup and no seats. We estimate the monthly cost of each tool before you approve it." },
   { q: "Do we have to keep paying you?", a: "No. You own the code, data and accounts. Run it yourself, hire anyone to work on it, or keep us on the upkeep plan or as your AI Officer." },
@@ -80,7 +80,7 @@ export default function PricingPage() {
           <div>
             <div className="label">Pricing</div>
             <h1>Every price, in writing, before any work starts.</h1>
-            <p className="lead">Start with a free build: a working tool on your own work in two weeks. Keep it and pay a fixed price, or stop there. Everything we build is yours.</p>
+            <p className="lead">Start with a free build: a working tool on your own work in two weeks. It is yours to keep, free. Everything we build is yours.</p>
             <div className="ctas">
               <Link className="btn" href="/free-build">How the free build works <span aria-hidden="true">→</span></Link>
               <Link className="btn ghost" href="/contact">Book a call</Link>

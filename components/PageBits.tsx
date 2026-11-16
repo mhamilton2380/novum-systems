@@ -26,7 +26,7 @@ export function PageHero({ eyebrow, title, sub, side, below, ctas = true }: {
   );
 }
 
-export function CtaBand({ title = "Start with a free build.", body = "A working tool on your own work in two weeks, at no cost. Keep it and pay a fixed price, or stop there." }: { title?: string; body?: string }) {
+export function CtaBand({ title = "Start with a free build.", body = "A working tool on your own work in two weeks, at no cost. It is yours to keep, free." }: { title?: string; body?: string }) {
   return (
     <section className="h-sec">
       <div className="h-wrap">

@@ -44,7 +44,7 @@ const STEPS = [
     title: "Free build",
     line: "One workflow. Two weeks.",
     tag: "Where everyone starts",
-    body: "We map one workflow and put a working tool on it, on your own data, in two weeks at no cost. Keep it at a fixed price, or stop there.",
+    body: "We map one workflow and put a working tool on it, on your own data, in two weeks at no cost. It is yours to keep, free.",
   },
   {
     key: "train",
