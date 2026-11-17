@@ -13,7 +13,7 @@ export const metadata: Metadata = pageMetadata({
 // What the platform your data runs on holds. Source: supabase.com/security. These are the provider's, never Novum's own.
 const COMPLIANCE = [
   { b: "SOC 2 Type 2", s: "Compliant" },
-  { b: "HIPAA", s: "Compliant" },
+  { b: "HIPAA", s: "BAA available" },
   { b: "ISO 27001", s: "Certified" },
 ];
 
@@ -21,16 +21,20 @@ const CONTROLS = [
   { b: "Hosting", p: "Hosted on SOC 2 Type 2, ISO 27001 and HIPAA-ready infrastructure. The audit, certificate and HIPAA terms cover the hosting provider's infrastructure that runs your system. Novum itself is not audited to those standards." },
   { b: "Encryption", p: "Data is encrypted at rest in the database and in transit between your people, your systems and ours. Documents are stored encrypted and indexed so they can be searched by meaning." },
   { b: "Access by role", p: "Every person sees what their role allows and nothing else. The AI assistant answers from the same limits: it cannot show someone a record they could not open themselves." },
+  { b: "Search by meaning, limited by role", p: "The index that lets the assistant find documents by meaning is your data too: encrypted, kept in your database, limited by the same roles as the documents, and deleted with them. The database itself enforces those limits, so no wording of a question gets around them." },
+  { b: "Answers show their source", p: "When the assistant answers from your documents, it names the document and page. When it cannot find support, it says so instead of guessing." },
+  { b: "Documents get no authority over an agent", p: "An email, attachment or uploaded file can carry hidden text written to steer an AI tool. Agents treat document text as content to report. Nothing an agent reads can send, file or pay, because a person approves each of those steps." },
   { b: "Audit log", p: "Every view and edit is recorded, with who did it and when. Agents are logged the same way, so you can see what each one read and what it produced." },
   { b: "Human approval", p: "A person approves anything before it is sent, filed or paid. Agents draft, flag and prepare. They do not send, file or pay on their own. Live calls, such as a phone agent answering after hours, follow rules you set." },
   { b: "Your data never trains a model", p: "We do not use client data to train models. The AI account is opened in your company's name, so the provider relationship, billing and settings are yours." },
   { b: "Single-tenant data", p: "Each client has its own database. Your records are not stored beside another client's, and nothing is pooled across clients." },
+  { b: "Deletion that reaches everything", p: "When you delete a record or ask us to remove a set of data, the files, their search index entries and the content of the AI requests made on them are deleted together. Backups roll off on the hosting provider's schedule. The record of who accessed it and when is kept." },
   { b: "Accounts and code in your name", p: "The code lives in a repository your company owns. Hosting, database and AI accounts are set up under your company, with your team as owners and Novum as an administrator." },
   { b: "AI usage policy", p: "Every engagement writes down which AI tools your team may use and what data never goes into them. The policy is kept current as tools change, and your team signs off on it." },
 ];
 
 const IT_REVIEW = [
-  { b: "Where your data lives", p: "In accounts in your company's name. Hosting runs on Vercel and the database on Supabase, both SOC 2 Type 2. Supabase is also ISO 27001 certified and signs a business associate agreement for HIPAA work. AI models are reached through Anthropic's API under your own organization. The data region is the United States by default." },
+  { b: "Where your data lives", p: "In accounts in your company's name. Hosting runs on Vercel and the database on Supabase, both SOC 2 Type 2. Supabase is also ISO 27001 certified and signs a business associate agreement for HIPAA work on qualifying plans. AI models are reached through Anthropic's API under your own organization. The data region is the United States by default." },
   { b: "Data processing agreement", p: "Available on request." },
   { b: "Incident notification", p: "We notify you without undue delay, and within 72 hours of confirming an incident that affects your data." },
   { b: "Subprocessor list", p: "Available on request." },
@@ -92,10 +96,10 @@ export default function SecurityPage() {
           <h2 className="h2" id="sc-c-h">What protects your data, <span className="mute">control by control.</span></h2>
           <div className="sc-controls">
             {CONTROLS.map((c, i) => (
-              <div key={c.b}><span className="sc-n">0{i + 1}</span><b>{c.b}</b><p>{c.p}</p></div>
+              <div key={c.b}><span className="sc-n">{String(i + 1).padStart(2, "0")}</span><b>{c.b}</b><p>{c.p}</p></div>
             ))}
           </div>
-          <p className="fine">SOC 2 Type 2 is an independent audit of a provider&apos;s security controls over a period of time. It describes the infrastructure we host on, as do HIPAA compliance and the ISO 27001 certificate. None of them is a certification of Novum.</p>
+          <p className="fine">SOC 2 Type 2 is an independent audit of a provider&apos;s security controls over a period of time. It describes the infrastructure we host on, as do the HIPAA terms and the ISO 27001 certificate. None of them is a certification of Novum.</p>
         </div>
       </section>
 
@@ -128,7 +132,7 @@ export default function SecurityPage() {
           <h2 className="h2" id="sc-it-h">What your IT team <span className="mute">will ask for.</span></h2>
           <div className="sc-controls">
             {IT_REVIEW.map((c, i) => (
-              <div key={c.b}><span className="sc-n">0{i + 1}</span><b>{c.b}</b><p>{c.p}</p></div>
+              <div key={c.b}><span className="sc-n">{String(i + 1).padStart(2, "0")}</span><b>{c.b}</b><p>{c.p}</p></div>
             ))}
           </div>
         </div>
@@ -140,7 +144,7 @@ export default function SecurityPage() {
           <p className="lead">Every engagement includes the controls above. Where your industry, insurer or IT policy asks for more, these levels are available as additions, scoped and priced before work starts.</p>
           <div className="sc-controls">
             {ADDITIONAL.map((c, i) => (
-              <div key={c.b}><span className="sc-n">0{i + 1}</span><b>{c.b}</b><p>{c.p}</p></div>
+              <div key={c.b}><span className="sc-n">{String(i + 1).padStart(2, "0")}</span><b>{c.b}</b><p>{c.p}</p></div>
             ))}
           </div>
         </div>
